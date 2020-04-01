@@ -41,6 +41,7 @@ ll pi(ll x);
 ll phi(ll x,short a){
    if(phi_memo[a][x])return phi_memo[a][x];
    else if(x==0)return phi_memo[a][x]=0;
+   else if(a==0)return phi_memo[a][x]=x;
    else if(a<=7)return phi_memo[a][x]=x/mul[a-1]*rem[a-1][mul[a-1]-1]+rem[a-1][x%mul[a-1]];
    else if(x<ps[a]*ps[a])return phi_memo[a][x]=pi(x)-a+1;
    else{
