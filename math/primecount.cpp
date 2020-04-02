@@ -13,59 +13,76 @@ template<class T> inline bool chmax(T& a,T b){ if(a<b){a=b;return 1;}return 0; }
 template<class T> inline bool chmin(T& a,T b){ if(a>b){a=b;return 1;}return 0; }
 //end
 
-constexpr int lim=1341398;
-constexpr int mul[]={2,6,30,210,2310,30030,510510};
-constexpr short sz=256;
-unordered_map<ll,ll> phi_memo[sz],pi_memo;
-vector<int> ps;
-int rem[7][510510]={};
-void init(){
-   bitset<lim> isp;
-   rep(i,2,lim+1)isp[i]=1;
-   for(int p=2;p*p<=lim;p++)if(isp[p]){
-      for(int q=p*p;q<=lim;q+=p)isp[q]=0;
+struct BIT{
+   int n; vector<int> val;
+   BIT(int _n):n(_n),val(_n+1,0){}
+   void add(int i,int x){for(i++;i<=n;i+=i&-i)val[i]+=x;}
+   int sum(int i){int res=0; for(i++;i;i-=i&-i)res+=val[i]; return res;}
+};
+
+constexpr int R=1010101;
+constexpr int C=10101;
+bitset<R> isp; vector<int> ps,cs;
+
+void init(int c){
+   rep(i,2,R+1)isp[i]=1;
+   for(int p=2;p*p<=R;p++)if(isp[p]){
+      for(int q=p*p;q<=R;q+=p)isp[q]=0;
    }
-   rep(i,1,lim+1){
-      if(isp[i])ps.push_back(i);
-      pi_memo[i]=ps.size();
-   }
-   rep(i,0,7)rep(j,1,mul[i]){
-      bool f=1;
-      rep(k,0,i+1)if(j%ps[k]==0){f=0; break;}
-      rem[i][j]=rem[i][j-1]+f;
+   rep(i,2,R+1)if(isp[i]){
+      ps.push_back(i);
+      if(i<=c)cs.push_back(i);
    }
 }
 
-ll pi(ll x);
-
-ll phi(ll x,short a){
-   if(phi_memo[a][x])return phi_memo[a][x];
-   else if(x==0)return phi_memo[a][x]=0;
-   else if(a==0)return phi_memo[a][x]=x;
-   else if(a<=7)return phi_memo[a][x]=x/mul[a-1]*rem[a-1][mul[a-1]-1]+rem[a-1][x%mul[a-1]];
-   else if(x<ps[a]*ps[a])return phi_memo[a][x]=pi(x)-a+1;
-   else{
-      ll res=x;
-      rep(i,0,a)if(x>=ps[i])res-=phi(x/ps[i],i); else break;
-      return phi_memo[a][x]=res;
+ll phi(ll x,ll a){
+   ll res=0;
+   vector<int> mu(a+1,1),minp(a+1,a); int cnt=0;
+   rep(i,1,a+1){
+      if(isp[i]){
+         for(ll j=i;j<=a;j+=i){
+            mu[j]*=-1; chmin(minp[j],cnt);
+         }
+         for(ll j=i*i,k=j;k<=a;k+=j)mu[k]=0;
+         cnt++;
+      } res+=mu[i]*(x/i);
    }
+   vector<ll> sum(cnt,-1);
+   for(ll r=0;r<a*a;r+=a){
+      int lo=max(r,1LL),hi=min(r+a,a*a);
+      if(lo>=hi)continue;
+      BIT bit(a); bitset<C> is_one;
+      vector<ll> nxt=sum;
+      rep(i,0,a)bit.add(i,1),is_one[i]=1;
+      rep(b,0,cnt){
+         int p=cs[b],mi=max(x/p/hi,a/p),ma=min(x/p/lo,a);
+         if(p>=ma)goto no_calc;
+         rrep(m,ma,mi)if(mu[m]!=0 and minp[m]>b){
+            res-=mu[m]*(sum[b]+bit.sum(x/p/m-lo));
+         } no_calc:;
+         nxt[b]+=bit.sum(a-1);
+         for(int q=(lo+p-1)/p*p;q<hi;q+=p)if(is_one[q-lo]){
+            bit.add(q-lo,-1); is_one[q-lo]=0;
+         }
+      } swap(sum,nxt);
+   }return res;
 }
 
 ll pi(ll x){
-   if(pi_memo[x])return pi_memo[x];
-   ll a=pi(pow(x,.25)),b=pi(sqrt(x)),c=pi(cbrt(x));
-   ll res=phi(x,a)+(b+a-2)*(b-a+1)/2;
-   rep(i,a,b){
-      ll y=x/ps[i]; res-=pi(y);
-      if(i<c){
-         ll b_i=pi(sqrt(y)); res+=(i+b_i-1)*(b_i-i)/2;
-         rep(j,i,b_i)res-=pi(y/ps[j]);
-      }
-   } return pi_memo[x]=res;
-} //need to initialize
+   int r=sqrt(x),c=cbrt(x); init(c);
+   if(x<=R)return upper_bound(ALL(ps),x)-ps.begin();
+   ll a=upper_bound(ALL(ps),c)-ps.begin(),b=upper_bound(ALL(ps),r)-ps.begin();
+   ll res=phi(x,c)+(b+a-2)*(b-a+1)/2; int idx=b-1;
+   for(int s=r;s<=x and idx>=a;s+=c){
+      vector<ll> cur(c+1,0); bitset<C> val;
+      cur[0]=b; rep(i,0,C)val[i]=1;
+      for(int p:cs)for(int q=p*(s/p);q<=s+c;q+=p)if(q>=s)val[q-s]=0;
+      rep(i,1,c+1)cur[i]=cur[i-1]+val[i]; b=cur[c];
+      while(s<=x/ps[idx] and x/ps[idx]<s+c and idx>=a){res-=cur[x/ps[idx]-s]; idx--;}
+   } return res;
+}
 
 int main(){
-   init();
    ll n; cin>>n;
    cout<<pi(n)<<endl;
    return 0;
