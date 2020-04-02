@@ -52,7 +52,6 @@ ll phi(ll x,ll a){
       int lo=max(r,1LL),hi=min(r+a,a*a);
       if(lo>=hi)continue;
       BIT bit(a); bitset<C> is_one;
-      vector<ll> nxt=sum;
       rep(i,0,a)bit.add(i,1),is_one[i]=1;
       rep(b,0,cnt){
          int p=cs[b],mi=max(x/p/hi,a/p),ma=min(x/p/lo,a);
@@ -60,11 +59,11 @@ ll phi(ll x,ll a){
          rrep(m,ma,mi)if(mu[m]!=0 and minp[m]>b){
             res-=mu[m]*(sum[b]+bit.sum(x/p/m-lo));
          } no_calc:;
-         nxt[b]+=bit.sum(a-1);
+         sum[b]+=bit.sum(a-1);
          for(int q=(lo+p-1)/p*p;q<hi;q+=p)if(is_one[q-lo]){
             bit.add(q-lo,-1); is_one[q-lo]=0;
          }
-      } swap(sum,nxt);
+      }
    }return res;
 }
 
