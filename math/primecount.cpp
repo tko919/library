@@ -4,7 +4,6 @@ using namespace std;
 
 //template
 #define rep(i,a,b) for(int i=(a);i<(b);i++)
-#define rrep(i,a,b) for(int i=(a);i>(b);i--)
 #define ALL(v) (v).begin(),(v).end()
 typedef long long int ll;
 const int inf = 0x3fffffff; const ll INF = 0x1fffffffffffffff; const double eps=1e-12;
@@ -37,8 +36,7 @@ void init(int c){
 }
 
 ll phi(ll x,ll a){
-   ll res=0;
-   vector<int> mu(a+1,1),minp(a+1,a); int cnt=0;
+   ll res=0; vector<int> mu(a+1,1),minp(a+1,a); int cnt=0;
    rep(i,1,a+1){
       if(isp[i]){
          for(ll j=i;j<=a;j+=i){mu[j]*=-1; chmin(minp[j],cnt);}
@@ -48,17 +46,16 @@ ll phi(ll x,ll a){
    vector<ll> sum(cnt,0);
    for(ll lo=1;lo<x/a;lo+=a){
       ll hi=min(lo+a,x/a);
-      BIT bit(a); bitset<C> is_one;
-      rep(i,0,a)bit.add(i,1),is_one[i]=1;
+      BIT bit(a); bitset<C> is_zero;
       rep(b,0,cnt){
          int p=cs[b],mi=max(x/p/hi,a/p),ma=min(x/p/lo,a);
          if(p<ma){
-            rrep(m,ma,mi)if(mu[m]!=0 and minp[m]>b){
-               res-=mu[m]*(sum[b]+bit.sum(x/p/m-lo));
+            for(int m=ma;m>mi;m--)if(mu[m]!=0 and minp[m]>b){
+               res-=mu[m]*(sum[b]+x/p/m-lo+1-bit.sum(x/p/m-lo));
             }
-         } sum[b]+=bit.sum(a-1);
-         for(int q=(p-lo%p)%p;q<a;q+=p)if(is_one[q]){
-            bit.add(q,-1); is_one[q]=0;
+         } sum[b]+=a-bit.sum(a-1);
+         for(int q=(p-lo%p)%p;q<a;q+=p)if(!is_zero[q]){
+            bit.add(q,1); is_zero[q]=1;
          }
       }
    } return res;
@@ -70,9 +67,9 @@ ll pi(ll x){
    ll a=upper_bound(ALL(ps),c)-ps.begin(),b=upper_bound(ALL(ps),r)-ps.begin();
    ll res=phi(x,c)+(b+a-2)*(b-a+1)/2; int idx=b-1;
    for(int s=r;s<=x and idx>=a;s+=c){
-      vector<ll> cur(c+1,0); bitset<C> val; cur[0]=b; rep(i,0,C)val[i]=1;
-      for(int p:cs)for(int q=p*(s/p);q<=s+c;q+=p)if(q>=s)val[q-s]=0;
-      rep(i,1,c+1)cur[i]=cur[i-1]+val[i]; b=cur[c];
+      vector<ll> cur(c+1,0); cur[0]=b; bitset<C> is_zero;
+      for(int p:cs)for(int q=p*(s/p);q<=s+c;q+=p)if(q>=s)is_zero[q-s]=1;
+      rep(i,1,c+1)cur[i]=cur[i-1]+!is_zero[i]; b=cur[c];
       while(s<=x/ps[idx] and x/ps[idx]<s+c and idx>=a){res-=cur[x/ps[idx]-s]; idx--;}
    } return res;
 }
