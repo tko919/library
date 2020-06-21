@@ -78,6 +78,7 @@ NTT<F1,3> ntt1(20); NTT<F2,3> ntt2(20);
 const F1 coeff=F1(F2::get_mod()).inv();
 template<int D=4>struct bigint{
    int B,sign; vector<ll> v;
+   static int get_D(){return D;}
    bigint(ll x=0){
       B=1; rep(_,0,D)B*=10; sign=1;
       if(x<0)x*=-1,sign=0;
@@ -111,19 +112,33 @@ template<int D=4>struct bigint{
       }
       while(!v.empty() and v.back()==0)v.pop_back();
    }
-   friend istream& operator>>(istream& is,bigint<D>& x){
-      string tmp; is>>tmp; x=bigint(tmp); return is;
-   }
-   friend ostream& operator<<(ostream& os,bigint<D> x){
-      if(x.v.empty()){os<<"0"; return os;}
-      if(!x.sign)os<<"-";
-      string res=to_string(x.v.back());
-      for(int i=x.size()-2;i>=0;i--){
-         string add; int w=x[i];
+   string to_str()const{
+      string res;
+      if(v.empty())return "0";
+      if(!sign)res+="-";
+      res+=to_string(v.back());
+      for(int i=v.size()-2;i>=0;i--){
+         string add; int w=v[i];
          rep(_,0,D){
             add+=('0'+(w%10)); w/=10;
          } reverse(ALL(add)); res+=add;
-      } os<<res; return os;
+      } return res;
+   }
+   friend istream& operator>>(istream& is,bigint<D>& x){
+      string tmp; is>>tmp; x=bigint(tmp); return is;
+   }
+   friend ostream& operator<<(ostream& os,bigint<D>& x){
+      os<<x.to_str(); return os;
+   }
+   bigint& operator<<=(const int& x){
+      if(!v.empty()){
+         vector<ll> add(x,0);
+         v.insert(v.begin(),ALL(add));
+      } return *this;
+   }
+   bigint& operator>>=(const int& x){
+      v=vector<ll>(v.begin()+min(x,(int)v.size()),v.end());
+      return *this;
    }
    bigint& operator+=(const bigint& x){
       if(sign!=x.sign){*this-=(-x); return *this;}
@@ -154,26 +169,20 @@ template<int D=4>struct bigint{
       if(!x.sign){sign^=1;} bigint a=abs(),b=x.abs();
       int d=a.size()-b.size()+1;
       bigint inv(1),pre;
-      int lim=min(d,3),blim=min((int)b.size(),6);
-      vector<ll> tmp(lim,0); inv.v.insert(inv.v.begin(),ALL(tmp));
+      int lim=min(d,3),blim=min((int)b.size(),6); inv<<=lim;
       while(inv.v!=pre.v){
-         bigint mul,two; mul.v=vector<ll>(b.v.end()-blim,b.v.end());
+         bigint mul; mul.v=vector<ll>(b.v.end()-blim,b.v.end());
          if(blim!=b.size()){mul[0]++; mul.norm();}
-         rep(_,0,lim+blim){two.v.push_back(0);} two.v.push_back(2);
-         pre=inv; inv*=(two-inv*mul); inv.v=vector<ll>(inv.v.begin()+lim+blim,inv.v.end());
+         pre=inv; inv*=((bigint(2)<<(lim+blim))-inv*mul); inv>>=(lim+blim);
       }
       if(lim!=d){
          pre=bigint();
          while(inv.v!=pre.v){
             bigint mul,two; mul.v=vector<ll>(b.v.end()-blim,b.v.end());
             if(blim!=b.size()){mul[0]++; mul.norm();}
-            rep(_,0,lim+blim){two.v.push_back(0);} two.v.push_back(2);
-            pre=inv; inv*=(two-inv*mul); inv.v=vector<ll>(inv.v.begin()+lim+blim,inv.v.end());
+            pre=inv; inv*=((bigint(2)<<(lim+blim))-inv*mul); inv>>=(lim+blim);
             int nxt=min(lim*2+1,d);
-            if(nxt!=lim){
-               vector<ll> tmp2(nxt-lim,0);
-               inv.v.insert(inv.v.begin(),ALL(tmp2));
-            }
+            if(nxt!=lim)inv<<=(nxt-lim);
             int nxtb=min(blim*2+1,b.size()); lim=nxt; blim=nxtb;
          }
       }
@@ -187,9 +196,11 @@ template<int D=4>struct bigint{
    }
    bigint& div2(){
       for(int i=v.size()-1;i>=0;i--){
-         if(v[i]&1 and i!=0)v[i-1]+=B; v[i]>>=1;
+         if(v[i]&1 and i!=0){v[i-1]+=B;} v[i]>>=1;
       } norm(); return *this;
    }
+   bigint operator<<(const int& x)const{return bigint(*this)<<=x;}
+   bigint operator>>(const int& x)const{return bigint(*this)>>=x;}
    bigint operator+(const bigint& x)const{return bigint(*this)+=x;}
    bigint operator-(const bigint& x)const{return bigint(*this)-=x;}
    bigint operator*(const bigint& x)const{return bigint(*this)*=x;}
@@ -206,3 +217,39 @@ template<int D=4>struct bigint{
    bool operator>=(const bigint& x)const{return !(*this<x);}
 };
 typedef bigint<4> Bigint;
+
+struct Bigfloat{
+   Bigint v; int p=0;
+   Bigfloat(){}
+   Bigfloat(const Bigint& _v,int _p=0):v(_v),p(_p){}
+   void set(int _p){if(p<_p){v>>=(_p-p);} else{v<<=(p-_p);} p=_p;}
+   Bigfloat& operator+=(const Bigfloat& x){
+      if(p>x.p)set(x.p),v+=x.v;
+      else v+=x.v<<(x.p-p);
+      return *this;
+   }
+   Bigfloat& operator-=(const Bigfloat& x){
+      if(p>x.p)set(x.p),v-=x.v;
+      else v-=x.v<<(x.p-p);
+      return *this;
+   }
+   Bigfloat& operator*=(const Bigfloat& x){p+=x.p; v*=x.v; return *this;}
+   Bigfloat& operator/=(const Bigfloat& x){p-=x.p; v/=x.v; return *this;}
+   void div2(){if(v[0]&1)p--,v*=Bigint(5); else v.div2();}
+	Bigfloat operator+(const Bigfloat& x)const{return Bigfloat(*this)+=x;}
+	Bigfloat operator-(const Bigfloat& x)const{return Bigfloat(*this)-=x;}
+	Bigfloat operator*(const Bigfloat& x)const{return Bigfloat(*this)*=x;}
+	Bigfloat operator/(const Bigfloat& x)const{return Bigfloat(*this)/=x;}
+   string to_str(){
+      string res=v.to_str();
+      if(p>0)res+=string(p,'0');
+      else if(-p>=1 and -p<(int)res.size()){
+         res=res.substr(0,(int)res.size()+p)+'.'+res.substr((int)res.size()+p);
+      }
+      else if(-p>=(int)res.size())res="0."+string(-p-(int)res.size(),'0')+res;
+      return res;
+   }
+   friend ostream& operator<<(ostream& os,Bigfloat x){
+      os<<x.to_str(); return os;
+   }
+};
