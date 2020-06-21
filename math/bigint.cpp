@@ -74,7 +74,7 @@ template<typename T,unsigned p>struct NTT{
 };
  
 using F1=fp<167772161>; using F2=fp<469762049>;
-NTT<F1,3> ntt1(20); NTT<F2,3> ntt2(20);
+NTT<F1,3> ntt1(25); NTT<F2,3> ntt2(25);
 const F1 coeff=F1(F2::get_mod()).inv();
 template<int D=4>struct bigint{
    int B,sign; vector<ll> v;
@@ -221,8 +221,10 @@ typedef bigint<4> Bigint;
 struct Bigfloat{
    Bigint v; int p=0;
    Bigfloat(){}
+   Bigfloat(const ll& _v):v(_v){}
    Bigfloat(const Bigint& _v,int _p=0):v(_v),p(_p){}
    void set(int _p){if(p<_p){v>>=(_p-p);} else{v<<=(p-_p);} p=_p;}
+   void div2(){if(v[0]&1)p--,v*=Bigint(5000); else v.div2();}
    Bigfloat& operator+=(const Bigfloat& x){
       if(p>x.p)set(x.p),v+=x.v;
       else v+=x.v<<(x.p-p);
@@ -235,18 +237,17 @@ struct Bigfloat{
    }
    Bigfloat& operator*=(const Bigfloat& x){p+=x.p; v*=x.v; return *this;}
    Bigfloat& operator/=(const Bigfloat& x){p-=x.p; v/=x.v; return *this;}
-   void div2(){if(v[0]&1)p--,v*=Bigint(5); else v.div2();}
-	Bigfloat operator+(const Bigfloat& x)const{return Bigfloat(*this)+=x;}
-	Bigfloat operator-(const Bigfloat& x)const{return Bigfloat(*this)-=x;}
-	Bigfloat operator*(const Bigfloat& x)const{return Bigfloat(*this)*=x;}
-	Bigfloat operator/(const Bigfloat& x)const{return Bigfloat(*this)/=x;}
+   Bigfloat operator+(const Bigfloat& x)const{return Bigfloat(*this)+=x;}
+   Bigfloat operator-(const Bigfloat& x)const{return Bigfloat(*this)-=x;}
+   Bigfloat operator*(const Bigfloat& x)const{return Bigfloat(*this)*=x;}
+   Bigfloat operator/(const Bigfloat& x)const{return Bigfloat(*this)/=x;}
    string to_str(){
-      string res=v.to_str();
-      if(p>0)res+=string(p,'0');
-      else if(-p>=1 and -p<(int)res.size()){
-         res=res.substr(0,(int)res.size()+p)+'.'+res.substr((int)res.size()+p);
+      string res=v.to_str(); int d=Bigint::get_D();
+      if(p*d>0)res+=string(p,'0');
+      else if(-p*d>=1 and -p*d<(int)res.size()){
+         res=res.substr(0,(int)res.size()+p*d)+'.'+res.substr((int)res.size()+p*d);
       }
-      else if(-p>=(int)res.size())res="0."+string(-p-(int)res.size(),'0')+res;
+      else if(-p*d>=(int)res.size())res="0."+string(-p*d-(int)res.size(),'0')+res;
       return res;
    }
    friend ostream& operator<<(ostream& os,Bigfloat x){
