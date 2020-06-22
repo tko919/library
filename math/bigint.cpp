@@ -115,7 +115,7 @@ template<int D=4>struct bigint{
    string to_str()const{
       string res;
       if(v.empty())return "0";
-      if(sign)res+="-";
+      if(sign)res+='-';
       res+=to_string(v.back());
       for(int i=v.size()-2;i>=0;i--){
          string add; int w=v[i];
@@ -188,7 +188,7 @@ template<int D=4>struct bigint{
       bigint div=(*this)/x; (*this)-=div*x; return *this;
    }
    bigint square(){
-      bigint res=*this; res.sign=1;
+      bigint res=*this; res.sign=0;
       auto v1=ntt1.conv<ll>(v,v,1);
       auto v2=ntt2.conv<ll>(v,v,1);
       res.v.assign(v1.size(),0);
@@ -262,13 +262,14 @@ struct Bigfloat{
    Bigfloat operator*(const Bigfloat& x)const{return Bigfloat(*this)*=x;}
    Bigfloat operator/(const Bigfloat& x)const{return Bigfloat(*this)/=x;}
    string to_str(){
-      string res=v.to_str(); int d=Bigint::get_D();
+      string res=v.to_str(); int d=Bigint::get_D(),s=0;
+      if(v.sign)res=res.substr(1,res.size()-1),s=1;
       if(p*d>0)res+=string(p,'0');
       else if(-p*d>=1 and -p*d<(int)res.size()){
          res=res.substr(0,(int)res.size()+p*d)+'.'+res.substr((int)res.size()+p*d);
       }
       else if(-p*d>=(int)res.size())res="0."+string(-p*d-(int)res.size(),'0')+res;
-      return res;
+      if(s){res='-'+res;} return res;
    }
    friend ostream& operator<<(ostream& os,Bigfloat x){
       os<<x.to_str(); return os;
