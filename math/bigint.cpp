@@ -74,19 +74,19 @@ template<typename T,unsigned p>struct NTT{
 };
  
 using F1=fp<167772161>; using F2=fp<469762049>;
-NTT<F1,3> ntt1(25); NTT<F2,3> ntt2(25);
+NTT<F1,3> ntt1(20); NTT<F2,3> ntt2(20);
 const F1 coeff=F1(F2::get_mod()).inv();
 template<int D=4>struct bigint{
    int B,sign; vector<ll> v;
    static int get_D(){return D;}
    bigint(ll x=0){
-      B=1; rep(_,0,D)B*=10; sign=1;
-      if(x<0)x*=-1,sign=0;
+      B=1; rep(_,0,D)B*=10; sign=0;
+      if(x<0)x*=-1,sign=1;
       while(x){v.push_back(x%B); x/=B;}
    }
    bigint(string s){
-      B=1; rep(_,0,D)B*=10; sign=1;
-      if(s[0]=='-')s.erase(s.begin()),sign=0;
+      B=1; rep(_,0,D)B*=10; sign=0;
+      if(s[0]=='-')s.erase(s.begin()),sign=1;
       int add=0,cnt=0,base=1;
       while(s.size()){
          if(cnt==D){
@@ -98,7 +98,7 @@ template<int D=4>struct bigint{
       } if(add)v.push_back(add);
    }
    bigint operator-()const{bigint res=*this; res.sign^=1; return res;}
-   bigint abs()const{bigint res=*this; res.sign=1; return res;}
+   bigint abs()const{bigint res=*this; res.sign=0; return res;}
    ll& operator[](const int i){return v[i];}
    int size()const{return v.size();}
    void norm(){
@@ -115,7 +115,7 @@ template<int D=4>struct bigint{
    string to_str()const{
       string res;
       if(v.empty())return "0";
-      if(!sign)res+="-";
+      if(sign)res+="-";
       res+=to_string(v.back());
       for(int i=v.size()-2;i>=0;i--){
          string add; int w=v[i];
@@ -127,7 +127,7 @@ template<int D=4>struct bigint{
    friend istream& operator>>(istream& is,bigint<D>& x){
       string tmp; is>>tmp; x=bigint(tmp); return is;
    }
-   friend ostream& operator<<(ostream& os,bigint<D>& x){
+   friend ostream& operator<<(ostream& os,bigint<D> x){
       os<<x.to_str(); return os;
    }
    bigint& operator<<=(const int& x){
@@ -151,7 +151,7 @@ template<int D=4>struct bigint{
       rep(i,0,x.size()){v[i]-=x.v[i];} norm(); return *this;
    }
    bigint& operator*=(const bigint& x){
-      if(!x.sign)sign^=1;
+      sign^=x.sign;
       auto v1=ntt1.conv<ll>(v,x.v);
       auto v2=ntt2.conv<ll>(v,x.v);
       v.assign(v1.size(),0);
@@ -163,41 +163,53 @@ template<int D=4>struct bigint{
          }
       } norm(); return *this;
    }
-   bigint& operator/=(const bigint& x){
-      //reference:https://qiita.com/square1001/items/1aa12e04934b6e749962
-      if((int)v.size()<(int)x.size()){return *this=bigint();}
-      if(!x.sign){sign^=1;} bigint a=abs(),b=x.abs();
-      int d=a.size()-b.size()+1;
-      bigint inv(1),pre;
-      int lim=min(d,3),blim=min((int)b.size(),6); inv<<=lim;
+   bigint& operator/=(const bigint& x){  
+      bigint a=abs(),b=x.abs(); sign^=x.sign;
+      if(a<b)return *this=bigint();
+      int d=a.size()-b.size()+1,m=1; while(b.v.back()*m*10<B)m*=10;
+      bigint inv(m*B),pre;
       while(inv.v!=pre.v){
-         bigint mul; mul.v=vector<ll>(b.v.end()-blim,b.v.end());
-         if(blim!=b.size()){mul[0]++; mul.norm();}
-         pre=inv; inv*=((bigint(2)<<(lim+blim))-inv*mul); inv>>=(lim+blim);
+         pre=inv; inv*=((bigint(2)<<2)-inv.mul(b.v.back())); inv>>=2;
       }
-      if(lim!=d){
-         pre=bigint();
-         while(inv.v!=pre.v){
-            bigint mul,two; mul.v=vector<ll>(b.v.end()-blim,b.v.end());
-            if(blim!=b.size()){mul[0]++; mul.norm();}
-            pre=inv; inv*=((bigint(2)<<(lim+blim))-inv*mul); inv>>=(lim+blim);
-            int nxt=min(lim*2+1,d);
-            if(nxt!=lim)inv<<=(nxt-lim);
-            int nxtb=min(blim*2+1,b.size()); lim=nxt; blim=nxtb;
-         }
+      int cur=2,bcur=1; pre=bigint(0);
+      while(inv.v!=pre.v){
+         bigint c; c.v=vector<ll>(b.v.end()-bcur,b.v.end());
+         pre=inv; inv*=((bigint(2)<<(cur+bcur-1))-inv*c);
+         int nxt=min(cur<<1,d);
+         inv.v=vector<ll>(inv.v.end()-nxt,inv.v.end());
+         cur=nxt; bcur=min(bcur<<1,b.size());
       }
-      bigint res=a*inv;
-      res.v=vector<ll>(res.v.begin()+a.size()+1,res.v.end());
-      bigint c=res*b; if(c+b<=a){res+=bigint(1); res.norm();}
+      inv.v=vector<ll>(inv.v.end()-d,inv.v.end());
+      bigint res=a*inv; res.v=vector<ll>(res.v.begin()+a.size(),res.v.end());
+      bigint mul=res*b; while(mul+b<=a){res+=bigint(1); mul+=b;}
       v=res.v; return *this;
    }
    bigint& operator%=(const bigint& x){
       bigint div=(*this)/x; (*this)-=div*x; return *this;
    }
-   bigint& div2(){
-      for(int i=v.size()-1;i>=0;i--){
-         if(v[i]&1 and i!=0){v[i-1]+=B;} v[i]>>=1;
-      } norm(); return *this;
+   bigint square(){
+      bigint res=*this; res.sign=1;
+      auto v1=ntt1.conv<ll>(v,v,1);
+      auto v2=ntt2.conv<ll>(v,v,1);
+      res.v.assign(v1.size(),0);
+      rep(i,0,v1.size()){
+         ll val=1LL*F1((v1[i]-F1(v2[i].v))*coeff).v*F2::get_mod()+v2[i].v;
+         for(int j=i;val;j++){
+            if(j==(int)res.v.size())res.v.push_back(0);
+            res.v[j]+=val%B; val/=B;
+         }
+      } res.norm(); return res;
+   }
+   bigint mul(ll x){
+      bigint res=*this; if(x<0)res.sign^=1,x*=-1;
+      for(int i=res.v.size()-1;i>=0;i--)res.v[i]*=x;
+      res.norm(); return res;
+   }
+   bigint div(ll x){
+      bigint res=*this; if(x<0)res.sign^=1,x*=-1;
+      for(int i=res.v.size()-1;i>=0;i--){
+         if(res.v[i]%x!=0 and i!=0){res.v[i-1]+=B*(res.v[i]%x);} res.v[i]/=x;
+      } res.norm(); return res;
    }
    bigint operator<<(const int& x)const{return bigint(*this)<<=x;}
    bigint operator>>(const int& x)const{return bigint(*this)>>=x;}
@@ -207,9 +219,15 @@ template<int D=4>struct bigint{
    bigint operator/(const bigint& x)const{return bigint(*this)/=x;}
    bigint operator%(const bigint& x)const{return bigint(*this)%=x;}
    bool operator<(const bigint& x)const{
-      if(sign!=x.sign)return sign<x.sign;
-      if((int)v.size()!=(int)x.size())return (int)v.size()*sign<(int)x.size()*x.sign;
-      for(int i=v.size()-1;i>=0;i--)if(v[i]!=x.v[i])return v[i]*sign<x.v[i]*x.sign;
+      if(sign!=x.sign)return sign>x.sign;
+      if((int)v.size()!=(int)x.size()){
+         if(sign)return (int)x.size()<(int)v.size();
+         else return (int)v.size()<(int)x.size();
+      }
+      for(int i=v.size()-1;i>=0;i--)if(v[i]!=x.v[i]){
+         if(sign)return x.v[i]<v[i];
+         else return v[i]<x.v[i];
+      }
       return false;
    }
    bool operator>(const bigint& x)const{return x<*this;}
@@ -217,14 +235,13 @@ template<int D=4>struct bigint{
    bool operator>=(const bigint& x)const{return !(*this<x);}
 };
 typedef bigint<4> Bigint;
-
+ 
 struct Bigfloat{
    Bigint v; int p=0;
    Bigfloat(){}
-   Bigfloat(const ll& _v):v(_v){}
+   Bigfloat(const ll& _v){v=Bigint(_v);}
    Bigfloat(const Bigint& _v,int _p=0):v(_v),p(_p){}
    void set(int _p){if(p<_p){v>>=(_p-p);} else{v<<=(p-_p);} p=_p;}
-   void div2(){if(v[0]&1)p--,v*=Bigint(5000); else v.div2();}
    Bigfloat& operator+=(const Bigfloat& x){
       if(p>x.p)set(x.p),v+=x.v;
       else v+=x.v<<(x.p-p);
@@ -235,6 +252,9 @@ struct Bigfloat{
       else v-=x.v<<(x.p-p);
       return *this;
    }
+   Bigfloat square(){Bigfloat res=*this; res.p*=2; res.v=res.v.square(); return res;}
+   Bigfloat mul(ll x){Bigfloat res=*this; res.v=v.mul(x); return res;}
+   Bigfloat div(ll x){Bigfloat res=*this; res.v=v.div(x); return res;}
    Bigfloat& operator*=(const Bigfloat& x){p+=x.p; v*=x.v; return *this;}
    Bigfloat& operator/=(const Bigfloat& x){p-=x.p; v/=x.v; return *this;}
    Bigfloat operator+(const Bigfloat& x)const{return Bigfloat(*this)+=x;}
