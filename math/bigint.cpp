@@ -242,6 +242,7 @@ struct Bigfloat{
    Bigfloat(const ll& _v){v=Bigint(_v);}
    Bigfloat(const Bigint& _v,int _p=0):v(_v),p(_p){}
    void set(int _p){if(p<_p){v>>=(_p-p);} else{v<<=(p-_p);} p=_p;}
+   Bigint to_int()const{if(p<0)return v>>(-p); else return v<<p;}
    Bigfloat& operator+=(const Bigfloat& x){
       if(p>x.p)set(x.p),v+=x.v;
       else v+=x.v<<(x.p-p);
@@ -262,14 +263,13 @@ struct Bigfloat{
    Bigfloat operator*(const Bigfloat& x)const{return Bigfloat(*this)*=x;}
    Bigfloat operator/(const Bigfloat& x)const{return Bigfloat(*this)/=x;}
    string to_str(){
-      string res=v.to_str(); int d=Bigint::get_D(),s=0;
-      if(v.sign)res=res.substr(1,res.size()-1),s=1;
-      if(p*d>0)res+=string(p,'0');
+      string res=v.abs().to_str(); int d=Bigint::get_D();
+      if(p*d>0)res+=string(p*d,'0');
       else if(-p*d>=1 and -p*d<(int)res.size()){
          res=res.substr(0,(int)res.size()+p*d)+'.'+res.substr((int)res.size()+p*d);
       }
       else if(-p*d>=(int)res.size())res="0."+string(-p*d-(int)res.size(),'0')+res;
-      if(s){res='-'+res;} return res;
+      if(v.sign){res.insert(res.begin(),'-');} return res;
    }
    friend ostream& operator<<(ostream& os,Bigfloat x){
       os<<x.to_str(); return os;
