@@ -13,3 +13,7 @@ struct UnionFind{
         par[y]+=par[x]; par[x]=y; n--; return true;
     }
 };
+
+/**
+ * @brief Union Find
+ */
