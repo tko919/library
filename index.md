@@ -28,7 +28,7 @@ data:
       title: Number Theoretic Transform
     - icon: ':warning:'
       path: Convolution/subset.hpp
-      title: Convolution/subset.hpp
+      title: Subset Convolution
   - name: DataStructure
     pages:
     - icon: ':warning:'
@@ -64,11 +64,17 @@ data:
   - name: FPS
     pages:
     - icon: ':warning:'
+      path: FPS/arbitraryfps.hpp
+      title: Formal Power Series (Arbitrary mod)
+    - icon: ':warning:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
     - icon: ':warning:'
       path: FPS/fps.hpp
-      title: FPS/fps.hpp
+      title: Formal Power Series (NTT-friendly mod)
+    - icon: ':warning:'
+      path: FPS/multieval.hpp
+      title: Multipoint Evaluation
     - icon: ':warning:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
@@ -76,7 +82,7 @@ data:
     pages:
     - icon: ':warning:'
       path: Geometry/geometry.hpp
-      title: Geometry/geometry.hpp
+      title: Geometry
   - name: Graph
     pages:
     - icon: ':warning:'
@@ -125,7 +131,7 @@ data:
       title: Pollard-Rho
     - icon: ':warning:'
       path: Math/primecount.hpp
-      title: Prime Count(Lucy's DP)
+      title: Prime Count
     - icon: ':warning:'
       path: Math/primitive.hpp
       title: Primitive Function

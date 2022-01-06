@@ -50,19 +50,22 @@ data:
     \        for(i++;i<=n;i+=(i&-i))val[i]+=x;\r\n        all+=x;\r\n    }\r\n   \
     \ T sum(int i){\r\n        T res=0;\r\n        for(;i;i-=(i&-i))res+=val[i];\r\
     \n        return res;\r\n    }\r\n    T sum(int L,int R){return sum(R)-sum(L);}\
-    \ // [L,R)\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n */\n#line 6 \"\
-    Verify/LC_vertex_add_path_sum.test.cpp\"\n\r\nint main(){\r\n    int N,Q;\r\n\
-    \    cin>>N>>Q;\r\n    vector<int> a(N);\r\n    rep(i,0,N)cin>>a[i];\r\n    HLD\
-    \ hld(N);\r\n    BIT<ll> bit(N);\r\n    rep(i,0,N-1){\r\n        int x,y;\r\n\
-    \        cin>>x>>y;\r\n        hld.add_edge(x,y);\r\n    }\r\n    hld.run();\r\
-    \n    rep(i,0,N)bit.add(hld.in[i],a[i]);\r\n    while(Q--){\r\n        int t;\r\
-    \n        cin>>t;\r\n        if(t==0){\r\n            int p,x;\r\n           \
-    \ cin>>p>>x;\r\n            bit.add(hld.in[p],x);\r\n        }\r\n        else{\r\
-    \n            int u,v;\r\n            cin>>u>>v;\r\n            int lca=hld.lca(u,v);\r\
-    \n            auto ps=hld.get(u,lca);\r\n            ll ret=0;\r\n           \
-    \ for(auto& [L,R]:ps)ret+=bit.sum(L,R);\r\n            ps=hld.get(v,lca,1);\r\n\
-    \            for(auto& [L,R]:ps)ret+=bit.sum(L,R);\r\n            cout<<ret<<'\\\
-    n';\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
+    \ // [L,R)\r\n    int lower_bound(T x){\r\n        int ret=0,len=1;\r\n      \
+    \  while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\n            if(ret+len<=n\
+    \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
+    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Binary Indexed Tree\r\n */\n#line 6 \"Verify/LC_vertex_add_path_sum.test.cpp\"\
+    \n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N);\r\
+    \n    rep(i,0,N)cin>>a[i];\r\n    HLD hld(N);\r\n    BIT<ll> bit(N);\r\n    rep(i,0,N-1){\r\
+    \n        int x,y;\r\n        cin>>x>>y;\r\n        hld.add_edge(x,y);\r\n   \
+    \ }\r\n    hld.run();\r\n    rep(i,0,N)bit.add(hld.in[i],a[i]);\r\n    while(Q--){\r\
+    \n        int t;\r\n        cin>>t;\r\n        if(t==0){\r\n            int p,x;\r\
+    \n            cin>>p>>x;\r\n            bit.add(hld.in[p],x);\r\n        }\r\n\
+    \        else{\r\n            int u,v;\r\n            cin>>u>>v;\r\n         \
+    \   int lca=hld.lca(u,v);\r\n            auto ps=hld.get(u,lca);\r\n         \
+    \   ll ret=0;\r\n            for(auto& [L,R]:ps)ret+=bit.sum(L,R);\r\n       \
+    \     ps=hld.get(v,lca,1);\r\n            for(auto& [L,R]:ps)ret+=bit.sum(L,R);\r\
+    \n            cout<<ret<<'\\n';\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\
     \n\r\n#include \"Template/template.hpp\"\r\n#include \"Graph/hld.hpp\"\r\n#include\
     \ \"DataStructure/bit.hpp\"\r\n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\
@@ -83,7 +86,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
+  timestamp: '2022-01-06 10:09:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_vertex_add_path_sum.test.cpp
