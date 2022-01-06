@@ -14,6 +14,17 @@ template<typename T>struct BIT{
         return res;
     }
     T sum(int L,int R){return sum(R)-sum(L);} // [L,R)
+    int lower_bound(T x){
+        int ret=0,len=1;
+        while(2*len<=n)len<<=1;
+        for(;len>=1;len>>=1){
+            if(ret+len<=n and val[ret+len]<x){
+                ret+=len;
+                x-=val[ret];
+            }
+        }
+        return ret;
+    }
 };
 
 /**

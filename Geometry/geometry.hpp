@@ -2,77 +2,79 @@
 
 using T=double;
 const T eps=1e-12;
-using P=complex<T>;
-using Poly=vector<P>;
+using Point=complex<T>;
+using Poly=vector<Point>;
 #define X real()
 #define Y imag()
 inline bool eq(const T& a,const T& b){
     return fabs(a-b)<eps;
 }
-inline bool cmp(const P& a,const P& b){
-    return (eq(a.X,b.X)?a.Y<b.Y:a.X<b.X);
+bool cmp(const Point& a,const Point& b){
+    auto sub=[&](Point a){return (a.Y<0?-1:(a.Y==0&&a.X>=0?0:1));};
+    if(sub(a)!=sub(b))return sub(a)<sub(b);
+    return a.Y*b.X<a.X*b.Y;
 }
 struct Line{
-    P a,b;
+    Point a,b;
     Line(){}
-    Line(P _a,P _b):a(_a),b(_b){}
+    Line(Point _a,Point _b):a(_a),b(_b){}
     Line(T A,T B,T C){
         if(eq(A,.0)){
-            a=P(0,C/B),b=P(1/C/B);
+            a=Point(0,C/B),b=Point(1/C/B);
         }
         else if(eq(B,.0)){
-            a=P(C/A,0),b=P(C/A,1);
+            a=Point(C/A,0),b=Point(C/A,1);
         }
         else{
-            a=P(0,C/B),b=P(C/A,0);
+            a=Point(0,C/B),b=Point(C/A,0);
         }
     }
 };
 struct Segment:Line{
     Segment(){}
-    Segment(P _a,P _b):Line(_a,_b){}
+    Segment(Point _a,Point _b):Line(_a,_b){}
 };
 struct Circle{
-    P p; T r;
+    Point p; T r;
     Circle(){}
-    Circle(P _p,T _r):p(_p),r(_r){}
+    Circle(Point _p,T _r):p(_p),r(_r){}
 };
 
-istream& operator>>(istream& is,P& p){
-    T x,y; is>>x>>y; p=P(x,y);
+istream& operator>>(istream& is,Point& p){
+    T x,y; is>>x>>y; p=Point(x,y);
     return is;
 }
-ostream& operator<<(ostream& os,P& p){
+ostream& operator<<(ostream& os,Point& p){
     os<<fixed<<setprecision(12)<<p.X<<' '<<p.Y;
     return os;
 }
-P unit(const P& a){return a/abs(a);}
-T dot(const P& a,const P& b){
+Point unit(const Point& a){return a/abs(a);}
+T dot(const Point& a,const Point& b){
     return a.X*b.X+a.Y*b.Y;
 }
-T cross(const P& a,const P& b){
+T cross(const Point& a,const Point& b){
     return a.X*b.Y-a.Y*b.X;
 }
-P rot(const P& a,const T& theta){
-    return P(cos(theta)*a.X-sin(theta)*a.Y,
+Point rot(const Point& a,const T& theta){
+    return Point(cos(theta)*a.X-sin(theta)*a.Y,
         sin(theta)*a.X+cos(theta)*a.Y);
 }
-T arg(const P& a,const P& b,const P& c){
+T arg(const Point& a,const Point& b,const Point& c){
     return acos(dot(a-b,c-b)/abs(a-b)/abs(c-b));
 }
 
-P Projection(const Line&l,const P& p){
+Point Projection(const Line&l,const Point& p){
     T t=dot(p-l.a,l.a-l.b)/norm(l.a-l.b);
     return l.a+(l.a-l.b)*t;
 }
-P Projection(const Segment&l,const P& p){
+Point Projection(const Segment&l,const Point& p){
     T t=dot(p-l.a,l.a-l.b)/norm(l.a-l.b);
     return l.a+(l.a-l.b)*t;
 }
-P Reflection(const Line& l,const P& p){
+Point Reflection(const Line& l,const Point& p){
     return p+(Projection(l,p)-p)*2.;
 }
-int ccw(const P& a,P b,P c){
+int ccw(const Point& a,Point b,Point c){
     b-=a; c-=a;
     if(cross(b,c)>eps)return 1; //ccw
     if(cross(b,c)<-eps)return -1; //cw
@@ -98,11 +100,11 @@ int isIntersect(const Circle& a,const Circle& b){
     if(d<abs(a.r-b.r)-eps)return 0;
     return 2;
 }
-T Dist(const Line& a,const P& b){
-    P c=Projection(a,b);
+T Dist(const Line& a,const Point& b){
+    Point c=Projection(a,b);
     return abs(c-b);
 }
-T Dist(const Segment& a,const P& b){
+T Dist(const Segment& a,const Point& b){
     if(dot(a.b-a.a,b-a.a)<eps)return abs(b-a.a);
     if(dot(a.a-a.b,b-a.b)<eps)return abs(b-a.b);
     return abs(cross(a.b-a.a,b-a.a))/abs(a.b-a.a);
@@ -112,7 +114,7 @@ T Dist(const Segment& a,const Segment& b){
     T res=min({Dist(a,b.a),Dist(a,b.b),Dist(b,a.a),Dist(b,a.b)});
     return res;
 }
-P Intersection(const Line& a,const Line& b){
+Point Intersection(const Line& a,const Line& b){
     T d1=cross(a.b-a.a,b.b-b.a);
     T d2=cross(a.b-a.a,a.b-b.a);
     if(eq(d1,0) and eq(d2,0))return b.a;
@@ -122,12 +124,12 @@ Poly Intersection(const Circle& a,const Line& b){
     Poly res;
     T d=Dist(b,a.p);
     if(d>a.r+eps)return res;
-    P h=Projection(b,a.p);
+    Point h=Projection(b,a.p);
     if(eq(d,a.r)){
         res.push_back(h);
         return res;
     }
-    P e=unit(b.b-b.a);
+    Point e=unit(b.b-b.a);
     T ph=sqrt(a.r*a.r-d*d);
     res.push_back(h-e*ph);
     res.push_back(h+e*ph);
@@ -169,9 +171,9 @@ Poly Intersection(const Circle& a,const Circle& b){
     T rc=(a.r*a.r+d*d-b.r*b.r)/d/2.;
     T rs=sqrt(a.r*a.r-rc*rc);
     if(a.r-abs(rc)<eps)rs=0;
-    P e=unit(b.p-a.p);
-    res.push_back(a.p+rc*e+rs*e*P(0,1));
-    res.push_back(a.p+rc*e+rs*e*P(0,-1));
+    Point e=unit(b.p-a.p);
+    res.push_back(a.p+rc*e+rs*e*Point(0,1));
+    res.push_back(a.p+rc*e+rs*e*Point(0,-1));
     return res;
 }
 T Area(const Poly& a){
@@ -183,8 +185,8 @@ T Area(const Poly& a){
 T Area(const Poly& a,const Circle& b){
     int n=a.size();
     if(n<3)return .0;
-    auto rec=[&](auto self,const Circle& c,const P& p1,const P& p2){
-        P va=c.p-p1,vb=c.p-p2;
+    auto rec=[&](auto self,const Circle& c,const Point& p1,const Point& p2){
+        Point va=c.p-p1,vb=c.p-p2;
         T f=cross(va,vb),res=.0;
         if(eq(f,.0))return res;
         if(max(abs(va),abs(vb))<c.r+eps)return f;
@@ -225,11 +227,11 @@ bool isConvex(const Poly& a){
     }
     return 1;
 }
-int isContained(const Poly& a,const P& b){
+int isContained(const Poly& a,const Point& b){
     bool res=0;
     int n=a.size();
     rep(i,0,n){
-        P p=a[i]-b,q=a[(i+1)%n]-b;
+        Point p=a[i]-b,q=a[(i+1)%n]-b;
         if(p.Y>q.Y)swap(p,q);
         if(p.Y<eps and eps<q.Y and cross(p,q)>eps)res^=1;
         if(eq(cross(p,q),.0) and dot(p,q)<eps)return 1;
@@ -238,7 +240,7 @@ int isContained(const Poly& a,const P& b){
 }
 Poly ConvexHull(Poly& a){
     int n=a.size(),k=0;
-    sort(ALL(a),[](const P& p,const P& q){
+    sort(ALL(a),[](const Point& p,const Point& q){
         return (eq(p.Y,q.Y)?p.X<q.X:p.Y<q.Y);
     });
     Poly res(n*2);
@@ -269,7 +271,7 @@ T Diam(const Poly& a){
 Poly Cut(const Poly& a,const Line& l){
     int n=a.size(); Poly res;
     rep(i,0,n){
-        P p=a[i],q=a[(i+1)%n];
+        Point p=a[i],q=a[(i+1)%n];
         if(ccw(l.a,l.b,p)!=-1)res.push_back(p);
         if(ccw(l.a,l.b,p)*ccw(l.a,l.b,q)<0)res.push_back(Intersection(Line(p,q),l));
     }
@@ -279,7 +281,7 @@ Poly Cut(const Poly& a,const Line& l){
 T Closest(Poly& a){
     int n=a.size();
     if(n<=1)return 0;
-    sort(ALL(a),cmp);
+    sort(ALL(a),[&](Point a,Point b){return (eq(a.X,b.X)?a.Y<b.Y:a.X<b.X);});
     Poly buf(n);
     auto rec=[&](auto self,int lb,int rb)->T{
         if(rb-lb<=1)return (T)INF;
@@ -303,28 +305,28 @@ T Closest(Poly& a){
     return rec(rec,0,n);
 }
 
-Circle Incircle(const P& a,const P& b,const P& c){
+Circle Incircle(const Point& a,const Point& b,const Point& c){
     T A=abs(b-c),B=abs(c-a),C=abs(a-b);
-    P p(A*a.X+B*b.X+C*c.X,A*a.Y+B*b.Y+C*c.Y);
+    Point p(A*a.X+B*b.X+C*c.X,A*a.Y+B*b.Y+C*c.Y);
     p/=(A+B+C);
     T r=Dist(Line(a,b),p);
     return Circle(p,r);
 }
-Circle Circumcircle(const P& a,const P& b,const P& c){
-    Line l1((a+b)/2.,(a+b)/2.+(b-a)*P(0,1));
-    Line l2((b+c)/2.,(b+c)/2.+(c-b)*P(0,1));
-    P p=Intersection(l1,l2);
+Circle Circumcircle(const Point& a,const Point& b,const Point& c){
+    Line l1((a+b)/2.,(a+b)/2.+(b-a)*Point(0,1));
+    Line l2((b+c)/2.,(b+c)/2.+(c-b)*Point(0,1));
+    Point p=Intersection(l1,l2);
     return Circle(p,abs(p-a));
 }
-Poly tangent(const P& a,const Circle& b){
+Poly tangent(const Point& a,const Circle& b){
     return Intersection(b,Circle(a,sqrt(norm(b.p-a)-b.r*b.r)));
 }
 vector<Line> tangent(const Circle& a,const Circle& b){
     vector<Line> res;
     T d=abs(a.p-b.p);
     if(eq(d,0))return res;
-    P u=unit(b.p-a.p);
-    P v=u*P(0,1);
+    Point u=unit(b.p-a.p);
+    Point v=u*Point(0,1);
     for(int t:{-1,1}){
         T h=(a.r+b.r*t)/d;
         if(eq(h*h,1)){
@@ -332,10 +334,14 @@ vector<Line> tangent(const Circle& a,const Circle& b){
             a.p+(h>0?u:-u)*a.r+v));
         }
         else if(1>h*h){
-            P U=u*h,V=v*sqrt(1-h*h);
+            Point U=u*h,V=v*sqrt(1-h*h);
             res.push_back(Line(a.p+(U+V)*a.r,b.p-(U+V)*(b.r*t)));
             res.push_back(Line(a.p+(U-V)*a.r,b.p-(U-V)*(b.r*t)));
         }
     }
     return res;
 }
+
+/**
+ * @brief Geometry
+ */

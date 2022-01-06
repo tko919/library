@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
+template<typename T,vector<T> (*mult)(vector<T>&,vector<T>&,bool)>struct Poly:vector<T>{
     Poly(int n=0){this->assign(n,T());}
     Poly(const vector<T>& f){this->assign(ALL(f));}
     T eval(const T& x){
@@ -10,22 +10,15 @@ template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
     }
     Poly rev()const{Poly res=*this; reverse(ALL(res)); return res;}
     void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}
-    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0){
-        if(a.empty() or b.empty())return vector<T>();
-        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);
-        vector<T> res(m);
-        rep(i,0,a.size())res[i]=a[i];
-        NTT(res,0);
-        if(same)rep(i,0,m)res[i]*=res[i];
-        else{
-            vector<T> c(m);
-            rep(i,0,b.size())c[i]=b[i];
-            NTT(c,0);
-            rep(i,0,m)res[i]*=c[i];
+    Poly inv()const{
+        assert(this->front()!=0); const int n=this->size();
+        Poly res(1); res.front()=T(1)/this->front();
+        for(int k=1;k<n;k<<=1){
+            Poly g=res,h=*this; h.resize(k*2); res.resize(k*2);
+            g=(g.square()*h); g.resize(k*2);
+            rep(i,k,min(k*2,n))res[i]-=g[i];
         }
-        NTT(res,1);
-        res.resize(n);
-        return res;
+        res.resize(n); return res;
     }
     Poly square()const{return Poly(mult(*this,*this,1));}
     Poly operator+(const Poly& g)const{return Poly(*this)+=g;}
@@ -74,6 +67,17 @@ template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
         Poly res=diff()*inv(); res=res.inte(); 
         res.resize(n); return res;
     }
+    Poly exp()const{
+        assert(this->front()==0); const int n=this->size();
+        Poly res(1),g(1); res.front()=g.front()=1;
+        for(int k=1;k<n;k<<=1){
+            g=(g+g-g.square()*res); g.resize(k);
+            Poly q=*this; q.resize(k); q=q.diff();
+            Poly w=(q+g*(res.diff()-res*q)),t=*this;
+            w.resize(k*2-1); t.resize(k*2);
+            res=(res+res*(t-w.inte())); res.resize(k*2);
+        } res.resize(n); return res;
+    }
     Poly shift(const int& c)const{
         const int n=this->size();
         Poly res=*this,g(n); g[0]=1; rep(i,1,n)g[i]=g[i-1]*c/i;
@@ -89,69 +93,6 @@ template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
         rep(i,0,n)res[i]/=fact[i];
         return res;
     }
-    Poly inv()const{
-        const int n=this->size();
-        Poly res(1); res.front()=T(1)/this->front();
-        for(int k=1;k<n;k<<=1){
-            Poly f(k*2),g(k*2);
-            rep(i,0,min(n,k*2))f[i]=(*this)[i];
-            rep(i,0,k)g[i]=res[i];
-            NTT(f,0);
-            NTT(g,0);
-            rep(i,0,k*2)f[i]*=g[i];
-            NTT(f,1);
-            rep(i,0,k){f[i]=0; f[i+k]=-f[i+k];}
-            NTT(f,0);
-            rep(i,0,k*2)f[i]*=g[i];
-            NTT(f,1);
-            rep(i,0,k)f[i]=res[i];
-            swap(res,f);
-        } res.resize(n); return res;
-    }
-    Poly exp()const{
-        const int n=this->size();
-        if(n==1)return Poly({T(1)});
-        Poly b(2),c(1),z1,z2(2);
-        b[0]=c[0]=z2[0]=z2[1]=1; b[1]=(*this)[1];
-        for(int k=2;k<n;k<<=1){
-            Poly y=b;
-            y.resize(k*2);
-            NTT(y,0);
-            z1=z2;
-            Poly z(k);
-            rep(i,0,k)z[i]=y[i]*z1[i];
-            NTT(z,1);
-            rep(i,0,k>>1)z[i]=0;
-            NTT(z,0);
-            rep(i,0,k)z[i]*=-z1[i];
-            NTT(z,1);
-            c.insert(c.end(),z.begin()+(k>>1),z.end());
-            z2=c;
-            z2.resize(k*2);
-            NTT(z2,0);
-            Poly x=*this;
-            x.resize(k);
-            x=x.diff();x.resize(k);
-            NTT(x,0);
-            rep(i,0,k)x[i]*=y[i];
-            NTT(x,1);
-            Poly bb=b.diff();
-            rep(i,0,k-1)x[i]-=bb[i];
-            x.resize(k*2);
-            rep(i,0,k-1){x[k+i]=x[i]; x[i]=0;}
-            NTT(x,0);
-            rep(i,0,k*2)x[i]*=z2[i];
-            NTT(x,1);
-            x.pop_back();
-            x=x.inte();
-            rep(i,k,min(n,k*2))x[i]+=(*this)[i];
-            rep(i,0,k)x[i]=0;
-            NTT(x,0);
-            rep(i,0,k*2)x[i]*=y[i];
-            NTT(x,1);
-            b.insert(b.end(),x.begin()+k,x.end());
-        } b.resize(n); return b;
-    }
     Poly pow(ll t){
         int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;
         Poly res(n); if(t*k>=n)return res;
@@ -163,5 +104,5 @@ template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
 };
 
 /**
- * @brief Formal Power Series (NTT-friendly mod)
+ * @brief Formal Power Series (Arbitrary mod)
  */

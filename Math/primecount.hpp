@@ -35,5 +35,5 @@ struct PrimeCount{
 };
 
 /**
- * @brief Prime Count(Lucy's DP)
+ * @brief Prime Count
  */

@@ -27,3 +27,7 @@ template<typename T>vector<T> SubsetConvolution(vector<T>& a,vector<T>& b){
     }
     return ret;
 }
+
+/**
+ * @brief Subset Convolution
+ */
