@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: Math/linearequation.hpp
+    title: Linear Equation
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Verify/LC_matrix_det.test.cpp
+    title: Verify/LC_matrix_det.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_matrix_product.test.cpp
+    title: Verify/LC_matrix_product.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_system_of_linear_equations.test.cpp
+    title: Verify/LC_system_of_linear_equations.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Matrix
     links: []
@@ -66,10 +78,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Math/matrix.hpp
-  requiredBy: []
+  requiredBy:
+  - Math/linearequation.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_matrix_product.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document
 redirect_from:

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Verify/LC_min_cost_b_flow.test.cpp
+    title: Verify/LC_min_cost_b_flow.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Minimum Cost b-flow
     links: []
@@ -114,8 +117,9 @@ data:
   path: Graph/mincostflow.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Verify/LC_min_cost_b_flow.test.cpp
 documentation_of: Graph/mincostflow.hpp
 layout: document
 redirect_from:

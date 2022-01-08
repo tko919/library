@@ -2,16 +2,37 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: FPS/multieval.hpp
-    title: Multipoint Evaluation
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: FPS/nthterm.hpp
     title: Bostan-Mori Algorithm
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_exp_of_formal_power_series.test.cpp
+    title: Verify/LC_exp_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_inv_of_formal_power_series.test.cpp
+    title: Verify/LC_inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_log_of_formal_power_series.test.cpp
+    title: Verify/LC_log_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_multipoint_evaluation.test.cpp
+    title: Verify/LC_multipoint_evaluation.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_polynomial_interpolation.test.cpp
+    title: Verify/LC_polynomial_interpolation.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_polynomial_taylor_shift.test.cpp
+    title: Verify/LC_polynomial_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_pow_of_formal_power_series.test.cpp
+    title: Verify/LC_pow_of_formal_power_series.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Formal Power Series (NTT-friendly mod)
     links: []
@@ -159,11 +180,18 @@ data:
   isVerificationFile: false
   path: FPS/fps.hpp
   requiredBy:
-  - FPS/multieval.hpp
   - FPS/nthterm.hpp
   timestamp: '2022-01-06 10:09:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
 documentation_of: FPS/fps.hpp
 layout: document
 redirect_from:

@@ -2,13 +2,49 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: Convolution/multivariate.hpp
+    title: Multivariate Convolution
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod.test.cpp
+    title: Verify/LC_convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod_1000000007.test.cpp
+    title: Verify/LC_convolution_mod_1000000007.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_exp_of_formal_power_series.test.cpp
+    title: Verify/LC_exp_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_inv_of_formal_power_series.test.cpp
+    title: Verify/LC_inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_log_of_formal_power_series.test.cpp
+    title: Verify/LC_log_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_multipoint_evaluation.test.cpp
+    title: Verify/LC_multipoint_evaluation.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_multivariate_convolution.test.cpp
+    title: Verify/LC_multivariate_convolution.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_polynomial_interpolation.test.cpp
+    title: Verify/LC_polynomial_interpolation.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_polynomial_taylor_shift.test.cpp
+    title: Verify/LC_polynomial_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_pow_of_formal_power_series.test.cpp
+    title: Verify/LC_pow_of_formal_power_series.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Number Theoretic Transform
     links: []
@@ -60,10 +96,22 @@ data:
   isVerificationFile: false
   path: Convolution/ntt.hpp
   requiredBy:
+  - Convolution/multivariate.hpp
   - Convolution/arbitrary.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
 documentation_of: Convolution/ntt.hpp
 layout: document
 redirect_from:

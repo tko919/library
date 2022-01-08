@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Verify/LC_number_of_substrings.test.cpp
+    title: Verify/LC_number_of_substrings.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_suffixarray.test.cpp
+    title: Verify/LC_suffixarray.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Suffix Array
     links: []
@@ -45,7 +51,7 @@ data:
     \        int n=s.size(),k=0;\r\n        lcp.resize(n);\r\n        rep(i,0,n+1){\r\
     \n            if(rev[i]){\r\n                for(int j=sa[rev[i]-1];max(i,j)+k<n;k++){\r\
     \n                    if(s[i+k]!=s[j+k])break;\r\n                }\r\n      \
-    \          lcp[rev[i]-1]=k;\r\n            }\r\n            if(k)k--;\r\n    \
+    \          lcp[rev[i]-2]=k;\r\n            }\r\n            if(k)k--;\r\n    \
     \    }\r\n    }\r\n    array<int,2> search(const T& t){\r\n        int n=sa.size()-1,m=t.size();\r\
     \n        array<int,2> ret;\r\n        int L=-1,R=n;\r\n        while(R-L>1){\r\
     \n            int mid=(L+R)>>1;\r\n            if(s.compare(sa[mid],m,t)<0)L=mid;\r\
@@ -89,7 +95,7 @@ data:
     \        int n=s.size(),k=0;\r\n        lcp.resize(n);\r\n        rep(i,0,n+1){\r\
     \n            if(rev[i]){\r\n                for(int j=sa[rev[i]-1];max(i,j)+k<n;k++){\r\
     \n                    if(s[i+k]!=s[j+k])break;\r\n                }\r\n      \
-    \          lcp[rev[i]-1]=k;\r\n            }\r\n            if(k)k--;\r\n    \
+    \          lcp[rev[i]-2]=k;\r\n            }\r\n            if(k)k--;\r\n    \
     \    }\r\n    }\r\n    array<int,2> search(const T& t){\r\n        int n=sa.size()-1,m=t.size();\r\
     \n        array<int,2> ret;\r\n        int L=-1,R=n;\r\n        while(R-L>1){\r\
     \n            int mid=(L+R)>>1;\r\n            if(s.compare(sa[mid],m,t)<0)L=mid;\r\
@@ -101,9 +107,11 @@ data:
   isVerificationFile: false
   path: String/suffixarray.hpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-01-09 05:20:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Verify/LC_suffixarray.test.cpp
+  - Verify/LC_number_of_substrings.test.cpp
 documentation_of: String/suffixarray.hpp
 layout: document
 redirect_from:

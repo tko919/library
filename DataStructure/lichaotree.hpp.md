@@ -3,17 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_line_add_get_min.test.cpp
     title: Verify/LC_line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_segment_add_get_min.test.cpp
     title: Verify/LC_segment_add_get_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    document_title: Convex Hull Trick(Li Chao Tree)
+    document_title: Convex Hull Trick (Li Chao Tree)
     links: []
   bundledCode: "#line 2 \"DataStructure/lichaotree.hpp\"\n\r\ntemplate<typename T,T\
     \ MX>struct CHT{\r\n    using Line=pair<T,T>;\r\n    int n;\r\n    vector<T> xs;\r\
@@ -40,7 +40,7 @@ data:
     \ x){\r\n        int k=lower_bound(ALL(xs),x)-xs.begin()+n-1;\r\n        T res=eval(ls[k],x);\r\
     \n        while(k){\r\n            k=(k-1)>>1;\r\n            chmin(res,eval(ls[k],x));\r\
     \n        }\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Convex\
-    \ Hull Trick(Li Chao Tree)\r\n */\n"
+    \ Hull Trick (Li Chao Tree)\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T,T MX>struct CHT{\r\n    using Line=pair<T,T>;\r\
     \n    int n;\r\n    vector<T> xs;\r\n    vector<Line> ls;\r\n    CHT(vector<T>&\
     \ ps):xs(ps){\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\n   \
@@ -65,13 +65,13 @@ data:
     \ x){\r\n        int k=lower_bound(ALL(xs),x)-xs.begin()+n-1;\r\n        T res=eval(ls[k],x);\r\
     \n        while(k){\r\n            k=(k-1)>>1;\r\n            chmin(res,eval(ls[k],x));\r\
     \n        }\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Convex\
-    \ Hull Trick(Li Chao Tree)\r\n */"
+    \ Hull Trick (Li Chao Tree)\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/lichaotree.hpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-09 05:20:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_segment_add_get_min.test.cpp
   - Verify/LC_line_add_get_min.test.cpp
@@ -80,5 +80,5 @@ layout: document
 redirect_from:
 - /library/DataStructure/lichaotree.hpp
 - /library/DataStructure/lichaotree.hpp.html
-title: Convex Hull Trick(Li Chao Tree)
+title: Convex Hull Trick (Li Chao Tree)
 ---

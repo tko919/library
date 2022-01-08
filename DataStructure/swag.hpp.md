@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Verify/LC_queue_operate_all_composite.test.cpp
+    title: Verify/LC_queue_operate_all_composite.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Sliding Window Aggregation
     links: []
@@ -42,8 +45,9 @@ data:
   path: DataStructure/swag.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Verify/LC_queue_operate_all_composite.test.cpp
 documentation_of: DataStructure/swag.hpp
 layout: document
 redirect_from:

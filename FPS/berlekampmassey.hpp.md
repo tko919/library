@@ -2,15 +2,18 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Verify/LC_find_linear_recurrence.test.cpp
+    title: Verify/LC_find_linear_recurrence.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Berlekamp Massey Algorithm
     links: []
   bundledCode: "#line 2 \"FPS/berlekampmassey.hpp\"\n\r\ntemplate<typename T>vector<T>\
-    \ BerlekampMassey(vector<T>& a){\r\n   int n=a.size(); Fp d=1;\r\n   vector<T>\
+    \ BerlekampMassey(vector<T>& a){\r\n   int n=a.size(); T d=1;\r\n   vector<T>\
     \ b({1}),c({1});\r\n   rep(j,1,n+1){\r\n      int l=c.size(),m=b.size();\r\n \
     \     T x=0;\r\n      rep(i,0,l)x+=c[i]*a[j-l+i];\r\n      b.push_back(0);\r\n\
     \      m++;\r\n      if(x==0)continue;\r\n      T coeff=-x/d;\r\n      if(l<m){\r\
@@ -19,7 +22,7 @@ data:
     \n   }\r\n   return c;\r\n}\r\n\r\n/**\r\n * @brief Berlekamp Massey Algorithm\r\
     \n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>vector<T> BerlekampMassey(vector<T>&\
-    \ a){\r\n   int n=a.size(); Fp d=1;\r\n   vector<T> b({1}),c({1});\r\n   rep(j,1,n+1){\r\
+    \ a){\r\n   int n=a.size(); T d=1;\r\n   vector<T> b({1}),c({1});\r\n   rep(j,1,n+1){\r\
     \n      int l=c.size(),m=b.size();\r\n      T x=0;\r\n      rep(i,0,l)x+=c[i]*a[j-l+i];\r\
     \n      b.push_back(0);\r\n      m++;\r\n      if(x==0)continue;\r\n      T coeff=-x/d;\r\
     \n      if(l<m){\r\n         auto tmp=c;\r\n         c.insert(c.begin(),m-l,0);\r\
@@ -30,9 +33,10 @@ data:
   isVerificationFile: false
   path: FPS/berlekampmassey.hpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-01-09 05:20:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Verify/LC_find_linear_recurrence.test.cpp
 documentation_of: FPS/berlekampmassey.hpp
 layout: document
 redirect_from:

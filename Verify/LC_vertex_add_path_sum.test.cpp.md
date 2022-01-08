@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -37,11 +37,11 @@ data:
     \     dfs2(to,v,k);\r\n        }\r\n        out[v]=k;\r\n    }\r\n    HLD(int\
     \ _n):g(_n),sz(_n),in(_n),out(_n),hs(_n),par(_n){}\r\n    void add_edge(int u,int\
     \ v){\r\n        g[u].emplace_back(v); g[v].emplace_back(u);\r\n    }\r\n    void\
-    \ run(){dfs(0,-1); int k=0; dfs2(0,-1,k);}\r\n    int lca(int u,int v){\r\n  \
-    \      for(;;v=par[hs[v]]){\r\n            if(in[u]>in[v])swap(u,v);\r\n     \
-    \       if(hs[u]==hs[v])return u;\r\n        }\r\n    }\r\n    vector<P> get(int\
-    \ u,int p,bool es=0){\r\n        assert(in[p]<=in[u] and out[u]<=out[p]);\r\n\
-    \        vector<P> res;\r\n        while(hs[u]!=hs[p]){\r\n            res.push_back({in[hs[u]],in[u]+1});\r\
+    \ run(int rt=0){dfs(rt,-1); int k=0; dfs2(rt,-1,k);}\r\n    int lca(int u,int\
+    \ v){\r\n        for(;;v=par[hs[v]]){\r\n            if(in[u]>in[v])swap(u,v);\r\
+    \n            if(hs[u]==hs[v])return u;\r\n        }\r\n    }\r\n    vector<P>\
+    \ get(int u,int p,bool es=0){\r\n        assert(in[p]<=in[u] and out[u]<=out[p]);\r\
+    \n        vector<P> res;\r\n        while(hs[u]!=hs[p]){\r\n            res.push_back({in[hs[u]],in[u]+1});\r\
     \n            u=par[hs[u]];\r\n        }\r\n        res.push_back({in[p]+es,in[u]+1});\r\
     \n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Heavy Light Decomposition\r\
     \n */\n#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename T>struct BIT{\r\
@@ -86,8 +86,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-01-06 10:09:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-09 05:20:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_vertex_add_path_sum.test.cpp
 layout: document

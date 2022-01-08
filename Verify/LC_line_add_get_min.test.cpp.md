@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/lichaotree.hpp
-    title: Convex Hull Trick(Li Chao Tree)
-  - icon: ':heavy_check_mark:'
+    title: Convex Hull Trick (Li Chao Tree)
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -48,7 +48,7 @@ data:
     \ x){\r\n        int k=lower_bound(ALL(xs),x)-xs.begin()+n-1;\r\n        T res=eval(ls[k],x);\r\
     \n        while(k){\r\n            k=(k-1)>>1;\r\n            chmin(res,eval(ls[k],x));\r\
     \n        }\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Convex\
-    \ Hull Trick(Li Chao Tree)\r\n */\n#line 5 \"Verify/LC_line_add_get_min.test.cpp\"\
+    \ Hull Trick (Li Chao Tree)\r\n */\n#line 5 \"Verify/LC_line_add_get_min.test.cpp\"\
     \n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<ll> a(N),b(N);\r\
     \n    rep(i,0,N)cin>>a[i]>>b[i];\r\n    vector<ll> t(Q),c(Q),d(Q);\r\n    vector<ll>\
     \ xs;\r\n    rep(i,0,Q){\r\n        cin>>t[i];\r\n        if(t[i]==0)cin>>c[i]>>d[i];\r\
@@ -73,8 +73,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-09 05:20:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_line_add_get_min.test.cpp
 layout: document

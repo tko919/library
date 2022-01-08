@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Bostan-Mori Algorithm
     links: []
@@ -81,16 +84,16 @@ data:
     \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
     \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
     \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */\n#line 3 \"FPS/nthterm.hpp\"\n\r\ntemplate<typename T>T nth(Poly<T>\
-    \ p,Poly<T> q,ll n){\r\n    while(n){\r\n        Poly<Fp> base(q),np,nq;\r\n \
-    \       for(int i=1;i<(int)q.size();i+=2)base[i]=-base[i];\r\n        p*=base;\
+    \ mod)\r\n */\n#line 3 \"FPS/nthterm.hpp\"\n\r\ntemplate<typename T,typename poly>T\
+    \ nth(poly p,poly q,ll n){\r\n    while(n){\r\n        poly base(q),np,nq;\r\n\
+    \        for(int i=1;i<(int)q.size();i+=2)base[i]=-base[i];\r\n        p*=base;\
     \ q*=base;\r\n        for(int i=n&1;i<(int)p.size();i+=2)np.emplace_back(p[i]);\r\
     \n        for(int i=0;i<(int)q.size();i+=2)nq.emplace_back(q[i]);\r\n        swap(p,np);\
     \ swap(q,nq);\r\n        n>>=1;\r\n    }\r\n    return p[0]/q[0];\r\n}\r\n\r\n\
     /**\r\n * @brief Bostan-Mori Algorithm\r\n */\n"
-  code: "#pragma once\r\n#include \"FPS/fps.hpp\"\r\n\r\ntemplate<typename T>T nth(Poly<T>\
-    \ p,Poly<T> q,ll n){\r\n    while(n){\r\n        Poly<Fp> base(q),np,nq;\r\n \
-    \       for(int i=1;i<(int)q.size();i+=2)base[i]=-base[i];\r\n        p*=base;\
+  code: "#pragma once\r\n#include \"FPS/fps.hpp\"\r\n\r\ntemplate<typename T,typename\
+    \ poly>T nth(poly p,poly q,ll n){\r\n    while(n){\r\n        poly base(q),np,nq;\r\
+    \n        for(int i=1;i<(int)q.size();i+=2)base[i]=-base[i];\r\n        p*=base;\
     \ q*=base;\r\n        for(int i=n&1;i<(int)p.size();i+=2)np.emplace_back(p[i]);\r\
     \n        for(int i=0;i<(int)q.size();i+=2)nq.emplace_back(q[i]);\r\n        swap(p,np);\
     \ swap(q,nq);\r\n        n>>=1;\r\n    }\r\n    return p[0]/q[0];\r\n}\r\n\r\n\
@@ -100,9 +103,10 @@ data:
   isVerificationFile: false
   path: FPS/nthterm.hpp
   requiredBy: []
-  timestamp: '2022-01-06 10:09:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-01-09 05:20:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: FPS/nthterm.hpp
 layout: document
 redirect_from:

@@ -2,14 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_chromatic_number.test.cpp
+    title: Verify/LC_chromatic_number.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Chromatic Number
     links: []
-  bundledCode: "#line 2 \"Graph/chromatic.hpp\"\n\r\nint chromatic(vector<vector<int>>&\
+  bundledCode: "#line 2 \"Graph/chromatic.hpp\"\n\r\nint Chromatic(vector<vector<int>>&\
     \ a){\r\n    int n=a.size();\r\n    vector<int> es(n);\r\n    rep(i,0,n)rep(j,0,n)if(a[i][j]){\r\
     \n        es[i]|=(1<<j);\r\n    }\r\n    vector<int> dp(1<<n),sign(1<<n);\r\n\
     \    dp[0]=1;\r\n    rep(mask,0,1<<n){\r\n        if(mask){\r\n            int\
@@ -23,7 +26,7 @@ data:
     \           break;\r\n            }\r\n        }\r\n    };\r\n    for(auto& md:{998244353,1000000007,1000000011}){\r\
     \n        calc(md);\r\n    }\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Chromatic\
     \ Number\r\n */\n"
-  code: "#pragma once\r\n\r\nint chromatic(vector<vector<int>>& a){\r\n    int n=a.size();\r\
+  code: "#pragma once\r\n\r\nint Chromatic(vector<vector<int>>& a){\r\n    int n=a.size();\r\
     \n    vector<int> es(n);\r\n    rep(i,0,n)rep(j,0,n)if(a[i][j]){\r\n        es[i]|=(1<<j);\r\
     \n    }\r\n    vector<int> dp(1<<n),sign(1<<n);\r\n    dp[0]=1;\r\n    rep(mask,0,1<<n){\r\
     \n        if(mask){\r\n            int v=__builtin_ctz(mask);\r\n            dp[mask]=dp[mask^(1<<v)]+dp[(mask^(1<<v))&(~es[v])];\r\
@@ -40,9 +43,10 @@ data:
   isVerificationFile: false
   path: Graph/chromatic.hpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-01-09 05:20:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_chromatic_number.test.cpp
 documentation_of: Graph/chromatic.hpp
 layout: document
 redirect_from:
