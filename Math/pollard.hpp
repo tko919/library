@@ -2,11 +2,11 @@
 #include "Math/miller.hpp"
 
 mt19937 RND(1341398);
-vector<ll> pollard(ll n){
+vector<ll> Pollard(ll n){
     if(n<=1)return {};
     if(Miller(n))return {n};
     if((n&1)==0){
-        vector<ll> v=pollard(n>>1); v.push_back(2);
+        vector<ll> v=Pollard(n>>1); v.push_back(2);
         return v;
     }
     for(ll x=2,y=2,d;;){
@@ -18,7 +18,7 @@ vector<ll> pollard(ll n){
             d=__gcd(x-y+n,n);
         }while(d==1);
         if(d<n){
-            vector<ll> lb=pollard(d),rb=pollard(n/d);
+            vector<ll> lb=Pollard(d),rb=Pollard(n/d);
             lb.insert(lb.end(),ALL(rb)); return lb;
         }
     }

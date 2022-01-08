@@ -89,7 +89,7 @@ template<typename T>struct SuffixArray{
                 for(int j=sa[rev[i]-1];max(i,j)+k<n;k++){
                     if(s[i+k]!=s[j+k])break;
                 }
-                lcp[rev[i]-1]=k;
+                lcp[rev[i]-2]=k;
             }
             if(k)k--;
         }

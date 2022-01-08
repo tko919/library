@@ -1,6 +1,6 @@
 #pragma once
 
-vector<int> manacher(const string& s){
+vector<int> Manacher(const string& s){
    string t;
    for(auto& c:s){
       t.push_back(c);

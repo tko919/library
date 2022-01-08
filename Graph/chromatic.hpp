@@ -1,6 +1,6 @@
 #pragma once
 
-int chromatic(vector<vector<int>>& a){
+int Chromatic(vector<vector<int>>& a){
     int n=a.size();
     vector<int> es(n);
     rep(i,0,n)rep(j,0,n)if(a[i][j]){

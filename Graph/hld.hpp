@@ -23,7 +23,7 @@ struct HLD{
     void add_edge(int u,int v){
         g[u].emplace_back(v); g[v].emplace_back(u);
     }
-    void run(){dfs(0,-1); int k=0; dfs2(0,-1,k);}
+    void run(int rt=0){dfs(rt,-1); int k=0; dfs2(rt,-1,k);}
     int lca(int u,int v){
         for(;;v=par[hs[v]]){
             if(in[u]>in[v])swap(u,v);
