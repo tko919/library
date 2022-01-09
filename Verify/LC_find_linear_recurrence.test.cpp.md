@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/find_linear_recurrence
@@ -54,7 +54,7 @@ data:
     \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 2 \"FPS/berlekampmassey.hpp\"\n\r\ntemplate<typename\
     \ T>vector<T> BerlekampMassey(vector<T>& a){\r\n   int n=a.size(); T d=1;\r\n\
-    \   vector<T> b({1}),c({1});\r\n   rep(j,1,n+1){\r\n      int l=c.size(),m=b.size();\r\
+    \   vector<T> b(1),c(1);\r\n   b[0]=c[0]=1;\r\n   rep(j,1,n+1){\r\n      int l=c.size(),m=b.size();\r\
     \n      T x=0;\r\n      rep(i,0,l)x+=c[i]*a[j-l+i];\r\n      b.push_back(0);\r\
     \n      m++;\r\n      if(x==0)continue;\r\n      T coeff=-x/d;\r\n      if(l<m){\r\
     \n         auto tmp=c;\r\n         c.insert(c.begin(),m-l,0);\r\n         rep(i,0,m)c[m-1-i]+=coeff*b[m-1-i];\r\
@@ -80,8 +80,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 09:43:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-10 02:39:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_find_linear_recurrence.test.cpp
 layout: document
