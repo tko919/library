@@ -17,7 +17,8 @@ int main(){
     reverse(ALL(ret));
     for(auto& x:ret)x=-x;
 
-    cout<<ret.size()<<'\n';
-    for(auto& x:ret)cout<<x<<'\n';
+    int m=ret.size();
+    cout<<m<<'\n';
+    rep(i,0,m)cout<<ret[i]<<(i==m-1?'\n':' ');
     return 0;
 }
