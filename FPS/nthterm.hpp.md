@@ -6,12 +6,12 @@ data:
     title: Formal Power Series (NTT-friendly mod)
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Bostan-Mori Algorithm
     links: []
@@ -104,7 +104,7 @@ data:
   path: FPS/nthterm.hpp
   requiredBy: []
   timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: FPS/nthterm.hpp

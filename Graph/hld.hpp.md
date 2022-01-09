@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_lca.test.cpp
     title: Verify/LC_lca.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: Verify/LC_vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Heavy Light Decomposition
     links: []
@@ -59,7 +59,7 @@ data:
   path: Graph/hld.hpp
   requiredBy: []
   timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_vertex_set_path_composite.test.cpp
   - Verify/LC_lca.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
-  - icon: ':question:'
+  - icon: ':x:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
   - icon: ':question:'

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/nthterm.hpp
     title: Bostan-Mori Algorithm
   _extendedVerifiedWith:
@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'

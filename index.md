@@ -84,7 +84,7 @@ data:
     - icon: ':x:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
   - name: Geometry
@@ -100,7 +100,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':question:'
+    - icon: ':x:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':x:'
@@ -225,10 +225,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
       title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_lca.test.cpp
       title: Verify/LC_lca.test.cpp
     - icon: ':x:'
