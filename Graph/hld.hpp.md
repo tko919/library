@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lca.test.cpp
     title: Verify/LC_lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
   - icon: ':x:'

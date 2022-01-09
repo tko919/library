@@ -25,9 +25,9 @@ data:
     \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
     \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
     \ 0;}\n#line 2 \"String/suffixarray.hpp\"\n\r\ntemplate<typename T>struct SuffixArray{\r\
-    \n    T s;\r\n    vector<int> sa,rev,lcp;\r\n    SuffixArray(const T& _s):s(_s){\r\
-    \n        int n=s.size();\r\n        auto p=minmax_element(ALL(s));\r\n      \
-    \  int k=*p.second-*p.first+1;\r\n        vector<int> t(n);\r\n        rep(i,0,n)t[i]=s[i]-*p.first;\r\
+    \n    T base;\r\n    vector<int> sa,rev,lcp;\r\n    SuffixArray(const T& _s):base(_s){\r\
+    \n        int n=base.size();\r\n        auto p=minmax_element(ALL(base));\r\n\
+    \        int k=*p.second-*p.first+1;\r\n        vector<int> t(n);\r\n        rep(i,0,n)t[i]=base[i]-*p.first;\r\
     \n        sais(t,k);\r\n        rev.assign(n+1,-1);\r\n        rep(i,0,n+1)rev[sa[i]]=i;\r\
     \n        build(t);\r\n        sa.erase(sa.begin());\r\n    }\r\n    void sais(vector<int>\
     \ s,int k){\r\n        int n=s.size();\r\n        for(int& c:s)c++;\r\n      \
@@ -63,9 +63,9 @@ data:
     \          lcp[rev[i]-2]=k;\r\n            }\r\n            if(k)k--;\r\n    \
     \    }\r\n    }\r\n    array<int,2> search(const T& t){\r\n        int n=sa.size()-1,m=t.size();\r\
     \n        array<int,2> ret;\r\n        int L=-1,R=n;\r\n        while(R-L>1){\r\
-    \n            int mid=(L+R)>>1;\r\n            if(s.compare(sa[mid],m,t)<0)L=mid;\r\
+    \n            int mid=(L+R)>>1;\r\n            if(base.compare(sa[mid],m,t)<0)L=mid;\r\
     \n            else R=mid;\r\n        }\r\n        ret[0]=R;\r\n        L=-1,R=n;\r\
-    \n        while(R-L>1){\r\n            int mid=(L+R)>>1;\r\n            if(s.compare(sa[mid],m,t)<=0)L=mid;\r\
+    \n        while(R-L>1){\r\n            int mid=(L+R)>>1;\r\n            if(base.compare(sa[mid],m,t)<=0)L=mid;\r\
     \n            else R=mid;\r\n        }\r\n        ret[1]=R;\r\n        return\
     \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Suffix Array\r\n */\n#line 5 \"\
     Verify/LC_number_of_substrings.test.cpp\"\n\r\nint main(){\r\n    string s;\r\n\
@@ -83,7 +83,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-01-10 05:04:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_number_of_substrings.test.cpp
