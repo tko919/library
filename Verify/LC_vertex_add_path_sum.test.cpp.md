@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
   - icon: ':question:'

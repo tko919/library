@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   _extendedRequiredBy: []

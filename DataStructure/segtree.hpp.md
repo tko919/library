@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/2dsegtree.hpp
     title: 2D Segment Tree
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_rectangle_sum.test.cpp
     title: Verify/LC_point_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'

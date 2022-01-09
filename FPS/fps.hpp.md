@@ -15,24 +15,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Formal Power Series (NTT-friendly mod)
     links: []
@@ -182,7 +182,7 @@ data:
   requiredBy:
   - FPS/nthterm.hpp
   timestamp: '2022-01-06 10:09:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_polynomial_taylor_shift.test.cpp
   - Verify/LC_inv_of_formal_power_series.test.cpp

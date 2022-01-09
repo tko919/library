@@ -6,7 +6,7 @@ data:
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_rectangle_sum.test.cpp
     title: Verify/LC_point_add_rectangle_sum.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: Verify/LC_rectangle_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: 2D Segment Tree
     links: []
@@ -81,7 +81,7 @@ data:
   path: DataStructure/2dsegtree.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_rectangle_sum.test.cpp

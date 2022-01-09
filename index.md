@@ -26,10 +26,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/multivariate.hpp
       title: Multivariate Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':x:'
@@ -37,10 +37,10 @@ data:
       title: Subset Convolution
   - name: DataStructure
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
     - icon: ':warning:'
@@ -78,10 +78,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -103,7 +103,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':x:'
@@ -112,7 +112,7 @@ data:
     - icon: ':warning:'
       path: Graph/maxflow.hpp
       title: Maximum Flow
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/maxindependentset.hpp
       title: Maximum Independent Set
     - icon: ':x:'
@@ -132,7 +132,7 @@ data:
     - icon: ':x:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -141,7 +141,7 @@ data:
     - icon: ':question:'
       path: Math/modint.hpp
       title: Modint
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/nimber.hpp
       title: Nimber
     - icon: ':heavy_check_mark:'
@@ -234,58 +234,58 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
       title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_lca.test.cpp
       title: Verify/LC_lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_line_add_get_min.test.cpp
       title: Verify/LC_line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_log_of_formal_power_series.test.cpp
       title: Verify/LC_log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_many_aplusb.test.cpp
       title: Verify/LC_many_aplusb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_matrix_det.test.cpp
       title: Verify/LC_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_matrix_product.test.cpp
       title: Verify/LC_matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_maximum_independent_set.test.cpp
       title: Verify/LC_maximum_independent_set.test.cpp
     - icon: ':x:'
       path: Verify/LC_min_cost_b_flow.test.cpp
       title: Verify/LC_min_cost_b_flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_multipoint_evaluation.test.cpp
       title: Verify/LC_multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_multivariate_convolution.test.cpp
       title: Verify/LC_multivariate_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_nim_product_64.test.cpp
       title: Verify/LC_nim_product_64.test.cpp
     - icon: ':x:'
       path: Verify/LC_number_of_substrings.test.cpp
       title: Verify/LC_number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_range_sum.test.cpp
       title: Verify/LC_point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_rectangle_sum.test.cpp
       title: Verify/LC_point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_composite.test.cpp
       title: Verify/LC_point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_interpolation.test.cpp
       title: Verify/LC_polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_taylor_shift.test.cpp
       title: Verify/LC_polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
     - icon: ':x:'

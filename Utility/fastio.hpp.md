@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_many_aplusb.test.cpp
     title: Verify/LC_many_aplusb.test.cpp
   - icon: ':x:'
