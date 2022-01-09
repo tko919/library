@@ -130,6 +130,9 @@ data:
     path: Verify/LC_static_range_sum.test.cpp
     title: Verify/LC_static_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_staticrmq-2.test.cpp
+    title: Verify/LC_staticrmq-2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_staticrmq.test.cpp
     title: Verify/LC_staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,6 +150,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_two_edge_connected_components.test.cpp
     title: Verify/LC_two_edge_connected_components.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_two_sat.test.cpp
+    title: Verify/LC_two_sat.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_unionfind.test.cpp
     title: Verify/LC_unionfind.test.cpp
@@ -204,6 +210,7 @@ data:
   - Verify/LC_suffixarray.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp
   - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_two_sat.test.cpp
   - Verify/LC_chromatic_number.test.cpp
   - Verify/LC_staticrmq.test.cpp
   - Verify/LC_rectangle_sum.test.cpp
@@ -216,6 +223,7 @@ data:
   - Verify/LC_system_of_linear_equations.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_staticrmq-2.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp
   - Verify/LC_number_of_substrings.test.cpp
   - Verify/LC_lca.test.cpp

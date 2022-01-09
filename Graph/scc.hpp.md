@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/twosat.hpp
     title: 2-SAT
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_scc.test.cpp
     title: Verify/LC_scc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_two_sat.test.cpp
+    title: Verify/LC_two_sat.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -54,6 +57,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_scc.test.cpp
+  - Verify/LC_two_sat.test.cpp
 documentation_of: Graph/scc.hpp
 layout: document
 redirect_from:

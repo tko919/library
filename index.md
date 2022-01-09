@@ -61,7 +61,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/sparsetable.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -153,7 +153,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/twosat.hpp
       title: 2-SAT
   - name: String
@@ -310,6 +310,9 @@ data:
       path: Verify/LC_static_range_sum.test.cpp
       title: Verify/LC_static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_staticrmq-2.test.cpp
+      title: Verify/LC_staticrmq-2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_staticrmq.test.cpp
       title: Verify/LC_staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -327,6 +330,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_two_edge_connected_components.test.cpp
       title: Verify/LC_two_edge_connected_components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_two_sat.test.cpp
+      title: Verify/LC_two_sat.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_unionfind.test.cpp
       title: Verify/LC_unionfind.test.cpp
