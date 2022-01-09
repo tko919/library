@@ -23,7 +23,7 @@ data:
     - icon: ':warning:'
       path: Convolution/convexminplus.hpp
       title: Convex Min Plus Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':x:'
@@ -75,7 +75,7 @@ data:
     - icon: ':warning:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
     - icon: ':question:'
@@ -95,6 +95,9 @@ data:
   - name: Graph
     pages:
     - icon: ':heavy_check_mark:'
+      path: Graph/bimatching.hpp
+      title: Bipartite Matching
+    - icon: ':x:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
@@ -184,6 +187,9 @@ data:
       path: Verify/LC_associative_array.test.cpp
       title: Verify/LC_associative_array.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_bipartitematching.test.cpp
+      title: Verify/LC_bipartitematching.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_bitwise_and_convolution.test.cpp
       title: Verify/LC_bitwise_and_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -216,13 +222,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_factorize.test.cpp
       title: Verify/LC_factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_find_linear_recurrence.test.cpp
       title: Verify/LC_find_linear_recurrence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_frequency_table_of_tree_distance.test.cpp
       title: Verify/LC_frequency_table_of_tree_distance.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
     - icon: ':x:'

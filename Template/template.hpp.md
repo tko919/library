@@ -7,6 +7,9 @@ data:
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_bipartitematching.test.cpp
+    title: Verify/LC_bipartitematching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bitwise_and_convolution.test.cpp
     title: Verify/LC_bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,13 +42,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_frequency_table_of_tree_distance.test.cpp
     title: Verify/LC_frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -187,6 +190,7 @@ data:
   - Verify/LC_two_edge_connected_components.test.cpp
   - Verify/LC_inv_of_formal_power_series.test.cpp
   - Verify/LC_counting_primes.test.cpp
+  - Verify/LC_bipartitematching.test.cpp
   - Verify/LC_bitwise_and_convolution.test.cpp
   - Verify/LC_segment_add_get_min.test.cpp
   - Verify/LC_frequency_table_of_tree_distance.test.cpp

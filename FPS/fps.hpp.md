@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_exp_of_formal_power_series.test.cpp
     title: Verify/LC_exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
   - icon: ':x:'
