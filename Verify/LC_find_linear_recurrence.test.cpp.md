@@ -63,15 +63,16 @@ data:
     \n */\n#line 6 \"Verify/LC_find_linear_recurrence.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
     \n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    vector<Fp> a(n);\r\n   \
     \ rep(i,0,n)cin>>a[i];\r\n\r\n    auto ret=BerlekampMassey(a);\r\n    ret.pop_back();\r\
-    \n    reverse(ALL(ret));\r\n    for(auto& x:ret)x=-x;\r\n\r\n    cout<<ret.size()<<'\\\
-    n';\r\n    for(auto& x:ret)cout<<x<<'\\n';\r\n    return 0;\r\n}\n"
+    \n    reverse(ALL(ret));\r\n    for(auto& x:ret)x=-x;\r\n\r\n    int m=ret.size();\r\
+    \n    cout<<m<<'\\n';\r\n    rep(i,0,m)cout<<ret[i]<<(i==m-1?'\\n':' ');\r\n \
+    \   return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/find_linear_recurrence\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"FPS/berlekampmassey.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\n\r\nint\
     \ main(){\r\n    int n;\r\n    cin>>n;\r\n    vector<Fp> a(n);\r\n    rep(i,0,n)cin>>a[i];\r\
     \n\r\n    auto ret=BerlekampMassey(a);\r\n    ret.pop_back();\r\n    reverse(ALL(ret));\r\
-    \n    for(auto& x:ret)x=-x;\r\n\r\n    cout<<ret.size()<<'\\n';\r\n    for(auto&\
-    \ x:ret)cout<<x<<'\\n';\r\n    return 0;\r\n}"
+    \n    for(auto& x:ret)x=-x;\r\n\r\n    int m=ret.size();\r\n    cout<<m<<'\\n';\r\
+    \n    rep(i,0,m)cout<<ret[i]<<(i==m-1?'\\n':' ');\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/modint.hpp
@@ -79,7 +80,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-01-09 09:43:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_find_linear_recurrence.test.cpp

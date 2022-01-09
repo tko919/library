@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_lca.test.cpp
     title: Verify/LC_lca.test.cpp
   - icon: ':x:'
