@@ -1,14 +1,14 @@
 #pragma once
 
 template<typename T>struct SuffixArray{
-    T s;
+    T base;
     vector<int> sa,rev,lcp;
-    SuffixArray(const T& _s):s(_s){
-        int n=s.size();
-        auto p=minmax_element(ALL(s));
+    SuffixArray(const T& _s):base(_s){
+        int n=base.size();
+        auto p=minmax_element(ALL(base));
         int k=*p.second-*p.first+1;
         vector<int> t(n);
-        rep(i,0,n)t[i]=s[i]-*p.first;
+        rep(i,0,n)t[i]=base[i]-*p.first;
         sais(t,k);
         rev.assign(n+1,-1);
         rep(i,0,n+1)rev[sa[i]]=i;
@@ -100,14 +100,14 @@ template<typename T>struct SuffixArray{
         int L=-1,R=n;
         while(R-L>1){
             int mid=(L+R)>>1;
-            if(s.compare(sa[mid],m,t)<0)L=mid;
+            if(base.compare(sa[mid],m,t)<0)L=mid;
             else R=mid;
         }
         ret[0]=R;
         L=-1,R=n;
         while(R-L>1){
             int mid=(L+R)>>1;
-            if(s.compare(sa[mid],m,t)<=0)L=mid;
+            if(base.compare(sa[mid],m,t)<=0)L=mid;
             else R=mid;
         }
         ret[1]=R;
