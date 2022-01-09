@@ -2,7 +2,7 @@
 
 template<typename T>struct SuffixArray{
     T base;
-    vector<int> sa,rev,lcp;
+    vector<int> sa,rsa,lcp;
     SuffixArray(const T& _s):base(_s){
         int n=base.size();
         auto p=minmax_element(ALL(base));
@@ -10,8 +10,8 @@ template<typename T>struct SuffixArray{
         vector<int> t(n);
         rep(i,0,n)t[i]=base[i]-*p.first;
         sais(t,k);
-        rev.assign(n+1,-1);
-        rep(i,0,n+1)rev[sa[i]]=i;
+        rsa.assign(n+1,-1);
+        rep(i,0,n+1)rsa[sa[i]]=i;
         build(t);
         sa.erase(sa.begin());
     }
@@ -30,10 +30,10 @@ template<typename T>struct SuffixArray{
             bin[s[i]+1]++;
         }
         rep(i,0,k)bin[i+1]+=bin[i];
-        auto induced=[&](const vector<int>& lms){
+        auto induced=[&](const vector<int>& _lms)->void{
             sa.assign(n+1,-1);
             vector<int> cnt(k,0);
-            for(int x:lms){
+            for(int x:_lms){
                 sa[bin[s[x]+1]-cnt[s[x]]-1]=x;
                 cnt[s[x]]++;
             }
@@ -85,11 +85,11 @@ template<typename T>struct SuffixArray{
         int n=s.size(),k=0;
         lcp.resize(n);
         rep(i,0,n+1){
-            if(rev[i]){
-                for(int j=sa[rev[i]-1];max(i,j)+k<n;k++){
+            if(rsa[i]){
+                for(int j=sa[rsa[i]-1];max(i,j)+k<n;k++){
                     if(s[i+k]!=s[j+k])break;
                 }
-                lcp[rev[i]-2]=k;
+                lcp[rsa[i]-2]=k;
             }
             if(k)k--;
         }

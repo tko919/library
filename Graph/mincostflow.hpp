@@ -9,7 +9,7 @@ template<typename Flow,typename Cost,int type=1>class MinCostFlow{ //Maximize=-1
         Flow residual_cap()const{return cap-flow;}
     };
     int n; vector<vector<edge>> g;
-    vector<Flow> b,pot; vector<ptr> es;
+    vector<Flow> b,pot; vector<ptr> ptrs;
     Cost farthest; vector<Cost> dist; vector<edge*> par;
     vector<int> exc,def;
     void push(edge& e,Flow amount){
@@ -66,12 +66,12 @@ public:
         int f_id=g[from].size(),t_id=(from==to?f_id+1:g[to].size());
         g[from].push_back(edge(from,to,ub,cost*type,t_id));
         g[to].push_back(edge(to,from,-lb,-cost*type,f_id));
-        es.push_back(ptr{from,f_id});
+        ptrs.push_back(ptr{from,f_id});
     }
     void add_supply(int v,Flow amount){b[v]+=amount;}
     void add_demand(int v,Flow amount){b[v]-=amount;}
     Flow get_pot(int v){return pot[v];}
-    Flow get_flow(int v){return g[es[v].v_id][es[v].e_id].flow;}
+    Flow get_flow(int v){return g[ptrs[v].v_id][ptrs[v].e_id].flow;}
     template<typename T=ll>pair<bool,T> run(const Flow& sf=2){
         Flow max_flow=1;
         for(auto& t:b)chmax(max_flow,abs(t));

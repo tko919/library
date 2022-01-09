@@ -11,9 +11,9 @@ int main(){
     int n,m;
     cin>>n>>m;
     Matrix<Fp> a(n,m);
-    vector<Fp> b(m);
+    vector<Fp> b(n);
     rep(i,0,n)rep(j,0,m)cin>>a[i][j];
-    rep(i,0,m)cin>>b[i];
+    rep(i,0,n)cin>>b[i];
 
     auto [ret,basis]=LinearEquation(a,b);
     if(ret.empty()){

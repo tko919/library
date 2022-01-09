@@ -18,7 +18,7 @@ int main(){
     cout<<g.size()<<'\n';
     rep(i,0,g.size()){
         cout<<g[i].size()<<' ';
-        rep(j,0,g[i].size())cout<<g[i][j]<<(j==g[i].size()-1?'\n':' ');
+        rep(j,0,g[i].size())cout<<g[i][j]<<(j==(int)g[i].size()-1?'\n':' ');
     }
     return 0;
 }

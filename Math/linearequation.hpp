@@ -4,6 +4,7 @@
 template<typename T>pair<vector<T>,Matrix<T>> LinearEquation(Matrix<T> a,vector<T> b){
    int h=a.h,w=a.w;
    rep(i,0,h)a[i].push_back(b[i]);
+   a.w++;
    vector<int> idx=a.gauss(w);
    rep(i,idx.size(),h)if(a[i][w]!=0)return {{},{}};
    vector<T> res(w);
