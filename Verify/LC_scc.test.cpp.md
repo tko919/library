@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/scc.hpp
     title: Strongly Connected Components
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/scc
@@ -43,24 +43,24 @@ data:
     \     int x,y;\r\n        cin>>x>>y;\r\n        scc.add_edge(x,y);\r\n    }\r\n\
     \    scc.run();\r\n    vector g(scc.m,vector<int>());\r\n    rep(i,0,n)g[scc.id[i]].push_back(i);\r\
     \n    cout<<g.size()<<'\\n';\r\n    rep(i,0,g.size()){\r\n        cout<<g[i].size()<<'\
-    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==g[i].size()-1?'\\n':' ');\r\
-    \n    }\r\n    return 0;\r\n}\n"
+    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==(int)g[i].size()-1?'\\\
+    n':' ');\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\r\n\r\n#include \"\
     Template/template.hpp\"\r\n#include \"Graph/scc.hpp\"\r\n\r\nint main(){\r\n \
     \   int n,m;\r\n    cin>>n>>m;\r\n    SCC scc(n);\r\n    rep(i,0,m){\r\n     \
     \   int x,y;\r\n        cin>>x>>y;\r\n        scc.add_edge(x,y);\r\n    }\r\n\
     \    scc.run();\r\n    vector g(scc.m,vector<int>());\r\n    rep(i,0,n)g[scc.id[i]].push_back(i);\r\
     \n    cout<<g.size()<<'\\n';\r\n    rep(i,0,g.size()){\r\n        cout<<g[i].size()<<'\
-    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==g[i].size()-1?'\\n':' ');\r\
-    \n    }\r\n    return 0;\r\n}"
+    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==(int)g[i].size()-1?'\\\
+    n':' ');\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Graph/scc.hpp
   isVerificationFile: true
   path: Verify/LC_scc.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-10 05:38:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_scc.test.cpp
 layout: document

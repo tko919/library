@@ -55,7 +55,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/rangeunionset.hpp
       title: Range Union Set
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':warning:'
@@ -103,10 +103,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/lowlink.hpp
       title: Lowlink
     - icon: ':warning:'
@@ -115,13 +115,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/maxindependentset.hpp
       title: Maximum Independent Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/mincostflow.hpp
       title: Minimum Cost b-flow
     - icon: ':warning:'
       path: Graph/rerooting.hpp
       title: Rerooting
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/scc.hpp
       title: Strongly Connected Components
   - name: Math
@@ -129,16 +129,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -161,7 +161,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/manacher.hpp
       title: Manacher Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/suffixarray.hpp
       title: Suffix Array
     - icon: ':heavy_check_mark:'
@@ -169,12 +169,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':warning:'
@@ -255,7 +255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_maximum_independent_set.test.cpp
       title: Verify/LC_maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_min_cost_b_flow.test.cpp
       title: Verify/LC_min_cost_b_flow.test.cpp
     - icon: ':heavy_check_mark:'
@@ -267,7 +267,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_nim_product_64.test.cpp
       title: Verify/LC_nim_product_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_number_of_substrings.test.cpp
       title: Verify/LC_number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
@@ -297,7 +297,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_rectangle_sum.test.cpp
       title: Verify/LC_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_scc.test.cpp
       title: Verify/LC_scc.test.cpp
     - icon: ':heavy_check_mark:'
@@ -315,16 +315,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_subset_convolution.test.cpp
       title: Verify/LC_subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_suffixarray.test.cpp
       title: Verify/LC_suffixarray.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_floor_of_linear.test.cpp
       title: Verify/LC_sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_system_of_linear_equations.test.cpp
       title: Verify/LC_system_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_two_edge_connected_components.test.cpp
       title: Verify/LC_two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
@@ -333,7 +333,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

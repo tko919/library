@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/mincostflow.hpp
     title: Minimum Cost b-flow
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -32,7 +32,7 @@ data:
     \n    struct edge{\r\n        int from,to; Flow flow,cap; Cost weight; int rev;\r\
     \n        edge(int _f,int _t,Flow _c,Cost _w,int _r)\r\n            :from(_f),to(_t),flow(0),cap(_c),weight(_w),rev(_r){}\r\
     \n        Flow residual_cap()const{return cap-flow;}\r\n    };\r\n    int n; vector<vector<edge>>\
-    \ g;\r\n    vector<Flow> b,pot; vector<ptr> es;\r\n    Cost farthest; vector<Cost>\
+    \ g;\r\n    vector<Flow> b,pot; vector<ptr> ptrs;\r\n    Cost farthest; vector<Cost>\
     \ dist; vector<edge*> par;\r\n    vector<int> exc,def;\r\n    void push(edge&\
     \ e,Flow amount){\r\n        e.flow+=amount; g[e.to][e.rev].flow-=amount;\r\n\
     \    }\r\n    Cost residual_cost(int from,int to,edge& e){\r\n        return e.weight+pot[from]-pot[to];\r\
@@ -60,9 +60,9 @@ data:
     \    MinCostFlow(int _n):n(_n),g(_n),b(_n),pot(_n){}\r\n    void add_edge(int\
     \ from,int to,Flow lb,Flow ub,Cost cost){\r\n        int f_id=g[from].size(),t_id=(from==to?f_id+1:g[to].size());\r\
     \n        g[from].push_back(edge(from,to,ub,cost*type,t_id));\r\n        g[to].push_back(edge(to,from,-lb,-cost*type,f_id));\r\
-    \n        es.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int v,Flow\
-    \ amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
-    \n    Flow get_pot(int v){return pot[v];}\r\n    Flow get_flow(int v){return g[es[v].v_id][es[v].e_id].flow;}\r\
+    \n        ptrs.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int\
+    \ v,Flow amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
+    \n    Flow get_pot(int v){return pot[v];}\r\n    Flow get_flow(int v){return g[ptrs[v].v_id][ptrs[v].e_id].flow;}\r\
     \n    template<typename T=ll>pair<bool,T> run(const Flow& sf=2){\r\n        Flow\
     \ max_flow=1;\r\n        for(auto& t:b)chmax(max_flow,abs(t));\r\n        for(auto&\
     \ es:g)for(auto& e:es)chmax(max_flow,abs(e.residual_cap()));\r\n        Flow delta=1;\r\
@@ -168,8 +168,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_min_cost_b_flow.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-10 05:38:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_min_cost_b_flow.test.cpp
 layout: document

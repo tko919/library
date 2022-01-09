@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -84,14 +84,14 @@ data:
     n':' ');\r\n        }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
     \ Matrix\r\n */\n#line 3 \"Math/linearequation.hpp\"\n\r\ntemplate<typename T>pair<vector<T>,Matrix<T>>\
     \ LinearEquation(Matrix<T> a,vector<T> b){\r\n   int h=a.h,w=a.w;\r\n   rep(i,0,h)a[i].push_back(b[i]);\r\
-    \n   vector<int> idx=a.gauss(w);\r\n   rep(i,idx.size(),h)if(a[i][w]!=0)return\
+    \n   a.w++;\r\n   vector<int> idx=a.gauss(w);\r\n   rep(i,idx.size(),h)if(a[i][w]!=0)return\
     \ {{},{}};\r\n   vector<T> res(w);\r\n   rep(i,0,idx.size())res[idx[i]]=a[i][w]/a[i][idx[i]];\r\
     \n   Matrix<T> d(w,h+w);\r\n   rep(i,0,h)rep(j,0,w)d[j][i]=a[i][j];\r\n   rep(i,0,w)d[i][h+i]=1;\r\
     \n   int r=d.gauss(h).size();\r\n   Matrix<T> basis(w-r,w);\r\n   rep(i,r,w)basis[i-r]={d[i].begin()+h,d[i].end()};\r\
     \n   return {res,basis};\r\n}\r\n\r\n/**\r\n * @brief Linear Equation\r\n */\n\
     #line 7 \"Verify/LC_system_of_linear_equations.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
     \n\r\nint main(){\r\n    int n,m;\r\n    cin>>n>>m;\r\n    Matrix<Fp> a(n,m);\r\
-    \n    vector<Fp> b(m);\r\n    rep(i,0,n)rep(j,0,m)cin>>a[i][j];\r\n    rep(i,0,m)cin>>b[i];\r\
+    \n    vector<Fp> b(n);\r\n    rep(i,0,n)rep(j,0,m)cin>>a[i][j];\r\n    rep(i,0,n)cin>>b[i];\r\
     \n\r\n    auto [ret,basis]=LinearEquation(a,b);\r\n    if(ret.empty()){\r\n  \
     \      puts(\"-1\");\r\n        return 0;\r\n    }\r\n    cout<<basis.h<<'\\n';\r\
     \n    rep(i,0,m)cout<<ret[i]<<(i==m-1?'\\n':' ');\r\n    rep(i,0,basis.h){\r\n\
@@ -101,8 +101,8 @@ data:
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"Math/matrix.hpp\"\r\n#include \"Math/linearequation.hpp\"\r\n\r\nusing\
     \ Fp=fp<998244353>;\r\n\r\nint main(){\r\n    int n,m;\r\n    cin>>n>>m;\r\n \
-    \   Matrix<Fp> a(n,m);\r\n    vector<Fp> b(m);\r\n    rep(i,0,n)rep(j,0,m)cin>>a[i][j];\r\
-    \n    rep(i,0,m)cin>>b[i];\r\n\r\n    auto [ret,basis]=LinearEquation(a,b);\r\n\
+    \   Matrix<Fp> a(n,m);\r\n    vector<Fp> b(n);\r\n    rep(i,0,n)rep(j,0,m)cin>>a[i][j];\r\
+    \n    rep(i,0,n)cin>>b[i];\r\n\r\n    auto [ret,basis]=LinearEquation(a,b);\r\n\
     \    if(ret.empty()){\r\n        puts(\"-1\");\r\n        return 0;\r\n    }\r\
     \n    cout<<basis.h<<'\\n';\r\n    rep(i,0,m)cout<<ret[i]<<(i==m-1?'\\n':' ');\r\
     \n    rep(i,0,basis.h){\r\n        rep(j,0,m)cout<<basis[i][j]<<(j==m-1?'\\n':'\
@@ -115,8 +115,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-10 05:38:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_system_of_linear_equations.test.cpp
 layout: document

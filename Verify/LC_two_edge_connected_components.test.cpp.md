@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/lowlink.hpp
     title: Lowlink
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -42,24 +42,24 @@ data:
     \    rep(_,0,m){\r\n        int x,y;\r\n        cin>>x>>y;\r\n        low.add_edge(x,y);\r\
     \n    }\r\n    int ret=low.run();\r\n    vector g(ret,vector<int>());\r\n    rep(i,0,n)g[low.id[i]].push_back(i);\r\
     \n\r\n    cout<<ret<<'\\n';\r\n    rep(i,0,g.size()){\r\n        cout<<g[i].size()<<'\
-    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==g[i].size()-1?'\\n':' ');\r\
-    \n    }\r\n    return 0;\r\n}\n"
+    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==(int)g[i].size()-1?'\\\
+    n':' ');\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Graph/lowlink.hpp\"\r\
     \n\r\nint main(){\r\n    int n,m;\r\n    cin>>n>>m;\r\n    LowLink low(n);\r\n\
     \    rep(_,0,m){\r\n        int x,y;\r\n        cin>>x>>y;\r\n        low.add_edge(x,y);\r\
     \n    }\r\n    int ret=low.run();\r\n    vector g(ret,vector<int>());\r\n    rep(i,0,n)g[low.id[i]].push_back(i);\r\
     \n\r\n    cout<<ret<<'\\n';\r\n    rep(i,0,g.size()){\r\n        cout<<g[i].size()<<'\
-    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==g[i].size()-1?'\\n':' ');\r\
-    \n    }\r\n    return 0;\r\n}"
+    \ ';\r\n        rep(j,0,g[i].size())cout<<g[i][j]<<(j==(int)g[i].size()-1?'\\\
+    n':' ');\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Graph/lowlink.hpp
   isVerificationFile: true
   path: Verify/LC_two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-10 05:38:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_two_edge_connected_components.test.cpp
 layout: document

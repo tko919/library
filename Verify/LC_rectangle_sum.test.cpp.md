@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/2dsegtree.hpp
     title: 2D Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
