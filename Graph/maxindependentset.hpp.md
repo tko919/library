@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Utility/random.hpp
+    title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -12,30 +15,45 @@ data:
   attributes:
     document_title: Maximum Independent Set
     links: []
-  bundledCode: "#line 2 \"Graph/maxindependentset.hpp\"\n\r\ntemplate<typename T>pair<T,ll>\
+  bundledCode: "#line 2 \"Utility/random.hpp\"\n\r\nstruct Random{\r\n    random_device\
+    \ rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\n    Random(){}\r\
+    \n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
+    \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
+    \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
+    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    string str(int n){\r\n\
+    \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
+    \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
+    \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
+    \n            len++;\r\n            int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\
+    \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
+    \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
+    \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
+    \ */\n#line 3 \"Graph/maxindependentset.hpp\"\n\r\ntemplate<typename T>pair<T,ll>\
     \ MaxIndependentSet(vector<vector<int>>& a,vector<T> cost,int _rot=1e6){\r\n \
     \   int n=a.size();\r\n    vector<ll> es(n);\r\n    rep(i,0,n)rep(j,0,n)if(a[i][j]){\r\
     \n        es[i]|=(1LL<<j);\r\n    }\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),0);\r\
-    \n    mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\n\
-    \    T ret=0;\r\n    ll cur=0;\r\n    rep(_,0,_rot){\r\n        shuffle(ALL(ord),mt);\r\
-    \n        T add=0;\r\n        ll used=0;\r\n        for(auto& v:ord)if(!(used&es[v])){\r\
-    \n            used|=(1LL<<v);\r\n            add+=cost[v];\r\n        }\r\n  \
-    \      if(chmax(ret,add))cur=used;\r\n    }\r\n    return {ret,cur};\r\n}\r\n\r\
-    \n/**\r\n * @brief Maximum Independent Set\r\n */\n"
-  code: "#pragma once\r\n\r\ntemplate<typename T>pair<T,ll> MaxIndependentSet(vector<vector<int>>&\
-    \ a,vector<T> cost,int _rot=1e6){\r\n    int n=a.size();\r\n    vector<ll> es(n);\r\
-    \n    rep(i,0,n)rep(j,0,n)if(a[i][j]){\r\n        es[i]|=(1LL<<j);\r\n    }\r\n\
-    \    vector<int> ord(n);\r\n    iota(ALL(ord),0);\r\n    mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\
-    \n    T ret=0;\r\n    ll cur=0;\r\n    rep(_,0,_rot){\r\n        shuffle(ALL(ord),mt);\r\
-    \n        T add=0;\r\n        ll used=0;\r\n        for(auto& v:ord)if(!(used&es[v])){\r\
-    \n            used|=(1LL<<v);\r\n            add+=cost[v];\r\n        }\r\n  \
-    \      if(chmax(ret,add))cur=used;\r\n    }\r\n    return {ret,cur};\r\n}\r\n\r\
-    \n/**\r\n * @brief Maximum Independent Set\r\n */"
-  dependsOn: []
+    \n    Random gen;\r\n    T ret=0;\r\n    ll cur=0;\r\n    rep(_,0,_rot){\r\n \
+    \       gen.shuffle(ALL(ord));\r\n        T add=0;\r\n        ll used=0;\r\n \
+    \       for(auto& v:ord)if(!(used&es[v])){\r\n            used|=(1LL<<v);\r\n\
+    \            add+=cost[v];\r\n        }\r\n        if(chmax(ret,add))cur=used;\r\
+    \n    }\r\n    return {ret,cur};\r\n}\r\n\r\n/**\r\n * @brief Maximum Independent\
+    \ Set\r\n */\n"
+  code: "#pragma once\r\n#include \"Utility/random.hpp\"\r\n\r\ntemplate<typename\
+    \ T>pair<T,ll> MaxIndependentSet(vector<vector<int>>& a,vector<T> cost,int _rot=1e6){\r\
+    \n    int n=a.size();\r\n    vector<ll> es(n);\r\n    rep(i,0,n)rep(j,0,n)if(a[i][j]){\r\
+    \n        es[i]|=(1LL<<j);\r\n    }\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),0);\r\
+    \n    Random gen;\r\n    T ret=0;\r\n    ll cur=0;\r\n    rep(_,0,_rot){\r\n \
+    \       gen.shuffle(ALL(ord));\r\n        T add=0;\r\n        ll used=0;\r\n \
+    \       for(auto& v:ord)if(!(used&es[v])){\r\n            used|=(1LL<<v);\r\n\
+    \            add+=cost[v];\r\n        }\r\n        if(chmax(ret,add))cur=used;\r\
+    \n    }\r\n    return {ret,cur};\r\n}\r\n\r\n/**\r\n * @brief Maximum Independent\
+    \ Set\r\n */"
+  dependsOn:
+  - Utility/random.hpp
   isVerificationFile: false
   path: Graph/maxindependentset.hpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
+  timestamp: '2022-01-10 15:37:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_maximum_independent_set.test.cpp

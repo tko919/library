@@ -12,6 +12,9 @@ data:
     - icon: ':warning:'
       path: Algorithm/monotoneminima.hpp
       title: Monotone Minima
+    - icon: ':warning:'
+      path: Algorithm/rollbackmo.hpp
+      title: Rollback Mo
   - name: Convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -129,6 +132,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
+    - icon: ':warning:'
+      path: Math/fraction.hpp
+      title: Fraction
     - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
@@ -177,7 +183,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:

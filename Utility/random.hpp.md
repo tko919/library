@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Graph/maxindependentset.hpp
+    title: Maximum Independent Set
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_maximum_independent_set.test.cpp
+    title: Verify/LC_maximum_independent_set.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Random
     links: []
@@ -40,10 +46,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Utility/random.hpp
-  requiredBy: []
+  requiredBy:
+  - Graph/maxindependentset.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_maximum_independent_set.test.cpp
 documentation_of: Utility/random.hpp
 layout: document
 redirect_from:

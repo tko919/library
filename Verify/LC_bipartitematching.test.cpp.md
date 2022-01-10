@@ -25,7 +25,7 @@ data:
     \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
     \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
     \ 0;}\n#line 2 \"Graph/bimatching.hpp\"\n\r\nclass BiMatching{\r\n    vector<vector<int>>\
-    \ g;\r\n    bitset<201010> used;\r\n    int n,m;\r\n    bool dfs(int v){\r\n \
+    \ g;\r\n    bitset<501010> used;\r\n    int n,m;\r\n    bool dfs(int v){\r\n \
     \       if(used[v])return false;\r\n        used[v]=1;\r\n        for(auto& to:g[v])if(pre[to]==-1\
     \ or dfs(pre[to])){\r\n            nxt[v]=to;\r\n            pre[to]=v;\r\n  \
     \          return true;\r\n        }\r\n        return false;\r\n    }\r\npublic:\r\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_bipartitematching.test.cpp
   requiredBy: []
-  timestamp: '2022-01-10 03:49:15+09:00'
+  timestamp: '2022-01-10 15:37:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bipartitematching.test.cpp
