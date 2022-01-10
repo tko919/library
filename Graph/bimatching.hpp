@@ -2,7 +2,7 @@
 
 class BiMatching{
     vector<vector<int>> g;
-    bitset<201010> used;
+    bitset<501010> used;
     int n,m;
     bool dfs(int v){
         if(used[v])return false;
