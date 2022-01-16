@@ -3,12 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: DataStructure/rbstset.hpp
+    title: Randomized Binary Search Tree (set)
+  - icon: ':heavy_check_mark:'
     path: Graph/maxindependentset.hpp
     title: Maximum Independent Set
+  - icon: ':heavy_check_mark:'
+    path: Math/pollard.hpp
+    title: Pollard-Rho
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_factorize.test.cpp
+    title: Verify/LC_factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_predecessor_problem.test.cpp
+    title: Verify/LC_predecessor_problem.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -20,7 +32,8 @@ data:
     \n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
     \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
     \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
-    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    string str(int n){\r\n\
+    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n\
+    \        return double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n\
     \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
     \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
     \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
@@ -34,7 +47,8 @@ data:
     \ get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\n        return\
     \ w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned L){\r\n    \
     \    return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T L,T R){\r\
-    \n        return get(R-L)+L;\r\n    }\r\n    string str(int n){\r\n        string\
+    \n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n        return\
+    \ double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n        string\
     \ ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return ret;\r\n    }\r\
     \n    template<typename Iter>void shuffle(Iter first,Iter last){\r\n        if(first==last)return;\r\
     \n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\n      \
@@ -48,10 +62,14 @@ data:
   path: Utility/random.hpp
   requiredBy:
   - Graph/maxindependentset.hpp
-  timestamp: '2022-01-05 16:50:26+09:00'
+  - DataStructure/rbstset.hpp
+  - Math/pollard.hpp
+  timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp
+  - Verify/LC_factorize.test.cpp
 documentation_of: Utility/random.hpp
 layout: document
 redirect_from:

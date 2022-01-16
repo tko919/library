@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/mincostflow.hpp
     title: Minimum Cost b-flow
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -124,13 +124,14 @@ data:
     \   ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
     \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
     \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
-    \ space=false>inline void write(){_write('\\n');}\r\n    template <bool space=false,typename\
-    \ Head, typename... Tail>inline void write(const Head& head,const Tail&... tail){\r\
-    \n        if(space)_write(' ');\r\n        _write(head);\r\n        write<true>(tail...);\
-    \ \r\n    }\r\n};\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 6 \"Verify/LC_min_cost_b_flow.test.cpp\"\
-    \n\r\nnamespace std {\r\n    string to_string(__int128_t x) {\r\n        if (x\
-    \ == 0)\r\n            return \"0\";\r\n        __uint128_t k = x;\r\n       \
-    \ if (k == (((__uint128_t)1) << 127))\r\n            return \"-170141183460469231731687303715884105728\"\
+    \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
+    \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
+    \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
+    \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */\n#line 6 \"Verify/LC_min_cost_b_flow.test.cpp\"\n\r\
+    \nnamespace std {\r\n    string to_string(__int128_t x) {\r\n        if (x ==\
+    \ 0)\r\n            return \"0\";\r\n        __uint128_t k = x;\r\n        if\
+    \ (k == (((__uint128_t)1) << 127))\r\n            return \"-170141183460469231731687303715884105728\"\
     ;\r\n        string result;\r\n        if (x < 0) {\r\n            result += \"\
     -\";\r\n            x *= -1;\r\n        }\r\n        string t;\r\n        while\
     \ (x) {\r\n            t.push_back('0' + x % 10);\r\n            x /= 10;\r\n\
@@ -168,7 +169,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_min_cost_b_flow.test.cpp
   requiredBy: []
-  timestamp: '2022-01-10 05:38:20+09:00'
+  timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_min_cost_b_flow.test.cpp

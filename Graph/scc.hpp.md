@@ -56,8 +56,8 @@ data:
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_scc.test.cpp
   - Verify/LC_two_sat.test.cpp
+  - Verify/LC_scc.test.cpp
 documentation_of: Graph/scc.hpp
 layout: document
 redirect_from:

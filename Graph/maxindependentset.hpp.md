@@ -20,7 +20,8 @@ data:
     \n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
     \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
     \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
-    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    string str(int n){\r\n\
+    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n\
+    \        return double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n\
     \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
     \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
     \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
@@ -53,7 +54,7 @@ data:
   isVerificationFile: false
   path: Graph/maxindependentset.hpp
   requiredBy: []
-  timestamp: '2022-01-10 15:37:47+09:00'
+  timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_maximum_independent_set.test.cpp

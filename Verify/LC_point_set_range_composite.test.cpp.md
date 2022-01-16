@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -62,7 +62,7 @@ data:
     \ k,const N &x){\r\n        k+=sz; data[k]=g(data[k],x);\r\n        while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\
     \n    }\r\n    M query(int a,int b){\r\n        M L=m1(),R=m1();\r\n        for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){\r\
     \n            if(a&1)L=f(L,data[a++]);\r\n            if(b&1)R=f(data[--b],R);\r\
-    \n       } return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
+    \n        }\r\n        return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
     \ data[k+sz];}\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 6 \"Verify/LC_point_set_range_composite.test.cpp\"\
     \n\r\nusing Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
     \nP g(P a,P b){return b;}\r\nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    int\
@@ -92,7 +92,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
+  timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_point_set_range_composite.test.cpp

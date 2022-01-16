@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: DataStructure/hashmap.hpp
-    title: Hash Map
+    path: DataStructure/persistentarray.hpp
+    title: Persistent Array
+  - icon: ':heavy_check_mark:'
+    path: DataStructure/persistentunionfind.hpp
+    title: Persistent Union Find
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -17,11 +20,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/associative_array
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
     links:
-    - https://judge.yosupo.jp/problem/associative_array
-  bundledCode: "#line 1 \"Verify/LC_associative_array.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/associative_array\"\r\n\r\n#line 1 \"Template/template.hpp\"\
+    - https://judge.yosupo.jp/problem/persistent_unionfind
+  bundledCode: "#line 1 \"Verify/LC_persistent_unionfind.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
     \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\nusing\
     \ ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
@@ -78,42 +81,59 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 2 \"DataStructure/hashmap.hpp\"\n\r\ntemplate<typename\
-    \ Key,typename Val,int N=1<<20>struct HashMap{\r\n    Key* keys;\r\n    Val* vals;\r\
-    \n    bitset<N> used;\r\n    const int shift;\r\n    const uint64_t r=11995408973635179863ULL;\r\
-    \n    HashMap():keys(new Key[N]),vals(new Val[N]),shift(64-__lg(N)){}\r\n    Val&\
-    \ operator[](const Key& x){\r\n        int hash=(uint64_t(x)*r)>>shift;\r\n  \
-    \      for(;;){\r\n            if(!used[hash]){\r\n                keys[hash]=x;\r\
-    \n                used[hash]=1;\r\n                return vals[hash];\r\n    \
-    \        }\r\n            if(keys[hash]==x)return vals[hash];\r\n            hash++;\r\
-    \n            if(hash==N)hash=0;\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n *\
-    \ @brief Hash Map\r\n */\n#line 6 \"Verify/LC_associative_array.test.cpp\"\n\r\
-    \nint main(){\r\n    FastIO io;\r\n    int q,t;\r\n    ll k,v;\r\n    io.read(q);\r\
-    \n    HashMap<ll,ll> mp;\r\n    while(q--){\r\n        io.read(t,k);\r\n     \
-    \   if(t==0){\r\n            io.read(v);\r\n            mp[k]=v;\r\n        }\r\
-    \n        else{\r\n            io.write(mp[k]);\r\n        }\r\n    }\r\n    return\
+    \n * @brief Fast IO\r\n */\n#line 2 \"DataStructure/persistentarray.hpp\"\n\r\n\
+    template<typename T,int B=4>class PersistentArray{\r\n    const int M=(1<<B)-1;\r\
+    \n    struct Node{\r\n        Node *cp[1<<B]={};\r\n        T val;\r\n    };\r\
+    \n    Node* set(int i,T x,Node* a){\r\n        Node *ret=new Node();\r\n     \
+    \   if(a){\r\n            memcpy(ret->cp,a->cp,sizeof(a->cp));\r\n           \
+    \ ret->val=a->val;\r\n        }\r\n        if(i)ret->cp[i&M]=set(i>>B,x,ret->cp[i&M]);\r\
+    \n        else ret->val=x;\r\n        return ret;\r\n    }\r\n    T get(int i,Node*\
+    \ a){\r\n        if(i)return get(i>>B,a->cp[i&M]);\r\n        else return a->val;\r\
+    \n    }\r\npublic:\r\n    Node *root;\r\n    PersistentArray(Node* _r=nullptr):root(_r){}\r\
+    \n    void set(int i,T x){\r\n        root=set(i,x,root);\r\n    }\r\n    T get(int\
+    \ i){\r\n        return get(i,root);\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Persistent\
+    \ Array\r\n */\n#line 3 \"DataStructure/persistentunionfind.hpp\"\n\r\nstruct\
+    \ PersistentUnionFind{\r\n    PersistentArray<int> dat;\r\n    PersistentUnionFind(int\
+    \ n){\r\n        rep(i,0,n)dat.set(i,-1);\r\n    }\r\n    int root(int x){\r\n\
+    \        if(dat.get(x)<0)return x;\r\n        else return root(dat.get(x));\r\n\
+    \    }\r\n    bool unite(int x,int y){\r\n        x=root(x),y=root(y);\r\n   \
+    \     if(x==y)return false;\r\n        int p=dat.get(x),q=dat.get(y);\r\n    \
+    \    if(p>q)swap(x,y);\r\n        dat.set(x,p+q);\r\n        dat.set(y,x);\r\n\
+    \        return true;\r\n    }\r\n    bool same(int x,int y){return root(x)==root(y);}\r\
+    \n    int size(int a){return -dat.get(root(a));}\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Persistent Union Find\r\n */\n#line 6 \"Verify/LC_persistent_unionfind.test.cpp\"\
+    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<PersistentUnionFind>\
+    \ buf;\r\n    buf.push_back(PersistentUnionFind(n));\r\n    while(q--){\r\n  \
+    \      int t,k,u,v;\r\n        io.read(t,k,u,v);\r\n        k++;\r\n        if(t==0){\r\
+    \n            buf.push_back(buf[k]);\r\n            buf.back().unite(u,v);\r\n\
+    \        }\r\n        else{\r\n            buf.push_back(buf[k]);\r\n        \
+    \    io.write((int)buf.back().same(u,v));\r\n        }\r\n    }\r\n    return\
     \ 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n\
-    \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
-    #include \"DataStructure/hashmap.hpp\"\r\n\r\nint main(){\r\n    FastIO io;\r\n\
-    \    int q,t;\r\n    ll k,v;\r\n    io.read(q);\r\n    HashMap<ll,ll> mp;\r\n\
-    \    while(q--){\r\n        io.read(t,k);\r\n        if(t==0){\r\n           \
-    \ io.read(v);\r\n            mp[k]=v;\r\n        }\r\n        else{\r\n      \
-    \      io.write(mp[k]);\r\n        }\r\n    }\r\n    return 0;\r\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\
+    \n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
+    #include \"DataStructure/persistentunionfind.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\
+    \n    int n,q;\r\n    io.read(n,q);\r\n    vector<PersistentUnionFind> buf;\r\n\
+    \    buf.push_back(PersistentUnionFind(n));\r\n    while(q--){\r\n        int\
+    \ t,k,u,v;\r\n        io.read(t,k,u,v);\r\n        k++;\r\n        if(t==0){\r\
+    \n            buf.push_back(buf[k]);\r\n            buf.back().unite(u,v);\r\n\
+    \        }\r\n        else{\r\n            buf.push_back(buf[k]);\r\n        \
+    \    io.write((int)buf.back().same(u,v));\r\n        }\r\n    }\r\n    return\
+    \ 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
-  - DataStructure/hashmap.hpp
+  - DataStructure/persistentunionfind.hpp
+  - DataStructure/persistentarray.hpp
   isVerificationFile: true
-  path: Verify/LC_associative_array.test.cpp
+  path: Verify/LC_persistent_unionfind.test.cpp
   requiredBy: []
   timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_associative_array.test.cpp
+documentation_of: Verify/LC_persistent_unionfind.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_associative_array.test.cpp
-- /verify/Verify/LC_associative_array.test.cpp.html
-title: Verify/LC_associative_array.test.cpp
+- /verify/Verify/LC_persistent_unionfind.test.cpp
+- /verify/Verify/LC_persistent_unionfind.test.cpp.html
+title: Verify/LC_persistent_unionfind.test.cpp
 ---

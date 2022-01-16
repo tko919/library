@@ -110,8 +110,8 @@ data:
   timestamp: '2022-01-10 05:38:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_suffixarray.test.cpp
   - Verify/LC_number_of_substrings.test.cpp
+  - Verify/LC_suffixarray.test.cpp
 documentation_of: String/suffixarray.hpp
 layout: document
 redirect_from:

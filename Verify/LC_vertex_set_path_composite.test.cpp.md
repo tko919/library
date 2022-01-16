@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -82,7 +82,7 @@ data:
     \n        while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\n    }\r\n    M query(int\
     \ a,int b){\r\n        M L=m1(),R=m1();\r\n        for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){\r\
     \n            if(a&1)L=f(L,data[a++]);\r\n            if(b&1)R=f(data[--b],R);\r\
-    \n       } return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
+    \n        }\r\n        return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
     \ data[k+sz];}\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 7 \"Verify/LC_vertex_set_path_composite.test.cpp\"\
     \n\r\nusing Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
     \nstruct X{\r\n    P base,rev;\r\n    X(Fp a=1,Fp b=0):base({a,b}),rev({a,b}){}\r\
@@ -129,7 +129,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_vertex_set_path_composite.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -37,7 +37,7 @@ data:
     \n        while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\n    }\r\n    M query(int\
     \ a,int b){\r\n        M L=m1(),R=m1();\r\n        for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){\r\
     \n            if(a&1)L=f(L,data[a++]);\r\n            if(b&1)R=f(data[--b],R);\r\
-    \n       } return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
+    \n        }\r\n        return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
     \ data[k+sz];}\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 3 \"DataStructure/2dsegtree.hpp\"\
     \n\r\ntemplate<typename M,typename N,M (*f)(M,M),M (*g)(M,N),M (*m1)()>struct\
     \ SegmentTree2D{\r\n    int n;\r\n    vector<SegmentTree<M,N,f,g,m1>> st;\r\n\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_rectangle_sum.test.cpp

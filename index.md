@@ -55,12 +55,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/persistentarray.hpp
+      title: Persistent Array
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/persistentunionfind.hpp
+      title: Persistent Union Find
     - icon: ':warning:'
       path: DataStructure/rangeunionset.hpp
       title: Range Union Set
     - icon: ':heavy_check_mark:'
+      path: DataStructure/rbstset.hpp
+      title: Randomized Binary Search Tree (set)
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
+    - icon: ':x:'
+      path: DataStructure/segtreebeats.hpp
+      title: Segment Tree Beats
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
@@ -175,12 +187,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -277,6 +289,9 @@ data:
       path: Verify/LC_number_of_substrings.test.cpp
       title: Verify/LC_number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_persistent_unionfind.test.cpp
+      title: Verify/LC_persistent_unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_range_sum.test.cpp
       title: Verify/LC_point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -295,11 +310,17 @@ data:
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_predecessor_problem.test.cpp
+      title: Verify/LC_predecessor_problem.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_queue_operate_all_composite.test.cpp
       title: Verify/LC_queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_affine_range_sum.test.cpp
       title: Verify/LC_range_affine_range_sum.test.cpp
+    - icon: ':x:'
+      path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+      title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_rectangle_sum.test.cpp
       title: Verify/LC_rectangle_sum.test.cpp

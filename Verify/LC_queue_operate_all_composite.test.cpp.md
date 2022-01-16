@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -115,10 +115,11 @@ data:
     \   ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
     \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
     \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
-    \ space=false>inline void write(){_write('\\n');}\r\n    template <bool space=false,typename\
-    \ Head, typename... Tail>inline void write(const Head& head,const Tail&... tail){\r\
-    \n        if(space)_write(' ');\r\n        _write(head);\r\n        write<true>(tail...);\
-    \ \r\n    }\r\n};\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 7 \"Verify/LC_queue_operate_all_composite.test.cpp\"\
+    \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
+    \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
+    \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
+    \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */\n#line 7 \"Verify/LC_queue_operate_all_composite.test.cpp\"\
     \n\r\nusing Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
     \nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    FastIO io;\r\n    int q;\r\n\
     \    io.read(q);\r\n\r\n    SWAG<P,f,e> swag;\r\n    int t,a,b,x;\r\n    while(q--){\r\
@@ -146,7 +147,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_queue_operate_all_composite.test.cpp

@@ -13,11 +13,20 @@ data:
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_persistent_unionfind.test.cpp
+    title: Verify/LC_persistent_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_predecessor_problem.test.cpp
+    title: Verify/LC_predecessor_problem.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+    title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Fast IO
     links: []
@@ -68,10 +77,11 @@ data:
     \   ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
     \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
     \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
-    \ space=false>inline void write(){_write('\\n');}\r\n    template <bool space=false,typename\
-    \ Head, typename... Tail>inline void write(const Head& head,const Tail&... tail){\r\
-    \n        if(space)_write(' ');\r\n        _write(head);\r\n        write<true>(tail...);\
-    \ \r\n    }\r\n};\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n"
+    \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
+    \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
+    \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
+    \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */\n"
   code: "#pragma once\r\n#include <unistd.h>\r\n\r\nclass FastIO{\r\n    static constexpr\
     \ int L=1<<16;\r\n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\n    inline\
     \ void reload(){\r\n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
@@ -119,21 +129,25 @@ data:
     \   ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
     \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
     \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
-    \ space=false>inline void write(){_write('\\n');}\r\n    template <bool space=false,typename\
-    \ Head, typename... Tail>inline void write(const Head& head,const Tail&... tail){\r\
-    \n        if(space)_write(' ');\r\n        _write(head);\r\n        write<true>(tail...);\
-    \ \r\n    }\r\n};\r\n\r\n/**\r\n * @brief Fast IO\r\n */"
+    \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
+    \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
+    \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
+    \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Utility/fastio.hpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-16 22:20:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_queue_operate_all_composite.test.cpp
-  - Verify/LC_min_cost_b_flow.test.cpp
   - Verify/LC_associative_array.test.cpp
+  - Verify/LC_predecessor_problem.test.cpp
+  - Verify/LC_min_cost_b_flow.test.cpp
   - Verify/LC_many_aplusb.test.cpp
+  - Verify/LC_persistent_unionfind.test.cpp
+  - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: Utility/fastio.hpp
 layout: document
 redirect_from:
