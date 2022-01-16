@@ -12,7 +12,8 @@ int main(){
     io.read(a);
     Segtreebeats seg(a);
 
-    int t,L,R,x;
+    int t,L,R;
+    ll x;
     while(q--){
         io.read(t);
         if(t==0){
