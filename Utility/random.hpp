@@ -15,6 +15,9 @@ struct Random{
     template<typename T>T get(T L,T R){
         return get(R-L)+L;
     }
+    double uniform(){
+        return double(get())/UINT_MAX;
+    }
     string str(int n){
         string ret;
         rep(i,0,n)ret+=get('a','z');

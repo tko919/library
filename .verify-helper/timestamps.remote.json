@@ -1,6 +1,5 @@
 {
 "Verify/LC_associative_array.test.cpp": "2022-01-09 05:20:56 +0900",
-"Verify/LC_bipartitematching.test.cpp": "2022-01-10 15:37:47 +0900",
 "Verify/LC_bitwise_and_convolution.test.cpp": "2022-01-09 05:20:56 +0900",
 "Verify/LC_bitwise_xor_convolution.test.cpp": "2022-01-09 05:20:56 +0900",
 "Verify/LC_cartesian_tree.test.cpp": "2022-01-09 05:20:56 +0900",
@@ -11,7 +10,6 @@
 "Verify/LC_discrete_logarithm_mod.test.cpp": "2022-01-09 05:20:56 +0900",
 "Verify/LC_enumerate_palindromes.test.cpp": "2022-01-09 05:20:56 +0900",
 "Verify/LC_exp_of_formal_power_series.test.cpp": "2022-01-09 05:20:56 +0900",
-"Verify/LC_factorize.test.cpp": "2022-01-09 05:20:56 +0900",
 "Verify/LC_find_linear_recurrence.test.cpp": "2022-01-10 02:39:47 +0900",
 "Verify/LC_frequency_table_of_tree_distance.test.cpp": "2022-01-09 05:20:56 +0900",
 "Verify/LC_inv_of_formal_power_series.test.cpp": "2022-01-09 05:20:56 +0900",

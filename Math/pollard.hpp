@@ -1,7 +1,8 @@
 #pragma once
 #include "Math/miller.hpp"
+#include "Utility/random.hpp"
 
-mt19937 RND(1341398);
+Random genPollard;
 vector<ll> Pollard(ll n){
     if(n<=1)return {};
     if(Miller(n))return {n};
@@ -10,7 +11,7 @@ vector<ll> Pollard(ll n){
         return v;
     }
     for(ll x=2,y=2,d;;){
-        ll c=RND()%(n-2)+2;
+        ll c=genPollard.get(2LL,n-1);
         do{
             x=(__int128_t(x)*x+c)%n;
             y=(__int128_t(y)*y+c)%n;

@@ -22,7 +22,8 @@ template<typename M,typename N,M (*f)(M,M),M (*g)(M,N),M (*m1)()>struct SegmentT
         for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){
             if(a&1)L=f(L,data[a++]);
             if(b&1)R=f(data[--b],R);
-       } return f(L,R);
+        }
+        return f(L,R);
     }
     M operator[](const int &k)const{return data[k+sz];}
 };

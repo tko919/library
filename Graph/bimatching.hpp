@@ -1,9 +1,9 @@
 #pragma once
 
 class BiMatching{
+    int n,m;
     vector<vector<int>> g;
     bitset<501010> used;
-    int n,m;
     bool dfs(int v){
         if(used[v])return false;
         used[v]=1;

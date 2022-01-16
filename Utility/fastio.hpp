@@ -127,11 +127,11 @@ public:
         assert(_read(head));
         read(tail...); 
     }
-    template<bool space=false>inline void write(){_write('\n');}
-    template <bool space=false,typename Head, typename... Tail>inline void write(const Head& head,const Tail&... tail){
+    template<bool ln=true,bool space=false>inline void write(){if(ln)_write('\n');}
+    template <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const Head& head,const Tail&... tail){
         if(space)_write(' ');
         _write(head);
-        write<true>(tail...); 
+        write<ln,true>(tail...); 
     }
 };
 
