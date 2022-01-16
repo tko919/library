@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Fast IO
     links: []
@@ -139,7 +139,7 @@ data:
   path: Utility/fastio.hpp
   requiredBy: []
   timestamp: '2022-01-16 22:20:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_queue_operate_all_composite.test.cpp
   - Verify/LC_associative_array.test.cpp

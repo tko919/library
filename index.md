@@ -70,7 +70,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtreebeats.hpp
       title: Segment Tree Beats
     - icon: ':warning:'
@@ -187,12 +187,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_affine_range_sum.test.cpp
       title: Verify/LC_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
       title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/segtreebeats.hpp
     title: Segment Tree Beats
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
@@ -140,22 +140,23 @@ data:
     \           return res;\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Segment\
     \ Tree Beats\r\n */\n#line 6 \"Verify/LC_range_chmin_chmax_add_range_sum.test.cpp\"\
     \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<ll>\
-    \ a(n);\r\n    io.read(a);\r\n    Segtreebeats seg(a);\r\n\r\n    int t,L,R,x;\r\
-    \n    while(q--){\r\n        io.read(t);\r\n        if(t==0){\r\n            io.read(L,R,x);\r\
-    \n            seg.range_chmin(L,R,x);\r\n        }\r\n        if(t==1){\r\n  \
-    \          io.read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\n        }\
-    \   \r\n        if(t==2){\r\n            io.read(L,R,x);\r\n            seg.range_add(L,R,x);\r\
-    \n        }\r\n        if(t==3){\r\n            io.read(L,R);\r\n            io.write(seg.query_sum(L,R));\r\
-    \n        }\r\n    }\r\n    return 0;\r\n}\n"
+    \ a(n);\r\n    io.read(a);\r\n    Segtreebeats seg(a);\r\n\r\n    int t,L,R;\r\
+    \n    ll x;\r\n    while(q--){\r\n        io.read(t);\r\n        if(t==0){\r\n\
+    \            io.read(L,R,x);\r\n            seg.range_chmin(L,R,x);\r\n      \
+    \  }\r\n        if(t==1){\r\n            io.read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\
+    \n        }   \r\n        if(t==2){\r\n            io.read(L,R,x);\r\n       \
+    \     seg.range_add(L,R,x);\r\n        }\r\n        if(t==3){\r\n            io.read(L,R);\r\
+    \n            io.write(seg.query_sum(L,R));\r\n        }\r\n    }\r\n    return\
+    \ 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"DataStructure/segtreebeats.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\
     \n    int n,q;\r\n    io.read(n,q);\r\n    vector<ll> a(n);\r\n    io.read(a);\r\
-    \n    Segtreebeats seg(a);\r\n\r\n    int t,L,R,x;\r\n    while(q--){\r\n    \
-    \    io.read(t);\r\n        if(t==0){\r\n            io.read(L,R,x);\r\n     \
-    \       seg.range_chmin(L,R,x);\r\n        }\r\n        if(t==1){\r\n        \
-    \    io.read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\n        }   \r\n\
-    \        if(t==2){\r\n            io.read(L,R,x);\r\n            seg.range_add(L,R,x);\r\
+    \n    Segtreebeats seg(a);\r\n\r\n    int t,L,R;\r\n    ll x;\r\n    while(q--){\r\
+    \n        io.read(t);\r\n        if(t==0){\r\n            io.read(L,R,x);\r\n\
+    \            seg.range_chmin(L,R,x);\r\n        }\r\n        if(t==1){\r\n   \
+    \         io.read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\n        }\
+    \   \r\n        if(t==2){\r\n            io.read(L,R,x);\r\n            seg.range_add(L,R,x);\r\
     \n        }\r\n        if(t==3){\r\n            io.read(L,R);\r\n            io.write(seg.query_sum(L,R));\r\
     \n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
@@ -165,8 +166,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-01-16 22:20:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-16 22:38:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
 layout: document
