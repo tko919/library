@@ -15,7 +15,6 @@ template<typename T>class RBSTset{
             if(rp)size+=rp->size;
         }
     };
-    Node *root=nullptr;
     int size(Node* x){return x?x->size:0;}
     Node* merge(Node* L,Node* R){
         if(!L)return R;
@@ -66,8 +65,17 @@ template<typename T>class RBSTset{
         _dump(cur->rp,add+"*");
     }
 public:
-    RBSTset(){}
+    Node *root;
+    RBSTset(Node* _r=nullptr):root(_r){}
     int size(){return size(root);}
+    void merge(RBSTset& a){
+        root=merge(root,a.root);
+    }
+    RBSTset split(int k){
+        auto [L,R]=split(root,k);
+        root=L;
+        return RBSTset(R);
+    }
     bool find(T x){
         Node *cur=root;
         for(;;){
@@ -99,10 +107,10 @@ public:
         return cur->key;
     }
     T lower_bound(T v){
-        return kth_element(lower_bound(root,v));
+        return lower_bound(root,v);
     }
     T upper_bound(T v){
-        return kth_element(upper_bound(root,v));
+        return upper_bound(root,v);
     }
     void dump(){
         _dump(root,"*");

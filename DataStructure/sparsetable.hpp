@@ -5,7 +5,7 @@ template<typename T,T (*f)(T,T)>struct SparseTable{
     vector<int> lgtable;
     SparseTable(const vector<T>& v){
         int LG=0;
-        while((1<<LG)<=v.size())LG++;
+        while((1<<LG)<=(int)v.size())LG++;
         st.assign(LG,vector<T>(1<<LG));
         lgtable.assign(v.size()+1,0);
         rep(i,0,v.size())st[0][i]=v[i];

@@ -113,7 +113,7 @@ class FastIO{
         rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];
         wtRight+=pos;
     }
-    template<typename T>inline void _write(vector<T>& v){
+    template<typename T>inline void _write(const vector<T>& v){
         rep(i,0,v.size()){
             if(i)_write(' ');
             _write(v[i]);
