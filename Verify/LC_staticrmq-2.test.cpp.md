@@ -26,7 +26,7 @@ data:
     \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"DataStructure/sparsetable.hpp\"\
     \n\r\ntemplate<typename T,T (*f)(T,T)>struct SparseTable{\r\n    vector<vector<T>>\
     \ st;\r\n    vector<int> lgtable;\r\n    SparseTable(const vector<T>& v){\r\n\
-    \        int LG=0;\r\n        while((1<<LG)<=v.size())LG++;\r\n        st.assign(LG,vector<T>(1<<LG));\r\
+    \        int LG=0;\r\n        while((1<<LG)<=(int)v.size())LG++;\r\n        st.assign(LG,vector<T>(1<<LG));\r\
     \n        lgtable.assign(v.size()+1,0);\r\n        rep(i,0,v.size())st[0][i]=v[i];\r\
     \n        rep(lg,1,LG){\r\n            for(int j=0;j+(1<<lg)<=(1<<LG);j++){\r\n\
     \                st[lg][j]=f(st[lg-1][j],st[lg-1][j+(1<<(lg-1))]);\r\n       \
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_staticrmq-2.test.cpp
   requiredBy: []
-  timestamp: '2022-01-10 05:53:59+09:00'
+  timestamp: '2022-01-17 15:26:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_staticrmq-2.test.cpp

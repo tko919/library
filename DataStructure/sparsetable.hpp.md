@@ -15,7 +15,7 @@ data:
   bundledCode: "#line 2 \"DataStructure/sparsetable.hpp\"\n\r\ntemplate<typename T,T\
     \ (*f)(T,T)>struct SparseTable{\r\n    vector<vector<T>> st;\r\n    vector<int>\
     \ lgtable;\r\n    SparseTable(const vector<T>& v){\r\n        int LG=0;\r\n  \
-    \      while((1<<LG)<=v.size())LG++;\r\n        st.assign(LG,vector<T>(1<<LG));\r\
+    \      while((1<<LG)<=(int)v.size())LG++;\r\n        st.assign(LG,vector<T>(1<<LG));\r\
     \n        lgtable.assign(v.size()+1,0);\r\n        rep(i,0,v.size())st[0][i]=v[i];\r\
     \n        rep(lg,1,LG){\r\n            for(int j=0;j+(1<<lg)<=(1<<LG);j++){\r\n\
     \                st[lg][j]=f(st[lg-1][j],st[lg-1][j+(1<<(lg-1))]);\r\n       \
@@ -25,7 +25,7 @@ data:
     \ Sparse Table\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T,T (*f)(T,T)>struct SparseTable{\r\
     \n    vector<vector<T>> st;\r\n    vector<int> lgtable;\r\n    SparseTable(const\
-    \ vector<T>& v){\r\n        int LG=0;\r\n        while((1<<LG)<=v.size())LG++;\r\
+    \ vector<T>& v){\r\n        int LG=0;\r\n        while((1<<LG)<=(int)v.size())LG++;\r\
     \n        st.assign(LG,vector<T>(1<<LG));\r\n        lgtable.assign(v.size()+1,0);\r\
     \n        rep(i,0,v.size())st[0][i]=v[i];\r\n        rep(lg,1,LG){\r\n       \
     \     for(int j=0;j+(1<<lg)<=(1<<LG);j++){\r\n                st[lg][j]=f(st[lg-1][j],st[lg-1][j+(1<<(lg-1))]);\r\
@@ -37,7 +37,7 @@ data:
   isVerificationFile: false
   path: DataStructure/sparsetable.hpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-01-17 15:26:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_staticrmq-2.test.cpp

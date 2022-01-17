@@ -71,10 +71,10 @@ data:
     \ if(x<0){\r\n            _write('-');\r\n            x=-x;\r\n        }\r\n \
     \       int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
-    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(vector<T>&\
-    \ v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\n     \
-    \       _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\n \
-    \   ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
+    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
+    \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
+    \n            _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\
+    \n    ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
     \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
     \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
     \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
@@ -123,10 +123,10 @@ data:
     \ if(x<0){\r\n            _write('-');\r\n            x=-x;\r\n        }\r\n \
     \       int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
-    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(vector<T>&\
-    \ v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\n     \
-    \       _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\n \
-    \   ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
+    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
+    \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
+    \n            _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\
+    \n    ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
     \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
     \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
     \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
@@ -138,7 +138,7 @@ data:
   isVerificationFile: false
   path: Utility/fastio.hpp
   requiredBy: []
-  timestamp: '2022-01-16 22:20:31+09:00'
+  timestamp: '2022-01-17 15:26:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_queue_operate_all_composite.test.cpp

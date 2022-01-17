@@ -71,10 +71,10 @@ data:
     \ if(x<0){\r\n            _write('-');\r\n            x=-x;\r\n        }\r\n \
     \       int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
-    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(vector<T>&\
-    \ v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\n     \
-    \       _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\n \
-    \   ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
+    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
+    \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
+    \n            _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\
+    \n    ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
     \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
     \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
     \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
@@ -100,9 +100,9 @@ data:
     \ T>class RBSTset{\r\n    struct Node{\r\n        Node *lp=nullptr,*rp=nullptr;\r\
     \n        int size=1;\r\n        T key;\r\n        Node(T _k=0):key(_k){}\r\n\
     \        void apply(){\r\n            size=1;\r\n            if(lp)size+=lp->size;\r\
-    \n            if(rp)size+=rp->size;\r\n        }\r\n    };\r\n    Node *root=nullptr;\r\
-    \n    int size(Node* x){return x?x->size:0;}\r\n    Node* merge(Node* L,Node*\
-    \ R){\r\n        if(!L)return R;\r\n        if(!R)return L;\r\n        if((int)genRBSTset.get(size(L)+size(R)-1)<size(L)){\r\
+    \n            if(rp)size+=rp->size;\r\n        }\r\n    };\r\n    int size(Node*\
+    \ x){return x?x->size:0;}\r\n    Node* merge(Node* L,Node* R){\r\n        if(!L)return\
+    \ R;\r\n        if(!R)return L;\r\n        if((int)genRBSTset.get(size(L)+size(R)-1)<size(L)){\r\
     \n            L->rp=merge(L->rp,R);\r\n            L->apply();\r\n           \
     \ return L;\r\n        }\r\n        else{\r\n            R->lp=merge(L,R->lp);\r\
     \n            R->apply();\r\n            return R;\r\n        }\r\n    }\r\n \
@@ -119,8 +119,11 @@ data:
     \ upper_bound(x->lp,v);\r\n        else return size(x->lp)+1+upper_bound(x->rp,v);\r\
     \n    }\r\n    void _dump(Node* cur,string add){\r\n        if(!cur)return;\r\n\
     \        _dump(cur->lp,add+\"*\");\r\n        cerr<<add<<cur->key<<'\\n';\r\n\
-    \        _dump(cur->rp,add+\"*\");\r\n    }\r\npublic:\r\n    RBSTset(){}\r\n\
-    \    int size(){return size(root);}\r\n    bool find(T x){\r\n        Node *cur=root;\r\
+    \        _dump(cur->rp,add+\"*\");\r\n    }\r\npublic:\r\n    Node *root;\r\n\
+    \    RBSTset(Node* _r=nullptr):root(_r){}\r\n    int size(){return size(root);}\r\
+    \n    void merge(RBSTset& a){\r\n        root=merge(root,a.root);\r\n    }\r\n\
+    \    RBSTset split(int k){\r\n        auto [L,R]=split(root,k);\r\n        root=L;\r\
+    \n        return RBSTset(R);\r\n    }\r\n    bool find(T x){\r\n        Node *cur=root;\r\
     \n        for(;;){\r\n            if(!cur)break;\r\n            if(cur->key==x)return\
     \ true;\r\n            else if(x<cur->key)cur=cur->lp;\r\n            else cur=cur->rp;\r\
     \n        }\r\n        return false;\r\n    }\r\n    void insert(T x){\r\n   \
@@ -131,18 +134,18 @@ data:
     \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
     \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
     \ while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return cur->key;\r\
-    \n    }\r\n    T lower_bound(T v){\r\n        return kth_element(lower_bound(root,v));\r\
-    \n    }\r\n    T upper_bound(T v){\r\n        return kth_element(upper_bound(root,v));\r\
-    \n    }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\
-    \n/**\r\n * @brief Randomized Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_predecessor_problem.test.cpp\"\
+    \n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
+    \    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n \
+    \   }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
+    /**\r\n * @brief Randomized Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_predecessor_problem.test.cpp\"\
     \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    string s;\r\n    io.read(n,q,s);\r\
     \n    RBSTset<int> tree;\r\n    rep(i,0,n)if(s[i]=='1'){\r\n        tree.insert(i);\r\
     \n    }\r\n    while(q--){\r\n        //tree.dump();\r\n        int t,x;\r\n \
     \       io.read(t,x);\r\n        if(t==0){\r\n            if(!tree.find(x))tree.insert(x);\r\
     \n        }\r\n        if(t==1){\r\n            if(tree.find(x))tree.erase(x);\r\
     \n        }\r\n        if(t==2){\r\n            io.write((int)tree.find(x));\r\
-    \n        }\r\n        if(t==3){\r\n            io.write(tree.lower_bound(x));\r\
-    \n        }\r\n        if(t==4){\r\n            io.write(tree.upper_bound(x));\r\
+    \n        }\r\n        if(t==3){\r\n            io.write(tree.kth_element(tree.lower_bound(x)));\r\
+    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)));\r\
     \n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\r\
     \n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
@@ -153,9 +156,9 @@ data:
     \    if(t==0){\r\n            if(!tree.find(x))tree.insert(x);\r\n        }\r\n\
     \        if(t==1){\r\n            if(tree.find(x))tree.erase(x);\r\n        }\r\
     \n        if(t==2){\r\n            io.write((int)tree.find(x));\r\n        }\r\
-    \n        if(t==3){\r\n            io.write(tree.lower_bound(x));\r\n        }\r\
-    \n        if(t==4){\r\n            io.write(tree.upper_bound(x));\r\n        }\r\
-    \n    }\r\n    return 0;\r\n}"
+    \n        if(t==3){\r\n            io.write(tree.kth_element(tree.lower_bound(x)));\r\
+    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)));\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -164,7 +167,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2022-01-16 22:20:31+09:00'
+  timestamp: '2022-01-17 15:26:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_predecessor_problem.test.cpp
