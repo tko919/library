@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
 #include "Template/template.hpp"
-#include "DataStructure/sparsetable.hpp"
+#include "DataStructure/disjointsparsetable.hpp"
 
 int f(int a,int b){return min(a,b);}
 
@@ -11,7 +11,7 @@ int main(){
     vector<int> a(n);
     rep(i,0,n)cin>>a[i];
 
-    SparseTable<int,f> st(a);
+    DisjointSparseTable<int,f> st(a);
     while(q--){
         int L,R;
         cin>>L>>R;
