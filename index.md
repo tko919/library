@@ -47,6 +47,9 @@ data:
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
+      path: DataStructure/disjointsparsetable.hpp
+      title: Disjoint Sparse Table
+    - icon: ':heavy_check_mark:'
       path: DataStructure/hashmap.hpp
       title: Hash Map
     - icon: ':heavy_check_mark:'
@@ -76,9 +79,6 @@ data:
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':heavy_check_mark:'
-      path: DataStructure/sparsetable.hpp
-      title: Sparse Table
     - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
