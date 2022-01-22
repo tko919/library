@@ -37,6 +37,9 @@ data:
     path: Verify/LC_enumerate_palindromes.test.cpp
     title: Verify/LC_enumerate_palindromes.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_enumerate_primes.test.cpp
+    title: Verify/LC_enumerate_primes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_exp_of_formal_power_series.test.cpp
     title: Verify/LC_exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,6 +126,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_range_kth_smallest-2.test.cpp
+    title: Verify/LC_range_kth_smallest-2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_range_kth_smallest.test.cpp
+    title: Verify/LC_range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_rectangle_sum.test.cpp
     title: Verify/LC_rectangle_sum.test.cpp
@@ -212,6 +221,7 @@ data:
   - Verify/LC_inv_of_formal_power_series.test.cpp
   - Verify/LC_frequency_table_of_tree_distance.test.cpp
   - Verify/LC_associative_array.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_bipartitematching.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp
@@ -240,6 +250,7 @@ data:
   - Verify/LC_nim_product_64.test.cpp
   - Verify/LC_enumerate_palindromes.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp
+  - Verify/LC_range_kth_smallest.test.cpp
   - Verify/LC_suffixarray.test.cpp
   - Verify/LC_line_add_get_min.test.cpp
   - Verify/LC_rectangle_sum.test.cpp
@@ -253,6 +264,7 @@ data:
   - Verify/LC_two_edge_connected_components.test.cpp
   - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_scc.test.cpp
+  - Verify/LC_range_kth_smallest-2.test.cpp
   - Verify/LC_persistent_unionfind.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: Template/template.hpp

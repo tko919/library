@@ -26,6 +26,9 @@ data:
     - icon: ':warning:'
       path: Convolution/convexminplus.hpp
       title: Convex Min Plus Convolution
+    - icon: ':warning:'
+      path: Convolution/divisor.hpp
+      title: Divisor Multiple Transform
     - icon: ':heavy_check_mark:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
@@ -62,6 +65,9 @@ data:
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
     - icon: ':heavy_check_mark:'
+      path: DataStructure/persistentrbstset.hpp
+      title: Persistent Randomized Binary Search Tree (set)
+    - icon: ':heavy_check_mark:'
       path: DataStructure/persistentunionfind.hpp
       title: Persistent Union Find
     - icon: ':warning:'
@@ -85,6 +91,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/unionfind.hpp
       title: Union Find
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/wavelet.hpp
+      title: Wavelet Matrix
   - name: FPS
     pages:
     - icon: ':warning:'
@@ -172,6 +181,9 @@ data:
       path: Math/primitive.hpp
       title: Primitive Function
     - icon: ':heavy_check_mark:'
+      path: Math/sieve.hpp
+      title: Prime Sieve
+    - icon: ':heavy_check_mark:'
       path: Math/twosat.hpp
       title: 2-SAT
   - name: String
@@ -234,6 +246,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_palindromes.test.cpp
       title: Verify/LC_enumerate_palindromes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_enumerate_primes.test.cpp
+      title: Verify/LC_enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_exp_of_formal_power_series.test.cpp
       title: Verify/LC_exp_of_formal_power_series.test.cpp
@@ -321,6 +336,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
       title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_range_kth_smallest-2.test.cpp
+      title: Verify/LC_range_kth_smallest-2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_range_kth_smallest.test.cpp
+      title: Verify/LC_range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_rectangle_sum.test.cpp
       title: Verify/LC_rectangle_sum.test.cpp

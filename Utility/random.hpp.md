@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: DataStructure/persistentrbstset.hpp
+    title: Persistent Randomized Binary Search Tree (set)
+  - icon: ':heavy_check_mark:'
     path: DataStructure/rbstset.hpp
     title: Randomized Binary Search Tree (set)
   - icon: ':heavy_check_mark:'
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_range_kth_smallest-2.test.cpp
+    title: Verify/LC_range_kth_smallest-2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -63,6 +69,7 @@ data:
   requiredBy:
   - Graph/maxindependentset.hpp
   - DataStructure/rbstset.hpp
+  - DataStructure/persistentrbstset.hpp
   - Math/pollard.hpp
   timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -70,6 +77,7 @@ data:
   - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp
   - Verify/LC_factorize.test.cpp
+  - Verify/LC_range_kth_smallest-2.test.cpp
 documentation_of: Utility/random.hpp
 layout: document
 redirect_from:

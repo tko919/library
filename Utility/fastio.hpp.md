@@ -7,6 +7,9 @@ data:
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_enumerate_primes.test.cpp
+    title: Verify/LC_enumerate_primes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_many_aplusb.test.cpp
     title: Verify/LC_many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,6 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_range_kth_smallest-2.test.cpp
+    title: Verify/LC_range_kth_smallest-2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_range_kth_smallest.test.cpp
+    title: Verify/LC_range_kth_smallest.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -143,9 +152,12 @@ data:
   verifiedWith:
   - Verify/LC_queue_operate_all_composite.test.cpp
   - Verify/LC_associative_array.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp
+  - Verify/LC_range_kth_smallest.test.cpp
   - Verify/LC_many_aplusb.test.cpp
+  - Verify/LC_range_kth_smallest-2.test.cpp
   - Verify/LC_persistent_unionfind.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: Utility/fastio.hpp
