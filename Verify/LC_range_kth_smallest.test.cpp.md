@@ -31,12 +31,12 @@ data:
     \n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\
     \n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
     \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
-    \n        rdbuf[rdRight]='\\0';\r\n    }\r\n    inline bool skip(){\r\n      \
-    \  for(;;){\r\n            while(rdLeft!=rdRight and rdbuf[rdLeft]<=' ')rdLeft++;\r\
-    \n            if(rdLeft==rdRight){\r\n                reload();\r\n          \
-    \      if(rdLeft==rdRight)return false;\r\n            }\r\n            else break;\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int>\
-    \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
+    \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
+    \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
+    \             reload();\r\n                if(rdLeft==rdRight)return false;\r\n\
+    \            }\r\n            else break;\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
+    \ bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0')x=x*10+(rdbuf[rdLeft++]^48);\r\
     \n        if(neg)x=-x;\r\n        return true;\r\n    }\r\n    template<typename\
@@ -96,7 +96,7 @@ data:
     \n            }\r\n            mid[d]=(int)nxt[0].size();\r\n            buf[d]=BitVector(add);\r\
     \n            swap(a,nxt[0]);\r\n            a.insert(a.end(),ALL(nxt[1]));\r\n\
     \        }\r\n    }\r\n    int rank(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
-    \ R-L;\r\n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\n\
+    \ 0;\r\n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\n\
     \            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
     \n        }\r\n        return R-L;\r\n    }\r\n    T quantile(int L,int R,int\
     \ k){\r\n        T ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
@@ -134,7 +134,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2022-01-22 19:43:57+09:00'
+  timestamp: '2022-01-24 03:48:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_range_kth_smallest.test.cpp

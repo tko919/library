@@ -72,12 +72,12 @@ data:
     \n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\
     \n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
     \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
-    \n        rdbuf[rdRight]='\\0';\r\n    }\r\n    inline bool skip(){\r\n      \
-    \  for(;;){\r\n            while(rdLeft!=rdRight and rdbuf[rdLeft]<=' ')rdLeft++;\r\
-    \n            if(rdLeft==rdRight){\r\n                reload();\r\n          \
-    \      if(rdLeft==rdRight)return false;\r\n            }\r\n            else break;\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int>\
-    \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
+    \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
+    \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
+    \             reload();\r\n                if(rdLeft==rdRight)return false;\r\n\
+    \            }\r\n            else break;\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
+    \ bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0')x=x*10+(rdbuf[rdLeft++]^48);\r\
     \n        if(neg)x=-x;\r\n        return true;\r\n    }\r\n    template<typename\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-01-17 15:26:38+09:00'
+  timestamp: '2022-01-24 03:48:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_queue_operate_all_composite.test.cpp
