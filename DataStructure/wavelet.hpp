@@ -43,7 +43,7 @@ template<typename T>struct WaveletMatrix{
         }
     }
     int rank(int L,int R,T x){
-        if((T(1)<<lg)<=x)return R-L;
+        if((T(1)<<lg)<=x)return 0;
         for(int d=lg-1;d>=0;d--){
             bool f=(x>>d&1);
             L=buf[d].rank(L,f)+(f?mid[d]:0);

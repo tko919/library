@@ -10,7 +10,6 @@ class FastIO{
         memmove(rdbuf,rdbuf+rdLeft,len);
         rdLeft=0,rdRight=len;
         rdRight+=fread(rdbuf+len,1,L-len,stdin);
-        rdbuf[rdRight]='\0';
     }
     inline bool skip(){
         for(;;){
