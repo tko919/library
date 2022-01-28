@@ -23,7 +23,7 @@ template<typename T>struct WaveletMatrix{
     int N,lg=0;
     vector<int> mid;
     vector<BitVector> buf;
-    WaveletMatrix(vector<T>& a):N(a.size()){
+    WaveletMatrix(vector<T> a):N(a.size()){
         T mx;
         for(auto& x:a)chmax(mx,x);
         while((T(1)<<lg)<=mx)lg++;
@@ -65,6 +65,7 @@ template<typename T>struct WaveletMatrix{
         return ret;
     }
     int freq(int L,int R,T x){
+        if((T(1)<<lg)<=x)return R-L;
         int ret=0;
         for(int d=lg-1;d>=0;d--){
             bool f=(x>>d&1);

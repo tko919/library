@@ -2,7 +2,7 @@
 
 template<typename T>struct Frac{
     T a,b;
-    Frac(T _a){init(_a,1);}
+    Frac(T _a=0){init(_a,1);}
     Frac(T _a,T _b){init(_a,_b);}
     Frac& init(T _a,T _b){
         T g=gcd(_a,_b);

@@ -31,7 +31,7 @@ class FastIO{
             rdLeft++;
         }
         x=0;
-        while(rdbuf[rdLeft]>='0')x=x*10+(rdbuf[rdLeft++]^48);
+        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight)x=x*10+(rdbuf[rdLeft++]^48);
         if(neg)x=-x;
         return true;
     }
@@ -44,11 +44,13 @@ class FastIO{
             rdLeft++;
         }
         x=0;
-        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9')x=x*10+(rdbuf[rdLeft++]^48);
+        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9' and rdLeft<rdRight){
+            x=x*10+(rdbuf[rdLeft++]^48);
+        }
         if(rdbuf[rdLeft]!='.')return true;
         rdLeft++;
         T base=.1;
-        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9'){
+        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9' and rdLeft<rdRight){
             x+=base*(rdbuf[rdLeft++]^48);
             base*=.1;
         }
