@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_static_range_frequency.test.cpp
+    title: Verify/LC_static_range_frequency.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -22,7 +25,7 @@ data:
     \ }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
     \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(vector<T>& a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
+    \n    WaveletMatrix(vector<T> a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
     \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
     \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
     \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
@@ -37,15 +40,16 @@ data:
     \ int l0=buf[d].rank(L,0),r0=buf[d].rank(R,0);\r\n            if(k<r0-l0)L=l0,R=r0;\r\
     \n            else{\r\n                k-=r0-l0;\r\n                ret|=T(1)<<d;\r\
     \n                L+=mid[d]-l0,R+=mid[d]-r0;\r\n            }\r\n        }\r\n\
-    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        int\
-    \ ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\
-    \n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\
-    \n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n    int freq(int L,int R,T a,T b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\
-    \n    }\r\n    T lower_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
-    \n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\n    }\r\n    T upper_bound(int\
-    \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\
-    \n    }\r\n};\r\n\r\n/**\r\n * @brief Wavelet Matrix\r\n */\n"
+    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
+    \ R-L;\r\n        int ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n        \
+    \    bool f=(x>>d&1);\r\n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\
+    \n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
+    \n        }\r\n        return ret;\r\n    }\r\n    int freq(int L,int R,T a,T\
+    \ b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\n    }\r\n    T lower_bound(int\
+    \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\
+    \n    }\r\n    T upper_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
+    \n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Wavelet Matrix\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct WaveletMatrix{\r\n    struct\
     \ BitVector{\r\n        vector<unsigned long long> buf;\r\n        vector<int>\
     \ rui;\r\n        BitVector(const vector<char>& a={}){\r\n            int n=a.size();\r\
@@ -55,7 +59,7 @@ data:
     \n        }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
     \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(vector<T>& a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
+    \n    WaveletMatrix(vector<T> a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
     \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
     \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
     \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
@@ -70,22 +74,24 @@ data:
     \ int l0=buf[d].rank(L,0),r0=buf[d].rank(R,0);\r\n            if(k<r0-l0)L=l0,R=r0;\r\
     \n            else{\r\n                k-=r0-l0;\r\n                ret|=T(1)<<d;\r\
     \n                L+=mid[d]-l0,R+=mid[d]-r0;\r\n            }\r\n        }\r\n\
-    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        int\
-    \ ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\
-    \n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\
-    \n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n    int freq(int L,int R,T a,T b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\
-    \n    }\r\n    T lower_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
-    \n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\n    }\r\n    T upper_bound(int\
-    \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\
-    \n    }\r\n};\r\n\r\n/**\r\n * @brief Wavelet Matrix\r\n */"
+    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
+    \ R-L;\r\n        int ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n        \
+    \    bool f=(x>>d&1);\r\n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\
+    \n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
+    \n        }\r\n        return ret;\r\n    }\r\n    int freq(int L,int R,T a,T\
+    \ b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\n    }\r\n    T lower_bound(int\
+    \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\
+    \n    }\r\n    T upper_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
+    \n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Wavelet Matrix\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/wavelet.hpp
   requiredBy: []
-  timestamp: '2022-01-24 03:48:10+09:00'
+  timestamp: '2022-01-29 02:47:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_static_range_frequency.test.cpp
   - Verify/LC_range_kth_smallest.test.cpp
 documentation_of: DataStructure/wavelet.hpp
 layout: document

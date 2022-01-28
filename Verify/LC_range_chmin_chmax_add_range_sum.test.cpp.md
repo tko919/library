@@ -39,16 +39,17 @@ data:
     \n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
     \ bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
-    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0')x=x*10+(rdbuf[rdLeft++]^48);\r\
-    \n        if(neg)x=-x;\r\n        return true;\r\n    }\r\n    template<typename\
-    \ T,enable_if_t<is_floating_point<T>::value,int> =0>inline bool _read(T& x){\r\
-    \n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight)x=x*10+(rdbuf[rdLeft++]^48);\r\n        if(neg)x=-x;\r\n\
+    \        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdbuf[rdLeft]<='9')x=x*10+(rdbuf[rdLeft++]^48);\r\n        if(rdbuf[rdLeft]!='.')return\
-    \ true;\r\n        rdLeft++;\r\n        T base=.1;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdbuf[rdLeft]<='9'){\r\n            x+=base*(rdbuf[rdLeft++]^48);\r\n  \
-    \          base*=.1;\r\n        }\r\n        if(neg)x=-x;\r\n        return true;\r\
+    \ and rdbuf[rdLeft]<='9' and rdLeft<rdRight){\r\n            x=x*10+(rdbuf[rdLeft++]^48);\r\
+    \n        }\r\n        if(rdbuf[rdLeft]!='.')return true;\r\n        rdLeft++;\r\
+    \n        T base=.1;\r\n        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9'\
+    \ and rdLeft<rdRight){\r\n            x+=base*(rdbuf[rdLeft++]^48);\r\n      \
+    \      base*=.1;\r\n        }\r\n        if(neg)x=-x;\r\n        return true;\r\
     \n    }\r\n    inline bool _read(char& x){\r\n        if(!skip())return false;\r\
     \n        if(rdLeft+1>=rdRight)reload();\r\n        x=rdbuf[rdLeft++];\r\n   \
     \     return true;\r\n    }\r\n    inline bool _read(string& x){\r\n        if(!skip())return\
@@ -166,7 +167,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-01-24 03:48:10+09:00'
+  timestamp: '2022-01-29 02:47:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp

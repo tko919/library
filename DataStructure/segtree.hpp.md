@@ -59,11 +59,11 @@ data:
   timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_staticrmq.test.cpp
+  - Verify/LC_rectangle_sum.test.cpp
   - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_point_set_range_composite.test.cpp
+  - Verify/LC_staticrmq.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
-  - Verify/LC_rectangle_sum.test.cpp
 documentation_of: DataStructure/segtree.hpp
 layout: document
 redirect_from:

@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/sieve.hpp
-    title: Prime Sieve
+    path: DataStructure/wavelet.hpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -17,14 +17,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
     links:
-    - https://judge.yosupo.jp/problem/enumerate_primes
-  bundledCode: "#line 1 \"Verify/LC_enumerate_primes.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/enumerate_primes\"\r\n\r\n#line 1 \"Template/template.hpp\"\
-    \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
-    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\nusing\
-    \ ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
+    - https://judge.yosupo.jp/problem/static_range_frequency
+  bundledCode: "#line 1 \"Verify/LC_static_range_frequency.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/static_range_frequency\"\r\n\r\n#line 1 \"\
+    Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\
+    \n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\
+    \nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
     \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
     \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
     \ 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\nclass FastIO{\r\
@@ -79,49 +79,66 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=1010101>vector<int>\
-    \ sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int\
-    \ z=1;z<=5;z+=4){\r\n        for(int y=z;y<=sq;y+=6){\r\n            for(int x=1;x<=sq\
-    \ and (n=4*x*x+y*y)<=N;++x){\r\n                isp[n].flip();\r\n           \
-    \ }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\n       \
-    \         isp[n].flip();\r\n            }\r\n        }\r\n    }\r\n    for(int\
-    \ z=2;z<=4;z+=2){\r\n        for(int y=z;y<=sq;y+=6){\r\n            for (int\
-    \ x=1;x<=sq and (n=3*x*x+y*y)<=N;x+=2){\r\n                isp[n].flip();\r\n\
-    \            }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\
-    \n                isp[n].flip();\r\n            }\r\n        }\r\n    }\r\n  \
-    \  for(int y=3;y<=sq;y+=6){\r\n        for(int z=1;z<=2;++z){\r\n            for(int\
-    \ x=z;x<=sq and (n=4*x*x+y*y)<=N;x+=3){\r\n                isp[n].flip();\r\n\
-    \            }\r\n        }\r\n    }\r\n    for(int n=5;n<=sq;++n)if(isp[n]){\r\
-    \n        for(int k=n*n;k<=N;k+=n*n){\r\n            isp[k]=false;\r\n       \
-    \ }\r\n    }\r\n    isp[2]=isp[3]=true;\r\n\r\n    vector<int> ret;\r\n    for(int\
-    \ i=2;i<=N;i++)if(isp[i]){\r\n        ret.push_back(i);\r\n    }\r\n    return\
-    \ ret;\r\n}\r\n\r\n/**\r\n * @brief Prime Sieve\r\n */\n#line 6 \"Verify/LC_enumerate_primes.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int N,A,B;\r\n    io.read(N,A,B);\r\n \
-    \   \r\n    auto base=sieve<501010101>(N);\r\n    int pi=0;\r\n    vector<int>\
-    \ ret;\r\n    for(auto& p:base){\r\n        if(pi%A==B)ret.push_back(p);\r\n \
-    \       pi++;\r\n    }\r\n    io.write(pi,(int)ret.size());\r\n    io.write(ret);\r\
-    \n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\r\n\r\
-    \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n#include\
-    \ \"Math/sieve.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n    int N,A,B;\r\n  \
-    \  io.read(N,A,B);\r\n    \r\n    auto base=sieve<501010101>(N);\r\n    int pi=0;\r\
-    \n    vector<int> ret;\r\n    for(auto& p:base){\r\n        if(pi%A==B)ret.push_back(p);\r\
-    \n        pi++;\r\n    }\r\n    io.write(pi,(int)ret.size());\r\n    io.write(ret);\r\
-    \n    return 0;\r\n}"
+    \n * @brief Fast IO\r\n */\n#line 2 \"DataStructure/wavelet.hpp\"\n\r\ntemplate<typename\
+    \ T>struct WaveletMatrix{\r\n    struct BitVector{\r\n        vector<unsigned\
+    \ long long> buf;\r\n        vector<int> rui;\r\n        BitVector(const vector<char>&\
+    \ a={}){\r\n            int n=a.size();\r\n            buf.assign((n+63)>>6,0);\r\
+    \n            rui.assign(buf.size()+1,0);\r\n            rep(i,0,n)if(a[i]){\r\
+    \n                buf[i>>6]|=1ull<<(i&63);\r\n                rui[(i>>6)+1]++;\r\
+    \n            }\r\n            rep(i,0,buf.size())rui[i+1]+=rui[i];\r\n      \
+    \  }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
+    \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
+    \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
+    \n    WaveletMatrix(vector<T> a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
+    \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
+    \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
+    \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
+    \ x:a){\r\n                add.push_back(x>>d&1);\r\n                nxt[x>>d&1].push_back(x);\r\
+    \n            }\r\n            mid[d]=(int)nxt[0].size();\r\n            buf[d]=BitVector(add);\r\
+    \n            swap(a,nxt[0]);\r\n            a.insert(a.end(),ALL(nxt[1]));\r\n\
+    \        }\r\n    }\r\n    int rank(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
+    \ 0;\r\n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\n\
+    \            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
+    \n        }\r\n        return R-L;\r\n    }\r\n    T quantile(int L,int R,int\
+    \ k){\r\n        T ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
+    \ int l0=buf[d].rank(L,0),r0=buf[d].rank(R,0);\r\n            if(k<r0-l0)L=l0,R=r0;\r\
+    \n            else{\r\n                k-=r0-l0;\r\n                ret|=T(1)<<d;\r\
+    \n                L+=mid[d]-l0,R+=mid[d]-r0;\r\n            }\r\n        }\r\n\
+    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
+    \ R-L;\r\n        int ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n        \
+    \    bool f=(x>>d&1);\r\n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\
+    \n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
+    \n        }\r\n        return ret;\r\n    }\r\n    int freq(int L,int R,T a,T\
+    \ b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\n    }\r\n    T lower_bound(int\
+    \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\
+    \n    }\r\n    T upper_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
+    \n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Wavelet Matrix\r\n */\n#line 6 \"Verify/LC_static_range_frequency.test.cpp\"\
+    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<int>\
+    \ a(n);\r\n    io.read(a);\r\n\r\n    WaveletMatrix<int> wm(a);\r\n    int L,R,x;\r\
+    \n    while(q--){\r\n        io.read(L,R,x);\r\n        io.write(wm.rank(L,R,x));\r\
+    \n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
+    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
+    \n#include \"DataStructure/wavelet.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n\
+    \    int n,q;\r\n    io.read(n,q);\r\n    vector<int> a(n);\r\n    io.read(a);\r\
+    \n\r\n    WaveletMatrix<int> wm(a);\r\n    int L,R,x;\r\n    while(q--){\r\n \
+    \       io.read(L,R,x);\r\n        io.write(wm.rank(L,R,x));\r\n    }\r\n    return\
+    \ 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
-  - Math/sieve.hpp
+  - DataStructure/wavelet.hpp
   isVerificationFile: true
-  path: Verify/LC_enumerate_primes.test.cpp
+  path: Verify/LC_static_range_frequency.test.cpp
   requiredBy: []
   timestamp: '2022-01-29 02:47:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_enumerate_primes.test.cpp
+documentation_of: Verify/LC_static_range_frequency.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_enumerate_primes.test.cpp
-- /verify/Verify/LC_enumerate_primes.test.cpp.html
-title: Verify/LC_enumerate_primes.test.cpp
+- /verify/Verify/LC_static_range_frequency.test.cpp
+- /verify/Verify/LC_static_range_frequency.test.cpp.html
+title: Verify/LC_static_range_frequency.test.cpp
 ---

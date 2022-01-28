@@ -352,6 +352,9 @@ data:
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_static_range_frequency.test.cpp
+      title: Verify/LC_static_range_frequency.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'

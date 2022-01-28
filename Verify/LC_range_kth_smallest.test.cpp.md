@@ -38,16 +38,17 @@ data:
     \n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
     \ bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
-    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0')x=x*10+(rdbuf[rdLeft++]^48);\r\
-    \n        if(neg)x=-x;\r\n        return true;\r\n    }\r\n    template<typename\
-    \ T,enable_if_t<is_floating_point<T>::value,int> =0>inline bool _read(T& x){\r\
-    \n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight)x=x*10+(rdbuf[rdLeft++]^48);\r\n        if(neg)x=-x;\r\n\
+    \        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdbuf[rdLeft]<='9')x=x*10+(rdbuf[rdLeft++]^48);\r\n        if(rdbuf[rdLeft]!='.')return\
-    \ true;\r\n        rdLeft++;\r\n        T base=.1;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdbuf[rdLeft]<='9'){\r\n            x+=base*(rdbuf[rdLeft++]^48);\r\n  \
-    \          base*=.1;\r\n        }\r\n        if(neg)x=-x;\r\n        return true;\r\
+    \ and rdbuf[rdLeft]<='9' and rdLeft<rdRight){\r\n            x=x*10+(rdbuf[rdLeft++]^48);\r\
+    \n        }\r\n        if(rdbuf[rdLeft]!='.')return true;\r\n        rdLeft++;\r\
+    \n        T base=.1;\r\n        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9'\
+    \ and rdLeft<rdRight){\r\n            x+=base*(rdbuf[rdLeft++]^48);\r\n      \
+    \      base*=.1;\r\n        }\r\n        if(neg)x=-x;\r\n        return true;\r\
     \n    }\r\n    inline bool _read(char& x){\r\n        if(!skip())return false;\r\
     \n        if(rdLeft+1>=rdRight)reload();\r\n        x=rdbuf[rdLeft++];\r\n   \
     \     return true;\r\n    }\r\n    inline bool _read(string& x){\r\n        if(!skip())return\
@@ -88,7 +89,7 @@ data:
     \  }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
     \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(vector<T>& a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
+    \n    WaveletMatrix(vector<T> a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
     \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
     \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
     \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
@@ -103,15 +104,16 @@ data:
     \ int l0=buf[d].rank(L,0),r0=buf[d].rank(R,0);\r\n            if(k<r0-l0)L=l0,R=r0;\r\
     \n            else{\r\n                k-=r0-l0;\r\n                ret|=T(1)<<d;\r\
     \n                L+=mid[d]-l0,R+=mid[d]-r0;\r\n            }\r\n        }\r\n\
-    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        int\
-    \ ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\
-    \n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\
-    \n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n    int freq(int L,int R,T a,T b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\
-    \n    }\r\n    T lower_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
-    \n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\n    }\r\n    T upper_bound(int\
-    \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\
-    \n    }\r\n};\r\n\r\n/**\r\n * @brief Wavelet Matrix\r\n */\n#line 6 \"Verify/LC_range_kth_smallest.test.cpp\"\
+    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
+    \ R-L;\r\n        int ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n        \
+    \    bool f=(x>>d&1);\r\n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\
+    \n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
+    \n        }\r\n        return ret;\r\n    }\r\n    int freq(int L,int R,T a,T\
+    \ b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\n    }\r\n    T lower_bound(int\
+    \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\
+    \n    }\r\n    T upper_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
+    \n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Wavelet Matrix\r\n */\n#line 6 \"Verify/LC_range_kth_smallest.test.cpp\"\
     \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<int>\
     \ a(n);\r\n    io.read(a);\r\n\r\n    vector<int> zip;\r\n    for(auto& x:a)zip.push_back(x);\r\
     \n    sort(ALL(zip));\r\n    zip.erase(unique(ALL(zip)),zip.end());\r\n    rep(i,0,n)a[i]=lower_bound(ALL(zip),a[i])-zip.begin();\r\
@@ -134,7 +136,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2022-01-24 03:48:10+09:00'
+  timestamp: '2022-01-29 02:47:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_range_kth_smallest.test.cpp
