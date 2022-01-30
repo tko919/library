@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Randomized Binary Search Tree (set)
     links: []
@@ -61,9 +61,9 @@ data:
     \n        for(;;){\r\n            if(!cur)break;\r\n            if(cur->key==x)return\
     \ true;\r\n            else if(x<cur->key)cur=cur->lp;\r\n            else cur=cur->rp;\r\
     \n        }\r\n        return false;\r\n    }\r\n    void insert(T x){\r\n   \
-    \     auto [L,R]=split(root,k);\r\n        int k=lower_bound(root,x)\r\n     \
-    \   root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n \
-    \       assert(find(x));\r\n        int k=lower_bound(root,x)\r\n        auto\
+    \     int k=lower_bound(root,x);\r\n        auto [L,R]=split(root,k);\r\n    \
+    \    root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n\
+    \        assert(find(x));\r\n        int k=lower_bound(root,x);\r\n        auto\
     \ [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n        root=merge(L,R);\r\
     \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
     \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
@@ -103,9 +103,9 @@ data:
     \n        for(;;){\r\n            if(!cur)break;\r\n            if(cur->key==x)return\
     \ true;\r\n            else if(x<cur->key)cur=cur->lp;\r\n            else cur=cur->rp;\r\
     \n        }\r\n        return false;\r\n    }\r\n    void insert(T x){\r\n   \
-    \     auto [L,R]=split(root,k);\r\n        int k=lower_bound(root,x)\r\n     \
-    \   root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n \
-    \       assert(find(x));\r\n        int k=lower_bound(root,x)\r\n        auto\
+    \     int k=lower_bound(root,x);\r\n        auto [L,R]=split(root,k);\r\n    \
+    \    root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n\
+    \        assert(find(x));\r\n        int k=lower_bound(root,x);\r\n        auto\
     \ [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n        root=merge(L,R);\r\
     \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
     \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
@@ -119,8 +119,8 @@ data:
   isVerificationFile: false
   path: DataStructure/rbstset.hpp
   requiredBy: []
-  timestamp: '2022-01-31 02:08:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-01-31 02:21:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_predecessor_problem.test.cpp
 documentation_of: DataStructure/rbstset.hpp

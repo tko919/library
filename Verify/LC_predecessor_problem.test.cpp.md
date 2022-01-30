@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/rbstset.hpp
     title: Randomized Binary Search Tree (set)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
@@ -128,9 +128,9 @@ data:
     \n        for(;;){\r\n            if(!cur)break;\r\n            if(cur->key==x)return\
     \ true;\r\n            else if(x<cur->key)cur=cur->lp;\r\n            else cur=cur->rp;\r\
     \n        }\r\n        return false;\r\n    }\r\n    void insert(T x){\r\n   \
-    \     auto [L,R]=split(root,k);\r\n        int k=lower_bound(root,x)\r\n     \
-    \   root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n \
-    \       assert(find(x));\r\n        int k=lower_bound(root,x)\r\n        auto\
+    \     int k=lower_bound(root,x);\r\n        auto [L,R]=split(root,k);\r\n    \
+    \    root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n\
+    \        assert(find(x));\r\n        int k=lower_bound(root,x);\r\n        auto\
     \ [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n        root=merge(L,R);\r\
     \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
     \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
@@ -168,8 +168,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 02:08:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-31 02:21:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_predecessor_problem.test.cpp
 layout: document
