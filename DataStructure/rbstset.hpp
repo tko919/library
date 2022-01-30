@@ -86,14 +86,12 @@ public:
         }
         return false;
     }
-    void insert(T x){
-        int k=lower_bound(root,x);
+    void insert(T x,int k=lower_bound(root,x)){
         auto [L,R]=split(root,k);
         root=merge(merge(L,new Node(x)),R);
     }
-    void erase(T x){
+    void erase(T x,int k=lower_bound(root,x)){
         assert(find(x));
-        int k=lower_bound(root,x);
         auto [L,t]=split(root,k);
         auto [tmp,R]=split(t,1);
         root=merge(L,R);

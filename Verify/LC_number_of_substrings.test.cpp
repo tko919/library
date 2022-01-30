@@ -8,8 +8,8 @@ int main(){
     cin>>s;
     int n=s.size();
     SuffixArray sa(s);
-    ll ret=0;
-    rep(i,0,n)ret+=n-sa.sa[i]-sa.lcp[i];
+    ll ret=n-sa.sa[0];
+    rep(i,1,n+1)ret+=n-sa.sa[i]-sa.lcp[i-1];
     cout<<ret<<'\n';
     return 0;
 }

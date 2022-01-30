@@ -13,7 +13,6 @@ template<typename T>struct SuffixArray{
         rsa.assign(n+1,-1);
         rep(i,0,n+1)rsa[sa[i]]=i;
         build(t);
-        sa.erase(sa.begin());
     }
     void sais(vector<int> s,int k){
         int n=s.size();
@@ -89,22 +88,22 @@ template<typename T>struct SuffixArray{
                 for(int j=sa[rsa[i]-1];max(i,j)+k<n;k++){
                     if(s[i+k]!=s[j+k])break;
                 }
-                lcp[rsa[i]-2]=k;
+                lcp[rsa[i]-1]=k;
             }
             if(k)k--;
         }
     }
     array<int,2> search(const T& t){
-        int n=sa.size()-1,m=t.size();
+        int n=sa.size(),m=t.size();
         array<int,2> ret;
-        int L=-1,R=n;
+        int L=0,R=n;
         while(R-L>1){
             int mid=(L+R)>>1;
             if(base.compare(sa[mid],m,t)<0)L=mid;
             else R=mid;
         }
         ret[0]=R;
-        L=-1,R=n;
+        L=0,R=n;
         while(R-L>1){
             int mid=(L+R)>>1;
             if(base.compare(sa[mid],m,t)<=0)L=mid;

@@ -7,6 +7,6 @@ int main(){
     string s;
     cin>>s;
     SuffixArray sa(s);
-    rep(i,0,s.size())cout<<sa.sa[i]<<'\n';
+    rep(i,1,s.size()+1)cout<<sa.sa[i]<<'\n';
     return 0;
 }
