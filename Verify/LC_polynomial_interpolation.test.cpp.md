@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/multieval.hpp
     title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

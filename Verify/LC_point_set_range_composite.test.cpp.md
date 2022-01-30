@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
@@ -55,7 +55,7 @@ data:
     \n * @brief Modint\r\n */\n#line 2 \"DataStructure/segtree.hpp\"\n\r\ntemplate<typename\
     \ M,typename N,M (*f)(M,M),M (*g)(M,N),M (*m1)()>struct SegmentTree{\r\n    int\
     \ sz; vector<M> data;\r\n    SegmentTree(int n){\r\n        sz=1; while(sz<n)sz<<=1;\
-    \ data.assign(2*sz,m1());\r\n    }\r\n    void run(vector<M> v){\r\n        for(int\
+    \ data.assign(2*sz,m1());\r\n    }\r\n    void run(vector<M>& v){\r\n        for(int\
     \ i=0;i<(int)v.size();i++)data[i+sz]=v[i];\r\n        for(int k=sz-1;k>0;k--)data[k]=f(data[2*k],data[2*k+1]);\r\
     \n    }\r\n    void set(int k,const M &x){\r\n        k+=sz; data[k]=x;\r\n  \
     \      while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\n    }\r\n    void update(int\
@@ -92,7 +92,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-01-16 22:20:31+09:00'
+  timestamp: '2022-01-31 02:08:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_point_set_range_composite.test.cpp

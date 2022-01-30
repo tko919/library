@@ -52,6 +52,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/disjointsparsetable.hpp
       title: Disjoint Sparse Table
+    - icon: ':warning:'
+      path: DataStructure/dualsegtree.hpp
+      title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: DataStructure/hashmap.hpp
       title: Hash Map
@@ -76,7 +79,7 @@ data:
     - icon: ':x:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -130,7 +133,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -168,7 +171,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -393,7 +396,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

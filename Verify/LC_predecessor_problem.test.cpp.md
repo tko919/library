@@ -127,16 +127,17 @@ data:
     \n        return RBSTset(R);\r\n    }\r\n    bool find(T x){\r\n        Node *cur=root;\r\
     \n        for(;;){\r\n            if(!cur)break;\r\n            if(cur->key==x)return\
     \ true;\r\n            else if(x<cur->key)cur=cur->lp;\r\n            else cur=cur->rp;\r\
-    \n        }\r\n        return false;\r\n    }\r\n    void insert(T x,int k=lower_bound(root,x)){\r\
-    \n        auto [L,R]=split(root,k);\r\n        root=merge(merge(L,new Node(x)),R);\r\
-    \n    }\r\n    void erase(T x,int k=lower_bound(root,x)){\r\n        assert(find(x));\r\
-    \n        auto [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n  \
-    \      root=merge(L,R);\r\n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root)\
-    \ or k<0)return -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\
-    \n        while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return\
-    \ cur->key;\r\n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\
-    \n    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n\
-    \    }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
+    \n        }\r\n        return false;\r\n    }\r\n    void insert(T x){\r\n   \
+    \     auto [L,R]=split(root,k);\r\n        int k=lower_bound(root,x)\r\n     \
+    \   root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n \
+    \       assert(find(x));\r\n        int k=lower_bound(root,x)\r\n        auto\
+    \ [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n        root=merge(L,R);\r\
+    \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
+    \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
+    \ while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return cur->key;\r\
+    \n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
+    \    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n \
+    \   }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
     /**\r\n * @brief Randomized Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_predecessor_problem.test.cpp\"\
     \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    string s;\r\n    io.read(n,q,s);\r\
     \n    RBSTset<int> tree;\r\n    rep(i,0,n)if(s[i]=='1'){\r\n        tree.insert(i);\r\
@@ -167,7 +168,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 01:12:16+09:00'
+  timestamp: '2022-01-31 02:08:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_predecessor_problem.test.cpp

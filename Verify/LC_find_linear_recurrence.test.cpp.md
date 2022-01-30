@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

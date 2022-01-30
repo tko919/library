@@ -180,7 +180,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
