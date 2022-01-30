@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Randomized Binary Search Tree (set)
     links: []
@@ -60,17 +60,16 @@ data:
     \n        return RBSTset(R);\r\n    }\r\n    bool find(T x){\r\n        Node *cur=root;\r\
     \n        for(;;){\r\n            if(!cur)break;\r\n            if(cur->key==x)return\
     \ true;\r\n            else if(x<cur->key)cur=cur->lp;\r\n            else cur=cur->rp;\r\
-    \n        }\r\n        return false;\r\n    }\r\n    void insert(T x){\r\n   \
-    \     int k=lower_bound(root,x);\r\n        auto [L,R]=split(root,k);\r\n    \
-    \    root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n\
-    \        assert(find(x));\r\n        int k=lower_bound(root,x);\r\n        auto\
-    \ [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n        root=merge(L,R);\r\
-    \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
-    \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
-    \ while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return cur->key;\r\
-    \n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
-    \    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n \
-    \   }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
+    \n        }\r\n        return false;\r\n    }\r\n    void insert(T x,int k=lower_bound(root,x)){\r\
+    \n        auto [L,R]=split(root,k);\r\n        root=merge(merge(L,new Node(x)),R);\r\
+    \n    }\r\n    void erase(T x,int k=lower_bound(root,x)){\r\n        assert(find(x));\r\
+    \n        auto [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n  \
+    \      root=merge(L,R);\r\n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root)\
+    \ or k<0)return -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\
+    \n        while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return\
+    \ cur->key;\r\n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\
+    \n    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n\
+    \    }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
     /**\r\n * @brief Randomized Binary Search Tree (set)\r\n */\n"
   code: "#pragma once\r\n\r\n#include \"Utility/random.hpp\"\r\n\r\nRandom genRBSTset;\r\
     \ntemplate<typename T>class RBSTset{\r\n    struct Node{\r\n        Node *lp=nullptr,*rp=nullptr;\r\
@@ -102,25 +101,24 @@ data:
     \n        return RBSTset(R);\r\n    }\r\n    bool find(T x){\r\n        Node *cur=root;\r\
     \n        for(;;){\r\n            if(!cur)break;\r\n            if(cur->key==x)return\
     \ true;\r\n            else if(x<cur->key)cur=cur->lp;\r\n            else cur=cur->rp;\r\
-    \n        }\r\n        return false;\r\n    }\r\n    void insert(T x){\r\n   \
-    \     int k=lower_bound(root,x);\r\n        auto [L,R]=split(root,k);\r\n    \
-    \    root=merge(merge(L,new Node(x)),R);\r\n    }\r\n    void erase(T x){\r\n\
-    \        assert(find(x));\r\n        int k=lower_bound(root,x);\r\n        auto\
-    \ [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n        root=merge(L,R);\r\
-    \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
-    \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
-    \ while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return cur->key;\r\
-    \n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
-    \    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n \
-    \   }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
+    \n        }\r\n        return false;\r\n    }\r\n    void insert(T x,int k=lower_bound(root,x)){\r\
+    \n        auto [L,R]=split(root,k);\r\n        root=merge(merge(L,new Node(x)),R);\r\
+    \n    }\r\n    void erase(T x,int k=lower_bound(root,x)){\r\n        assert(find(x));\r\
+    \n        auto [L,t]=split(root,k);\r\n        auto [tmp,R]=split(t,1);\r\n  \
+    \      root=merge(L,R);\r\n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root)\
+    \ or k<0)return -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\
+    \n        while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return\
+    \ cur->key;\r\n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\
+    \n    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n\
+    \    }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
     /**\r\n * @brief Randomized Binary Search Tree (set)\r\n */"
   dependsOn:
   - Utility/random.hpp
   isVerificationFile: false
   path: DataStructure/rbstset.hpp
   requiredBy: []
-  timestamp: '2022-01-17 15:26:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-31 01:12:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_predecessor_problem.test.cpp
 documentation_of: DataStructure/rbstset.hpp

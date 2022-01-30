@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_persistent_unionfind.test.cpp
     title: Verify/LC_persistent_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
@@ -36,9 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Fast IO
     links: []
@@ -153,7 +153,7 @@ data:
   path: Utility/fastio.hpp
   requiredBy: []
   timestamp: '2022-01-29 02:47:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_enumerate_primes.test.cpp

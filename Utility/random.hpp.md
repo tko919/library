@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/persistentrbstset.hpp
     title: Persistent Randomized Binary Search Tree (set)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/rbstset.hpp
     title: Randomized Binary Search Tree (set)
   - icon: ':heavy_check_mark:'
@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Random
     links: []
@@ -72,7 +72,7 @@ data:
   - DataStructure/rbstset.hpp
   - DataStructure/persistentrbstset.hpp
   timestamp: '2022-01-16 22:20:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_maximum_independent_set.test.cpp
   - Verify/LC_factorize.test.cpp

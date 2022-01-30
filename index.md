@@ -73,7 +73,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/rangeunionset.hpp
       title: Range Union Set
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
     - icon: ':heavy_check_mark:'
@@ -111,6 +111,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
+    - icon: ':warning:'
+      path: FPS/relax.hpp
+      title: Relaxed Convolution
   - name: Geometry
     pages:
     - icon: ':warning:'
@@ -199,15 +202,15 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:
@@ -324,7 +327,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_predecessor_problem.test.cpp
       title: Verify/LC_predecessor_problem.test.cpp
     - icon: ':heavy_check_mark:'
