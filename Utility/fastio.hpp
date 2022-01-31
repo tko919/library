@@ -31,8 +31,9 @@ class FastIO{
             rdLeft++;
         }
         x=0;
-        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight)x=x*10+(rdbuf[rdLeft++]^48);
-        if(neg)x=-x;
+        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){
+            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));
+        }
         return true;
     }
     template<typename T,enable_if_t<is_floating_point<T>::value,int> =0>inline bool _read(T& x){
@@ -104,6 +105,13 @@ class FastIO{
         }
         else if(x<0){
             _write('-');
+            if (__builtin_expect(x == std::numeric_limits<T>::min(), 0)) {
+                switch (sizeof(x)) {
+                case 2: _write("32768"); return;
+                case 4: _write("2147483648"); return;
+                case 8: _write("9223372036854775808"); return;
+                }
+            }
             x=-x;
         }
         int pos=0;
