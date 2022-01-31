@@ -52,7 +52,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/disjointsparsetable.hpp
       title: Disjoint Sparse Table
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/dualsegtree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
@@ -205,12 +205,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/AOJ_1595.test.cpp
       title: Verify/AOJ_1595.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/AOJ_DSL_2_D.test.cpp
       title: Verify/AOJ_DSL_2_D.test.cpp
     - icon: ':heavy_check_mark:'

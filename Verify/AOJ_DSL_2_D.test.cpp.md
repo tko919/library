@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/dualsegtree.hpp
     title: Dual Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
@@ -102,9 +102,10 @@ data:
     \ b;\r\n    else return a;\r\n}\r\nint e(){return INT32_MAX;}\r\n\r\nFastIO io;\r\
     \nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    \r\n    DualSegmentTree<int,f,e>\
     \ seg(n);\r\n    int c,L,R,x;\r\n    while(q--){\r\n        io.read(c);\r\n  \
-    \      if(c==0){\r\n            io.read(L,R,x);\r\n            seg.update(L,R,x);\r\
-    \n        }\r\n        else{\r\n            io.read(x);\r\n            io.write(seg.query(x));\r\
-    \n        }\r\n    }\r\n    return 0;\r\n}\n"
+    \      if(c==0){\r\n            io.read(L,R,x);\r\n            R++;\r\n      \
+    \      seg.update(L,R,x);\r\n        }\r\n        else{\r\n            io.read(x);\r\
+    \n            io.write(seg.query(x));\r\n        }\r\n    }\r\n    return 0;\r\
+    \n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"DataStructure/dualsegtree.hpp\"\r\n\r\nint f(int a,int b){\r\n  \
@@ -112,9 +113,9 @@ data:
     \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    \r\
     \n    DualSegmentTree<int,f,e> seg(n);\r\n    int c,L,R,x;\r\n    while(q--){\r\
     \n        io.read(c);\r\n        if(c==0){\r\n            io.read(L,R,x);\r\n\
-    \            seg.update(L,R,x);\r\n        }\r\n        else{\r\n            io.read(x);\r\
-    \n            io.write(seg.query(x));\r\n        }\r\n    }\r\n    return 0;\r\
-    \n}"
+    \            R++;\r\n            seg.update(L,R,x);\r\n        }\r\n        else{\r\
+    \n            io.read(x);\r\n            io.write(seg.query(x));\r\n        }\r\
+    \n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -122,8 +123,8 @@ data:
   isVerificationFile: true
   path: Verify/AOJ_DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2022-02-01 00:33:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-01 00:45:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/AOJ_DSL_2_D.test.cpp
 layout: document
