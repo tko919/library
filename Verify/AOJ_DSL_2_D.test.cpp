@@ -21,6 +21,7 @@ int main(){
         io.read(c);
         if(c==0){
             io.read(L,R,x);
+            R++;
             seg.update(L,R,x);
         }
         else{
