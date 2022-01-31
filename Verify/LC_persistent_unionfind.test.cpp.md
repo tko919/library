@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/persistentunionfind.hpp
     title: Persistent Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -42,8 +42,8 @@ data:
     \ bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdLeft<rdRight)x=x*10+(rdbuf[rdLeft++]^48);\r\n        if(neg)x=-x;\r\n\
-    \        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
+    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
     \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
@@ -69,8 +69,12 @@ data:
     \    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
     \ void _write(T x){\r\n        if(wtRight>L-32)flush();\r\n        if(x==0){\r\
     \n            _write('0');\r\n            return;\r\n        }\r\n        else\
-    \ if(x<0){\r\n            _write('-');\r\n            x=-x;\r\n        }\r\n \
-    \       int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
+    \ if(x<0){\r\n            _write('-');\r\n            if (__builtin_expect(x ==\
+    \ std::numeric_limits<T>::min(), 0)) {\r\n                switch (sizeof(x)) {\r\
+    \n                case 2: _write(\"32768\"); return;\r\n                case 4:\
+    \ _write(\"2147483648\"); return;\r\n                case 8: _write(\"9223372036854775808\"\
+    ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
+    \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
     \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
     \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
@@ -128,7 +132,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-01-29 02:47:03+09:00'
+  timestamp: '2022-02-01 00:33:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_persistent_unionfind.test.cpp

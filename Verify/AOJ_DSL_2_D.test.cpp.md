@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: DataStructure/dualsegtree.hpp
+    title: Dual Segment Tree
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -9,15 +12,15 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
     links:
-    - https://judge.yosupo.jp/problem/many_aplusb
-  bundledCode: "#line 1 \"Verify/LC_many_aplusb.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
+  bundledCode: "#line 1 \"Verify/AOJ_DSL_2_D.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
@@ -80,28 +83,52 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_many_aplusb.test.cpp\"\n\r\nint\
-    \ main(){\r\n    FastIO io;\r\n    int t;\r\n    ll a,b;\r\n    io.read(t);\r\n\
-    \    while(t--){\r\n        io.read(a,b);\r\n        io.write(a+b);\r\n    }\r\
-    \n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\r\n\r\n#include\
-    \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\nint main(){\r\
-    \n    FastIO io;\r\n    int t;\r\n    ll a,b;\r\n    io.read(t);\r\n    while(t--){\r\
-    \n        io.read(a,b);\r\n        io.write(a+b);\r\n    }\r\n    return 0;\r\n\
-    }"
+    \n * @brief Fast IO\r\n */\n#line 2 \"DataStructure/dualsegtree.hpp\"\n\r\ntemplate<typename\
+    \ M,M (*f)(M,M),M (*m1)()>class DualSegmentTree{\r\n    int sz,height;\r\n   \
+    \ vector<M> data;\r\n    void down(int k){\r\n        data[k*2]=f(data[k*2],data[k]);\r\
+    \n        data[k*2+1]=f(data[k*2+1],data[k]);\r\n        data[k]=m1();\r\n   \
+    \ }\r\npublic:\r\n    DualSegmentTree(int n){\r\n        sz=1,height=0;\r\n  \
+    \      while(sz<n)sz<<=1,height++;\r\n        data.assign(2*sz,m1());\r\n    }\r\
+    \n    void run(vector<M>& v){\r\n        for(int i=0;i<(int)v.size();i++)data[i+sz]=v[i];\r\
+    \n    }\r\n    void update(int a,int b,M x){\r\n        if(a>=b)return;\r\n  \
+    \      a+=sz,b+=sz;\r\n        for(int i=height;i;i--){\r\n            if(((a>>i)<<i)!=a)down(a>>i);\r\
+    \n            if(((b>>i)<<i)!=b)down((b-1)>>i);\r\n        }\r\n        for(;a<b;a>>=1,b>>=1){\r\
+    \n            if(a&1)data[a]=f(data[a],x),a++;\r\n            if(b&1)--b,data[b]=f(data[b],x);\r\
+    \n        }\r\n    }\r\n    M query(int k){\r\n        k+=sz;\r\n        for(int\
+    \ i=height;i;i--){\r\n            if(((k>>i)<<i)!=k)down(k>>i);\r\n        }\r\
+    \n        M ret=data[k];\r\n        while(k>>=1)ret=f(ret,data[k]);\r\n      \
+    \  return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Dual Segment Tree\r\n */\n\
+    #line 6 \"Verify/AOJ_DSL_2_D.test.cpp\"\n\r\nint f(int a,int b){\r\n    if(b!=INT32_MAX)return\
+    \ b;\r\n    else return a;\r\n}\r\nint e(){return INT32_MAX;}\r\n\r\nFastIO io;\r\
+    \nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    \r\n    DualSegmentTree<int,f,e>\
+    \ seg(n);\r\n    int c,L,R,x;\r\n    while(q--){\r\n        io.read(c);\r\n  \
+    \      if(c==0){\r\n            io.read(L,R,x);\r\n            seg.update(L,R,x);\r\
+    \n        }\r\n        else{\r\n            io.read(x);\r\n            io.write(seg.query(x));\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
+    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
+    \n#include \"DataStructure/dualsegtree.hpp\"\r\n\r\nint f(int a,int b){\r\n  \
+    \  if(b!=INT32_MAX)return b;\r\n    else return a;\r\n}\r\nint e(){return INT32_MAX;}\r\
+    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    \r\
+    \n    DualSegmentTree<int,f,e> seg(n);\r\n    int c,L,R,x;\r\n    while(q--){\r\
+    \n        io.read(c);\r\n        if(c==0){\r\n            io.read(L,R,x);\r\n\
+    \            seg.update(L,R,x);\r\n        }\r\n        else{\r\n            io.read(x);\r\
+    \n            io.write(seg.query(x));\r\n        }\r\n    }\r\n    return 0;\r\
+    \n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
+  - DataStructure/dualsegtree.hpp
   isVerificationFile: true
-  path: Verify/LC_many_aplusb.test.cpp
+  path: Verify/AOJ_DSL_2_D.test.cpp
   requiredBy: []
   timestamp: '2022-02-01 00:33:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: Verify/LC_many_aplusb.test.cpp
+documentation_of: Verify/AOJ_DSL_2_D.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_many_aplusb.test.cpp
-- /verify/Verify/LC_many_aplusb.test.cpp.html
-title: Verify/LC_many_aplusb.test.cpp
+- /verify/Verify/AOJ_DSL_2_D.test.cpp
+- /verify/Verify/AOJ_DSL_2_D.test.cpp.html
+title: Verify/AOJ_DSL_2_D.test.cpp
 ---

@@ -52,7 +52,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/disjointsparsetable.hpp
       title: Disjoint Sparse Table
-    - icon: ':warning:'
+    - icon: ':x:'
       path: DataStructure/dualsegtree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
@@ -114,7 +114,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: FPS/relax.hpp
       title: Relaxed Convolution
   - name: Geometry
@@ -139,7 +139,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/lowlink.hpp
       title: Lowlink
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/maxflow.hpp
       title: Maximum Flow
     - icon: ':heavy_check_mark:'
@@ -148,7 +148,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/mincostflow.hpp
       title: Minimum Cost b-flow
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/rerooting.hpp
       title: Rerooting
     - icon: ':heavy_check_mark:'
@@ -205,12 +205,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -219,6 +219,15 @@ data:
   verificationCategories:
   - name: Verify
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Verify/AOJ_1595.test.cpp
+      title: Verify/AOJ_1595.test.cpp
+    - icon: ':x:'
+      path: Verify/AOJ_DSL_2_D.test.cpp
+      title: Verify/AOJ_DSL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/AOJ_GRL_6_A.test.cpp
+      title: Verify/AOJ_GRL_6_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_associative_array.test.cpp
       title: Verify/LC_associative_array.test.cpp
@@ -243,6 +252,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod_1000000007.test.cpp
       title: Verify/LC_convolution_mod_1000000007.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_convolution_mod_2.test.cpp
+      title: Verify/LC_convolution_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_counting_primes.test.cpp
       title: Verify/LC_counting_primes.test.cpp

@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Graph/maxflow.hpp
+    title: Maximum Flow
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -14,10 +17,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
     links:
-    - https://judge.yosupo.jp/problem/many_aplusb
-  bundledCode: "#line 1 \"Verify/LC_many_aplusb.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
+  bundledCode: "#line 1 \"Verify/AOJ_GRL_6_A.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
@@ -80,28 +83,49 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_many_aplusb.test.cpp\"\n\r\nint\
-    \ main(){\r\n    FastIO io;\r\n    int t;\r\n    ll a,b;\r\n    io.read(t);\r\n\
-    \    while(t--){\r\n        io.read(a,b);\r\n        io.write(a+b);\r\n    }\r\
-    \n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\r\n\r\n#include\
-    \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\nint main(){\r\
-    \n    FastIO io;\r\n    int t;\r\n    ll a,b;\r\n    io.read(t);\r\n    while(t--){\r\
-    \n        io.read(a,b);\r\n        io.write(a+b);\r\n    }\r\n    return 0;\r\n\
-    }"
+    \n * @brief Fast IO\r\n */\n#line 2 \"Graph/maxflow.hpp\"\n\r\nstruct MaxFlow{\r\
+    \n    struct Edge { ll to,cap,rev; };\r\n    int V; vector<vector<Edge>> G; vector<int>\
+    \ itr,level;\r\npublic:\r\n    MaxFlow(int V):V(V){G.assign(V,vector<Edge>());\
+    \ }\r\n    void add_edge(int from,int to,ll cap){\r\n        G[from].push_back({to,cap,(int)G[to].size()});\r\
+    \n        G[to].push_back({from,0,(int)G[from].size()-1});\r\n    }\r\n    void\
+    \ bfs(int s){\r\n        level.assign(V,-1); queue<int> q;\r\n        level[s]=0;\
+    \ q.push(s);\r\n        while(!q.empty()){\r\n            int v=q.front(); q.pop();\r\
+    \n            for(auto& e:G[v]){\r\n                if(e.cap>0&&level[e.to]<0)\
+    \ {\r\n                   level[e.to]=level[v]+1;\r\n                   q.push(e.to);\r\
+    \n                }\r\n            }\r\n        }\r\n    }\r\n    ll dfs(int v,int\
+    \ t,ll f){\r\n        if(v==t)return f;\r\n        for(int& i=itr[v];i<(int)G[v].size();i++){\r\
+    \n            Edge& e=G[v][i];\r\n            if(e.cap>0&&level[v]<level[e.to]){\r\
+    \n                ll d=dfs(e.to,t,min(f,e.cap));\r\n                if(d>0){\r\
+    \n                    e.cap-=d,G[e.to][e.rev].cap+=d;\r\n                    return\
+    \ d;\r\n                }\r\n            }\r\n        } return 0;\r\n    }\r\n\
+    \    ll run(int s,int t){\r\n        ll ret=0,f;\r\n        while(bfs(s),level[t]>=0){\r\
+    \n            itr.assign(V,0);\r\n            while((f=dfs(s,t,INF))>0)ret+=f;\r\
+    \n        } return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Flow\r\n\
+    \ */\n#line 6 \"Verify/AOJ_GRL_6_A.test.cpp\"\n\r\nFastIO io;\r\nint main(){\r\
+    \n    int n,m;\r\n    io.read(n,m);\r\n    MaxFlow mf(n);\r\n    rep(i,0,m){\r\
+    \n        int x,y,w;\r\n        io.read(x,y,w);\r\n        mf.add_edge(x,y,w);\r\
+    \n    }\r\n    auto ret=mf.run(0,n-1);\r\n    io.write(ret);\r\n    return 0;\r\
+    \n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
+    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
+    \n#include \"Graph/maxflow.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\
+    \n    io.read(n,m);\r\n    MaxFlow mf(n);\r\n    rep(i,0,m){\r\n        int x,y,w;\r\
+    \n        io.read(x,y,w);\r\n        mf.add_edge(x,y,w);\r\n    }\r\n    auto\
+    \ ret=mf.run(0,n-1);\r\n    io.write(ret);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
+  - Graph/maxflow.hpp
   isVerificationFile: true
-  path: Verify/LC_many_aplusb.test.cpp
+  path: Verify/AOJ_GRL_6_A.test.cpp
   requiredBy: []
   timestamp: '2022-02-01 00:33:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_many_aplusb.test.cpp
+documentation_of: Verify/AOJ_GRL_6_A.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_many_aplusb.test.cpp
-- /verify/Verify/LC_many_aplusb.test.cpp.html
-title: Verify/LC_many_aplusb.test.cpp
+- /verify/Verify/AOJ_GRL_6_A.test.cpp
+- /verify/Verify/AOJ_GRL_6_A.test.cpp.html
+title: Verify/AOJ_GRL_6_A.test.cpp
 ---
