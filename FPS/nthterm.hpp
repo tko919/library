@@ -1,5 +1,4 @@
 #pragma once
-#include "FPS/fps.hpp"
 
 template<typename T>T nth(Poly<T> p,Poly<T> q,ll n){
     while(n){

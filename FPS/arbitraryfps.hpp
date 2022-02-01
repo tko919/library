@@ -22,20 +22,35 @@ template<typename T>struct Poly:vector<T>{
     }
     Poly square()const{return Poly(mult(*this,*this,1));}
     Poly operator+(const Poly& g)const{return Poly(*this)+=g;}
+    Poly operator+(const T& g)const{return Poly(*this)+=g;}
     Poly operator-(const Poly& g)const{return Poly(*this)-=g;}
+    Poly operator-(const T& g)const{return Poly(*this)-=g;}
     Poly operator*(const Poly& g)const{return Poly(*this)*=g;}
+    Poly operator*(const T& g)const{return Poly(*this)*=g;}
     Poly operator/(const Poly& g)const{return Poly(*this)/=g;}
     Poly operator%(const Poly& g)const{return Poly(*this)%=g;}
     Poly& operator+=(const Poly& g){
         if(g.size()>this->size())this->resize(g.size());
         rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;
     }
+    Poly& operator+=(const T& g){
+        if(this->empty())this->push_back(0);
+        (*this)[0]+=g; return *this;
+    }
     Poly& operator-=(const Poly& g){
         if(g.size()>this->size())this->resize(g.size());
         rep(i,0,g.size()){(*this)[i]-=g[i];} return *this;
     }
+    Poly& operator-=(const T& g){
+        if(this->empty())this->push_back(0);
+        (*this)[0]-=g; return *this;
+    }
     Poly& operator*=(const Poly& g){
         *this=mult(*this,g,0);
+        return *this;
+    }
+    Poly& operator*=(const T& g){
+        rep(i,0,this->size())(*this)[i]*=g;
         return *this;
     }
     Poly& operator/=(const Poly& g){
@@ -102,7 +117,7 @@ template<typename T>struct Poly:vector<T>{
         g=g.log(); for(auto& x:g)x*=t; g=g.exp(); 
         c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c; return res;
     }
-    vector<T> mult(vector<T>& a,vector<T>& b,bool same)const;
+    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same)const;
 };
 
 /**

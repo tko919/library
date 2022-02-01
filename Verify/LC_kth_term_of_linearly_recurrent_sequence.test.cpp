@@ -3,6 +3,7 @@
 #include "Template/template.hpp"
 #include "Math/modint.hpp"
 #include "Convolution/ntt.hpp"
+#include "FPS/fps.hpp"
 #include "FPS/nthterm.hpp"
 
 using Fp=fp<998244353>;
