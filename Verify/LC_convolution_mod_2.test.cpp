@@ -9,8 +9,7 @@
 
 using Fp=fp<998244353>;
 NTT<Fp,3> ntt;
-void F(vector<Fp>& a,bool f){ntt.ntt(a,f);}
-using poly=Poly<Fp,F>;
+template<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}
 
 FastIO io;
 int main(){
@@ -19,7 +18,7 @@ int main(){
     vector<Fp> _f(n),_g(m);
     rep(i,0,n)io.read(_f[i].v);
     rep(i,0,m)io.read(_g[i].v);
-    RelaxedConvolution<Fp,poly> buf(n+m-1);
+    RelaxedConvolution<Fp> buf(n+m-1);
     rep(i,0,n+m-1){
         if(i<n)buf.f[i]=_f[i];
         if(i<m)buf.g[i]=_g[i];

@@ -7,13 +7,12 @@
 
 using Fp=fp<998244353>;
 NTT<Fp,3> ntt;
-void F(vector<Fp>& a,bool f){ntt.ntt(a,f);}
-using poly=Poly<Fp,F>;
+template<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}
 
 int main(){
     int n,c;
     cin>>n>>c;
-    poly a(n);
+    Poly<Fp> a(n);
     for(auto& x:a)cin>>x;
     a=a.shift(c);
     rep(i,0,n)cout<<a[i]<<'\n';

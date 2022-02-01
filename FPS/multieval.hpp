@@ -1,21 +1,22 @@
 #pragma once
+#include "FPS/fps.hpp"
 
-template<typename T,typename poly>struct MultiEval{
-    int m,n; vector<poly> t;
+template<typename T>struct MultiEval{
+    int m,n; vector<Poly<T>> t;
     MultiEval(vector<T>& v){
         m=v.size(),n=1; while(n<m)n<<=1;
         t.resize(n<<1);
         rep(i,0,n){
             T w=(i<m?v[i]:0);
-            t[n+i]=poly({-w,T(1)});
+            t[n+i]=Poly<T>({-w,T(1)});
         }
         for(int i=n-1;i;i--)t[i]=t[i*2]*t[i*2+1];
     }
     vector<T> run(const vector<T>& f){
-        vector<poly> c(n*2);
+        vector<Poly<T>> c(n*2);
         auto v=t[1].rev();
         v.resize(f.size());
-        v=v.inv().rev()*poly(f);
+        v=v.inv().rev()*Poly<T>(f);
         v.erase(v.begin(),v.begin()+f.size()-1);
         v.resize(n); reverse(ALL(v)); c[1]=v;
         rep(i,1,n){
@@ -37,10 +38,10 @@ template<typename T,typename poly>struct MultiEval{
         w.resize(m+1);
         auto vs=run(w.rev().diff());
         rep(i,0,m)ys[i]/=vs[i];
-        vector<poly> c(n*2);
+        vector<Poly<T>> c(n*2);
         rep(i,0,n){
-            if(i<m)c[n+i]=poly({ys[i]});
-            else c[n+i]=poly({T()});
+            if(i<m)c[n+i]=Poly<T>({ys[i]});
+            else c[n+i]=Poly<T>({T()});
         }
         for(int i=n-1;i;i--)c[i]=c[i*2]*t[i*2+1]+c[i*2+1]*t[i*2];
         c[1]=vector<T>(c[1].begin()+(n-m),c[1].end());

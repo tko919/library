@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename T,vector<T> (*mult)(vector<T>&,vector<T>&,bool)>struct Poly:vector<T>{
+template<typename T>struct Poly:vector<T>{
     Poly(int n=0){this->assign(n,T());}
     Poly(const vector<T>& f){this->assign(ALL(f));}
     T eval(const T& x){
@@ -28,15 +28,15 @@ template<typename T,vector<T> (*mult)(vector<T>&,vector<T>&,bool)>struct Poly:ve
     Poly operator%(const Poly& g)const{return Poly(*this)%=g;}
     Poly& operator+=(const Poly& g){
         if(g.size()>this->size())this->resize(g.size());
-        rep(i,0,g.size()){(*this)[i]+=g[i];} shrink(); return *this;
+        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;
     }
     Poly& operator-=(const Poly& g){
         if(g.size()>this->size())this->resize(g.size());
-        rep(i,0,g.size()){(*this)[i]-=g[i];} shrink(); return *this;
+        rep(i,0,g.size()){(*this)[i]-=g[i];} return *this;
     }
     Poly& operator*=(const Poly& g){
         *this=mult(*this,g,0);
-        shrink(); return *this;
+        return *this;
     }
     Poly& operator/=(const Poly& g){
         if(g.size()>this->size()){
@@ -49,7 +49,8 @@ template<typename T,vector<T> (*mult)(vector<T>&,vector<T>&,bool)>struct Poly:ve
         this->resize(n); g2.resize(n);
         *this*=g2.inv(); this->resize(n); 
         reverse(ALL(*this));
-        shrink(); return *this;
+        shrink();
+        return *this;
     }
     Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return *this;}
     Poly diff()const{
@@ -101,6 +102,7 @@ template<typename T,vector<T> (*mult)(vector<T>&,vector<T>&,bool)>struct Poly:ve
         g=g.log(); for(auto& x:g)x*=t; g=g.exp(); 
         c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c; return res;
     }
+    vector<T> mult(vector<T>& a,vector<T>& b,bool same)const;
 };
 
 /**

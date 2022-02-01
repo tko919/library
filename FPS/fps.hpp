@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
+template<typename T>struct Poly:vector<T>{
     Poly(int n=0){this->assign(n,T());}
     Poly(const vector<T>& f){this->assign(ALL(f));}
     T eval(const T& x){
@@ -56,9 +56,10 @@ template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
         this->resize(n); g2.resize(n);
         *this*=g2.inv(); this->resize(n); 
         reverse(ALL(*this));
+        shrink();
         return *this;
     }
-    Poly& operator%=(const Poly& g){*this-=*this/g*g; return *this;}
+    Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return *this;}
     Poly diff()const{
         Poly res(this->size()-1);
         rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);
@@ -160,6 +161,7 @@ template<typename T,void (*NTT)(vector<T>&,bool)>struct Poly:vector<T>{
         g=g.log(); for(auto& x:g)x*=t; g=g.exp(); 
         c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c; return res;
     }
+    void NTT(vector<T>& a,bool inv)const;
 };
 
 /**

@@ -4,7 +4,7 @@
 
 using M1=fp<1045430273>; using M2=fp<1051721729>; using M3=fp<1053818881>;
 NTT<fp<1045430273>,3> N1; NTT<fp<1051721729>,6> N2; NTT<fp<1053818881>,7> N3;
-template<typename T>vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0){
+template<typename T>vector<T> ArbitraryMult(const vector<T>& a,const vector<T>& b,bool same=0){
     if(a.empty() or b.empty())return vector<T>();
     int n=a.size()+b.size()-1; vector<T> res(n); vector<int> vals[3];
     vector<int> aa(a.size()),bb(b.size());

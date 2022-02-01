@@ -12,7 +12,7 @@ int main(){
     vector<Fp> a(n),b(m);
     for(auto& x:a)cin>>x;
     for(auto& x:b)cin>>x;
-    auto ret=mult(a,b);
+    auto ret=ArbitraryMult(a,b);
     for(auto& x:ret)cout<<x<<'\n';
     return 0;
 }

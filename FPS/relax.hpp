@@ -1,6 +1,7 @@
 #pragma once
+#include "FPS/fps.hpp"
 
-template<typename T,typename poly>class RelaxedConvolution{
+template<typename T>class RelaxedConvolution{
     using P=array<int,2>;
     using Q=array<P,2>;
     int N,pos=0;
@@ -39,7 +40,7 @@ template<typename T,typename poly>class RelaxedConvolution{
         dfs2(mid,len);
     }
 public:
-    poly f,g,buf;
+    Poly<T> f,g,buf;
     RelaxedConvolution(int n){
         N=1;
         while(N<n)N<<=1;
@@ -53,8 +54,8 @@ public:
         for(auto& [ft,gt]:event[pos]){
             auto [fL,fR]=ft;
             auto [gL,gR]=gt;
-            poly _f({f.begin()+fL,f.begin()+fR});
-            poly _g({g.begin()+gL,g.begin()+gR});
+            Poly<T> _f({f.begin()+fL,f.begin()+fR});
+            Poly<T> _g({g.begin()+gL,g.begin()+gR});
             auto add=_f*_g;
             rep(i,0,add.size()){
                 if(i+fL+gL>=N)break;
