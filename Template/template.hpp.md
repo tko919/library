@@ -154,6 +154,9 @@ data:
     path: Verify/LC_segment_add_get_min.test.cpp
     title: Verify/LC_segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_sparse_matrix_det.test.cpp
+    title: Verify/LC_sparse_matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +201,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_zalgorithm.test.cpp
     title: Verify/LC_zalgorithm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1080.test.cpp
+    title: Verify/YUKI_1080.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1112.test.cpp
+    title: Verify/YUKI_1112.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -223,6 +235,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sum_of_floor_of_linear.test.cpp
+  - Verify/YUKI_1080.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp
   - Verify/LC_rectangle_sum.test.cpp
@@ -242,9 +255,11 @@ data:
   - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp
   - Verify/LC_lca.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_staticrmq-2.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_frequency_table_of_tree_distance.test.cpp
   - Verify/LC_subset_convolution.test.cpp
   - Verify/LC_zalgorithm.test.cpp
@@ -256,6 +271,7 @@ data:
   - Verify/LC_static_range_frequency.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   - Verify/LC_line_add_get_min.test.cpp
+  - Verify/YUKI_1112.test.cpp
   - Verify/LC_persistent_unionfind.test.cpp
   - Verify/LC_scc.test.cpp
   - Verify/LC_two_sat.test.cpp

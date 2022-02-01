@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Math/bbla.hpp
+    title: Black Box Linear Algebra
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_sparse_matrix_det.test.cpp
+    title: Verify/LC_sparse_matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1112.test.cpp
+    title: Verify/YUKI_1112.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -33,10 +45,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: FPS/berlekampmassey.hpp
-  requiredBy: []
+  requiredBy:
+  - Math/bbla.hpp
   timestamp: '2022-01-10 02:39:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/YUKI_1112.test.cpp
   - Verify/LC_find_linear_recurrence.test.cpp
 documentation_of: FPS/berlekampmassey.hpp
 layout: document

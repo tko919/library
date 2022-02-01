@@ -5,11 +5,14 @@ data:
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
+    path: FPS/berlekampmassey.hpp
+    title: Berlekamp Massey Algorithm
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':heavy_check_mark:'
-    path: FPS/relax.hpp
-    title: Relaxed Convolution
+    path: Math/bbla.hpp
+    title: Black Box Linear Algebra
   - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
@@ -19,6 +22,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
+  - icon: ':heavy_check_mark:'
+    path: Utility/random.hpp
+    title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,11 +32,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
+    PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
     links:
-    - https://judge.yosupo.jp/problem/convolution_mod
-  bundledCode: "#line 1 \"Verify/LC_convolution_mod_2.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\n#line 1 \"Template/template.hpp\"\
+    - https://judge.yosupo.jp/problem/sparse_matrix_det
+  bundledCode: "#line 1 \"Verify/LC_sparse_matrix_det.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
     \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\nusing\
     \ ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
@@ -92,9 +98,10 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct\
-    \ fp {\r\n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\
-    \n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_sparse_matrix_det.test.cpp\"\n\
+    \r\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct fp {\r\
+    \n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\n   \
+    \     int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
     \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
     \n    fp& init(int x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
     \ fp()-*this;}\r\n    fp pow(ll t){fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
@@ -214,63 +221,93 @@ data:
     \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
     \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
     \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"FPS/relax.hpp\"\
-    \n\r\ntemplate<typename T>class RelaxedConvolution{\r\n    using P=array<int,2>;\r\
-    \n    using Q=array<P,2>;\r\n    int N,pos=0;\r\n    vector<vector<Q>> event;\r\
-    \n    void dfs1(int L,int R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
-    \n            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
-    \n        event[R].push_back({P{mid,R},P{mid-L,R-L}});\r\n        dfs1(L,mid);\r\
-    \n        dfs1(mid,R);\r\n    }\r\n    void dfs2(int L,int R){\r\n        if(R-L==1){\r\
-    \n            event[L].push_back({P{0,1},P{L,L+1}});\r\n            return;\r\n\
-    \        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{mid-L,R-L},P{L,mid}});\r\
-    \n        event[R].push_back({P{mid-L,R-L},P{mid,R}});\r\n        dfs2(L,mid);\r\
-    \n        dfs2(mid,R);\r\n    }\r\n    void dfs(int len){\r\n        if(len==1){\r\
-    \n            event[0].push_back({P{0,1},P{0,1}});\r\n            return;\r\n\
-    \        }\r\n        int mid=len>>1;\r\n        event[len].push_back({P{mid,len},P{mid,len}});\r\
-    \n        dfs(mid);\r\n        dfs1(mid,len);\r\n        dfs2(mid,len);\r\n  \
-    \  }\r\npublic:\r\n    Poly<T> f,g,buf;\r\n    RelaxedConvolution(int n){\r\n\
-    \        N=1;\r\n        while(N<n)N<<=1;\r\n        f.resize(N);\r\n        g.resize(N);\r\
-    \n        buf.resize(N);\r\n        event.resize(N+1);\r\n        dfs(N);\r\n\
-    \    }\r\n    T next(){\r\n        for(auto& [ft,gt]:event[pos]){\r\n        \
-    \    auto [fL,fR]=ft;\r\n            auto [gL,gR]=gt;\r\n            Poly<T> _f({f.begin()+fL,f.begin()+fR});\r\
-    \n            Poly<T> _g({g.begin()+gL,g.begin()+gR});\r\n            auto add=_f*_g;\r\
-    \n            rep(i,0,add.size()){\r\n                if(i+fL+gL>=N)break;\r\n\
-    \                buf[i+fL+gL]+=add[i];\r\n            }\r\n        }\r\n     \
-    \   return buf[pos++];\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Relaxed Convolution\r\
-    \n */\n#line 9 \"Verify/LC_convolution_mod_2.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"Math/bbla.hpp\"\
+    \n\r\n#line 2 \"FPS/berlekampmassey.hpp\"\n\r\ntemplate<typename T>vector<T> BerlekampMassey(vector<T>&\
+    \ a){\r\n   int n=a.size(); T d=1;\r\n   vector<T> b(1),c(1);\r\n   b[0]=c[0]=1;\r\
+    \n   rep(j,1,n+1){\r\n      int l=c.size(),m=b.size();\r\n      T x=0;\r\n   \
+    \   rep(i,0,l)x+=c[i]*a[j-l+i];\r\n      b.push_back(0);\r\n      m++;\r\n   \
+    \   if(x==0)continue;\r\n      T coeff=-x/d;\r\n      if(l<m){\r\n         auto\
+    \ tmp=c;\r\n         c.insert(c.begin(),m-l,0);\r\n         rep(i,0,m)c[m-1-i]+=coeff*b[m-1-i];\r\
+    \n         b=tmp; d=x;\r\n      }\r\n      else rep(i,0,m)c[l-1-i]+=coeff*b[m-1-i];\r\
+    \n   }\r\n   return c;\r\n}\r\n\r\n/**\r\n * @brief Berlekamp Massey Algorithm\r\
+    \n */\n#line 2 \"Utility/random.hpp\"\n\r\nstruct Random{\r\n    random_device\
+    \ rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\n    Random(){}\r\
+    \n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
+    \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
+    \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
+    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n\
+    \        return double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n\
+    \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
+    \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
+    \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
+    \n            len++;\r\n            int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\
+    \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
+    \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
+    \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
+    \ */\n#line 5 \"Math/bbla.hpp\"\n\r\nRandom genBBLA;\r\ntemplate<typename T>Poly<T>\
+    \ RandPoly(int n){\r\n    Poly<T> ret(n);\r\n    for(auto& x:ret)x=genBBLA.get(1,T::get_mod()-1);\r\
+    \n    return ret;\r\n}\r\ntemplate<typename T>struct SparseMatrix{\r\n    vector<T>\
+    \ base;\r\n    vector<map<int,T>> extra;\r\n    SparseMatrix(int n,T v=0):base(n,v),extra(n){}\r\
+    \n    int size()const{return base.size();}\r\n    inline void add(int i,int j,T\
+    \ x){extra[i][j]+=x;}\r\n    friend Poly<T> operator*(const SparseMatrix<T>& A,const\
+    \ Poly<T>& b){\r\n        int n=A.size();\r\n        Poly<T> ret(n);\r\n     \
+    \   T sum;\r\n        for(auto& v:b)sum+=v;\r\n        rep(i,0,n){\r\n       \
+    \     T add=sum;\r\n            for(auto& [j,v]:A.extra[i]){\r\n             \
+    \   ret[i]+=v*b[j];\r\n                add-=b[j];\r\n            }\r\n       \
+    \     ret[i]+=add*A.base[i];\r\n        }\r\n        return ret;\r\n    }\r\n\
+    \    void mul(int i,T x){\r\n        base[i]*=x;\r\n        for(auto& [_,v]:extra[i])v*=x;\r\
+    \n    }\r\n};\r\n\r\ntemplate<typename T>Poly<T> MinPolyforVector(const vector<Poly<T>>&\
+    \ b){\r\n    int n=b.size(),m=b[0].size();\r\n    Poly<T> base=RandPoly<T>(m),a(n);\r\
+    \n    rep(i,0,n)rep(j,0,m)a[i]+=base[j]*b[i][j];\r\n    return Poly<T>(BerlekampMassey(a)).rev();\r\
+    \n}\r\ntemplate<typename T>Poly<T> MinPolyforMatrix(const SparseMatrix<T>& A){\r\
+    \n    int n=A.size();\r\n    Poly<T> base=RandPoly<T>(n);\r\n    vector<Poly<T>>\
+    \ b(n*2+1);\r\n    rep(i,0,n*2+1)b[i]=base,base=A*base;\r\n    return MinPolyforVector(b);\r\
+    \n}\r\ntemplate<typename T>Poly<T> FastPow(const SparseMatrix<T>& A,Poly<T> b,ll\
+    \ t){\r\n    int n=A.size();\r\n    auto mp=MinPolyforMatrix(A).rev();\r\n   \
+    \ Poly<T> cs({T(1)}),base({T(0),T(1)});\r\n    while(t){\r\n        if(t&1){\r\
+    \n            cs*=base;\r\n            cs%=mp;\r\n        }\r\n        base=base.square();\r\
+    \n        base%=mp;\r\n        t>>=1;\r\n    }\r\n    Poly<T> ret(n);\r\n    for(auto&\
+    \ c:cs)ret+=b*c,b=A*b;\r\n    return ret;\r\n}\r\ntemplate<typename T>T FastDet(const\
+    \ SparseMatrix<T>& A){\r\n    int n=A.size();\r\n    for(;;){\r\n        Poly<T>\
+    \ d=RandPoly<T>(n);\r\n        SparseMatrix<T> AD=A;\r\n        rep(i,0,n)AD.mul(i,d[i]);\r\
+    \n        auto mp=MinPolyforMatrix(AD);\r\n        if(mp.back()==0)return 0;\r\
+    \n        if(int(mp.size())!=n+1)continue;\r\n        T ret=mp.back(),base=1;\r\
+    \n        if(n&1)ret=-ret;\r\n        for(auto& v:d)base*=v;\r\n        return\
+    \ ret/base;\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Black Box Linear Algebra\r\n\
+    \ */\n#line 10 \"Verify/LC_sparse_matrix_det.test.cpp\"\nusing Fp=fp<998244353>;\r\
     \nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return\
-    \ ntt.ntt(v,inv);}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\
-    \n    vector<Fp> _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        if(i<n)buf.f[i]=_f[i];\r\
-    \n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\n        io.write(ret.v);\r\
-    \n    }\r\n    return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\
-    \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n#include\
-    \ \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\
-    \r\n#include \"FPS/relax.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\
-    \ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}\r\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    vector<Fp>\
-    \ _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        if(i<n)buf.f[i]=_f[i];\r\
-    \n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\n        io.write(ret.v);\r\
-    \n    }\r\n    return 0;\r\n}\r\n"
+    \ ntt.ntt(v,inv);}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,k;\r\n    io.read(n,k);\r\
+    \n    SparseMatrix<Fp> mat(n);\r\n    int a,b,c;\r\n    rep(_,0,k){\r\n      \
+    \  io.read(a,b,c);\r\n        mat.add(a,b,c);\r\n    }\r\n    Fp ret=FastDet(mat);\r\
+    \n    io.write(ret.v);\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n\
+    \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\
+    \n#include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include\
+    \ \"FPS/fps.hpp\"\r\n#include \"Math/bbla.hpp\"\r\nusing Fp=fp<998244353>;\r\n\
+    NTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return\
+    \ ntt.ntt(v,inv);}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,k;\r\n    io.read(n,k);\r\
+    \n    SparseMatrix<Fp> mat(n);\r\n    int a,b,c;\r\n    rep(_,0,k){\r\n      \
+    \  io.read(a,b,c);\r\n        mat.add(a,b,c);\r\n    }\r\n    Fp ret=FastDet(mat);\r\
+    \n    io.write(ret.v);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
   - Math/modint.hpp
   - Convolution/ntt.hpp
   - FPS/fps.hpp
-  - FPS/relax.hpp
+  - Math/bbla.hpp
+  - FPS/berlekampmassey.hpp
+  - Utility/random.hpp
   isVerificationFile: true
-  path: Verify/LC_convolution_mod_2.test.cpp
+  path: Verify/LC_sparse_matrix_det.test.cpp
   requiredBy: []
   timestamp: '2022-02-02 03:30:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_convolution_mod_2.test.cpp
+documentation_of: Verify/LC_sparse_matrix_det.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_convolution_mod_2.test.cpp
-- /verify/Verify/LC_convolution_mod_2.test.cpp.html
-title: Verify/LC_convolution_mod_2.test.cpp
+- /verify/Verify/LC_sparse_matrix_det.test.cpp
+- /verify/Verify/LC_sparse_matrix_det.test.cpp.html
+title: Verify/LC_sparse_matrix_det.test.cpp
 ---

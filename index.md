@@ -99,7 +99,7 @@ data:
       title: Wavelet Matrix
   - name: FPS
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
     - icon: ':heavy_check_mark:'
@@ -156,6 +156,9 @@ data:
       title: Strongly Connected Components
   - name: Math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Math/bbla.hpp
+      title: Black Box Linear Algebra
     - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
@@ -370,6 +373,9 @@ data:
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_sparse_matrix_det.test.cpp
+      title: Verify/LC_sparse_matrix_det.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
@@ -414,5 +420,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_zalgorithm.test.cpp
       title: Verify/LC_zalgorithm.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/YUKI_1080.test.cpp
+      title: Verify/YUKI_1080.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/YUKI_1112.test.cpp
+      title: Verify/YUKI_1112.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/YUKI_310.test.cpp
+      title: Verify/YUKI_310.test.cpp
 layout: toppage
 ---

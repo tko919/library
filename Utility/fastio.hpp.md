@@ -46,8 +46,20 @@ data:
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_sparse_matrix_det.test.cpp
+    title: Verify/LC_sparse_matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1080.test.cpp
+    title: Verify/YUKI_1080.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1112.test.cpp
+    title: Verify/YUKI_1112.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -175,12 +187,16 @@ data:
   timestamp: '2022-02-01 00:33:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/YUKI_1080.test.cpp
   - Verify/LC_many_aplusb.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_queue_operate_all_composite.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
+  - Verify/YUKI_1112.test.cpp
   - Verify/LC_persistent_unionfind.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp

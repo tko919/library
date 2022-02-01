@@ -1,16 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: FPS/multieval.hpp
-    title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
-    path: FPS/nthterm.hpp
-    title: Bostan-Mori Algorithm
-  - icon: ':heavy_check_mark:'
-    path: FPS/relax.hpp
-    title: Relaxed Convolution
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
@@ -39,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_sparse_matrix_det.test.cpp
+    title: Verify/LC_sparse_matrix_det.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -50,35 +44,42 @@ data:
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
-    \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0){\r\n \
-    \       if(a.empty() or b.empty())return vector<T>();\r\n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\
+    \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0)const{\r\
+    \n        if(a.empty() or b.empty())return vector<T>();\r\n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\
     \n        vector<T> res(m);\r\n        rep(i,0,a.size())res[i]=a[i];\r\n     \
     \   NTT(res,0);\r\n        if(same)rep(i,0,m)res[i]*=res[i];\r\n        else{\r\
     \n            vector<T> c(m);\r\n            rep(i,0,b.size())c[i]=b[i];\r\n \
     \           NTT(c,0);\r\n            rep(i,0,m)res[i]*=c[i];\r\n        }\r\n\
     \        NTT(res,1);\r\n        res.resize(n);\r\n        return res;\r\n    }\r\
     \n    Poly square()const{return Poly(mult(*this,*this,1));}\r\n    Poly operator+(const\
-    \ Poly& g)const{return Poly(*this)+=g;}\r\n    Poly operator-(const Poly& g)const{return\
-    \ Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return Poly(*this)*=g;}\r\
-    \n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const\
-    \ Poly& g)const{return Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\
-    \n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
-    \ return *this;\r\n    }\r\n    Poly& operator-=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
-    \n        rep(i,0,g.size()){(*this)[i]-=g[i];} return *this;\r\n    }\r\n    Poly&\
-    \ operator*=(const Poly& g){\r\n        *this=mult(*this,g,0);\r\n        return\
-    \ *this;\r\n    }\r\n    Poly& operator/=(const Poly& g){\r\n        if(g.size()>this->size()){\r\
-    \n            this->clear(); return *this;\r\n        }\r\n        Poly g2=g;\r\
-    \n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\n        int n=this->size()-g2.size()+1;\r\
-    \n        this->resize(n); g2.resize(n);\r\n        *this*=g2.inv(); this->resize(n);\
-    \ \r\n        reverse(ALL(*this));\r\n        shrink();\r\n        return *this;\r\
-    \n    }\r\n    Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return\
-    \ *this;}\r\n    Poly diff()const{\r\n        Poly res(this->size()-1);\r\n  \
-    \      rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\n        return res;\r\n\
-    \    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\n     \
-    \   for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return res;\r\
-    \n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const int\
-    \ n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n     \
-    \   res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
+    \ Poly& g)const{return Poly(*this)+=g;}\r\n    Poly operator+(const T& g)const{return\
+    \ Poly(*this)+=g;}\r\n    Poly operator-(const Poly& g)const{return Poly(*this)-=g;}\r\
+    \n    Poly operator-(const T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const\
+    \ Poly& g)const{return Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return\
+    \ Poly(*this)*=g;}\r\n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\
+    \n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\n    Poly&\
+    \ operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
+    \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
+    \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
+    \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
+    \ g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]-=g[i];}\
+    \ return *this;\r\n    }\r\n    Poly& operator-=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\
+    \n        (*this)[0]-=g; return *this;\r\n    }\r\n    Poly& operator*=(const\
+    \ Poly& g){\r\n        *this=mult(*this,g,0);\r\n        return *this;\r\n   \
+    \ }\r\n    Poly& operator*=(const T& g){\r\n        rep(i,0,this->size())(*this)[i]*=g;\r\
+    \n        return *this;\r\n    }\r\n    Poly& operator/=(const Poly& g){\r\n \
+    \       if(g.size()>this->size()){\r\n            this->clear(); return *this;\r\
+    \n        }\r\n        Poly g2=g;\r\n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\
+    \n        int n=this->size()-g2.size()+1;\r\n        this->resize(n); g2.resize(n);\r\
+    \n        *this*=g2.inv(); this->resize(n); \r\n        reverse(ALL(*this));\r\
+    \n        shrink();\r\n        return *this;\r\n    }\r\n    Poly& operator%=(const\
+    \ Poly& g){*this-=*this/g*g; shrink(); return *this;}\r\n    Poly diff()const{\r\
+    \n        Poly res(this->size()-1);\r\n        rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\
+    \n        return res;\r\n    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\
+    \n        for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return\
+    \ res;\r\n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const\
+    \ int n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n \
+    \       res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
     \n        const int n=this->size();\r\n        Poly res=*this,g(n); g[0]=1; rep(i,1,n)g[i]=g[i-1]*c/i;\r\
     \n        vector<T> fact(n,1);\r\n        rep(i,0,n){\r\n            if(i)fact[i]=fact[i-1]*i;\r\
     \n            res[i]*=fact[i];\r\n        }\r\n        res=res.rev();\r\n    \
@@ -119,35 +120,42 @@ data:
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
-    \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0){\r\n \
-    \       if(a.empty() or b.empty())return vector<T>();\r\n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\
+    \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0)const{\r\
+    \n        if(a.empty() or b.empty())return vector<T>();\r\n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\
     \n        vector<T> res(m);\r\n        rep(i,0,a.size())res[i]=a[i];\r\n     \
     \   NTT(res,0);\r\n        if(same)rep(i,0,m)res[i]*=res[i];\r\n        else{\r\
     \n            vector<T> c(m);\r\n            rep(i,0,b.size())c[i]=b[i];\r\n \
     \           NTT(c,0);\r\n            rep(i,0,m)res[i]*=c[i];\r\n        }\r\n\
     \        NTT(res,1);\r\n        res.resize(n);\r\n        return res;\r\n    }\r\
     \n    Poly square()const{return Poly(mult(*this,*this,1));}\r\n    Poly operator+(const\
-    \ Poly& g)const{return Poly(*this)+=g;}\r\n    Poly operator-(const Poly& g)const{return\
-    \ Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return Poly(*this)*=g;}\r\
-    \n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const\
-    \ Poly& g)const{return Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\
-    \n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
-    \ return *this;\r\n    }\r\n    Poly& operator-=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
-    \n        rep(i,0,g.size()){(*this)[i]-=g[i];} return *this;\r\n    }\r\n    Poly&\
-    \ operator*=(const Poly& g){\r\n        *this=mult(*this,g,0);\r\n        return\
-    \ *this;\r\n    }\r\n    Poly& operator/=(const Poly& g){\r\n        if(g.size()>this->size()){\r\
-    \n            this->clear(); return *this;\r\n        }\r\n        Poly g2=g;\r\
-    \n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\n        int n=this->size()-g2.size()+1;\r\
-    \n        this->resize(n); g2.resize(n);\r\n        *this*=g2.inv(); this->resize(n);\
-    \ \r\n        reverse(ALL(*this));\r\n        shrink();\r\n        return *this;\r\
-    \n    }\r\n    Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return\
-    \ *this;}\r\n    Poly diff()const{\r\n        Poly res(this->size()-1);\r\n  \
-    \      rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\n        return res;\r\n\
-    \    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\n     \
-    \   for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return res;\r\
-    \n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const int\
-    \ n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n     \
-    \   res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
+    \ Poly& g)const{return Poly(*this)+=g;}\r\n    Poly operator+(const T& g)const{return\
+    \ Poly(*this)+=g;}\r\n    Poly operator-(const Poly& g)const{return Poly(*this)-=g;}\r\
+    \n    Poly operator-(const T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const\
+    \ Poly& g)const{return Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return\
+    \ Poly(*this)*=g;}\r\n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\
+    \n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\n    Poly&\
+    \ operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
+    \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
+    \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
+    \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
+    \ g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]-=g[i];}\
+    \ return *this;\r\n    }\r\n    Poly& operator-=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\
+    \n        (*this)[0]-=g; return *this;\r\n    }\r\n    Poly& operator*=(const\
+    \ Poly& g){\r\n        *this=mult(*this,g,0);\r\n        return *this;\r\n   \
+    \ }\r\n    Poly& operator*=(const T& g){\r\n        rep(i,0,this->size())(*this)[i]*=g;\r\
+    \n        return *this;\r\n    }\r\n    Poly& operator/=(const Poly& g){\r\n \
+    \       if(g.size()>this->size()){\r\n            this->clear(); return *this;\r\
+    \n        }\r\n        Poly g2=g;\r\n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\
+    \n        int n=this->size()-g2.size()+1;\r\n        this->resize(n); g2.resize(n);\r\
+    \n        *this*=g2.inv(); this->resize(n); \r\n        reverse(ALL(*this));\r\
+    \n        shrink();\r\n        return *this;\r\n    }\r\n    Poly& operator%=(const\
+    \ Poly& g){*this-=*this/g*g; shrink(); return *this;}\r\n    Poly diff()const{\r\
+    \n        Poly res(this->size()-1);\r\n        rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\
+    \n        return res;\r\n    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\
+    \n        for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return\
+    \ res;\r\n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const\
+    \ int n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n \
+    \       res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
     \n        const int n=this->size();\r\n        Poly res=*this,g(n); g[0]=1; rep(i,1,n)g[i]=g[i-1]*c/i;\r\
     \n        vector<T> fact(n,1);\r\n        rep(i,0,n){\r\n            if(i)fact[i]=fact[i-1]*i;\r\
     \n            res[i]*=fact[i];\r\n        }\r\n        res=res.rev();\r\n    \
@@ -186,15 +194,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: FPS/fps.hpp
-  requiredBy:
-  - FPS/nthterm.hpp
-  - FPS/relax.hpp
-  - FPS/multieval.hpp
-  timestamp: '2022-02-02 00:14:46+09:00'
+  requiredBy: []
+  timestamp: '2022-02-02 03:30:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
