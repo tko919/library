@@ -67,10 +67,10 @@ data:
     \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
     \n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1=fp<1045430273>; using\
     \ M2=fp<1051721729>; using M3=fp<1053818881>;\r\nNTT<fp<1045430273>,3> N1; NTT<fp<1051721729>,6>\
-    \ N2; NTT<fp<1053818881>,7> N3;\r\ntemplate<typename T>vector<T> mult(const vector<T>&\
-    \ a,const vector<T>& b,bool same=0){\r\n    if(a.empty() or b.empty())return vector<T>();\r\
-    \n    int n=a.size()+b.size()-1; vector<T> res(n); vector<int> vals[3];\r\n  \
-    \  vector<int> aa(a.size()),bb(b.size());\r\n    rep(i,0,a.size())aa[i]=a[i].v;\
+    \ N2; NTT<fp<1053818881>,7> N3;\r\ntemplate<typename T>vector<T> ArbitraryMult(const\
+    \ vector<T>& a,const vector<T>& b,bool same=0){\r\n    if(a.empty() or b.empty())return\
+    \ vector<T>();\r\n    int n=a.size()+b.size()-1; vector<T> res(n); vector<int>\
+    \ vals[3];\r\n    vector<int> aa(a.size()),bb(b.size());\r\n    rep(i,0,a.size())aa[i]=a[i].v;\
     \ rep(i,0,b.size())bb[i]=b[i].v;\r\n    vector<M1> a1(ALL(aa)),b1(ALL(bb)),c1=N1.mult(a1,b1,same);\r\
     \n    vector<M2> a2(ALL(aa)),b2(ALL(bb)),c2=N2.mult(a2,b2,same);\r\n    vector<M3>\
     \ a3(ALL(aa)),b3(ALL(bb)),c3=N3.mult(a3,b3,same);\r\n    for(M1 x:c1)vals[0].push_back(x.v);\r\
@@ -84,14 +84,14 @@ data:
   code: "#pragma once\r\n#include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\
     \r\n\r\nusing M1=fp<1045430273>; using M2=fp<1051721729>; using M3=fp<1053818881>;\r\
     \nNTT<fp<1045430273>,3> N1; NTT<fp<1051721729>,6> N2; NTT<fp<1053818881>,7> N3;\r\
-    \ntemplate<typename T>vector<T> mult(const vector<T>& a,const vector<T>& b,bool\
-    \ same=0){\r\n    if(a.empty() or b.empty())return vector<T>();\r\n    int n=a.size()+b.size()-1;\
-    \ vector<T> res(n); vector<int> vals[3];\r\n    vector<int> aa(a.size()),bb(b.size());\r\
-    \n    rep(i,0,a.size())aa[i]=a[i].v; rep(i,0,b.size())bb[i]=b[i].v;\r\n    vector<M1>\
-    \ a1(ALL(aa)),b1(ALL(bb)),c1=N1.mult(a1,b1,same);\r\n    vector<M2> a2(ALL(aa)),b2(ALL(bb)),c2=N2.mult(a2,b2,same);\r\
-    \n    vector<M3> a3(ALL(aa)),b3(ALL(bb)),c3=N3.mult(a3,b3,same);\r\n    for(M1\
-    \ x:c1)vals[0].push_back(x.v);\r\n    for(M2 x:c2)vals[1].push_back(x.v);\r\n\
-    \    for(M3 x:c3)vals[2].push_back(x.v);\r\n    M2 r_12=M2(M1::get_mod()).inv();\r\
+    \ntemplate<typename T>vector<T> ArbitraryMult(const vector<T>& a,const vector<T>&\
+    \ b,bool same=0){\r\n    if(a.empty() or b.empty())return vector<T>();\r\n   \
+    \ int n=a.size()+b.size()-1; vector<T> res(n); vector<int> vals[3];\r\n    vector<int>\
+    \ aa(a.size()),bb(b.size());\r\n    rep(i,0,a.size())aa[i]=a[i].v; rep(i,0,b.size())bb[i]=b[i].v;\r\
+    \n    vector<M1> a1(ALL(aa)),b1(ALL(bb)),c1=N1.mult(a1,b1,same);\r\n    vector<M2>\
+    \ a2(ALL(aa)),b2(ALL(bb)),c2=N2.mult(a2,b2,same);\r\n    vector<M3> a3(ALL(aa)),b3(ALL(bb)),c3=N3.mult(a3,b3,same);\r\
+    \n    for(M1 x:c1)vals[0].push_back(x.v);\r\n    for(M2 x:c2)vals[1].push_back(x.v);\r\
+    \n    for(M3 x:c3)vals[2].push_back(x.v);\r\n    M2 r_12=M2(M1::get_mod()).inv();\r\
     \n    M3 r_13=M3(M1::get_mod()).inv(),r_23=M3(M2::get_mod()).inv();\r\n    M3\
     \ r_1323=r_13*r_23;\r\n    T w1(M1::get_mod()),w2=w1*T(M2::get_mod());\r\n   \
     \ rep(i,0,n){\r\n        ll p=vals[0][i];\r\n        ll q=(vals[1][i]+M2::get_mod()-p)*r_12.v%M2::get_mod();\r\
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: Convolution/arbitrary.hpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
+  timestamp: '2022-02-02 00:14:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_convolution_mod_1000000007.test.cpp

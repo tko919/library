@@ -3,8 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: FPS/multieval.hpp
+    title: Multipoint Evaluation
+  - icon: ':heavy_check_mark:'
     path: FPS/nthterm.hpp
     title: Bostan-Mori Algorithm
+  - icon: ':heavy_check_mark:'
+    path: FPS/relax.hpp
+    title: Relaxed Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
@@ -39,10 +45,9 @@ data:
   attributes:
     document_title: Formal Power Series (NTT-friendly mod)
     links: []
-  bundledCode: "#line 2 \"FPS/fps.hpp\"\n\r\ntemplate<typename T,void (*NTT)(vector<T>&,bool)>struct\
-    \ Poly:vector<T>{\r\n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const\
-    \ vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\n        T\
-    \ res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
+  bundledCode: "#line 2 \"FPS/fps.hpp\"\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\
+    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
+    \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
     \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0){\r\n \
@@ -65,14 +70,15 @@ data:
     \n            this->clear(); return *this;\r\n        }\r\n        Poly g2=g;\r\
     \n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\n        int n=this->size()-g2.size()+1;\r\
     \n        this->resize(n); g2.resize(n);\r\n        *this*=g2.inv(); this->resize(n);\
-    \ \r\n        reverse(ALL(*this));\r\n        return *this;\r\n    }\r\n    Poly&\
-    \ operator%=(const Poly& g){*this-=*this/g*g; return *this;}\r\n    Poly diff()const{\r\
-    \n        Poly res(this->size()-1);\r\n        rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\
-    \n        return res;\r\n    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\
-    \n        for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return\
-    \ res;\r\n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const\
-    \ int n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n \
-    \       res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
+    \ \r\n        reverse(ALL(*this));\r\n        shrink();\r\n        return *this;\r\
+    \n    }\r\n    Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return\
+    \ *this;}\r\n    Poly diff()const{\r\n        Poly res(this->size()-1);\r\n  \
+    \      rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\n        return res;\r\n\
+    \    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\n     \
+    \   for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return res;\r\
+    \n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const int\
+    \ n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n     \
+    \   res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
     \n        const int n=this->size();\r\n        Poly res=*this,g(n); g[0]=1; rep(i,1,n)g[i]=g[i-1]*c/i;\r\
     \n        vector<T> fact(n,1);\r\n        rep(i,0,n){\r\n            if(i)fact[i]=fact[i-1]*i;\r\
     \n            res[i]*=fact[i];\r\n        }\r\n        res=res.rev();\r\n    \
@@ -106,12 +112,11 @@ data:
     \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
     \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
     \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */\n"
-  code: "#pragma once\r\n\r\ntemplate<typename T,void (*NTT)(vector<T>&,bool)>struct\
-    \ Poly:vector<T>{\r\n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const\
-    \ vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\n        T\
-    \ res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
+    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n"
+  code: "#pragma once\r\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int\
+    \ n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
+    \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
     \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0){\r\n \
@@ -134,14 +139,15 @@ data:
     \n            this->clear(); return *this;\r\n        }\r\n        Poly g2=g;\r\
     \n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\n        int n=this->size()-g2.size()+1;\r\
     \n        this->resize(n); g2.resize(n);\r\n        *this*=g2.inv(); this->resize(n);\
-    \ \r\n        reverse(ALL(*this));\r\n        return *this;\r\n    }\r\n    Poly&\
-    \ operator%=(const Poly& g){*this-=*this/g*g; return *this;}\r\n    Poly diff()const{\r\
-    \n        Poly res(this->size()-1);\r\n        rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\
-    \n        return res;\r\n    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\
-    \n        for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return\
-    \ res;\r\n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const\
-    \ int n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n \
-    \       res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
+    \ \r\n        reverse(ALL(*this));\r\n        shrink();\r\n        return *this;\r\
+    \n    }\r\n    Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return\
+    \ *this;}\r\n    Poly diff()const{\r\n        Poly res(this->size()-1);\r\n  \
+    \      rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\n        return res;\r\n\
+    \    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\n     \
+    \   for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return res;\r\
+    \n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const int\
+    \ n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n     \
+    \   res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
     \n        const int n=this->size();\r\n        Poly res=*this,g(n); g[0]=1; rep(i,1,n)g[i]=g[i-1]*c/i;\r\
     \n        vector<T> fact(n,1);\r\n        rep(i,0,n){\r\n            if(i)fact[i]=fact[i-1]*i;\r\
     \n            res[i]*=fact[i];\r\n        }\r\n        res=res.rev();\r\n    \
@@ -175,14 +181,16 @@ data:
     \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
     \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
     \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */"
+    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: FPS/fps.hpp
   requiredBy:
   - FPS/nthterm.hpp
-  timestamp: '2022-01-31 01:12:16+09:00'
+  - FPS/relax.hpp
+  - FPS/multieval.hpp
+  timestamp: '2022-02-02 00:14:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_exp_of_formal_power_series.test.cpp

@@ -139,10 +139,9 @@ data:
     \n        else{\r\n            vector<T> c(m); rep(i,0,b.size())c[i]=b[i];\r\n\
     \            ntt(c); rep(i,0,m)res[i]*=c[i];\r\n        } ntt(res,1); res.resize(n);\
     \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
-    \n */\n#line 2 \"FPS/fps.hpp\"\n\r\ntemplate<typename T,void (*NTT)(vector<T>&,bool)>struct\
-    \ Poly:vector<T>{\r\n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const\
-    \ vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\n        T\
-    \ res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
+    \n */\n#line 2 \"FPS/fps.hpp\"\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\
+    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
+    \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
     \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0){\r\n \
@@ -165,14 +164,15 @@ data:
     \n            this->clear(); return *this;\r\n        }\r\n        Poly g2=g;\r\
     \n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\n        int n=this->size()-g2.size()+1;\r\
     \n        this->resize(n); g2.resize(n);\r\n        *this*=g2.inv(); this->resize(n);\
-    \ \r\n        reverse(ALL(*this));\r\n        return *this;\r\n    }\r\n    Poly&\
-    \ operator%=(const Poly& g){*this-=*this/g*g; return *this;}\r\n    Poly diff()const{\r\
-    \n        Poly res(this->size()-1);\r\n        rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\
-    \n        return res;\r\n    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\
-    \n        for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return\
-    \ res;\r\n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const\
-    \ int n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n \
-    \       res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
+    \ \r\n        reverse(ALL(*this));\r\n        shrink();\r\n        return *this;\r\
+    \n    }\r\n    Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return\
+    \ *this;}\r\n    Poly diff()const{\r\n        Poly res(this->size()-1);\r\n  \
+    \      rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\n        return res;\r\n\
+    \    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\n     \
+    \   for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return res;\r\
+    \n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const int\
+    \ n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n     \
+    \   res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
     \n        const int n=this->size();\r\n        Poly res=*this,g(n); g[0]=1; rep(i,1,n)g[i]=g[i-1]*c/i;\r\
     \n        vector<T> fact(n,1);\r\n        rep(i,0,n){\r\n            if(i)fact[i]=fact[i-1]*i;\r\
     \n            res[i]*=fact[i];\r\n        }\r\n        res=res.rev();\r\n    \
@@ -206,11 +206,11 @@ data:
     \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
     \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
     \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */\n#line 2 \"FPS/relax.hpp\"\n\r\ntemplate<typename T,typename poly>class\
-    \ RelaxedConvolution{\r\n    using P=array<int,2>;\r\n    using Q=array<P,2>;\r\
-    \n    int N,pos=0;\r\n    vector<vector<Q>> event;\r\n    void dfs1(int L,int\
-    \ R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
+    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 3 \"FPS/relax.hpp\"\
+    \n\r\ntemplate<typename T>class RelaxedConvolution{\r\n    using P=array<int,2>;\r\
+    \n    using Q=array<P,2>;\r\n    int N,pos=0;\r\n    vector<vector<Q>> event;\r\
+    \n    void dfs1(int L,int R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
     \n            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
     \n        event[R].push_back({P{mid,R},P{mid-L,R-L}});\r\n        dfs1(L,mid);\r\
     \n        dfs1(mid,R);\r\n    }\r\n    void dfs2(int L,int R){\r\n        if(R-L==1){\r\
@@ -221,32 +221,32 @@ data:
     \n            event[0].push_back({P{0,1},P{0,1}});\r\n            return;\r\n\
     \        }\r\n        int mid=len>>1;\r\n        event[len].push_back({P{mid,len},P{mid,len}});\r\
     \n        dfs(mid);\r\n        dfs1(mid,len);\r\n        dfs2(mid,len);\r\n  \
-    \  }\r\npublic:\r\n    poly f,g,buf;\r\n    RelaxedConvolution(int n){\r\n   \
-    \     N=1;\r\n        while(N<n)N<<=1;\r\n        f.resize(N);\r\n        g.resize(N);\r\
+    \  }\r\npublic:\r\n    Poly<T> f,g,buf;\r\n    RelaxedConvolution(int n){\r\n\
+    \        N=1;\r\n        while(N<n)N<<=1;\r\n        f.resize(N);\r\n        g.resize(N);\r\
     \n        buf.resize(N);\r\n        event.resize(N+1);\r\n        dfs(N);\r\n\
     \    }\r\n    T next(){\r\n        for(auto& [ft,gt]:event[pos]){\r\n        \
-    \    auto [fL,fR]=ft;\r\n            auto [gL,gR]=gt;\r\n            poly _f({f.begin()+fL,f.begin()+fR});\r\
-    \n            poly _g({g.begin()+gL,g.begin()+gR});\r\n            auto add=_f*_g;\r\
+    \    auto [fL,fR]=ft;\r\n            auto [gL,gR]=gt;\r\n            Poly<T> _f({f.begin()+fL,f.begin()+fR});\r\
+    \n            Poly<T> _g({g.begin()+gL,g.begin()+gR});\r\n            auto add=_f*_g;\r\
     \n            rep(i,0,add.size()){\r\n                if(i+fL+gL>=N)break;\r\n\
     \                buf[i+fL+gL]+=add[i];\r\n            }\r\n        }\r\n     \
     \   return buf[pos++];\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Relaxed Convolution\r\
     \n */\n#line 9 \"Verify/LC_convolution_mod_2.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
-    \nNTT<Fp,3> ntt;\r\nvoid F(vector<Fp>& a,bool f){ntt.ntt(a,f);}\r\nusing poly=Poly<Fp,F>;\r\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    vector<Fp>\
-    \ _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp,poly> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n     \
-    \   if(i<n)buf.f[i]=_f[i];\r\n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\
-    \n        io.write(ret.v);\r\n    }\r\n    return 0;\r\n}\r\n"
+    \nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return\
+    \ ntt.ntt(v,inv);}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\
+    \n    vector<Fp> _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
+    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        if(i<n)buf.f[i]=_f[i];\r\
+    \n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\n        io.write(ret.v);\r\
+    \n    }\r\n    return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n#include\
     \ \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\
     \r\n#include \"FPS/relax.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\
-    \nvoid F(vector<Fp>& a,bool f){ntt.ntt(a,f);}\r\nusing poly=Poly<Fp,F>;\r\n\r\n\
-    FastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    vector<Fp>\
+    \ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}\r\
+    \n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    vector<Fp>\
     \ _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp,poly> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n     \
-    \   if(i<n)buf.f[i]=_f[i];\r\n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\
-    \n        io.write(ret.v);\r\n    }\r\n    return 0;\r\n}\r\n"
+    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        if(i<n)buf.f[i]=_f[i];\r\
+    \n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\n        io.write(ret.v);\r\
+    \n    }\r\n    return 0;\r\n}\r\n"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -257,7 +257,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2022-02-01 00:33:04+09:00'
+  timestamp: '2022-02-02 00:14:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_2.test.cpp

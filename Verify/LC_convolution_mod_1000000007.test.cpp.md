@@ -79,10 +79,10 @@ data:
     \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
     \n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1=fp<1045430273>; using\
     \ M2=fp<1051721729>; using M3=fp<1053818881>;\r\nNTT<fp<1045430273>,3> N1; NTT<fp<1051721729>,6>\
-    \ N2; NTT<fp<1053818881>,7> N3;\r\ntemplate<typename T>vector<T> mult(const vector<T>&\
-    \ a,const vector<T>& b,bool same=0){\r\n    if(a.empty() or b.empty())return vector<T>();\r\
-    \n    int n=a.size()+b.size()-1; vector<T> res(n); vector<int> vals[3];\r\n  \
-    \  vector<int> aa(a.size()),bb(b.size());\r\n    rep(i,0,a.size())aa[i]=a[i].v;\
+    \ N2; NTT<fp<1053818881>,7> N3;\r\ntemplate<typename T>vector<T> ArbitraryMult(const\
+    \ vector<T>& a,const vector<T>& b,bool same=0){\r\n    if(a.empty() or b.empty())return\
+    \ vector<T>();\r\n    int n=a.size()+b.size()-1; vector<T> res(n); vector<int>\
+    \ vals[3];\r\n    vector<int> aa(a.size()),bb(b.size());\r\n    rep(i,0,a.size())aa[i]=a[i].v;\
     \ rep(i,0,b.size())bb[i]=b[i].v;\r\n    vector<M1> a1(ALL(aa)),b1(ALL(bb)),c1=N1.mult(a1,b1,same);\r\
     \n    vector<M2> a2(ALL(aa)),b2(ALL(bb)),c2=N2.mult(a2,b2,same);\r\n    vector<M3>\
     \ a3(ALL(aa)),b3(ALL(bb)),c3=N3.mult(a3,b3,same);\r\n    for(M1 x:c1)vals[0].push_back(x.v);\r\
@@ -95,14 +95,14 @@ data:
     \ @brief Arbitrary Mod Convolution\r\n */\n#line 6 \"Verify/LC_convolution_mod_1000000007.test.cpp\"\
     \n\r\nusing Fp=fp<>;\r\n\r\nint main(){\r\n    int n,m;\r\n    cin>>n>>m;\r\n\
     \    vector<Fp> a(n),b(m);\r\n    for(auto& x:a)cin>>x;\r\n    for(auto& x:b)cin>>x;\r\
-    \n    auto ret=mult(a,b);\r\n    for(auto& x:ret)cout<<x<<'\\n';\r\n    return\
-    \ 0;\r\n}\n"
+    \n    auto ret=ArbitraryMult(a,b);\r\n    for(auto& x:ret)cout<<x<<'\\n';\r\n\
+    \    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"Convolution/arbitrary.hpp\"\r\n\r\nusing Fp=fp<>;\r\n\r\nint main(){\r\
     \n    int n,m;\r\n    cin>>n>>m;\r\n    vector<Fp> a(n),b(m);\r\n    for(auto&\
-    \ x:a)cin>>x;\r\n    for(auto& x:b)cin>>x;\r\n    auto ret=mult(a,b);\r\n    for(auto&\
-    \ x:ret)cout<<x<<'\\n';\r\n    return 0;\r\n}"
+    \ x:a)cin>>x;\r\n    for(auto& x:b)cin>>x;\r\n    auto ret=ArbitraryMult(a,b);\r\
+    \n    for(auto& x:ret)cout<<x<<'\\n';\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/modint.hpp
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-02-02 00:14:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_1000000007.test.cpp
