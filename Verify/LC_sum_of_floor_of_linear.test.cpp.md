@@ -29,10 +29,10 @@ data:
     \ y_max=a*n+b;\r\n      if(y_max<m)break;\r\n      n=y_max/m;\r\n      b=y_max%m;\r\
     \n      res+=(n*(n-1)/2)*(m/a)+n*(b/a);\r\n      swap(m,a);\r\n      a%=m;\r\n\
     \      b%=m;\r\n   }\r\n   return res;\r\n}\r\n\r\n/**\r\n * @brief Floor Sum\r\
-    \n */\n#line 5 \"Verify/LC_sum_of_floor_of_linear.test.cpp\"\n\r\nint main(){\r\
-    \n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int n,m,a,b;\r\n   \
-    \     cin>>n>>m>>a>>b;\r\n        cout<<FloorSum(n,a,b,m)<<'\\n';\r\n    }\r\n\
-    \    return 0;\r\n}\n"
+    \n * @docs docs/floorsum.md\r\n */\n#line 5 \"Verify/LC_sum_of_floor_of_linear.test.cpp\"\
+    \n\r\nint main(){\r\n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int\
+    \ n,m,a,b;\r\n        cin>>n>>m>>a>>b;\r\n        cout<<FloorSum(n,a,b,m)<<'\\\
+    n';\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_floor_of_linear\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/floorsum.hpp\"\r\
     \n\r\nint main(){\r\n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int\
@@ -44,7 +44,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_floor_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_floor_of_linear.test.cpp

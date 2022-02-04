@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/wavelet.md
     document_title: Wavelet Matrix
     links: []
   bundledCode: "#line 2 \"DataStructure/wavelet.hpp\"\n\r\ntemplate<typename T>struct\
@@ -49,7 +50,7 @@ data:
     \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\
     \n    }\r\n    T upper_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
     \n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Wavelet Matrix\r\n */\n"
+    \n * @brief Wavelet Matrix\r\n * @docs docs/wavelet.md\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct WaveletMatrix{\r\n    struct\
     \ BitVector{\r\n        vector<unsigned long long> buf;\r\n        vector<int>\
     \ rui;\r\n        BitVector(const vector<char>& a={}){\r\n            int n=a.size();\r\
@@ -83,16 +84,16 @@ data:
     \ L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\
     \n    }\r\n    T upper_bound(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\
     \n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Wavelet Matrix\r\n */"
+    \n * @brief Wavelet Matrix\r\n * @docs docs/wavelet.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/wavelet.hpp
   requiredBy: []
-  timestamp: '2022-01-29 02:47:03+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_static_range_frequency.test.cpp
   - Verify/LC_range_kth_smallest.test.cpp
+  - Verify/LC_static_range_frequency.test.cpp
 documentation_of: DataStructure/wavelet.hpp
 layout: document
 redirect_from:
@@ -100,3 +101,12 @@ redirect_from:
 - /library/DataStructure/wavelet.hpp.html
 title: Wavelet Matrix
 ---
+## 使い方
+
+`WaveletMatrix(vector<T> a)`: 数列 $a$ のデータ構造を作成。
+`int rank(int L,int R,T x)`: 半開区間 $[L,R)$ に $x$ が出現する回数。
+`T quantile(int L,int R,int k)`: 半開区間 $[L,R)$ で $k$ 番目 (0-indexed) に小さい値。
+`int freq(int L,int R,T x)`: 半開区間 $[L,R)$ に $x$ 未満が出現する回数。
+`int freq(int L,int R,T a,T b)`: 半開区間 $[L,R)$ に $[a,b]$ 内の値が出現する回数。
+`T lower_bound(int L,int R,T x)`: 半開区間 $[L,R)$ で $x$ 以下の値のうち最も大きいもの。
+`T upper_bound(int L,int R,T x)`: 半開区間 $[L,R)$ で $x$ より大きい値のうち最も小さいもの。

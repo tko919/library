@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/lichaotree.md
     document_title: Convex Hull Trick (Li Chao Tree)
     links: []
   bundledCode: "#line 2 \"DataStructure/lichaotree.hpp\"\n\r\ntemplate<typename T,T\
@@ -40,7 +41,7 @@ data:
     \ x){\r\n        int k=lower_bound(ALL(xs),x)-xs.begin()+n-1;\r\n        T res=eval(ls[k],x);\r\
     \n        while(k){\r\n            k=(k-1)>>1;\r\n            chmin(res,eval(ls[k],x));\r\
     \n        }\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Convex\
-    \ Hull Trick (Li Chao Tree)\r\n */\n"
+    \ Hull Trick (Li Chao Tree)\r\n * @docs docs/lichaotree.md\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T,T MX>struct CHT{\r\n    using Line=pair<T,T>;\r\
     \n    int n;\r\n    vector<T> xs;\r\n    vector<Line> ls;\r\n    CHT(vector<T>&\
     \ ps):xs(ps){\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\n   \
@@ -65,12 +66,12 @@ data:
     \ x){\r\n        int k=lower_bound(ALL(xs),x)-xs.begin()+n-1;\r\n        T res=eval(ls[k],x);\r\
     \n        while(k){\r\n            k=(k-1)>>1;\r\n            chmin(res,eval(ls[k],x));\r\
     \n        }\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Convex\
-    \ Hull Trick (Li Chao Tree)\r\n */"
+    \ Hull Trick (Li Chao Tree)\r\n * @docs docs/lichaotree.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/lichaotree.hpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_segment_add_get_min.test.cpp
@@ -82,3 +83,9 @@ redirect_from:
 - /library/DataStructure/lichaotree.hpp.html
 title: Convex Hull Trick (Li Chao Tree)
 ---
+## 使い方
+
+`CHT(vector<T>& ps)`: クエリを与える点を渡してデータ構造を作成。テンプレートに型と最大値を指定。
+`void add(T a,T b)`: 直線 $ax+b$ を追加。
+`void add_segment(T a,T b,T L,T R)`: 半開区間 $[L,R)$ に線分 $ax+b$ を追加。
+`T getmin(T x)`: y 座標の最小値を求める。(無ければ最大値を返す)

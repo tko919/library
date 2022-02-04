@@ -66,11 +66,11 @@ data:
     \n            else R=mid;\r\n        }\r\n        ret[0]=R;\r\n        L=0,R=n;\r\
     \n        while(R-L>1){\r\n            int mid=(L+R)>>1;\r\n            if(base.compare(sa[mid],m,t)<=0)L=mid;\r\
     \n            else R=mid;\r\n        }\r\n        ret[1]=R;\r\n        return\
-    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Suffix Array\r\n */\n#line 5 \"\
-    Verify/LC_number_of_substrings.test.cpp\"\n\r\nint main(){\r\n    string s;\r\n\
-    \    cin>>s;\r\n    int n=s.size();\r\n    SuffixArray sa(s);\r\n    ll ret=n-sa.sa[0];\r\
-    \n    rep(i,1,n+1)ret+=n-sa.sa[i]-sa.lcp[i-1];\r\n    cout<<ret<<'\\n';\r\n  \
-    \  return 0;\r\n}\n"
+    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Suffix Array\r\n * @docs docs/suffixarray.md\r\
+    \n */\n#line 5 \"Verify/LC_number_of_substrings.test.cpp\"\n\r\nint main(){\r\n\
+    \    string s;\r\n    cin>>s;\r\n    int n=s.size();\r\n    SuffixArray sa(s);\r\
+    \n    ll ret=n-sa.sa[0];\r\n    rep(i,1,n+1)ret+=n-sa.sa[i]-sa.lcp[i-1];\r\n \
+    \   cout<<ret<<'\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\r\
     \n\r\n#include \"Template/template.hpp\"\r\n#include \"String/suffixarray.hpp\"\
     \r\n\r\nint main(){\r\n    string s;\r\n    cin>>s;\r\n    int n=s.size();\r\n\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 01:12:16+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_number_of_substrings.test.cpp

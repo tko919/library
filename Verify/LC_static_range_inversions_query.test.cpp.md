@@ -39,17 +39,18 @@ data:
     \     auto [li,ri]=qs[i];\r\n            while(lb>li)addl(--lb);\r\n         \
     \   while(rb<ri)addr(rb++);\r\n            while(lb<li)dell(lb++);\r\n       \
     \     while(rb>ri)delr(--rb);\r\n            out(i);\r\n        }\r\n    }\r\n\
-    };\r\n\r\n/**\r\n * @brief Mo's Algorithm\r\n */\n#line 2 \"DataStructure/bit.hpp\"\
-    \n\r\ntemplate<typename T>struct BIT{\r\n    int n; T all=0; vector<T> val;\r\n\
-    \    BIT(int _n):n(_n),val(_n+10){}\r\n    void clear(){val.assign(n+10,0); all=T();}\r\
-    \n    void add(int i,T x){\r\n        for(i++;i<=n;i+=(i&-i))val[i]+=x;\r\n  \
-    \      all+=x;\r\n    }\r\n    T sum(int i){\r\n        T res=0;\r\n        for(;i;i-=(i&-i))res+=val[i];\r\
-    \n        return res;\r\n    }\r\n    T sum(int L,int R){return sum(R)-sum(L);}\
-    \ // [L,R)\r\n    int lower_bound(T x){\r\n        int ret=0,len=1;\r\n      \
-    \  while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\n            if(ret+len<=n\
-    \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
-    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Binary Indexed Tree\r\n */\n#line 6 \"Verify/LC_static_range_inversions_query.test.cpp\"\
+    };\r\n\r\n/**\r\n * @brief Mo's Algorithm\r\n * @docs docs/mo.md\r\n */\n#line\
+    \ 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename T>struct BIT{\r\n    int\
+    \ n; T all=0; vector<T> val;\r\n    BIT(int _n):n(_n),val(_n+10){}\r\n    void\
+    \ clear(){val.assign(n+10,0); all=T();}\r\n    void add(int i,T x){\r\n      \
+    \  for(i++;i<=n;i+=(i&-i))val[i]+=x;\r\n        all+=x;\r\n    }\r\n    T sum(int\
+    \ i){\r\n        T res=0;\r\n        for(;i;i-=(i&-i))res+=val[i];\r\n       \
+    \ return res;\r\n    }\r\n    T sum(int L,int R){return sum(R)-sum(L);} // [L,R)\r\
+    \n    int lower_bound(T x){\r\n        int ret=0,len=1;\r\n        while(2*len<=n)len<<=1;\r\
+    \n        for(;len>=1;len>>=1){\r\n            if(ret+len<=n and val[ret+len]<x){\r\
+    \n                ret+=len;\r\n                x-=val[ret];\r\n            }\r\
+    \n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary\
+    \ Indexed Tree\r\n */\n#line 6 \"Verify/LC_static_range_inversions_query.test.cpp\"\
     \n\r\nint a[101010];\r\nll ret[101010],cur=0;\r\nBIT<int> bit(101010);\r\n\r\n\
     void Mo::addl(int i){\r\n    cur+=bit.sum(a[i]);\r\n    bit.add(a[i],1);\r\n}\r\
     \nvoid Mo::addr(int i){\r\n    cur+=bit.all-bit.sum(a[i]);\r\n    bit.add(a[i],1);\r\
@@ -83,7 +84,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_static_range_inversions_query.test.cpp

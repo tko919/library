@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/suffixarray.md
     document_title: Suffix Array
     links: []
   bundledCode: "#line 2 \"String/suffixarray.hpp\"\n\r\ntemplate<typename T>struct\
@@ -58,7 +59,8 @@ data:
     \n            else R=mid;\r\n        }\r\n        ret[0]=R;\r\n        L=0,R=n;\r\
     \n        while(R-L>1){\r\n            int mid=(L+R)>>1;\r\n            if(base.compare(sa[mid],m,t)<=0)L=mid;\r\
     \n            else R=mid;\r\n        }\r\n        ret[1]=R;\r\n        return\
-    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Suffix Array\r\n */\n"
+    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Suffix Array\r\n * @docs docs/suffixarray.md\r\
+    \n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct SuffixArray{\r\n    T base;\r\
     \n    vector<int> sa,rsa,lcp;\r\n    SuffixArray(const T& _s):base(_s){\r\n  \
     \      int n=base.size();\r\n        auto p=minmax_element(ALL(base));\r\n   \
@@ -101,12 +103,13 @@ data:
     \n            else R=mid;\r\n        }\r\n        ret[0]=R;\r\n        L=0,R=n;\r\
     \n        while(R-L>1){\r\n            int mid=(L+R)>>1;\r\n            if(base.compare(sa[mid],m,t)<=0)L=mid;\r\
     \n            else R=mid;\r\n        }\r\n        ret[1]=R;\r\n        return\
-    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Suffix Array\r\n */"
+    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Suffix Array\r\n * @docs docs/suffixarray.md\r\
+    \n */"
   dependsOn: []
   isVerificationFile: false
   path: String/suffixarray.hpp
   requiredBy: []
-  timestamp: '2022-01-31 01:12:16+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_suffixarray.test.cpp
@@ -118,3 +121,7 @@ redirect_from:
 - /library/String/suffixarray.hpp.html
 title: Suffix Array
 ---
+## 使い方
+
+`SuffixArray(const T& s)`: $s$ の Suffix Array 及び LCP 配列を作成 (**1-indexed**)。
+`array<int,2> search(const T& t)`: $t$ を完全に含むような Suffix Array の index 区間。

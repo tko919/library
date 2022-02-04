@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    _deprecated_at_docs: docs/rollbackmo.md
     document_title: Rollback Mo
     links: []
   bundledCode: "#line 2 \"Algorithm/rollbackmo.hpp\"\n\r\nstruct RollbackMo{\r\n \
@@ -24,7 +25,7 @@ data:
     \               r=(b+1)*w;\r\n            }\r\n            while(r<qs[i][1])insert(r++);\r\
     \n            snapshot();\r\n            for(int j=(b+1)*w-1;j>=qs[i][0];j--)insert(j);\r\
     \n            out(i);\r\n            rollback();\r\n        }\r\n    }\r\n};\r\
-    \n\r\n/**\r\n * @brief Rollback Mo\r\n */\n"
+    \n\r\n/**\r\n * @brief Rollback Mo\r\n * @docs docs/rollbackmo.md\r\n */\n"
   code: "#pragma once\r\n\r\nstruct RollbackMo{\r\n    using P=array<int,2>;\r\n \
     \   int n,w;\r\n    vector<P> qs;\r\n    RollbackMo(int _n):n(_n),w(sqrt(n)){}\r\
     \n    void add(int lb,int rb){qs.push_back({lb,rb});}\r\n    void init();\r\n\
@@ -40,12 +41,12 @@ data:
     \               r=(b+1)*w;\r\n            }\r\n            while(r<qs[i][1])insert(r++);\r\
     \n            snapshot();\r\n            for(int j=(b+1)*w-1;j>=qs[i][0];j--)insert(j);\r\
     \n            out(i);\r\n            rollback();\r\n        }\r\n    }\r\n};\r\
-    \n\r\n/**\r\n * @brief Rollback Mo\r\n */"
+    \n\r\n/**\r\n * @brief Rollback Mo\r\n * @docs docs/rollbackmo.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Algorithm/rollbackmo.hpp
   requiredBy: []
-  timestamp: '2022-01-10 15:37:47+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Algorithm/rollbackmo.hpp
@@ -55,3 +56,8 @@ redirect_from:
 - /library/Algorithm/rollbackmo.hpp.html
 title: Rollback Mo
 ---
+## 使い方
+
+`RollbackMo(int n)`: 要素数 $n$ のデータ構造を作成。
+`void add(int L,int R)`: 半開区間 $[L,R)$ をクエリに追加。
+`void run()`: クエリを実行。事前に `init()` (初期化)、 `insert(int i)` (要素 $i$ を追加)、 `snapshot()` (部分永続的に保存)、 `rollback()` (保存した状態まで巻き戻す)、 `out(int $i$)` (クエリ $i$ の結果を書き込む) を準備する必要がある。

@@ -10,6 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/rerooting.md
     document_title: Rerooting
     links: []
   bundledCode: "#line 2 \"Graph/rerooting.hpp\"\n\r\ntemplate<typename M,typename\
@@ -33,7 +34,8 @@ data:
     \n            M add=f(buf[v],w);\r\n            dfs2(to,v,add);\r\n          \
     \  buf[v]=buf_v,buf[to]=buf_to;\r\n            id++;\r\n        }\r\n    }\r\n\
     \    vector<M> run(){\r\n        dfs1(0,-1);\r\n        dfs2(0,-1,e());\r\n  \
-    \      return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Rerooting\r\n */\n"
+    \      return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Rerooting\r\n * @docs\
+    \ docs/rerooting.md\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename M,typename N,M (*f)(M,N),M (*g)(M,int),M\
     \ (*h)(M,M),M (*e)()>struct Rerooting{\r\n    using P=pair<int,N>;\r\n    vector<vector<P>>\
     \ G;\r\n    vector<M> buf,ret;\r\n    Rerooting(int n):G(n),buf(n,e()),ret(n){}\r\
@@ -55,12 +57,12 @@ data:
     \   dfs2(to,v,add);\r\n            buf[v]=buf_v,buf[to]=buf_to;\r\n          \
     \  id++;\r\n        }\r\n    }\r\n    vector<M> run(){\r\n        dfs1(0,-1);\r\
     \n        dfs2(0,-1,e());\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n\
-    \ * @brief Rerooting\r\n */"
+    \ * @brief Rerooting\r\n * @docs docs/rerooting.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Graph/rerooting.hpp
   requiredBy: []
-  timestamp: '2022-01-05 16:50:26+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/AOJ_1595.test.cpp
@@ -71,3 +73,15 @@ redirect_from:
 - /library/Graph/rerooting.hpp.html
 title: Rerooting
 ---
+## 使い方
+
+`Rerooting(int n)`: $n$ 頂点のデータ構造を作成。テンプレートには
+* $M$: 値の型
+* $N$: 作用素の型
+* $M (*f)(M,N)$: 値に作用素を作用する関数
+* $M (*g)(M,int)$: 値に頂点 $v$ の重みを作用する関数
+* $M (*h)(M,M)$: 値同士をマージする関数
+* $M (*e)()$: $h$ の単位元
+を指定する。
+`void add_edge(int u,int v,N w)`: グラフに重み $w$ の辺 $(u,v)$ を追加。
+`vector<M> run()`: 各頂点を根としたときの結果。

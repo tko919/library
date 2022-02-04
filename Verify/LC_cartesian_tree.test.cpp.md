@@ -30,10 +30,11 @@ data:
     \n         while(cur!=-1 and a[cur]>a[i])pre=cur,cur=res[cur];\r\n         if(cur==-1){res[i]=-1;\
     \ res[pre]=i;}\r\n         else{res[i]=cur; res[pre]=i;}\r\n      }\r\n      else\
     \ res[i]=cur;\r\n   } return res;\r\n}\r\n\r\n/**\r\n * @brief Cartesian Tree\r\
-    \n */\n#line 5 \"Verify/LC_cartesian_tree.test.cpp\"\n\r\nint main(){\r\n    int\
-    \ n;\r\n    cin>>n;\r\n    vector<int> a(n);\r\n    rep(i,0,n)cin>>a[i];\r\n \
-    \   auto ret=Cartesian(a);\r\n    rep(i,0,n){\r\n        if(ret[i]==-1)ret[i]=i;\r\
-    \n        cout<<ret[i]<<'\\n';\r\n    }\r\n    return 0;\r\n}\n"
+    \n * @docs docs/cartesian.md\r\n */\n#line 5 \"Verify/LC_cartesian_tree.test.cpp\"\
+    \n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    vector<int> a(n);\r\n  \
+    \  rep(i,0,n)cin>>a[i];\r\n    auto ret=Cartesian(a);\r\n    rep(i,0,n){\r\n \
+    \       if(ret[i]==-1)ret[i]=i;\r\n        cout<<ret[i]<<'\\n';\r\n    }\r\n \
+    \   return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\r\n\r\n\
     #include \"Template/template.hpp\"\r\n#include \"Algorithm/cartesian.hpp\"\r\n\
     \r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    vector<int> a(n);\r\n    rep(i,0,n)cin>>a[i];\r\
@@ -45,7 +46,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_cartesian_tree.test.cpp

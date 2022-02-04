@@ -48,13 +48,14 @@ data:
     \ x){\r\n        int k=lower_bound(ALL(xs),x)-xs.begin()+n-1;\r\n        T res=eval(ls[k],x);\r\
     \n        while(k){\r\n            k=(k-1)>>1;\r\n            chmin(res,eval(ls[k],x));\r\
     \n        }\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Convex\
-    \ Hull Trick (Li Chao Tree)\r\n */\n#line 5 \"Verify/LC_segment_add_get_min.test.cpp\"\
-    \n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<ll> l(N),r(N),a(N),b(N);\r\
-    \n    rep(i,0,N)cin>>l[i]>>r[i]>>a[i]>>b[i];\r\n    vector<ll> t(Q),L(Q),R(Q),c(Q),d(Q);\r\
-    \n    vector<ll> xs;\r\n    rep(i,0,Q){\r\n        cin>>t[i];\r\n        if(t[i]==0)cin>>L[i]>>R[i]>>c[i]>>d[i];\r\
-    \n        else{\r\n            cin>>L[i];\r\n            xs.push_back(L[i]);\r\
-    \n        }\r\n    }\r\n    xs.push_back(-INF);\r\n    xs.push_back(INF);\r\n\
-    \    sort(ALL(xs));\r\n    xs.erase(unique(ALL(xs)),xs.end());\r\n\r\n    CHT<ll,INF>\
+    \ Hull Trick (Li Chao Tree)\r\n * @docs docs/lichaotree.md\r\n */\n#line 5 \"\
+    Verify/LC_segment_add_get_min.test.cpp\"\n\r\nint main(){\r\n    int N,Q;\r\n\
+    \    cin>>N>>Q;\r\n    vector<ll> l(N),r(N),a(N),b(N);\r\n    rep(i,0,N)cin>>l[i]>>r[i]>>a[i]>>b[i];\r\
+    \n    vector<ll> t(Q),L(Q),R(Q),c(Q),d(Q);\r\n    vector<ll> xs;\r\n    rep(i,0,Q){\r\
+    \n        cin>>t[i];\r\n        if(t[i]==0)cin>>L[i]>>R[i]>>c[i]>>d[i];\r\n  \
+    \      else{\r\n            cin>>L[i];\r\n            xs.push_back(L[i]);\r\n\
+    \        }\r\n    }\r\n    xs.push_back(-INF);\r\n    xs.push_back(INF);\r\n \
+    \   sort(ALL(xs));\r\n    xs.erase(unique(ALL(xs)),xs.end());\r\n\r\n    CHT<ll,INF>\
     \ cht(xs);\r\n    rep(i,0,N)cht.add_segment(a[i],b[i],l[i],r[i]);\r\n    rep(i,0,Q){\r\
     \n        if(t[i]==0)cht.add_segment(c[i],d[i],L[i],R[i]);\r\n        else{\r\n\
     \            ll ret=cht.getmin(L[i]);\r\n            if(ret==INF)puts(\"INFINITY\"\
@@ -79,7 +80,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_segment_add_get_min.test.cpp

@@ -60,12 +60,12 @@ data:
     \ T>void fwt(vector<T>& a){\r\n    int n=__lg(a.size());\r\n    rep(k,0,n)rep(mask,0,1<<n){\r\
     \n        if(!(mask>>k&1)){\r\n            T x=a[mask],y=a[mask|(1<<k)];\r\n \
     \           a[mask]=x+y,a[mask|(1<<k)]=x-y;\r\n        }\r\n    }\r\n}\r\n\r\n\
-    /**\r\n * @brief Bitwise Convolution\r\n */\n#line 6 \"Verify/LC_bitwise_xor_convolution.test.cpp\"\
-    \n\r\nusing Fp=fp<998244353>;\r\n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\
-    \n    vector<Fp> a(1<<n),b(1<<n);\r\n    for(auto& x:a)cin>>x;\r\n    for(auto&\
-    \ x:b)cin>>x;\r\n    vector<Fp> ret(1<<n);\r\n    fwt(a);\r\n    fwt(b);\r\n \
-    \   rep(i,0,1<<n)ret[i]=a[i]*b[i];\r\n    fwt(ret);\r\n    for(auto& x:ret)cout<<x/(1<<n)<<'\\\
-    n';\r\n    return 0;\r\n}\n"
+    /**\r\n * @brief Bitwise Convolution\r\n * @docs docs/bitwise.md\r\n */\n#line\
+    \ 6 \"Verify/LC_bitwise_xor_convolution.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
+    \n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    vector<Fp> a(1<<n),b(1<<n);\r\
+    \n    for(auto& x:a)cin>>x;\r\n    for(auto& x:b)cin>>x;\r\n    vector<Fp> ret(1<<n);\r\
+    \n    fwt(a);\r\n    fwt(b);\r\n    rep(i,0,1<<n)ret[i]=a[i]*b[i];\r\n    fwt(ret);\r\
+    \n    for(auto& x:ret)cout<<x/(1<<n)<<'\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"Convolution/bitwise.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\n\r\nint\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
+  timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bitwise_xor_convolution.test.cpp
