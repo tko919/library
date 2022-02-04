@@ -83,5 +83,6 @@ title: Rerooting
 * $M (*h)(M,M)$: 値同士をマージする関数  
 * $M (*e)()$: $h$ の単位元  
 を指定する。  
+
 `void add_edge(int u,int v,N w)`: グラフに重み $w$ の辺 $(u,v)$ を追加。  
 `vector<M> run()`: 各頂点を根としたときの結果。  
