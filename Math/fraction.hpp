@@ -38,4 +38,5 @@ template<typename T>Frac<T> between(const Frac<T>& x,const Frac<T>& y){
 
 /**
  * @brief Fraction
+ * @docs docs/fraction.md
  */

@@ -24,4 +24,5 @@ template<typename T>void fwt(vector<T>& a){
 
 /**
  * @brief Bitwise Convolution
+ * @docs docs/bitwise.md
  */

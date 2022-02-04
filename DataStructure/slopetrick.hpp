@@ -69,4 +69,5 @@ template<typename T,T mx>struct SlopeTrick{
 
 /**
  * @brief Slope Trick
+ * @docs docs/slopetrick.md
  */

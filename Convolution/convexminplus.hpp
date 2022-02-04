@@ -16,4 +16,5 @@ template<typename T>vector<T> ConvexMinPlusConvolution(vector<T>& a,vector<T>& b
 
 /**
  * @brief Convex Min Plus Convolution
+ * @docs docs/convexminplus.md
  */

@@ -58,4 +58,5 @@ template<typename M,typename N,M (*f)(M,N),M (*g)(M,int),M (*h)(M,M),M (*e)()>st
 
 /**
  * @brief Rerooting
+ * @docs docs/rerooting.md
  */

@@ -116,4 +116,5 @@ template<typename T>struct SuffixArray{
 
 /**
  * @brief Suffix Array
+ * @docs docs/suffixarray.md
  */

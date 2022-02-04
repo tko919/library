@@ -44,4 +44,5 @@ struct RollbackMo{
 
 /**
  * @brief Rollback Mo
+ * @docs docs/rollbackmo.md
  */

@@ -28,4 +28,5 @@ template<typename F>vector<int> MonotoneMinima(int R,int C,F cmp){
 
 /**
  * @brief Monotone Minima
+ * @docs docs/monotoneminima.md
  */

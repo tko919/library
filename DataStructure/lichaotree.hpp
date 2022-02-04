@@ -69,4 +69,5 @@ template<typename T,T MX>struct CHT{
 
 /**
  * @brief Convex Hull Trick (Li Chao Tree)
+ * @docs docs/lichaotree.md
  */

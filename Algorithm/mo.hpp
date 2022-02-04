@@ -31,4 +31,5 @@ struct Mo{
 
 /**
  * @brief Mo's Algorithm
+ * @docs docs/mo.md
  */

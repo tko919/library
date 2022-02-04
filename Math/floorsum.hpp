@@ -18,4 +18,5 @@ ll FloorSum(ll n,ll a,ll b,ll m){
 
 /**
  * @brief Floor Sum
+ * @docs docs/floorsum.md
  */

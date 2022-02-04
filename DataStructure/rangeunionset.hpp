@@ -32,4 +32,5 @@ template<typename T,T mx>struct RangeUnionSet{
 
 /**
  * @brief Range Union Set
+ * @docs docs/rangeunionset.md
  */

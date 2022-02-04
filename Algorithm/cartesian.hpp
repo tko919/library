@@ -17,4 +17,5 @@ vector<int> Cartesian(const vector<int>& a){
 
 /**
  * @brief Cartesian Tree
+ * @docs docs/cartesian.md
  */

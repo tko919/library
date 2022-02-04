@@ -90,4 +90,5 @@ template<typename T>struct WaveletMatrix{
 
 /**
  * @brief Wavelet Matrix
+ * @docs docs/wavelet.md
  */

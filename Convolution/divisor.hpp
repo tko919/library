@@ -53,4 +53,5 @@ namespace MultipleTransform{
 
 /**
  * @brief Divisor Multiple Transform
+ * @docs docs/divisor.md
  */
