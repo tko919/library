@@ -30,7 +30,7 @@ int main(){
             io.write(tree.kth_element(tree.lower_bound(x)));
         }
         if(t==4){
-            io.write(tree.kth_element(tree.upper_bound(x)));
+            io.write(tree.kth_element(tree.upper_bound(x)-1));
         }
     }
     return 0;

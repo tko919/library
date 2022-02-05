@@ -78,11 +78,11 @@ template<typename T>struct WaveletMatrix{
     int freq(int L,int R,T a,T b){
         return freq(L,R,b)-freq(L,R,a);
     }
-    T lower_bound(int L,int R,T x){
+    T prev(int L,int R,T x){
         int cnt=freq(L,R,x);
         return cnt==R-L?T(-1):quantile(L,R,cnt);
     }
-    T upper_bound(int L,int R,T x){
+    T next(int L,int R,T x){
         int cnt=freq(L,R,x);
         return cnt==0?T(-1):quantile(L,R,cnt-1);
     }

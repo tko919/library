@@ -54,7 +54,7 @@ template<typename T>class RBSTset{
         else return size(x->lp)+1+lower_bound(x->rp,v);
     }
     int upper_bound(Node* x,T v){
-        if(!x)return -1;
+        if(!x)return 0;
         if(x->key>v)return upper_bound(x->lp,v);
         else return size(x->lp)+1+upper_bound(x->rp,v);
     }
@@ -106,10 +106,10 @@ public:
         root=merge(L,R);
         return cur->key;
     }
-    T lower_bound(T v){
+    int lower_bound(T v){
         return lower_bound(root,v);
     }
-    T upper_bound(T v){
+    int upper_bound(T v){
         return upper_bound(root,v);
     }
     void dump(){

@@ -6,12 +6,8 @@ struct RollbackMo{
     vector<P> qs;
     RollbackMo(int _n):n(_n),w(sqrt(n)){}
     void add(int lb,int rb){qs.push_back({lb,rb});}
-    void init();
-    void insert(int i);
-    void snapshot();
-    void rollback();
-    void out(int i);
-    void run(){
+    template<typename INIT,typename ADD,typename SNAP,typename ROLL,typename OUT>
+    void run(const INIT& init,const ADD& insert,const SNAP& snapshot,const ROLL& rollback,const OUT& out){
         const int q=qs.size();
         vector<int> ord(q);
         iota(ALL(ord),0);

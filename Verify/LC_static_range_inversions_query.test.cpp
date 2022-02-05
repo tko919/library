@@ -8,26 +8,6 @@ int a[101010];
 ll ret[101010],cur=0;
 BIT<int> bit(101010);
 
-void Mo::addl(int i){
-    cur+=bit.sum(a[i]);
-    bit.add(a[i],1);
-}
-void Mo::addr(int i){
-    cur+=bit.all-bit.sum(a[i]);
-    bit.add(a[i],1);
-}
-void Mo::dell(int i){
-    bit.add(a[i],-1);
-    cur-=bit.sum(a[i]);
-}
-void Mo::delr(int i){
-    bit.add(a[i],-1);
-    cur-=bit.all-bit.sum(a[i]);
-}
-void Mo::out(int i){
-    ret[i]=cur;
-}
-
 int main(){
     int n,q;
     cin>>n>>q;
@@ -39,13 +19,34 @@ int main(){
     }
     sort(ALL(vs));
     rep(i,0,n)a[vs[i].second]=i;
+
+    auto addl=[&](int i){
+        cur+=bit.sum(a[i]);
+        bit.add(a[i],1);
+    };
+    auto addr=[&](int i){
+        cur+=bit.all-bit.sum(a[i]);
+        bit.add(a[i],1);
+    };
+    auto dell=[&](int i){
+        bit.add(a[i],-1);
+        cur-=bit.sum(a[i]);
+    };
+    auto delr=[&](int i){
+        bit.add(a[i],-1);
+        cur-=bit.all-bit.sum(a[i]);
+    };
+    auto out=[&](int i){
+        ret[i]=cur;
+    };
+
     Mo mo(n);
     rep(i,0,q){
         int L,R;
         cin>>L>>R;
         mo.add(L,R);
     }
-    mo.run();
+    mo.run(addl,addr,dell,delr,out);
     rep(i,0,q)cout<<ret[i]<<'\n';
     return 0;
 }
