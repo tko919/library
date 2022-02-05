@@ -22,6 +22,12 @@ data:
     path: Verify/LC_enumerate_primes.test.cpp
     title: Verify/LC_enumerate_primes.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_gcd_convolution.test.cpp
+    title: Verify/LC_gcd_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_lcm_convolution.test.cpp
+    title: Verify/LC_lcm_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_many_aplusb.test.cpp
     title: Verify/LC_many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
@@ -187,6 +193,7 @@ data:
   timestamp: '2022-02-01 00:33:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_gcd_convolution.test.cpp
   - Verify/YUKI_1080.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/LC_persistent_unionfind.test.cpp
@@ -205,6 +212,7 @@ data:
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/AOJ_GRL_6_A.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
 documentation_of: Utility/fastio.hpp
 layout: document

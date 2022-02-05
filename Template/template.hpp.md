@@ -64,6 +64,9 @@ data:
     path: Verify/LC_frequency_table_of_tree_distance.test.cpp
     title: Verify/LC_frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_gcd_convolution.test.cpp
+    title: Verify/LC_gcd_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lca.test.cpp
     title: Verify/LC_lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_lcm_convolution.test.cpp
+    title: Verify/LC_lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_line_add_get_min.test.cpp
     title: Verify/LC_line_add_get_min.test.cpp
@@ -236,6 +242,7 @@ data:
   verifiedWith:
   - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
   - Verify/YUKI_1080.test.cpp
   - Verify/LC_staticrmq-2.test.cpp
   - Verify/LC_staticrmq.test.cpp
@@ -298,6 +305,7 @@ data:
   - Verify/LC_scc.test.cpp
   - Verify/LC_bipartitematching.test.cpp
   - Verify/LC_enumerate_palindromes.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
   - Verify/LC_nim_product_64.test.cpp
   - Verify/LC_line_add_get_min.test.cpp
   - Verify/LC_sum_of_floor_of_linear.test.cpp

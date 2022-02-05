@@ -26,7 +26,7 @@ data:
     - icon: ':warning:'
       path: Convolution/convexminplus.hpp
       title: Convex Min Plus Convolution
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/divisor.hpp
       title: Divisor Multiple Transform
     - icon: ':heavy_check_mark:'
@@ -283,6 +283,9 @@ data:
       path: Verify/LC_frequency_table_of_tree_distance.test.cpp
       title: Verify/LC_frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_gcd_convolution.test.cpp
+      title: Verify/LC_gcd_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -291,6 +294,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_lca.test.cpp
       title: Verify/LC_lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_lcm_convolution.test.cpp
+      title: Verify/LC_lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_line_add_get_min.test.cpp
       title: Verify/LC_line_add_get_min.test.cpp

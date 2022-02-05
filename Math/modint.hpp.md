@@ -28,11 +28,17 @@ data:
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_gcd_convolution.test.cpp
+    title: Verify/LC_gcd_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_lcm_convolution.test.cpp
+    title: Verify/LC_lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
@@ -154,6 +160,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
   - Verify/YUKI_1080.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp
@@ -179,6 +186,7 @@ data:
   - Verify/LC_find_linear_recurrence.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
   - Verify/LC_polynomial_taylor_shift.test.cpp
 documentation_of: Math/modint.hpp
 layout: document
