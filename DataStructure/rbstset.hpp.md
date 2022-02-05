@@ -49,7 +49,7 @@ data:
     \n            return {L,R};\r\n        }\r\n    }\r\n    int lower_bound(Node*\
     \ x,T v){\r\n        if(!x)return 0;\r\n        if(x->key>=v)return lower_bound(x->lp,v);\r\
     \n        else return size(x->lp)+1+lower_bound(x->rp,v);\r\n    }\r\n    int\
-    \ upper_bound(Node* x,T v){\r\n        if(!x)return -1;\r\n        if(x->key>v)return\
+    \ upper_bound(Node* x,T v){\r\n        if(!x)return 0;\r\n        if(x->key>v)return\
     \ upper_bound(x->lp,v);\r\n        else return size(x->lp)+1+upper_bound(x->rp,v);\r\
     \n    }\r\n    void _dump(Node* cur,string add){\r\n        if(!cur)return;\r\n\
     \        _dump(cur->lp,add+\"*\");\r\n        cerr<<add<<cur->key<<'\\n';\r\n\
@@ -68,9 +68,9 @@ data:
     \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
     \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
     \ while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return cur->key;\r\
-    \n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
-    \    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n \
-    \   }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
+    \n    }\r\n    int lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
+    \    }\r\n    int upper_bound(T v){\r\n        return upper_bound(root,v);\r\n\
+    \    }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
     /**\r\n * @brief Randomized Binary Search Tree (set)\r\n */\n"
   code: "#pragma once\r\n\r\n#include \"Utility/random.hpp\"\r\n\r\nRandom genRBSTset;\r\
     \ntemplate<typename T>class RBSTset{\r\n    struct Node{\r\n        Node *lp=nullptr,*rp=nullptr;\r\
@@ -91,7 +91,7 @@ data:
     \n            return {L,R};\r\n        }\r\n    }\r\n    int lower_bound(Node*\
     \ x,T v){\r\n        if(!x)return 0;\r\n        if(x->key>=v)return lower_bound(x->lp,v);\r\
     \n        else return size(x->lp)+1+lower_bound(x->rp,v);\r\n    }\r\n    int\
-    \ upper_bound(Node* x,T v){\r\n        if(!x)return -1;\r\n        if(x->key>v)return\
+    \ upper_bound(Node* x,T v){\r\n        if(!x)return 0;\r\n        if(x->key>v)return\
     \ upper_bound(x->lp,v);\r\n        else return size(x->lp)+1+upper_bound(x->rp,v);\r\
     \n    }\r\n    void _dump(Node* cur,string add){\r\n        if(!cur)return;\r\n\
     \        _dump(cur->lp,add+\"*\");\r\n        cerr<<add<<cur->key<<'\\n';\r\n\
@@ -110,16 +110,16 @@ data:
     \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
     \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
     \ while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return cur->key;\r\
-    \n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
-    \    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n \
-    \   }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
+    \n    }\r\n    int lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
+    \    }\r\n    int upper_bound(T v){\r\n        return upper_bound(root,v);\r\n\
+    \    }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
     /**\r\n * @brief Randomized Binary Search Tree (set)\r\n */"
   dependsOn:
   - Utility/random.hpp
   isVerificationFile: false
   path: DataStructure/rbstset.hpp
   requiredBy: []
-  timestamp: '2022-01-31 02:21:24+09:00'
+  timestamp: '2022-02-06 02:40:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_predecessor_problem.test.cpp

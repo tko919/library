@@ -120,7 +120,7 @@ data:
     \n            return {L,R};\r\n        }\r\n    }\r\n    int lower_bound(Node*\
     \ x,T v){\r\n        if(!x)return 0;\r\n        if(x->key>=v)return lower_bound(x->lp,v);\r\
     \n        else return size(x->lp)+1+lower_bound(x->rp,v);\r\n    }\r\n    int\
-    \ upper_bound(Node* x,T v){\r\n        if(!x)return -1;\r\n        if(x->key>v)return\
+    \ upper_bound(Node* x,T v){\r\n        if(!x)return 0;\r\n        if(x->key>v)return\
     \ upper_bound(x->lp,v);\r\n        else return size(x->lp)+1+upper_bound(x->rp,v);\r\
     \n    }\r\n    void _dump(Node* cur,string add){\r\n        if(!cur)return;\r\n\
     \        _dump(cur->lp,add+\"*\");\r\n        cerr<<add<<cur->key<<'\\n';\r\n\
@@ -139,9 +139,9 @@ data:
     \n    }\r\n    T kth_element(int k){\r\n        if(k>=size(root) or k<0)return\
     \ -1;\r\n        auto [L,R]=split(root,k);\r\n        Node* cur=R;\r\n       \
     \ while(cur->lp)cur=cur->lp;\r\n        root=merge(L,R);\r\n        return cur->key;\r\
-    \n    }\r\n    T lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
-    \    }\r\n    T upper_bound(T v){\r\n        return upper_bound(root,v);\r\n \
-    \   }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
+    \n    }\r\n    int lower_bound(T v){\r\n        return lower_bound(root,v);\r\n\
+    \    }\r\n    int upper_bound(T v){\r\n        return upper_bound(root,v);\r\n\
+    \    }\r\n    void dump(){\r\n        _dump(root,\"*\");\r\n    }\r\n};\r\n\r\n\
     /**\r\n * @brief Randomized Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_predecessor_problem.test.cpp\"\
     \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    string s;\r\n    io.read(n,q,s);\r\
     \n    RBSTset<int> tree;\r\n    rep(i,0,n)if(s[i]=='1'){\r\n        tree.insert(i);\r\
@@ -150,7 +150,7 @@ data:
     \n        }\r\n        if(t==1){\r\n            if(tree.find(x))tree.erase(x);\r\
     \n        }\r\n        if(t==2){\r\n            io.write((int)tree.find(x));\r\
     \n        }\r\n        if(t==3){\r\n            io.write(tree.kth_element(tree.lower_bound(x)));\r\
-    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)));\r\
+    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)-1));\r\
     \n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\r\
     \n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
@@ -162,7 +162,7 @@ data:
     \        if(t==1){\r\n            if(tree.find(x))tree.erase(x);\r\n        }\r\
     \n        if(t==2){\r\n            io.write((int)tree.find(x));\r\n        }\r\
     \n        if(t==3){\r\n            io.write(tree.kth_element(tree.lower_bound(x)));\r\
-    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)));\r\
+    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)-1));\r\
     \n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
@@ -172,7 +172,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2022-02-01 00:33:04+09:00'
+  timestamp: '2022-02-06 02:40:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_predecessor_problem.test.cpp
