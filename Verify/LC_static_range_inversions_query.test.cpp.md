@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Algorithm/mo.hpp
     title: Mo's Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -33,7 +33,7 @@ data:
     \n    }\r\n    template <typename AL, typename AR, typename DL, typename DR, typename\
     \ OUT>\r\n    void run(const AL& addl,const AR& addr,const DL& dell,const DR&\
     \ delr,const OUT& out){\r\n        const int q=L.size();\r\n        const int\
-    \ w=int(n/sqrt(q+1));\r\n        vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\
+    \ w=max(1,int(n/sqrt(q+1)));\r\n        vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\
     \n        sort(ALL(ord),[&](int i,int j){\r\n            int a=L[i]/w,b=L[j]/w;\r\
     \n            if(a!=b)return a<b;\r\n            else if(R[i]!=R[j])return (a&1)?R[i]>R[j]:R[i]<R[j];\r\
     \n            else return L[i]<L[j];\r\n        });\r\n        int lb=0,rb=0;\r\
@@ -87,8 +87,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2022-02-06 21:52:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-06 21:59:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_static_range_inversions_query.test.cpp
 layout: document

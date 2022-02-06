@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/mo.md
     document_title: Mo's Algorithm
@@ -18,8 +18,8 @@ data:
     \n        L.push_back(lb);\r\n        R.push_back(rb);\r\n    }\r\n    template\
     \ <typename AL, typename AR, typename DL, typename DR, typename OUT>\r\n    void\
     \ run(const AL& addl,const AR& addr,const DL& dell,const DR& delr,const OUT& out){\r\
-    \n        const int q=L.size();\r\n        const int w=int(n/sqrt(q+1));\r\n \
-    \       vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int\
+    \n        const int q=L.size();\r\n        const int w=max(1,int(n/sqrt(q+1)));\r\
+    \n        vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int\
     \ i,int j){\r\n            int a=L[i]/w,b=L[j]/w;\r\n            if(a!=b)return\
     \ a<b;\r\n            else if(R[i]!=R[j])return (a&1)?R[i]>R[j]:R[i]<R[j];\r\n\
     \            else return L[i]<L[j];\r\n        });\r\n        int lb=0,rb=0;\r\
@@ -33,7 +33,7 @@ data:
     \n        R.push_back(rb);\r\n    }\r\n    template <typename AL, typename AR,\
     \ typename DL, typename DR, typename OUT>\r\n    void run(const AL& addl,const\
     \ AR& addr,const DL& dell,const DR& delr,const OUT& out){\r\n        const int\
-    \ q=L.size();\r\n        const int w=int(n/sqrt(q+1));\r\n        vector<int>\
+    \ q=L.size();\r\n        const int w=max(1,int(n/sqrt(q+1)));\r\n        vector<int>\
     \ ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int i,int\
     \ j){\r\n            int a=L[i]/w,b=L[j]/w;\r\n            if(a!=b)return a<b;\r\
     \n            else if(R[i]!=R[j])return (a&1)?R[i]>R[j]:R[i]<R[j];\r\n       \
@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: Algorithm/mo.hpp
   requiredBy: []
-  timestamp: '2022-02-06 21:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-02-06 21:59:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_static_range_inversions_query.test.cpp
 documentation_of: Algorithm/mo.hpp
