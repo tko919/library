@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/wavelet.hpp
     title: Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   - icon: ':heavy_check_mark:'
@@ -93,7 +93,7 @@ data:
     \  }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
     \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(vector<T> a):N(a.size()){\r\n        T mx;\r\n        for(auto&\
+    \n    WaveletMatrix(vector<T> a={}):N(a.size()){\r\n        T mx;\r\n        for(auto&\
     \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
     \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
     \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
@@ -140,7 +140,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2022-02-06 02:40:36+09:00'
+  timestamp: '2022-02-06 21:52:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_range_kth_smallest.test.cpp

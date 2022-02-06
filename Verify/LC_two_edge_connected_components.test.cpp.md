@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/lowlink.hpp
     title: Lowlink
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -26,7 +26,7 @@ data:
     \ a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T&\
     \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"Graph/lowlink.hpp\"\n\r\n\
     struct LowLink{\r\n    const int n; vector<vector<int>> g;\r\n    vector<int>\
-    \ used,ord,low,id;\r\n    LowLink(const int& _n):n(_n),g(n),\r\n        used(n,0),ord(n,0),low(n,0),id(n,-1){\r\
+    \ used,ord,low,id;\r\n    LowLink(const int& _n=0):n(_n),g(n),\r\n        used(n,0),ord(n,0),low(n,0),id(n,-1){\r\
     \n    }\r\n    void add_edge(int u,int v){\r\n        g[u].emplace_back(v); g[v].emplace_back(u);\r\
     \n     }\r\n    void dfs(int v,int p,int& k){\r\n        used[v]=1; low[v]=ord[v]=k++;\r\
     \n        int cnt=0,sub=0;\r\n        for(auto& to:g[v]){\r\n            if(to==p\
@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2022-01-10 05:38:20+09:00'
+  timestamp: '2022-02-06 21:52:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_two_edge_connected_components.test.cpp

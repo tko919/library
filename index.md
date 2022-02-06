@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algorithm/cartesian.hpp
       title: Cartesian Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algorithm/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -46,7 +46,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -124,6 +124,9 @@ data:
       title: Geometry
   - name: Graph
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Graph/bc.hpp
+      title: Biconnected Components
     - icon: ':heavy_check_mark:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
@@ -208,7 +211,7 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
@@ -234,6 +237,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_associative_array.test.cpp
       title: Verify/LC_associative_array.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_biconnected_components.test.cpp
+      title: Verify/LC_biconnected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_bipartitematching.test.cpp
       title: Verify/LC_bipartitematching.test.cpp
@@ -384,7 +390,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'

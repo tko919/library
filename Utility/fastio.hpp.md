@@ -16,6 +16,9 @@ data:
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_biconnected_components.test.cpp
+    title: Verify/LC_biconnected_components.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -207,6 +210,7 @@ data:
   - Verify/LC_associative_array.test.cpp
   - Verify/LC_queue_operate_all_composite.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_biconnected_components.test.cpp
   - Verify/AOJ_1595.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp
   - Verify/LC_enumerate_primes.test.cpp

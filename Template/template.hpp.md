@@ -16,6 +16,9 @@ data:
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_biconnected_components.test.cpp
+    title: Verify/LC_biconnected_components.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bipartitematching.test.cpp
     title: Verify/LC_bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,7 +168,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,9 +219,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing\
@@ -238,7 +241,7 @@ data:
   path: Template/template.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_convolution_mod.test.cpp
@@ -280,6 +283,7 @@ data:
   - Verify/LC_number_of_substrings.test.cpp
   - Verify/LC_queue_operate_all_composite.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_biconnected_components.test.cpp
   - Verify/LC_static_range_inversions_query.test.cpp
   - Verify/AOJ_1595.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp
