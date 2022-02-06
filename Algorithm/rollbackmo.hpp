@@ -2,13 +2,14 @@
 
 struct RollbackMo{
     using P=array<int,2>;
-    int n,w;
+    int n;
     vector<P> qs;
-    RollbackMo(int _n):n(_n),w(sqrt(n)){}
+    RollbackMo(int _n):n(_n){}
     void add(int lb,int rb){qs.push_back({lb,rb});}
     template<typename INIT,typename ADD,typename SNAP,typename ROLL,typename OUT>
     void run(const INIT& init,const ADD& insert,const SNAP& snapshot,const ROLL& rollback,const OUT& out){
         const int q=qs.size();
+        const int w=max(1,int(n/sqrt(q+1)));
         vector<int> ord(q);
         iota(ALL(ord),0);
         sort(ALL(ord),[&](int i,int j){

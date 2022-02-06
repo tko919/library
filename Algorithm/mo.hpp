@@ -11,7 +11,7 @@ struct Mo{
     template <typename AL, typename AR, typename DL, typename DR, typename OUT>
     void run(const AL& addl,const AR& addr,const DL& dell,const DR& delr,const OUT& out){
         const int q=L.size();
-        const int w=int(n/sqrt(q+1));
+        const int w=max(1,int(n/sqrt(q+1)));
         vector<int> ord(q);
         iota(ALL(ord),0);
         sort(ALL(ord),[&](int i,int j){
