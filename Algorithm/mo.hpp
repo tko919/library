@@ -11,14 +11,14 @@ struct Mo{
     template <typename AL, typename AR, typename DL, typename DR, typename OUT>
     void run(const AL& addl,const AR& addr,const DL& dell,const DR& delr,const OUT& out){
         const int q=L.size();
-        const int w=max(1,int(n*1./max(1.,sqrt(q*2./3.))));
+        const int w=int(n/sqrt(q+1));
         vector<int> ord(q);
         iota(ALL(ord),0);
         sort(ALL(ord),[&](int i,int j){
             int a=L[i]/w,b=L[j]/w;
             if(a!=b)return a<b;
-            else if(a&1)return R[i]>R[j];
-            else return R[i]<R[j];
+            else if(R[i]!=R[j])return (a&1)?R[i]>R[j]:R[i]<R[j];
+            else return L[i]<L[j];
         });
         int lb=0,rb=0;
         for(auto& i:ord){

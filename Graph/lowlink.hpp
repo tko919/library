@@ -3,7 +3,7 @@
 struct LowLink{
     const int n; vector<vector<int>> g;
     vector<int> used,ord,low,id;
-    LowLink(const int& _n):n(_n),g(n),
+    LowLink(const int& _n=0):n(_n),g(n),
         used(n,0),ord(n,0),low(n,0),id(n,-1){
     }
     void add_edge(int u,int v){
