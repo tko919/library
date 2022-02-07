@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: DataStructure/rangelis.hpp
+    title: Range LIS Query
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_static_range_lis_query.test.cpp
+    title: Verify/LC_static_range_lis_query.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -88,10 +94,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/wavelet.hpp
-  requiredBy: []
+  requiredBy:
+  - DataStructure/rangelis.hpp
   timestamp: '2022-02-06 21:52:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_range_kth_smallest.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
 documentation_of: DataStructure/wavelet.hpp

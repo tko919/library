@@ -73,6 +73,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentunionfind.hpp
       title: Persistent Union Find
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/rangelis.hpp
+      title: Range LIS Query
     - icon: ':warning:'
       path: DataStructure/rangeunionset.hpp
       title: Range Union Set
@@ -393,6 +396,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_static_range_lis_query.test.cpp
+      title: Verify/LC_static_range_lis_query.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_sum.test.cpp
       title: Verify/LC_static_range_sum.test.cpp

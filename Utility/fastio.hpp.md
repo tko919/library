@@ -61,6 +61,9 @@ data:
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_static_range_lis_query.test.cpp
+    title: Verify/LC_static_range_lis_query.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -201,6 +204,7 @@ data:
   - Verify/YUKI_310.test.cpp
   - Verify/LC_persistent_unionfind.test.cpp
   - Verify/LC_many_aplusb.test.cpp
+  - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp

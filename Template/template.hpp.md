@@ -172,6 +172,9 @@ data:
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_static_range_lis_query.test.cpp
+    title: Verify/LC_static_range_lis_query.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_sum.test.cpp
     title: Verify/LC_static_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -262,6 +265,7 @@ data:
   - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp
   - Verify/LC_pow_of_formal_power_series.test.cpp
