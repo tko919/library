@@ -1,10 +1,11 @@
 #pragma once
+#include "Math/pollard.hpp"
 
 ll mpow(ll a,ll t,ll m){
     ll res=1;
     while(t){
-        if(t&1)res=(res*a)%m;
-        a=(a*a)%m; t>>=1;
+        if(t&1)res=__int128_t(res)*a%m;
+        a=__int128_t(a)*a%m; t>>=1;
     } return res;
 }
 ll minv(ll a,ll m){
@@ -16,16 +17,11 @@ ll minv(ll a,ll m){
     } u=(u%m+m)%m; return u;
 }
 ll getPrimitiveRoot(ll p){
-    vector<ll> ds;
-    for(ll x=1;x*x<=p-1;x++)if((p-1)%x==0){
-        ds.push_back(x);
-        if(x*x!=p-1)ds.push_back((p-1)/x);
-    }
-    sort(ALL(ds));
-    ds.pop_back();
-    for(int x=1;x<p;x++){
-        for(auto& d:ds){
-            if(mpow(x,d,p)==1)goto fail;
+    vector<ll> ps=Pollard(p-1);
+    sort(ALL(ps));
+    rep(x,1,inf){
+        for(auto& q:ps){
+            if(mpow(x,(p-1)/q,p)==1)goto fail;
         }
         return x;
         fail:;

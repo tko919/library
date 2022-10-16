@@ -4,9 +4,11 @@
 #include "Algorithm/mo.hpp"
 #include "DataStructure/bit.hpp"
 
+int ADD(int a,int b){return a+b;}
+int SUB(int a,int b){return a-b;}
 int a[101010];
 ll ret[101010],cur=0;
-BIT<int> bit(101010);
+BIT<int,ADD,SUB> bit(101010);
 
 int main(){
     int n,q;

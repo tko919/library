@@ -47,6 +47,14 @@ template<class T>struct Matrix{
         }
         return res;
     }
+    Matrix inv(){
+        Matrix base(h,h*2),res(h,h);
+        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];
+        rep(i,0,h)base[i][h+i]=1;
+        base.gauss(h);
+        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];
+        return res;
+    }
     friend istream& operator>>(istream& is,Matrix& m){
         rep(i,0,m.h)rep(j,0,m.w)is>>m[i][j];
         return is;

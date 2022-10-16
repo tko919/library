@@ -4,7 +4,7 @@ template<typename M,typename N,M (*f)(M,N),M (*g)(M,int),M (*h)(M,M),M (*e)()>st
     using P=pair<int,N>;
     vector<vector<P>> G;
     vector<M> buf,ret;
-    Rerooting(int n):G(n),buf(n,e()),ret(n){}
+    Rerooting(int n):G(n){}
     void add_edge(int u,int v,N w){
         G[u].push_back({v,w});
         G[v].push_back({u,w});
@@ -50,6 +50,8 @@ template<typename M,typename N,M (*f)(M,N),M (*g)(M,int),M (*h)(M,M),M (*e)()>st
         }
     }
     vector<M> run(){
+        buf.assign(G.size(),e());
+        ret.assign(G.size(),e());
         dfs1(0,-1);
         dfs2(0,-1,e());
         return ret;

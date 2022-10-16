@@ -16,7 +16,7 @@ template<typename M,typename N,M (*f)(M,M),M (*g)(M,N),N (*h)(N,N),M (*m1)(),N (
         lazy[k]=n1();
     }
 public:
-    LazySegmentTree(int n):LazySegmentTree(vector<M>(n,m1())){}
+    LazySegmentTree(int n=0):LazySegmentTree(vector<M>(n,m1())){}
     LazySegmentTree(const vector<M>& a){
         sz=1,height=0;
         while(sz<(int)a.size())sz<<=1,height++;

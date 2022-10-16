@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename Key,typename Val,int N=1<<20>struct HashMap{
+template<typename Key,typename Val,int N=1<<20,Val Default=Val()>struct HashMap{
     Key* keys;
     Val* vals;
     bitset<N> used;
@@ -13,7 +13,7 @@ template<typename Key,typename Val,int N=1<<20>struct HashMap{
             if(!used[hash]){
                 keys[hash]=x;
                 used[hash]=1;
-                return vals[hash];
+                return vals[hash]=Default;
             }
             if(keys[hash]==x)return vals[hash];
             hash++;

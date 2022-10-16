@@ -1,6 +1,6 @@
 #pragma once
 
-vector<int> Zalgo(string s){
+template<typename T>vector<int> Zalgo(T& s){
    int n=s.size(); vector<int> res(n);
    for(int i=1,j=0;i<n;i++){
       if(i+res[i-j]<j+res[j])res[i]=res[i-j];
