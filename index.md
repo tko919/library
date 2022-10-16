@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algorithm/cartesian.hpp
       title: Cartesian Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algorithm/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -17,7 +17,7 @@ data:
       title: Rollback Mo
   - name: Convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Convolution/arbitrary.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -35,20 +35,23 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/multivariate.hpp
       title: Multivariate Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Convolution/subset.hpp
       title: Subset Convolution
   - name: DataStructure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
+    - icon: ':warning:'
+      path: DataStructure/dequeswag.hpp
+      title: Sliding Window Aggregation for deque
     - icon: ':heavy_check_mark:'
       path: DataStructure/disjointsparsetable.hpp
       title: Disjoint Sparse Table
@@ -58,7 +61,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/hashmap.hpp
       title: Hash Map
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
     - icon: ':heavy_check_mark:'
@@ -82,7 +85,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -91,7 +94,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -100,18 +103,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/wavelet.hpp
       title: Wavelet Matrix
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/weightedunionfind.hpp
+      title: Weighted Union Find
   - name: FPS
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -139,9 +145,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: Graph/contour.hpp
+      title: Contour Sum Query
+    - icon: ':warning:'
+      path: Graph/enumcliques.hpp
+      title: Enumerate Cliques
+    - icon: ':question:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
+    - icon: ':warning:'
+      path: Graph/lca.hpp
+      title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
       path: Graph/lowlink.hpp
       title: Lowlink
@@ -162,25 +177,25 @@ data:
       title: Strongly Connected Components
   - name: Math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/floorsum.hpp
       title: Floor Sum
     - icon: ':warning:'
       path: Math/fraction.hpp
       title: Fraction
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -195,9 +210,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
+    - icon: ':warning:'
+      path: Math/semiring.hpp
+      title: Semiring
     - icon: ':heavy_check_mark:'
       path: Math/sieve.hpp
       title: Prime Sieve
+    - icon: ':warning:'
+      path: Math/stirlingquery.hpp
+      title: Stirling Number for query
     - icon: ':heavy_check_mark:'
       path: Math/twosat.hpp
       title: 2-SAT
@@ -209,20 +230,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/suffixarray.hpp
       title: Suffix Array
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: String/zalgo.hpp
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:
@@ -231,6 +252,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/AOJ_1595.test.cpp
       title: Verify/AOJ_1595.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/AOJ_DSL_1_B.test.cpp
+      title: Verify/AOJ_DSL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/AOJ_DSL_2_D.test.cpp
       title: Verify/AOJ_DSL_2_D.test.cpp
@@ -348,25 +372,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_rectangle_sum.test.cpp
       title: Verify/LC_point_add_rectangle_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_point_set_range_composite.test.cpp
       title: Verify/LC_point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_polynomial_interpolation.test.cpp
       title: Verify/LC_polynomial_interpolation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_polynomial_taylor_shift.test.cpp
       title: Verify/LC_polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_predecessor_problem.test.cpp
       title: Verify/LC_predecessor_problem.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_queue_operate_all_composite.test.cpp
       title: Verify/LC_queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_range_affine_range_sum.test.cpp
       title: Verify/LC_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -378,7 +402,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest.test.cpp
       title: Verify/LC_range_kth_smallest.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_rectangle_sum.test.cpp
       title: Verify/LC_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -387,37 +411,37 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_sparse_matrix_det.test.cpp
       title: Verify/LC_sparse_matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_lis_query.test.cpp
       title: Verify/LC_static_range_lis_query.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_static_range_sum.test.cpp
       title: Verify/LC_static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_staticrmq-2.test.cpp
       title: Verify/LC_staticrmq-2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_staticrmq.test.cpp
       title: Verify/LC_staticrmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_subset_convolution.test.cpp
       title: Verify/LC_subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_suffixarray.test.cpp
       title: Verify/LC_suffixarray.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_sum_of_floor_of_linear.test.cpp
       title: Verify/LC_sum_of_floor_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_system_of_linear_equations.test.cpp
       title: Verify/LC_system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
@@ -429,22 +453,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_unionfind.test.cpp
       title: Verify/LC_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_zalgorithm.test.cpp
       title: Verify/LC_zalgorithm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/YUKI_1080.test.cpp
       title: Verify/YUKI_1080.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/YUKI_1112.test.cpp
       title: Verify/YUKI_1112.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/YUKI_310.test.cpp
       title: Verify/YUKI_310.test.cpp
 layout: toppage

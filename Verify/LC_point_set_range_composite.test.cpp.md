@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -32,7 +32,7 @@ data:
     \n    int inv() const{\r\n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
     \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
     \n    fp& init(int x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
-    \ fp()-*this;}\r\n    fp pow(ll t){fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
+    \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
     \ return res;}\r\n    fp& operator+=(const fp& x){return init(v+x.v);}\r\n   \
     \ fp& operator-=(const fp& x){return init(v+mod-x.v);}\r\n    fp& operator*=(const\
     \ fp& x){v=ll(v)*x.v%mod; return *this;}\r\n    fp& operator/=(const fp& x){v=ll(v)*x.inv()%mod;\
@@ -54,16 +54,16 @@ data:
     \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 2 \"DataStructure/segtree.hpp\"\n\r\ntemplate<typename\
     \ M,typename N,M (*f)(M,M),M (*g)(M,N),M (*m1)()>struct SegmentTree{\r\n    int\
-    \ sz; vector<M> data;\r\n    SegmentTree(int n){\r\n        sz=1; while(sz<n)sz<<=1;\
-    \ data.assign(2*sz,m1());\r\n    }\r\n    void run(vector<M>& v){\r\n        for(int\
-    \ i=0;i<(int)v.size();i++)data[i+sz]=v[i];\r\n        for(int k=sz-1;k>0;k--)data[k]=f(data[2*k],data[2*k+1]);\r\
-    \n    }\r\n    void set(int k,const M &x){\r\n        k+=sz; data[k]=x;\r\n  \
-    \      while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\n    }\r\n    void update(int\
-    \ k,const N &x){\r\n        k+=sz; data[k]=g(data[k],x);\r\n        while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\
-    \n    }\r\n    M query(int a,int b){\r\n        M L=m1(),R=m1();\r\n        for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){\r\
+    \ n; vector<M> data;\r\n    SegmentTree(int _n=0){\r\n        n=1; while(n<_n)n<<=1;\
+    \ data.assign(2*n,m1());\r\n    }\r\n    void run(vector<M>& v){\r\n        for(int\
+    \ i=0;i<(int)v.size();i++)data[i+n]=v[i];\r\n        for(int k=n-1;k>0;k--)data[k]=f(data[2*k],data[2*k+1]);\r\
+    \n    }\r\n    void set(int k,const M &x){\r\n        k+=n; data[k]=x;\r\n   \
+    \     while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\n    }\r\n    void update(int\
+    \ k,const N &x){\r\n        k+=n; data[k]=g(data[k],x);\r\n        while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\
+    \n    }\r\n    M query(int a,int b){\r\n        M L=m1(),R=m1();\r\n        for(a+=n,b+=n;a<b;a>>=1,b>>=1){\r\
     \n            if(a&1)L=f(L,data[a++]);\r\n            if(b&1)R=f(data[--b],R);\r\
     \n        }\r\n        return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
-    \ data[k+sz];}\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 6 \"Verify/LC_point_set_range_composite.test.cpp\"\
+    \ data[k+n];}\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 6 \"Verify/LC_point_set_range_composite.test.cpp\"\
     \n\r\nusing Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
     \nP g(P a,P b){return b;}\r\nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    int\
     \ N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N),b(N);\r\n    rep(i,0,N)cin>>a[i]>>b[i];\r\
@@ -92,8 +92,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 02:08:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-16 23:53:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_point_set_range_composite.test.cpp
 layout: document

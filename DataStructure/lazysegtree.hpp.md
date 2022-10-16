@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_affine_range_sum.test.cpp
     title: Verify/LC_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Lazy Segment Tree
     links: []
@@ -18,7 +18,7 @@ data:
     \ update(int k){data[k]=f(data[k*2],data[k*2+1]);}\r\n    void apply(int k,N x){\r\
     \n        data[k]=g(data[k],x);\r\n        if(k<sz)lazy[k]=h(lazy[k],x);\r\n \
     \   }\r\n    void down(int k){\r\n        apply(k*2,lazy[k]);\r\n        apply(k*2+1,lazy[k]);\r\
-    \n        lazy[k]=n1();\r\n    }\r\npublic:\r\n    LazySegmentTree(int n):LazySegmentTree(vector<M>(n,m1())){}\r\
+    \n        lazy[k]=n1();\r\n    }\r\npublic:\r\n    LazySegmentTree(int n=0):LazySegmentTree(vector<M>(n,m1())){}\r\
     \n    LazySegmentTree(const vector<M>& a){\r\n        sz=1,height=0;\r\n     \
     \   while(sz<(int)a.size())sz<<=1,height++;\r\n        data.assign(2*sz,m1());\r\
     \n        lazy.assign(sz,n1());\r\n        rep(i,0,a.size())data[sz+i]=a[i];\r\
@@ -44,7 +44,7 @@ data:
     \n    vector<M> data;\r\n    vector<N> lazy;\r\n    void update(int k){data[k]=f(data[k*2],data[k*2+1]);}\r\
     \n    void apply(int k,N x){\r\n        data[k]=g(data[k],x);\r\n        if(k<sz)lazy[k]=h(lazy[k],x);\r\
     \n    }\r\n    void down(int k){\r\n        apply(k*2,lazy[k]);\r\n        apply(k*2+1,lazy[k]);\r\
-    \n        lazy[k]=n1();\r\n    }\r\npublic:\r\n    LazySegmentTree(int n):LazySegmentTree(vector<M>(n,m1())){}\r\
+    \n        lazy[k]=n1();\r\n    }\r\npublic:\r\n    LazySegmentTree(int n=0):LazySegmentTree(vector<M>(n,m1())){}\r\
     \n    LazySegmentTree(const vector<M>& a){\r\n        sz=1,height=0;\r\n     \
     \   while(sz<(int)a.size())sz<<=1,height++;\r\n        data.assign(2*sz,m1());\r\
     \n        lazy.assign(sz,n1());\r\n        rep(i,0,a.size())data[sz+i]=a[i];\r\
@@ -69,8 +69,8 @@ data:
   isVerificationFile: false
   path: DataStructure/lazysegtree.hpp
   requiredBy: []
-  timestamp: '2022-01-16 22:20:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-16 23:53:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_range_affine_range_sum.test.cpp
 documentation_of: DataStructure/lazysegtree.hpp

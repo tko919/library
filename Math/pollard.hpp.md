@@ -4,11 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Math/primitive.hpp
+    title: Primitive Function
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_discrete_logarithm_mod.test.cpp
+    title: Verify/LC_discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
@@ -66,10 +72,12 @@ data:
   - Utility/random.hpp
   isVerificationFile: false
   path: Math/pollard.hpp
-  requiredBy: []
+  requiredBy:
+  - Math/primitive.hpp
   timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_factorize.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document

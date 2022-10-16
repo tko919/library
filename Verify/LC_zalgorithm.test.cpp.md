@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: String/zalgo.hpp
     title: Z-Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -24,9 +24,9 @@ data:
     \nconst ll INF = 0x1fffffffffffffff;\r\ntemplate<typename T>inline bool chmax(T&\
     \ a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T&\
     \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"String/zalgo.hpp\"\n\r\n\
-    vector<int> Zalgo(string s){\r\n   int n=s.size(); vector<int> res(n);\r\n   for(int\
-    \ i=1,j=0;i<n;i++){\r\n      if(i+res[i-j]<j+res[j])res[i]=res[i-j];\r\n     \
-    \ else{\r\n         int k=max(0,j+res[j]-i);\r\n         while(i+k<n&&s[k]==s[i+k])k++;\r\
+    template<typename T>vector<int> Zalgo(T& s){\r\n   int n=s.size(); vector<int>\
+    \ res(n);\r\n   for(int i=1,j=0;i<n;i++){\r\n      if(i+res[i-j]<j+res[j])res[i]=res[i-j];\r\
+    \n      else{\r\n         int k=max(0,j+res[j]-i);\r\n         while(i+k<n&&s[k]==s[i+k])k++;\r\
     \n         res[i]=k; j=i;\r\n      }\r\n   } res[0]=n; return res;\r\n}\r\n\r\n\
     /**\r\n * @brief Z-Algorithm\r\n */\n#line 5 \"Verify/LC_zalgorithm.test.cpp\"\
     \n\r\nint main(){\r\n    string s;\r\n    cin>>s;\r\n    auto ret=Zalgo(s);\r\n\
@@ -41,8 +41,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 05:20:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-16 23:53:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_zalgorithm.test.cpp
 layout: document

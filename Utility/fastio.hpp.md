@@ -7,6 +7,9 @@ data:
     path: Verify/AOJ_1595.test.cpp
     title: Verify/AOJ_1595.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/AOJ_DSL_1_B.test.cpp
+    title: Verify/AOJ_DSL_1_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_DSL_2_D.test.cpp
     title: Verify/AOJ_DSL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,18 +66,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_lis_query.test.cpp
     title: Verify/LC_static_range_lis_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Fast IO
     links: []
@@ -197,30 +200,31 @@ data:
   path: Utility/fastio.hpp
   requiredBy: []
   timestamp: '2022-02-01 00:33:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/YUKI_1080.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_persistent_unionfind.test.cpp
-  - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_static_range_lis_query.test.cpp
-  - Verify/LC_predecessor_problem.test.cpp
-  - Verify/LC_min_cost_b_flow.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_range_kth_smallest-2.test.cpp
-  - Verify/LC_range_kth_smallest.test.cpp
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_associative_array.test.cpp
-  - Verify/LC_queue_operate_all_composite.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_biconnected_components.test.cpp
-  - Verify/AOJ_1595.test.cpp
-  - Verify/AOJ_DSL_2_D.test.cpp
-  - Verify/LC_enumerate_primes.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_persistent_unionfind.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
   - Verify/AOJ_GRL_6_A.test.cpp
-  - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
+  - Verify/AOJ_DSL_1_B.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_many_aplusb.test.cpp
+  - Verify/LC_min_cost_b_flow.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_range_kth_smallest.test.cpp
+  - Verify/AOJ_DSL_2_D.test.cpp
+  - Verify/LC_range_kth_smallest-2.test.cpp
+  - Verify/LC_associative_array.test.cpp
+  - Verify/LC_predecessor_problem.test.cpp
+  - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - Verify/AOJ_1595.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_queue_operate_all_composite.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
 documentation_of: Utility/fastio.hpp
 layout: document

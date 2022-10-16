@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Graph/maxflow.hpp
-    title: Maximum Flow
+    path: DataStructure/weightedunionfind.hpp
+    title: Weighted Union Find
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -17,10 +17,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
-  bundledCode: "#line 1 \"Verify/AOJ_GRL_6_A.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
+  bundledCode: "#line 1 \"Verify/AOJ_DSL_1_B.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
@@ -83,49 +83,48 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 2 \"Graph/maxflow.hpp\"\n\r\nstruct MaxFlow{\r\
-    \n    struct Edge { ll to,cap,rev; };\r\n    int V; vector<vector<Edge>> G; vector<int>\
-    \ itr,level;\r\npublic:\r\n    MaxFlow(int V):V(V){G.assign(V,vector<Edge>());\
-    \ }\r\n    void add_edge(int from,int to,ll cap){\r\n        G[from].push_back({to,cap,(int)G[to].size()});\r\
-    \n        G[to].push_back({from,0,(int)G[from].size()-1});\r\n    }\r\n    void\
-    \ bfs(int s){\r\n        level.assign(V,-1); queue<int> q;\r\n        level[s]=0;\
-    \ q.push(s);\r\n        while(!q.empty()){\r\n            int v=q.front(); q.pop();\r\
-    \n            for(auto& e:G[v]){\r\n                if(e.cap>0&&level[e.to]<0)\
-    \ {\r\n                   level[e.to]=level[v]+1;\r\n                   q.push(e.to);\r\
-    \n                }\r\n            }\r\n        }\r\n    }\r\n    ll dfs(int v,int\
-    \ t,ll f){\r\n        if(v==t)return f;\r\n        for(int& i=itr[v];i<(int)G[v].size();i++){\r\
-    \n            Edge& e=G[v][i];\r\n            if(e.cap>0&&level[v]<level[e.to]){\r\
-    \n                ll d=dfs(e.to,t,min(f,e.cap));\r\n                if(d>0){\r\
-    \n                    e.cap-=d,G[e.to][e.rev].cap+=d;\r\n                    return\
-    \ d;\r\n                }\r\n            }\r\n        } return 0;\r\n    }\r\n\
-    \    ll run(int s,int t){\r\n        ll ret=0,f;\r\n        while(bfs(s),level[t]>=0){\r\
-    \n            itr.assign(V,0);\r\n            while((f=dfs(s,t,INF))>0)ret+=f;\r\
-    \n        } return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Flow\r\n\
-    \ */\n#line 6 \"Verify/AOJ_GRL_6_A.test.cpp\"\n\r\nFastIO io;\r\nint main(){\r\
-    \n    int n,m;\r\n    io.read(n,m);\r\n    MaxFlow mf(n);\r\n    rep(i,0,m){\r\
-    \n        int x,y,w;\r\n        io.read(x,y,w);\r\n        mf.add_edge(x,y,w);\r\
-    \n    }\r\n    auto ret=mf.run(0,n-1);\r\n    io.write(ret);\r\n    return 0;\r\
-    \n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
+    \n * @brief Fast IO\r\n */\n#line 2 \"DataStructure/weightedunionfind.hpp\"\n\r\
+    \ntemplate<typename T>struct WeightedUnionFind{\r\n    int n;\r\n    vector<int>\
+    \ par;\r\n    vector<T> pot;\r\n    WeightedUnionFind(int _n=0):n(_n),par(n,-1),pot(n){}\r\
+    \n    int root(int x){\r\n        if(par[x]<0)return x;\r\n        else{\r\n \
+    \           int r=root(par[x]);\r\n            pot[x]+=pot[par[x]];\r\n      \
+    \      return par[x]=r;\r\n        }\r\n    }\r\n    bool same(int x,int y){return\
+    \ root(x)==root(y);}\r\n    int size(int x){return -par[root(x)];}\r\n    T diff(int\
+    \ x,int y){return pot[x]-pot[y];}\r\n    bool unite(int x,int y,T w){\r\n    \
+    \    int rx=root(x),ry=root(y);\r\n        if(rx==ry)return false;\r\n       \
+    \ if(size(x)<size(y))swap(x,y),swap(rx,ry),w=-w;\r\n        par[rx]+=par[ry];\r\
+    \n        par[ry]=rx;\r\n        pot[ry]=diff(x,y)-w;\r\n        n--;\r\n    \
+    \    return true;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Weighted Union Find\r\
+    \n */\n#line 6 \"Verify/AOJ_DSL_1_B.test.cpp\"\n\r\nFastIO io;\r\nint main(){\r\
+    \n    int n,q;\r\n    io.read(n,q);\r\n    WeightedUnionFind<int> uni(n);\r\n\
+    \    while(q--){\r\n        int t;\r\n        io.read(t);\r\n        if(t==0){\r\
+    \n            int x,y,z;\r\n            io.read(x,y,z);\r\n            uni.unite(x,y,z);\r\
+    \n        }\r\n        else{\r\n            int x,y;\r\n            io.read(x,y);\r\
+    \n            if(uni.same(x,y))io.write(uni.diff(x,y));\r\n            else io.write('?');\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n#include \"Graph/maxflow.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\
-    \n    io.read(n,m);\r\n    MaxFlow mf(n);\r\n    rep(i,0,m){\r\n        int x,y,w;\r\
-    \n        io.read(x,y,w);\r\n        mf.add_edge(x,y,w);\r\n    }\r\n    auto\
-    \ ret=mf.run(0,n-1);\r\n    io.write(ret);\r\n    return 0;\r\n}"
+    \n#include \"DataStructure/weightedunionfind.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\
+    \n    int n,q;\r\n    io.read(n,q);\r\n    WeightedUnionFind<int> uni(n);\r\n\
+    \    while(q--){\r\n        int t;\r\n        io.read(t);\r\n        if(t==0){\r\
+    \n            int x,y,z;\r\n            io.read(x,y,z);\r\n            uni.unite(x,y,z);\r\
+    \n        }\r\n        else{\r\n            int x,y;\r\n            io.read(x,y);\r\
+    \n            if(uni.same(x,y))io.write(uni.diff(x,y));\r\n            else io.write('?');\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
-  - Graph/maxflow.hpp
+  - DataStructure/weightedunionfind.hpp
   isVerificationFile: true
-  path: Verify/AOJ_GRL_6_A.test.cpp
+  path: Verify/AOJ_DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-02-01 00:33:04+09:00'
+  timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/AOJ_GRL_6_A.test.cpp
+documentation_of: Verify/AOJ_DSL_1_B.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/AOJ_GRL_6_A.test.cpp
-- /verify/Verify/AOJ_GRL_6_A.test.cpp.html
-title: Verify/AOJ_GRL_6_A.test.cpp
+- /verify/Verify/AOJ_DSL_1_B.test.cpp
+- /verify/Verify/AOJ_DSL_1_B.test.cpp.html
+title: Verify/AOJ_DSL_1_B.test.cpp
 ---

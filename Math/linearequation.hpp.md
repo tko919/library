@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Linear Equation
     links: []
@@ -36,12 +36,15 @@ data:
     \           if(val[cur][i]==0)continue;\r\n            rep(j,0,h)if(j!=cur){\r\
     \n                T z=val[j][i]/val[cur][i];\r\n                rep(k,i,w)val[j][k]-=val[cur][k]*z;\r\
     \n            }\r\n            res.push_back(i);\r\n            cur++;\r\n   \
-    \     }\r\n        return res;\r\n    }\r\n    friend istream& operator>>(istream&\
-    \ is,Matrix& m){\r\n        rep(i,0,m.h)rep(j,0,m.w)is>>m[i][j];\r\n        return\
-    \ is;\r\n    }\r\n    friend ostream& operator<<(ostream& os,Matrix& m){\r\n \
-    \       rep(i,0,m.h){\r\n            rep(j,0,m.w)os<<m[i][j]<<(j==m.w-1 and i!=m.h-1?'\\\
-    n':' ');\r\n        }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Matrix\r\n */\n#line 3 \"Math/linearequation.hpp\"\n\r\ntemplate<typename T>pair<vector<T>,Matrix<T>>\
+    \     }\r\n        return res;\r\n    }\r\n    Matrix inv(){\r\n        Matrix\
+    \ base(h,h*2),res(h,h);\r\n        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];\r\
+    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\
+    \n        return res;\r\n    }\r\n    friend istream& operator>>(istream& is,Matrix&\
+    \ m){\r\n        rep(i,0,m.h)rep(j,0,m.w)is>>m[i][j];\r\n        return is;\r\n\
+    \    }\r\n    friend ostream& operator<<(ostream& os,Matrix& m){\r\n        rep(i,0,m.h){\r\
+    \n            rep(j,0,m.w)os<<m[i][j]<<(j==m.w-1 and i!=m.h-1?'\\n':' ');\r\n\
+    \        }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Matrix\r\
+    \n */\n#line 3 \"Math/linearequation.hpp\"\n\r\ntemplate<typename T>pair<vector<T>,Matrix<T>>\
     \ LinearEquation(Matrix<T> a,vector<T> b){\r\n   int h=a.h,w=a.w;\r\n   rep(i,0,h)a[i].push_back(b[i]);\r\
     \n   a.w++;\r\n   vector<int> idx=a.gauss(w);\r\n   rep(i,idx.size(),h)if(a[i][w]!=0)return\
     \ {{},{}};\r\n   vector<T> res(w);\r\n   rep(i,0,idx.size())res[idx[i]]=a[i][w]/a[i][idx[i]];\r\
@@ -60,8 +63,8 @@ data:
   isVerificationFile: false
   path: Math/linearequation.hpp
   requiredBy: []
-  timestamp: '2022-01-10 05:38:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-16 23:53:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_system_of_linear_equations.test.cpp
 documentation_of: Math/linearequation.hpp

@@ -5,7 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
+  - icon: ':heavy_check_mark:'
+    path: Math/primitive.hpp
+    title: Primitive Function
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_discrete_logarithm_mod.test.cpp
+    title: Verify/LC_discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
@@ -38,10 +44,12 @@ data:
   isVerificationFile: false
   path: Math/miller.hpp
   requiredBy:
+  - Math/primitive.hpp
   - Math/pollard.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_factorize.test.cpp
 documentation_of: Math/miller.hpp
 layout: document
