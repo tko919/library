@@ -9,7 +9,7 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Black Box Linear Algebra
     links: []
@@ -117,7 +117,7 @@ data:
   path: Math/bbla.hpp
   requiredBy: []
   timestamp: '2022-02-02 03:30:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_310.test.cpp
