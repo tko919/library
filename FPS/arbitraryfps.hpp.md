@@ -72,10 +72,10 @@ data:
     \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
     \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
-    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    vector<T> mult(const\
-    \ vector<T>& a,const vector<T>& b,bool same)const;\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Formal Power Series (Arbitrary mod)\r\n */\n"
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
+    \ return res;\r\n    }\r\n    vector<T> mult(const vector<T>& a,const vector<T>&\
+    \ b,bool same)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (Arbitrary\
+    \ mod)\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int\
     \ n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
@@ -130,15 +130,15 @@ data:
     \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
     \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
-    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    vector<T> mult(const\
-    \ vector<T>& a,const vector<T>& b,bool same)const;\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Formal Power Series (Arbitrary mod)\r\n */"
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
+    \ return res;\r\n    }\r\n    vector<T> mult(const vector<T>& a,const vector<T>&\
+    \ b,bool same)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (Arbitrary\
+    \ mod)\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: FPS/arbitraryfps.hpp
   requiredBy: []
-  timestamp: '2022-10-17 02:27:51+09:00'
+  timestamp: '2022-10-17 02:49:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/YUKI_1112.test.cpp
