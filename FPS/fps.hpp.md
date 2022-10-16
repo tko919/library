@@ -109,12 +109,15 @@ data:
     \      rep(i,k,min(n,k*2))x[i]+=(*this)[i];\r\n            rep(i,0,k)x[i]=0;\r\
     \n            NTT(x,0);\r\n            rep(i,0,k*2)x[i]*=y[i];\r\n           \
     \ NTT(x,1);\r\n            b.insert(b.end(),x.begin()+k,x.end());\r\n        }\
-    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        int n=this->size(),k=0;\
-    \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
-    \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n"
+    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        if(t==0){\r\
+    \n            Poly res(this->size()); res[0]=1;\r\n            return res;\r\n\
+    \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
+    \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
+    \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
+    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
+    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int\
     \ n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
@@ -185,17 +188,20 @@ data:
     \      rep(i,k,min(n,k*2))x[i]+=(*this)[i];\r\n            rep(i,0,k)x[i]=0;\r\
     \n            NTT(x,0);\r\n            rep(i,0,k*2)x[i]*=y[i];\r\n           \
     \ NTT(x,1);\r\n            b.insert(b.end(),x.begin()+k,x.end());\r\n        }\
-    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        int n=this->size(),k=0;\
-    \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
-    \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */"
+    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        if(t==0){\r\
+    \n            Poly res(this->size()); res[0]=1;\r\n            return res;\r\n\
+    \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
+    \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
+    \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
+    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
+    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: FPS/fps.hpp
   requiredBy: []
-  timestamp: '2022-02-02 03:30:36+09:00'
+  timestamp: '2022-10-17 02:27:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_convolution_mod_2.test.cpp

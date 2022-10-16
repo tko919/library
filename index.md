@@ -17,7 +17,7 @@ data:
       title: Rollback Mo
   - name: Convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/arbitrary.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -46,7 +46,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':warning:'
@@ -85,7 +85,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -108,10 +108,10 @@ data:
       title: Weighted Union Find
   - name: FPS
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
     - icon: ':question:'
@@ -151,7 +151,7 @@ data:
     - icon: ':warning:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':warning:'
@@ -177,7 +177,7 @@ data:
       title: Strongly Connected Components
   - name: Math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
     - icon: ':heavy_check_mark:'
@@ -186,10 +186,10 @@ data:
     - icon: ':warning:'
       path: Math/fraction.hpp
       title: Fraction
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -230,7 +230,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/suffixarray.hpp
       title: Suffix Array
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/zalgo.hpp
       title: Z-Algorithm
   - name: Template
@@ -240,10 +240,10 @@ data:
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:
@@ -441,7 +441,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_floor_of_linear.test.cpp
       title: Verify/LC_sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_system_of_linear_equations.test.cpp
       title: Verify/LC_system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
@@ -453,22 +453,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_unionfind.test.cpp
       title: Verify/LC_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_zalgorithm.test.cpp
       title: Verify/LC_zalgorithm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1080.test.cpp
       title: Verify/YUKI_1080.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1112.test.cpp
       title: Verify/YUKI_1112.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_310.test.cpp
       title: Verify/YUKI_310.test.cpp
 layout: toppage

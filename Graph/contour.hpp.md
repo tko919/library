@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
   _extendedRequiredBy: []

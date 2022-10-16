@@ -150,18 +150,21 @@ data:
     \      rep(i,k,min(n,k*2))x[i]+=(*this)[i];\r\n            rep(i,0,k)x[i]=0;\r\
     \n            NTT(x,0);\r\n            rep(i,0,k*2)x[i]*=y[i];\r\n           \
     \ NTT(x,1);\r\n            b.insert(b.end(),x.begin()+k,x.end());\r\n        }\
-    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        int n=this->size(),k=0;\
-    \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
-    \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"FPS/multieval.hpp\"\
-    \n\r\ntemplate<typename T>struct MultiEval{\r\n    int m,n; vector<Poly<T>> t;\r\
-    \n    MultiEval(vector<T>& v){\r\n        m=v.size(),n=1; while(n<m)n<<=1;\r\n\
-    \        t.resize(n<<1);\r\n        rep(i,0,n){\r\n            T w=(i<m?v[i]:0);\r\
-    \n            t[n+i]=Poly<T>({-w,T(1)});\r\n        }\r\n        for(int i=n-1;i;i--)t[i]=t[i*2]*t[i*2+1];\r\
-    \n    }\r\n    vector<T> run(const vector<T>& f){\r\n        vector<Poly<T>> c(n*2);\r\
-    \n        auto v=t[1].rev();\r\n        v.resize(f.size());\r\n        v=v.inv().rev()*Poly<T>(f);\r\
+    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        if(t==0){\r\
+    \n            Poly res(this->size()); res[0]=1;\r\n            return res;\r\n\
+    \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
+    \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
+    \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
+    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
+    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */\n#line 2 \"FPS/multieval.hpp\"\n\r\ntemplate<typename T>struct MultiEval{\r\
+    \n    int m,n; vector<Poly<T>> t;\r\n    MultiEval(vector<T>& v){\r\n        m=v.size(),n=1;\
+    \ while(n<m)n<<=1;\r\n        t.resize(n<<1);\r\n        rep(i,0,n){\r\n     \
+    \       T w=(i<m?v[i]:0);\r\n            t[n+i]=Poly<T>({-w,T(1)});\r\n      \
+    \  }\r\n        for(int i=n-1;i;i--)t[i]=t[i*2]*t[i*2+1];\r\n    }\r\n    vector<T>\
+    \ run(const vector<T>& f){\r\n        vector<Poly<T>> c(n*2);\r\n        auto\
+    \ v=t[1].rev();\r\n        v.resize(f.size());\r\n        v=v.inv().rev()*Poly<T>(f);\r\
     \n        v.erase(v.begin(),v.begin()+f.size()-1);\r\n        v.resize(n); reverse(ALL(v));\
     \ c[1]=v;\r\n        rep(i,1,n){\r\n            int d=c[i].size();\r\n       \
     \     rep(k,0,2){\r\n                auto add=t[i*2+(k^1)];\r\n              \
@@ -198,7 +201,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2022-10-16 23:53:47+09:00'
+  timestamp: '2022-10-17 02:27:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multipoint_evaluation.test.cpp

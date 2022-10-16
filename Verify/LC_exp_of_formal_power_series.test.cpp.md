@@ -147,13 +147,16 @@ data:
     \      rep(i,k,min(n,k*2))x[i]+=(*this)[i];\r\n            rep(i,0,k)x[i]=0;\r\
     \n            NTT(x,0);\r\n            rep(i,0,k*2)x[i]*=y[i];\r\n           \
     \ NTT(x,1);\r\n            b.insert(b.end(),x.begin()+k,x.end());\r\n        }\
-    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        int n=this->size(),k=0;\
-    \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
-    \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 7 \"Verify/LC_exp_of_formal_power_series.test.cpp\"\
-    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
+    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        if(t==0){\r\
+    \n            Poly res(this->size()); res[0]=1;\r\n            return res;\r\n\
+    \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
+    \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
+    \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
+    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
+    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */\n#line 7 \"Verify/LC_exp_of_formal_power_series.test.cpp\"\n\r\n\
+    using Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
     \ v,bool inv)const{return ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int n;\r\n\
     \    cin>>n;\r\n    Poly<Fp> a(n);\r\n    rep(i,0,n)cin>>a[i];\r\n    a=a.exp();\r\
     \n    rep(i,0,n)cout<<a[i]<<'\\n';\r\n    return 0;\r\n}\n"
@@ -172,7 +175,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_exp_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2022-10-16 23:53:47+09:00'
+  timestamp: '2022-10-17 02:27:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_exp_of_formal_power_series.test.cpp

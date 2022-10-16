@@ -150,15 +150,18 @@ data:
     \      rep(i,k,min(n,k*2))x[i]+=(*this)[i];\r\n            rep(i,0,k)x[i]=0;\r\
     \n            NTT(x,0);\r\n            rep(i,0,k*2)x[i]*=y[i];\r\n           \
     \ NTT(x,1);\r\n            b.insert(b.end(),x.begin()+k,x.end());\r\n        }\
-    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        int n=this->size(),k=0;\
-    \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
-    \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"FPS/nthterm.hpp\"\
-    \n\r\ntemplate<typename T>T nth(Poly<T> p,Poly<T> q,ll n){\r\n    while(n){\r\n\
-    \        Poly<T> base(q),np,nq;\r\n        for(int i=1;i<(int)q.size();i+=2)base[i]=-base[i];\r\
-    \n        p*=base; q*=base;\r\n        for(int i=n&1;i<(int)p.size();i+=2)np.emplace_back(p[i]);\r\
+    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        if(t==0){\r\
+    \n            Poly res(this->size()); res[0]=1;\r\n            return res;\r\n\
+    \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
+    \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
+    \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
+    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
+    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */\n#line 2 \"FPS/nthterm.hpp\"\n\r\ntemplate<typename T>T nth(Poly<T>\
+    \ p,Poly<T> q,ll n){\r\n    while(n){\r\n        Poly<T> base(q),np,nq;\r\n  \
+    \      for(int i=1;i<(int)q.size();i+=2)base[i]=-base[i];\r\n        p*=base;\
+    \ q*=base;\r\n        for(int i=n&1;i<(int)p.size();i+=2)np.emplace_back(p[i]);\r\
     \n        for(int i=0;i<(int)q.size();i+=2)nq.emplace_back(q[i]);\r\n        swap(p,np);\
     \ swap(q,nq);\r\n        n>>=1;\r\n    }\r\n    return p[0]/q[0];\r\n}\r\n\r\n\
     /**\r\n * @brief Bostan-Mori Algorithm\r\n */\n#line 8 \"Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp\"\
@@ -186,7 +189,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2022-10-16 23:53:47+09:00'
+  timestamp: '2022-10-17 02:27:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp

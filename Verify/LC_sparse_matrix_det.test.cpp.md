@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
   - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -216,32 +216,35 @@ data:
     \      rep(i,k,min(n,k*2))x[i]+=(*this)[i];\r\n            rep(i,0,k)x[i]=0;\r\
     \n            NTT(x,0);\r\n            rep(i,0,k*2)x[i]*=y[i];\r\n           \
     \ NTT(x,1);\r\n            b.insert(b.end(),x.begin()+k,x.end());\r\n        }\
-    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        int n=this->size(),k=0;\
-    \ while(k<n and (*this)[k]==0)k++;\r\n        Poly res(n); if(t*k>=n)return res;\r\
-    \n        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); \r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
-    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"Math/bbla.hpp\"\
-    \n\r\n#line 2 \"FPS/berlekampmassey.hpp\"\n\r\ntemplate<typename T>vector<T> BerlekampMassey(vector<T>&\
-    \ a){\r\n   int n=a.size(); T d=1;\r\n   vector<T> b(1),c(1);\r\n   b[0]=c[0]=1;\r\
-    \n   rep(j,1,n+1){\r\n      int l=c.size(),m=b.size();\r\n      T x=0;\r\n   \
-    \   rep(i,0,l)x+=c[i]*a[j-l+i];\r\n      b.push_back(0);\r\n      m++;\r\n   \
-    \   if(x==0)continue;\r\n      T coeff=-x/d;\r\n      if(l<m){\r\n         auto\
-    \ tmp=c;\r\n         c.insert(c.begin(),m-l,0);\r\n         rep(i,0,m)c[m-1-i]+=coeff*b[m-1-i];\r\
-    \n         b=tmp; d=x;\r\n      }\r\n      else rep(i,0,m)c[l-1-i]+=coeff*b[m-1-i];\r\
-    \n   }\r\n   return c;\r\n}\r\n\r\n/**\r\n * @brief Berlekamp Massey Algorithm\r\
-    \n */\n#line 2 \"Utility/random.hpp\"\n\r\nstruct Random{\r\n    random_device\
-    \ rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\n    Random(){}\r\
-    \n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
-    \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
-    \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
-    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n\
-    \        return double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n\
-    \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
-    \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
-    \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
-    \n            len++;\r\n            int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\
-    \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
+    \ b.resize(n); return b;\r\n    }\r\n    Poly pow(ll t){\r\n        if(t==0){\r\
+    \n            Poly res(this->size()); res[0]=1;\r\n            return res;\r\n\
+    \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
+    \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
+    \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
+    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
+    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */\n#line 2 \"Math/bbla.hpp\"\n\r\n#line 2 \"FPS/berlekampmassey.hpp\"\
+    \n\r\ntemplate<typename T>vector<T> BerlekampMassey(vector<T>& a){\r\n   int n=a.size();\
+    \ T d=1;\r\n   vector<T> b(1),c(1);\r\n   b[0]=c[0]=1;\r\n   rep(j,1,n+1){\r\n\
+    \      int l=c.size(),m=b.size();\r\n      T x=0;\r\n      rep(i,0,l)x+=c[i]*a[j-l+i];\r\
+    \n      b.push_back(0);\r\n      m++;\r\n      if(x==0)continue;\r\n      T coeff=-x/d;\r\
+    \n      if(l<m){\r\n         auto tmp=c;\r\n         c.insert(c.begin(),m-l,0);\r\
+    \n         rep(i,0,m)c[m-1-i]+=coeff*b[m-1-i];\r\n         b=tmp; d=x;\r\n   \
+    \   }\r\n      else rep(i,0,m)c[l-1-i]+=coeff*b[m-1-i];\r\n   }\r\n   return c;\r\
+    \n}\r\n\r\n/**\r\n * @brief Berlekamp Massey Algorithm\r\n */\n#line 2 \"Utility/random.hpp\"\
+    \n\r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
+    \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
+    \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
+    \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
+    \ template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\n    }\r\
+    \n    double uniform(){\r\n        return double(get())/UINT_MAX;\r\n    }\r\n\
+    \    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
+    \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
+    \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
+    \     int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\n\
+    \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
     \ */\n#line 5 \"Math/bbla.hpp\"\n\r\nRandom genBBLA;\r\ntemplate<typename T>Poly<T>\
@@ -301,7 +304,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2022-10-16 23:53:47+09:00'
+  timestamp: '2022-10-17 02:27:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_sparse_matrix_det.test.cpp
