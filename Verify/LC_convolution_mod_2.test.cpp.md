@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':heavy_check_mark:'
     path: FPS/relax.hpp
     title: Relaxed Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   - icon: ':heavy_check_mark:'
@@ -214,14 +214,13 @@ data:
     \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
     \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
-    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
-    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */\n#line 2 \"FPS/relax.hpp\"\n\r\ntemplate<typename T>class RelaxedConvolution{\r\
-    \n    using P=array<int,2>;\r\n    using Q=array<P,2>;\r\n    int N,pos=0;\r\n\
-    \    vector<vector<Q>> event;\r\n    void dfs1(int L,int R){\r\n        if(R-L==1){\r\
-    \n            event[L].push_back({P{L,L+1},P{0,1}});\r\n            return;\r\n\
-    \        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
+    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"FPS/relax.hpp\"\
+    \n\r\ntemplate<typename T>class RelaxedConvolution{\r\n    using P=array<int,2>;\r\
+    \n    using Q=array<P,2>;\r\n    int N,pos=0;\r\n    vector<vector<Q>> event;\r\
+    \n    void dfs1(int L,int R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
+    \n            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
     \n        event[R].push_back({P{mid,R},P{mid-L,R-L}});\r\n        dfs1(L,mid);\r\
     \n        dfs1(mid,R);\r\n    }\r\n    void dfs2(int L,int R){\r\n        if(R-L==1){\r\
     \n            event[L].push_back({P{0,1},P{L,L+1}});\r\n            return;\r\n\
@@ -267,7 +266,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2022-10-17 02:27:51+09:00'
+  timestamp: '2022-10-17 02:55:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_2.test.cpp

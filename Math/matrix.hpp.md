@@ -89,8 +89,8 @@ data:
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_matrix_product.test.cpp
   - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_matrix_product.test.cpp
   - Verify/LC_matrix_det.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document

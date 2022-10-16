@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -225,9 +225,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing\
@@ -247,81 +247,81 @@ data:
   path: Template/template.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_lca.test.cpp
-  - Verify/LC_static_range_lis_query.test.cpp
-  - Verify/LC_static_range_sum.test.cpp
-  - Verify/LC_biconnected_components.test.cpp
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_static_range_inversions_query.test.cpp
-  - Verify/LC_persistent_unionfind.test.cpp
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/AOJ_GRL_6_A.test.cpp
-  - Verify/LC_number_of_substrings.test.cpp
   - Verify/LC_bipartitematching.test.cpp
-  - Verify/LC_maximum_independent_set.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_bitwise_and_convolution.test.cpp
-  - Verify/LC_range_affine_range_sum.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_convolution_mod_1000000007.test.cpp
-  - Verify/LC_suffixarray.test.cpp
-  - Verify/LC_matrix_product.test.cpp
-  - Verify/LC_enumerate_primes.test.cpp
-  - Verify/LC_scc.test.cpp
-  - Verify/AOJ_DSL_1_B.test.cpp
-  - Verify/LC_system_of_linear_equations.test.cpp
-  - Verify/LC_find_linear_recurrence.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - Verify/LC_lcm_convolution.test.cpp
-  - Verify/LC_zalgorithm.test.cpp
-  - Verify/LC_many_aplusb.test.cpp
-  - Verify/LC_staticrmq-2.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_min_cost_b_flow.test.cpp
-  - Verify/LC_vertex_add_path_sum.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/LC_nim_product_64.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_range_kth_smallest.test.cpp
-  - Verify/LC_convolution_mod.test.cpp
-  - Verify/LC_rectangle_sum.test.cpp
-  - Verify/LC_point_add_range_sum.test.cpp
-  - Verify/LC_segment_add_get_min.test.cpp
-  - Verify/LC_line_add_get_min.test.cpp
-  - Verify/AOJ_DSL_2_D.test.cpp
-  - Verify/LC_enumerate_palindromes.test.cpp
-  - Verify/LC_range_kth_smallest-2.test.cpp
-  - Verify/LC_two_sat.test.cpp
-  - Verify/LC_staticrmq.test.cpp
-  - Verify/LC_associative_array.test.cpp
-  - Verify/LC_point_add_rectangle_sum.test.cpp
-  - Verify/LC_multivariate_convolution.test.cpp
-  - Verify/LC_predecessor_problem.test.cpp
-  - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_pow_of_formal_power_series.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_suffixarray.test.cpp
   - Verify/LC_chromatic_number.test.cpp
-  - Verify/LC_sum_of_floor_of_linear.test.cpp
-  - Verify/LC_matrix_det.test.cpp
-  - Verify/LC_subset_convolution.test.cpp
-  - Verify/LC_counting_primes.test.cpp
-  - Verify/AOJ_1595.test.cpp
-  - Verify/LC_cartesian_tree.test.cpp
   - Verify/LC_bitwise_xor_convolution.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_range_kth_smallest-2.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_factorize.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_vertex_add_path_sum.test.cpp
+  - Verify/LC_nim_product_64.test.cpp
+  - Verify/AOJ_GRL_6_A.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_cartesian_tree.test.cpp
+  - Verify/AOJ_1595.test.cpp
+  - Verify/LC_convolution_mod.test.cpp
+  - Verify/AOJ_DSL_1_B.test.cpp
+  - Verify/LC_bitwise_and_convolution.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
   - Verify/LC_point_set_range_composite.test.cpp
-  - Verify/LC_frequency_table_of_tree_distance.test.cpp
+  - Verify/LC_line_add_get_min.test.cpp
+  - Verify/LC_number_of_substrings.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_predecessor_problem.test.cpp
+  - Verify/LC_staticrmq.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_associative_array.test.cpp
+  - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_unionfind.test.cpp
+  - Verify/LC_staticrmq-2.test.cpp
+  - Verify/LC_frequency_table_of_tree_distance.test.cpp
+  - Verify/LC_maximum_independent_set.test.cpp
+  - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_factorize.test.cpp
+  - Verify/LC_point_add_range_sum.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_zalgorithm.test.cpp
+  - Verify/LC_range_kth_smallest.test.cpp
+  - Verify/LC_enumerate_palindromes.test.cpp
   - Verify/LC_two_edge_connected_components.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_matrix_product.test.cpp
+  - Verify/LC_scc.test.cpp
+  - Verify/LC_biconnected_components.test.cpp
+  - Verify/LC_point_add_rectangle_sum.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
+  - Verify/LC_find_linear_recurrence.test.cpp
   - Verify/YUKI_1080.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_queue_operate_all_composite.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_two_sat.test.cpp
+  - Verify/LC_rectangle_sum.test.cpp
+  - Verify/LC_sum_of_floor_of_linear.test.cpp
+  - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_lca.test.cpp
+  - Verify/LC_segment_add_get_min.test.cpp
+  - Verify/LC_persistent_unionfind.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/AOJ_DSL_2_D.test.cpp
+  - Verify/LC_min_cost_b_flow.test.cpp
+  - Verify/LC_subset_convolution.test.cpp
+  - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_range_affine_range_sum.test.cpp
+  - Verify/LC_static_range_inversions_query.test.cpp
+  - Verify/LC_static_range_sum.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
+  - Verify/LC_counting_primes.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
 documentation_of: Template/template.hpp
 layout: document

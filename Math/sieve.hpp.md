@@ -63,8 +63,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_gcd_convolution.test.cpp
-  - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
 documentation_of: Math/sieve.hpp
 layout: document
 redirect_from:

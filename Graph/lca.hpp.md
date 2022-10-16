@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Graph/auxiliarytree.hpp
+    title: Auxiliary Tree(Virtual Tree)
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -46,7 +49,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Graph/lca.hpp
-  requiredBy: []
+  requiredBy:
+  - Graph/auxiliarytree.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

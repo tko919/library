@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Formal Power Series (NTT-friendly mod)
     links: []
@@ -114,10 +114,9 @@ data:
     \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
     \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
-    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
-    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */\n"
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
+    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int\
     \ n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
@@ -193,27 +192,26 @@ data:
     \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
     \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
-    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
-    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */"
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
+    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: FPS/fps.hpp
   requiredBy: []
-  timestamp: '2022-10-17 02:27:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-10-17 02:55:26+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_pow_of_formal_power_series.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
 documentation_of: FPS/fps.hpp
 layout: document
 redirect_from:

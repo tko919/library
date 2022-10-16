@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
@@ -152,11 +152,10 @@ data:
     \        }\r\n        int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;\r\
     \n        Poly res(n); if(__int128_t(t)*k>=n)return res;\r\n        n-=t*k; Poly\
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
-    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();\r\n        c=c.pow(t);\
-    \ rep(i,0,n)res[i+t*k]=g[i]*c; return res;\r\n    }\r\n    void NTT(vector<T>&\
-    \ a,bool inv)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */\n#line 7 \"Verify/LC_pow_of_formal_power_series.test.cpp\"\n\r\n\
-    using Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
+    \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
+    \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 7 \"Verify/LC_pow_of_formal_power_series.test.cpp\"\
+    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
     \ v,bool inv)const{return ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int n;\r\n\
     \    cin>>n;\r\n    ll k;\r\n    cin>>k;\r\n    Poly<Fp> a(n);\r\n    rep(i,0,n)cin>>a[i];\r\
     \n    a=a.pow(k);\r\n    rep(i,0,n)cout<<a[i]<<'\\n';\r\n    return 0;\r\n}\n"
@@ -175,8 +174,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2022-10-17 02:27:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-17 02:55:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_pow_of_formal_power_series.test.cpp
 layout: document
