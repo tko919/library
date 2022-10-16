@@ -177,7 +177,7 @@ template<typename T>struct Poly:vector<T>{
         Poly res(n); if(__int128_t(t)*k>=n)return res;
         n-=t*k; Poly g(n); T c=(*this)[k],ic=c.inv();
         rep(i,0,n)g[i]=(*this)[i+k]*ic;
-        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();
+        g=g.log(); for(auto& x:g)x*=t; g=g.exp();
         c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c; return res;
     }
     void NTT(vector<T>& a,bool inv)const;
