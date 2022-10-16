@@ -110,11 +110,15 @@ template<typename T>struct Poly:vector<T>{
         return res;
     }
     Poly pow(ll t){
+        if(t==0){
+            Poly res(this->size()); res[0]=1;
+            return res;
+        }
         int n=this->size(),k=0; while(k<n and (*this)[k]==0)k++;
-        Poly res(n); if(t*k>=n)return res;
-        n-=t*k; Poly g(n); T c=(*this)[k],ic=T(1)/c;
+        Poly res(n); if(__int128_t(t)*k>=n)return res;
+        n-=t*k; Poly g(n); T c=(*this)[k],ic=c.inv();
         rep(i,0,n)g[i]=(*this)[i+k]*ic;
-        g=g.log(); for(auto& x:g)x*=t; g=g.exp(); 
+        g=g.log(); for(auto& x:g)x*=t; g=g.exp_fast();
         c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c; return res;
     }
     vector<T> mult(const vector<T>& a,const vector<T>& b,bool same)const;
