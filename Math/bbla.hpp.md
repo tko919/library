@@ -119,9 +119,9 @@ data:
   timestamp: '2022-02-02 03:30:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/YUKI_1112.test.cpp
 documentation_of: Math/bbla.hpp
 layout: document
 redirect_from:

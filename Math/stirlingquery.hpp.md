@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
+    title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
+  - icon: ':warning:'
+    path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
+    title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -56,7 +62,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Math/stirlingquery.hpp
-  requiredBy: []
+  requiredBy:
+  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
+  - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

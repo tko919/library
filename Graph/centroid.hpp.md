@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: Graph/contour.hpp
     title: Contour Sum Query
+  - icon: ':warning:'
+    path: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
+    title: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_frequency_table_of_tree_distance.test.cpp
@@ -42,6 +45,7 @@ data:
   path: Graph/centroid.hpp
   requiredBy:
   - Graph/contour.hpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

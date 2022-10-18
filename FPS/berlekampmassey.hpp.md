@@ -50,10 +50,10 @@ data:
   timestamp: '2022-01-10 02:39:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_find_linear_recurrence.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
 documentation_of: FPS/berlekampmassey.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Verify/LC_deque_operate_all_composite.cpp
+    title: Verify/LC_deque_operate_all_composite.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -59,7 +62,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/dequeswag.hpp
-  requiredBy: []
+  requiredBy:
+  - Verify/LC_deque_operate_all_composite.cpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
+  - icon: ':warning:'
+    path: Verify/LC_lca.cpp
+    title: Verify/LC_lca.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -51,6 +54,7 @@ data:
   path: Graph/lca.hpp
   requiredBy:
   - Graph/auxiliarytree.hpp
+  - Verify/LC_lca.cpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

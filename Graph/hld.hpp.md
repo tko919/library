@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: Graph/contour.hpp
     title: Contour Sum Query
+  - icon: ':warning:'
+    path: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
+    title: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lca.test.cpp
@@ -70,11 +73,12 @@ data:
   path: Graph/hld.hpp
   requiredBy:
   - Graph/contour.hpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_vertex_add_path_sum.test.cpp
   - Verify/LC_lca.test.cpp
+  - Verify/LC_vertex_add_path_sum.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
 documentation_of: Graph/hld.hpp
 layout: document

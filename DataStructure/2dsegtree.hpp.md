@@ -83,8 +83,8 @@ data:
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_rectangle_sum.test.cpp
+  - Verify/LC_point_add_rectangle_sum.test.cpp
 documentation_of: DataStructure/2dsegtree.hpp
 layout: document
 redirect_from:

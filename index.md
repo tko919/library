@@ -183,6 +183,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
+    - icon: ':warning:'
+      path: Math/dynamic.hpp
+      title: Dynamic Modint
     - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
@@ -249,6 +252,26 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
+  - name: Verify
+    pages:
+    - icon: ':warning:'
+      path: Verify/LC_deque_operate_all_composite.cpp
+      title: Verify/LC_deque_operate_all_composite.cpp
+    - icon: ':warning:'
+      path: Verify/LC_enumerate_cliques.cpp
+      title: Verify/LC_enumerate_cliques.cpp
+    - icon: ':warning:'
+      path: Verify/LC_lca.cpp
+      title: Verify/LC_lca.cpp
+    - icon: ':warning:'
+      path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
+      title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
+    - icon: ':warning:'
+      path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
+      title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
+    - icon: ':warning:'
+      path: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
+      title: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   verificationCategories:
   - name: Verify
     pages:
