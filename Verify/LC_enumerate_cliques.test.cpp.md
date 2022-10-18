@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/enumcliques.hpp
     title: Enumerate Cliques
   - icon: ':heavy_check_mark:'
@@ -17,20 +17,22 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
     links:
     - https://judge.yosupo.jp/problem/enumerate_cliques
-  bundledCode: "#line 1 \"Verify/LC_enumerate_cliques.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\
-    \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
-    \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
-    \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
-    \nconst ll INF = 0x1fffffffffffffff;\r\ntemplate<typename T>inline bool chmax(T&\
-    \ a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T&\
-    \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include\
-    \ <unistd.h>\r\n\r\nclass FastIO{\r\n    static constexpr int L=1<<16;\r\n   \
-    \ char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\
-    \n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
+  bundledCode: "#line 1 \"Verify/LC_enumerate_cliques.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/enumerate_cliques\"\r\n\r\n#line 1 \"Template/template.hpp\"\
+    \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
+    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\nusing\
+    \ ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
+    \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
+    \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
+    \ 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\nclass FastIO{\r\
+    \n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\
+    \n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
     \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
     \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
     \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
@@ -84,8 +86,8 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_enumerate_cliques.cpp\"\n\r\n\
-    #line 2 \"Graph/enumcliques.hpp\"\n\r\nvector<vector<int>> EnumCliques(vector<vector<int>>&\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_enumerate_cliques.test.cpp\"\n\
+    \r\n#line 2 \"Graph/enumcliques.hpp\"\n\r\nvector<vector<int>> EnumCliques(vector<vector<int>>&\
     \ g){\r\n    int n=g.size(),m=0;\r\n    vector<vector<int>> res;\r\n    vector<int>\
     \ deg(n);\r\n    rep(v,0,n){\r\n        rep(u,0,n)deg[v]+=g[v][u];\r\n       \
     \ m+=deg[v];\r\n    }\r\n    int L=sqrt(m);\r\n    \r\n    auto process=[&](vector<int>&\
@@ -132,9 +134,9 @@ data:
     \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\r\n \
     \   T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\r\
     \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
-    \n * @brief Modint\r\n */\n#line 8 \"Verify/LC_enumerate_cliques.cpp\"\nusing\
-    \ Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\
-    \n    vector<int> x(n);\r\n    io.read(x);\r\n    vector g(n,vector<int>(n));\r\
+    \n * @brief Modint\r\n */\n#line 8 \"Verify/LC_enumerate_cliques.test.cpp\"\n\
+    using Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n \
+    \   io.read(n,m);\r\n    vector<int> x(n);\r\n    io.read(x);\r\n    vector g(n,vector<int>(n));\r\
     \n    rep(_,0,m){\r\n        int u,v;\r\n        io.read(u,v);\r\n        g[u][v]=g[v][u]=1;\r\
     \n    }\r\n    auto cs=EnumCliques(g);\r\n    Fp res;\r\n    for(auto& clique:cs){\r\
     \n        Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\
@@ -153,16 +155,16 @@ data:
   - Utility/fastio.hpp
   - Graph/enumcliques.hpp
   - Math/modint.hpp
-  isVerificationFile: false
-  path: Verify/LC_enumerate_cliques.cpp
+  isVerificationFile: true
+  path: Verify/LC_enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2022-10-18 18:02:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-10-18 18:12:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_enumerate_cliques.cpp
+documentation_of: Verify/LC_enumerate_cliques.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_enumerate_cliques.cpp
-- /library/Verify/LC_enumerate_cliques.cpp.html
-title: Verify/LC_enumerate_cliques.cpp
+- /verify/Verify/LC_enumerate_cliques.test.cpp
+- /verify/Verify/LC_enumerate_cliques.test.cpp.html
+title: Verify/LC_enumerate_cliques.test.cpp
 ---

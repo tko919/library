@@ -5,12 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/2dsegtree.hpp
     title: 2D Segment Tree
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/contour.hpp
     title: Contour Sum Query
-  - icon: ':warning:'
-    path: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
-    title: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_rectangle_sum.test.cpp
@@ -24,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_staticrmq.test.cpp
     title: Verify/LC_staticrmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+    title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
@@ -62,7 +62,6 @@ data:
   path: DataStructure/segtree.hpp
   requiredBy:
   - Graph/contour.hpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   - DataStructure/2dsegtree.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -70,6 +69,7 @@ data:
   - Verify/LC_rectangle_sum.test.cpp
   - Verify/LC_staticrmq.test.cpp
   - Verify/LC_point_add_rectangle_sum.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_point_set_range_composite.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
 documentation_of: DataStructure/segtree.hpp

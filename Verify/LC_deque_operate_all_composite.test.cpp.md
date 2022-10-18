@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/dequeswag.hpp
     title: Sliding Window Aggregation for deque
   - icon: ':heavy_check_mark:'
@@ -17,15 +17,17 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/deque_operate_all_composite
     links:
     - https://judge.yosupo.jp/problem/deque_operate_all_composite
-  bundledCode: "#line 1 \"Verify/LC_deque_operate_all_composite.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\r\n\r\n#line\
-    \ 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace std;\r\
-    \n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v)\
-    \ (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
+  bundledCode: "#line 1 \"Verify/LC_deque_operate_all_composite.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\r\n\r\
+    \n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
+    \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
+    \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
     \nconst ll INF = 0x1fffffffffffffff;\r\ntemplate<typename T>inline bool chmax(T&\
     \ a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T&\
     \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include\
@@ -85,7 +87,7 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_deque_operate_all_composite.cpp\"\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_deque_operate_all_composite.test.cpp\"\
     \n\r\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct fp {\r\
     \n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\n   \
     \     int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
@@ -134,7 +136,7 @@ data:
     \n                fval.push(buf.top());\r\n                fsum.push_back(f(buf.top(),fsum.back()));\r\
     \n                buf.pop();\r\n            }\r\n        }\r\n        bval.pop();\r\
     \n        bsum.pop_back();\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Sliding Window\
-    \ Aggregation for deque\r\n */\n#line 8 \"Verify/LC_deque_operate_all_composite.cpp\"\
+    \ Aggregation for deque\r\n */\n#line 8 \"Verify/LC_deque_operate_all_composite.test.cpp\"\
     \n\r\nusing Fp=fp<998244353>;\r\nusing P=pair<Fp,Fp>;\r\nP f(P a,P b){return {a.first*b.first,a.second*b.first+b.second};}\r\
     \nP e0(){return {1,0};}\r\n\r\nFastIO io;\r\nint main(){\r\n    int Q;\r\n   \
     \ io.read(Q);\r\n    SWAGdeque<P,f,e0> swag;\r\n    while(Q--){\r\n        int\
@@ -164,16 +166,16 @@ data:
   - Utility/fastio.hpp
   - Math/modint.hpp
   - DataStructure/dequeswag.hpp
-  isVerificationFile: false
-  path: Verify/LC_deque_operate_all_composite.cpp
+  isVerificationFile: true
+  path: Verify/LC_deque_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-10-18 18:02:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-10-18 18:12:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_deque_operate_all_composite.cpp
+documentation_of: Verify/LC_deque_operate_all_composite.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_deque_operate_all_composite.cpp
-- /library/Verify/LC_deque_operate_all_composite.cpp.html
-title: Verify/LC_deque_operate_all_composite.cpp
+- /verify/Verify/LC_deque_operate_all_composite.test.cpp
+- /verify/Verify/LC_deque_operate_all_composite.test.cpp.html
+title: Verify/LC_deque_operate_all_composite.test.cpp
 ---

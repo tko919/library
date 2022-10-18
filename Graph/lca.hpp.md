@@ -5,13 +5,13 @@ data:
   - icon: ':warning:'
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
-  - icon: ':warning:'
-    path: Verify/LC_lca.cpp
-    title: Verify/LC_lca.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_lca_2.test.cpp
+    title: Verify/LC_lca_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Lowest Common Ancestor
     links: []
@@ -54,10 +54,10 @@ data:
   path: Graph/lca.hpp
   requiredBy:
   - Graph/auxiliarytree.hpp
-  - Verify/LC_lca.cpp
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_lca_2.test.cpp
 documentation_of: Graph/lca.hpp
 layout: document
 redirect_from:

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
-    title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
-  - icon: ':warning:'
-    path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
-    title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+    title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+    title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Stirling Number for query
     links: []
@@ -62,12 +62,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Math/stirlingquery.hpp
-  requiredBy:
-  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
-  - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
+  requiredBy: []
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 documentation_of: Math/stirlingquery.hpp
 layout: document
 redirect_from:

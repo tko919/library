@@ -5,12 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':warning:'
-    path: Verify/LC_deque_operate_all_composite.cpp
-    title: Verify/LC_deque_operate_all_composite.cpp
-  - icon: ':warning:'
-    path: Verify/LC_enumerate_cliques.cpp
-    title: Verify/LC_enumerate_cliques.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_bitwise_and_convolution.test.cpp
@@ -27,6 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_deque_operate_all_composite.test.cpp
+    title: Verify/LC_deque_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_enumerate_cliques.test.cpp
+    title: Verify/LC_enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_exp_of_formal_power_series.test.cpp
     title: Verify/LC_exp_of_formal_power_series.test.cpp
@@ -161,14 +161,14 @@ data:
   isVerificationFile: false
   path: Math/modint.hpp
   requiredBy:
-  - Verify/LC_deque_operate_all_composite.cpp
-  - Verify/LC_enumerate_cliques.cpp
   - Convolution/arbitrary.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_deque_operate_all_composite.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_enumerate_cliques.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_bitwise_and_convolution.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp

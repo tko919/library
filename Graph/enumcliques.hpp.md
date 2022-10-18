@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Verify/LC_enumerate_cliques.cpp
-    title: Verify/LC_enumerate_cliques.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_enumerate_cliques.test.cpp
+    title: Verify/LC_enumerate_cliques.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Enumerate Cliques
     links: []
@@ -61,11 +61,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Graph/enumcliques.hpp
-  requiredBy:
-  - Verify/LC_enumerate_cliques.cpp
+  requiredBy: []
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_enumerate_cliques.test.cpp
 documentation_of: Graph/enumcliques.hpp
 layout: document
 redirect_from:

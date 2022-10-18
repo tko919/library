@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/contour.hpp
     title: Contour Sum Query
   - icon: ':heavy_check_mark:'
@@ -23,12 +23,14 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
     links:
     - https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
-  bundledCode: "#line 1 \"Verify/LC_vertex_add_range_contour_sum_on_tree.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
+  bundledCode: "#line 1 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
@@ -91,7 +93,7 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_vertex_add_range_contour_sum_on_tree.cpp\"\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
     \n\r\n#line 2 \"Graph/contour.hpp\"\n\r\n#line 2 \"Graph/centroid.hpp\"\n\r\n\
     class CentroidDecomposition{\r\n    void get(int v,int p){\r\n        sz[v]=1;\r\
     \n        for(auto& to:g[v])if(to!=p and !used[to]){\r\n            get(to,v);\r\
@@ -184,9 +186,9 @@ data:
     \ extra;\r\n        }\r\n    }\r\n    void dfs(int v,int p){\r\n        for(auto&\
     \ to:cd.g[v])if(to!=p){\r\n            depth[to]=depth[v]+1;\r\n            dfs(to,v);\r\
     \n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Contour Sum Query\r\n */\n\
-    #line 7 \"Verify/LC_vertex_add_range_contour_sum_on_tree.cpp\"\n\r\nll f(ll a,ll\
-    \ b){return a+b;}\r\nll g(ll a,ll b){return a+b;}\r\nll m1(){return 0;}\r\n\r\n\
-    FastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<ll>\
+    #line 7 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\n\r\nll f(ll\
+    \ a,ll b){return a+b;}\r\nll g(ll a,ll b){return a+b;}\r\nll m1(){return 0;}\r\
+    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<ll>\
     \ a(n);\r\n    io.read(a);\r\n    ContourQuery<ll,ll,f,g,m1> buf(n);\r\n    rep(_,0,n-1){\r\
     \n        int u,v;\r\n        io.read(u,v);\r\n        buf.add_edge(u,v);\r\n\
     \    }\r\n    buf.run();\r\n    rep(i,0,n)buf.update(i,a[i]);\r\n    while(q--){\r\
@@ -214,16 +216,16 @@ data:
   - Graph/centroid.hpp
   - DataStructure/segtree.hpp
   - Graph/hld.hpp
-  isVerificationFile: false
-  path: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
+  isVerificationFile: true
+  path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-10-18 18:02:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-10-18 18:12:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
+documentation_of: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
-- /library/Verify/LC_vertex_add_range_contour_sum_on_tree.cpp.html
-title: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
+- /verify/Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+- /verify/Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp.html
+title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 ---

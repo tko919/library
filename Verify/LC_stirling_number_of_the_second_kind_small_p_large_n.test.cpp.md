@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
-    path: Graph/lca.hpp
-    title: Lowest Common Ancestor
+  - icon: ':heavy_check_mark:'
+    path: Math/stirlingquery.hpp
+    title: Stirling Number for query
   - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -14,11 +14,14 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
     links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"Verify/LC_lca.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
+  bundledCode: "#line 1 \"Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
@@ -81,49 +84,52 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_lca.cpp\"\n\r\n#line 2 \"Graph/lca.hpp\"\
-    \n\r\nstruct LCA{\r\n    LCA(int _n=0):n(_n),g(_n),depth(_n+1,inf),start(_n){}\r\
-    \n    void add_edge(int u,int v){\r\n        g[u].push_back(v);\r\n        g[v].push_back(u);\r\
-    \n    }\r\n    void run(int root=0){\r\n        depth[root]=0;\r\n        dfs(root,-1);\r\
-    \n        N=1;\r\n        while(N<int(euler.size()))N<<=1;\r\n        tree.resize(N*2,n);\r\
-    \n        rep(i,0,euler.size())tree[N+i]=euler[i];\r\n        for(int i=N-1;i>0;i--)tree[i]=op(tree[i*2],tree[i*2+1]);\r\
-    \n    }\r\n    int lca(int u,int v){\r\n        int a=start[u],b=start[v];\r\n\
-    \        if(a>b)swap(a,b);\r\n        b++;\r\n        int res=n;\r\n        for(int\
-    \ T=b-a;T>=1;T=b-a){\r\n            int x=a|((1U<<31)>>__builtin_clz(T));\r\n\
-    \            int y=x&-x,k=__builtin_ctz(x);\r\n            res=op(res,tree[(N|a)>>k]);\r\
-    \n            a+=y;\r\n        }\r\n        return res;\r\n    }\r\nprivate:\r\
-    \n    int n,N;\r\n    vector<vector<int>> g;\r\n    vector<int> depth,start,euler,tree;\r\
-    \n    void dfs(int v,int p){\r\n        start[v]=euler.size();\r\n        euler.push_back(v);\r\
-    \n        for(auto& to:g[v])if(to!=p){\r\n            depth[to]=depth[v]+1;\r\n\
-    \            dfs(to,v);\r\n            euler.push_back(v);\r\n        }\r\n  \
-    \  }\r\n    int op(int u,int v){\r\n        if(depth[u]<depth[v])return u;\r\n\
-    \        else return v;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Lowest Common Ancestor\r\
-    \n */\n#line 7 \"Verify/LC_lca.cpp\"\n\r\nFastIO io;\r\nint main(){\r\n    int\
-    \ n,q;\r\n    io.read(n,q);\r\n    LCA lca(n);\r\n    rep(i,1,n){\r\n        int\
-    \ p;\r\n        io.read(p);\r\n        lca.add_edge(p,i);\r\n    }\r\n    lca.run();\r\
-    \n    while(q--){\r\n        int u,v;\r\n        io.read(u,v);\r\n        io.write(lca.lca(u,v));\r\
-    \n    }\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\r\n\r\n#include \"\
-    Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n#include \"\
-    Graph/lca.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\
-    \n    LCA lca(n);\r\n    rep(i,1,n){\r\n        int p;\r\n        io.read(p);\r\
-    \n        lca.add_edge(p,i);\r\n    }\r\n    lca.run();\r\n    while(q--){\r\n\
-    \        int u,v;\r\n        io.read(u,v);\r\n        io.write(lca.lca(u,v));\r\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp\"\
+    \n\r\n#line 2 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\n \
+    \   const int p;\r\n    vector<vector<int>> binom,F,S;\r\n    ll nCr(ll n,ll k){\r\
+    \n        if(n<0 or k<0 or n<k)return 0;\r\n        ll res=1;\r\n        while(n){\r\
+    \n            res=(res*binom[n%p][k%p])%p;\r\n            n/=p; k/=p;\r\n    \
+    \    }\r\n        return res;\r\n    }\r\npublic:\r\n    StirlingNumberQuery(int\
+    \ _p):p(_p){\r\n        binom.resize(p,vector<int>(p));\r\n        F.resize(p,vector<int>(p));\r\
+    \n        S.resize(p,vector<int>(p));\r\n        binom[0][0]=F[0][0]=S[0][0]=1;\r\
+    \n        rep(n,1,p)rep(k,0,n+1){\r\n            if(k)binom[n][k]=binom[n-1][k-1];\r\
+    \n            binom[n][k]=(binom[n][k]+binom[n-1][k])%p;\r\n\r\n            if(k)F[n][k]=F[n-1][k-1];\r\
+    \n            F[n][k]=(F[n][k]+ll(p-n+1)*F[n-1][k])%p;\r\n            \r\n   \
+    \         if(k)S[n][k]=S[n-1][k-1];\r\n            S[n][k]=(S[n][k]+ll(k)*S[n-1][k])%p;\r\
+    \n        }\r\n    }\r\n    int FirstKind(ll n,ll k){\r\n        if(n<0 or k<0\
+    \ or k>n)return 0;\r\n        ll i=n/p,j=n%p;\r\n        if(k<i)return 0;\r\n\
+    \        ll a=(k-i)/(p-1),b=(k-i)%(p-1);\r\n        if(b==0 and j)b+=p-1,a--;\r\
+    \n        if(a<0 or a>i or b>j)return 0;\r\n        int res=(nCr(i,a)*F[j][b])%p;\r\
+    \n        if((i+a)&1)res=(p-res)%p;\r\n        return res;\r\n    }\r\n    int\
+    \ SecondKind(ll n,ll k){\r\n        if(n<0 or k<0 or k>n)return 0;\r\n       \
+    \ if(n==0)return 1;\r\n        ll i=k/p,j=k%p;\r\n        if(n<i)return 0;\r\n\
+    \        ll a=(n-i)/(p-1),b=(n-i)%(p-1);\r\n        if(b==0)b+=p-1,a--;\r\n  \
+    \      if(a<0 or b<j)return 0;\r\n        if(b==p-1 and j==0)return nCr(a,i-1);\r\
+    \n        else return (nCr(a,i)*S[b][j])%p;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Stirling Number for query\r\n */\n#line 7 \"Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp\"\
+    \n\r\nFastIO io;\r\nint main(){\r\n    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery\
+    \ buf(p);\r\n    while(T--){\r\n        ll n,k;\r\n        io.read(n,k);\r\n \
+    \       io.write(buf.SecondKind(n,k));\r\n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n\"\
+    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
+    \n\r\n#include \"Math/stirlingquery.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n\
+    \    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery buf(p);\r\n    while(T--){\r\
+    \n        ll n,k;\r\n        io.read(n,k);\r\n        io.write(buf.SecondKind(n,k));\r\
     \n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
-  - Graph/lca.hpp
-  isVerificationFile: false
-  path: Verify/LC_lca.cpp
+  - Math/stirlingquery.hpp
+  isVerificationFile: true
+  path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2022-10-18 18:02:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-10-18 18:12:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_lca.cpp
+documentation_of: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_lca.cpp
-- /library/Verify/LC_lca.cpp.html
-title: Verify/LC_lca.cpp
+- /verify/Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+- /verify/Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp.html
+title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 ---

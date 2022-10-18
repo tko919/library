@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
   - icon: ':heavy_check_mark:'
@@ -14,12 +14,14 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
     links:
-    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
-  bundledCode: "#line 1 \"Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n\"\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+  bundledCode: "#line 1 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
@@ -82,7 +84,7 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp\"\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
     \n\r\n#line 2 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\n \
     \   const int p;\r\n    vector<vector<int>> binom,F,S;\r\n    ll nCr(ll n,ll k){\r\
     \n        if(n<0 or k<0 or n<k)return 0;\r\n        ll res=1;\r\n        while(n){\r\
@@ -104,30 +106,30 @@ data:
     \        ll a=(n-i)/(p-1),b=(n-i)%(p-1);\r\n        if(b==0)b+=p-1,a--;\r\n  \
     \      if(a<0 or b<j)return 0;\r\n        if(b==p-1 and j==0)return nCr(a,i-1);\r\
     \n        else return (nCr(a,i)*S[b][j])%p;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Stirling Number for query\r\n */\n#line 7 \"Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp\"\
+    \ Stirling Number for query\r\n */\n#line 7 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
     \n\r\nFastIO io;\r\nint main(){\r\n    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery\
     \ buf(p);\r\n    while(T--){\r\n        ll n,k;\r\n        io.read(n,k);\r\n \
-    \       io.write(buf.SecondKind(n,k));\r\n    }\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n\"\
+    \       io.write(buf.FirstKind(n,k));\r\n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n\r\n#include \"Math/stirlingquery.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n\
     \    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery buf(p);\r\n    while(T--){\r\
-    \n        ll n,k;\r\n        io.read(n,k);\r\n        io.write(buf.SecondKind(n,k));\r\
+    \n        ll n,k;\r\n        io.read(n,k);\r\n        io.write(buf.FirstKind(n,k));\r\
     \n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
   - Math/stirlingquery.hpp
-  isVerificationFile: false
-  path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
+  isVerificationFile: true
+  path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2022-10-18 18:02:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-10-18 18:12:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
+documentation_of: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
-- /library/Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp.html
-title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
+- /verify/Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+- /verify/Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp.html
+title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
 ---

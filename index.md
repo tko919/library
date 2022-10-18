@@ -49,7 +49,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/dequeswag.hpp
       title: Sliding Window Aggregation for deque
     - icon: ':heavy_check_mark:'
@@ -148,16 +148,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/contour.hpp
       title: Contour Sum Query
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
     - icon: ':heavy_check_mark:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/sieve.hpp
       title: Prime Sieve
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/stirlingquery.hpp
       title: Stirling Number for query
     - icon: ':heavy_check_mark:'
@@ -252,26 +252,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
-  - name: Verify
-    pages:
-    - icon: ':warning:'
-      path: Verify/LC_deque_operate_all_composite.cpp
-      title: Verify/LC_deque_operate_all_composite.cpp
-    - icon: ':warning:'
-      path: Verify/LC_enumerate_cliques.cpp
-      title: Verify/LC_enumerate_cliques.cpp
-    - icon: ':warning:'
-      path: Verify/LC_lca.cpp
-      title: Verify/LC_lca.cpp
-    - icon: ':warning:'
-      path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
-      title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.cpp
-    - icon: ':warning:'
-      path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
-      title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.cpp
-    - icon: ':warning:'
-      path: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
-      title: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
   verificationCategories:
   - name: Verify
     pages:
@@ -321,8 +301,14 @@ data:
       path: Verify/LC_counting_primes.test.cpp
       title: Verify/LC_counting_primes.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_deque_operate_all_composite.test.cpp
+      title: Verify/LC_deque_operate_all_composite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_discrete_logarithm_mod.test.cpp
       title: Verify/LC_discrete_logarithm_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_enumerate_cliques.test.cpp
+      title: Verify/LC_enumerate_cliques.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_palindromes.test.cpp
       title: Verify/LC_enumerate_palindromes.test.cpp
@@ -353,6 +339,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_lca.test.cpp
       title: Verify/LC_lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_lca_2.test.cpp
+      title: Verify/LC_lca_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_lcm_convolution.test.cpp
       title: Verify/LC_lcm_convolution.test.cpp
@@ -459,6 +448,12 @@ data:
       path: Verify/LC_staticrmq.test.cpp
       title: Verify/LC_staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+      title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+      title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_subset_convolution.test.cpp
       title: Verify/LC_subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -482,6 +477,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+      title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp

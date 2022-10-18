@@ -10,14 +10,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
-    title: Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+    title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Contour Sum Query
     links: []
@@ -167,11 +167,11 @@ data:
   - Graph/hld.hpp
   isVerificationFile: false
   path: Graph/contour.hpp
-  requiredBy:
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.cpp
+  requiredBy: []
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: Graph/contour.hpp
 layout: document
 redirect_from:
