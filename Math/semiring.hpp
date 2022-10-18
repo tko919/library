@@ -23,17 +23,12 @@ template<class T>struct Matrix{
         rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];
         return *this;
     }
-    Matrix& operator-=(const Matrix& m){
-        rep(i,0,h)rep(j,0,w)val[i][j]-=m.val[i][j];
-        return *this;
-    }
     Matrix& operator*=(const Matrix& m){
         Matrix<T> res(h,m.w);
         rep(i,0,h)rep(j,0,m.w)rep(k,0,w)res.val[i][j]+=val[i][k]*m.val[k][j];
         *this=res; return *this;
     }
     Matrix operator+(const Matrix& m)const{return Matrix(*this)+=m;}
-    Matrix operator-(const Matrix& m)const{return Matrix(*this)-=m;}
     Matrix operator*(const Matrix& m)const{return Matrix(*this)*=m;}
     Matrix pow(ll k){
         Matrix<T> res(h,h),c=*this;
