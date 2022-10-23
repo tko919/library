@@ -188,13 +188,13 @@ data:
     pages:
     - icon: ':warning:'
       path: Math/algebra.hpp
-      title: Semiring
+      title: Algebra Structure
     - icon: ':heavy_check_mark:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
     - icon: ':warning:'
       path: Math/bigint.hpp
-      title: Math/bigint.hpp
+      title: Big Integer(Float)
     - icon: ':heavy_check_mark:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
@@ -230,7 +230,7 @@ data:
       title: Pollard-Rho
     - icon: ':heavy_check_mark:'
       path: Math/primesum.hpp
-      title: Prime Count
+      title: Prime Sum
     - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function

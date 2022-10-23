@@ -10,7 +10,7 @@ data:
     title: Multiplicative Sum
   - icon: ':heavy_check_mark:'
     path: Math/primesum.hpp
-    title: Prime Count
+    title: Prime Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp

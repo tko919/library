@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: Big Integer(Float)
     links: []
   bundledCode: "#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct\
     \ fp {\r\n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\
@@ -167,7 +168,8 @@ data:
     \ res(Bigint((ll)sqrt(1LL*Bigint::get_B()*Bigint::get_B()/n)),-1),pre;\r\n   \
     \ int cur=1;\r\n    while(pre.v!=res.v){\r\n        cur=min(cur<<1,d);\r\n   \
     \     pre=res; Bigfloat add=Bigfloat(1)-res.square().mul(n);\r\n        add.set(-cur*1.01);\
-    \ res+=(res*add).div(2); res.set(-cur);\r\n    } return res.mul(n);\r\n}\n"
+    \ res+=(res*add).div(2); res.set(-cur);\r\n    } return res.mul(n);\r\n}\r\n\r\
+    \n/**\r\n * @brief Big Integer(Float)\r\n */\n"
   code: "#pragma once\r\n#include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\
     \r\n\r\nusing F1=fp<167772161>; using F2=fp<469762049>;\r\nNTT<F1,3> ntt1(25);\
     \ NTT<F2,3> ntt2(25);\r\nconst F1 coeff=F1(F2::get_mod()).inv();\r\ntemplate<int\
@@ -275,14 +277,15 @@ data:
     \ res(Bigint((ll)sqrt(1LL*Bigint::get_B()*Bigint::get_B()/n)),-1),pre;\r\n   \
     \ int cur=1;\r\n    while(pre.v!=res.v){\r\n        cur=min(cur<<1,d);\r\n   \
     \     pre=res; Bigfloat add=Bigfloat(1)-res.square().mul(n);\r\n        add.set(-cur*1.01);\
-    \ res+=(res*add).div(2); res.set(-cur);\r\n    } return res.mul(n);\r\n}"
+    \ res+=(res*add).div(2); res.set(-cur);\r\n    } return res.mul(n);\r\n}\r\n\r\
+    \n/**\r\n * @brief Big Integer(Float)\r\n */"
   dependsOn:
   - Math/modint.hpp
   - Convolution/ntt.hpp
   isVerificationFile: false
   path: Math/bigint.hpp
   requiredBy: []
-  timestamp: '2022-10-24 03:26:33+09:00'
+  timestamp: '2022-10-24 03:44:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/bigint.hpp
@@ -290,5 +293,5 @@ layout: document
 redirect_from:
 - /library/Math/bigint.hpp
 - /library/Math/bigint.hpp.html
-title: Math/bigint.hpp
+title: Big Integer(Float)
 ---

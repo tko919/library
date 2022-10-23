@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Math/primesum.hpp
-    title: Prime Count
+    title: Prime Sum
   - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
@@ -52,8 +52,8 @@ data:
     \n            rep(i,M+1,L+1)hi[i]-=fp*(lo[double(N)/(i*p)]-sub);\r\n         \
     \   for(int i=SQ;i>=q;i--)lo[i]-=fp*(lo[double(i)/p]-sub);\r\n        }\r\n  \
     \  }\r\n    T operator[](ll x) {\r\n        return (x<=SQ?lo[x]:hi[N/x]);\r\n\
-    \    }\r\n};\r\n\r\n/**\r\n * @brief Prime Count\r\n * @docs docs/primecount.md\r\
-    \n */\n#line 5 \"Verify/LC_counting_primes.test.cpp\"\n\r\nll F(ll x){return x;}\r\
+    \    }\r\n};\r\n\r\n/**\r\n * @brief Prime Sum\r\n * @docs docs/primesum.md\r\n\
+    \ */\n#line 5 \"Verify/LC_counting_primes.test.cpp\"\n\r\nll F(ll x){return x;}\r\
     \n\r\nint main(){\r\n    ll n;\r\n    cin>>n;\r\n    PrimeSum<ll,F> pc(n);\r\n\
     \    cout<<pc[n]<<'\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\r\n\r\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 03:26:33+09:00'
+  timestamp: '2022-10-24 03:44:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_counting_primes.test.cpp

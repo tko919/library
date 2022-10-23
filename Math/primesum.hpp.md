@@ -16,8 +16,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/primecount.md
-    document_title: Prime Count
+    _deprecated_at_docs: docs/primesum.md
+    document_title: Prime Sum
     links: []
   bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=1010101>vector<int>\
     \ sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int\
@@ -45,8 +45,8 @@ data:
     \n            rep(i,M+1,L+1)hi[i]-=fp*(lo[double(N)/(i*p)]-sub);\r\n         \
     \   for(int i=SQ;i>=q;i--)lo[i]-=fp*(lo[double(i)/p]-sub);\r\n        }\r\n  \
     \  }\r\n    T operator[](ll x) {\r\n        return (x<=SQ?lo[x]:hi[N/x]);\r\n\
-    \    }\r\n};\r\n\r\n/**\r\n * @brief Prime Count\r\n * @docs docs/primecount.md\r\
-    \n */\n"
+    \    }\r\n};\r\n\r\n/**\r\n * @brief Prime Sum\r\n * @docs docs/primesum.md\r\n\
+    \ */\n"
   code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\ntemplate<typename T,T\
     \ (*F)(ll)>struct PrimeSum{\r\n    ll N,SQ;\r\n    vector<T> lo,hi;\r\n    PrimeSum(ll\
     \ n=0):N(n),SQ(sqrtl(N)),lo(SQ+1),hi(SQ+1){\r\n        rep(i,1,SQ+1){\r\n    \
@@ -57,14 +57,14 @@ data:
     \n            rep(i,M+1,L+1)hi[i]-=fp*(lo[double(N)/(i*p)]-sub);\r\n         \
     \   for(int i=SQ;i>=q;i--)lo[i]-=fp*(lo[double(i)/p]-sub);\r\n        }\r\n  \
     \  }\r\n    T operator[](ll x) {\r\n        return (x<=SQ?lo[x]:hi[N/x]);\r\n\
-    \    }\r\n};\r\n\r\n/**\r\n * @brief Prime Count\r\n * @docs docs/primecount.md\r\
-    \n */"
+    \    }\r\n};\r\n\r\n/**\r\n * @brief Prime Sum\r\n * @docs docs/primesum.md\r\n\
+    \ */"
   dependsOn:
   - Math/sieve.hpp
   isVerificationFile: false
   path: Math/primesum.hpp
   requiredBy: []
-  timestamp: '2022-10-24 03:26:33+09:00'
+  timestamp: '2022-10-24 03:44:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/YUKI_1781.test.cpp
@@ -74,5 +74,13 @@ layout: document
 redirect_from:
 - /library/Math/primesum.hpp
 - /library/Math/primesum.hpp.html
-title: Prime Count
+title: Prime Sum
 ---
+## 使い方
+
+`PrimeSum(ll n)`: テンプレートには
+* `T`: 返り値の型
+* `T (*F)(ll)`: **完全乗法的関数** $f$ のprefix sumを返す関数
+を指定。
+
+`T operator[](ll x)`: $\sum_{p \leq x:\mbox{prime}} f(p)$ を出力。 $x=\lfloor n/d \rfloor$ で表される必要がある。

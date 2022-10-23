@@ -10,7 +10,7 @@ data:
     title: Multivariate Convolution
   - icon: ':warning:'
     path: Math/bigint.hpp
-    title: Math/bigint.hpp
+    title: Big Integer(Float)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod.test.cpp

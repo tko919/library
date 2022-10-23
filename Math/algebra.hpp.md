@@ -7,7 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: Semiring
+    document_title: Algebra Structure
     links: []
   bundledCode: "#line 2 \"Math/algebra.hpp\"\n\r\ntemplate<typename T,T (*add)(T,\
     \ T),T (*sub)(T, T),T (*e0)()>struct Abel{\r\n    T v;\r\n    Abel(T _v=e0()):v(_v){}\r\
@@ -35,7 +35,8 @@ data:
     \ Matrix(*this)*=m;}\r\n    Matrix pow(ll k){\r\n        Matrix<T> res(h,h),c=*this;\r\
     \n        rep(i,0,h)res.val[i][i]=T::id1();\r\n        while(k){\r\n         \
     \   if(k&1)res*=c;\r\n            c*=c;\r\n            k>>=1;\r\n        }\r\n\
-    \        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Semiring\r\n */\n"
+    \        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Algebra Structure\r\
+    \n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T,T (*add)(T, T),T (*sub)(T, T),T (*e0)()>struct\
     \ Abel{\r\n    T v;\r\n    Abel(T _v=e0()):v(_v){}\r\n    static T id0(){return\
     \ e0();}\r\n    Abel& operator+=(const Abel& x){return *this=add(v,x.v);}\r\n\
@@ -62,12 +63,13 @@ data:
     \ Matrix(*this)*=m;}\r\n    Matrix pow(ll k){\r\n        Matrix<T> res(h,h),c=*this;\r\
     \n        rep(i,0,h)res.val[i][i]=T::id1();\r\n        while(k){\r\n         \
     \   if(k&1)res*=c;\r\n            c*=c;\r\n            k>>=1;\r\n        }\r\n\
-    \        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Semiring\r\n */"
+    \        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Algebra Structure\r\
+    \n */"
   dependsOn: []
   isVerificationFile: false
   path: Math/algebra.hpp
   requiredBy: []
-  timestamp: '2022-10-24 03:26:33+09:00'
+  timestamp: '2022-10-24 03:44:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/algebra.hpp
@@ -75,5 +77,5 @@ layout: document
 redirect_from:
 - /library/Math/algebra.hpp
 - /library/Math/algebra.hpp.html
-title: Semiring
+title: Algebra Structure
 ---
