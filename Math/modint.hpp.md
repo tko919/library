@@ -106,6 +106,9 @@ data:
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1781.test.cpp
+    title: Verify/YUKI_1781.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: false
@@ -187,6 +190,7 @@ data:
   - Verify/LC_enumerate_cliques.test.cpp
   - Verify/LC_point_set_range_sort_range_composite.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/YUKI_1781.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_convolution_mod_1000000007.test.cpp

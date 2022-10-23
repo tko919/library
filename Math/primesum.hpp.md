@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1781.test.cpp
+    title: Verify/YUKI_1781.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -64,6 +67,7 @@ data:
   timestamp: '2022-10-24 03:26:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/YUKI_1781.test.cpp
   - Verify/LC_counting_primes.test.cpp
 documentation_of: Math/primesum.hpp
 layout: document

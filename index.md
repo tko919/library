@@ -46,7 +46,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -148,19 +148,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/contour.hpp
       title: Contour Sum Query
     - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -219,7 +219,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/multiplicative.hpp
       title: Multiplicative Sum
     - icon: ':heavy_check_mark:'
@@ -256,12 +256,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -498,7 +498,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
       title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -513,7 +513,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1112.test.cpp
       title: Verify/YUKI_1112.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1781.test.cpp
       title: Verify/YUKI_1781.test.cpp
     - icon: ':heavy_check_mark:'

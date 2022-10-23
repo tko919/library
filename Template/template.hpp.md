@@ -231,7 +231,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -247,14 +247,17 @@ data:
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1781.test.cpp
+    title: Verify/YUKI_1781.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing\
@@ -274,7 +277,7 @@ data:
   path: Template/template.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_subset_convolution.test.cpp
@@ -296,6 +299,7 @@ data:
   - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_two_sat.test.cpp
+  - Verify/YUKI_1781.test.cpp
   - Verify/LC_chromatic_number.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp

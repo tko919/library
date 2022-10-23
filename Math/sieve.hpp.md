@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/multiplicative.hpp
     title: Multiplicative Sum
   - icon: ':heavy_check_mark:'
@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1781.test.cpp
+    title: Verify/YUKI_1781.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -73,6 +76,7 @@ data:
   timestamp: '2022-01-22 19:43:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/YUKI_1781.test.cpp
   - Verify/LC_counting_primes.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_gcd_convolution.test.cpp
