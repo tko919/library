@@ -4,8 +4,6 @@
 #include "Graph/hld.hpp"
 #include "DataStructure/bit.hpp"
 
-ll ADD(ll a,ll b){return a+b;}
-ll SUB(ll a,ll b){return a-b;}
 
 int main(){
     int N,Q;
@@ -13,7 +11,7 @@ int main(){
     vector<int> a(N);
     rep(i,0,N)cin>>a[i];
     HLD hld(N);
-    BIT<ll,ADD,SUB> bit(N);
+    BIT<ll> bit(N);
     rep(i,0,N-1){
         int x,y;
         cin>>x>>y;

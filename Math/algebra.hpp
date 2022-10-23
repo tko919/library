@@ -1,5 +1,17 @@
 #pragma once
 
+template<typename T,T (*add)(T, T),T (*sub)(T, T),T (*e0)()>struct Abel{
+    T v;
+    Abel(T _v=e0()):v(_v){}
+    static T id0(){return e0();}
+    Abel& operator+=(const Abel& x){return *this=add(v,x.v);}
+    Abel& operator-=(const Abel& x){return *this=sub(v,x.v);}
+    Abel operator+(const Abel& x)const{return Abel(*this)+=x;}
+    Abel operator-(const Abel& x)const{return Abel(*this)-=x;}
+    bool operator==(const Abel &x)const{return v==x.v;}
+    bool operator!=(const Abel &x)const{return v!=x.v;}
+};
+
 template<typename T,T (*add)(T, T),T (*mul)(T, T),T (*e0)(),T (*e1)()>struct Semiring{
     T v;
     Semiring(T _v=e0()):v(_v){}

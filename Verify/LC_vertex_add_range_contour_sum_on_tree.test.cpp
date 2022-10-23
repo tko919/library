@@ -4,10 +4,10 @@
 #include "Utility/fastio.hpp"
 
 #include "Graph/contour.hpp"
+#include "DataStructure/bit.hpp"
 
-ll f(ll a,ll b){return a+b;}
-ll g(ll a,ll b){return a+b;}
-ll m1(){return 0;}
+ll ADD(ll a,ll b){return a+b;}
+ll SUB(ll a,ll b){return a-b;}
 
 FastIO io;
 int main(){
@@ -15,26 +15,36 @@ int main(){
     io.read(n,q);
     vector<ll> a(n);
     io.read(a);
-    ContourQuery<ll,ll,f,g,m1> buf(n);
+    ContourQuery buf(n);
     rep(_,0,n-1){
         int u,v;
         io.read(u,v);
         buf.add_edge(u,v);
     }
-    buf.run();
-    rep(i,0,n)buf.update(i,a[i]);
+    auto len=buf.run();
+    vector<BIT<ll,ADD,SUB>> seg(len.size());
+    rep(i,0,len.size())seg[i]=BIT<ll,ADD,SUB>(len[i]);
+    rep(v,0,n){
+        for(auto& [i,p]:buf.point(v))seg[i].add(p,a[v]);
+    }
+
     while(q--){
         int t;
         io.read(t);
         if(t==0){
             int v,x;
             io.read(v,x);
-            buf.update(v,x);
+            for(auto& [i,p]:buf.point(v))seg[i].add(p,x);
         }
         else{
             int v,L,R;
             io.read(v,L,R);
-            io.write(buf.query(v,L,R));
+            ll ret=0;
+            for(auto& [i,LR]:buf.range(v,L,R)){
+                auto [lb,rb]=LR;
+                ret+=seg[i].sum(lb,rb);
+            }
+            io.write(ret);
         }
     }
     return 0;

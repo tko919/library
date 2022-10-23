@@ -9,6 +9,7 @@ template<typename M,M (*f)(M,M),M (*m1)()>class DualSegmentTree{
         data[k]=m1();
     }
 public:
+    DualSegmentTree(){}
     DualSegmentTree(int n){
         sz=1,height=0;
         while(sz<n)sz<<=1,height++;

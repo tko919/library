@@ -3,16 +3,13 @@
 #include "Template/template.hpp"
 #include "DataStructure/bit.hpp"
 
-ll ADD(ll a,ll b){return a+b;}
-ll SUB(ll a,ll b){return a-b;}
-
 int main(){
     int N,Q;
     cin>>N>>Q;
     vector<int> a(N);
     rep(i,0,N)cin>>a[i];
 
-    BIT<ll,ADD,SUB> bit(N);
+    BIT<ll> bit(N);
     rep(i,0,N)bit.add(i,a[i]);
     while(Q--){
         int t;
