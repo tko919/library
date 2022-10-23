@@ -13,7 +13,7 @@
 "Verify/LC_convolution_mod.test.cpp": "2022-10-16 23:53:47 +0900",
 "Verify/LC_convolution_mod_1000000007.test.cpp": "2022-10-16 23:53:47 +0900",
 "Verify/LC_convolution_mod_2.test.cpp": "2022-10-17 02:55:26 +0900",
-"Verify/LC_counting_primes.test.cpp": "2022-10-24 03:26:33 +0900",
+"Verify/LC_counting_primes.test.cpp": "2022-10-24 03:44:46 +0900",
 "Verify/LC_deque_operate_all_composite.test.cpp": "2022-10-18 18:12:43 +0900",
 "Verify/LC_discrete_logarithm_mod.test.cpp": "2022-10-16 23:53:47 +0900",
 "Verify/LC_enumerate_cliques.test.cpp": "2022-10-18 18:12:43 +0900",
@@ -80,7 +80,7 @@
 "Verify/LC_zalgorithm.test.cpp": "2022-10-16 23:53:47 +0900",
 "Verify/YUKI_1080.test.cpp": "2022-10-17 02:49:13 +0900",
 "Verify/YUKI_1112.test.cpp": "2022-10-17 02:49:13 +0900",
-"Verify/YUKI_1781.test.cpp": "2022-10-24 03:36:47 +0900",
+"Verify/YUKI_1781.test.cpp": "2022-10-24 03:44:46 +0900",
 "Verify/YUKI_310.test.cpp": "2022-10-17 02:49:13 +0900",
 "Verify/YUKI_901.test.cpp": "2022-10-24 03:26:33 +0900"
 }
