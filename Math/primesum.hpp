@@ -26,6 +26,6 @@ template<typename T,T (*F)(ll)>struct PrimeSum{
 };
 
 /**
- * @brief Prime Count
- * @docs docs/primecount.md
+ * @brief Prime Sum
+ * @docs docs/primesum.md
  */

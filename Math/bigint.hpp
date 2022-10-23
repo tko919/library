@@ -213,3 +213,7 @@ Bigfloat sqrt(ll n,int d){
         add.set(-cur*1.01); res+=(res*add).div(2); res.set(-cur);
     } return res.mul(n);
 }
+
+/**
+ * @brief Big Integer(Float)
+ */

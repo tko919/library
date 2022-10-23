@@ -55,5 +55,5 @@ template<class T>struct Matrix{
 };
 
 /**
- * @brief Semiring
+ * @brief Algebra Structure
  */
