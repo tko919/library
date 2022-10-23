@@ -6,8 +6,6 @@
 #include "Graph/contour.hpp"
 #include "DataStructure/bit.hpp"
 
-ll ADD(ll a,ll b){return a+b;}
-ll SUB(ll a,ll b){return a-b;}
 
 FastIO io;
 int main(){
@@ -22,8 +20,8 @@ int main(){
         buf.add_edge(u,v);
     }
     auto len=buf.run();
-    vector<BIT<ll,ADD,SUB>> seg(len.size());
-    rep(i,0,len.size())seg[i]=BIT<ll,ADD,SUB>(len[i]);
+    vector<BIT<ll>> seg(len.size());
+    rep(i,0,len.size())seg[i]=BIT<ll>(len[i]);
     rep(v,0,n){
         for(auto& [i,p]:buf.point(v))seg[i].add(p,a[v]);
     }

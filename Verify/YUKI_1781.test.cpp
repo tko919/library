@@ -5,7 +5,7 @@
 
 #include "Math/multiplicative.hpp"
 #include "Math/modint.hpp"
-#include "Math/primecount.hpp"
+#include "Math/primesum.hpp"
 ll F(ll x){return x;}
 PrimeSum<ll,F> buf;
 
