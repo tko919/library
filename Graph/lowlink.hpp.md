@@ -54,8 +54,8 @@ data:
   timestamp: '2022-02-06 21:52:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_biconnected_components.test.cpp
   - Verify/LC_two_edge_connected_components.test.cpp
+  - Verify/LC_biconnected_components.test.cpp
 documentation_of: Graph/lowlink.hpp
 layout: document
 redirect_from:

@@ -6,8 +6,8 @@ data:
     path: DataStructure/2dsegtree.hpp
     title: 2D Segment Tree
   - icon: ':heavy_check_mark:'
-    path: Graph/contour.hpp
-    title: Contour Sum Query
+    path: DataStructure/sortablesegtree.hpp
+    title: Sortable Segment Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_rectangle_sum.test.cpp
@@ -16,14 +16,14 @@ data:
     path: Verify/LC_point_set_range_composite.test.cpp
     title: Verify/LC_point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_point_set_range_sort_range_composite.test.cpp
+    title: Verify/LC_point_set_range_sort_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_rectangle_sum.test.cpp
     title: Verify/LC_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_staticrmq.test.cpp
     title: Verify/LC_staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-    title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
@@ -61,17 +61,17 @@ data:
   isVerificationFile: false
   path: DataStructure/segtree.hpp
   requiredBy:
-  - Graph/contour.hpp
   - DataStructure/2dsegtree.hpp
+  - DataStructure/sortablesegtree.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_point_set_range_composite.test.cpp
+  - Verify/LC_point_set_range_sort_range_composite.test.cpp
   - Verify/LC_rectangle_sum.test.cpp
+  - Verify/LC_vertex_set_path_composite.test.cpp
   - Verify/LC_staticrmq.test.cpp
   - Verify/LC_point_add_rectangle_sum.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - Verify/LC_point_set_range_composite.test.cpp
-  - Verify/LC_vertex_set_path_composite.test.cpp
 documentation_of: DataStructure/segtree.hpp
 layout: document
 redirect_from:

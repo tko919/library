@@ -5,7 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
+  - icon: ':warning:'
+    path: Math/multiplicative.hpp
+    title: Multiplicative Sum
+  - icon: ':heavy_check_mark:'
+    path: Math/primesum.hpp
+    title: Prime Count
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_counting_primes.test.cpp
+    title: Verify/LC_counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_primes.test.cpp
     title: Verify/LC_enumerate_primes.test.cpp
@@ -58,12 +67,15 @@ data:
   isVerificationFile: false
   path: Math/sieve.hpp
   requiredBy:
+  - Math/multiplicative.hpp
+  - Math/primesum.hpp
   - Convolution/divisor.hpp
   timestamp: '2022-01-22 19:43:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_counting_primes.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
 documentation_of: Math/sieve.hpp
 layout: document

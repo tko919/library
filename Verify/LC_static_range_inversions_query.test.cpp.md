@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algorithm/mo.hpp
     title: Mo's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -41,23 +41,21 @@ data:
     \       while(rb<R[i])addr(rb++);\r\n            while(lb<L[i])dell(lb++);\r\n\
     \            while(rb>R[i])delr(--rb);\r\n            out(i);\r\n        }\r\n\
     \    }\r\n};\r\n\r\n/**\r\n * @brief Mo's Algorithm\r\n * @docs docs/mo.md\r\n\
-    \ */\n#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename T,T (*ADD)(T,T),T\
-    \ (*SUB)(T,T)>struct BIT{\r\n    int n; T all=0; vector<T> val;\r\n    BIT(int\
-    \ _n=0):n(_n),val(_n+10){}\r\n    void clear(){val.assign(n+10,0); all=T();}\r\
-    \n    void add(int i,T x){\r\n        for(i++;i<=n;i+=(i&-i))val[i]=ADD(val[i],x);\r\
-    \n        all=ADD(all,x);\r\n    }\r\n    T sum(int i){\r\n        T res=0;\r\n\
-    \        for(;i;i-=(i&-i))res=ADD(res,val[i]);\r\n        return res;\r\n    }\r\
-    \n    T sum(int L,int R){return SUB(sum(R),sum(L));} // [L,R)\r\n    int lower_bound(T\
-    \ x){\r\n        int ret=0,len=1;\r\n        while(2*len<=n)len<<=1;\r\n     \
-    \   for(;len>=1;len>>=1){\r\n            if(ret+len<=n and val[ret+len]<x){\r\n\
-    \                ret+=len;\r\n                x=SUB(x,val[ret]);\r\n         \
-    \   }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Binary Indexed Tree\r\n */\n#line 6 \"Verify/LC_static_range_inversions_query.test.cpp\"\
-    \n\r\nint ADD(int a,int b){return a+b;}\r\nint SUB(int a,int b){return a-b;}\r\
-    \nint a[101010];\r\nll ret[101010],cur=0;\r\nBIT<int,ADD,SUB> bit(101010);\r\n\
-    \r\nint main(){\r\n    int n,q;\r\n    cin>>n>>q;\r\n    using P=pair<int,int>;\r\
-    \n    vector<P> vs(n);\r\n    rep(i,0,n){\r\n        cin>>vs[i].first;\r\n   \
-    \     vs[i].second=i;\r\n    }\r\n    sort(ALL(vs));\r\n    rep(i,0,n)a[vs[i].second]=i;\r\
+    \ */\n#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename T>struct BIT{\r\
+    \n    int n; T all=0; vector<T> val;\r\n    BIT(int _n=0):n(_n),val(_n+10){}\r\
+    \n    void clear(){val.assign(n+10,0); all=T();}\r\n    void add(int i,T x){\r\
+    \n        for(i++;i<=n;i+=(i&-i))val[i]=val[i]+x;\r\n        all+=x;\r\n    }\r\
+    \n    T sum(int i){\r\n        T res=0;\r\n        for(;i;i-=(i&-i))res+=val[i];\r\
+    \n        return res;\r\n    }\r\n    T sum(int L,int R){return sum(R)-sum(L);}\
+    \ // [L,R)\r\n    int lower_bound(T x){\r\n        int ret=0,len=1;\r\n      \
+    \  while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\n            if(ret+len<=n\
+    \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
+    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Binary Indexed Tree\r\n */\n#line 6 \"Verify/LC_static_range_inversions_query.test.cpp\"\
+    \n\r\nint a[101010];\r\nll ret[101010],cur=0;\r\nBIT<int> bit(101010);\r\n\r\n\
+    int main(){\r\n    int n,q;\r\n    cin>>n>>q;\r\n    using P=pair<int,int>;\r\n\
+    \    vector<P> vs(n);\r\n    rep(i,0,n){\r\n        cin>>vs[i].first;\r\n    \
+    \    vs[i].second=i;\r\n    }\r\n    sort(ALL(vs));\r\n    rep(i,0,n)a[vs[i].second]=i;\r\
     \n\r\n    auto addl=[&](int i){\r\n        cur+=bit.sum(a[i]);\r\n        bit.add(a[i],1);\r\
     \n    };\r\n    auto addr=[&](int i){\r\n        cur+=bit.all-bit.sum(a[i]);\r\
     \n        bit.add(a[i],1);\r\n    };\r\n    auto dell=[&](int i){\r\n        bit.add(a[i],-1);\r\
@@ -69,9 +67,8 @@ data:
     n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Algorithm/mo.hpp\"\r\n\
-    #include \"DataStructure/bit.hpp\"\r\n\r\nint ADD(int a,int b){return a+b;}\r\n\
-    int SUB(int a,int b){return a-b;}\r\nint a[101010];\r\nll ret[101010],cur=0;\r\
-    \nBIT<int,ADD,SUB> bit(101010);\r\n\r\nint main(){\r\n    int n,q;\r\n    cin>>n>>q;\r\
+    #include \"DataStructure/bit.hpp\"\r\n\r\nint a[101010];\r\nll ret[101010],cur=0;\r\
+    \nBIT<int> bit(101010);\r\n\r\nint main(){\r\n    int n,q;\r\n    cin>>n>>q;\r\
     \n    using P=pair<int,int>;\r\n    vector<P> vs(n);\r\n    rep(i,0,n){\r\n  \
     \      cin>>vs[i].first;\r\n        vs[i].second=i;\r\n    }\r\n    sort(ALL(vs));\r\
     \n    rep(i,0,n)a[vs[i].second]=i;\r\n\r\n    auto addl=[&](int i){\r\n      \
@@ -90,7 +87,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2022-10-16 23:53:47+09:00'
+  timestamp: '2022-10-24 03:26:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_static_range_inversions_query.test.cpp

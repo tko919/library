@@ -64,8 +64,8 @@ data:
   timestamp: '2022-02-02 03:30:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
 documentation_of: FPS/multieval.hpp
 layout: document
 redirect_from:

@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/dualsegtree.hpp
     title: Dual Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -87,9 +87,9 @@ data:
     \ M,M (*f)(M,M),M (*m1)()>class DualSegmentTree{\r\n    int sz,height;\r\n   \
     \ vector<M> data;\r\n    void down(int k){\r\n        data[k*2]=f(data[k*2],data[k]);\r\
     \n        data[k*2+1]=f(data[k*2+1],data[k]);\r\n        data[k]=m1();\r\n   \
-    \ }\r\npublic:\r\n    DualSegmentTree(int n){\r\n        sz=1,height=0;\r\n  \
-    \      while(sz<n)sz<<=1,height++;\r\n        data.assign(2*sz,m1());\r\n    }\r\
-    \n    void run(vector<M>& v){\r\n        for(int i=0;i<(int)v.size();i++)data[i+sz]=v[i];\r\
+    \ }\r\npublic:\r\n    DualSegmentTree(){}\r\n    DualSegmentTree(int n){\r\n \
+    \       sz=1,height=0;\r\n        while(sz<n)sz<<=1,height++;\r\n        data.assign(2*sz,m1());\r\
+    \n    }\r\n    void run(vector<M>& v){\r\n        for(int i=0;i<(int)v.size();i++)data[i+sz]=v[i];\r\
     \n    }\r\n    void update(int a,int b,M x){\r\n        if(a>=b)return;\r\n  \
     \      a+=sz,b+=sz;\r\n        for(int i=height;i;i--){\r\n            if(((a>>i)<<i)!=a)down(a>>i);\r\
     \n            if(((b>>i)<<i)!=b)down((b-1)>>i);\r\n        }\r\n        for(;a<b;a>>=1,b>>=1){\r\
@@ -123,7 +123,7 @@ data:
   isVerificationFile: true
   path: Verify/AOJ_DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2022-02-01 00:45:15+09:00'
+  timestamp: '2022-10-24 03:26:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/AOJ_DSL_2_D.test.cpp

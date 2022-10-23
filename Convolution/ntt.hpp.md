@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/multivariate.hpp
     title: Multivariate Convolution
+  - icon: ':warning:'
+    path: Math/bigint.hpp
+    title: Math/bigint.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod.test.cpp
@@ -111,27 +114,28 @@ data:
   isVerificationFile: false
   path: Convolution/ntt.hpp
   requiredBy:
+  - Math/bigint.hpp
   - Convolution/multivariate.hpp
   - Convolution/arbitrary.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_convolution_mod_1000000007.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/LC_convolution_mod.test.cpp
-  - Verify/LC_multivariate_convolution.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
-  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
 documentation_of: Convolution/ntt.hpp
 layout: document
 redirect_from:

@@ -90,8 +90,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_matrix_product.test.cpp
-  - Verify/LC_system_of_linear_equations.test.cpp
   - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_system_of_linear_equations.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document
 redirect_from:

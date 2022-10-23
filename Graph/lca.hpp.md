@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lca_2.test.cpp
     title: Verify/LC_lca_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_901.test.cpp
+    title: Verify/YUKI_901.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -58,6 +61,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_lca_2.test.cpp
+  - Verify/YUKI_901.test.cpp
 documentation_of: Graph/lca.hpp
 layout: document
 redirect_from:
