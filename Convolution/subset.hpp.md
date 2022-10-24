@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Subset Convolution
     links: []
@@ -40,7 +40,7 @@ data:
   path: Convolution/subset.hpp
   requiredBy: []
   timestamp: '2022-01-06 10:09:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_subset_convolution.test.cpp
 documentation_of: Convolution/subset.hpp

@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/multiplicative.hpp
     title: Multiplicative Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primesum.hpp
     title: Prime Sum
   _extendedVerifiedWith:
@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Prime Sieve
     links: []
@@ -74,7 +74,7 @@ data:
   - Math/primesum.hpp
   - Convolution/divisor.hpp
   timestamp: '2022-01-22 19:43:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/YUKI_1781.test.cpp
   - Verify/LC_counting_primes.test.cpp

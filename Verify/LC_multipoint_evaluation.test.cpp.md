@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/multieval.hpp
     title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -37,7 +37,7 @@ data:
     \ {\r\n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\n\
     \        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
     \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
-    \n    fp& init(int x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
+    \n    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
     \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
     \ return res;}\r\n    fp& operator+=(const fp& x){return init(v+x.v);}\r\n   \
     \ fp& operator-=(const fp& x){return init(v+mod-x.v);}\r\n    fp& operator*=(const\
@@ -200,7 +200,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2022-10-17 02:55:26+09:00'
+  timestamp: '2022-10-25 04:47:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multipoint_evaluation.test.cpp

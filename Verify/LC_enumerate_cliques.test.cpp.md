@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/enumcliques.hpp
     title: Enumerate Cliques
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -87,33 +87,38 @@ data:
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
     \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_enumerate_cliques.test.cpp\"\n\
-    \r\n#line 2 \"Graph/enumcliques.hpp\"\n\r\nvector<vector<int>> EnumCliques(vector<vector<int>>&\
-    \ g){\r\n    int n=g.size(),m=0;\r\n    vector<vector<int>> res;\r\n    vector<int>\
-    \ deg(n);\r\n    rep(v,0,n){\r\n        rep(u,0,n)deg[v]+=g[v][u];\r\n       \
-    \ m+=deg[v];\r\n    }\r\n    int L=sqrt(m);\r\n    \r\n    auto process=[&](vector<int>&\
-    \ vs,bool fix=true)->void{\r\n        vector<int> nbhd(vs.size());\r\n       \
-    \ rep(i,0,vs.size())rep(j,0,vs.size())if(i!=j){\r\n            nbhd[i]|=(!g[vs[i]][vs[j]])<<j;\r\
-    \n        }\r\n        rep(mask,1,1<<vs.size()){\r\n            if(fix and (mask&1)==0)continue;;\r\
-    \n            bool check=1;\r\n            rep(i,0,vs.size())if(mask>>i&1){\r\n\
-    \                if(mask&nbhd[i]){\r\n                    check=0;\r\n       \
-    \             break;\r\n                }\r\n            }\r\n            if(check){\r\
-    \n                vector<int> add;\r\n                rep(i,0,vs.size())if(mask>>i&1){\r\
-    \n                    add.push_back(vs[i]);\r\n                }\r\n         \
-    \       res.push_back(add);\r\n            }\r\n        }\r\n    };\r\n\r\n  \
-    \  vector<int> used(n);\r\n    queue<int> que;\r\n    rep(v,0,n)if(deg[v]<L){\r\
-    \n        que.push(v);\r\n        used[v]=1;\r\n    }\r\n    while(!que.empty()){\r\
-    \n        int v=que.front();\r\n        que.pop();\r\n        vector<int> vs;\r\
-    \n        vs.push_back(v);\r\n        rep(u,0,n)if(g[v][u])vs.push_back(u);\r\n\
-    \        process(vs);\r\n        rep(u,0,n)if(g[v][u]){\r\n            g[v][u]=g[u][v]=0;\r\
-    \n            deg[u]--;\r\n            if(!used[u] and deg[u]<L){\r\n        \
-    \        que.push(u);\r\n                used[u]=1;\r\n            }\r\n     \
-    \   }\r\n    }\r\n    vector<int> vs;\r\n    rep(v,0,n)if(!used[v])vs.push_back(v);\r\
-    \n    process(vs,false);\r\n    return res;\r\n}\r\n\r\n/**\r\n * @brief Enumerate\
-    \ Cliques\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct\
-    \ fp {\r\n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\
-    \n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
+    \r\n#line 2 \"Graph/enumcliques.hpp\"\n\r\nstruct EnumCliques{\r\n    const int\
+    \ n;\r\n    int m;\r\n    vector<vector<int>> g;\r\n    vector<int> deg;\r\n \
+    \   EnumCliques(int _n):n(_n),m(0),g(n,vector<int>(n)),deg(n){}\r\n    void add_edge(int\
+    \ u,int v){\r\n        g[u][v]=g[v][u]=1;\r\n        deg[u]++; deg[v]++;\r\n \
+    \       m++;\r\n    }\r\n    vector<vector<int>> run(){\r\n        int L=sqrt(m);\r\
+    \n        vector<vector<int>> res;\r\n        auto process=[&](vector<int>& vs,bool\
+    \ fix=true)->void{\r\n            vector<int> nbhd(vs.size());\r\n           \
+    \ rep(i,0,vs.size())rep(j,0,vs.size())if(i!=j){\r\n                nbhd[i]|=(!g[vs[i]][vs[j]])<<j;\r\
+    \n            }\r\n            rep(mask,1,1<<vs.size()){\r\n                if(fix\
+    \ and (mask&1)==0)continue;;\r\n                bool check=1;\r\n            \
+    \    rep(i,0,vs.size())if(mask>>i&1){\r\n                    if(mask&nbhd[i]){\r\
+    \n                        check=0;\r\n                        break;\r\n     \
+    \               }\r\n                }\r\n                if(check){\r\n     \
+    \               vector<int> add;\r\n                    rep(i,0,vs.size())if(mask>>i&1){\r\
+    \n                        add.push_back(vs[i]);\r\n                    }\r\n \
+    \                   res.push_back(add);\r\n                }\r\n            }\r\
+    \n        };\r\n\r\n        vector<int> used(n);\r\n        queue<int> que;\r\n\
+    \        rep(v,0,n)if(deg[v]<L){\r\n            que.push(v);\r\n            used[v]=1;\r\
+    \n        }\r\n        while(!que.empty()){\r\n            int v=que.front();\r\
+    \n            que.pop();\r\n            vector<int> vs;\r\n            vs.push_back(v);\r\
+    \n            rep(u,0,n)if(g[v][u])vs.push_back(u);\r\n            process(vs);\r\
+    \n            rep(u,0,n)if(g[v][u]){\r\n                g[v][u]=g[u][v]=0;\r\n\
+    \                deg[u]--;\r\n                if(!used[u] and deg[u]<L){\r\n \
+    \                   que.push(u);\r\n                    used[u]=1;\r\n       \
+    \         }\r\n            }\r\n        }\r\n        vector<int> vs;\r\n     \
+    \   rep(v,0,n)if(!used[v])vs.push_back(v);\r\n        process(vs,false);\r\n \
+    \       return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Enumerate Cliques\r\
+    \n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct fp\
+    \ {\r\n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\n\
+    \        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
     \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
-    \n    fp& init(int x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
+    \n    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
     \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
     \ return res;}\r\n    fp& operator+=(const fp& x){return init(v+x.v);}\r\n   \
     \ fp& operator-=(const fp& x){return init(v+mod-x.v);}\r\n    fp& operator*=(const\
@@ -136,19 +141,19 @@ data:
     \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 8 \"Verify/LC_enumerate_cliques.test.cpp\"\n\
     using Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n \
-    \   io.read(n,m);\r\n    vector<int> x(n);\r\n    io.read(x);\r\n    vector g(n,vector<int>(n));\r\
-    \n    rep(_,0,m){\r\n        int u,v;\r\n        io.read(u,v);\r\n        g[u][v]=g[v][u]=1;\r\
-    \n    }\r\n    auto cs=EnumCliques(g);\r\n    Fp res;\r\n    for(auto& clique:cs){\r\
-    \n        Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\
-    \n    }\r\n    io.write(res.v);\r\n    return 0;\r\n}\n"
+    \   io.read(n,m);\r\n    vector<int> x(n);\r\n    io.read(x);\r\n    EnumCliques\
+    \ g(n);\r\n    rep(_,0,m){\r\n        int u,v;\r\n        io.read(u,v);\r\n  \
+    \      g.add_edge(u,v);\r\n    }\r\n    auto cs=g.run();\r\n    Fp res;\r\n  \
+    \  for(auto& clique:cs){\r\n        Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\
+    \n        res+=add;\r\n    }\r\n    io.write(res.v);\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\r\n\
     \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\
     \n#include \"Graph/enumcliques.hpp\"\r\n#include \"Math/modint.hpp\"\r\nusing\
     \ Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\
-    \n    vector<int> x(n);\r\n    io.read(x);\r\n    vector g(n,vector<int>(n));\r\
-    \n    rep(_,0,m){\r\n        int u,v;\r\n        io.read(u,v);\r\n        g[u][v]=g[v][u]=1;\r\
-    \n    }\r\n    auto cs=EnumCliques(g);\r\n    Fp res;\r\n    for(auto& clique:cs){\r\
-    \n        Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\
+    \n    vector<int> x(n);\r\n    io.read(x);\r\n    EnumCliques g(n);\r\n    rep(_,0,m){\r\
+    \n        int u,v;\r\n        io.read(u,v);\r\n        g.add_edge(u,v);\r\n  \
+    \  }\r\n    auto cs=g.run();\r\n    Fp res;\r\n    for(auto& clique:cs){\r\n \
+    \       Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\
     \n    }\r\n    io.write(res.v);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
@@ -158,7 +163,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2022-10-18 18:12:43+09:00'
+  timestamp: '2022-10-25 04:47:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_enumerate_cliques.test.cpp

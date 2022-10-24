@@ -16,6 +16,9 @@ data:
     path: Verify/AOJ_GRL_6_A.test.cpp
     title: Verify/AOJ_GRL_6_A.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_area_of_union_of_rectangles.test.cpp
+    title: Verify/LC_area_of_union_of_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution.test.cpp
     title: Verify/LC_multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -135,28 +138,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_rectangle_sum.test.cpp
     title: Verify/LC_point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_set_range_composite.test.cpp
     title: Verify/LC_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_affine_range_sum.test.cpp
     title: Verify/LC_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,7 +180,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_segment_add_get_min.test.cpp
     title: Verify/LC_segment_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -204,7 +207,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -213,10 +216,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_floor_of_linear.test.cpp
     title: Verify/LC_sum_of_floor_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,30 +237,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_zalgorithm.test.cpp
     title: Verify/LC_zalgorithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing\
@@ -277,7 +280,7 @@ data:
   path: Template/template.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_subset_convolution.test.cpp
@@ -289,6 +292,7 @@ data:
   - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_vertex_add_path_sum.test.cpp
   - Verify/LC_sum_of_totient_function.test.cpp
+  - Verify/LC_area_of_union_of_rectangles.test.cpp
   - Verify/LC_nim_product_64.test.cpp
   - Verify/LC_bitwise_and_convolution.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp

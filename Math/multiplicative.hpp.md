@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/multiplicative.md
     document_title: Multiplicative Sum
@@ -40,6 +40,13 @@ data:
     \n        ret+=nxt;\r\n        ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
     \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
     \   dfs(dfs,x*ps[j],j,1,cur*pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),1);\r\
+    \n    return ret;\r\n}\r\n\r\ntemplate<typename T,T (*pe)(int,int),ll (*pcnt)(ll),T\
+    \ (*psum)(ll)>T AdditiveSum(ll N){\r\n    ll SQ=sqrtl(N);\r\n    auto ps=sieve(SQ);\r\
+    \n    \r\n    T ret=psum(N);\r\n    auto dfs=[&](auto& dfs,ll x,int i,int e,T\
+    \ cur,T pre)->void{\r\n        T nxt=pre+pe(ps[i],e+1);\r\n        ret+=cur*(pcnt(double(N)/x)-pcnt(ps[i]))+(psum(double(N)/x)-psum(ps[i]));\r\
+    \n        ret+=nxt;\r\n        ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
+    \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
+    \   dfs(dfs,x*ps[j],j,1,cur+pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),0);\r\
     \n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs\
     \ docs/multiplicative.md\r\n */\n"
   code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\ntemplate<typename T,T\
@@ -50,6 +57,13 @@ data:
     \       ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
     \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
     \   dfs(dfs,x*ps[j],j,1,cur*pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),1);\r\
+    \n    return ret;\r\n}\r\n\r\ntemplate<typename T,T (*pe)(int,int),ll (*pcnt)(ll),T\
+    \ (*psum)(ll)>T AdditiveSum(ll N){\r\n    ll SQ=sqrtl(N);\r\n    auto ps=sieve(SQ);\r\
+    \n    \r\n    T ret=psum(N);\r\n    auto dfs=[&](auto& dfs,ll x,int i,int e,T\
+    \ cur,T pre)->void{\r\n        T nxt=pre+pe(ps[i],e+1);\r\n        ret+=cur*(pcnt(double(N)/x)-pcnt(ps[i]))+(psum(double(N)/x)-psum(ps[i]));\r\
+    \n        ret+=nxt;\r\n        ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
+    \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
+    \   dfs(dfs,x*ps[j],j,1,cur+pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),0);\r\
     \n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs\
     \ docs/multiplicative.md\r\n */"
   dependsOn:
@@ -57,8 +71,8 @@ data:
   isVerificationFile: false
   path: Math/multiplicative.hpp
   requiredBy: []
-  timestamp: '2022-10-24 03:26:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-25 04:47:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/YUKI_1781.test.cpp
 documentation_of: Math/multiplicative.hpp
@@ -74,3 +88,5 @@ title: Multiplicative Sum
 * `T`: 返り値の型
 * `T (*pe)(int p,int e)`: $f(p^e)$ を返す関数
 * `T (*psum)(ll x)`: $\sum_{p \leq x:\mbox{prime}} f(p)$ を返す関数 ( $x$ は $\lfloor N/d \rfloor$ の形に限られる)
+
+`T AdditiveSum(ll n)`: 上の $f$ が **加法的関数** である場合。

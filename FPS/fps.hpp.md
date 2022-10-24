@@ -21,21 +21,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Formal Power Series (NTT-friendly mod)
     links: []
@@ -200,7 +200,7 @@ data:
   path: FPS/fps.hpp
   requiredBy: []
   timestamp: '2022-10-17 02:55:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -29,32 +29,34 @@ data:
     \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
-    \ */\n#line 3 \"Graph/maxindependentset.hpp\"\n\r\ntemplate<typename T>pair<T,ll>\
-    \ MaxIndependentSet(vector<vector<int>>& a,vector<T> cost,int _rot=1e6){\r\n \
-    \   int n=a.size();\r\n    vector<ll> es(n);\r\n    rep(i,0,n)rep(j,0,n)if(a[i][j]){\r\
-    \n        es[i]|=(1LL<<j);\r\n    }\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),0);\r\
-    \n    Random gen;\r\n    T ret=0;\r\n    ll cur=0;\r\n    rep(_,0,_rot){\r\n \
-    \       gen.shuffle(ALL(ord));\r\n        T add=0;\r\n        ll used=0;\r\n \
-    \       for(auto& v:ord)if(!(used&es[v])){\r\n            used|=(1LL<<v);\r\n\
-    \            add+=cost[v];\r\n        }\r\n        if(chmax(ret,add))cur=used;\r\
-    \n    }\r\n    return {ret,cur};\r\n}\r\n\r\n/**\r\n * @brief Maximum Independent\
-    \ Set\r\n */\n"
-  code: "#pragma once\r\n#include \"Utility/random.hpp\"\r\n\r\ntemplate<typename\
-    \ T>pair<T,ll> MaxIndependentSet(vector<vector<int>>& a,vector<T> cost,int _rot=1e6){\r\
-    \n    int n=a.size();\r\n    vector<ll> es(n);\r\n    rep(i,0,n)rep(j,0,n)if(a[i][j]){\r\
-    \n        es[i]|=(1LL<<j);\r\n    }\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),0);\r\
-    \n    Random gen;\r\n    T ret=0;\r\n    ll cur=0;\r\n    rep(_,0,_rot){\r\n \
-    \       gen.shuffle(ALL(ord));\r\n        T add=0;\r\n        ll used=0;\r\n \
-    \       for(auto& v:ord)if(!(used&es[v])){\r\n            used|=(1LL<<v);\r\n\
-    \            add+=cost[v];\r\n        }\r\n        if(chmax(ret,add))cur=used;\r\
-    \n    }\r\n    return {ret,cur};\r\n}\r\n\r\n/**\r\n * @brief Maximum Independent\
-    \ Set\r\n */"
+    \ */\n#line 3 \"Graph/maxindependentset.hpp\"\n\r\nstruct MaxIndependentSet{\r\
+    \n    const int n;\r\n    vector<ll> es;\r\n    MaxIndependentSet(int _n):n(_n),es(n){}\r\
+    \n    void add_edge(int u,int v){\r\n        es[u]|=1LL<<v;\r\n        es[v]|=1LL<<u;\r\
+    \n    }\r\n    pair<ll,ll> run(vector<ll>& cost,int _rot=1e6){\r\n        vector<int>\
+    \ ord(n);\r\n        iota(ALL(ord),0);\r\n        Random gen;\r\n        ll ret=0;\r\
+    \n        ll cur=0;\r\n        rep(_,0,_rot){\r\n            gen.shuffle(ALL(ord));\r\
+    \n            ll add=0;\r\n            ll used=0;\r\n            for(auto& v:ord)if(!(used&es[v])){\r\
+    \n                used|=(1LL<<v);\r\n                add+=cost[v];\r\n       \
+    \     }\r\n            if(chmax(ret,add))cur=used;\r\n        }\r\n        return\
+    \ {ret,cur};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Independent Set\r\n\
+    \ */\n"
+  code: "#pragma once\r\n#include \"Utility/random.hpp\"\r\n\r\nstruct MaxIndependentSet{\r\
+    \n    const int n;\r\n    vector<ll> es;\r\n    MaxIndependentSet(int _n):n(_n),es(n){}\r\
+    \n    void add_edge(int u,int v){\r\n        es[u]|=1LL<<v;\r\n        es[v]|=1LL<<u;\r\
+    \n    }\r\n    pair<ll,ll> run(vector<ll>& cost,int _rot=1e6){\r\n        vector<int>\
+    \ ord(n);\r\n        iota(ALL(ord),0);\r\n        Random gen;\r\n        ll ret=0;\r\
+    \n        ll cur=0;\r\n        rep(_,0,_rot){\r\n            gen.shuffle(ALL(ord));\r\
+    \n            ll add=0;\r\n            ll used=0;\r\n            for(auto& v:ord)if(!(used&es[v])){\r\
+    \n                used|=(1LL<<v);\r\n                add+=cost[v];\r\n       \
+    \     }\r\n            if(chmax(ret,add))cur=used;\r\n        }\r\n        return\
+    \ {ret,cur};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Independent Set\r\n\
+    \ */"
   dependsOn:
   - Utility/random.hpp
   isVerificationFile: false
   path: Graph/maxindependentset.hpp
   requiredBy: []
-  timestamp: '2022-01-16 22:20:31+09:00'
+  timestamp: '2022-10-25 04:47:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_maximum_independent_set.test.cpp
