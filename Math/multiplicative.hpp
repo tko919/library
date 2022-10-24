@@ -21,6 +21,26 @@ template<typename T,T (*pe)(int,int),T (*psum)(ll)>T MultiplicativeSum(ll N){
     return ret;
 }
 
+template<typename T,T (*pe)(int,int),ll (*pcnt)(ll),T (*psum)(ll)>T AdditiveSum(ll N){
+    ll SQ=sqrtl(N);
+    auto ps=sieve(SQ);
+    
+    T ret=psum(N);
+    auto dfs=[&](auto& dfs,ll x,int i,int e,T cur,T pre)->void{
+        T nxt=pre+pe(ps[i],e+1);
+        ret+=cur*(pcnt(double(N)/x)-pcnt(ps[i]))+(psum(double(N)/x)-psum(ps[i]));
+        ret+=nxt;
+        ll L=sqrtl(double(N)/x);
+        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);
+        rep(j,i+1,ps.size()){
+            if(ps[j]>L)break;
+            dfs(dfs,x*ps[j],j,1,cur+pe(ps[j],1),cur);
+        }
+    };
+    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),0);
+    return ret;
+}
+
 /**
  * @brief Multiplicative Sum
  * @docs docs/multiplicative.md

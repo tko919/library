@@ -8,7 +8,7 @@ template<int mod=1000000007>struct fp {
         if(x<0){x+=mod;} return x;
     }
     fp(ll x=0){init(x%mod+mod);}
-    fp& init(int x){v=(x<mod?x:x-mod); return *this;}
+    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}
     fp operator-()const{return fp()-*this;}
     fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;} return res;}
     fp& operator+=(const fp& x){return init(v+x.v);}

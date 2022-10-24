@@ -13,13 +13,13 @@ int main(){
     io.read(n,m);
     vector<int> x(n);
     io.read(x);
-    vector g(n,vector<int>(n));
+    EnumCliques g(n);
     rep(_,0,m){
         int u,v;
         io.read(u,v);
-        g[u][v]=g[v][u]=1;
+        g.add_edge(u,v);
     }
-    auto cs=EnumCliques(g);
+    auto cs=g.run();
     Fp res;
     for(auto& clique:cs){
         Fp add=1;

@@ -6,12 +6,12 @@
 int main(){
     int n,m;
     cin>>n>>m;
-    vector a(n,vector<int>(n));
+    Chromatic g(n);
     rep(i,0,m){
         int x,y;
         cin>>x>>y;
-        a[x][y]=a[y][x]=1;
+        g.add_edge(x,y);
     }
-    cout<<Chromatic(a)<<'\n';
+    cout<<g.run()<<'\n';
     return 0;
 }
