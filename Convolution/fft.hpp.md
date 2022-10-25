@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/bigint.hpp
+    title: Big Integer(Float)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_frequency_table_of_tree_distance.test.cpp
@@ -94,7 +97,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Convolution/fft.hpp
-  requiredBy: []
+  requiredBy:
+  - Math/bigint.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
