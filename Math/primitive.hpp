@@ -65,6 +65,39 @@ ll ModLog(ll a,ll b,ll p){
     } return -1;
 }
 
+ll sub_root(ll p,int e,ll a,ll m){//x^(p^e)==a(mod m)
+   ll q=m-1; int s=0; while(q%p==0){q/=p; s++;} int d=s-e;
+   ll pe=mpow(p,e,m),res=mpow(a,((pe-1)*minv(q,pe)%pe*q+1)/pe,m),c=1;
+   while(mpow(c,(m-1)/p,m)==1)c++; c=mpow(c,q,m);
+   map<ll,ll> mp; ll v=1,block=sqrt(d*p)+1,bs=mpow(c,mpow(p,s-1,m-1)*block%(m-1),m);
+   rep(i,0,block+1)mp[v]=i,v=v*bs%m;
+   ll gs=minv(mpow(c,mpow(p,s-1,m-1),m),m);
+   rep(i,0,d){
+      ll err=a*minv(mpow(res,pe,m),m)%m;
+      ll pos=mpow(err,mpow(p,d-1-i,m-1),m);
+      rep(j,0,block+1){
+         if(mp.count(pos)){
+            res=res*mpow(c,(block*mp[pos]+j)*mpow(p,i,m-1)%(m-1),m)%m;
+            break;
+         } pos=pos*gs%m;
+      } 
+   } return res;
+}
+
+ll mod_root(ll k,ll a,ll m){
+   if(a==0)return k?0:-1;
+   if(m==2)return a&1;
+   k%=m-1; ll g=__gcd(k,m-1);
+   if(mpow(a,(m-1)/g,m)!=1)return -1;
+   a=mpow(a,minv(k/g,(m-1)/g),m);
+   for(ll d=2;d*d<=g;d++)if(g%d==0){
+      int sz=0;
+      while(g%d==0){g/=d; sz++;}
+      a=sub_root(d,sz,a,m);
+   }
+   if(g>1)a=sub_root(g,1,a,m); return a;
+}
+
 /**
  * @brief Primitive Function
  */
