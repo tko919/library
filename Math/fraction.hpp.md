@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Geometry/FracCoord.hpp
+    title: Geometry(Fraction Coordinates)
+  - icon: ':warning:'
+    path: Math/sternbrocot.hpp
+    title: Stern-Brocot Tree
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -53,7 +59,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Math/fraction.hpp
-  requiredBy: []
+  requiredBy:
+  - Geometry/FracCoord.hpp
+  - Math/sternbrocot.hpp
   timestamp: '2022-10-24 03:26:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

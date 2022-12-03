@@ -202,15 +202,15 @@ data:
   timestamp: '2022-10-17 02:55:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_inv_of_formal_power_series.test.cpp
 documentation_of: FPS/fps.hpp
 layout: document

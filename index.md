@@ -135,6 +135,9 @@ data:
   - name: Geometry
     pages:
     - icon: ':warning:'
+      path: Geometry/FracCoord.hpp
+      title: Geometry(Fraction Coordinates)
+    - icon: ':warning:'
       path: Geometry/geometry.hpp
       title: Geometry
   - name: Graph
@@ -210,6 +213,9 @@ data:
     - icon: ':warning:'
       path: Math/fraction.hpp
       title: Fraction
+    - icon: ':warning:'
+      path: Math/kthroot.hpp
+      title: Math/kthroot.hpp
     - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
@@ -240,6 +246,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/sieve.hpp
       title: Prime Sieve
+    - icon: ':warning:'
+      path: Math/sternbrocot.hpp
+      title: Stern-Brocot Tree
     - icon: ':heavy_check_mark:'
       path: Math/stirlingquery.hpp
       title: Stirling Number for query

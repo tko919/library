@@ -48,8 +48,8 @@ data:
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_frequency_table_of_tree_distance.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: Graph/centroid.hpp
 layout: document
 redirect_from:

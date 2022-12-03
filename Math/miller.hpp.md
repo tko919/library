@@ -44,8 +44,8 @@ data:
   isVerificationFile: false
   path: Math/miller.hpp
   requiredBy:
-  - Math/primitive.hpp
   - Math/pollard.hpp
+  - Math/primitive.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

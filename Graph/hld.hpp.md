@@ -76,10 +76,10 @@ data:
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_vertex_add_path_sum.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
+  - Verify/LC_vertex_add_path_sum.test.cpp
   - Verify/LC_lca.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: Graph/hld.hpp
 layout: document
 redirect_from:

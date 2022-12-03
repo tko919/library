@@ -53,10 +53,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_point_add_range_sum.test.cpp
-  - Verify/LC_vertex_add_path_sum.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_static_range_inversions_query.test.cpp
   - Verify/LC_static_range_sum.test.cpp
+  - Verify/LC_vertex_add_path_sum.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: DataStructure/bit.hpp
 layout: document
 redirect_from:
