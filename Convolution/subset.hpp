@@ -1,32 +1,60 @@
 #pragma once
 
-template<typename T>vector<T> SubsetConvolution(vector<T>& a,vector<T>& b){
-    int m=a.size(),n=__lg(m);
-    vector aa(n+1,vector<T>(m)),bb(n+1,vector<T>(m)),cc(n+1,vector<T>(m));
-    rep(i,0,m){
-        aa[__builtin_popcountll(i)][i]=a[i];
-        bb[__builtin_popcountll(i)][i]=b[i];
+template<typename T>struct SubsetConvolution{
+    const int LG;
+    vector<int> bpc;
+    SubsetConvolution(int lg=20):LG(lg),bpc(1<<LG){
+        rep(i,1,1<<LG)bpc[i]=bpc[i-(i&-i)]+1;
     }
-    rep(base,0,n+1){
-        rep(i,0,n)rep(mask,0,m)if(!(mask>>i&1)){
-            aa[base][mask|(1<<i)]+=aa[base][mask];
-            bb[base][mask|(1<<i)]+=bb[base][mask];
+    void zeta(vector<vector<T>>& a){
+        int n=a.size();
+        for(int w=1;w<n;w<<=1){
+            for(int k=0;k<n;k+=w*2)rep(i,0,w){ // k+i:wを含まないbitmaskを走査
+                rep(j,0,bpc[k+w+i])a[k+w+i][j]+=a[k+i][j];
+            }
         }
     }
-    rep(i,0,n+1)rep(j,0,n+1-i)rep(mask,0,m){
-        cc[i+j][mask]+=aa[i][mask]*bb[j][mask];
-    }
-    rep(base,0,n+1){
-        rep(i,0,n)rep(mask,0,m)if(mask>>i&1){
-            cc[base][mask]-=cc[base][mask^(1<<i)];
+    void mobius(vector<vector<T>>& a){
+        int n=a.size(),m=__lg(n);
+        for(int w=n>>1;w;w>>=1){
+            for(int k=0;k<n;k+=w*2)rep(i,0,w){
+                rep(j,bpc[k+w+i],m+1)a[k+w+i][j]-=a[k+i][j];
+            }
         }
     }
-    vector<T> ret(m);
-    rep(i,0,m){
-        ret[i]=cc[__builtin_popcountll(i)][i];
+    vector<T> mult(vector<T>& a,vector<T>& b,bool same=0){
+        assert(a.size()==b.size());
+        int n=a.size(),m=__lg(n);
+        vector A(n,vector<T>(m+1)),B(n,vector<T>(m+1));
+        rep(i,0,n){
+            A[i][bpc[i]]=a[i];
+            B[i][bpc[i]]=b[i];
+        }
+        zeta(A);
+        if(same)B=A;
+        else zeta(B);
+        rep(i,0,n){
+            vector<T> c(m+1);
+            rep(j,0,m+1)rep(k,0,m+1-j)c[j+k]+=A[i][j]*B[i][k];
+            swap(A[i],c);
+        }
+        mobius(A);
+        vector<T> ret(n);
+        rep(i,0,n)ret[i]=A[i][bpc[i]];
+        return ret;
     }
-    return ret;
-}
+    template<void (*F)(vector<T>&)>vector<T> execute(vector<T>& a){
+        int n=a.size(),m=__lg(n);
+        vector A(n,vector<T>(m+1));
+        rep(i,0,n)A[i][bpc[i]]=a[i];
+        zeta(A);
+        rep(i,0,n)F(A[i]);
+        mobius(A);
+        vector<T> ret(n);
+        rep(i,0,n)ret[i]=A[i][bpc[i]];
+        return ret;
+    }
+};
 
 /**
  * @brief Subset Convolution

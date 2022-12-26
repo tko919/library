@@ -28,5 +28,5 @@ uint64_t integer_kth_root(uint64_t k, uint64_t a) {
 }
 
 /**
- * Kth Root(Integer)
+ * @brief Kth Root(Integer)
 */

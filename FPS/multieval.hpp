@@ -12,6 +12,7 @@ template<typename T>struct MultiEval{
         for(int i=n-1;i;i--)t[i]=t[i*2]*t[i*2+1];
     }
     vector<T> run(const vector<T>& f){
+        if(f.empty())return vector<T>(m);
         vector<Poly<T>> c(n*2);
         auto v=t[1].rev();
         v.resize(f.size());

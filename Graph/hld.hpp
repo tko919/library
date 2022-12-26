@@ -4,7 +4,8 @@ struct HLD{
     using P=pair<int,int>;
     vector<vector<int>> g; vector<int> sz,in,out,rev,hs,par,dist;
     void dfs(int v,int p){
-        par[v]=p; sz[v]=1; dist[v]=dist[p]+1;
+        par[v]=p; sz[v]=1;
+        if(p!=-1)dist[v]=dist[p]+1;
         if(!g[v].empty() and g[v][0]==p)swap(g[v][0],g[v].back());
         for(auto& to:g[v])if(to!=p){
            dfs(to,v); sz[v]+=sz[to];
