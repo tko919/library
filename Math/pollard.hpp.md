@@ -8,6 +8,9 @@ data:
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/binomquery.hpp
+    title: Binomial Coefficient for query
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
@@ -74,6 +77,7 @@ data:
   path: Math/pollard.hpp
   requiredBy:
   - Math/primitive.hpp
+  - Math/binomquery.hpp
   timestamp: '2022-01-16 22:20:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

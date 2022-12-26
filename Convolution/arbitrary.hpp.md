@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   _extendedRequiredBy: []
@@ -117,8 +117,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_convolution_mod_1000000007.test.cpp
-  - Verify/YUKI_310.test.cpp
   - Verify/YUKI_1080.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/YUKI_1112.test.cpp
 documentation_of: Convolution/arbitrary.hpp
 layout: document

@@ -67,8 +67,8 @@ data:
   timestamp: '2022-10-24 03:44:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/YUKI_1781.test.cpp
   - Verify/LC_counting_primes.test.cpp
+  - Verify/YUKI_1781.test.cpp
 documentation_of: Math/primesum.hpp
 layout: document
 redirect_from:

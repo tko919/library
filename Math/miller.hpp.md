@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/binomquery.hpp
+    title: Binomial Coefficient for query
   - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
@@ -46,6 +49,7 @@ data:
   requiredBy:
   - Math/pollard.hpp
   - Math/primitive.hpp
+  - Math/binomquery.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

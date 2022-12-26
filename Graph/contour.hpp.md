@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Contour Sum Query
     links: []
@@ -31,11 +31,11 @@ data:
     \ @brief Centroid Decomposition\r\n */\n#line 2 \"Graph/hld.hpp\"\n\r\nstruct\
     \ HLD{\r\n    using P=pair<int,int>;\r\n    vector<vector<int>> g; vector<int>\
     \ sz,in,out,rev,hs,par,dist;\r\n    void dfs(int v,int p){\r\n        par[v]=p;\
-    \ sz[v]=1; dist[v]=dist[p]+1;\r\n        if(!g[v].empty() and g[v][0]==p)swap(g[v][0],g[v].back());\r\
-    \n        for(auto& to:g[v])if(to!=p){\r\n           dfs(to,v); sz[v]+=sz[to];\r\
-    \n           if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\n        }\r\n    }\r\n\
-    \    void dfs2(int v,int p,int& k){\r\n        in[v]=k++; rev[in[v]]=v;\r\n  \
-    \      for(auto& to:g[v])if(to!=p){\r\n            hs[to]=(g[v][0]==to?hs[v]:to);\r\
+    \ sz[v]=1;\r\n        if(p!=-1)dist[v]=dist[p]+1;\r\n        if(!g[v].empty()\
+    \ and g[v][0]==p)swap(g[v][0],g[v].back());\r\n        for(auto& to:g[v])if(to!=p){\r\
+    \n           dfs(to,v); sz[v]+=sz[to];\r\n           if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\
+    \n        }\r\n    }\r\n    void dfs2(int v,int p,int& k){\r\n        in[v]=k++;\
+    \ rev[in[v]]=v;\r\n        for(auto& to:g[v])if(to!=p){\r\n            hs[to]=(g[v][0]==to?hs[v]:to);\r\
     \n            dfs2(to,v,k);\r\n        }\r\n        out[v]=k;\r\n    }\r\n   \
     \ HLD(int _n):g(_n),sz(_n),in(_n),out(_n),rev(_n),hs(_n),par(_n),dist(_n){}\r\n\
     \    void add_edge(int u,int v){\r\n        g[u].emplace_back(v); g[v].emplace_back(u);\r\
@@ -148,8 +148,8 @@ data:
   isVerificationFile: false
   path: Graph/contour.hpp
   requiredBy: []
-  timestamp: '2022-10-24 03:26:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-26 23:10:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: Graph/contour.hpp

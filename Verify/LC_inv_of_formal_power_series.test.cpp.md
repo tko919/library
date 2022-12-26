@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -89,14 +89,14 @@ data:
     \n            vector<T> c(m);\r\n            rep(i,0,b.size())c[i]=b[i];\r\n \
     \           NTT(c,0);\r\n            rep(i,0,m)res[i]*=c[i];\r\n        }\r\n\
     \        NTT(res,1);\r\n        res.resize(n);\r\n        return res;\r\n    }\r\
-    \n    Poly square()const{return Poly(mult(*this,*this,1));}\r\n    Poly operator+(const\
-    \ Poly& g)const{return Poly(*this)+=g;}\r\n    Poly operator+(const T& g)const{return\
-    \ Poly(*this)+=g;}\r\n    Poly operator-(const Poly& g)const{return Poly(*this)-=g;}\r\
-    \n    Poly operator-(const T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const\
-    \ Poly& g)const{return Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return\
-    \ Poly(*this)*=g;}\r\n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\
-    \n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\n    Poly&\
-    \ operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
+    \n    Poly square()const{return Poly(mult(*this,*this,1));}\r\n    Poly operator-()const{return\
+    \ Poly()-*this;}\r\n    Poly operator+(const Poly& g)const{return Poly(*this)+=g;}\r\
+    \n    Poly operator+(const T& g)const{return Poly(*this)+=g;}\r\n    Poly operator-(const\
+    \ Poly& g)const{return Poly(*this)-=g;}\r\n    Poly operator-(const T& g)const{return\
+    \ Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return Poly(*this)*=g;}\r\
+    \n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\n    Poly operator/(const\
+    \ Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return\
+    \ Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
     \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
     \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
     \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
@@ -174,7 +174,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_inv_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2022-10-25 04:47:41+09:00'
+  timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_inv_of_formal_power_series.test.cpp

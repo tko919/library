@@ -10,7 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/binomquery.hpp
+    title: Binomial Coefficient for query
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
@@ -74,18 +77,20 @@ data:
     \ n=p/g,h=0,gs=1;\r\n    for(;h*h<n;h++)gs=gs*a%n;\r\n    unordered_map<ll,ll>\
     \ bs;\r\n    for(ll s=0,e=b;s<h;bs[e]=++s)e=e*a%n;\r\n    for(ll s=0,e=t;s<n;){\r\
     \n        e=e*gs%n,s+=h;\r\n        if(bs.count(e)){\r\n            return c+s-bs[e];\r\
-    \n        }\r\n    } return -1;\r\n}\r\n\r\nll sub_root(ll p,int e,ll a,ll m){//x^(p^e)==a(mod\
-    \ m)\r\n   ll q=m-1; int s=0; while(q%p==0){q/=p; s++;} int d=s-e;\r\n   ll pe=mpow(p,e,m),res=mpow(a,((pe-1)*minv(q,pe)%pe*q+1)/pe,m),c=1;\r\
-    \n   while(mpow(c,(m-1)/p,m)==1)c++; c=mpow(c,q,m);\r\n   map<ll,ll> mp; ll v=1,block=sqrt(d*p)+1,bs=mpow(c,mpow(p,s-1,m-1)*block%(m-1),m);\r\
-    \n   rep(i,0,block+1)mp[v]=i,v=v*bs%m;\r\n   ll gs=minv(mpow(c,mpow(p,s-1,m-1),m),m);\r\
-    \n   rep(i,0,d){\r\n      ll err=a*minv(mpow(res,pe,m),m)%m;\r\n      ll pos=mpow(err,mpow(p,d-1-i,m-1),m);\r\
-    \n      rep(j,0,block+1){\r\n         if(mp.count(pos)){\r\n            res=res*mpow(c,(block*mp[pos]+j)*mpow(p,i,m-1)%(m-1),m)%m;\r\
-    \n            break;\r\n         } pos=pos*gs%m;\r\n      } \r\n   } return res;\r\
-    \n}\r\n\r\nll mod_root(ll k,ll a,ll m){\r\n   if(a==0)return k?0:-1;\r\n   if(m==2)return\
-    \ a&1;\r\n   k%=m-1; ll g=__gcd(k,m-1);\r\n   if(mpow(a,(m-1)/g,m)!=1)return -1;\r\
-    \n   a=mpow(a,minv(k/g,(m-1)/g),m);\r\n   for(ll d=2;d*d<=g;d++)if(g%d==0){\r\n\
-    \      int sz=0;\r\n      while(g%d==0){g/=d; sz++;}\r\n      a=sub_root(d,sz,a,m);\r\
-    \n   }\r\n   if(g>1)a=sub_root(g,1,a,m); return a;\r\n}\r\n\r\n/**\r\n * @brief\
+    \n        }\r\n    } return -1;\r\n}\r\n\r\nll _subroot(ll p,int e,ll a,ll m){//x^(p^e)==a(mod\
+    \ m)\r\n    ll q=m-1; int s=0; while(q%p==0){q/=p; s++;} int d=s-e;\r\n    ll\
+    \ pe=mpow(p,e,m),res=mpow(a,((pe-1)*minv(q,pe)%pe*q+1)/pe,m),c=1;\r\n    while(mpow(c,(m-1)/p,m)==1)c++;\
+    \ c=mpow(c,q,m);\r\n    map<ll,ll> mp; ll v=1,block=sqrt(d*p)+1,bs=mpow(c,mpow(p,s-1,m-1)*block%(m-1),m);\r\
+    \n    rep(i,0,block+1)mp[v]=i,v=v*bs%m;\r\n    ll gs=minv(mpow(c,mpow(p,s-1,m-1),m),m);\r\
+    \n    rep(i,0,d){\r\n        ll err=a*minv(mpow(res,pe,m),m)%m;\r\n        ll\
+    \ pos=mpow(err,mpow(p,d-1-i,m-1),m);\r\n        rep(j,0,block+1){\r\n        \
+    \    if(mp.count(pos)){\r\n                res=res*mpow(c,(block*mp[pos]+j)*mpow(p,i,m-1)%(m-1),m)%m;\r\
+    \n                break;\r\n            } pos=pos*gs%m;\r\n        } \r\n    }\
+    \ return res;\r\n}\r\n\r\nll mod_root(ll k,ll a,ll m){\r\n    if(a==0)return k?0:-1;\r\
+    \n    if(m==2)return a&1;\r\n    k%=m-1; ll g=__gcd(k,m-1);\r\n    if(mpow(a,(m-1)/g,m)!=1)return\
+    \ -1;\r\n    a=mpow(a,minv(k/g,(m-1)/g),m);\r\n    for(ll d=2;d*d<=g;d++)if(g%d==0){\r\
+    \n        int sz=0;\r\n        while(g%d==0){g/=d; sz++;}\r\n        a=_subroot(d,sz,a,m);\r\
+    \n    }\r\n    if(g>1)a=_subroot(g,1,a,m); return a;\r\n}\r\n\r\n/**\r\n * @brief\
     \ Primitive Function\r\n */\n"
   code: "#pragma once\r\n#include \"Math/pollard.hpp\"\r\n\r\nll mpow(ll a,ll t,ll\
     \ m){\r\n    ll res=1;\r\n    while(t){\r\n        if(t&1)res=__int128_t(res)*a%m;\r\
@@ -108,18 +113,20 @@ data:
     \ n=p/g,h=0,gs=1;\r\n    for(;h*h<n;h++)gs=gs*a%n;\r\n    unordered_map<ll,ll>\
     \ bs;\r\n    for(ll s=0,e=b;s<h;bs[e]=++s)e=e*a%n;\r\n    for(ll s=0,e=t;s<n;){\r\
     \n        e=e*gs%n,s+=h;\r\n        if(bs.count(e)){\r\n            return c+s-bs[e];\r\
-    \n        }\r\n    } return -1;\r\n}\r\n\r\nll sub_root(ll p,int e,ll a,ll m){//x^(p^e)==a(mod\
-    \ m)\r\n   ll q=m-1; int s=0; while(q%p==0){q/=p; s++;} int d=s-e;\r\n   ll pe=mpow(p,e,m),res=mpow(a,((pe-1)*minv(q,pe)%pe*q+1)/pe,m),c=1;\r\
-    \n   while(mpow(c,(m-1)/p,m)==1)c++; c=mpow(c,q,m);\r\n   map<ll,ll> mp; ll v=1,block=sqrt(d*p)+1,bs=mpow(c,mpow(p,s-1,m-1)*block%(m-1),m);\r\
-    \n   rep(i,0,block+1)mp[v]=i,v=v*bs%m;\r\n   ll gs=minv(mpow(c,mpow(p,s-1,m-1),m),m);\r\
-    \n   rep(i,0,d){\r\n      ll err=a*minv(mpow(res,pe,m),m)%m;\r\n      ll pos=mpow(err,mpow(p,d-1-i,m-1),m);\r\
-    \n      rep(j,0,block+1){\r\n         if(mp.count(pos)){\r\n            res=res*mpow(c,(block*mp[pos]+j)*mpow(p,i,m-1)%(m-1),m)%m;\r\
-    \n            break;\r\n         } pos=pos*gs%m;\r\n      } \r\n   } return res;\r\
-    \n}\r\n\r\nll mod_root(ll k,ll a,ll m){\r\n   if(a==0)return k?0:-1;\r\n   if(m==2)return\
-    \ a&1;\r\n   k%=m-1; ll g=__gcd(k,m-1);\r\n   if(mpow(a,(m-1)/g,m)!=1)return -1;\r\
-    \n   a=mpow(a,minv(k/g,(m-1)/g),m);\r\n   for(ll d=2;d*d<=g;d++)if(g%d==0){\r\n\
-    \      int sz=0;\r\n      while(g%d==0){g/=d; sz++;}\r\n      a=sub_root(d,sz,a,m);\r\
-    \n   }\r\n   if(g>1)a=sub_root(g,1,a,m); return a;\r\n}\r\n\r\n/**\r\n * @brief\
+    \n        }\r\n    } return -1;\r\n}\r\n\r\nll _subroot(ll p,int e,ll a,ll m){//x^(p^e)==a(mod\
+    \ m)\r\n    ll q=m-1; int s=0; while(q%p==0){q/=p; s++;} int d=s-e;\r\n    ll\
+    \ pe=mpow(p,e,m),res=mpow(a,((pe-1)*minv(q,pe)%pe*q+1)/pe,m),c=1;\r\n    while(mpow(c,(m-1)/p,m)==1)c++;\
+    \ c=mpow(c,q,m);\r\n    map<ll,ll> mp; ll v=1,block=sqrt(d*p)+1,bs=mpow(c,mpow(p,s-1,m-1)*block%(m-1),m);\r\
+    \n    rep(i,0,block+1)mp[v]=i,v=v*bs%m;\r\n    ll gs=minv(mpow(c,mpow(p,s-1,m-1),m),m);\r\
+    \n    rep(i,0,d){\r\n        ll err=a*minv(mpow(res,pe,m),m)%m;\r\n        ll\
+    \ pos=mpow(err,mpow(p,d-1-i,m-1),m);\r\n        rep(j,0,block+1){\r\n        \
+    \    if(mp.count(pos)){\r\n                res=res*mpow(c,(block*mp[pos]+j)*mpow(p,i,m-1)%(m-1),m)%m;\r\
+    \n                break;\r\n            } pos=pos*gs%m;\r\n        } \r\n    }\
+    \ return res;\r\n}\r\n\r\nll mod_root(ll k,ll a,ll m){\r\n    if(a==0)return k?0:-1;\r\
+    \n    if(m==2)return a&1;\r\n    k%=m-1; ll g=__gcd(k,m-1);\r\n    if(mpow(a,(m-1)/g,m)!=1)return\
+    \ -1;\r\n    a=mpow(a,minv(k/g,(m-1)/g),m);\r\n    for(ll d=2;d*d<=g;d++)if(g%d==0){\r\
+    \n        int sz=0;\r\n        while(g%d==0){g/=d; sz++;}\r\n        a=_subroot(d,sz,a,m);\r\
+    \n    }\r\n    if(g>1)a=_subroot(g,1,a,m); return a;\r\n}\r\n\r\n/**\r\n * @brief\
     \ Primitive Function\r\n */"
   dependsOn:
   - Math/pollard.hpp
@@ -127,8 +134,9 @@ data:
   - Utility/random.hpp
   isVerificationFile: false
   path: Math/primitive.hpp
-  requiredBy: []
-  timestamp: '2022-12-03 20:46:33+09:00'
+  requiredBy:
+  - Math/binomquery.hpp
+  timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp

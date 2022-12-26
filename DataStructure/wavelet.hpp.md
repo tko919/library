@@ -99,9 +99,9 @@ data:
   timestamp: '2022-02-06 21:52:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_range_kth_smallest.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
   - Verify/LC_static_range_lis_query.test.cpp
+  - Verify/LC_range_kth_smallest.test.cpp
 documentation_of: DataStructure/wavelet.hpp
 layout: document
 redirect_from:

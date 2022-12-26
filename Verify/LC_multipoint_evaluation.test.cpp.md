@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/multieval.hpp
     title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -92,14 +92,14 @@ data:
     \n            vector<T> c(m);\r\n            rep(i,0,b.size())c[i]=b[i];\r\n \
     \           NTT(c,0);\r\n            rep(i,0,m)res[i]*=c[i];\r\n        }\r\n\
     \        NTT(res,1);\r\n        res.resize(n);\r\n        return res;\r\n    }\r\
-    \n    Poly square()const{return Poly(mult(*this,*this,1));}\r\n    Poly operator+(const\
-    \ Poly& g)const{return Poly(*this)+=g;}\r\n    Poly operator+(const T& g)const{return\
-    \ Poly(*this)+=g;}\r\n    Poly operator-(const Poly& g)const{return Poly(*this)-=g;}\r\
-    \n    Poly operator-(const T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const\
-    \ Poly& g)const{return Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return\
-    \ Poly(*this)*=g;}\r\n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\
-    \n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\n    Poly&\
-    \ operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
+    \n    Poly square()const{return Poly(mult(*this,*this,1));}\r\n    Poly operator-()const{return\
+    \ Poly()-*this;}\r\n    Poly operator+(const Poly& g)const{return Poly(*this)+=g;}\r\
+    \n    Poly operator+(const T& g)const{return Poly(*this)+=g;}\r\n    Poly operator-(const\
+    \ Poly& g)const{return Poly(*this)-=g;}\r\n    Poly operator-(const T& g)const{return\
+    \ Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return Poly(*this)*=g;}\r\
+    \n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\n    Poly operator/(const\
+    \ Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return\
+    \ Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
     \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
     \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
     \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
@@ -162,9 +162,10 @@ data:
     \n    MultiEval(vector<T>& v){\r\n        m=v.size(),n=1; while(n<m)n<<=1;\r\n\
     \        t.resize(n<<1);\r\n        rep(i,0,n){\r\n            T w=(i<m?v[i]:0);\r\
     \n            t[n+i]=Poly<T>({-w,T(1)});\r\n        }\r\n        for(int i=n-1;i;i--)t[i]=t[i*2]*t[i*2+1];\r\
-    \n    }\r\n    vector<T> run(const vector<T>& f){\r\n        vector<Poly<T>> c(n*2);\r\
-    \n        auto v=t[1].rev();\r\n        v.resize(f.size());\r\n        v=v.inv().rev()*Poly<T>(f);\r\
-    \n        v.erase(v.begin(),v.begin()+f.size()-1);\r\n        v.resize(n); reverse(ALL(v));\
+    \n    }\r\n    vector<T> run(const vector<T>& f){\r\n        if(f.empty())return\
+    \ vector<T>(m);\r\n        vector<Poly<T>> c(n*2);\r\n        auto v=t[1].rev();\r\
+    \n        v.resize(f.size());\r\n        v=v.inv().rev()*Poly<T>(f);\r\n     \
+    \   v.erase(v.begin(),v.begin()+f.size()-1);\r\n        v.resize(n); reverse(ALL(v));\
     \ c[1]=v;\r\n        rep(i,1,n){\r\n            int d=c[i].size();\r\n       \
     \     rep(k,0,2){\r\n                auto add=t[i*2+(k^1)];\r\n              \
     \  add.resize(d/2+1);\r\n                add=add.rev();\r\n                add*=c[i];\r\
@@ -200,7 +201,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2022-10-25 04:47:41+09:00'
+  timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multipoint_evaluation.test.cpp

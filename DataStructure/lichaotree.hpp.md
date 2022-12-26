@@ -74,8 +74,8 @@ data:
   timestamp: '2022-02-05 01:38:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_line_add_get_min.test.cpp
   - Verify/LC_segment_add_get_min.test.cpp
+  - Verify/LC_line_add_get_min.test.cpp
 documentation_of: DataStructure/lichaotree.hpp
 layout: document
 redirect_from:

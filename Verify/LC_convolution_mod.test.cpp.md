@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []

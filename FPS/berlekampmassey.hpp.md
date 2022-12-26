@@ -51,9 +51,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_find_linear_recurrence.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/YUKI_1112.test.cpp
-  - Verify/LC_find_linear_recurrence.test.cpp
 documentation_of: FPS/berlekampmassey.hpp
 layout: document
 redirect_from:

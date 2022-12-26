@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -57,7 +57,7 @@ data:
     \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 2 \"Graph/hld.hpp\"\n\r\nstruct HLD{\r\n    using\
     \ P=pair<int,int>;\r\n    vector<vector<int>> g; vector<int> sz,in,out,rev,hs,par,dist;\r\
-    \n    void dfs(int v,int p){\r\n        par[v]=p; sz[v]=1; dist[v]=dist[p]+1;\r\
+    \n    void dfs(int v,int p){\r\n        par[v]=p; sz[v]=1;\r\n        if(p!=-1)dist[v]=dist[p]+1;\r\
     \n        if(!g[v].empty() and g[v][0]==p)swap(g[v][0],g[v].back());\r\n     \
     \   for(auto& to:g[v])if(to!=p){\r\n           dfs(to,v); sz[v]+=sz[to];\r\n \
     \          if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\n        }\r\n    }\r\n \
@@ -135,8 +135,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-10-25 04:47:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-26 23:10:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_vertex_set_path_composite.test.cpp
 layout: document

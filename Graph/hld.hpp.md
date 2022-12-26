@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/contour.hpp
     title: Contour Sum Query
   _extendedVerifiedWith:
@@ -12,25 +12,26 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Heavy Light Decomposition
     links: []
   bundledCode: "#line 2 \"Graph/hld.hpp\"\n\r\nstruct HLD{\r\n    using P=pair<int,int>;\r\
     \n    vector<vector<int>> g; vector<int> sz,in,out,rev,hs,par,dist;\r\n    void\
-    \ dfs(int v,int p){\r\n        par[v]=p; sz[v]=1; dist[v]=dist[p]+1;\r\n     \
-    \   if(!g[v].empty() and g[v][0]==p)swap(g[v][0],g[v].back());\r\n        for(auto&\
-    \ to:g[v])if(to!=p){\r\n           dfs(to,v); sz[v]+=sz[to];\r\n           if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\
-    \n        }\r\n    }\r\n    void dfs2(int v,int p,int& k){\r\n        in[v]=k++;\
-    \ rev[in[v]]=v;\r\n        for(auto& to:g[v])if(to!=p){\r\n            hs[to]=(g[v][0]==to?hs[v]:to);\r\
+    \ dfs(int v,int p){\r\n        par[v]=p; sz[v]=1;\r\n        if(p!=-1)dist[v]=dist[p]+1;\r\
+    \n        if(!g[v].empty() and g[v][0]==p)swap(g[v][0],g[v].back());\r\n     \
+    \   for(auto& to:g[v])if(to!=p){\r\n           dfs(to,v); sz[v]+=sz[to];\r\n \
+    \          if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\n        }\r\n    }\r\n \
+    \   void dfs2(int v,int p,int& k){\r\n        in[v]=k++; rev[in[v]]=v;\r\n   \
+    \     for(auto& to:g[v])if(to!=p){\r\n            hs[to]=(g[v][0]==to?hs[v]:to);\r\
     \n            dfs2(to,v,k);\r\n        }\r\n        out[v]=k;\r\n    }\r\n   \
     \ HLD(int _n):g(_n),sz(_n),in(_n),out(_n),rev(_n),hs(_n),par(_n),dist(_n){}\r\n\
     \    void add_edge(int u,int v){\r\n        g[u].emplace_back(v); g[v].emplace_back(u);\r\
@@ -48,9 +49,9 @@ data:
     \n    }\r\n};\r\n\r\n/**\r\n * @brief Heavy Light Decomposition\r\n */\n"
   code: "#pragma once\r\n\r\nstruct HLD{\r\n    using P=pair<int,int>;\r\n    vector<vector<int>>\
     \ g; vector<int> sz,in,out,rev,hs,par,dist;\r\n    void dfs(int v,int p){\r\n\
-    \        par[v]=p; sz[v]=1; dist[v]=dist[p]+1;\r\n        if(!g[v].empty() and\
-    \ g[v][0]==p)swap(g[v][0],g[v].back());\r\n        for(auto& to:g[v])if(to!=p){\r\
-    \n           dfs(to,v); sz[v]+=sz[to];\r\n           if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\
+    \        par[v]=p; sz[v]=1;\r\n        if(p!=-1)dist[v]=dist[p]+1;\r\n       \
+    \ if(!g[v].empty() and g[v][0]==p)swap(g[v][0],g[v].back());\r\n        for(auto&\
+    \ to:g[v])if(to!=p){\r\n           dfs(to,v); sz[v]+=sz[to];\r\n           if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\
     \n        }\r\n    }\r\n    void dfs2(int v,int p,int& k){\r\n        in[v]=k++;\
     \ rev[in[v]]=v;\r\n        for(auto& to:g[v])if(to!=p){\r\n            hs[to]=(g[v][0]==to?hs[v]:to);\r\
     \n            dfs2(to,v,k);\r\n        }\r\n        out[v]=k;\r\n    }\r\n   \
@@ -73,13 +74,13 @@ data:
   path: Graph/hld.hpp
   requiredBy:
   - Graph/contour.hpp
-  timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-26 23:10:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - Verify/LC_lca.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
   - Verify/LC_vertex_add_path_sum.test.cpp
-  - Verify/LC_lca.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: Graph/hld.hpp
 layout: document
 redirect_from:

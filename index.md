@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algorithm/cartesian.hpp
       title: Cartesian Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algorithm/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -43,10 +43,13 @@ data:
       title: Subset Convolution
   - name: DataStructure
     pages:
+    - icon: ':warning:'
+      path: DataStructure/2dbit.hpp
+      title: 2D Binary Indexed Tree
     - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -67,6 +70,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
+    - icon: ':warning:'
+      path: DataStructure/offlinedc.hpp
+      title: DataStructure/offlinedc.hpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
@@ -85,7 +91,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: DataStructure/rollbackunionfind.hpp
+      title: Rollback Union Find
+    - icon: ':question:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -97,6 +106,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
+    - icon: ':warning:'
+      path: DataStructure/staticrectsum.hpp
+      title: DataStructure/staticrectsum.hpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
@@ -129,9 +141,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
+    - icon: ':warning:'
+      path: FPS/p-recursive.hpp
+      title: P-recursive
     - icon: ':heavy_check_mark:'
       path: FPS/relax.hpp
       title: Relaxed Convolution
+    - icon: ':warning:'
+      path: FPS/samplepointshift.hpp
+      title: Shift of Sampling Points of Polynomial
   - name: Geometry
     pages:
     - icon: ':warning:'
@@ -154,19 +172,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/contour.hpp
       title: Contour Sum Query
     - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -204,6 +222,9 @@ data:
     - icon: ':warning:'
       path: Math/bigint.hpp
       title: Big Integer(Float)
+    - icon: ':warning:'
+      path: Math/binomquery.hpp
+      title: Binomial Coefficient for query
     - icon: ':heavy_check_mark:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
@@ -217,8 +238,11 @@ data:
       path: Math/fraction.hpp
       title: Fraction
     - icon: ':warning:'
+      path: Math/hafnian.hpp
+      title: Hafnian of matrix
+    - icon: ':warning:'
       path: Math/kthroot.hpp
-      title: Math/kthroot.hpp
+      title: Kth Root(Integer)
     - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
@@ -228,7 +252,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -271,12 +295,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -468,7 +492,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -516,10 +540,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
       title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

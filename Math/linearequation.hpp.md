@@ -4,7 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/matrix.hpp
     title: Matrix
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: FPS/p-recursive.hpp
+    title: P-recursive
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_system_of_linear_equations.test.cpp
@@ -17,12 +20,14 @@ data:
     links: []
   bundledCode: "#line 2 \"Math/matrix.hpp\"\n\r\ntemplate<class T>struct Matrix{\r\
     \n    int h,w; vector<vector<T>> val; T det;\r\n    Matrix(){}\r\n    Matrix(int\
-    \ n,int m):h(n),w(m),val(vector<vector<T>>(n,vector<T>(m))){}\r\n    vector<T>&\
-    \ operator[](const int i){return val[i];}\r\n    Matrix& operator+=(const Matrix&\
-    \ m){\r\n        rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];\r\n        return\
-    \ *this;\r\n    }\r\n    Matrix& operator-=(const Matrix& m){\r\n        rep(i,0,h)rep(j,0,w)val[i][j]-=m.val[i][j];\r\
+    \ n):h(n),w(n),val(vector<vector<T>>(n,vector<T>(n))){}\r\n    Matrix(int n,int\
+    \ m):h(n),w(m),val(vector<vector<T>>(n,vector<T>(m))){}\r\n    vector<T>& operator[](const\
+    \ int i){return val[i];}\r\n    Matrix& operator+=(const Matrix& m){\r\n     \
+    \   assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];\r\
+    \n        return *this;\r\n    }\r\n    Matrix& operator-=(const Matrix& m){\r\
+    \n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]-=m.val[i][j];\r\
     \n        return *this;\r\n    }\r\n    Matrix& operator*=(const Matrix& m){\r\
-    \n        Matrix<T> res(h,m.w);\r\n        rep(i,0,h)rep(j,0,m.w)rep(k,0,w)res.val[i][j]+=val[i][k]*m.val[k][j];\r\
+    \n        assert(w==m.h);\r\n        Matrix<T> res(h,m.w);\r\n        rep(i,0,h)rep(j,0,m.w)rep(k,0,w)res.val[i][j]+=val[i][k]*m.val[k][j];\r\
     \n        *this=res; return *this;\r\n    }\r\n    Matrix operator+(const Matrix&\
     \ m)const{return Matrix(*this)+=m;}\r\n    Matrix operator-(const Matrix& m)const{return\
     \ Matrix(*this)-=m;}\r\n    Matrix operator*(const Matrix& m)const{return Matrix(*this)*=m;}\r\
@@ -36,15 +41,19 @@ data:
     \           if(val[cur][i]==0)continue;\r\n            rep(j,0,h)if(j!=cur){\r\
     \n                T z=val[j][i]/val[cur][i];\r\n                rep(k,i,w)val[j][k]-=val[cur][k]*z;\r\
     \n            }\r\n            res.push_back(i);\r\n            cur++;\r\n   \
-    \     }\r\n        return res;\r\n    }\r\n    Matrix inv(){\r\n        Matrix\
-    \ base(h,h*2),res(h,h);\r\n        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];\r\
+    \     }\r\n        return res;\r\n    }\r\n    Matrix inv(){\r\n        assert(h==w);\r\
+    \n        Matrix base(h,h*2),res(h,h);\r\n        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];\r\
     \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\
-    \n        return res;\r\n    }\r\n    friend istream& operator>>(istream& is,Matrix&\
-    \ m){\r\n        rep(i,0,m.h)rep(j,0,m.w)is>>m[i][j];\r\n        return is;\r\n\
-    \    }\r\n    friend ostream& operator<<(ostream& os,Matrix& m){\r\n        rep(i,0,m.h){\r\
-    \n            rep(j,0,m.w)os<<m[i][j]<<(j==m.w-1 and i!=m.h-1?'\\n':' ');\r\n\
-    \        }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Matrix\r\
-    \n */\n#line 3 \"Math/linearequation.hpp\"\n\r\ntemplate<typename T>pair<vector<T>,Matrix<T>>\
+    \n        return res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n  \
+    \      assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
+    \ false;\r\n        return true;\r\n    }\r\n    bool operator!=(const Matrix&\
+    \ m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]==m.val[i][j])return\
+    \ false;\r\n        return true;\r\n    }\r\n    friend istream& operator>>(istream&\
+    \ is,Matrix& m){\r\n        rep(i,0,m.h)rep(j,0,m.w)is>>m[i][j];\r\n        return\
+    \ is;\r\n    }\r\n    friend ostream& operator<<(ostream& os,Matrix& m){\r\n \
+    \       rep(i,0,m.h){\r\n            rep(j,0,m.w)os<<m[i][j]<<(j==m.w-1 and i!=m.h-1?'\\\
+    n':' ');\r\n        }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Matrix\r\n */\n#line 3 \"Math/linearequation.hpp\"\n\r\ntemplate<typename T>pair<vector<T>,Matrix<T>>\
     \ LinearEquation(Matrix<T> a,vector<T> b){\r\n   int h=a.h,w=a.w;\r\n   rep(i,0,h)a[i].push_back(b[i]);\r\
     \n   a.w++;\r\n   vector<int> idx=a.gauss(w);\r\n   rep(i,idx.size(),h)if(a[i][w]!=0)return\
     \ {{},{}};\r\n   vector<T> res(w);\r\n   rep(i,0,idx.size())res[idx[i]]=a[i][w]/a[i][idx[i]];\r\
@@ -62,8 +71,9 @@ data:
   - Math/matrix.hpp
   isVerificationFile: false
   path: Math/linearequation.hpp
-  requiredBy: []
-  timestamp: '2022-10-16 23:53:47+09:00'
+  requiredBy:
+  - FPS/p-recursive.hpp
+  timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_system_of_linear_equations.test.cpp

@@ -10,40 +10,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':question:'
-    path: Template/template.hpp
-    title: Template/template.hpp
   - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
-    links:
-    - https://judge.yosupo.jp/problem/discrete_logarithm_mod
-  bundledCode: "#line 1 \"Verify/LC_discrete_logarithm_mod.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\r\n\r\n#line 1 \"\
-    Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\
-    \n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\
-    \nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
-    \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
-    \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
-    \ 0;}\n#line 2 \"Math/miller.hpp\"\n\r\nbool Miller(ll n){\r\n    if(n<2 or (n&1)==0)return\
-    \ (n==2);\r\n    ll d=n-1; while((d&1)==0)d>>=1;\r\n    vector<ll> seeds;\r\n\
-    \    auto MP=[&](ll x,ll t,ll m)->ll{\r\n        ll res=1;\r\n        while(t){\r\
-    \n            if(t&1)res=(__int128_t(res)*x)%m;\r\n            x=(__int128_t(x)*x)%m;\
-    \ t>>=1;\r\n        } return res;\r\n    };\r\n    if(n<(1<<30))seeds={2, 7, 61};\r\
-    \n    else seeds={2, 325, 9375, 28178, 450775, 9780504};\r\n    for(auto& x:seeds){\r\
-    \n        if(n<=x)break;\r\n        ll t=d,y=MP(x,t,n);\r\n        while(t!=n-1\
-    \ and y!=1 and y!=n-1){\r\n            y=(__int128_t(y)*y)%n; t<<=1;\r\n     \
-    \   }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    } return 1;\r\n}\r\n\r\
-    \n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\r\nstruct\
-    \ Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
+    document_title: Binomial Coefficient for query
+    links: []
+  bundledCode: "#line 2 \"Math/miller.hpp\"\n\r\nbool Miller(ll n){\r\n    if(n<2\
+    \ or (n&1)==0)return (n==2);\r\n    ll d=n-1; while((d&1)==0)d>>=1;\r\n    vector<ll>\
+    \ seeds;\r\n    auto MP=[&](ll x,ll t,ll m)->ll{\r\n        ll res=1;\r\n    \
+    \    while(t){\r\n            if(t&1)res=(__int128_t(res)*x)%m;\r\n          \
+    \  x=(__int128_t(x)*x)%m; t>>=1;\r\n        } return res;\r\n    };\r\n    if(n<(1<<30))seeds={2,\
+    \ 7, 61};\r\n    else seeds={2, 325, 9375, 28178, 450775, 9780504};\r\n    for(auto&\
+    \ x:seeds){\r\n        if(n<=x)break;\r\n        ll t=d,y=MP(x,t,n);\r\n     \
+    \   while(t!=n-1 and y!=1 and y!=n-1){\r\n            y=(__int128_t(y)*y)%n; t<<=1;\r\
+    \n        }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    } return 1;\r\n\
+    }\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\
+    \r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
     \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
     \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
     \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
@@ -100,31 +88,71 @@ data:
     \ -1;\r\n    a=mpow(a,minv(k/g,(m-1)/g),m);\r\n    for(ll d=2;d*d<=g;d++)if(g%d==0){\r\
     \n        int sz=0;\r\n        while(g%d==0){g/=d; sz++;}\r\n        a=_subroot(d,sz,a,m);\r\
     \n    }\r\n    if(g>1)a=_subroot(g,1,a,m); return a;\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Primitive Function\r\n */\n#line 5 \"Verify/LC_discrete_logarithm_mod.test.cpp\"\
-    \n\r\nint main(){\r\n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int\
-    \ a,b,m;\r\n        cin>>a>>b>>m;\r\n        cout<<ModLog(a,b,m)<<'\\n';\r\n \
-    \   }\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
-    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/primitive.hpp\"\r\
-    \n\r\nint main(){\r\n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int\
-    \ a,b,m;\r\n        cin>>a>>b>>m;\r\n        cout<<ModLog(a,b,m)<<'\\n';\r\n \
-    \   }\r\n    return 0;\r\n}"
+    \ Primitive Function\r\n */\n#line 3 \"Math/binomquery.hpp\"\n\nstruct BinomialQuery{\n\
+    \    struct X{ // for m=p^q\n        int p,q,m,delta;\n        vector<int> fact,ifac;\n\
+    \        X(){}\n        X(int _p,int _q):p(_p),q(_q){\n            m=1;\n    \
+    \        while(_q--)m*=p;\n            fact.resize(m);\n            ifac.resize(m);\n\
+    \            fact[0]=fact[1]=ifac[0]=ifac[1]=1;\n            rep(i,2,m){\n   \
+    \             if(i%p==0)fact[i]=fact[i-1];\n                else fact[i]=(ll(fact[i-1])*i)%m;\n\
+    \            }\n            ifac[m-1]=minv(fact[m-1],m);\n            for(int\
+    \ i=m-2;i>1;i--){\n                if(i%p==p-1)ifac[i]=ifac[i+1];\n          \
+    \      else ifac[i]=(ll(ifac[i+1])*(i+1))%m;\n            }\n            delta=(p==2\
+    \ and q>=3?0:1);\n        }\n        int nCr(ll n,ll r){\n            if(n<0 or\
+    \ r<0 or n<r)return 0;\n            ll s=n-r,ret=1;\n            int e0=0,em=0;\n\
+    \            for(int i=1;n;i++){\n                ret=(ret*fact[n%m])%m;\n   \
+    \             ret=(ret*ifac[r%m])%m;\n                ret=(ret*ifac[s%m])%m;\n\
+    \                n/=p,r/=p,s/=p;\n                int add=n-r-s;\n           \
+    \     e0+=add;\n                if(e0>=q)return 0;\n                if(i>=q)em^=add;\n\
+    \            }\n            if(delta and em&1)ret=m-ret;\n            ret=(ret*mpow(p,e0,m))%m;\n\
+    \            return ret;\n        }\n    };\n    int mod;\n    vector<ll> ms;\n\
+    \    vector<X> Xs;\n    BinomialQuery(int M):mod(M){\n        for(int p=2;p*p<=M;p++)if(M%p==0){\n\
+    \            int e=0,base=1;\n            while(M%p==0)M/=p,e++,base*=p;\n   \
+    \         ms.push_back(base);\n            Xs.push_back(X(p,e));\n        }\n\
+    \        if(M!=1){\n            ms.push_back(M);\n            Xs.push_back(X(M,1));\n\
+    \        }\n    }\n    int nCr(ll n,ll r){\n        if(mod==1)return 0;\n    \
+    \    vector<ll> ret;\n        for(auto& buf:Xs)ret.push_back(buf.nCr(n,r));\n\
+    \        return crt(ret,ms).first;\n    }\n};\n\n/**\n * @brief Binomial Coefficient\
+    \ for query\n*/\n"
+  code: "#pragma once\n#include \"Math/primitive.hpp\"\n\nstruct BinomialQuery{\n\
+    \    struct X{ // for m=p^q\n        int p,q,m,delta;\n        vector<int> fact,ifac;\n\
+    \        X(){}\n        X(int _p,int _q):p(_p),q(_q){\n            m=1;\n    \
+    \        while(_q--)m*=p;\n            fact.resize(m);\n            ifac.resize(m);\n\
+    \            fact[0]=fact[1]=ifac[0]=ifac[1]=1;\n            rep(i,2,m){\n   \
+    \             if(i%p==0)fact[i]=fact[i-1];\n                else fact[i]=(ll(fact[i-1])*i)%m;\n\
+    \            }\n            ifac[m-1]=minv(fact[m-1],m);\n            for(int\
+    \ i=m-2;i>1;i--){\n                if(i%p==p-1)ifac[i]=ifac[i+1];\n          \
+    \      else ifac[i]=(ll(ifac[i+1])*(i+1))%m;\n            }\n            delta=(p==2\
+    \ and q>=3?0:1);\n        }\n        int nCr(ll n,ll r){\n            if(n<0 or\
+    \ r<0 or n<r)return 0;\n            ll s=n-r,ret=1;\n            int e0=0,em=0;\n\
+    \            for(int i=1;n;i++){\n                ret=(ret*fact[n%m])%m;\n   \
+    \             ret=(ret*ifac[r%m])%m;\n                ret=(ret*ifac[s%m])%m;\n\
+    \                n/=p,r/=p,s/=p;\n                int add=n-r-s;\n           \
+    \     e0+=add;\n                if(e0>=q)return 0;\n                if(i>=q)em^=add;\n\
+    \            }\n            if(delta and em&1)ret=m-ret;\n            ret=(ret*mpow(p,e0,m))%m;\n\
+    \            return ret;\n        }\n    };\n    int mod;\n    vector<ll> ms;\n\
+    \    vector<X> Xs;\n    BinomialQuery(int M):mod(M){\n        for(int p=2;p*p<=M;p++)if(M%p==0){\n\
+    \            int e=0,base=1;\n            while(M%p==0)M/=p,e++,base*=p;\n   \
+    \         ms.push_back(base);\n            Xs.push_back(X(p,e));\n        }\n\
+    \        if(M!=1){\n            ms.push_back(M);\n            Xs.push_back(X(M,1));\n\
+    \        }\n    }\n    int nCr(ll n,ll r){\n        if(mod==1)return 0;\n    \
+    \    vector<ll> ret;\n        for(auto& buf:Xs)ret.push_back(buf.nCr(n,r));\n\
+    \        return crt(ret,ms).first;\n    }\n};\n\n/**\n * @brief Binomial Coefficient\
+    \ for query\n*/"
   dependsOn:
-  - Template/template.hpp
   - Math/primitive.hpp
   - Math/pollard.hpp
   - Math/miller.hpp
   - Utility/random.hpp
-  isVerificationFile: true
-  path: Verify/LC_discrete_logarithm_mod.test.cpp
+  isVerificationFile: false
+  path: Math/binomquery.hpp
   requiredBy: []
   timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Verify/LC_discrete_logarithm_mod.test.cpp
+documentation_of: Math/binomquery.hpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_discrete_logarithm_mod.test.cpp
-- /verify/Verify/LC_discrete_logarithm_mod.test.cpp.html
-title: Verify/LC_discrete_logarithm_mod.test.cpp
+- /library/Math/binomquery.hpp
+- /library/Math/binomquery.hpp.html
+title: Binomial Coefficient for query
 ---

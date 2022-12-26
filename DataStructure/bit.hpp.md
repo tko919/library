@@ -1,12 +1,18 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: DataStructure/2dbit.hpp
+    title: 2D Binary Indexed Tree
+  - icon: ':warning:'
+    path: DataStructure/staticrectsum.hpp
+    title: DataStructure/staticrectsum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_range_sum.test.cpp
     title: Verify/LC_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Binary Indexed Tree
     links: []
@@ -48,15 +54,17 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/bit.hpp
-  requiredBy: []
+  requiredBy:
+  - DataStructure/staticrectsum.hpp
+  - DataStructure/2dbit.hpp
   timestamp: '2022-10-24 03:26:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Verify/LC_static_range_sum.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_point_add_range_sum.test.cpp
   - Verify/LC_static_range_inversions_query.test.cpp
-  - Verify/LC_static_range_sum.test.cpp
   - Verify/LC_vertex_add_path_sum.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: DataStructure/bit.hpp
 layout: document
 redirect_from:
