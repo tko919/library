@@ -17,7 +17,7 @@ struct Mo{
         sort(ALL(ord),[&](int i,int j){
             int a=L[i]/w,b=L[j]/w;
             if(a!=b)return a<b;
-            if(a&1)return R[i]<R[j]
+            if(a&1)return R[i]<R[j];
             else return R[i]>R[j];
         });
         int lb=0,rb=0;

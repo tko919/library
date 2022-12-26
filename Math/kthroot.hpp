@@ -1,6 +1,6 @@
 #pragma once
 
-uint64_t integer_kth_root(uint64_t k, uint64_t a) {
+uint64_t Kthroot(uint64_t k, uint64_t a) {
     assert(k >= 1);
     if (a == 0 || a == 1 || k == 1) return a;
     if (k >= 64) return 1;
