@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Algorithm/mo.hpp
     title: Mo's Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -36,9 +36,9 @@ data:
     \ w=max<int>(1,1.0*n/max<double>(1.0,sqrt(q*2.0/3.0)));\r\n        vector<int>\
     \ ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int i,int\
     \ j){\r\n            int a=L[i]/w,b=L[j]/w;\r\n            if(a!=b)return a<b;\r\
-    \n            if(a&1)return R[i]<R[j]\r\n            else return R[i]>R[j];\r\n\
-    \        });\r\n        int lb=0,rb=0;\r\n        for(auto& i:ord){\r\n      \
-    \      while(lb>L[i])addl(--lb);\r\n            while(rb<R[i])addr(rb++);\r\n\
+    \n            if(a&1)return R[i]<R[j];\r\n            else return R[i]>R[j];\r\
+    \n        });\r\n        int lb=0,rb=0;\r\n        for(auto& i:ord){\r\n     \
+    \       while(lb>L[i])addl(--lb);\r\n            while(rb<R[i])addr(rb++);\r\n\
     \            while(lb<L[i])dell(lb++);\r\n            while(rb>R[i])delr(--rb);\r\
     \n            out(i);\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Mo's\
     \ Algorithm\r\n * @docs docs/mo.md\r\n */\n#line 2 \"DataStructure/bit.hpp\"\n\
@@ -88,8 +88,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-27 02:24:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_static_range_inversions_query.test.cpp
 layout: document

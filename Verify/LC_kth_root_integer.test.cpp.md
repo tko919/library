@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/stirlingquery.hpp
-    title: Stirling Number for query
+    path: Math/kthroot.hpp
+    title: Kth Root(Integer)
   - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -17,20 +17,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+    PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
     links:
-    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
-  bundledCode: "#line 1 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
-    \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
-    \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
-    \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
-    \nconst ll INF = 0x1fffffffffffffff;\r\ntemplate<typename T>inline bool chmax(T&\
-    \ a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T&\
-    \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include\
-    \ <unistd.h>\r\n\r\nclass FastIO{\r\n    static constexpr int L=1<<16;\r\n   \
-    \ char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\
-    \n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
+    - https://judge.yosupo.jp/problem/kth_root_integer
+  bundledCode: "#line 1 \"Verify/LC_kth_root_integer.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/kth_root_integer\"\n\n#line 1 \"Template/template.hpp\"\
+    \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
+    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\nusing\
+    \ ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
+    \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
+    \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
+    \ 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\nclass FastIO{\r\
+    \n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\
+    \n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
     \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
     \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
     \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
@@ -84,52 +83,43 @@ data:
     \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
-    \n\r\n#line 2 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\n \
-    \   const int p;\r\n    vector<vector<int>> binom,F,S;\r\n    ll nCr(ll n,ll k){\r\
-    \n        if(n<0 or k<0 or n<k)return 0;\r\n        ll res=1;\r\n        while(n){\r\
-    \n            res=(res*binom[n%p][k%p])%p;\r\n            n/=p; k/=p;\r\n    \
-    \    }\r\n        return res;\r\n    }\r\npublic:\r\n    StirlingNumberQuery(int\
-    \ _p):p(_p){\r\n        binom.resize(p,vector<int>(p));\r\n        F.resize(p,vector<int>(p));\r\
-    \n        S.resize(p,vector<int>(p));\r\n        binom[0][0]=F[0][0]=S[0][0]=1;\r\
-    \n        rep(n,1,p)rep(k,0,n+1){\r\n            if(k)binom[n][k]=binom[n-1][k-1];\r\
-    \n            binom[n][k]=(binom[n][k]+binom[n-1][k])%p;\r\n\r\n            if(k)F[n][k]=F[n-1][k-1];\r\
-    \n            F[n][k]=(F[n][k]+ll(p-n+1)*F[n-1][k])%p;\r\n            \r\n   \
-    \         if(k)S[n][k]=S[n-1][k-1];\r\n            S[n][k]=(S[n][k]+ll(k)*S[n-1][k])%p;\r\
-    \n        }\r\n    }\r\n    int FirstKind(ll n,ll k){\r\n        if(n<0 or k<0\
-    \ or k>n)return 0;\r\n        ll i=n/p,j=n%p;\r\n        if(k<i)return 0;\r\n\
-    \        ll a=(k-i)/(p-1),b=(k-i)%(p-1);\r\n        if(b==0 and j)b+=p-1,a--;\r\
-    \n        if(a<0 or a>i or b>j)return 0;\r\n        int res=(nCr(i,a)*F[j][b])%p;\r\
-    \n        if((i+a)&1)res=(p-res)%p;\r\n        return res;\r\n    }\r\n    int\
-    \ SecondKind(ll n,ll k){\r\n        if(n<0 or k<0 or k>n)return 0;\r\n       \
-    \ if(n==0)return 1;\r\n        ll i=k/p,j=k%p;\r\n        if(n<i)return 0;\r\n\
-    \        ll a=(n-i)/(p-1),b=(n-i)%(p-1);\r\n        if(b==0)b+=p-1,a--;\r\n  \
-    \      if(a<0 or b<j)return 0;\r\n        if(b==p-1 and j==0)return nCr(a,i-1);\r\
-    \n        else return (nCr(a,i)*S[b][j])%p;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Stirling Number for query\r\n */\n#line 7 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery\
-    \ buf(p);\r\n    while(T--){\r\n        ll n,k;\r\n        io.read(n,k);\r\n \
-    \       io.write(buf.FirstKind(n,k));\r\n    }\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
-    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n\r\n#include \"Math/stirlingquery.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n\
-    \    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery buf(p);\r\n    while(T--){\r\
-    \n        ll n,k;\r\n        io.read(n,k);\r\n        io.write(buf.FirstKind(n,k));\r\
-    \n    }\r\n    return 0;\r\n}"
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_kth_root_integer.test.cpp\"\n\n\
+    #line 2 \"Math/kthroot.hpp\"\n\nuint64_t Kthroot(uint64_t k, uint64_t a) {\n \
+    \   assert(k >= 1);\n    if (a == 0 || a == 1 || k == 1) return a;\n    if (k\
+    \ >= 64) return 1;\n    if (k == 2) return sqrtl(a);\n    if (a == uint64_t(-1))\
+    \ --a;\n    struct S {\n        uint64_t v;\n        S& operator*=(const S& o)\
+    \ {\n            v = v <= uint64_t(-1) / o.v ? v * o.v : uint64_t(-1);\n     \
+    \       return *this;\n        }\n    };\n    auto power = [&](S x, ll n) -> S\
+    \ {\n        S v{1};\n        while (n) {\n            if (n & 1) v *= x;\n  \
+    \          x *= x;\n            n /= 2;\n        }\n        return v;\n    };\n\
+    \    uint64_t res = pow(a, nextafter(1 / double(k), 0));\n    while (power(S{res\
+    \ + 1}, k).v <= a) ++res;\n    return res;\n}\n\n/**\n * @brief Kth Root(Integer)\n\
+    */\n#line 7 \"Verify/LC_kth_root_integer.test.cpp\"\nusing ull=unsigned long long;\n\
+    \nFastIO io;\nvoid solve(int _rot){\n    // io.write<false>(\"Case #\"+to_string(_rot)+\"\
+    : \");\n    ull a,k;\n    io.read(a,k);\n    ull ret=Kthroot(k,a);\n    io.write(ret);\n\
+    }\n\nint main(){\n    int t;\n    io.read(t);\n    rep(rot,0,t)solve(rot+1);\n\
+    \    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n\
+    #include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
+    \ \"Math/kthroot.hpp\"\nusing ull=unsigned long long;\n\nFastIO io;\nvoid solve(int\
+    \ _rot){\n    // io.write<false>(\"Case #\"+to_string(_rot)+\": \");\n    ull\
+    \ a,k;\n    io.read(a,k);\n    ull ret=Kthroot(k,a);\n    io.write(ret);\n}\n\n\
+    int main(){\n    int t;\n    io.read(t);\n    rep(rot,0,t)solve(rot+1);\n    return\
+    \ 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
-  - Math/stirlingquery.hpp
+  - Math/kthroot.hpp
   isVerificationFile: true
-  path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  path: Verify/LC_kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2022-10-18 18:12:43+09:00'
+  timestamp: '2022-12-27 02:24:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+documentation_of: Verify/LC_kth_root_integer.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-- /verify/Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp.html
-title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+- /verify/Verify/LC_kth_root_integer.test.cpp
+- /verify/Verify/LC_kth_root_integer.test.cpp.html
+title: Verify/LC_kth_root_integer.test.cpp
 ---

@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algorithm/cartesian.hpp
       title: Cartesian Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Algorithm/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -49,7 +49,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -94,7 +94,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/rollbackunionfind.hpp
       title: Rollback Union Find
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/relax.hpp
       title: Relaxed Convolution
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
   - name: Geometry
@@ -172,19 +172,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/contour.hpp
       title: Contour Sum Query
     - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -237,10 +237,10 @@ data:
     - icon: ':warning:'
       path: Math/fraction.hpp
       title: Fraction
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/hafnian.hpp
       title: Hafnian of matrix
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
     - icon: ':heavy_check_mark:'
@@ -252,7 +252,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -295,17 +295,22 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: submit.cpp
+      title: submit.cpp
   verificationCategories:
   - name: Verify
     pages:
@@ -388,8 +393,14 @@ data:
       path: Verify/LC_gcd_convolution.test.cpp
       title: Verify/LC_gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_hafnian_of_matrix.test.cpp
+      title: Verify/LC_hafnian_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_kth_root_integer.test.cpp
+      title: Verify/LC_kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
       title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -487,12 +498,15 @@ data:
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+      title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sparse_matrix_det.test.cpp
       title: Verify/LC_sparse_matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -540,10 +554,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
       title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

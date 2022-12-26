@@ -5,13 +5,16 @@ data:
   - icon: ':warning:'
     path: FPS/p-recursive.hpp
     title: P-recursive
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
   - icon: ':heavy_check_mark:'
     path: Math/linearequation.hpp
     title: Linear Equation
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_hafnian_of_matrix.test.cpp
+    title: Verify/LC_hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
@@ -109,6 +112,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_system_of_linear_equations.test.cpp
   - Verify/LC_matrix_product.test.cpp
 documentation_of: Math/matrix.hpp

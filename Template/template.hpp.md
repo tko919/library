@@ -82,8 +82,14 @@ data:
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_hafnian_of_matrix.test.cpp
+    title: Verify/LC_hafnian_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_kth_root_integer.test.cpp
+    title: Verify/LC_kth_root_integer.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -181,12 +187,15 @@ data:
     path: Verify/LC_segment_add_get_min.test.cpp
     title: Verify/LC_segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+    title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,10 +243,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,9 +267,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing\
@@ -280,12 +289,13 @@ data:
   path: Template/template.hpp
   requiredBy: []
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_lca_2.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_associative_array.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_static_range_sum.test.cpp
@@ -301,6 +311,7 @@ data:
   - Verify/LC_find_linear_recurrence.test.cpp
   - Verify/LC_segment_add_get_min.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
+  - Verify/LC_kth_root_integer.test.cpp
   - Verify/LC_matrix_det.test.cpp
   - Verify/LC_bipartitematching.test.cpp
   - Verify/AOJ_DSL_1_B.test.cpp
@@ -314,6 +325,7 @@ data:
   - Verify/LC_convolution_mod.test.cpp
   - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_cartesian_tree.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_sum_of_totient_function.test.cpp
   - Verify/LC_point_set_range_sort_range_composite.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp

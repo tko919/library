@@ -37,6 +37,9 @@ data:
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_hafnian_of_matrix.test.cpp
+    title: Verify/LC_hafnian_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -82,6 +85,9 @@ data:
     path: Verify/LC_range_affine_range_sum.test.cpp
     title: Verify/LC_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+    title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,9 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Modint
     links: []
@@ -172,9 +178,10 @@ data:
   requiredBy:
   - Convolution/arbitrary.hpp
   timestamp: '2022-10-25 04:47:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_convolution_mod_1000000007.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
@@ -185,6 +192,7 @@ data:
   - Verify/LC_enumerate_cliques.test.cpp
   - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_sum_of_totient_function.test.cpp
   - Verify/LC_point_set_range_sort_range_composite.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp

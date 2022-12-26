@@ -8,11 +8,17 @@ data:
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':heavy_check_mark:'
+    path: FPS/samplepointshift.hpp
+    title: Shift of Sampling Points of Polynomial
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: Utility/fastio.hpp
+    title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,19 +26,77 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
     links:
-    - https://judge.yosupo.jp/problem/log_of_formal_power_series
-  bundledCode: "#line 1 \"Verify/LC_log_of_formal_power_series.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\r\n\r\
-    \n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
+    - https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
+  bundledCode: "#line 1 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial\"\
+    \n\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\
     \nconst ll INF = 0x1fffffffffffffff;\r\ntemplate<typename T>inline bool chmax(T&\
     \ a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T&\
-    \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int\
-    \ mod=1000000007>struct fp {\r\n    int v; static int get_mod(){return mod;}\r\
-    \n    int inv() const{\r\n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
+    \ a,T b){if(a>b){a=b;return 1;}return 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include\
+    \ <unistd.h>\r\n\r\nclass FastIO{\r\n    static constexpr int L=1<<16;\r\n   \
+    \ char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\
+    \n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
+    \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
+    \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
+    \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
+    \             reload();\r\n                if(rdLeft==rdRight)return false;\r\n\
+    \            }\r\n            else break;\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
+    \ bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
+    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
+    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
+    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdbuf[rdLeft]<='9' and rdLeft<rdRight){\r\n            x=x*10+(rdbuf[rdLeft++]^48);\r\
+    \n        }\r\n        if(rdbuf[rdLeft]!='.')return true;\r\n        rdLeft++;\r\
+    \n        T base=.1;\r\n        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9'\
+    \ and rdLeft<rdRight){\r\n            x+=base*(rdbuf[rdLeft++]^48);\r\n      \
+    \      base*=.1;\r\n        }\r\n        if(neg)x=-x;\r\n        return true;\r\
+    \n    }\r\n    inline bool _read(char& x){\r\n        if(!skip())return false;\r\
+    \n        if(rdLeft+1>=rdRight)reload();\r\n        x=rdbuf[rdLeft++];\r\n   \
+    \     return true;\r\n    }\r\n    inline bool _read(string& x){\r\n        if(!skip())return\
+    \ false;\r\n        for(;;){\r\n            int pos=rdLeft;\r\n            while(pos<rdRight\
+    \ and rdbuf[pos]>' ')pos++;\r\n            x.append(rdbuf+rdLeft,pos-rdLeft);\r\
+    \n            if(rdLeft==pos)break;\r\n            rdLeft=pos;\r\n           \
+    \ if(rdLeft==rdRight)reload();\r\n            else break;\r\n        }\r\n   \
+    \     return true;\r\n    }\r\n    template<typename T>inline bool _read(vector<T>&\
+    \ v){\r\n        for(auto& x:v){\r\n            if(!_read(x))return false;\r\n\
+    \        }\r\n        return true;\r\n    }\r\n\r\n    char wtbuf[L],tmp[50];\r\
+    \n    int wtRight=0;\r\n    inline void flush(){\r\n        fwrite(wtbuf,1,wtRight,stdout);\r\
+    \n        wtRight=0;\r\n    }\r\n    inline void _write(const char& x){\r\n  \
+    \      if(wtRight>L-32)flush();\r\n        wtbuf[wtRight++]=x;\r\n    }\r\n  \
+    \  inline void _write(const string& x){\r\n        for(auto& c:x)_write(c);\r\n\
+    \    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
+    \ void _write(T x){\r\n        if(wtRight>L-32)flush();\r\n        if(x==0){\r\
+    \n            _write('0');\r\n            return;\r\n        }\r\n        else\
+    \ if(x<0){\r\n            _write('-');\r\n            if (__builtin_expect(x ==\
+    \ std::numeric_limits<T>::min(), 0)) {\r\n                switch (sizeof(x)) {\r\
+    \n                case 2: _write(\"32768\"); return;\r\n                case 4:\
+    \ _write(\"2147483648\"); return;\r\n                case 8: _write(\"9223372036854775808\"\
+    ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
+    \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
+    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
+    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
+    \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
+    \n            _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\
+    \n    ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
+    \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
+    \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
+    \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
+    \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
+    \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
+    \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \n\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct fp {\r\
+    \n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\n   \
+    \     int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
     \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
     \n    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
     \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
@@ -154,33 +218,52 @@ data:
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
     \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
     \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 7 \"Verify/LC_log_of_formal_power_series.test.cpp\"\
-    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int n;\r\n\
-    \    cin>>n;\r\n    Poly<Fp> a(n);\r\n    rep(i,0,n)cin>>a[i];\r\n    a=a.log();\r\
-    \n    rep(i,0,n)cout<<a[i]<<'\\n';\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
-    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
-    #include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\
-    \nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return\
-    \ ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    Poly<Fp>\
-    \ a(n);\r\n    rep(i,0,n)cin>>a[i];\r\n    a=a.log();\r\n    rep(i,0,n)cout<<a[i]<<'\\\
-    n';\r\n    return 0;\r\n}"
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \nusing Fp=fp<998244353>;\nNTT<Fp,3> ntt;\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
+    \ v,bool inv)const{return ntt.ntt(v,inv);}\n\n#line 2 \"FPS/samplepointshift.hpp\"\
+    \n\ntemplate<typename T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n\
+    \    ll n=ys.size()-1,C=c.v%T::get_mod();\n    if(m==-1)m=n+1;\n    factorial<T>\
+    \ fact(ys.size());\n    if(C<=n){\n        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n\
+    \        if(int(res.size())>=m){\n            res.resize(m);\n            return\
+    \ res;\n        }\n        auto add=SamplePointsShift<T>(ys,n+1,m-res.size());\n\
+    \        for(int i=0;int(res.size())<m;i++){\n            res.push_back(add[i]);\n\
+    \        }\n        return res;\n    }\n    if(C+m>T::get_mod()){\n        auto\
+    \ res=SamplePointsShift<T>(ys,c,T::get_mod()-c.v);\n        auto add=SamplePointsShift<T>(ys,0,m-res.size());\n\
+    \        rep(i,0,add.size())res.push_back(add[i]);\n        return res;\n    }\n\
+    \n    Poly<T> A(n+1),B(m+n);\n    rep(i,0,n+1){\n        A[i]=ys[i]*fact.fact(i,1)*fact.fact(n-i,1);\n\
+    \        if((n-i)&1)A[i]=-A[i];\n    }\n    rep(i,0,m+n)B[i]=Fp(1)/(c-n+i);\n\
+    \    auto AB=A*B;\n    vector<Fp> res(m);\n    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n\
+    \    rep(i,0,m){\n        res[i]=AB[n+i]*base;\n        base*=(c+i+1);\n     \
+    \   base*=B[i];\n    }\n    return res;\n}\n\n/**\n * @brief Shift of Sampling\
+    \ Points of Polynomial\n*/\n#line 14 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \n\nFastIO io;\nint main(){\n    int n,m;\n    Fp c;\n    io.read(n,m,c.v);\n\
+    \    vector<Fp> a(n);\n    rep(i,0,n)io.read(a[i].v);\n\n    auto ret=SamplePointsShift(a,c,m);\n\
+    \    rep(i,0,m)io.write(ret[i].v);\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial\"\
+    \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
+    \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
+    \nusing Fp=fp<998244353>;\nNTT<Fp,3> ntt;\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
+    \ v,bool inv)const{return ntt.ntt(v,inv);}\n\n#include \"FPS/samplepointshift.hpp\"\
+    \n\nFastIO io;\nint main(){\n    int n,m;\n    Fp c;\n    io.read(n,m,c.v);\n\
+    \    vector<Fp> a(n);\n    rep(i,0,n)io.read(a[i].v);\n\n    auto ret=SamplePointsShift(a,c,m);\n\
+    \    rep(i,0,m)io.write(ret[i].v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
+  - Utility/fastio.hpp
   - Math/modint.hpp
   - Convolution/ntt.hpp
   - FPS/fps.hpp
+  - FPS/samplepointshift.hpp
   isVerificationFile: true
-  path: Verify/LC_log_of_formal_power_series.test.cpp
+  path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2022-12-26 23:10:56+09:00'
+  timestamp: '2022-12-27 02:24:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_log_of_formal_power_series.test.cpp
+documentation_of: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/LC_log_of_formal_power_series.test.cpp
-- /verify/Verify/LC_log_of_formal_power_series.test.cpp.html
-title: Verify/LC_log_of_formal_power_series.test.cpp
+- /verify/Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+- /verify/Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp.html
+title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 ---

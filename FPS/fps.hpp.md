@@ -31,6 +31,9 @@ data:
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+    title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   _isVerificationFailed: false
@@ -202,6 +205,7 @@ data:
   timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_polynomial_interpolation.test.cpp

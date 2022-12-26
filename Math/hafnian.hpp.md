@@ -8,10 +8,13 @@ data:
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_hafnian_of_matrix.test.cpp
+    title: Verify/LC_hafnian_of_matrix.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Hafnian of matrix
     links: []
@@ -109,8 +112,9 @@ data:
   path: Math/hafnian.hpp
   requiredBy: []
   timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_hafnian_of_matrix.test.cpp
 documentation_of: Math/hafnian.hpp
 layout: document
 redirect_from:

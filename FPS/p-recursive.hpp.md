@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':heavy_check_mark:'

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_hafnian_of_matrix.test.cpp
+    title: Verify/LC_hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
@@ -70,6 +73,7 @@ data:
   timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_subset_convolution.test.cpp
 documentation_of: Convolution/subset.hpp
 layout: document

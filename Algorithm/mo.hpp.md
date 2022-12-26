@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/mo.md
     document_title: Mo's Algorithm
@@ -21,7 +21,7 @@ data:
     \n        const int q=L.size();\r\n        const int w=max<int>(1,1.0*n/max<double>(1.0,sqrt(q*2.0/3.0)));\r\
     \n        vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int\
     \ i,int j){\r\n            int a=L[i]/w,b=L[j]/w;\r\n            if(a!=b)return\
-    \ a<b;\r\n            if(a&1)return R[i]<R[j]\r\n            else return R[i]>R[j];\r\
+    \ a<b;\r\n            if(a&1)return R[i]<R[j];\r\n            else return R[i]>R[j];\r\
     \n        });\r\n        int lb=0,rb=0;\r\n        for(auto& i:ord){\r\n     \
     \       while(lb>L[i])addl(--lb);\r\n            while(rb<R[i])addr(rb++);\r\n\
     \            while(lb<L[i])dell(lb++);\r\n            while(rb>R[i])delr(--rb);\r\
@@ -35,7 +35,7 @@ data:
     \ q=L.size();\r\n        const int w=max<int>(1,1.0*n/max<double>(1.0,sqrt(q*2.0/3.0)));\r\
     \n        vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int\
     \ i,int j){\r\n            int a=L[i]/w,b=L[j]/w;\r\n            if(a!=b)return\
-    \ a<b;\r\n            if(a&1)return R[i]<R[j]\r\n            else return R[i]>R[j];\r\
+    \ a<b;\r\n            if(a&1)return R[i]<R[j];\r\n            else return R[i]>R[j];\r\
     \n        });\r\n        int lb=0,rb=0;\r\n        for(auto& i:ord){\r\n     \
     \       while(lb>L[i])addl(--lb);\r\n            while(rb<R[i])addr(rb++);\r\n\
     \            while(lb<L[i])dell(lb++);\r\n            while(rb>R[i])delr(--rb);\r\
@@ -45,8 +45,8 @@ data:
   isVerificationFile: false
   path: Algorithm/mo.hpp
   requiredBy: []
-  timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-27 02:24:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_static_range_inversions_query.test.cpp
 documentation_of: Algorithm/mo.hpp
