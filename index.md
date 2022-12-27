@@ -231,10 +231,10 @@ data:
     - icon: ':warning:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/fastdiv.hpp
       title: Math/fastdiv.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
     - icon: ':warning:'
@@ -298,7 +298,7 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
@@ -536,7 +536,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_suffixarray.test.cpp
       title: Verify/LC_suffixarray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_floor_of_linear.test.cpp
       title: Verify/LC_sum_of_floor_of_linear.test.cpp
     - icon: ':heavy_check_mark:'

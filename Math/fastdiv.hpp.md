@@ -8,9 +8,6 @@ data:
   - icon: ':warning:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':x:'
-    path: Math/floorsum.hpp
-    title: Floor Sum
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
@@ -27,12 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
-    path: Verify/LC_sum_of_floor_of_linear.test.cpp
-    title: Verify/LC_sum_of_floor_of_linear.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv{\n    using u64=uint64_t;\n\
@@ -56,18 +50,16 @@ data:
   isVerificationFile: false
   path: Math/fastdiv.hpp
   requiredBy:
-  - Math/floorsum.hpp
   - Math/stirlingquery.hpp
   - Math/primitive.hpp
   - Math/binomquery.hpp
   - Math/dynamic.hpp
   timestamp: '2022-12-28 03:34:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - Verify/LC_sum_of_floor_of_linear.test.cpp
 documentation_of: Math/fastdiv.hpp
 layout: document
 redirect_from:
