@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   - icon: ':heavy_check_mark:'
@@ -154,46 +154,57 @@ data:
     \ is;\r\n    }\r\n    friend ostream& operator<<(ostream& os,Matrix& m){\r\n \
     \       rep(i,0,m.h){\r\n            rep(j,0,m.w)os<<m[i][j]<<(j==m.w-1 and i!=m.h-1?'\\\
     n':' ');\r\n        }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Matrix\r\n */\n#line 2 \"Convolution/subset.hpp\"\n\r\ntemplate<typename T>struct\
-    \ SubsetConvolution{\r\n    const int LG;\r\n    vector<int> bpc;\r\n    SubsetConvolution(int\
-    \ lg=20):LG(lg),bpc(1<<LG){\r\n        rep(i,1,1<<LG)bpc[i]=bpc[i-(i&-i)]+1;\r\
-    \n    }\r\n    void zeta(vector<vector<T>>& a){\r\n        int n=a.size();\r\n\
-    \        for(int w=1;w<n;w<<=1){\r\n            for(int k=0;k<n;k+=w*2)rep(i,0,w){\
-    \ // k+i:w\u3092\u542B\u307E\u306A\u3044bitmask\u3092\u8D70\u67FB\r\n        \
-    \        rep(j,0,bpc[k+w+i])a[k+w+i][j]+=a[k+i][j];\r\n            }\r\n     \
-    \   }\r\n    }\r\n    void mobius(vector<vector<T>>& a){\r\n        int n=a.size(),m=__lg(n);\r\
+    \ Matrix\r\n */\n#line 2 \"Convolution/subset.hpp\"\n\r\ntemplate<typename T,int\
+    \ LG=20>struct SubsetConvolution{\r\n    using POL=array<T,LG+1>;\r\n    vector<int>\
+    \ bpc;\r\n    vector<T> inv;\r\n    SubsetConvolution():bpc(1<<LG),inv(LG+1){\r\
+    \n        rep(i,1,1<<LG)bpc[i]=bpc[i-(i&-i)]+1;\r\n        rep(i,1,LG+1)inv[i]=T(1)/i;\r\
+    \n    }\r\n    void zeta(vector<POL>& a){\r\n        int n=a.size();\r\n     \
+    \   for(int w=1;w<n;w<<=1){\r\n            for(int k=0;k<n;k+=w*2)rep(i,0,w){\r\
+    \n                rep(j,0,bpc[k+w+i])a[k+w+i][j]+=a[k+i][j];\r\n            }\r\
+    \n        }\r\n    }\r\n    void mobius(vector<POL>& a){\r\n        int n=a.size(),m=__lg(n);\r\
     \n        for(int w=n>>1;w;w>>=1){\r\n            for(int k=0;k<n;k+=w*2)rep(i,0,w){\r\
     \n                rep(j,bpc[k+w+i],m+1)a[k+w+i][j]-=a[k+i][j];\r\n           \
     \ }\r\n        }\r\n    }\r\n    vector<T> mult(vector<T>& a,vector<T>& b,bool\
     \ same=0){\r\n        assert(a.size()==b.size());\r\n        int n=a.size(),m=__lg(n);\r\
-    \n        vector A(n,vector<T>(m+1)),B(n,vector<T>(m+1));\r\n        rep(i,0,n){\r\
-    \n            A[i][bpc[i]]=a[i];\r\n            B[i][bpc[i]]=b[i];\r\n       \
-    \ }\r\n        zeta(A);\r\n        if(same)B=A;\r\n        else zeta(B);\r\n \
-    \       rep(i,0,n){\r\n            vector<T> c(m+1);\r\n            rep(j,0,m+1)rep(k,0,m+1-j)c[j+k]+=A[i][j]*B[i][k];\r\
-    \n            swap(A[i],c);\r\n        }\r\n        mobius(A);\r\n        vector<T>\
-    \ ret(n);\r\n        rep(i,0,n)ret[i]=A[i][bpc[i]];\r\n        return ret;\r\n\
-    \    }\r\n    template<void (*F)(vector<T>&)>vector<T> execute(vector<T>& a){\r\
-    \n        int n=a.size(),m=__lg(n);\r\n        vector A(n,vector<T>(m+1));\r\n\
-    \        rep(i,0,n)A[i][bpc[i]]=a[i];\r\n        zeta(A);\r\n        rep(i,0,n)F(A[i]);\r\
-    \n        mobius(A);\r\n        vector<T> ret(n);\r\n        rep(i,0,n)ret[i]=A[i][bpc[i]];\r\
-    \n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Subset Convolution\r\
-    \n */\n#line 5 \"Math/hafnian.hpp\"\n\ntemplate<typename T>void F(vector<T>& a){\
-    \ // exp\n    static factorial<T> fact(30);\n    vector<T> ret(a.size());\n  \
-    \  ret[0]=1;\n    rep(i,1,a.size()){\n        rep(j,1,i+1)ret[i]+=ret[i-j]*a[j]*j;\n\
-    \        ret[i]*=fact.inv(i);\n    }\n    swap(a,ret);\n}\n\ntemplate<typename\
-    \ T>T Hafnian(Matrix<T>& a){\n    int n=a.h;\n    assert(n%2==0);\n    n>>=1;\n\
-    \n    vector<Fp> cycle(1<<n);\n    vector dp(1<<n,vector<Fp>(n*2));\n    rep(base,0,n)dp[1<<base][base*2]=1;\n\
-    \    rep(mask,0,1<<n){\n        rep(base,0,n*2)if(mask>>(base>>1)&1){\n      \
-    \      T add=dp[mask][base];\n            int top=-1;\n            rep(i,0,n)if(mask>>i&1)top=i;\n\
+    \n        vector<POL> A(n),B(n);\r\n        rep(i,0,n){\r\n            A[i][bpc[i]]=a[i];\r\
+    \n            B[i][bpc[i]]=b[i];\r\n        }\r\n        zeta(A);\r\n        if(same)B=A;\r\
+    \n        else zeta(B);\r\n        rep(i,0,n){\r\n            POL c;\r\n     \
+    \       rep(j,0,m+1)rep(k,0,m+1-j)c[j+k]+=A[i][j]*B[i][k];\r\n            swap(A[i],c);\r\
+    \n        }\r\n        mobius(A);\r\n        vector<T> ret(n);\r\n        rep(i,0,n)ret[i]=A[i][bpc[i]];\r\
+    \n        return ret;\r\n    }\r\n    vector<T> exp(vector<T>& a){\r\n       \
+    \ int n=a.size(),m=__lg(n);\r\n        vector<POL> A(n);\r\n        rep(i,0,n)A[i][bpc[i]]=a[i];\r\
+    \n        zeta(A);\r\n        rep(i,0,n){\r\n            POL ret;\r\n        \
+    \    ret[0]=1;\r\n            rep(j,1,m+1){\r\n                rep(k,1,j+1)ret[j]+=ret[j-k]*A[i][k]*k;\r\
+    \n                ret[j]*=inv[j];\r\n            }\r\n            swap(A[i],ret);\r\
+    \n        }\r\n        mobius(A);\r\n        vector<T> ret(n);\r\n        rep(i,0,n)ret[i]=A[i][bpc[i]];\r\
+    \n        return ret;\r\n    }\r\n    vector<T> log(vector<T>& a){\r\n       \
+    \ int n=a.size(),m=__lg(n);\r\n        vector<POL> A(n);\r\n        rep(i,0,n)A[i][bpc[i]]=a[i];\r\
+    \n        zeta(A);\r\n        rep(i,0,n){\r\n            POL ret;\r\n        \
+    \    rep(j,1,m+1){\r\n                ret[j]=A[i][j]*j;\r\n                rep(k,1,j)ret[j]-=ret[k]*A[i][j-k]*k;\r\
+    \n                ret[j]*=inv[j];\r\n            }\r\n            swap(A[i],ret);\r\
+    \n        }\r\n        mobius(A);\r\n        vector<T> ret(n);\r\n        rep(i,0,n)ret[i]=A[i][bpc[i]];\r\
+    \n        return ret;\r\n    }\r\n    vector<T> sqrt(vector<T>& a){\r\n      \
+    \  int n=a.size(),m=__lg(n);\r\n        vector<POL> A(n);\r\n        rep(i,0,n)A[i][bpc[i]]=a[i];\r\
+    \n        zeta(A);\r\n        rep(i,0,n){\r\n            POL ret;\r\n        \
+    \    ret[0]=1;\r\n            rep(j,1,m+1){\r\n                ret[j]=A[i][j];\r\
+    \n                rep(k,1,j)ret[j]-=ret[k]*ret[j-k];\r\n                ret[j]*=inv[2];\r\
+    \n            }\r\n            swap(A[i],ret);\r\n        }\r\n        mobius(A);\r\
+    \n        vector<T> ret(n);\r\n        rep(i,0,n)ret[i]=A[i][bpc[i]];\r\n    \
+    \    return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Subset Convolution\r\n\
+    \ */\n#line 5 \"Math/hafnian.hpp\"\n\ntemplate<typename T>T Hafnian(Matrix<T>&\
+    \ a){\n    int n=a.h;\n    assert(n%2==0);\n    n>>=1;\n\n    vector<T> cycle(1<<n);\n\
+    \    vector dp(1<<n,vector<T>(n*2));\n    rep(base,0,n)dp[1<<base][base*2]=1;\n\
+    \    rep(mask,0,1<<n){\n        int top=-1;\n        rep(i,0,n)if(mask>>i&1)top=i;\n\
+    \        rep(base,0,n*2)if(mask>>(base>>1)&1){\n            T add=dp[mask][base];\n\
     \            rep(nxt,0,top)if(!(mask>>nxt&1)){\n                dp[mask|(1<<nxt)][nxt*2+1]+=add*a[base][nxt*2];\n\
     \                dp[mask|(1<<nxt)][nxt*2]+=add*a[base][nxt*2+1];\n           \
-    \ }\n        }\n    }\n    rep(base,0,n*2)rep(mask,1,1<<n){\n        int top=-1;\n\
-    \        rep(i,0,n)if(mask>>i&1)top=i;\n        cycle[mask]+=dp[mask][base]*a[base][top*2+1];\n\
-    \    }\n    \n    SubsetConvolution<Fp> buf;\n    auto ret=buf.execute<F>(cycle);\n\
-    \    return ret[(1<<n)-1];\n}\n\n/**\n * @brief Hafnian of matrix\n*/\n#line 10\
-    \ \"Verify/LC_hafnian_of_matrix.test.cpp\"\n\nFastIO io;\nint main(){\n    int\
-    \ n;\n    io.read(n);\n    Matrix<Fp> mat(n);\n    rep(i,0,n)rep(j,0,n)io.read(mat[i][j].v);\n\
-    \n    auto ret=Hafnian(mat);\n    io.write(ret.v);\n    return 0;\n}\n"
+    \ }\n        }\n    }\n    rep(mask,1,1<<n){\n        int top=-1;\n        rep(i,0,n)if(mask>>i&1)top=i;\n\
+    \        rep(base,0,n*2)cycle[mask]+=dp[mask][base]*a[base][top*2+1];\n    }\n\
+    \    \n    SubsetConvolution<T> buf;\n    auto ret=buf.exp(cycle);\n    return\
+    \ ret[(1<<n)-1];\n}\n\n/**\n * @brief Hafnian of matrix\n*/\n#line 10 \"Verify/LC_hafnian_of_matrix.test.cpp\"\
+    \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n    Matrix<Fp> mat(n);\n\
+    \    rep(i,0,n)rep(j,0,n)io.read(mat[i][j].v);\n\n    auto ret=Hafnian(mat);\n\
+    \    io.write(ret.v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n\
     #include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\nusing Fp=fp<998244353>;\n\n#include \"Math/hafnian.hpp\"\
@@ -210,7 +221,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2022-12-27 02:24:35+09:00'
+  timestamp: '2022-12-28 03:34:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_hafnian_of_matrix.test.cpp
