@@ -6,7 +6,7 @@ data:
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_lca_2.test.cpp
     title: Verify/LC_lca_2.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: Verify/YUKI_901.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Lowest Common Ancestor
     links: []
@@ -58,7 +58,7 @@ data:
   requiredBy:
   - Graph/auxiliarytree.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_lca_2.test.cpp
   - Verify/YUKI_901.test.cpp

@@ -6,7 +6,7 @@ data:
     path: Graph/contour.hpp
     title: Contour Sum Query
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_lca.test.cpp
     title: Verify/LC_lca.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: Verify/LC_vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Heavy Light Decomposition
     links: []
@@ -75,7 +75,7 @@ data:
   requiredBy:
   - Graph/contour.hpp
   timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_lca.test.cpp
   - Verify/LC_vertex_add_path_sum.test.cpp

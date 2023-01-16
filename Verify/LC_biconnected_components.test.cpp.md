@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/bc.hpp
     title: Biconnected Components
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/lowlink.hpp
     title: Lowlink
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
@@ -128,18 +128,30 @@ data:
     \n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Biconnected Components\r\n\
     \ */\n#line 6 \"Verify/LC_biconnected_components.test.cpp\"\n\r\nFastIO io;\r\n\
     int main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    BiconnectedComponents\
-    \ bc(n);\r\n    rep(_,0,m){\r\n        int x,y;\r\n        io.read(x,y);\r\n \
-    \       bc.add_edge(x,y);\r\n    }\r\n    bc.run();\r\n    auto ret=bc.bc;\r\n\
-    \    io.write(int(ret.size()));\r\n    for(auto& v:ret){\r\n        io.write(int(v.size()));\r\
-    \n        io.write(v);\r\n    }\r\n    return 0;\r\n}\n"
+    \ bc(n);\r\n    using P=pair<int,int>;\r\n    vector<P> es(m);\r\n    rep(_,0,m){\r\
+    \n        int x,y;\r\n        io.read(x,y);\r\n        bc.add_edge(x,y);\r\n \
+    \       es[_]={x,y};\r\n    }\r\n    bc.run();\r\n    auto ret=bc.bc;\r\n    vector<int>\
+    \ used(n,0);\r\n    vector<vector<int>> res;\r\n    for(auto& v:ret){\r\n    \
+    \    vector<int> w;\r\n        for(auto& id:v){\r\n            w.push_back(es[id].first);\r\
+    \n            w.push_back(es[id].second);\r\n        }\r\n        sort(ALL(w));\r\
+    \n        w.erase(unique(ALL(w)),w.end());\r\n        for(auto& x:w)used[x]=1;\r\
+    \n        res.push_back(w);\r\n    }\r\n    rep(i,0,n)if(!used[i])res.push_back({i});\r\
+    \n    io.write((int)res.size());\r\n    for(auto& v:res){\r\n        io.write((int)v.size(),v);\r\
+    \n    }\r\n    return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"Graph/bc.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\
-    \n    io.read(n,m);\r\n    BiconnectedComponents bc(n);\r\n    rep(_,0,m){\r\n\
-    \        int x,y;\r\n        io.read(x,y);\r\n        bc.add_edge(x,y);\r\n  \
-    \  }\r\n    bc.run();\r\n    auto ret=bc.bc;\r\n    io.write(int(ret.size()));\r\
-    \n    for(auto& v:ret){\r\n        io.write(int(v.size()));\r\n        io.write(v);\r\
-    \n    }\r\n    return 0;\r\n}"
+    \n    io.read(n,m);\r\n    BiconnectedComponents bc(n);\r\n    using P=pair<int,int>;\r\
+    \n    vector<P> es(m);\r\n    rep(_,0,m){\r\n        int x,y;\r\n        io.read(x,y);\r\
+    \n        bc.add_edge(x,y);\r\n        es[_]={x,y};\r\n    }\r\n    bc.run();\r\
+    \n    auto ret=bc.bc;\r\n    vector<int> used(n,0);\r\n    vector<vector<int>>\
+    \ res;\r\n    for(auto& v:ret){\r\n        vector<int> w;\r\n        for(auto&\
+    \ id:v){\r\n            w.push_back(es[id].first);\r\n            w.push_back(es[id].second);\r\
+    \n        }\r\n        sort(ALL(w));\r\n        w.erase(unique(ALL(w)),w.end());\r\
+    \n        for(auto& x:w)used[x]=1;\r\n        res.push_back(w);\r\n    }\r\n \
+    \   rep(i,0,n)if(!used[i])res.push_back({i});\r\n    io.write((int)res.size());\r\
+    \n    for(auto& v:res){\r\n        io.write((int)v.size(),v);\r\n    }\r\n   \
+    \ return 0;\r\n}\r\n"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -148,8 +160,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-16 21:15:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_biconnected_components.test.cpp
 layout: document

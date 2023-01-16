@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/lowlink.hpp
     title: Lowlink
   - icon: ':question:'

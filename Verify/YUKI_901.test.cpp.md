@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/lca.hpp
     title: Lowest Common Ancestor
   - icon: ':question:'
