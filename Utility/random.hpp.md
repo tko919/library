@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':x:'
     path: DataStructure/persistentrbstset.hpp
     title: Persistent Randomized Binary Search Tree (set)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/rbstset.hpp
     title: Randomized Binary Search Tree (set)
   - icon: ':heavy_check_mark:'
@@ -20,10 +20,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   _extendedVerifiedWith:
@@ -39,10 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
   - icon: ':x:'

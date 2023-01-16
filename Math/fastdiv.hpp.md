@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':x:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
