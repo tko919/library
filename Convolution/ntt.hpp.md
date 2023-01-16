@@ -40,6 +40,9 @@ data:
     path: Verify/LC_multivariate_convolution.test.cpp
     title: Verify/LC_multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -155,6 +158,7 @@ data:
   - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp
   - Verify/LC_bernoulli_number.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_convolution_mod.test.cpp
 documentation_of: Convolution/ntt.hpp
 layout: document

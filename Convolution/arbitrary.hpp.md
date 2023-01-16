@@ -13,6 +13,9 @@ data:
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -113,6 +116,7 @@ data:
   - Verify/YUKI_1080.test.cpp
   - Verify/LC_convolution_mod_1000000007.test.cpp
   - Verify/YUKI_310.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Convolution/arbitrary.hpp
 layout: document
 redirect_from:

@@ -14,16 +14,22 @@ data:
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_binomial_coefficient.test.cpp
+    title: Verify/LC_binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -161,7 +167,9 @@ data:
   timestamp: '2022-12-28 03:34:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
 documentation_of: Math/primitive.hpp
 layout: document
 redirect_from:

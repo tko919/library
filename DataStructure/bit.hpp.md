@@ -11,13 +11,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/staticrectsum.hpp
     title: DataStructure/staticrectsum.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: String/prefixsubstrlcs.hpp
     title: Prefix Substring LCS
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_range_sum.test.cpp
     title: Verify/LC_point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_prefix_substring_lcs.test.cpp
+    title: Verify/LC_prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
@@ -74,6 +77,7 @@ data:
   - Verify/LC_vertex_add_path_sum.test.cpp
   - Verify/LC_static_range_sum.test.cpp
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - Verify/LC_prefix_substring_lcs.test.cpp
   - Verify/LC_static_range_inversions_query.test.cpp
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   - Verify/LC_point_add_range_sum.test.cpp

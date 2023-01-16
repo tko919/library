@@ -5,11 +5,15 @@ data:
     path: DataStructure/unionfind.hpp
     title: Union Find
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_manhattanmst.test.cpp
+    title: Verify/LC_manhattanmst.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: Manhattan MST
     links: []
   bundledCode: "#line 2 \"DataStructure/unionfind.hpp\"\n\r\nstruct UnionFind{\r\n\
     \    vector<int> par; int n;\r\n    UnionFind(){}\r\n    UnionFind(int _n):par(_n,-1),n(_n){}\r\
@@ -31,7 +35,7 @@ data:
     \    UnionFind uni(n);\n    T ret=0;\n    vector<pair<int,int>> es;\n    for(auto&\
     \ [cost,uv]:cand){\n        auto [u,v]=uv;\n        if(uni.unite(u,v)){\n    \
     \        ret+=cost;\n            es.push_back(uv);\n        }\n    }\n    return\
-    \ {ret,es};\n}\n\n/**\n * Manhattan MST\n*/\n"
+    \ {ret,es};\n}\n\n/**\n * @brief Manhattan MST\n*/\n"
   code: "#pragma once\n#include \"DataStructure/unionfind.hpp\"\n\ntemplate<typename\
     \ T>pair<T,vector<pair<int,int>>> ManhattanMST(vector<T>& X,vector<T>& Y){\n \
     \   using Q=pair<T,pair<int,int>>;\n    int n=X.size();\n    vector<int> ord(n);\n\
@@ -46,19 +50,20 @@ data:
     \    UnionFind uni(n);\n    T ret=0;\n    vector<pair<int,int>> es;\n    for(auto&\
     \ [cost,uv]:cand){\n        auto [u,v]=uv;\n        if(uni.unite(u,v)){\n    \
     \        ret+=cost;\n            es.push_back(uv);\n        }\n    }\n    return\
-    \ {ret,es};\n}\n\n/**\n * Manhattan MST\n*/"
+    \ {ret,es};\n}\n\n/**\n * @brief Manhattan MST\n*/"
   dependsOn:
   - DataStructure/unionfind.hpp
   isVerificationFile: false
   path: DataStructure/manhattanmst.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-01-17 01:31:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_manhattanmst.test.cpp
 documentation_of: DataStructure/manhattanmst.hpp
 layout: document
 redirect_from:
 - /library/DataStructure/manhattanmst.hpp
 - /library/DataStructure/manhattanmst.hpp.html
-title: DataStructure/manhattanmst.hpp
+title: Manhattan MST
 ---

@@ -28,6 +28,9 @@ data:
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_binomial_coefficient.test.cpp
+    title: Verify/LC_binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bipartitematching.test.cpp
     title: Verify/LC_bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -121,6 +124,9 @@ data:
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_manhattanmst.test.cpp
+    title: Verify/LC_manhattanmst.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_many_aplusb.test.cpp
     title: Verify/LC_many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,6 +147,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution.test.cpp
     title: Verify/LC_multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_nim_product_64.test.cpp
     title: Verify/LC_nim_product_64.test.cpp
@@ -177,6 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_prefix_substring_lcs.test.cpp
+    title: Verify/LC_prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
@@ -353,6 +365,7 @@ data:
   - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_manhattanmst.test.cpp
   - Verify/LC_scc.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_1080.test.cpp
@@ -389,6 +402,7 @@ data:
   - Verify/LC_sum_of_floor_of_linear.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
+  - Verify/LC_prefix_substring_lcs.test.cpp
   - Verify/LC_number_of_substrings.test.cpp
   - Verify/LC_cycle_detection_undirected.test.cpp
   - Verify/LC_lca_2.test.cpp
@@ -435,8 +449,10 @@ data:
   - Verify/LC_deque_operate_all_composite.test.cpp
   - Verify/LC_suffixarray.test.cpp
   - Verify/LC_zalgorithm.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_point_add_range_sum.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
   - Verify/LC_convolution_mod.test.cpp
 documentation_of: Template/template.hpp

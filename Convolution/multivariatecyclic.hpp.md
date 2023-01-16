@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: FPS/multievalgeom.hpp
+    title: Multipoint Evaluation on Geometric Sequence
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Math/fastdiv.hpp
   - icon: ':heavy_check_mark:'
@@ -17,10 +20,13 @@ data:
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Multivarate Convolution Cyclic
     links: []
@@ -103,50 +109,61 @@ data:
     \ d=2;d*d<=g;d++)if(g%d==0){\r\n        int sz=0;\r\n        while(g%d==0){g/=d;\
     \ sz++;}\r\n        a=_subroot(d,sz,a);\r\n    }\r\n    if(g>1)a=_subroot(g,1,a);\r\
     \n    return a;\r\n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n#line\
-    \ 3 \"Convolution/multivariatecyclic.hpp\"\n\ntemplate<typename T>vector<T> MultivariateCyclic\n\
-    \    (vector<T> f,vector<T> g,vector<int>& a){\n    int MO=T::get_mod();\n   \
-    \ int k=a.size(),n=1;\n    for(auto& x:a)n*=x;\n    T pr=getPrimitiveRoot(MO),ipr=T(pr).inv();\n\
-    \n    int offset=1;\n    rep(x,0,k){\n        assert((MO-1)%a[x]==0);\n      \
-    \  T w=pr.pow((MO-1)/a[x]);\n        rep(i,0,n)if(i%(offset*a[x])<offset){\n \
-    \           vector<T> na(a[x]),nb(a[x]);\n            rep(j,0,a[x]){\n       \
-    \         na[j]=f[i+offset*j];\n                nb[j]=g[i+offset*j];\n       \
-    \     }\n            na=MultievalGeomSeq(na,T(1),w,a[x]);\n            nb=MultievalGeomSeq(nb,T(1),w,a[x]);\n\
-    \            rep(j,0,a[x]){\n                f[i+offset*j]=na[j];\n          \
-    \      g[i+offset*j]=nb[j];\n            }\n        }\n        offset*=a[x];\n\
-    \    }\n\n    rep(i,0,n)f[i]*=g[i];\n    \n    offset=1;\n    rep(x,0,k){\n  \
-    \      T iw=ipr.pow((MO-1)/a[x]);\n        rep(i,0,n)if(i%(offset*a[x])<offset){\n\
-    \            vector<T> na(a[x]);\n            rep(j,0,a[x])na[j]=f[i+offset*j];\n\
-    \            na=MultievalGeomSeq(na,T(1),iw,a[x]);\n            rep(j,0,a[x])f[i+offset*j]=na[j];\n\
-    \        }\n        offset*=a[x];\n    }\n    T ninv=T(n).inv();\n    rep(i,0,n)f[i]*=ninv;\n\
-    \    return f;\n}\n\n/**\n * @brief Multivarate Convolution Cyclic\n*/\n"
-  code: "#pragma once\n#include \"Math/primitive.hpp\"\n\ntemplate<typename T>vector<T>\
-    \ MultivariateCyclic\n    (vector<T> f,vector<T> g,vector<int>& a){\n    int MO=T::get_mod();\n\
-    \    int k=a.size(),n=1;\n    for(auto& x:a)n*=x;\n    T pr=getPrimitiveRoot(MO),ipr=T(pr).inv();\n\
-    \n    int offset=1;\n    rep(x,0,k){\n        assert((MO-1)%a[x]==0);\n      \
-    \  T w=pr.pow((MO-1)/a[x]);\n        rep(i,0,n)if(i%(offset*a[x])<offset){\n \
-    \           vector<T> na(a[x]),nb(a[x]);\n            rep(j,0,a[x]){\n       \
-    \         na[j]=f[i+offset*j];\n                nb[j]=g[i+offset*j];\n       \
-    \     }\n            na=MultievalGeomSeq(na,T(1),w,a[x]);\n            nb=MultievalGeomSeq(nb,T(1),w,a[x]);\n\
-    \            rep(j,0,a[x]){\n                f[i+offset*j]=na[j];\n          \
-    \      g[i+offset*j]=nb[j];\n            }\n        }\n        offset*=a[x];\n\
-    \    }\n\n    rep(i,0,n)f[i]*=g[i];\n    \n    offset=1;\n    rep(x,0,k){\n  \
-    \      T iw=ipr.pow((MO-1)/a[x]);\n        rep(i,0,n)if(i%(offset*a[x])<offset){\n\
-    \            vector<T> na(a[x]);\n            rep(j,0,a[x])na[j]=f[i+offset*j];\n\
-    \            na=MultievalGeomSeq(na,T(1),iw,a[x]);\n            rep(j,0,a[x])f[i+offset*j]=na[j];\n\
-    \        }\n        offset*=a[x];\n    }\n    T ninv=T(n).inv();\n    rep(i,0,n)f[i]*=ninv;\n\
-    \    return f;\n}\n\n/**\n * @brief Multivarate Convolution Cyclic\n*/"
+    \ 2 \"FPS/multievalgeom.hpp\"\n\ntemplate<typename T>vector<T> MultievalGeomSeq(vector<T>&\
+    \ f,T a,T w,int m){\n    int n=f.size();\n    vector<T> tri(n+m-1),itri(n+m-1);\n\
+    \    tri[0]=itri[0]=1;\n    T iw=w.inv(),pww=1,pwiw=1;\n    for(int i=1;i<n+m-1;i++,pww*=w,pwiw*=iw){\n\
+    \        tri[i]=tri[i-1]*pww;\n        itri[i]=itri[i-1]*pwiw;\n    }\n\n    Poly<T>\
+    \ y(n),v(n+m-1);\n    T pwa=1;\n    for(int i=0;i<n;i++,pwa*=a){\n        y[i]=f[i]*itri[i]*pwa;\n\
+    \    }\n    rep(i,0,n+m-1)v[i]=tri[i];\n    reverse(ALL(y));\n    y*=v;\n    vector<T>\
+    \ ret(m);\n    rep(i,0,m)ret[i]=y[n-1+i]*itri[i];\n    return ret;\n}\n\n/**\n\
+    \ * @brief Multipoint Evaluation on Geometric Sequence\n*/\n#line 4 \"Convolution/multivariatecyclic.hpp\"\
+    \n\ntemplate<typename T>vector<T> MultivariateCyclic\n    (vector<T> f,vector<T>\
+    \ g,vector<int>& a){\n    int MO=T::get_mod();\n    int k=a.size(),n=1;\n    for(auto&\
+    \ x:a)n*=x;\n    T pr=getPrimitiveRoot(MO),ipr=T(pr).inv();\n\n    int offset=1;\n\
+    \    rep(x,0,k){\n        assert((MO-1)%a[x]==0);\n        T w=pr.pow((MO-1)/a[x]);\n\
+    \        rep(i,0,n)if(i%(offset*a[x])<offset){\n            vector<T> na(a[x]),nb(a[x]);\n\
+    \            rep(j,0,a[x]){\n                na[j]=f[i+offset*j];\n          \
+    \      nb[j]=g[i+offset*j];\n            }\n            na=MultievalGeomSeq(na,T(1),w,a[x]);\n\
+    \            nb=MultievalGeomSeq(nb,T(1),w,a[x]);\n            rep(j,0,a[x]){\n\
+    \                f[i+offset*j]=na[j];\n                g[i+offset*j]=nb[j];\n\
+    \            }\n        }\n        offset*=a[x];\n    }\n\n    rep(i,0,n)f[i]*=g[i];\n\
+    \    \n    offset=1;\n    rep(x,0,k){\n        T iw=ipr.pow((MO-1)/a[x]);\n  \
+    \      rep(i,0,n)if(i%(offset*a[x])<offset){\n            vector<T> na(a[x]);\n\
+    \            rep(j,0,a[x])na[j]=f[i+offset*j];\n            na=MultievalGeomSeq(na,T(1),iw,a[x]);\n\
+    \            rep(j,0,a[x])f[i+offset*j]=na[j];\n        }\n        offset*=a[x];\n\
+    \    }\n    T ninv=T(n).inv();\n    rep(i,0,n)f[i]*=ninv;\n    return f;\n}\n\n\
+    /**\n * @brief Multivarate Convolution Cyclic\n*/\n"
+  code: "#pragma once\n#include \"Math/primitive.hpp\"\n#include \"FPS/multievalgeom.hpp\"\
+    \n\ntemplate<typename T>vector<T> MultivariateCyclic\n    (vector<T> f,vector<T>\
+    \ g,vector<int>& a){\n    int MO=T::get_mod();\n    int k=a.size(),n=1;\n    for(auto&\
+    \ x:a)n*=x;\n    T pr=getPrimitiveRoot(MO),ipr=T(pr).inv();\n\n    int offset=1;\n\
+    \    rep(x,0,k){\n        assert((MO-1)%a[x]==0);\n        T w=pr.pow((MO-1)/a[x]);\n\
+    \        rep(i,0,n)if(i%(offset*a[x])<offset){\n            vector<T> na(a[x]),nb(a[x]);\n\
+    \            rep(j,0,a[x]){\n                na[j]=f[i+offset*j];\n          \
+    \      nb[j]=g[i+offset*j];\n            }\n            na=MultievalGeomSeq(na,T(1),w,a[x]);\n\
+    \            nb=MultievalGeomSeq(nb,T(1),w,a[x]);\n            rep(j,0,a[x]){\n\
+    \                f[i+offset*j]=na[j];\n                g[i+offset*j]=nb[j];\n\
+    \            }\n        }\n        offset*=a[x];\n    }\n\n    rep(i,0,n)f[i]*=g[i];\n\
+    \    \n    offset=1;\n    rep(x,0,k){\n        T iw=ipr.pow((MO-1)/a[x]);\n  \
+    \      rep(i,0,n)if(i%(offset*a[x])<offset){\n            vector<T> na(a[x]);\n\
+    \            rep(j,0,a[x])na[j]=f[i+offset*j];\n            na=MultievalGeomSeq(na,T(1),iw,a[x]);\n\
+    \            rep(j,0,a[x])f[i+offset*j]=na[j];\n        }\n        offset*=a[x];\n\
+    \    }\n    T ninv=T(n).inv();\n    rep(i,0,n)f[i]*=ninv;\n    return f;\n}\n\n\
+    /**\n * @brief Multivarate Convolution Cyclic\n*/"
   dependsOn:
   - Math/primitive.hpp
   - Math/fastdiv.hpp
   - Math/pollard.hpp
   - Math/miller.hpp
   - Utility/random.hpp
+  - FPS/multievalgeom.hpp
   isVerificationFile: false
   path: Convolution/multivariatecyclic.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-01-17 01:31:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Convolution/multivariatecyclic.hpp
 layout: document
 redirect_from:

@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
   - icon: ':heavy_check_mark:'
@@ -19,8 +19,14 @@ data:
     title: Stirling Number for query
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_binomial_coefficient.test.cpp
+    title: Verify/LC_binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
@@ -63,7 +69,9 @@ data:
   verifiedWith:
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
 documentation_of: Math/fastdiv.hpp
 layout: document
 redirect_from:

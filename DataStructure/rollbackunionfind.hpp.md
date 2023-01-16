@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: DataStructure/offlinedc.hpp
-    title: DataStructure/offlinedc.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -42,8 +39,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/rollbackunionfind.hpp
-  requiredBy:
-  - DataStructure/offlinedc.hpp
+  requiredBy: []
   timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

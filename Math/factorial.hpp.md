@@ -16,7 +16,7 @@ data:
     title: P-recursive
   - icon: ':warning:'
     path: FPS/prefixsumofpowers.hpp
-    title: FPS/prefixsumofpowers.hpp
+    title: Prefix Sum of Powers
   - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial

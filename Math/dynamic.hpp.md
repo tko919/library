@@ -5,10 +5,13 @@ data:
     path: Math/fastdiv.hpp
     title: Math/fastdiv.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Dynamic Modint
     links: []
@@ -71,8 +74,9 @@ data:
   path: Math/dynamic.hpp
   requiredBy: []
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Math/dynamic.hpp
 layout: document
 redirect_from:

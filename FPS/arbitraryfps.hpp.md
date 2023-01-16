@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,6 +147,7 @@ data:
   - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_1080.test.cpp
   - Verify/YUKI_310.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: FPS/arbitraryfps.hpp
 layout: document
 redirect_from:

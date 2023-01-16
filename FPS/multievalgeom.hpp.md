@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Convolution/multivariatecyclic.hpp
+    title: Multivarate Convolution Cyclic
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Multipoint Evaluation on Geometric Sequence
     links: []
@@ -29,10 +35,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: FPS/multievalgeom.hpp
-  requiredBy: []
+  requiredBy:
+  - Convolution/multivariatecyclic.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: FPS/multievalgeom.hpp
 layout: document
 redirect_from:

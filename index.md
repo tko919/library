@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/multivariate.hpp
       title: Multivariate Convolution
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
     - icon: ':heavy_check_mark:'
@@ -76,12 +76,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/manhattanmst.hpp
-      title: DataStructure/manhattanmst.hpp
-    - icon: ':warning:'
-      path: DataStructure/offlinedc.hpp
-      title: DataStructure/offlinedc.hpp
+      title: Manhattan MST
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
@@ -156,7 +153,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multievalgeom.hpp
       title: Multipoint Evaluation on Geometric Sequence
     - icon: ':heavy_check_mark:'
@@ -167,7 +164,7 @@ data:
       title: P-recursive
     - icon: ':warning:'
       path: FPS/prefixsumofpowers.hpp
-      title: FPS/prefixsumofpowers.hpp
+      title: Prefix Sum of Powers
     - icon: ':warning:'
       path: FPS/prodoffrkx.hpp
       title: Product of f(r^kx)
@@ -264,13 +261,13 @@ data:
     - icon: ':warning:'
       path: Math/bigint.hpp
       title: Big Integer(Float)
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/binomquery.hpp
       title: Binomial Coefficient for query
     - icon: ':heavy_check_mark:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
     - icon: ':heavy_check_mark:'
@@ -338,7 +335,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/manacher.hpp
       title: Manacher Algorithm
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: String/prefixsubstrlcs.hpp
       title: Prefix Substring LCS
     - icon: ':heavy_check_mark:'
@@ -387,6 +384,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_biconnected_components.test.cpp
       title: Verify/LC_biconnected_components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_binomial_coefficient.test.cpp
+      title: Verify/LC_binomial_coefficient.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_bipartitematching.test.cpp
       title: Verify/LC_bipartitematching.test.cpp
@@ -481,6 +481,9 @@ data:
       path: Verify/LC_log_of_formal_power_series.test.cpp
       title: Verify/LC_log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_manhattanmst.test.cpp
+      title: Verify/LC_manhattanmst.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_many_aplusb.test.cpp
       title: Verify/LC_many_aplusb.test.cpp
     - icon: ':heavy_check_mark:'
@@ -501,6 +504,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_multivariate_convolution.test.cpp
       title: Verify/LC_multivariate_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+      title: Verify/LC_multivariate_convolution_cyclic.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_nim_product_64.test.cpp
       title: Verify/LC_nim_product_64.test.cpp
@@ -537,6 +543,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_predecessor_problem.test.cpp
       title: Verify/LC_predecessor_problem.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_prefix_substring_lcs.test.cpp
+      title: Verify/LC_prefix_substring_lcs.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_product_of_polynomial_sequence.test.cpp
       title: Verify/LC_product_of_polynomial_sequence.test.cpp

@@ -28,6 +28,9 @@ data:
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_binomial_coefficient.test.cpp
+    title: Verify/LC_binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -64,11 +67,17 @@ data:
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_manhattanmst.test.cpp
+    title: Verify/LC_manhattanmst.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_many_aplusb.test.cpp
     title: Verify/LC_many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
+    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
@@ -81,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_prefix_substring_lcs.test.cpp
+    title: Verify/LC_prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
@@ -287,6 +299,7 @@ data:
   - Verify/LC_subset_convolution.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_manhattanmst.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_1080.test.cpp
   - Verify/LC_biconnected_components.test.cpp
@@ -306,6 +319,7 @@ data:
   - Verify/LC_range_kth_smallest-2.test.cpp
   - Verify/AOJ_GRL_6_A.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
+  - Verify/LC_prefix_substring_lcs.test.cpp
   - Verify/LC_cycle_detection_undirected.test.cpp
   - Verify/LC_lca_2.test.cpp
   - Verify/LC_sum_of_totient_function.test.cpp
@@ -329,6 +343,8 @@ data:
   - Verify/LC_associative_array.test.cpp
   - Verify/LC_bernoulli_number.test.cpp
   - Verify/LC_deque_operate_all_composite.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
 documentation_of: Utility/fastio.hpp
 layout: document
