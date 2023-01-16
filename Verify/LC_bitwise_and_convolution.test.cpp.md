@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/bitwise.hpp
     title: Bitwise Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -24,57 +24,60 @@ data:
     \ \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\r\n\r\n#line 1 \"\
     Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\
     \n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\
-    \nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
-    \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
-    \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
-    \ 0;}\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct fp\
-    \ {\r\n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\n\
-    \        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
-    \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
-    \n    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
-    \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
-    \ return res;}\r\n    fp& operator+=(const fp& x){return init(v+x.v);}\r\n   \
-    \ fp& operator-=(const fp& x){return init(v+mod-x.v);}\r\n    fp& operator*=(const\
-    \ fp& x){v=ll(v)*x.v%mod; return *this;}\r\n    fp& operator/=(const fp& x){v=ll(v)*x.inv()%mod;\
-    \ return *this;}\r\n    fp operator+(const fp& x)const{return fp(*this)+=x;}\r\
-    \n    fp operator-(const fp& x)const{return fp(*this)-=x;}\r\n    fp operator*(const\
+    \n#define UNIQUE(v) sort(ALL(v)),v.erase(unique(ALL(v)),v.end())\r\n#define MIN(v)\
+    \ *min_element(ALL(v))\r\n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v,x)\
+    \ lower_bound(ALL(v),(x))-v.begin()\r\n#define UB(v,x) upper_bound(ALL(v),(x))-v.begin()\r\
+    \n\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF =\
+    \ 0x1fffffffffffffff;\r\n\r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return\
+    \ 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return\
+    \ 1;}return 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0);\
+    \ if(y<0)x=-x,y=-y; return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename\
+    \ U>T floor(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\
+    \ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename\
+    \ T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename\
+    \ T>int lowbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\n#line 2 \"Math/modint.hpp\"\
+    \n\r\ntemplate<int mod=1000000007>struct fp {\r\n    int v;\r\n    static constexpr\
+    \ int get_mod(){return mod;}\r\n    int inv() const{\r\n        int tmp,a=v,b=mod,x=1,y=0;\r\
+    \n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\n        if(x<0){x+=mod;}\
+    \ return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\n    fp& init(ll x){v=(x<mod?x:x-mod);\
+    \ return *this;}\r\n    fp operator-()const{return fp()-*this;}\r\n    fp pow(ll\
+    \ t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;} return\
+    \ res;}\r\n    fp& operator+=(const fp& x){return init(v+x.v);}\r\n    fp& operator-=(const\
+    \ fp& x){return init(v+mod-x.v);}\r\n    fp& operator*=(const fp& x){v=ll(v)*x.v%mod;\
+    \ return *this;}\r\n    fp& operator/=(const fp& x){v=ll(v)*x.inv()%mod; return\
+    \ *this;}\r\n    fp operator+(const fp& x)const{return fp(*this)+=x;}\r\n    fp\
+    \ operator-(const fp& x)const{return fp(*this)-=x;}\r\n    fp operator*(const\
     \ fp& x)const{return fp(*this)*=x;}\r\n    fp operator/(const fp& x)const{return\
     \ fp(*this)/=x;}\r\n    bool operator==(const fp& x)const{return v==x.v;}\r\n\
     \    bool operator!=(const fp& x)const{return v!=x.v;}\r\n    friend istream&\
     \ operator>>(istream& is,fp& x){return is>>x.v;}\r\n    friend ostream& operator<<(ostream&\
-    \ os,const fp& x){return os<<x.v;}\r\n};\r\ntemplate<typename T>struct factorial\
-    \ {\r\n    vector<T> Fact,Finv,Inv;\r\n    factorial(int maxx){\r\n        Fact.resize(maxx);\
-    \ Finv.resize(maxx); Inv.resize(maxx);\r\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\r\
-    \n        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=Fact[maxx-1].inv();\r\
-    \n        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\r\
-    \n    }\r\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\r\
-    \n    T inv(int n){if(n<0)return 0; return Inv[n];}\r\n    T nPr(int n,int r,bool\
-    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\r\n \
-    \   T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\r\
-    \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
-    \n * @brief Modint\r\n */\n#line 2 \"Convolution/bitwise.hpp\"\n\r\ntemplate<typename\
-    \ T>void zeta(vector<T>& a){\r\n    int n=__lg(a.size());\r\n    rep(k,0,n)rep(mask,0,1<<n){\r\
-    \n        if(mask>>k&1)a[mask]+=a[mask^(1<<k)];\r\n    }\r\n}\r\ntemplate<typename\
-    \ T>void mobius(vector<T>& a){\r\n    int n=__lg(a.size());\r\n    rep(k,0,n)rep(mask,0,1<<n){\r\
-    \n        if(mask>>k&1)a[mask]-=a[mask^(1<<k)];\r\n    }\r\n}\r\ntemplate<typename\
-    \ T>void fwt(vector<T>& a){\r\n    int n=__lg(a.size());\r\n    rep(k,0,n)rep(mask,0,1<<n){\r\
-    \n        if(!(mask>>k&1)){\r\n            T x=a[mask],y=a[mask|(1<<k)];\r\n \
-    \           a[mask]=x+y,a[mask|(1<<k)]=x-y;\r\n        }\r\n    }\r\n}\r\n\r\n\
-    /**\r\n * @brief Bitwise Convolution\r\n * @docs docs/bitwise.md\r\n */\n#line\
-    \ 6 \"Verify/LC_bitwise_and_convolution.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
+    \ os,const fp& x){return os<<x.v;}\r\n};\r\n\r\n/**\r\n * @brief Modint\r\n */\n\
+    #line 2 \"Convolution/bitwise.hpp\"\n\r\nnamespace Bitwise{\r\n    template<typename\
+    \ T>void zeta(vector<T>& a){\r\n        int n=__lg(a.size());\r\n        rep(k,0,n)rep(mask,0,1<<n){\r\
+    \n            if(mask>>k&1)a[mask]+=a[mask^(1<<k)];\r\n        }\r\n    }\r\n\
+    \    template<typename T>void mobius(vector<T>& a){\r\n        int n=__lg(a.size());\r\
+    \n        rep(k,0,n)rep(mask,0,1<<n){\r\n            if(mask>>k&1)a[mask]-=a[mask^(1<<k)];\r\
+    \n        }\r\n    }\r\n    template<typename T>void fwt(vector<T>& a){\r\n  \
+    \      int n=__lg(a.size());\r\n        rep(k,0,n)rep(mask,0,1<<n){\r\n      \
+    \      if(!(mask>>k&1)){\r\n                T x=a[mask],y=a[mask|(1<<k)];\r\n\
+    \                a[mask]=x+y,a[mask|(1<<k)]=x-y;\r\n            }\r\n        }\r\
+    \n    }\r\n};\r\n\r\n/**\r\n * @brief Bitwise Convolution\r\n * @docs docs/bitwise.md\r\
+    \n */\n#line 6 \"Verify/LC_bitwise_and_convolution.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
     \n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    vector<Fp> a(1<<n),b(1<<n);\r\
     \n    for(auto& x:a)cin>>x;\r\n    for(auto& x:b)cin>>x;\r\n    vector<Fp> ret(1<<n);\r\
-    \n    reverse(ALL(a));\r\n    reverse(ALL(b));\r\n    zeta(a);\r\n    zeta(b);\r\
-    \n    rep(i,0,1<<n)ret[i]=a[i]*b[i];\r\n    mobius(ret);\r\n    reverse(ALL(ret));\r\
-    \n    for(auto& x:ret)cout<<x<<'\\n';\r\n    return 0;\r\n}\n"
+    \n    reverse(ALL(a));\r\n    reverse(ALL(b));\r\n    Bitwise::zeta(a);\r\n  \
+    \  Bitwise::zeta(b);\r\n    rep(i,0,1<<n)ret[i]=a[i]*b[i];\r\n    Bitwise::mobius(ret);\r\
+    \n    reverse(ALL(ret));\r\n    for(auto& x:ret)cout<<x<<'\\n';\r\n    return\
+    \ 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"Convolution/bitwise.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\n\r\nint\
     \ main(){\r\n    int n;\r\n    cin>>n;\r\n    vector<Fp> a(1<<n),b(1<<n);\r\n\
     \    for(auto& x:a)cin>>x;\r\n    for(auto& x:b)cin>>x;\r\n    vector<Fp> ret(1<<n);\r\
-    \n    reverse(ALL(a));\r\n    reverse(ALL(b));\r\n    zeta(a);\r\n    zeta(b);\r\
-    \n    rep(i,0,1<<n)ret[i]=a[i]*b[i];\r\n    mobius(ret);\r\n    reverse(ALL(ret));\r\
-    \n    for(auto& x:ret)cout<<x<<'\\n';\r\n    return 0;\r\n}"
+    \n    reverse(ALL(a));\r\n    reverse(ALL(b));\r\n    Bitwise::zeta(a);\r\n  \
+    \  Bitwise::zeta(b);\r\n    rep(i,0,1<<n)ret[i]=a[i]*b[i];\r\n    Bitwise::mobius(ret);\r\
+    \n    reverse(ALL(ret));\r\n    for(auto& x:ret)cout<<x<<'\\n';\r\n    return\
+    \ 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/modint.hpp
@@ -82,7 +85,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-10-25 04:47:41+09:00'
+  timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bitwise_and_convolution.test.cpp

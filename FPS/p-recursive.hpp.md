@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: Math/factorial.hpp
+    title: Factorial
+  - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
@@ -18,7 +21,17 @@ data:
   attributes:
     document_title: P-recursive
     links: []
-  bundledCode: "#line 2 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename T>Poly<T>\
+  bundledCode: "#line 2 \"Math/factorial.hpp\"\n\ntemplate<typename T>struct factorial\
+    \ {\n    vector<T> Fact,Finv,Inv;\n    factorial(int maxx){\n        Fact.resize(maxx);\
+    \ Finv.resize(maxx); Inv.resize(maxx);\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\n\
+    \        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=T(1)/Fact[maxx-1];\n\
+    \        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\n\
+    \    }\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\n\
+    \    T inv(int n){if(n<0)return 0; return Inv[n];}\n    T nPr(int n,int r,bool\
+    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\n   \
+    \ T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\n\
+    \    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\n};\n\n/**\n * @brief\
+    \ Factorial\n*/\n#line 3 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename T>Poly<T>\
     \ SamplePointsShift(vector<T>& ys,T c,int m=-1){\n    ll n=ys.size()-1,C=c.v%T::get_mod();\n\
     \    if(m==-1)m=n+1;\n    factorial<T> fact(ys.size());\n    if(C<=n){\n     \
     \   Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n        if(int(res.size())>=m){\n\
@@ -153,12 +166,13 @@ data:
     \ * @brief P-recursive\n*/"
   dependsOn:
   - FPS/samplepointshift.hpp
+  - Math/factorial.hpp
   - Math/matrix.hpp
   - Math/linearequation.hpp
   isVerificationFile: false
   path: FPS/p-recursive.hpp
   requiredBy: []
-  timestamp: '2022-12-26 23:10:56+09:00'
+  timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/p-recursive.hpp

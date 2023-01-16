@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: Convolution/multivariatecyclic.hpp
+    title: Multivarate Convolution Cyclic
+  - icon: ':warning:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/primitive.hpp
     title: Primitive Function
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Pollard-Rho
     links: []
@@ -76,13 +79,14 @@ data:
   isVerificationFile: false
   path: Math/pollard.hpp
   requiredBy:
-  - Math/primitive.hpp
+  - Convolution/multivariatecyclic.hpp
   - Math/binomquery.hpp
+  - Math/primitive.hpp
   timestamp: '2022-01-16 22:20:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_factorize.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document
 redirect_from:

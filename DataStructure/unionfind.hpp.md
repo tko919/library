@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: DataStructure/manhattanmst.hpp
+    title: DataStructure/manhattanmst.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_unionfind.test.cpp
     title: Verify/LC_unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Union Find
     links: []
@@ -29,9 +32,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/unionfind.hpp
-  requiredBy: []
+  requiredBy:
+  - DataStructure/manhattanmst.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_unionfind.test.cpp
 documentation_of: DataStructure/unionfind.hpp

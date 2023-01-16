@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
   _extendedRequiredBy: []
@@ -36,8 +36,8 @@ data:
     \            d[i].add(idx,z);\n        }\n    }\n    T sum(ll x,ll y){\n     \
     \   T res=0;\n        int s=upper_bound(ALL(xs),x)-xs.begin();\n        for(int\
     \ i=s;i;i-=(i&-i)){\n            int idx=upper_bound(ALL(ys[i]),y)-ys[i].begin();\n\
-    \            res+=d[i].sum(idx);\n        }\n        return res;\n    }\n    T\
-    \ sum(ll x1,ll y1,ll x2,ll y2){return sum(x2,y2)-sum(x1-1,y2)-sum(x2,y1-1)+sum(x1-1,y1-1);}\n\
+    \            res+=d[i].sum(idx+1);\n        }\n        return res;\n    }\n  \
+    \  T sum(ll x1,ll y1,ll x2,ll y2){return sum(x2,y2)-sum(x1-1,y2)-sum(x2,y1-1)+sum(x1-1,y1-1);}\n\
     };\n\n/**\n * @brief 2D Binary Indexed Tree\n*/\n"
   code: "#pragma once\n#include \"DataStructure/bit.hpp\"\n\ntemplate<class T>struct\
     \ BIT2D{\n    int n; vector<BIT<T>> d;\n    vector<int> xs; vector<vector<int>>\
@@ -53,15 +53,15 @@ data:
     \            d[i].add(idx,z);\n        }\n    }\n    T sum(ll x,ll y){\n     \
     \   T res=0;\n        int s=upper_bound(ALL(xs),x)-xs.begin();\n        for(int\
     \ i=s;i;i-=(i&-i)){\n            int idx=upper_bound(ALL(ys[i]),y)-ys[i].begin();\n\
-    \            res+=d[i].sum(idx);\n        }\n        return res;\n    }\n    T\
-    \ sum(ll x1,ll y1,ll x2,ll y2){return sum(x2,y2)-sum(x1-1,y2)-sum(x2,y1-1)+sum(x1-1,y1-1);}\n\
+    \            res+=d[i].sum(idx+1);\n        }\n        return res;\n    }\n  \
+    \  T sum(ll x1,ll y1,ll x2,ll y2){return sum(x2,y2)-sum(x1-1,y2)-sum(x2,y1-1)+sum(x1-1,y1-1);}\n\
     };\n\n/**\n * @brief 2D Binary Indexed Tree\n*/"
   dependsOn:
   - DataStructure/bit.hpp
   isVerificationFile: false
   path: DataStructure/2dbit.hpp
   requiredBy: []
-  timestamp: '2022-12-26 23:10:56+09:00'
+  timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DataStructure/2dbit.hpp

@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: Convolution/relax.hpp
+    title: Relaxed Convolution
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
-    path: FPS/relax.hpp
-    title: Relaxed Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: Math/factorial.hpp
+    title: Factorial
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
@@ -32,13 +35,22 @@ data:
   bundledCode: "#line 1 \"Verify/LC_convolution_mod_2.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
-    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\nusing\
-    \ ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
-    \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
+    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\n#define\
+    \ UNIQUE(v) sort(ALL(v)),v.erase(unique(ALL(v)),v.end())\r\n#define MIN(v) *min_element(ALL(v))\r\
+    \n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v,x) lower_bound(ALL(v),(x))-v.begin()\r\
+    \n#define UB(v,x) upper_bound(ALL(v),(x))-v.begin()\r\n\r\nusing ll=long long\
+    \ int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\n\
+    \r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
     \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
-    \ 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\nclass FastIO{\r\
-    \n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\
-    \n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
+    \ 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y;\
+    \ return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename U>T floor(T x,U\
+    \ y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\ntemplate<typename\
+    \ T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename T>int\
+    \ topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename T>int\
+    \ lowbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\n#line 2 \"Utility/fastio.hpp\"\
+    \n#include <unistd.h>\r\n\r\nclass FastIO{\r\n    static constexpr int L=1<<16;\r\
+    \n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\
+    \n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
     \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
     \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
     \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
@@ -93,8 +105,8 @@ data:
     \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
     \n * @brief Fast IO\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct\
-    \ fp {\r\n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\
-    \n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
+    \ fp {\r\n    int v;\r\n    static constexpr int get_mod(){return mod;}\r\n  \
+    \  int inv() const{\r\n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
     \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
     \n    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
     \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
@@ -107,35 +119,25 @@ data:
     \ fp(*this)/=x;}\r\n    bool operator==(const fp& x)const{return v==x.v;}\r\n\
     \    bool operator!=(const fp& x)const{return v!=x.v;}\r\n    friend istream&\
     \ operator>>(istream& is,fp& x){return is>>x.v;}\r\n    friend ostream& operator<<(ostream&\
-    \ os,const fp& x){return os<<x.v;}\r\n};\r\ntemplate<typename T>struct factorial\
-    \ {\r\n    vector<T> Fact,Finv,Inv;\r\n    factorial(int maxx){\r\n        Fact.resize(maxx);\
-    \ Finv.resize(maxx); Inv.resize(maxx);\r\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\r\
-    \n        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=Fact[maxx-1].inv();\r\
-    \n        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\r\
-    \n    }\r\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\r\
-    \n    T inv(int n){if(n<0)return 0; return Inv[n];}\r\n    T nPr(int n,int r,bool\
-    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\r\n \
-    \   T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\r\
-    \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
-    \n * @brief Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate<typename\
-    \ T,unsigned p=3>struct NTT{\r\n    vector<T> rt,irt;\r\n    NTT(int lg=21){\r\
-    \n        unsigned m=T::get_mod()-1; T prt=p;\r\n        rt.resize(lg); irt.resize(lg);\r\
-    \n        rep(k,0,lg){\r\n            rt[k]=-prt.pow(m>>(k+2));\r\n          \
-    \  irt[k]=rt[k].inv();\r\n        }\r\n    }\r\n    void ntt(vector<T>& f,bool\
-    \ inv=0){\r\n        int n=f.size();\r\n        if(inv){\r\n            for(int\
-    \ m=1;m<n;m<<=1){ T w=1;\r\n                for(int s=0,t=0;s<n;s+=m*2){\r\n \
-    \                   for(int i=s,j=s+m;i<s+m;i++,j++){\r\n                    \
-    \    auto x=f[i],y=f[j];\r\n                        f[i]=x+y; f[j]=(x-y)*w;\r\n\
-    \                    } w*=irt[__builtin_ctz(++t)];\r\n                }\r\n  \
-    \           } T mul=T(n).inv(); rep(i,0,n)f[i]*=mul;\r\n        }else{\r\n   \
-    \         for(int m=n;m>>=1;){ T w=1;\r\n                for(int s=0,t=0;s<n;s+=m*2){\r\
-    \n                    for(int i=s,j=s+m;i<s+m;i++,j++){\r\n                  \
-    \      auto x=f[i],y=f[j]*w;\r\n                        f[i]=x+y; f[j]=x-y;\r\n\
-    \                    } w*=rt[__builtin_ctz(++t)];\r\n                }\r\n   \
-    \         }\r\n         }\r\n    }\r\n    vector<T> mult(const vector<T>& a,const\
-    \ vector<T>& b,bool same=0){\r\n        if(a.empty() or b.empty())return vector<T>();\r\
-    \n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\n        vector<T> res(m);\
-    \ rep(i,0,a.size()){res[i]=a[i];} ntt(res);\r\n        if(same)rep(i,0,m)res[i]*=res[i];\r\
+    \ os,const fp& x){return os<<x.v;}\r\n};\r\n\r\n/**\r\n * @brief Modint\r\n */\n\
+    #line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate<typename T,unsigned p=3>struct NTT{\r\
+    \n    vector<T> rt,irt;\r\n    NTT(int lg=21){\r\n        unsigned m=T::get_mod()-1;\
+    \ T prt=p;\r\n        rt.resize(lg); irt.resize(lg);\r\n        rep(k,0,lg){\r\
+    \n            rt[k]=-prt.pow(m>>(k+2));\r\n            irt[k]=rt[k].inv();\r\n\
+    \        }\r\n    }\r\n    void ntt(vector<T>& f,bool inv=0){\r\n        int n=f.size();\r\
+    \n        if(inv){\r\n            for(int m=1;m<n;m<<=1){ T w=1;\r\n         \
+    \       for(int s=0,t=0;s<n;s+=m*2){\r\n                    for(int i=s,j=s+m;i<s+m;i++,j++){\r\
+    \n                        auto x=f[i],y=f[j];\r\n                        f[i]=x+y;\
+    \ f[j]=(x-y)*w;\r\n                    } w*=irt[__builtin_ctz(++t)];\r\n     \
+    \           }\r\n             } T mul=T(n).inv(); rep(i,0,n)f[i]*=mul;\r\n   \
+    \     }else{\r\n            for(int m=n;m>>=1;){ T w=1;\r\n                for(int\
+    \ s=0,t=0;s<n;s+=m*2){\r\n                    for(int i=s,j=s+m;i<s+m;i++,j++){\r\
+    \n                        auto x=f[i],y=f[j]*w;\r\n                        f[i]=x+y;\
+    \ f[j]=x-y;\r\n                    } w*=rt[__builtin_ctz(++t)];\r\n          \
+    \      }\r\n            }\r\n         }\r\n    }\r\n    vector<T> mult(const vector<T>&\
+    \ a,const vector<T>& b,bool same=0){\r\n        if(a.empty() or b.empty())return\
+    \ vector<T>();\r\n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\n    \
+    \    vector<T> res(m); rep(i,0,a.size()){res[i]=a[i];} ntt(res);\r\n        if(same)rep(i,0,m)res[i]*=res[i];\r\
     \n        else{\r\n            vector<T> c(m); rep(i,0,b.size())c[i]=b[i];\r\n\
     \            ntt(c); rep(i,0,m)res[i]*=c[i];\r\n        } ntt(res,1); res.resize(n);\
     \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
@@ -144,12 +146,16 @@ data:
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
-    \n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool same=0)const{\r\
-    \n        if(a.empty() or b.empty())return vector<T>();\r\n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\
-    \n        vector<T> res(m);\r\n        rep(i,0,a.size())res[i]=a[i];\r\n     \
-    \   NTT(res,0);\r\n        if(same)rep(i,0,m)res[i]*=res[i];\r\n        else{\r\
-    \n            vector<T> c(m);\r\n            rep(i,0,b.size())c[i]=b[i];\r\n \
-    \           NTT(c,0);\r\n            rep(i,0,m)res[i]*=c[i];\r\n        }\r\n\
+    \n    Poly operator>>(int sz)const{\r\n        if((int)this->size()<=sz)return\
+    \ {};\r\n        Poly ret(*this);\r\n        ret.erase(ret.begin(),ret.begin()+sz);\r\
+    \n        return ret;\r\n    }\r\n    Poly operator<<(int sz)const{\r\n      \
+    \  Poly ret(*this);\r\n        ret.insert(ret.begin(),sz,T(0));\r\n        return\
+    \ ret;\r\n    }\r\n    vector<T> mult(const vector<T>& a,const vector<T>& b,bool\
+    \ same=0)const{\r\n        if(a.empty() or b.empty())return vector<T>();\r\n \
+    \       int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\n        vector<T> res(m);\r\
+    \n        rep(i,0,a.size())res[i]=a[i];\r\n        NTT(res,0);\r\n        if(same)rep(i,0,m)res[i]*=res[i];\r\
+    \n        else{\r\n            vector<T> c(m);\r\n            rep(i,0,b.size())c[i]=b[i];\r\
+    \n            NTT(c,0);\r\n            rep(i,0,m)res[i]*=c[i];\r\n        }\r\n\
     \        NTT(res,1);\r\n        res.resize(n);\r\n        return res;\r\n    }\r\
     \n    Poly square()const{return Poly(mult(*this,*this,1));}\r\n    Poly operator-()const{return\
     \ Poly()-*this;}\r\n    Poly operator+(const Poly& g)const{return Poly(*this)+=g;}\r\
@@ -157,8 +163,9 @@ data:
     \ Poly& g)const{return Poly(*this)-=g;}\r\n    Poly operator-(const T& g)const{return\
     \ Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return Poly(*this)*=g;}\r\
     \n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\n    Poly operator/(const\
-    \ Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return\
-    \ Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
+    \ Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator/(const T& g)const{return\
+    \ Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\
+    \n    Poly& operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
     \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
     \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
     \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
@@ -172,14 +179,16 @@ data:
     \n        }\r\n        Poly g2=g;\r\n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\
     \n        int n=this->size()-g2.size()+1;\r\n        this->resize(n); g2.resize(n);\r\
     \n        *this*=g2.inv(); this->resize(n); \r\n        reverse(ALL(*this));\r\
-    \n        shrink();\r\n        return *this;\r\n    }\r\n    Poly& operator%=(const\
-    \ Poly& g){*this-=*this/g*g; shrink(); return *this;}\r\n    Poly diff()const{\r\
-    \n        Poly res(this->size()-1);\r\n        rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\
-    \n        return res;\r\n    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\
-    \n        for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return\
-    \ res;\r\n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const\
-    \ int n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n \
-    \       res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
+    \n        shrink();\r\n        return *this;\r\n    }\r\n    Poly& operator/=(const\
+    \ T& g){\r\n        rep(i,0,this->size())(*this)[i]/=g;\r\n        return *this;\r\
+    \n    }\r\n    Poly& operator%=(const Poly& g){*this-=*this/g*g; shrink(); return\
+    \ *this;}\r\n    Poly diff()const{\r\n        Poly res(this->size()-1);\r\n  \
+    \      rep(i,0,res.size())res[i]=(*this)[i+1]*(i+1);\r\n        return res;\r\n\
+    \    }\r\n    Poly inte()const{\r\n        Poly res(this->size()+1);\r\n     \
+    \   for(int i=res.size()-1;i;i--)res[i]=(*this)[i-1]/i;\r\n        return res;\r\
+    \n    }\r\n    Poly log()const{\r\n        assert(this->front()==1); const int\
+    \ n=this->size();\r\n        Poly res=diff()*inv(); res=res.inte(); \r\n     \
+    \   res.resize(n); return res;\r\n    }\r\n    Poly shift(const int& c)const{\r\
     \n        const int n=this->size();\r\n        Poly res=*this,g(n); g[0]=1; rep(i,1,n)g[i]=g[i-1]*c/i;\r\
     \n        vector<T> fact(n,1);\r\n        rep(i,0,n){\r\n            if(i)fact[i]=fact[i-1]*i;\r\
     \n            res[i]*=fact[i];\r\n        }\r\n        res=res.rev();\r\n    \
@@ -216,10 +225,21 @@ data:
     \ g(n); T c=(*this)[k],ic=c.inv();\r\n        rep(i,0,n)g[i]=(*this)[i+k]*ic;\r\
     \n        g=g.log(); for(auto& x:g)x*=t; g=g.exp();\r\n        c=c.pow(t); rep(i,0,n)res[i+t*k]=g[i]*c;\
     \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
-    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"FPS/relax.hpp\"\
-    \n\r\ntemplate<typename T>class RelaxedConvolution{\r\n    using P=array<int,2>;\r\
-    \n    using Q=array<P,2>;\r\n    int N,pos=0;\r\n    vector<vector<Q>> event;\r\
-    \n    void dfs1(int L,int R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
+    \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n#line 2 \"Math/factorial.hpp\"\
+    \n\ntemplate<typename T>struct factorial {\n    vector<T> Fact,Finv,Inv;\n   \
+    \ factorial(int maxx){\n        Fact.resize(maxx); Finv.resize(maxx); Inv.resize(maxx);\n\
+    \        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\n        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;}\
+    \ Finv[maxx-1]=T(1)/Fact[maxx-1];\n        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i;\
+    \ Inv[i]=Finv[i]*Fact[i-1];}\n    }\n    T fact(int n,bool inv=0){if(n<0)return\
+    \ 0; return (inv?Finv[n]:Fact[n]);}\n    T inv(int n){if(n<0)return 0; return\
+    \ Inv[n];}\n    T nPr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return\
+    \ fact(n,inv)*fact(n-r,inv^1);}\n    T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return\
+    \ 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\n    T nHr(int n,int r,bool\
+    \ inv=0){return nCr(n+r-1,r,inv);}\n};\n\n/**\n * @brief Factorial\n*/\n#line\
+    \ 3 \"Convolution/relax.hpp\"\n\r\ntemplate<typename T>class RelaxedConvolution{\r\
+    \n    using P=array<int,2>;\r\n    using Q=array<P,2>;\r\n    int N,pos;\r\n \
+    \   Poly<T> f,g,buf;\r\n    vector<vector<Q>> event;\r\n    void dfs1(int L,int\
+    \ R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
     \n            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
     \n        event[R].push_back({P{mid,R},P{mid-L,R-L}});\r\n        dfs1(L,mid);\r\
     \n        dfs1(mid,R);\r\n    }\r\n    void dfs2(int L,int R){\r\n        if(R-L==1){\r\
@@ -230,44 +250,66 @@ data:
     \n            event[0].push_back({P{0,1},P{0,1}});\r\n            return;\r\n\
     \        }\r\n        int mid=len>>1;\r\n        event[len].push_back({P{mid,len},P{mid,len}});\r\
     \n        dfs(mid);\r\n        dfs1(mid,len);\r\n        dfs2(mid,len);\r\n  \
-    \  }\r\npublic:\r\n    Poly<T> f,g,buf;\r\n    RelaxedConvolution(int n){\r\n\
-    \        N=1;\r\n        while(N<n)N<<=1;\r\n        f.resize(N);\r\n        g.resize(N);\r\
-    \n        buf.resize(N);\r\n        event.resize(N+1);\r\n        dfs(N);\r\n\
-    \    }\r\n    T next(){\r\n        for(auto& [ft,gt]:event[pos]){\r\n        \
-    \    auto [fL,fR]=ft;\r\n            auto [gL,gR]=gt;\r\n            Poly<T> _f({f.begin()+fL,f.begin()+fR});\r\
-    \n            Poly<T> _g({g.begin()+gL,g.begin()+gR});\r\n            auto add=_f*_g;\r\
-    \n            rep(i,0,add.size()){\r\n                if(i+fL+gL>=N)break;\r\n\
-    \                buf[i+fL+gL]+=add[i];\r\n            }\r\n        }\r\n     \
-    \   return buf[pos++];\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Relaxed Convolution\r\
-    \n */\n#line 9 \"Verify/LC_convolution_mod_2.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
-    \nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return\
-    \ ntt.ntt(v,inv);}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\
-    \n    vector<Fp> _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        if(i<n)buf.f[i]=_f[i];\r\
-    \n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\n        io.write(ret.v);\r\
+    \  }\r\npublic:\r\n    RelaxedConvolution(int n){\r\n        N=1,pos=0;\r\n  \
+    \      while(N<n)N<<=1;\r\n        f.resize(N);\r\n        g.resize(N);\r\n  \
+    \      buf.resize(N);\r\n        event.resize(N+1);\r\n        dfs(N);\r\n   \
+    \ }\r\n    T next(T x,T y){\r\n        f[pos]=x,g[pos]=y;\r\n        for(auto&\
+    \ [ft,gt]:event[pos]){\r\n            auto [fL,fR]=ft;\r\n            auto [gL,gR]=gt;\r\
+    \n            Poly<T> _f({f.begin()+fL,f.begin()+fR});\r\n            Poly<T>\
+    \ _g({g.begin()+gL,g.begin()+gR});\r\n            auto add=_f*_g;\r\n        \
+    \    rep(i,0,add.size()){\r\n                if(i+fL+gL>=N)break;\r\n        \
+    \        buf[i+fL+gL]+=add[i];\r\n            }\r\n        }\r\n        return\
+    \ buf[pos++];\r\n    }\r\n};\r\n\r\ntemplate<typename T>struct RelaxedInv{\r\n\
+    \    RelaxedInv(){}\r\n    RelaxedInv(int _n):n(_n),pos(0),g(n),buf(n){}\r\n \
+    \   T next(T x){\r\n        if(pos==0){\r\n            assert(x!=0);\r\n     \
+    \       g[pos]=x.inv();\r\n        }\r\n        else{\r\n            g[pos]=-g[0]*buf.next(x,g[pos-1]);\r\
+    \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
+    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
+    \ buf;\r\n};\r\n\r\ntemplate<typename T>struct RelaxedExp{\r\n    RelaxedExp(){}\r\
+    \n    RelaxedExp(int _n):n(_n),pos(0),g(n),fact(n),buf(n){}\r\n    T next(T x){\r\
+    \n        if(pos==0){\r\n            assert(x==0);\r\n            g[pos]=1;\r\n\
+    \        }\r\n        else{\r\n            g[pos]=buf.next(x*pos,g[pos-1])*fact.inv(pos);\r\
+    \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
+    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    factorial<T>\
+    \ fact;\r\n    RelaxedConvolution<T> buf;\r\n};\r\n\r\ntemplate<typename T>struct\
+    \ RelaxedLog{\r\n    RelaxedLog(){}\r\n    RelaxedLog(int _n):n(_n),pos(0),g(n),fact(n),buf(n),invf(n){}\r\
+    \n    T next(T x){\r\n        invf.next(x);\r\n        if(pos==0){\r\n       \
+    \     assert(x==1);\r\n            g[pos]=0;\r\n        }\r\n        else{\r\n\
+    \            g[pos]=buf.next(x*pos,invf[pos-1])*fact.inv(pos);\r\n        }\r\n\
+    \        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return g[i];}\r\
+    \nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    factorial<T> fact;\r\n\
+    \    RelaxedConvolution<T> buf;\r\n    RelaxedInv<T> invf;\r\n};\r\n\r\n/**\r\n\
+    \ * @brief Relaxed Convolution\r\n */\n#line 9 \"Verify/LC_convolution_mod_2.test.cpp\"\
+    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
+    \ v,bool inv)const{return ntt.ntt(v,inv);}\r\n\r\nFastIO io;\r\nint main(){\r\n\
+    \    int n,m;\r\n    io.read(n,m);\r\n    vector<Fp> _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\
+    \n    rep(i,0,m)io.read(_g[i].v);\r\n    RelaxedConvolution<Fp> buf(n+m-1);\r\n\
+    \    rep(i,0,n+m-1){\r\n        Fp x,y;\r\n        if(i<n)x=_f[i];\r\n       \
+    \ if(i<m)y=_g[i];\r\n        Fp ret=buf.next(x,y);\r\n        io.write(ret.v);\r\
     \n    }\r\n    return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n#include\
     \ \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\
-    \r\n#include \"FPS/relax.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\
-    \ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}\r\
+    \r\n#include \"Convolution/relax.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3>\
+    \ ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}\r\
     \n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    vector<Fp>\
     \ _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        if(i<n)buf.f[i]=_f[i];\r\
-    \n        if(i<m)buf.g[i]=_g[i];\r\n        Fp ret=buf.next();\r\n        io.write(ret.v);\r\
-    \n    }\r\n    return 0;\r\n}\r\n"
+    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        Fp\
+    \ x,y;\r\n        if(i<n)x=_f[i];\r\n        if(i<m)y=_g[i];\r\n        Fp ret=buf.next(x,y);\r\
+    \n        io.write(ret.v);\r\n    }\r\n    return 0;\r\n}\r\n"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
   - Math/modint.hpp
   - Convolution/ntt.hpp
   - FPS/fps.hpp
-  - FPS/relax.hpp
+  - Convolution/relax.hpp
+  - Math/factorial.hpp
   isVerificationFile: true
   path: Verify/LC_convolution_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-16 20:41:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_2.test.cpp
 layout: document

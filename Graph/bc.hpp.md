@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/lowlink.hpp
     title: Lowlink
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Biconnected Components
     links: []
@@ -72,7 +72,7 @@ data:
   path: Graph/bc.hpp
   requiredBy: []
   timestamp: '2022-02-06 21:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_biconnected_components.test.cpp
 documentation_of: Graph/bc.hpp

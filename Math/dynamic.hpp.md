@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/fastdiv.hpp
     title: Math/fastdiv.hpp
   _extendedRequiredBy: []
@@ -41,17 +41,7 @@ data:
     \ Fp& x)const{return Fp(*this)/=x;}\r\n    bool operator==(const Fp& x)const{return\
     \ v==x.v;}\r\n    bool operator!=(const Fp& x)const{return v!=x.v;}\r\nprivate:\r\
     \n    static FastDiv bar;\r\n    static int _getmod(){return bar.get();}\r\n};\r\
-    \nFastDiv Fp::bar(998244353);\r\n\r\ntemplate<typename T>struct factorial {\r\n\
-    \    vector<T> Fact,Finv,Inv;\r\n    factorial(int maxx){\r\n        Fact.resize(maxx);\
-    \ Finv.resize(maxx); Inv.resize(maxx);\r\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\r\
-    \n        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=Fact[maxx-1].inv();\r\
-    \n        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\r\
-    \n    }\r\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\r\
-    \n    T inv(int n){if(n<0)return 0; return Inv[n];}\r\n    T nPr(int n,int r,bool\
-    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\r\n \
-    \   T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\r\
-    \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
-    \n * @brief Dynamic Modint\r\n */\n"
+    \nFastDiv Fp::bar(998244353);\r\n\r\n/**\r\n * @brief Dynamic Modint\r\n */\n"
   code: "#pragma once\r\n#include \"Math/fastdiv.hpp\"\r\n\r\nstruct Fp{\r\n    using\
     \ u64=uint64_t;\r\n    int v;\r\n    static int get_mod(){return _getmod();}\r\
     \n    static void set_mod(int _m){bar=FastDiv(_m);}\r\n    Fp inv() const{\r\n\
@@ -74,23 +64,13 @@ data:
     \ Fp& x)const{return Fp(*this)/=x;}\r\n    bool operator==(const Fp& x)const{return\
     \ v==x.v;}\r\n    bool operator!=(const Fp& x)const{return v!=x.v;}\r\nprivate:\r\
     \n    static FastDiv bar;\r\n    static int _getmod(){return bar.get();}\r\n};\r\
-    \nFastDiv Fp::bar(998244353);\r\n\r\ntemplate<typename T>struct factorial {\r\n\
-    \    vector<T> Fact,Finv,Inv;\r\n    factorial(int maxx){\r\n        Fact.resize(maxx);\
-    \ Finv.resize(maxx); Inv.resize(maxx);\r\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\r\
-    \n        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=Fact[maxx-1].inv();\r\
-    \n        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\r\
-    \n    }\r\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\r\
-    \n    T inv(int n){if(n<0)return 0; return Inv[n];}\r\n    T nPr(int n,int r,bool\
-    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\r\n \
-    \   T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\r\
-    \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
-    \n * @brief Dynamic Modint\r\n */"
+    \nFastDiv Fp::bar(998244353);\r\n\r\n/**\r\n * @brief Dynamic Modint\r\n */"
   dependsOn:
   - Math/fastdiv.hpp
   isVerificationFile: false
   path: Math/dynamic.hpp
   requiredBy: []
-  timestamp: '2022-12-28 03:34:35+09:00'
+  timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/dynamic.hpp

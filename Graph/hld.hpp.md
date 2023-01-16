@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/contour.hpp
     title: Contour Sum Query
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_lca.test.cpp
     title: Verify/LC_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Heavy Light Decomposition
     links: []
@@ -75,12 +75,12 @@ data:
   requiredBy:
   - Graph/contour.hpp
   timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_lca.test.cpp
-  - Verify/LC_vertex_set_path_composite.test.cpp
   - Verify/LC_vertex_add_path_sum.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - Verify/LC_vertex_set_path_composite.test.cpp
 documentation_of: Graph/hld.hpp
 layout: document
 redirect_from:

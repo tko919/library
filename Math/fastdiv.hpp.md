@@ -3,30 +3,33 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: Convolution/multivariatecyclic.hpp
+    title: Multivarate Convolution Cyclic
+  - icon: ':warning:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   - icon: ':warning:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv{\n    using u64=uint64_t;\n\
@@ -50,16 +53,17 @@ data:
   isVerificationFile: false
   path: Math/fastdiv.hpp
   requiredBy:
+  - Convolution/multivariatecyclic.hpp
   - Math/stirlingquery.hpp
-  - Math/primitive.hpp
-  - Math/binomquery.hpp
   - Math/dynamic.hpp
+  - Math/binomquery.hpp
+  - Math/primitive.hpp
   timestamp: '2022-12-28 03:34:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
 documentation_of: Math/fastdiv.hpp
 layout: document
 redirect_from:

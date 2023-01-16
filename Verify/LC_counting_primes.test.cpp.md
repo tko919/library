@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/primesum.hpp
     title: Prime Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_primes
@@ -23,13 +23,22 @@ data:
   bundledCode: "#line 1 \"Verify/LC_counting_primes.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/counting_primes\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
-    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\nusing\
-    \ ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
-    \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
+    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\n#define\
+    \ UNIQUE(v) sort(ALL(v)),v.erase(unique(ALL(v)),v.end())\r\n#define MIN(v) *min_element(ALL(v))\r\
+    \n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v,x) lower_bound(ALL(v),(x))-v.begin()\r\
+    \n#define UB(v,x) upper_bound(ALL(v),(x))-v.begin()\r\n\r\nusing ll=long long\
+    \ int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\n\
+    \r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
     \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
-    \ 0;}\n#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=1010101>vector<int> sieve(int\
-    \ N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int z=1;z<=5;z+=4){\r\
-    \n        for(int y=z;y<=sq;y+=6){\r\n            for(int x=1;x<=sq and (n=4*x*x+y*y)<=N;++x){\r\
+    \ 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y;\
+    \ return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename U>T floor(T x,U\
+    \ y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\ntemplate<typename\
+    \ T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename T>int\
+    \ topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename T>int\
+    \ lowbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\n#line 2 \"Math/sieve.hpp\"\
+    \n\r\ntemplate<int L=50101010>vector<int> sieve(int N){\r\n    bitset<L> isp;\r\
+    \n    int n,sq=ceil(sqrt(N));\r\n    for(int z=1;z<=5;z+=4){\r\n        for(int\
+    \ y=z;y<=sq;y+=6){\r\n            for(int x=1;x<=sq and (n=4*x*x+y*y)<=N;++x){\r\
     \n                isp[n].flip();\r\n            }\r\n            for(int x=y+1;x<=sq\
     \ and (n=3*x*x-y*y)<=N;x+=2){\r\n                isp[n].flip();\r\n          \
     \  }\r\n        }\r\n    }\r\n    for(int z=2;z<=4;z+=2){\r\n        for(int y=z;y<=sq;y+=6){\r\
@@ -67,8 +76,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 03:44:46+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-16 20:41:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_counting_primes.test.cpp
 layout: document

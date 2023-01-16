@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/bc.hpp
     title: Biconnected Components
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_two_edge_connected_components.test.cpp
     title: Verify/LC_two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Lowlink
     links: []
@@ -52,7 +52,7 @@ data:
   requiredBy:
   - Graph/bc.hpp
   timestamp: '2022-02-06 21:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_biconnected_components.test.cpp
   - Verify/LC_two_edge_connected_components.test.cpp

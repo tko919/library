@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_line_add_get_min.test.cpp
     title: Verify/LC_line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_segment_add_get_min.test.cpp
     title: Verify/LC_segment_add_get_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/lichaotree.md
     document_title: Convex Hull Trick (Li Chao Tree)
@@ -72,10 +72,10 @@ data:
   path: DataStructure/lichaotree.hpp
   requiredBy: []
   timestamp: '2022-02-05 01:38:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_segment_add_get_min.test.cpp
   - Verify/LC_line_add_get_min.test.cpp
+  - Verify/LC_segment_add_get_min.test.cpp
 documentation_of: DataStructure/lichaotree.hpp
 layout: document
 redirect_from:

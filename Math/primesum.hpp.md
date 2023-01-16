@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/sieve.hpp
     title: Prime Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/primesum.md
     document_title: Prime Sum
     links: []
-  bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=1010101>vector<int>\
+  bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=50101010>vector<int>\
     \ sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int\
     \ z=1;z<=5;z+=4){\r\n        for(int y=z;y<=sq;y+=6){\r\n            for(int x=1;x<=sq\
     \ and (n=4*x*x+y*y)<=N;++x){\r\n                isp[n].flip();\r\n           \
@@ -64,11 +64,11 @@ data:
   isVerificationFile: false
   path: Math/primesum.hpp
   requiredBy: []
-  timestamp: '2022-10-24 03:44:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-16 20:41:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_counting_primes.test.cpp
   - Verify/YUKI_1781.test.cpp
+  - Verify/LC_counting_primes.test.cpp
 documentation_of: Math/primesum.hpp
 layout: document
 redirect_from:

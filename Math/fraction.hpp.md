@@ -60,8 +60,8 @@ data:
   isVerificationFile: false
   path: Math/fraction.hpp
   requiredBy:
-  - Math/sternbrocot.hpp
   - Geometry/FracCoord.hpp
+  - Math/sternbrocot.hpp
   timestamp: '2022-10-24 03:26:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

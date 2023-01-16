@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/dirichlet.hpp
     title: Dirichlet series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -27,12 +27,21 @@ data:
     \ \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\r\n\r\n#line 1 \"\
     Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\
     \n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\
-    \nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
-    \ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
-    \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
-    \ 0;}\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\nclass FastIO{\r\
-    \n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\
-    \n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
+    \n#define UNIQUE(v) sort(ALL(v)),v.erase(unique(ALL(v)),v.end())\r\n#define MIN(v)\
+    \ *min_element(ALL(v))\r\n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v,x)\
+    \ lower_bound(ALL(v),(x))-v.begin()\r\n#define UB(v,x) upper_bound(ALL(v),(x))-v.begin()\r\
+    \n\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF =\
+    \ 0x1fffffffffffffff;\r\n\r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return\
+    \ 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return\
+    \ 1;}return 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0);\
+    \ if(y<0)x=-x,y=-y; return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename\
+    \ U>T floor(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\
+    \ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename\
+    \ T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename\
+    \ T>int lowbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\n#line 2 \"Utility/fastio.hpp\"\
+    \n#include <unistd.h>\r\n\r\nclass FastIO{\r\n    static constexpr int L=1<<16;\r\
+    \n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\
+    \n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
     \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
     \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
     \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
@@ -88,8 +97,8 @@ data:
     \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
     \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_sum_of_totient_function.test.cpp\"\
     \n\r\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct fp {\r\
-    \n    int v; static int get_mod(){return mod;}\r\n    int inv() const{\r\n   \
-    \     int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
+    \n    int v;\r\n    static constexpr int get_mod(){return mod;}\r\n    int inv()\
+    \ const{\r\n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
     \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
     \n    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
     \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
@@ -102,26 +111,17 @@ data:
     \ fp(*this)/=x;}\r\n    bool operator==(const fp& x)const{return v==x.v;}\r\n\
     \    bool operator!=(const fp& x)const{return v!=x.v;}\r\n    friend istream&\
     \ operator>>(istream& is,fp& x){return is>>x.v;}\r\n    friend ostream& operator<<(ostream&\
-    \ os,const fp& x){return os<<x.v;}\r\n};\r\ntemplate<typename T>struct factorial\
-    \ {\r\n    vector<T> Fact,Finv,Inv;\r\n    factorial(int maxx){\r\n        Fact.resize(maxx);\
-    \ Finv.resize(maxx); Inv.resize(maxx);\r\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\r\
-    \n        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=Fact[maxx-1].inv();\r\
-    \n        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\r\
-    \n    }\r\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\r\
-    \n    T inv(int n){if(n<0)return 0; return Inv[n];}\r\n    T nPr(int n,int r,bool\
-    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\r\n \
-    \   T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\r\
-    \n    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\r\n};\r\n\r\n/**\r\
-    \n * @brief Modint\r\n */\n#line 7 \"Verify/LC_sum_of_totient_function.test.cpp\"\
-    \nusing Fp=fp<998244353>;\r\n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename\
-    \ T,bool multi,unsigned L=1010101010>struct Dirichlet{\r\n    ll N,P,Q;\r\n  \
-    \  vector<T> a,rui,A;\r\n    vector<ll> ps;\r\n    bool done=0;\r\n    Dirichlet(ll\
-    \ n):N(n),P(min<ll>(L,cbrt(n)*cbrt(n))),Q((n+P-1)/P),\r\n        a(P+1),rui(P+1),A(Q+1),done(0){}\r\
-    \n    const Dirichlet ident(){\r\n        Dirichlet res(N);\r\n        res.a.assign(P+1,0);\r\
-    \n        res.a[1]=1;\r\n        res.rui.assign(P+1,1);\r\n        res.A.assign(Q+1,1);\r\
-    \n        res.done=1;\r\n        return res;\r\n    }\r\n    void sieve(){\r\n\
-    \        if(!ps.empty())return;\r\n        static bitset<L> isp;\r\n        rep(p,2,P+1)isp[p]=1;\r\
-    \n        for(ll p=2;p*p<=P;p++)if(isp[p]){\r\n            for(ll q=p*p;q<=P;q+=p)isp[q]=0;\r\
+    \ os,const fp& x){return os<<x.v;}\r\n};\r\n\r\n/**\r\n * @brief Modint\r\n */\n\
+    #line 7 \"Verify/LC_sum_of_totient_function.test.cpp\"\nusing Fp=fp<998244353>;\r\
+    \n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename T,bool multi,unsigned\
+    \ L=1010101010>struct Dirichlet{\r\n    ll N,P,Q;\r\n    vector<T> a,rui,A;\r\n\
+    \    vector<ll> ps;\r\n    bool done=0;\r\n    Dirichlet(ll n):N(n),P(min<ll>(L,cbrt(n)*cbrt(n))),Q((n+P-1)/P),\r\
+    \n        a(P+1),rui(P+1),A(Q+1),done(0){}\r\n    const Dirichlet ident(){\r\n\
+    \        Dirichlet res(N);\r\n        res.a.assign(P+1,0);\r\n        res.a[1]=1;\r\
+    \n        res.rui.assign(P+1,1);\r\n        res.A.assign(Q+1,1);\r\n        res.done=1;\r\
+    \n        return res;\r\n    }\r\n    void sieve(){\r\n        if(!ps.empty())return;\r\
+    \n        static bitset<L> isp;\r\n        rep(p,2,P+1)isp[p]=1;\r\n        for(ll\
+    \ p=2;p*p<=P;p++)if(isp[p]){\r\n            for(ll q=p*p;q<=P;q+=p)isp[q]=0;\r\
     \n        }\r\n        rep(p,2,P+1)if(isp[p])ps.push_back(p);\r\n    }\r\n   \
     \ void reset(){\r\n        a.assign(P+1,0);\r\n        rui.assign(P+1,0);\r\n\
     \        A.assign(Q+1,0);\r\n        done=0;\r\n    }\r\n    void ruith(){\r\n\
@@ -183,8 +183,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_totient_function.test.cpp
   requiredBy: []
-  timestamp: '2022-10-25 04:47:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-16 20:41:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_totient_function.test.cpp
 layout: document
