@@ -57,5 +57,5 @@ template<typename T>vector<T> Bell(int n){
 }
 
 /**
- * Famous Sequence
+ * @brief Famous Sequence
 */

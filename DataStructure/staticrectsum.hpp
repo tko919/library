@@ -52,5 +52,5 @@ template<class T>struct StaticRectangleSum{
 };
 
 /**
- * Static Rectangle Sum
+ * @brief Static Rectangle Sum
 */

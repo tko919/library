@@ -14,5 +14,5 @@ template<typename T>Poly<T> ProdOf_f_rk_x(Poly<T>& f,T r,int m){ // f(x)f(rx)...
 }
 
 /**
- * @brief Product of f(r^kx)
+ * @brief $\Pi_{k=0}^{m-1} f(r^kx)$
 */

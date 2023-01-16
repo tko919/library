@@ -21,5 +21,5 @@ struct FastDiv{
 };
 
 /**
- * Fast Division
+ * @brief Fast Division
 */

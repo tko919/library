@@ -16,5 +16,5 @@ template<typename T>vector<T> powertable(int n,ll k){ //0^k,1^k,..,n^k
 }
 
 /**
- * @brief Enumrate n^k
+ * @brief Enumrate $n^k$
 */
