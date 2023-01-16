@@ -52,7 +52,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/2dbit.hpp
       title: 2D Binary Indexed Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
     - icon: ':question:'
@@ -70,7 +70,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/hashmap.hpp
       title: Hash Map
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
     - icon: ':question:'
@@ -85,7 +85,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/persistentrbstset.hpp
       title: Persistent Randomized Binary Search Tree (set)
     - icon: ':heavy_check_mark:'
@@ -97,7 +97,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/rangeunionset.hpp
       title: Range Union Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
     - icon: ':warning:'
@@ -106,13 +106,13 @@ data:
     - icon: ':question:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtreebeats.hpp
       title: Segment Tree Beats
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
     - icon: ':x:'
@@ -121,7 +121,7 @@ data:
     - icon: ':x:'
       path: DataStructure/staticrectsum.hpp
       title: DataStructure/staticrectsum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
     - icon: ':x:'
@@ -153,7 +153,7 @@ data:
     - icon: ':x:'
       path: FPS/interpolate.hpp
       title: interpolate (one point)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
     - icon: ':warning:'
@@ -171,7 +171,7 @@ data:
     - icon: ':warning:'
       path: FPS/prodoffrkx.hpp
       title: Product of f(r^kx)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
     - icon: ':x:'
@@ -247,7 +247,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/rerooting.hpp
       title: Rerooting
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/scc.hpp
       title: Strongly Connected Components
     - icon: ':warning:'
@@ -519,46 +519,46 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_rectangle_sum.test.cpp
       title: Verify/LC_point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_composite.test.cpp
       title: Verify/LC_point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_sort_range_composite.test.cpp
       title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_interpolation.test.cpp
       title: Verify/LC_polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_taylor_shift.test.cpp
       title: Verify/LC_polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_predecessor_problem.test.cpp
       title: Verify/LC_predecessor_problem.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_product_of_polynomial_sequence.test.cpp
       title: Verify/LC_product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_queue_operate_all_composite.test.cpp
       title: Verify/LC_queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_affine_range_sum.test.cpp
       title: Verify/LC_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
       title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest-2.test.cpp
       title: Verify/LC_range_kth_smallest-2.test.cpp
     - icon: ':x:'
       path: Verify/LC_range_kth_smallest.test.cpp
       title: Verify/LC_range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_rectangle_sum.test.cpp
       title: Verify/LC_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_scc.test.cpp
       title: Verify/LC_scc.test.cpp
     - icon: ':x:'
