@@ -3,7 +3,7 @@ using namespace std;
 
 #define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)
 #define ALL(v) (v).begin(),(v).end()
-#define UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),v.end())
+#define UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())
 #define MIN(v) *min_element(ALL(v))
 #define MAX(v) *max_element(ALL(v))
 #define LB(v,x) lower_bound(ALL(v),(x))-(v).begin()
