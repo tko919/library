@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Dirichlet series
     links: []
@@ -113,7 +113,7 @@ data:
   path: Math/dirichlet.hpp
   requiredBy: []
   timestamp: '2022-10-24 03:26:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sum_of_totient_function.test.cpp
 documentation_of: Math/dirichlet.hpp

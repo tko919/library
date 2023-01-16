@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
   - icon: ':heavy_check_mark:'

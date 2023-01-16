@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: Math/multiplicative.hpp
     title: Multiplicative Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
   - icon: ':question:'
@@ -27,10 +27,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':x:'

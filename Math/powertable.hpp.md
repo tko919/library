@@ -6,15 +6,15 @@ data:
     title: Prime Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Enumrate $n^k$
     links: []
@@ -51,7 +51,7 @@ data:
   path: Math/powertable.hpp
   requiredBy: []
   timestamp: '2023-01-17 01:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp

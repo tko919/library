@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
   - icon: ':heavy_check_mark:'

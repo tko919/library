@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/relax.hpp
     title: Relaxed Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
   - icon: ':warning:'
@@ -17,10 +17,10 @@ data:
   - icon: ':warning:'
     path: FPS/prefixsumofpowers.hpp
     title: Prefix Sum of Powers
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
   _extendedVerifiedWith:
@@ -33,19 +33,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':x:'

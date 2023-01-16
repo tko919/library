@@ -17,17 +17,17 @@ data:
     \n      if(i+res[i-j]<j+res[j])res[i]=res[i-j];\r\n      else{\r\n         int\
     \ k=max(0,j+res[j]-i);\r\n         while(i+k<n&&s[k]==s[i+k])k++;\r\n        \
     \ res[i]=k; j=i;\r\n      }\r\n   } res[0]=n; return res;\r\n}\r\n\r\n/**\r\n\
-    \ * @brief Z-Algorithm \r\n */\n"
+    \ * @brief Z-Algorithm\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>vector<int> Zalgo(T& s){\r\n   int\
     \ n=s.size(); vector<int> res(n);\r\n   for(int i=1,j=0;i<n;i++){\r\n      if(i+res[i-j]<j+res[j])res[i]=res[i-j];\r\
     \n      else{\r\n         int k=max(0,j+res[j]-i);\r\n         while(i+k<n&&s[k]==s[i+k])k++;\r\
     \n         res[i]=k; j=i;\r\n      }\r\n   } res[0]=n; return res;\r\n}\r\n\r\n\
-    /**\r\n * @brief Z-Algorithm \r\n */"
+    /**\r\n * @brief Z-Algorithm\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: String/zalgo.hpp
   requiredBy: []
-  timestamp: '2023-01-17 03:12:36+09:00'
+  timestamp: '2023-01-17 03:26:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_zalgorithm.test.cpp
