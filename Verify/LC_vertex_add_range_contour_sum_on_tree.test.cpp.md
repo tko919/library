@@ -4,13 +4,13 @@ data:
   - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
   - icon: ':x:'
     path: Graph/contour.hpp
     title: Contour Sum Query
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
   - icon: ':question:'
