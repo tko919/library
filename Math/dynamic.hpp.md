@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
-    title: Math/fastdiv.hpp
+    title: Fast Division
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -22,9 +22,9 @@ data:
     \ FastDiv& d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend\
     \ int operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n \
     \   constexpr pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n  \
-    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * Fast Division\n\
-    */\n#line 3 \"Math/dynamic.hpp\"\n\r\nstruct Fp{\r\n    using u64=uint64_t;\r\n\
-    \    int v;\r\n    static int get_mod(){return _getmod();}\r\n    static void\
+    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast\
+    \ Division\n*/\n#line 3 \"Math/dynamic.hpp\"\n\r\nstruct Fp{\r\n    using u64=uint64_t;\r\
+    \n    int v;\r\n    static int get_mod(){return _getmod();}\r\n    static void\
     \ set_mod(int _m){bar=FastDiv(_m);}\r\n    Fp inv() const{\r\n        int tmp,a=v,b=get_mod(),x=1,y=0;\r\
     \n        while(b){\r\n            tmp=a/b,a-=tmp*b;\r\n            swap(a,b);\r\
     \n            x-=tmp*y;\r\n            swap(x,y);\r\n        }\r\n        if(x<0){x+=get_mod();}\r\
@@ -73,7 +73,7 @@ data:
   isVerificationFile: false
   path: Math/dynamic.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp

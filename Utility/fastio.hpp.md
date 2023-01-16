@@ -160,6 +160,9 @@ data:
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_2097.test.cpp
+    title: Verify/YUKI_2097.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -295,6 +298,7 @@ data:
   - Verify/LC_enumerate_cliques.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/AOJ_DSL_1_B.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_product_of_polynomial_sequence.test.cpp
   - Verify/LC_subset_convolution.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp

@@ -22,6 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: Famous Sequence
     links: []
   bundledCode: "#line 2 \"Math/factorial.hpp\"\n\ntemplate<typename T>struct factorial\
     \ {\n    vector<T> Fact,Finv,Inv;\n    factorial(int maxx){\n        Fact.resize(maxx);\
@@ -49,7 +50,7 @@ data:
     \    f.resize(n+1);\n    return f;\n}\n\ntemplate<typename T>vector<T> Bell(int\
     \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
     \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
-    }\n\n/**\n * Famous Sequence\n*/\n"
+    }\n\n/**\n * @brief Famous Sequence\n*/\n"
   code: "#pragma once\n#include \"Math/factorial.hpp\"\n\ntemplate<typename T>vector<T>\
     \ Bernoulli(int n){\n    factorial<T> fact(n+2);\n    Poly<T> f(n+1);\n    rep(i,0,n+1)f[i]=fact.fact(i+1,1);\n\
     \    f=f.inv();\n    rep(i,0,n+1)f[i]*=fact.fact(i);\n    return f;\n}\n\ntemplate<typename\
@@ -66,13 +67,13 @@ data:
     \    f.resize(n+1);\n    return f;\n}\n\ntemplate<typename T>vector<T> Bell(int\
     \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
     \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
-    }\n\n/**\n * Famous Sequence\n*/"
+    }\n\n/**\n * @brief Famous Sequence\n*/"
   dependsOn:
   - Math/factorial.hpp
   isVerificationFile: false
   path: FPS/famous.hpp
   requiredBy: []
-  timestamp: '2023-01-17 00:59:32+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
@@ -84,5 +85,5 @@ layout: document
 redirect_from:
 - /library/FPS/famous.hpp
 - /library/FPS/famous.hpp.html
-title: FPS/famous.hpp
+title: Famous Sequence
 ---

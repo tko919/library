@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
-    title: Math/fastdiv.hpp
+    title: Fast Division
   - icon: ':heavy_check_mark:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
@@ -103,10 +103,10 @@ data:
     \ FastDiv& d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend\
     \ int operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n \
     \   constexpr pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n  \
-    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * Fast Division\n\
-    */\n#line 3 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\n   \
-    \ const int p;\r\n    FastDiv ip;\r\n    vector<vector<int>> binom,F,S;\r\n  \
-    \  ll nCr(ll n,ll k){\r\n        if(n<0 or k<0 or n<k)return 0;\r\n        ll\
+    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast\
+    \ Division\n*/\n#line 3 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\
+    \n    const int p;\r\n    FastDiv ip;\r\n    vector<vector<int>> binom,F,S;\r\n\
+    \    ll nCr(ll n,ll k){\r\n        if(n<0 or k<0 or n<k)return 0;\r\n        ll\
     \ res=1;\r\n        while(n){\r\n            res=(res*binom[n%ip][k%ip])%ip;\r\
     \n            n/=p; k/=p;\r\n        }\r\n        return res;\r\n    }\r\npublic:\r\
     \n    StirlingNumberQuery(int _p):p(_p),ip(p){\r\n        binom.resize(p,vector<int>(p));\r\
@@ -143,7 +143,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp

@@ -16,6 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: Static Rectangle Sum
     links: []
   bundledCode: "#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename T>struct\
     \ BIT{\r\n    int n; T all=0; vector<T> val;\r\n    BIT(int _n=0):n(_n),val(_n+10){}\r\
@@ -45,7 +46,8 @@ data:
     \     BIT<T> bit(ys.size());\n        for(auto& q:qs){\n            while(k<n\
     \ and plus[k].x<q.x){\n                bit.add(plus[k].y,plus[k].w);\n       \
     \         k++;\n            }\n            res[q.id]+=bit.sum(q.u,q.d)*q.inv;\n\
-    \        }\n        return res;\n    }\n};\n\n/**\n * Static Rectangle Sum\n*/\n"
+    \        }\n        return res;\n    }\n};\n\n/**\n * @brief Static Rectangle\
+    \ Sum\n*/\n"
   code: "#pragma once\n#include \"DataStructure/bit.hpp\"\n\ntemplate<class T>struct\
     \ StaticRectangleSum{\n    struct P{\n        ll x,y; T w;\n    };\n    struct\
     \ Rect{\n        ll l,d,r,u;\n    };\n    struct Q{\n        ll x,d,u,id,inv;\n\
@@ -63,14 +65,15 @@ data:
     \     BIT<T> bit(ys.size());\n        for(auto& q:qs){\n            while(k<n\
     \ and plus[k].x<q.x){\n                bit.add(plus[k].y,plus[k].w);\n       \
     \         k++;\n            }\n            res[q.id]+=bit.sum(q.u,q.d)*q.inv;\n\
-    \        }\n        return res;\n    }\n};\n\n/**\n * Static Rectangle Sum\n*/"
+    \        }\n        return res;\n    }\n};\n\n/**\n * @brief Static Rectangle\
+    \ Sum\n*/"
   dependsOn:
   - DataStructure/bit.hpp
   isVerificationFile: false
   path: DataStructure/staticrectsum.hpp
   requiredBy:
   - DataStructure/staticrectaddrectsum.hpp
-  timestamp: '2022-12-26 23:10:56+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
@@ -79,5 +82,5 @@ layout: document
 redirect_from:
 - /library/DataStructure/staticrectsum.hpp
 - /library/DataStructure/staticrectsum.hpp.html
-title: DataStructure/staticrectsum.hpp
+title: Static Rectangle Sum
 ---

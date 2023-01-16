@@ -76,6 +76,9 @@ data:
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_2097.test.cpp
+    title: Verify/YUKI_2097.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: false
@@ -137,6 +140,7 @@ data:
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_product_of_polynomial_sequence.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/YUKI_1112.test.cpp

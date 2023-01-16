@@ -15,7 +15,7 @@ data:
     title: Modint
   - icon: ':heavy_check_mark:'
     path: Math/powertable.hpp
-    title: Enumrate n^k
+    title: Enumrate $n^k$
   - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
@@ -146,7 +146,7 @@ data:
     \   assert(k>=0);\n    auto ps=sieve(n+1);\n    vector<T> f(n+1,1);\n    if(k)f[0]=0;\n\
     \    for(auto& p:ps){\n        T pk=T(p).pow(k);\n        for(ll q=p;q<=n;q*=p){\n\
     \            for(ll i=q;i<=n;i+=q)f[i]*=pk;\n        }\n    }\n    return f;\n\
-    }\n\n/**\n * @brief Enumrate n^k\n*/\n#line 2 \"Math/factorial.hpp\"\n\ntemplate<typename\
+    }\n\n/**\n * @brief Enumrate $n^k$\n*/\n#line 2 \"Math/factorial.hpp\"\n\ntemplate<typename\
     \ T>struct factorial {\n    vector<T> Fact,Finv,Inv;\n    factorial(int maxx){\n\
     \        Fact.resize(maxx); Finv.resize(maxx); Inv.resize(maxx);\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\n\
     \        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=T(1)/Fact[maxx-1];\n\
@@ -197,7 +197,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp

@@ -10,7 +10,7 @@ data:
     title: Multiplicative Sum
   - icon: ':heavy_check_mark:'
     path: Math/powertable.hpp
-    title: Enumrate n^k
+    title: Enumrate $n^k$
   - icon: ':heavy_check_mark:'
     path: Math/primesum.hpp
     title: Prime Sum

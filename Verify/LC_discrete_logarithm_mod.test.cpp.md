@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
-    title: Math/fastdiv.hpp
+    title: Fast Division
   - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
@@ -51,18 +51,18 @@ data:
     \ FastDiv& d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend\
     \ int operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n \
     \   constexpr pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n  \
-    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * Fast Division\n\
-    */\n#line 2 \"Math/miller.hpp\"\n\r\nbool Miller(ll n){\r\n    if(n<2 or (n&1)==0)return\
-    \ (n==2);\r\n    ll d=n-1; while((d&1)==0)d>>=1;\r\n    vector<ll> seeds;\r\n\
-    \    auto MP=[&](ll x,ll t,ll m)->ll{\r\n        ll res=1;\r\n        while(t){\r\
-    \n            if(t&1)res=(__int128_t(res)*x)%m;\r\n            x=(__int128_t(x)*x)%m;\
-    \ t>>=1;\r\n        } return res;\r\n    };\r\n    if(n<(1<<30))seeds={2, 7, 61};\r\
-    \n    else seeds={2, 325, 9375, 28178, 450775, 9780504};\r\n    for(auto& x:seeds){\r\
-    \n        if(n<=x)break;\r\n        ll t=d,y=MP(x,t,n);\r\n        while(t!=n-1\
-    \ and y!=1 and y!=n-1){\r\n            y=(__int128_t(y)*y)%n; t<<=1;\r\n     \
-    \   }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    } return 1;\r\n}\r\n\r\
-    \n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\r\nstruct\
-    \ Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
+    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast\
+    \ Division\n*/\n#line 2 \"Math/miller.hpp\"\n\r\nbool Miller(ll n){\r\n    if(n<2\
+    \ or (n&1)==0)return (n==2);\r\n    ll d=n-1; while((d&1)==0)d>>=1;\r\n    vector<ll>\
+    \ seeds;\r\n    auto MP=[&](ll x,ll t,ll m)->ll{\r\n        ll res=1;\r\n    \
+    \    while(t){\r\n            if(t&1)res=(__int128_t(res)*x)%m;\r\n          \
+    \  x=(__int128_t(x)*x)%m; t>>=1;\r\n        } return res;\r\n    };\r\n    if(n<(1<<30))seeds={2,\
+    \ 7, 61};\r\n    else seeds={2, 325, 9375, 28178, 450775, 9780504};\r\n    for(auto&\
+    \ x:seeds){\r\n        if(n<=x)break;\r\n        ll t=d,y=MP(x,t,n);\r\n     \
+    \   while(t!=n-1 and y!=1 and y!=n-1){\r\n            y=(__int128_t(y)*y)%n; t<<=1;\r\
+    \n        }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    } return 1;\r\n\
+    }\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\
+    \r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
     \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
     \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
     \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
@@ -141,7 +141,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_discrete_logarithm_mod.test.cpp

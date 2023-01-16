@@ -6,7 +6,7 @@ data:
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
     path: FPS/famous.hpp
-    title: FPS/famous.hpp
+    title: Famous Sequence
   - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
@@ -255,7 +255,7 @@ data:
     \    f.resize(n+1);\n    return f;\n}\n\ntemplate<typename T>vector<T> Bell(int\
     \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
     \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
-    }\n\n/**\n * Famous Sequence\n*/\n#line 14 \"Verify/LC_stirling_number_of_the_second_kind.test.cpp\"\
+    }\n\n/**\n * @brief Famous Sequence\n*/\n#line 14 \"Verify/LC_stirling_number_of_the_second_kind.test.cpp\"\
     \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n\n    auto ret=StirlingNumber2nd<Fp>(n);\n\
     \    rep(i,0,ret.size())io.write(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
@@ -276,7 +276,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2023-01-17 00:59:32+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_second_kind.test.cpp

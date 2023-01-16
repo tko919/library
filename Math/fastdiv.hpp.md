@@ -37,6 +37,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: Fast Division
     links: []
   bundledCode: "#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv{\n    using u64=uint64_t;\n\
     \    using u128=__uint128_t;\n    constexpr FastDiv():m(),s(),x(){}\n    constexpr\
@@ -45,8 +46,8 @@ data:
     \ FastDiv& d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend\
     \ int operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n \
     \   constexpr pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n  \
-    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * Fast Division\n\
-    */\n"
+    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast\
+    \ Division\n*/\n"
   code: "#pragma once\n\nstruct FastDiv{\n    using u64=uint64_t;\n    using u128=__uint128_t;\n\
     \    constexpr FastDiv():m(),s(),x(){}\n    constexpr FastDiv(int _m)\n      \
     \  :m(_m),s(__lg(m-1)),x(((u128(1)<<(s+64))+m-1)/m){}\n    constexpr int get(){return\
@@ -54,7 +55,7 @@ data:
     \ (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend int operator%(u64 n,const\
     \ FastDiv& d){\n        return n-n/d*d.m;\n    }\n    constexpr pair<u64,int>\
     \ divmod(u64 n)const{\n        u64 q=n/(*this);\n        return {q,n-q*m};\n \
-    \   }\n    int m,s; u64 x;\n};\n\n/**\n * Fast Division\n*/"
+    \   }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast Division\n*/"
   dependsOn: []
   isVerificationFile: false
   path: Math/fastdiv.hpp
@@ -64,7 +65,7 @@ data:
   - Math/dynamic.hpp
   - Math/binomquery.hpp
   - Math/primitive.hpp
-  timestamp: '2022-12-28 03:34:35+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
@@ -77,5 +78,5 @@ layout: document
 redirect_from:
 - /library/Math/fastdiv.hpp
 - /library/Math/fastdiv.hpp.html
-title: Math/fastdiv.hpp
+title: Fast Division
 ---

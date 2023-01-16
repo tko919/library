@@ -117,7 +117,7 @@ data:
       title: Static Rectangle Add Rectangle Sum
     - icon: ':heavy_check_mark:'
       path: DataStructure/staticrectsum.hpp
-      title: DataStructure/staticrectsum.hpp
+      title: Static Rectangle Sum
     - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
@@ -143,7 +143,7 @@ data:
       title: Berlekamp Massey Algorithm
     - icon: ':heavy_check_mark:'
       path: FPS/famous.hpp
-      title: FPS/famous.hpp
+      title: Famous Sequence
     - icon: ':heavy_check_mark:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
@@ -165,9 +165,9 @@ data:
     - icon: ':warning:'
       path: FPS/prefixsumofpowers.hpp
       title: Prefix Sum of Powers
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: FPS/prodoffrkx.hpp
-      title: Product of f(r^kx)
+      title: $\Pi_{k=0}^{m-1} f(r^kx)$
     - icon: ':heavy_check_mark:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
@@ -275,7 +275,7 @@ data:
       title: Factorial
     - icon: ':heavy_check_mark:'
       path: Math/fastdiv.hpp
-      title: Math/fastdiv.hpp
+      title: Fast Division
     - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
@@ -311,7 +311,7 @@ data:
       title: Pollard-Rho
     - icon: ':heavy_check_mark:'
       path: Math/powertable.hpp
-      title: Enumrate n^k
+      title: Enumrate $n^k$
     - icon: ':heavy_check_mark:'
       path: Math/primesum.hpp
       title: Prime Sum
@@ -663,6 +663,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1781.test.cpp
       title: Verify/YUKI_1781.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/YUKI_2097.test.cpp
+      title: Verify/YUKI_2097.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/YUKI_310.test.cpp
       title: Verify/YUKI_310.test.cpp

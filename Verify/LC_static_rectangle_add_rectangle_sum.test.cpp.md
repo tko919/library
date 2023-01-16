@@ -9,7 +9,7 @@ data:
     title: Static Rectangle Add Rectangle Sum
   - icon: ':heavy_check_mark:'
     path: DataStructure/staticrectsum.hpp
-    title: DataStructure/staticrectsum.hpp
+    title: Static Rectangle Sum
   - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
@@ -147,10 +147,10 @@ data:
     \     BIT<T> bit(ys.size());\n        for(auto& q:qs){\n            while(k<n\
     \ and plus[k].x<q.x){\n                bit.add(plus[k].y,plus[k].w);\n       \
     \         k++;\n            }\n            res[q.id]+=bit.sum(q.u,q.d)*q.inv;\n\
-    \        }\n        return res;\n    }\n};\n\n/**\n * Static Rectangle Sum\n*/\n\
-    #line 4 \"DataStructure/staticrectaddrectsum.hpp\"\ntemplate<typename T>struct\
-    \ StaticRectangleAddRectangleSum{\n    StaticRectangleSum<T> bit[4]; //XY,X,Y,Const\n\
-    \    struct Rect{int l,d,r,u;};\n    vector<Rect> que;\n    StaticRectangleAddRectangleSum(){}\n\
+    \        }\n        return res;\n    }\n};\n\n/**\n * @brief Static Rectangle\
+    \ Sum\n*/\n#line 4 \"DataStructure/staticrectaddrectsum.hpp\"\ntemplate<typename\
+    \ T>struct StaticRectangleAddRectangleSum{\n    StaticRectangleSum<T> bit[4];\
+    \ //XY,X,Y,Const\n    struct Rect{int l,d,r,u;};\n    vector<Rect> que;\n    StaticRectangleAddRectangleSum(){}\n\
     \    void add(int x,int y,T w){\n        bit[0].add(x,y,w);\n        bit[1].add(x,y,w*-y);\n\
     \        bit[2].add(x,y,w*-x);\n        bit[3].add(x,y,w*x*y);\n    }\n    void\
     \ add(int l,int d,int r,int u,T w){\n        add(l,d,w);\n        add(l,u,-w);\n\
@@ -193,7 +193,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp

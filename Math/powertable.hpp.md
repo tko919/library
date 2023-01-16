@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: Enumrate n^k
+    document_title: Enumrate $n^k$
     links: []
   bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=50101010>vector<int>\
     \ sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int\
@@ -39,18 +39,18 @@ data:
     \   assert(k>=0);\n    auto ps=sieve(n+1);\n    vector<T> f(n+1,1);\n    if(k)f[0]=0;\n\
     \    for(auto& p:ps){\n        T pk=T(p).pow(k);\n        for(ll q=p;q<=n;q*=p){\n\
     \            for(ll i=q;i<=n;i+=q)f[i]*=pk;\n        }\n    }\n    return f;\n\
-    }\n\n/**\n * @brief Enumrate n^k\n*/\n"
+    }\n\n/**\n * @brief Enumrate $n^k$\n*/\n"
   code: "#pragma once\n#include \"Math/sieve.hpp\"\n\ntemplate<typename T>vector<T>\
     \ powertable(int n,ll k){ //0^k,1^k,..,n^k\n    assert(k>=0);\n    auto ps=sieve(n+1);\n\
     \    vector<T> f(n+1,1);\n    if(k)f[0]=0;\n    for(auto& p:ps){\n        T pk=T(p).pow(k);\n\
     \        for(ll q=p;q<=n;q*=p){\n            for(ll i=q;i<=n;i+=q)f[i]*=pk;\n\
-    \        }\n    }\n    return f;\n}\n\n/**\n * @brief Enumrate n^k\n*/"
+    \        }\n    }\n    return f;\n}\n\n/**\n * @brief Enumrate $n^k$\n*/"
   dependsOn:
   - Math/sieve.hpp
   isVerificationFile: false
   path: Math/powertable.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
@@ -60,5 +60,5 @@ layout: document
 redirect_from:
 - /library/Math/powertable.hpp
 - /library/Math/powertable.hpp.html
-title: Enumrate n^k
+title: Enumrate $n^k$
 ---

@@ -139,6 +139,9 @@ data:
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_2097.test.cpp
+    title: Verify/YUKI_2097.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: false
@@ -189,6 +192,7 @@ data:
   verifiedWith:
   - Verify/LC_enumerate_cliques.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_product_of_polynomial_sequence.test.cpp
   - Verify/LC_subset_convolution.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp

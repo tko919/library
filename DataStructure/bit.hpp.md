@@ -10,7 +10,7 @@ data:
     title: Static Rectangle Add Rectangle Sum
   - icon: ':heavy_check_mark:'
     path: DataStructure/staticrectsum.hpp
-    title: DataStructure/staticrectsum.hpp
+    title: Static Rectangle Sum
   - icon: ':heavy_check_mark:'
     path: String/prefixsubstrlcs.hpp
     title: Prefix Substring LCS
