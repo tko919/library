@@ -125,7 +125,7 @@ private:
                 if(cloi>=0 and invchi[cloi]!=inf and invchi[cloi]<=cloj)ldelta++;
                 if(cloi>=0 and invclo[cloi]!=inf and invclo[cloi]>cloj)ldelta++;
             }
-            if(cloj<n and clo[cloj]!=inf and clo[cloj]<=cloi)res[cloj]=clo[cloj];
+            if(0<=cloj and cloj<n and clo[cloj]!=inf and clo[cloj]<=cloi)res[cloj]=clo[cloj];
             if(hdelta>=0){
                 chij++;
                 if(chij<n and chi[chij]!=inf and chi[chij]<chii)hdelta--;
@@ -136,7 +136,7 @@ private:
                 if(chii>=0 and invchi[chii]!=inf and invchi[chii]<=chij)hdelta++;
                 if(chii>=0 and invclo[chii]!=inf and invclo[chii]>chij)hdelta++;
             }
-            if(chij<n and chi[chij]!=inf and chi[chij]>=chii)res[chij]=chi[chij];
+            if(0<=chij and chij<n and chi[chij]!=inf and chi[chij]>=chii)res[chij]=chi[chij];
             if(cloi==chii and cloj==chij)res[cloj]=cloi;
         }
         return res;

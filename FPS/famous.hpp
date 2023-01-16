@@ -23,15 +23,12 @@ template<typename T>vector<T> Partition(int n){
 template<typename T>vector<T> StirlingNumber1st(int n){
     if(n==0)return Poly<T>({T(1)});
     Poly<T> f({T(0),T(1)});
-    for(int LG=30-__builtin_clz(n);LG>=0;LG--){
+    for(int LG=topbit(n)-1;LG>=0;LG--){
         int m=n>>LG;
         f*=f.shift(m>>1);
-        if(m&1){
-            Poly<T> xa({T(m-1),T(1)});
-            f*=xa;
-        }
+        if(m&1)f=(f<<1)+f*T(m-1);
     }
-    rep(i,0,n+1)if(i%2==0)f[i]=-f[i];
+    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];
     return f;
 }
 

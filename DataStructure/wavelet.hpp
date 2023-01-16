@@ -24,8 +24,9 @@ template<typename T>struct WaveletMatrix{
     vector<int> mid;
     vector<BitVector> buf;
     WaveletMatrix(){}
-    WaveletMatrix(vector<T> a={}):N(a.size()),lg(0){
-        T mx=MAX(a);
+    WaveletMatrix(vector<T> a):N(a.size()),lg(0){
+        T mx=0;
+        for(auto& x:a)chmax(mx,x);
         while((T(1)<<lg)<=mx)lg++;
         mid.resize(lg);
         buf.resize(lg);
