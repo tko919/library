@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algorithm/cartesian.hpp
       title: Cartesian Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Algorithm/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -44,7 +44,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/relax.hpp
       title: Relaxed Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/subset.hpp
       title: Subset Convolution
   - name: DataStructure
@@ -61,7 +61,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/dequeswag.hpp
       title: Sliding Window Aggregation for deque
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/disjointsparsetable.hpp
       title: Disjoint Sparse Table
     - icon: ':heavy_check_mark:'
@@ -73,7 +73,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
     - icon: ':warning:'
@@ -115,10 +115,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/staticrectaddrectsum.hpp
       title: Static Rectangle Add Rectangle Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/staticrectsum.hpp
       title: DataStructure/staticrectsum.hpp
     - icon: ':heavy_check_mark:'
@@ -130,7 +130,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/unionrect.hpp
       title: Area of Union of Rectangles
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/wavelet.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -150,7 +150,7 @@ data:
     - icon: ':question:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/interpolate.hpp
       title: interpolate (one point)
     - icon: ':heavy_check_mark:'
@@ -174,13 +174,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
     - icon: ':warning:'
       path: FPS/sumofRationals.hpp
       title: Sum of Rationals
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/sumofpolyexp.hpp
       title: $\sum_{k} r^k\cdot poly(k)$
     - icon: ':warning:'
@@ -258,7 +258,7 @@ data:
     - icon: ':warning:'
       path: Math/algebra.hpp
       title: Algebra Structure
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
     - icon: ':warning:'
@@ -267,7 +267,7 @@ data:
     - icon: ':warning:'
       path: Math/binomquery.hpp
       title: Binomial Coefficient for query
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
     - icon: ':warning:'
@@ -276,10 +276,10 @@ data:
     - icon: ':question:'
       path: Math/factorial.hpp
       title: Factorial
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/fastdiv.hpp
       title: Math/fastdiv.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
     - icon: ':warning:'
@@ -312,7 +312,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/powertable.hpp
       title: Enumrate n^k
     - icon: ':question:'
@@ -327,7 +327,7 @@ data:
     - icon: ':warning:'
       path: Math/sternbrocot.hpp
       title: Stern-Brocot Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/stirlingquery.hpp
       title: Stirling Number for query
     - icon: ':x:'
@@ -341,7 +341,7 @@ data:
     - icon: ':warning:'
       path: String/prefixsubstrlcs.hpp
       title: Prefix Substring LCS
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: String/suffixarray.hpp
       title: Suffix Array
     - icon: ':x:'
@@ -552,7 +552,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest-2.test.cpp
       title: Verify/LC_range_kth_smallest-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest.test.cpp
       title: Verify/LC_range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -561,64 +561,64 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_scc.test.cpp
       title: Verify/LC_scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
       title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sparse_matrix_det.test.cpp
       title: Verify/LC_sparse_matrix_det.test.cpp
     - icon: ':x:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
     - icon: ':x:'
       path: Verify/LC_static_range_lis_query.test.cpp
       title: Verify/LC_static_range_lis_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_sum.test.cpp
       title: Verify/LC_static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
       title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_staticrmq-2.test.cpp
       title: Verify/LC_staticrmq-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_staticrmq.test.cpp
       title: Verify/LC_staticrmq.test.cpp
     - icon: ':x:'
       path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
       title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
       title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
       title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
       title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_subset_convolution.test.cpp
       title: Verify/LC_subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_suffixarray.test.cpp
       title: Verify/LC_suffixarray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
       title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
       title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_floor_of_linear.test.cpp
       title: Verify/LC_sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_totient_function.test.cpp
       title: Verify/LC_sum_of_totient_function.test.cpp
     - icon: ':x:'

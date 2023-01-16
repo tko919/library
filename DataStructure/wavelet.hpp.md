@@ -6,7 +6,7 @@ data:
     path: DataStructure/rangelis.hpp
     title: Range LIS Query
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: Verify/LC_static_range_lis_query.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/wavelet.md
     document_title: Wavelet Matrix
@@ -31,9 +31,9 @@ data:
     \            }\r\n            rep(i,0,buf.size())rui[i+1]+=rui[i];\r\n       \
     \ }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
-    \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(vector<T> a={}):N(a.size()){\r\n        T mx;\r\n        for(auto&\
-    \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
+    \n    };\r\n    int N,lg;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
+    \n    WaveletMatrix(){}\r\n    WaveletMatrix(vector<T> a={}):N(a.size()),lg(0){\r\
+    \n        T mx=MAX(a);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
     \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
     \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
     \ x:a){\r\n                add.push_back(x>>d&1);\r\n                nxt[x>>d&1].push_back(x);\r\
@@ -65,9 +65,9 @@ data:
     \n                rui[(i>>6)+1]++;\r\n            }\r\n            rep(i,0,buf.size())rui[i+1]+=rui[i];\r\
     \n        }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
-    \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(vector<T> a={}):N(a.size()){\r\n        T mx;\r\n        for(auto&\
-    \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
+    \n    };\r\n    int N,lg;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
+    \n    WaveletMatrix(){}\r\n    WaveletMatrix(vector<T> a={}):N(a.size()),lg(0){\r\
+    \n        T mx=MAX(a);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
     \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
     \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
     \ x:a){\r\n                add.push_back(x>>d&1);\r\n                nxt[x>>d&1].push_back(x);\r\
@@ -96,8 +96,8 @@ data:
   path: DataStructure/wavelet.hpp
   requiredBy:
   - DataStructure/rangelis.hpp
-  timestamp: '2022-02-06 21:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-16 21:47:57+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_range_kth_smallest.test.cpp
   - Verify/LC_static_range_lis_query.test.cpp

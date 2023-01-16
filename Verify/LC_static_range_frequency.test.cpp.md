@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/wavelet.hpp
     title: Wavelet Matrix
   - icon: ':question:'
@@ -101,9 +101,9 @@ data:
     \n            }\r\n            rep(i,0,buf.size())rui[i+1]+=rui[i];\r\n      \
     \  }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
-    \n    };\r\n    int N,lg=0;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(vector<T> a={}):N(a.size()){\r\n        T mx;\r\n        for(auto&\
-    \ x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
+    \n    };\r\n    int N,lg;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
+    \n    WaveletMatrix(){}\r\n    WaveletMatrix(vector<T> a={}):N(a.size()),lg(0){\r\
+    \n        T mx=MAX(a);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
     \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
     \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
     \ x:a){\r\n                add.push_back(x>>d&1);\r\n                nxt[x>>d&1].push_back(x);\r\
@@ -145,7 +145,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-16 21:47:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_static_range_frequency.test.cpp
