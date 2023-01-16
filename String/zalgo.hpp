@@ -13,5 +13,5 @@ template<typename T>vector<int> Zalgo(T& s){
 }
 
 /**
- * @brief Z-Algorithm
+ * @brief Z-Algorithm 
  */
