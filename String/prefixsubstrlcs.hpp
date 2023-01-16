@@ -7,10 +7,10 @@ template<typename T>struct PrefixSubstringLCS{
     int pos;
     vector<vector<vector<P>>> que;
     PrefixSubstringLCS(){}
-    PrefixSubstringLCS(string& _s,string& _t):s(_s),t(_t)
+    PrefixSubstringLCS(T& _s,T& _t):s(_s),t(_t)
         ,pos(0),que(s.size(),vector(t.size(),vector<P>())){}
     void add(int a,int b,int c){
-        if(a==0 or b==0)return;
+        if(a==0 or c==0){pos++; return;}
         que[a-1][c-1].push_back({b,pos++});
     }
     vector<int> run(){
@@ -19,7 +19,7 @@ template<typename T>struct PrefixSubstringLCS{
         rep(a,0,s.size()){
             int pre=-1;
             rep(c,0,t.size()){
-                if(t[a]==t[c] or h[c]<pre)swap(h[c],pre);
+                if(s[a]==t[c] or h[c]<pre)swap(h[c],pre);
             }
             BIT<int> bit(t.size()+1);
             rep(c,0,t.size()){

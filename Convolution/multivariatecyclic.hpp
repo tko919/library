@@ -1,5 +1,6 @@
 #pragma once
 #include "Math/primitive.hpp"
+#include "FPS/multievalgeom.hpp"
 
 template<typename T>vector<T> MultivariateCyclic
     (vector<T> f,vector<T> g,vector<int>& a){

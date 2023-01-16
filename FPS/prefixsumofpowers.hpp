@@ -17,5 +17,5 @@ template<typename T>vector<T> PrefixSumOfPowers(ll n,int k){ // 0<=i<=k,sum_n=0^
 }
 
 /**
- * Prefix Sum of Powers
+ * @brief Prefix Sum of Powers
 */

@@ -38,5 +38,5 @@ template<typename T>pair<T,vector<pair<int,int>>> ManhattanMST(vector<T>& X,vect
 }
 
 /**
- * Manhattan MST
+ * @brief Manhattan MST
 */
