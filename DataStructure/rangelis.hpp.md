@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/wavelet.hpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_lis_query.test.cpp
     title: Verify/LC_static_range_lis_query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Range LIS Query
     links: []
@@ -25,35 +25,36 @@ data:
     \ }\r\n        int rank(int k,bool f=1){\r\n            int ret=rui[k>>6]+__builtin_popcountll(buf[k>>6]&((1ull<<(k&63))-1));\r\
     \n            if(!f)return k-ret;\r\n            else return ret;\r\n        }\r\
     \n    };\r\n    int N,lg;\r\n    vector<int> mid;\r\n    vector<BitVector> buf;\r\
-    \n    WaveletMatrix(){}\r\n    WaveletMatrix(vector<T> a={}):N(a.size()),lg(0){\r\
-    \n        T mx=MAX(a);\r\n        while((T(1)<<lg)<=mx)lg++;\r\n        mid.resize(lg);\r\
-    \n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
-    \ vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n            for(auto&\
-    \ x:a){\r\n                add.push_back(x>>d&1);\r\n                nxt[x>>d&1].push_back(x);\r\
-    \n            }\r\n            mid[d]=(int)nxt[0].size();\r\n            buf[d]=BitVector(add);\r\
-    \n            swap(a,nxt[0]);\r\n            a.insert(a.end(),ALL(nxt[1]));\r\n\
-    \        }\r\n    }\r\n    int rank(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
-    \ 0;\r\n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\n\
-    \            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
-    \n        }\r\n        return R-L;\r\n    }\r\n    T quantile(int L,int R,int\
-    \ k){\r\n        T ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n           \
-    \ int l0=buf[d].rank(L,0),r0=buf[d].rank(R,0);\r\n            if(k<r0-l0)L=l0,R=r0;\r\
-    \n            else{\r\n                k-=r0-l0;\r\n                ret|=T(1)<<d;\r\
-    \n                L+=mid[d]-l0,R+=mid[d]-r0;\r\n            }\r\n        }\r\n\
-    \        return ret;\r\n    }\r\n    int freq(int L,int R,T x){\r\n        if((T(1)<<lg)<=x)return\
-    \ R-L;\r\n        int ret=0;\r\n        for(int d=lg-1;d>=0;d--){\r\n        \
-    \    bool f=(x>>d&1);\r\n            if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\
-    \n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\
-    \n        }\r\n        return ret;\r\n    }\r\n    int freq(int L,int R,T a,T\
-    \ b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\n    }\r\n    T prev(int L,int\
-    \ R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==R-L?T(-1):quantile(L,R,cnt);\r\
-    \n    }\r\n    T next(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n  \
-    \      return cnt==0?T(-1):quantile(L,R,cnt-1);\r\n    }\r\n};\r\n\r\n/**\r\n\
-    \ * @brief Wavelet Matrix\r\n * @docs docs/wavelet.md\r\n */\n#line 3 \"DataStructure/rangelis.hpp\"\
-    \n\r\nstruct RangeLIS{\r\n    WaveletMatrix<int> wm;\r\n    int N;\r\n    RangeLIS(vector<int>\
-    \ p){\r\n        N=1;\r\n        while(N<int(p.size()))N<<=1;\r\n        rep(i,p.size(),N)p.push_back(i);\r\
-    \n        auto init=seaweed(p);\r\n        wm=WaveletMatrix<int>(init);\r\n  \
-    \  }\r\n    int query(int L,int R){\r\n        if(L>=R)return 0;\r\n        return\
+    \n    WaveletMatrix(){}\r\n    WaveletMatrix(vector<T> a):N(a.size()),lg(0){\r\
+    \n        T mx=0;\r\n        for(auto& x:a)chmax(mx,x);\r\n        while((T(1)<<lg)<=mx)lg++;\r\
+    \n        mid.resize(lg);\r\n        buf.resize(lg);\r\n        for(int d=lg-1;d>=0;d--){\r\
+    \n            vector<char> add;\r\n            vector nxt(2,vector<T>());\r\n\
+    \            for(auto& x:a){\r\n                add.push_back(x>>d&1);\r\n   \
+    \             nxt[x>>d&1].push_back(x);\r\n            }\r\n            mid[d]=(int)nxt[0].size();\r\
+    \n            buf[d]=BitVector(add);\r\n            swap(a,nxt[0]);\r\n      \
+    \      a.insert(a.end(),ALL(nxt[1]));\r\n        }\r\n    }\r\n    int rank(int\
+    \ L,int R,T x){\r\n        if((T(1)<<lg)<=x)return 0;\r\n        for(int d=lg-1;d>=0;d--){\r\
+    \n            bool f=(x>>d&1);\r\n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\
+    \n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\n        }\r\n        return\
+    \ R-L;\r\n    }\r\n    T quantile(int L,int R,int k){\r\n        T ret=0;\r\n\
+    \        for(int d=lg-1;d>=0;d--){\r\n            int l0=buf[d].rank(L,0),r0=buf[d].rank(R,0);\r\
+    \n            if(k<r0-l0)L=l0,R=r0;\r\n            else{\r\n                k-=r0-l0;\r\
+    \n                ret|=T(1)<<d;\r\n                L+=mid[d]-l0,R+=mid[d]-r0;\r\
+    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n    int freq(int\
+    \ L,int R,T x){\r\n        if((T(1)<<lg)<=x)return R-L;\r\n        int ret=0;\r\
+    \n        for(int d=lg-1;d>=0;d--){\r\n            bool f=(x>>d&1);\r\n      \
+    \      if(f)ret+=buf[d].rank(R,0)-buf[d].rank(L,0);\r\n            L=buf[d].rank(L,f)+(f?mid[d]:0);\r\
+    \n            R=buf[d].rank(R,f)+(f?mid[d]:0);\r\n        }\r\n        return\
+    \ ret;\r\n    }\r\n    int freq(int L,int R,T a,T b){\r\n        return freq(L,R,b)-freq(L,R,a);\r\
+    \n    }\r\n    T prev(int L,int R,T x){\r\n        int cnt=freq(L,R,x);\r\n  \
+    \      return cnt==R-L?T(-1):quantile(L,R,cnt);\r\n    }\r\n    T next(int L,int\
+    \ R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\
+    \n    }\r\n};\r\n\r\n/**\r\n * @brief Wavelet Matrix\r\n * @docs docs/wavelet.md\r\
+    \n */\n#line 3 \"DataStructure/rangelis.hpp\"\n\r\nstruct RangeLIS{\r\n    WaveletMatrix<int>\
+    \ wm;\r\n    int N;\r\n    RangeLIS(vector<int> p){\r\n        N=1;\r\n      \
+    \  while(N<int(p.size()))N<<=1;\r\n        rep(i,p.size(),N)p.push_back(i);\r\n\
+    \        auto init=seaweed(p);\r\n        wm=WaveletMatrix<int>(init);\r\n   \
+    \ }\r\n    int query(int L,int R){\r\n        if(L>=R)return 0;\r\n        return\
     \ R-L-wm.freq(0,R,L,N);\r\n    }\r\nprivate:\r\n    vector<int> seaweed(const\
     \ vector<int>& p){\r\n        int n=p.size();\r\n        if(n==1)return {inf};\r\
     \n        vector<int> lo,hi,lpos,hpos;\r\n        rep(i,0,n){\r\n            if(p[i]<n/2){\r\
@@ -99,16 +100,16 @@ data:
     \            }\r\n            else{\r\n                cloi--;\r\n           \
     \     if(cloi>=0 and invchi[cloi]!=inf and invchi[cloi]<=cloj)ldelta++;\r\n  \
     \              if(cloi>=0 and invclo[cloi]!=inf and invclo[cloi]>cloj)ldelta++;\r\
-    \n            }\r\n            if(cloj<n and clo[cloj]!=inf and clo[cloj]<=cloi)res[cloj]=clo[cloj];\r\
+    \n            }\r\n            if(0<=cloj and cloj<n and clo[cloj]!=inf and clo[cloj]<=cloi)res[cloj]=clo[cloj];\r\
     \n            if(hdelta>=0){\r\n                chij++;\r\n                if(chij<n\
     \ and chi[chij]!=inf and chi[chij]<chii)hdelta--;\r\n                if(chij<n\
     \ and clo[chij]!=inf and clo[chij]>=chii)hdelta--;\r\n            }\r\n      \
     \      else{\r\n                chii--;\r\n                if(chii>=0 and invchi[chii]!=inf\
     \ and invchi[chii]<=chij)hdelta++;\r\n                if(chii>=0 and invclo[chii]!=inf\
-    \ and invclo[chii]>chij)hdelta++;\r\n            }\r\n            if(chij<n and\
-    \ chi[chij]!=inf and chi[chij]>=chii)res[chij]=chi[chij];\r\n            if(cloi==chii\
-    \ and cloj==chij)res[cloj]=cloi;\r\n        }\r\n        return res;\r\n    }\r\
-    \n};\r\n\r\n/**\r\n * @brief Range LIS Query\r\n */\n"
+    \ and invclo[chii]>chij)hdelta++;\r\n            }\r\n            if(0<=chij and\
+    \ chij<n and chi[chij]!=inf and chi[chij]>=chii)res[chij]=chi[chij];\r\n     \
+    \       if(cloi==chii and cloj==chij)res[cloj]=cloi;\r\n        }\r\n        return\
+    \ res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Range LIS Query\r\n */\n"
   code: "#pragma once\r\n#include \"DataStructure/wavelet.hpp\"\r\n\r\nstruct RangeLIS{\r\
     \n    WaveletMatrix<int> wm;\r\n    int N;\r\n    RangeLIS(vector<int> p){\r\n\
     \        N=1;\r\n        while(N<int(p.size()))N<<=1;\r\n        rep(i,p.size(),N)p.push_back(i);\r\
@@ -159,23 +160,23 @@ data:
     \            }\r\n            else{\r\n                cloi--;\r\n           \
     \     if(cloi>=0 and invchi[cloi]!=inf and invchi[cloi]<=cloj)ldelta++;\r\n  \
     \              if(cloi>=0 and invclo[cloi]!=inf and invclo[cloi]>cloj)ldelta++;\r\
-    \n            }\r\n            if(cloj<n and clo[cloj]!=inf and clo[cloj]<=cloi)res[cloj]=clo[cloj];\r\
+    \n            }\r\n            if(0<=cloj and cloj<n and clo[cloj]!=inf and clo[cloj]<=cloi)res[cloj]=clo[cloj];\r\
     \n            if(hdelta>=0){\r\n                chij++;\r\n                if(chij<n\
     \ and chi[chij]!=inf and chi[chij]<chii)hdelta--;\r\n                if(chij<n\
     \ and clo[chij]!=inf and clo[chij]>=chii)hdelta--;\r\n            }\r\n      \
     \      else{\r\n                chii--;\r\n                if(chii>=0 and invchi[chii]!=inf\
     \ and invchi[chii]<=chij)hdelta++;\r\n                if(chii>=0 and invclo[chii]!=inf\
-    \ and invclo[chii]>chij)hdelta++;\r\n            }\r\n            if(chij<n and\
-    \ chi[chij]!=inf and chi[chij]>=chii)res[chij]=chi[chij];\r\n            if(cloi==chii\
-    \ and cloj==chij)res[cloj]=cloi;\r\n        }\r\n        return res;\r\n    }\r\
-    \n};\r\n\r\n/**\r\n * @brief Range LIS Query\r\n */"
+    \ and invclo[chii]>chij)hdelta++;\r\n            }\r\n            if(0<=chij and\
+    \ chij<n and chi[chij]!=inf and chi[chij]>=chii)res[chij]=chi[chij];\r\n     \
+    \       if(cloi==chii and cloj==chij)res[cloj]=cloi;\r\n        }\r\n        return\
+    \ res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Range LIS Query\r\n */"
   dependsOn:
   - DataStructure/wavelet.hpp
   isVerificationFile: false
   path: DataStructure/rangelis.hpp
   requiredBy: []
-  timestamp: '2023-01-16 21:47:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-17 00:59:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_static_range_lis_query.test.cpp
 documentation_of: DataStructure/rangelis.hpp

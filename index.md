@@ -38,7 +38,7 @@ data:
     - icon: ':warning:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -91,7 +91,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentunionfind.hpp
       title: Persistent Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/rangelis.hpp
       title: Range LIS Query
     - icon: ':warning:'
@@ -130,7 +130,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/unionrect.hpp
       title: Area of Union of Rectangles
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/wavelet.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -144,10 +144,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/famous.hpp
       title: FPS/famous.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
     - icon: ':heavy_check_mark:'
@@ -273,7 +273,7 @@ data:
     - icon: ':warning:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/factorial.hpp
       title: Factorial
     - icon: ':heavy_check_mark:'
@@ -300,7 +300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -349,12 +349,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -570,13 +570,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_sparse_matrix_det.test.cpp
       title: Verify/LC_sparse_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_lis_query.test.cpp
       title: Verify/LC_static_range_lis_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -591,7 +591,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_staticrmq.test.cpp
       title: Verify/LC_staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
       title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     - icon: ':heavy_check_mark:'

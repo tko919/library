@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/famous.hpp
     title: FPS/famous.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/factorial.hpp
     title: Factorial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -246,16 +246,16 @@ data:
     \        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n\
     \    }\n    return f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int\
     \ n){\n    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int\
-    \ LG=30-__builtin_clz(n);LG>=0;LG--){\n        int m=n>>LG;\n        f*=f.shift(m>>1);\n\
-    \        if(m&1){\n            Poly<T> xa({T(m-1),T(1)});\n            f*=xa;\n\
-    \        }\n    }\n    rep(i,0,n+1)if(i%2==0)f[i]=-f[i];\n    return f;\n}\n\n\
-    template<typename T>vector<T> StirlingNumber2nd(int n){\n    if(n==0)return Poly<T>({T(1)});\n\
-    \    factorial<T> fact(n+1);\n    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n\
-    \        f[i]=Fp(i).pow(n)*fact.fact(i,1);\n        g[i]=fact.fact(i,1);\n   \
-    \     if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n    f.resize(n+1);\n    return f;\n\
-    }\n\ntemplate<typename T>vector<T> Bell(int n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n\
-    \    rep(i,2,n+1)f[i]=f[i-1]/i;\n    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n\
-    \    return f;\n}\n\n/**\n * Famous Sequence\n*/\n#line 14 \"Verify/LC_stirling_number_of_the_second_kind.test.cpp\"\
+    \ LG=topbit(n)-1;LG>=0;LG--){\n        int m=n>>LG;\n        f*=f.shift(m>>1);\n\
+    \        if(m&1)f=(f<<1)+f*T(m-1);\n    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n\
+    \    return f;\n}\n\ntemplate<typename T>vector<T> StirlingNumber2nd(int n){\n\
+    \    if(n==0)return Poly<T>({T(1)});\n    factorial<T> fact(n+1);\n    Poly<T>\
+    \ f(n+1),g(n+1);\n    rep(i,0,n+1){\n        f[i]=Fp(i).pow(n)*fact.fact(i,1);\n\
+    \        g[i]=fact.fact(i,1);\n        if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n\
+    \    f.resize(n+1);\n    return f;\n}\n\ntemplate<typename T>vector<T> Bell(int\
+    \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
+    \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
+    }\n\n/**\n * Famous Sequence\n*/\n#line 14 \"Verify/LC_stirling_number_of_the_second_kind.test.cpp\"\
     \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n\n    auto ret=StirlingNumber2nd<Fp>(n);\n\
     \    rep(i,0,ret.size())io.write(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
@@ -276,7 +276,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-17 00:59:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_second_kind.test.cpp
