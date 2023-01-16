@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/fft.hpp
     title: Fast Fourier Transform
   _extendedRequiredBy: []
