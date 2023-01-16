@@ -15,10 +15,10 @@ int main(){
     vector<Fp> ret(1<<n);
     reverse(ALL(a));
     reverse(ALL(b));
-    zeta(a);
-    zeta(b);
+    Bitwise::zeta(a);
+    Bitwise::zeta(b);
     rep(i,0,1<<n)ret[i]=a[i]*b[i];
-    mobius(ret);
+    Bitwise::mobius(ret);
     reverse(ALL(ret));
     for(auto& x:ret)cout<<x<<'\n';
     return 0;

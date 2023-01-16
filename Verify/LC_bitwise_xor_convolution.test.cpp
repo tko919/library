@@ -13,10 +13,10 @@ int main(){
     for(auto& x:a)cin>>x;
     for(auto& x:b)cin>>x;
     vector<Fp> ret(1<<n);
-    fwt(a);
-    fwt(b);
+    Bitwise::fwt(a);
+    Bitwise::fwt(b);
     rep(i,0,1<<n)ret[i]=a[i]*b[i];
-    fwt(ret);
+    Bitwise::fwt(ret);
     for(auto& x:ret)cout<<x/(1<<n)<<'\n';
     return 0;
 }

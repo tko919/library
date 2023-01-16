@@ -4,6 +4,7 @@
 #include "Utility/fastio.hpp"
 
 #include "Math/modint.hpp"
+#include "Math/factorial.hpp"
 #include "Convolution/arbitrary.hpp"
 #include "FPS/arbitraryfps.hpp"
 using Fp=fp<1000000009>;

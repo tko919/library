@@ -1,6 +1,6 @@
 #pragma once
 
-template<int L=1010101>vector<int> sieve(int N){
+template<int L=50101010>vector<int> sieve(int N){
     bitset<L> isp;
     int n,sq=ceil(sqrt(N));
     for(int z=1;z<=5;z+=4){

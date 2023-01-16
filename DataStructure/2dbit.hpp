@@ -33,7 +33,7 @@ template<class T>struct BIT2D{
         int s=upper_bound(ALL(xs),x)-xs.begin();
         for(int i=s;i;i-=(i&-i)){
             int idx=upper_bound(ALL(ys[i]),y)-ys[i].begin();
-            res+=d[i].sum(idx);
+            res+=d[i].sum(idx+1);
         }
         return res;
     }

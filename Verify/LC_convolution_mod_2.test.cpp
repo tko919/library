@@ -5,7 +5,7 @@
 #include "Math/modint.hpp"
 #include "Convolution/ntt.hpp"
 #include "FPS/fps.hpp"
-#include "FPS/relax.hpp"
+#include "Convolution/relax.hpp"
 
 using Fp=fp<998244353>;
 NTT<Fp,3> ntt;
@@ -20,9 +20,10 @@ int main(){
     rep(i,0,m)io.read(_g[i].v);
     RelaxedConvolution<Fp> buf(n+m-1);
     rep(i,0,n+m-1){
-        if(i<n)buf.f[i]=_f[i];
-        if(i<m)buf.g[i]=_g[i];
-        Fp ret=buf.next();
+        Fp x,y;
+        if(i<n)x=_f[i];
+        if(i<m)y=_g[i];
+        Fp ret=buf.next(x,y);
         io.write(ret.v);
     }
     return 0;

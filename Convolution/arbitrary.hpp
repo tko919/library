@@ -4,9 +4,18 @@
 
 using M1=fp<1045430273>; using M2=fp<1051721729>; using M3=fp<1053818881>;
 NTT<fp<1045430273>,3> N1; NTT<fp<1051721729>,6> N2; NTT<fp<1053818881>,7> N3;
+const M2 r_12=M2(M1::get_mod()).inv();
+const M3 r_13=M3(M1::get_mod()).inv();
+const M3 r_23=M3(M2::get_mod()).inv();
+const M3 r_1323=r_13*r_23;
 template<typename T>vector<T> ArbitraryMult(const vector<T>& a,const vector<T>& b,bool same=0){
     if(a.empty() or b.empty())return vector<T>();
-    int n=a.size()+b.size()-1; vector<T> res(n); vector<int> vals[3];
+    int n=a.size()+b.size()-1; vector<T> res(n);
+    if(min(a.size(),b.size())<=60){
+        rep(i,0,a.size())rep(j,0,b.size())res[i+j]+=a[i]*b[j];
+        return res;
+    }
+    vector<int> vals[3];
     vector<int> aa(a.size()),bb(b.size());
     rep(i,0,a.size())aa[i]=a[i].v; rep(i,0,b.size())bb[i]=b[i].v;
     vector<M1> a1(ALL(aa)),b1(ALL(bb)),c1=N1.mult(a1,b1,same);
@@ -15,9 +24,6 @@ template<typename T>vector<T> ArbitraryMult(const vector<T>& a,const vector<T>& 
     for(M1 x:c1)vals[0].push_back(x.v);
     for(M2 x:c2)vals[1].push_back(x.v);
     for(M3 x:c3)vals[2].push_back(x.v);
-    M2 r_12=M2(M1::get_mod()).inv();
-    M3 r_13=M3(M1::get_mod()).inv(),r_23=M3(M2::get_mod()).inv();
-    M3 r_1323=r_13*r_23;
     T w1(M1::get_mod()),w2=w1*T(M2::get_mod());
     rep(i,0,n){
         ll p=vals[0][i];

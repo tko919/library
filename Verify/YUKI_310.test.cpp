@@ -4,6 +4,7 @@
 #include "Utility/fastio.hpp"
 
 #include "Math/modint.hpp"
+#include "Math/factorial.hpp"
 #include "Convolution/arbitrary.hpp"
 #include "FPS/arbitraryfps.hpp"
 #include "Math/bbla.hpp"

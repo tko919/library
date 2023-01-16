@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/factorial.hpp"
 
 template<typename T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){
     ll n=ys.size()-1,C=c.v%T::get_mod();
