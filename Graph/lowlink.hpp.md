@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_two_edge_connected_components.test.cpp
     title: Verify/LC_two_edge_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Lowlink
     links: []
@@ -52,7 +52,7 @@ data:
   requiredBy:
   - Graph/bc.hpp
   timestamp: '2022-02-06 21:52:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_biconnected_components.test.cpp
   - Verify/LC_two_edge_connected_components.test.cpp

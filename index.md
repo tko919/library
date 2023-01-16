@@ -17,7 +17,7 @@ data:
       title: Rollback Mo
   - name: Convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/arbitrary.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -55,7 +55,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -100,7 +100,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/rollbackunionfind.hpp
       title: Rollback Union Find
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -121,7 +121,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/unionfind.hpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -135,16 +135,16 @@ data:
       title: Weighted Union Find
   - name: FPS
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
     - icon: ':heavy_check_mark:'
       path: FPS/famous.hpp
       title: Famous Sequence
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
     - icon: ':heavy_check_mark:'
@@ -164,8 +164,8 @@ data:
       title: P-recursive
     - icon: ':warning:'
       path: FPS/prefixsumofpowers.hpp
-      title: Prefix Sum of Powers
-    - icon: ':x:'
+      title: Enumerate $sum_{k=0}^{N-1} k^i$
+    - icon: ':heavy_check_mark:'
       path: FPS/prodoffrkx.hpp
       title: $\Pi_{k=0}^{m-1} f(r^kx)$
     - icon: ':heavy_check_mark:'
@@ -182,7 +182,7 @@ data:
       title: $\sum_{k} r^k\cdot poly(k)$
     - icon: ':warning:'
       path: FPS/sumofpowers.hpp
-      title: Enumerate Sum of Powers
+      title: Enumerate $\sum_k a_k^i$
   - name: Geometry
     pages:
     - icon: ':warning:'
@@ -196,7 +196,7 @@ data:
       title: Geometry(integer Coordinates)
   - name: Graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/auxiliarytree.hpp
       title: Auxiliary Tree(Virtual Tree)
     - icon: ':heavy_check_mark:'
@@ -205,13 +205,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
       path: Graph/chromatic.hpp
       title: Chromatic Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/contour.hpp
       title: Contour Sum Query
     - icon: ':heavy_check_mark:'
@@ -223,13 +223,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/generalweightedmatching.hpp
       title: General Weighted Matching
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/lowlink.hpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -244,7 +244,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/rerooting.hpp
       title: Rerooting
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/scc.hpp
       title: Strongly Connected Components
     - icon: ':warning:'
@@ -255,7 +255,7 @@ data:
     - icon: ':warning:'
       path: Math/algebra.hpp
       title: Algebra Structure
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
     - icon: ':warning:'
@@ -270,7 +270,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/factorial.hpp
       title: Factorial
     - icon: ':heavy_check_mark:'
@@ -297,10 +297,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/multiplicative.hpp
       title: Multiplicative Sum
     - icon: ':heavy_check_mark:'
@@ -312,13 +312,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/powertable.hpp
       title: Enumrate $n^k$
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/primesum.hpp
       title: Prime Sum
     - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/sieve.hpp
       title: Prime Sieve
     - icon: ':warning:'
@@ -327,7 +327,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/stirlingquery.hpp
       title: Stirling Number for query
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/twosat.hpp
       title: 2-SAT
   - name: String
@@ -341,20 +341,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/suffixarray.hpp
       title: Suffix Array
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/zalgo.hpp
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:
@@ -633,43 +633,43 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_system_of_linear_equations.test.cpp
       title: Verify/LC_system_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_two_edge_connected_components.test.cpp
       title: Verify/LC_two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_two_sat.test.cpp
       title: Verify/LC_two_sat.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_unionfind.test.cpp
       title: Verify/LC_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
       title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_set_path_composite.test.cpp
       title: Verify/LC_vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_zalgorithm.test.cpp
       title: Verify/LC_zalgorithm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1080.test.cpp
       title: Verify/YUKI_1080.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1112.test.cpp
       title: Verify/YUKI_1112.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1781.test.cpp
       title: Verify/YUKI_1781.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_2097.test.cpp
       title: Verify/YUKI_2097.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_310.test.cpp
       title: Verify/YUKI_310.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_901.test.cpp
       title: Verify/YUKI_901.test.cpp
 layout: toppage

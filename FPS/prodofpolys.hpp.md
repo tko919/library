@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: FPS/sumofpowers.hpp
-    title: Enumerate Sum of Powers
+    title: Enumerate $\sum_k a_k^i$
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp

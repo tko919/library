@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/factorial.hpp
     title: Factorial
   _extendedRequiredBy: []
