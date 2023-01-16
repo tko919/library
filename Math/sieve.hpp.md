@@ -5,13 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/multiplicative.hpp
     title: Multiplicative Sum
   - icon: ':heavy_check_mark:'
     path: Math/powertable.hpp
     title: Enumrate n^k
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primesum.hpp
     title: Prime Sum
   _extendedVerifiedWith:
@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Prime Sieve
     links: []
@@ -84,7 +84,7 @@ data:
   - Math/multiplicative.hpp
   - Math/powertable.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp

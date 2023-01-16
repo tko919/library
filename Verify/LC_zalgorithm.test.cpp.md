@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/zalgo.hpp
     title: Z-Algorithm
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -36,7 +36,7 @@ data:
     \ res(n);\r\n   for(int i=1,j=0;i<n;i++){\r\n      if(i+res[i-j]<j+res[j])res[i]=res[i-j];\r\
     \n      else{\r\n         int k=max(0,j+res[j]-i);\r\n         while(i+k<n&&s[k]==s[i+k])k++;\r\
     \n         res[i]=k; j=i;\r\n      }\r\n   } res[0]=n; return res;\r\n}\r\n\r\n\
-    /**\r\n * @brief Z-Algorithm\r\n */\n#line 5 \"Verify/LC_zalgorithm.test.cpp\"\
+    /**\r\n * @brief Z-Algorithm \r\n */\n#line 5 \"Verify/LC_zalgorithm.test.cpp\"\
     \n\r\nint main(){\r\n    string s;\r\n    cin>>s;\r\n    auto ret=Zalgo(s);\r\n\
     \    rep(i,0,s.size())cout<<ret[i]<<'\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n\r\n#include\
@@ -49,8 +49,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 21:31:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-17 00:24:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_zalgorithm.test.cpp
 layout: document

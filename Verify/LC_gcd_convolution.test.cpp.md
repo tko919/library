@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
   - icon: ':question:'
