@@ -6,8 +6,8 @@ using namespace std;
 #define UNIQUE(v) sort(ALL(v)),v.erase(unique(ALL(v)),v.end())
 #define MIN(v) *min_element(ALL(v))
 #define MAX(v) *max_element(ALL(v))
-#define LB(v,x) lower_bound(ALL(v),(x))-v.begin()
-#define UB(v,x) upper_bound(ALL(v),(x))-v.begin()
+#define LB(v,x) lower_bound(ALL(v),(x))-(v).begin()
+#define UB(v,x) upper_bound(ALL(v),(x))-(v).begin()
 
 using ll=long long int;
 const int inf = 0x3fffffff;
