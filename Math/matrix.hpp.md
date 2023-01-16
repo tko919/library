@@ -5,14 +5,14 @@ data:
   - icon: ':warning:'
     path: FPS/p-recursive.hpp
     title: P-recursive
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
   - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: Verify/LC_system_of_linear_equations.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Matrix
     links: []
@@ -109,7 +109,7 @@ data:
   - Math/linearequation.hpp
   - Math/hafnian.hpp
   timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_system_of_linear_equations.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp

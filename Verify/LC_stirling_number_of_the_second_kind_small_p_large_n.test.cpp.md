@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Math/fastdiv.hpp
   - icon: ':x:'

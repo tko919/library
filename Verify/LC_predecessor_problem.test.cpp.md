@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

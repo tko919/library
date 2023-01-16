@@ -36,7 +36,7 @@ data:
     \ res(n);\r\n   for(int i=1,j=0;i<n;i++){\r\n      if(i+res[i-j]<j+res[j])res[i]=res[i-j];\r\
     \n      else{\r\n         int k=max(0,j+res[j]-i);\r\n         while(i+k<n&&s[k]==s[i+k])k++;\r\
     \n         res[i]=k; j=i;\r\n      }\r\n   } res[0]=n; return res;\r\n}\r\n\r\n\
-    /**\r\n * @brief Z-Algorithm\r\n */\n#line 5 \"Verify/LC_zalgorithm.test.cpp\"\
+    /**\r\n * @brief Z-Algorithm \r\n */\n#line 5 \"Verify/LC_zalgorithm.test.cpp\"\
     \n\r\nint main(){\r\n    string s;\r\n    cin>>s;\r\n    auto ret=Zalgo(s);\r\n\
     \    rep(i,0,s.size())cout<<ret[i]<<'\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n\r\n#include\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2023-01-16 20:55:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_zalgorithm.test.cpp

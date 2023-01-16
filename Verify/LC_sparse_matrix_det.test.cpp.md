@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

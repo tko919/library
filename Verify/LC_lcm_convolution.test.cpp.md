@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
   - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
   - icon: ':question:'

@@ -26,10 +26,10 @@ data:
     - icon: ':warning:'
       path: Convolution/convexminplus.hpp
       title: Convex Min Plus Convolution
-    - icon: ':x:'
+    - icon: ':question:'
       path: Convolution/divisor.hpp
       title: Divisor Multiple Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':x:'
@@ -41,10 +41,10 @@ data:
     - icon: ':question:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/relax.hpp
       title: Relaxed Convolution
-    - icon: ':x:'
+    - icon: ':question:'
       path: Convolution/subset.hpp
       title: Subset Convolution
   - name: DataStructure
@@ -58,7 +58,7 @@ data:
     - icon: ':x:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/dequeswag.hpp
       title: Sliding Window Aggregation for deque
     - icon: ':x:'
@@ -141,7 +141,7 @@ data:
     - icon: ':x:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
     - icon: ':question:'
@@ -208,7 +208,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
@@ -217,13 +217,13 @@ data:
     - icon: ':x:'
       path: Graph/contour.hpp
       title: Contour Sum Query
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/cycledetect.hpp
       title: Cycle Detection
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/generalweightedmatching.hpp
       title: General Weighted Matching
     - icon: ':x:'
@@ -276,7 +276,7 @@ data:
     - icon: ':question:'
       path: Math/factorial.hpp
       title: Factorial
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/fastdiv.hpp
       title: Math/fastdiv.hpp
     - icon: ':x:'
@@ -285,19 +285,19 @@ data:
     - icon: ':warning:'
       path: Math/fraction.hpp
       title: Fraction
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/hafnian.hpp
       title: Hafnian of matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
     - icon: ':x:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
     - icon: ':question:'
@@ -309,19 +309,19 @@ data:
     - icon: ':x:'
       path: Math/nimber.hpp
       title: Nimber
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho
     - icon: ':x:'
       path: Math/powertable.hpp
       title: Enumrate n^k
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/primesum.hpp
       title: Prime Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/sieve.hpp
       title: Prime Sieve
     - icon: ':warning:'
@@ -335,7 +335,7 @@ data:
       title: 2-SAT
   - name: String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/manacher.hpp
       title: Manacher Algorithm
     - icon: ':warning:'
@@ -357,7 +357,7 @@ data:
     - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':x:'
+    - icon: ':question:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:
@@ -408,58 +408,58 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod_1000000007.test.cpp
       title: Verify/LC_convolution_mod_1000000007.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod_2.test.cpp
       title: Verify/LC_convolution_mod_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_counting_primes.test.cpp
       title: Verify/LC_counting_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_cycle_detection.test.cpp
       title: Verify/LC_cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_cycle_detection_undirected.test.cpp
       title: Verify/LC_cycle_detection_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_deque_operate_all_composite.test.cpp
       title: Verify/LC_deque_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_discrete_logarithm_mod.test.cpp
       title: Verify/LC_discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_cliques.test.cpp
       title: Verify/LC_enumerate_cliques.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_palindromes.test.cpp
       title: Verify/LC_enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_primes.test.cpp
       title: Verify/LC_enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_exp_of_formal_power_series.test.cpp
       title: Verify/LC_exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_factorize.test.cpp
       title: Verify/LC_factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_find_linear_recurrence.test.cpp
       title: Verify/LC_find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_frequency_table_of_tree_distance.test.cpp
       title: Verify/LC_frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_gcd_convolution.test.cpp
       title: Verify/LC_gcd_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_general_weighted_matching.test.cpp
       title: Verify/LC_general_weighted_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_hafnian_of_matrix.test.cpp
       title: Verify/LC_hafnian_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_root_integer.test.cpp
       title: Verify/LC_kth_root_integer.test.cpp
     - icon: ':x:'

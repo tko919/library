@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
   _extendedRequiredBy: []

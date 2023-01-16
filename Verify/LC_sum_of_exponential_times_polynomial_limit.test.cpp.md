@@ -16,7 +16,7 @@ data:
   - icon: ':x:'
     path: Math/powertable.hpp
     title: Enumrate n^k
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
   - icon: ':question:'
