@@ -14,5 +14,5 @@ template<typename T>vector<T> SumOfPowers(vector<T>& a,int m){//0<=i<=m,sum_k a_
 }
 
 /**
- * @brief Enumerate Sum of Powers
+ * @brief Enumerate $\sum_k a_k^i$
 */
