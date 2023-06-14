@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -77,7 +77,8 @@ data:
     \            ntt(c); rep(i,0,m)res[i]*=c[i];\r\n        } ntt(res,1); res.resize(n);\
     \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
     \n */\n#line 2 \"FPS/fps.hpp\"\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\
-    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
+    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const initializer_list<T>\
+    \ f):vector<T>::vector(f){}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
@@ -100,8 +101,10 @@ data:
     \n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\n    Poly operator/(const\
     \ Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator/(const T& g)const{return\
     \ Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\
-    \n    Poly& operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
-    \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
+    \n    pair<Poly,Poly> divmod(const Poly& g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\
+    \n        r.shrink();\r\n        return {q,r};\r\n    }\r\n    Poly& operator+=(const\
+    \ Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n  \
+    \      rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
     \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
     \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
     \ g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]-=g[i];}\
@@ -180,7 +183,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_exp_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2023-01-17 02:40:02+09:00'
+  timestamp: '2023-06-14 14:20:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_exp_of_formal_power_series.test.cpp

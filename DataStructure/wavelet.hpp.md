@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/rangelis.hpp
     title: Range LIS Query
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_lis_query.test.cpp
     title: Verify/LC_static_range_lis_query.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/wavelet.md
     document_title: Wavelet Matrix
@@ -99,10 +99,10 @@ data:
   requiredBy:
   - DataStructure/rangelis.hpp
   timestamp: '2023-01-17 00:59:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_range_kth_smallest.test.cpp
   - Verify/LC_static_range_lis_query.test.cpp
+  - Verify/LC_range_kth_smallest.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
 documentation_of: DataStructure/wavelet.hpp
 layout: document

@@ -12,56 +12,57 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_exp_of_formal_power_series.test.cpp
     title: Verify/LC_exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Formal Power Series (NTT-friendly mod)
     links: []
   bundledCode: "#line 2 \"FPS/fps.hpp\"\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\
-    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
+    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const initializer_list<T>\
+    \ f):vector<T>::vector(f){}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
@@ -84,8 +85,10 @@ data:
     \n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\n    Poly operator/(const\
     \ Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator/(const T& g)const{return\
     \ Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\
-    \n    Poly& operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
-    \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
+    \n    pair<Poly,Poly> divmod(const Poly& g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\
+    \n        r.shrink();\r\n        return {q,r};\r\n    }\r\n    Poly& operator+=(const\
+    \ Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n  \
+    \      rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
     \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
     \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
     \ g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]-=g[i];}\
@@ -146,8 +149,9 @@ data:
     \ return res;\r\n    }\r\n    void NTT(vector<T>& a,bool inv)const;\r\n};\r\n\r\
     \n/**\r\n * @brief Formal Power Series (NTT-friendly mod)\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int\
-    \ n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
-    \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
+    \ n=0){this->assign(n,T());}\r\n    Poly(const initializer_list<T> f):vector<T>::vector(f){}\r\
+    \n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\
+    \n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
     \n    Poly operator>>(int sz)const{\r\n        if((int)this->size()<=sz)return\
@@ -169,8 +173,10 @@ data:
     \n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\n    Poly operator/(const\
     \ Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator/(const T& g)const{return\
     \ Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\
-    \n    Poly& operator+=(const Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\
-    \n        rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
+    \n    pair<Poly,Poly> divmod(const Poly& g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\
+    \n        r.shrink();\r\n        return {q,r};\r\n    }\r\n    Poly& operator+=(const\
+    \ Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n  \
+    \      rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
     \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
     \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
     \ g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]-=g[i];}\
@@ -234,26 +240,26 @@ data:
   isVerificationFile: false
   path: FPS/fps.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_partition_function.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_inv_of_formal_power_series.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_partition_function.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
   - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp
   - Verify/LC_polynomial_interpolation.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
 documentation_of: FPS/fps.hpp
 layout: document
 redirect_from:

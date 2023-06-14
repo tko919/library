@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -38,27 +38,46 @@ data:
     \ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename\
     \ T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename\
     \ T>int lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Math/miller.hpp\"\
-    \n\r\nbool Miller(ll n){\r\n    if(n<2 or (n&1)==0)return (n==2);\r\n    ll d=n-1;\
-    \ while((d&1)==0)d>>=1;\r\n    vector<ll> seeds;\r\n    auto MP=[&](ll x,ll t,ll\
-    \ m)->ll{\r\n        ll res=1;\r\n        while(t){\r\n            if(t&1)res=(__int128_t(res)*x)%m;\r\
-    \n            x=(__int128_t(x)*x)%m; t>>=1;\r\n        } return res;\r\n    };\r\
-    \n    if(n<(1<<30))seeds={2, 7, 61};\r\n    else seeds={2, 325, 9375, 28178, 450775,\
-    \ 9780504};\r\n    for(auto& x:seeds){\r\n        if(n<=x)break;\r\n        ll\
-    \ t=d,y=MP(x,t,n);\r\n        while(t!=n-1 and y!=1 and y!=n-1){\r\n         \
-    \   y=(__int128_t(y)*y)%n; t<<=1;\r\n        }\r\n        if(y!=n-1 and (t&1)==0)return\
-    \ 0;\r\n    } return 1;\r\n}\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line\
-    \ 2 \"Utility/random.hpp\"\n\r\nstruct Random{\r\n    random_device rnd;\r\n \
-    \   unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\n    Random(){}\r\n\
-    \    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
-    \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
-    \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
-    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n\
-    \        return double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n\
-    \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
-    \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
-    \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
-    \n            len++;\r\n            int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\
-    \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
+    \n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\n    using u64 = uint64_t;\r\n\
+    \    using u128 = __uint128_t;\r\n\r\n    static u64 mod;\r\n    static u64 r;\r\
+    \n    static u64 n2;\r\n\r\n    static u64 get_r() {\r\n        u64 ret = mod;\r\
+    \n        rep(_,0,5) ret *= 2 - mod * ret;\r\n        return ret;\r\n    }\r\n\
+    \r\n    static void set_mod(u64 m) {\r\n        assert(m < (1LL << 62));\r\n \
+    \       assert((m & 1) == 1);\r\n        mod = m;\r\n        n2 = -u128(m) % m;\r\
+    \n        r = get_r();\r\n        assert(r * mod == 1);\r\n    }\r\n    static\
+    \ u64 get_mod() { return mod; }\r\n\r\n    u64 a;\r\n    m64() : a(0) {}\r\n \
+    \   m64(const int64_t &b) : a(reduce((u128(b) + mod) * n2)){};\r\n\r\n    static\
+    \ u64 reduce(const u128 &b) {\r\n        return (b + u128(u64(b) * u64(-r)) *\
+    \ mod) >> 64;\r\n    }\r\n    u64 get() const {\r\n        u64 ret = reduce(a);\r\
+    \n        return ret >= mod ? ret - mod : ret;\r\n    }\r\n    m64 &operator*=(const\
+    \ m64 &b) {\r\n        a = reduce(u128(a) * b.a);\r\n        return *this;\r\n\
+    \    }\r\n    m64 operator*(const m64 &b) const { return m64(*this) *= b; }\r\n\
+    \    bool operator==(const m64 &b) const {\r\n        return (a >= mod ? a - mod\
+    \ : a) == (b.a >= mod ? b.a - mod : b.a);\r\n    }\r\n    bool operator!=(const\
+    \ m64 &b) const {\r\n        return (a >= mod ? a - mod : a) != (b.a >= mod ?\
+    \ b.a - mod : b.a);\r\n    }\r\n    m64 pow(u128 n) const {\r\n        m64 ret(1),\
+    \ mul(*this);\r\n        while (n > 0) {\r\n        if (n & 1) ret *= mul;\r\n\
+    \        mul *= mul;\r\n        n >>= 1;\r\n        }\r\n        return ret;\r\
+    \n    }\r\n};\r\ntypename m64::u64 m64::mod, m64::r, m64::n2;\r\n\r\nbool Miller(ll\
+    \ n){\r\n    if(n<2 or (n&1)==0)return (n==2);\r\n    m64::set_mod(n);\r\n   \
+    \ ll d=n-1; while((d&1)==0)d>>=1;\r\n    vector<ll> seeds;\r\n    if(n<(1<<30))seeds={2,\
+    \ 7, 61};\r\n    else seeds={2, 325, 9375, 28178, 450775, 9780504};\r\n    for(auto&\
+    \ x:seeds){\r\n        if(n<=x)break;\r\n        ll t=d;\r\n        m64 y=m64(x).pow(t);\r\
+    \n        while(t!=n-1 and y!=1 and y!=n-1){\r\n            y*=y;\r\n        \
+    \    t<<=1;\r\n        }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    }\
+    \ return 1;\r\n}\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\
+    \n\r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
+    \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
+    \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
+    \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
+    \ template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\n    }\r\
+    \n    double uniform(){\r\n        return double(get())/UINT_MAX;\r\n    }\r\n\
+    \    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
+    \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
+    \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
+    \     int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\n\
+    \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
     \ */\n#line 4 \"Math/pollard.hpp\"\n\r\nRandom genPollard;\r\nvector<ll> Pollard(ll\
@@ -87,8 +106,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-01-17 02:40:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_factorize.test.cpp
 layout: document

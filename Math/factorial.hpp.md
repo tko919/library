@@ -5,10 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/relax.hpp
     title: Relaxed Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: FPS/compexp.hpp
+    title: $f(\exp(x))$
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
   - icon: ':warning:'
@@ -16,11 +19,11 @@ data:
     title: P-recursive
   - icon: ':warning:'
     path: FPS/prefixsumofpowers.hpp
-    title: Enumerate $sum_{k=0}^{N-1} k^i$
-  - icon: ':heavy_check_mark:'
+    title: Enumerate $\sum_{k=0}^{N-1} k^i$
+  - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
   _extendedVerifiedWith:
@@ -30,36 +33,36 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Factorial
     links: []
@@ -88,27 +91,28 @@ data:
   isVerificationFile: false
   path: Math/factorial.hpp
   requiredBy:
-  - FPS/famous.hpp
-  - FPS/sumofpolyexp.hpp
-  - FPS/interpolate.hpp
   - FPS/samplepointshift.hpp
-  - FPS/p-recursive.hpp
+  - FPS/sumofpolyexp.hpp
   - FPS/prefixsumofpowers.hpp
+  - FPS/famous.hpp
+  - FPS/p-recursive.hpp
+  - FPS/interpolate.hpp
+  - FPS/compexp.hpp
   - Convolution/relax.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/YUKI_1080.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_partition_function.test.cpp
   - Verify/YUKI_310.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_bernoulli_number.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: Math/factorial.hpp
 layout: document
 redirect_from:

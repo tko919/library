@@ -3,26 +3,27 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Formal Power Series (Arbitrary mod)
     links: []
   bundledCode: "#line 2 \"FPS/arbitraryfps.hpp\"\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\
-    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
+    \n    Poly(int n=0){this->assign(n,T());}\r\n    Poly(const initializer_list<T>\
+    \ f):vector<T>::vector(f){}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
     \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
@@ -37,8 +38,10 @@ data:
     \ T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return\
     \ Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\
     \n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const\
-    \ Poly& g)const{return Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\
-    \n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
+    \ Poly& g)const{return Poly(*this)%=g;}\r\n    pair<Poly,Poly> divmod(const Poly&\
+    \ g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\n        r.shrink();\r\n \
+    \       return {q,r};\r\n    }\r\n    Poly& operator+=(const Poly& g){\r\n   \
+    \     if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
     \ return *this;\r\n    }\r\n    Poly& operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\
     \n        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const\
     \ Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n  \
@@ -80,8 +83,9 @@ data:
     \ b,bool same)const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (Arbitrary\
     \ mod)\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int\
-    \ n=0){this->assign(n,T());}\r\n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\
-    \n    T eval(const T& x){\r\n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
+    \ n=0){this->assign(n,T());}\r\n    Poly(const initializer_list<T> f):vector<T>::vector(f){}\r\
+    \n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\
+    \n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
     \n    Poly inv()const{\r\n        assert(this->front()!=0); const int n=this->size();\r\
@@ -95,8 +99,10 @@ data:
     \ T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return\
     \ Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\
     \n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const\
-    \ Poly& g)const{return Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\
-    \n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
+    \ Poly& g)const{return Poly(*this)%=g;}\r\n    pair<Poly,Poly> divmod(const Poly&\
+    \ g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\n        r.shrink();\r\n \
+    \       return {q,r};\r\n    }\r\n    Poly& operator+=(const Poly& g){\r\n   \
+    \     if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
     \ return *this;\r\n    }\r\n    Poly& operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\
     \n        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const\
     \ Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n  \
@@ -141,12 +147,12 @@ data:
   isVerificationFile: false
   path: FPS/arbitraryfps.hpp
   requiredBy: []
-  timestamp: '2022-10-17 02:49:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - Verify/YUKI_310.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_1080.test.cpp
-  - Verify/YUKI_310.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: FPS/arbitraryfps.hpp
 layout: document

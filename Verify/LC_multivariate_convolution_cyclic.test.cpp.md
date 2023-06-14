@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -82,7 +82,16 @@ data:
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
     \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__uint128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        x=0;\r\n        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){\r\n  \
+    \          x=x*10+(rdbuf[rdLeft++]^48);\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
     \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
@@ -114,6 +123,16 @@ data:
     \ _write(\"2147483648\"); return;\r\n                case 8: _write(\"9223372036854775808\"\
     ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
     \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
+    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
+    \n        wtRight+=pos;\r\n    }\r\n    inline void _write(__int128_t x){\r\n\
+    \        if(wtRight>L-40)flush();\r\n        if(x==0){\r\n            _write('0');\r\
+    \n            return;\r\n        }\r\n        else if(x<0){\r\n            _write('-');\r\
+    \n            x=-x;\r\n        }\r\n        int pos=0;\r\n        while(x!=0){\r\
+    \n            tmp[pos++]=char((x%10)|48);\r\n            x/=10;\r\n        }\r\
+    \n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\n        wtRight+=pos;\r\
+    \n    }\r\n    inline void _write(__uint128_t x){\r\n        if(wtRight>L-40)flush();\r\
+    \n        if(x==0){\r\n            _write('0');\r\n            return;\r\n   \
+    \     }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
     \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
     \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
@@ -212,8 +231,9 @@ data:
     \n        res[i]=(p+q*w1.v+r*w2.v);\r\n    } return res;\r\n}\r\n\r\n/**\r\n *\
     \ @brief Arbitrary Mod Convolution\r\n */\n#line 2 \"FPS/arbitraryfps.hpp\"\n\r\
     \ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int n=0){this->assign(n,T());}\r\
-    \n    Poly(const vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\
-    \n        T res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
+    \n    Poly(const initializer_list<T> f):vector<T>::vector(f){}\r\n    Poly(const\
+    \ vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\n        T\
+    \ res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
     \n        return res;\r\n    }\r\n    Poly rev()const{Poly res=*this; reverse(ALL(res));\
     \ return res;}\r\n    void shrink(){while(!this->empty() and this->back()==0)this->pop_back();}\r\
     \n    Poly inv()const{\r\n        assert(this->front()!=0); const int n=this->size();\r\
@@ -227,8 +247,10 @@ data:
     \ T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return\
     \ Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\
     \n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const\
-    \ Poly& g)const{return Poly(*this)%=g;}\r\n    Poly& operator+=(const Poly& g){\r\
-    \n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
+    \ Poly& g)const{return Poly(*this)%=g;}\r\n    pair<Poly,Poly> divmod(const Poly&\
+    \ g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\n        r.shrink();\r\n \
+    \       return {q,r};\r\n    }\r\n    Poly& operator+=(const Poly& g){\r\n   \
+    \     if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
     \ return *this;\r\n    }\r\n    Poly& operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\
     \n        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const\
     \ Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n  \
@@ -271,27 +293,46 @@ data:
     \ mod)\r\n */\n#line 9 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\n\
     template<>vector<Fp> Poly<Fp>::mult(const vector<Fp>& a,const vector<Fp>& b,bool\
     \ same)const{\n    return ArbitraryMult(a,b,same);\n}\n#line 2 \"Math/miller.hpp\"\
-    \n\r\nbool Miller(ll n){\r\n    if(n<2 or (n&1)==0)return (n==2);\r\n    ll d=n-1;\
-    \ while((d&1)==0)d>>=1;\r\n    vector<ll> seeds;\r\n    auto MP=[&](ll x,ll t,ll\
-    \ m)->ll{\r\n        ll res=1;\r\n        while(t){\r\n            if(t&1)res=(__int128_t(res)*x)%m;\r\
-    \n            x=(__int128_t(x)*x)%m; t>>=1;\r\n        } return res;\r\n    };\r\
-    \n    if(n<(1<<30))seeds={2, 7, 61};\r\n    else seeds={2, 325, 9375, 28178, 450775,\
-    \ 9780504};\r\n    for(auto& x:seeds){\r\n        if(n<=x)break;\r\n        ll\
-    \ t=d,y=MP(x,t,n);\r\n        while(t!=n-1 and y!=1 and y!=n-1){\r\n         \
-    \   y=(__int128_t(y)*y)%n; t<<=1;\r\n        }\r\n        if(y!=n-1 and (t&1)==0)return\
-    \ 0;\r\n    } return 1;\r\n}\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line\
-    \ 2 \"Utility/random.hpp\"\n\r\nstruct Random{\r\n    random_device rnd;\r\n \
-    \   unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\n    Random(){}\r\n\
-    \    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
-    \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
-    \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
-    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n\
-    \        return double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n\
-    \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
-    \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
-    \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
-    \n            len++;\r\n            int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\
-    \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
+    \n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\n    using u64 = uint64_t;\r\n\
+    \    using u128 = __uint128_t;\r\n\r\n    static u64 mod;\r\n    static u64 r;\r\
+    \n    static u64 n2;\r\n\r\n    static u64 get_r() {\r\n        u64 ret = mod;\r\
+    \n        rep(_,0,5) ret *= 2 - mod * ret;\r\n        return ret;\r\n    }\r\n\
+    \r\n    static void set_mod(u64 m) {\r\n        assert(m < (1LL << 62));\r\n \
+    \       assert((m & 1) == 1);\r\n        mod = m;\r\n        n2 = -u128(m) % m;\r\
+    \n        r = get_r();\r\n        assert(r * mod == 1);\r\n    }\r\n    static\
+    \ u64 get_mod() { return mod; }\r\n\r\n    u64 a;\r\n    m64() : a(0) {}\r\n \
+    \   m64(const int64_t &b) : a(reduce((u128(b) + mod) * n2)){};\r\n\r\n    static\
+    \ u64 reduce(const u128 &b) {\r\n        return (b + u128(u64(b) * u64(-r)) *\
+    \ mod) >> 64;\r\n    }\r\n    u64 get() const {\r\n        u64 ret = reduce(a);\r\
+    \n        return ret >= mod ? ret - mod : ret;\r\n    }\r\n    m64 &operator*=(const\
+    \ m64 &b) {\r\n        a = reduce(u128(a) * b.a);\r\n        return *this;\r\n\
+    \    }\r\n    m64 operator*(const m64 &b) const { return m64(*this) *= b; }\r\n\
+    \    bool operator==(const m64 &b) const {\r\n        return (a >= mod ? a - mod\
+    \ : a) == (b.a >= mod ? b.a - mod : b.a);\r\n    }\r\n    bool operator!=(const\
+    \ m64 &b) const {\r\n        return (a >= mod ? a - mod : a) != (b.a >= mod ?\
+    \ b.a - mod : b.a);\r\n    }\r\n    m64 pow(u128 n) const {\r\n        m64 ret(1),\
+    \ mul(*this);\r\n        while (n > 0) {\r\n        if (n & 1) ret *= mul;\r\n\
+    \        mul *= mul;\r\n        n >>= 1;\r\n        }\r\n        return ret;\r\
+    \n    }\r\n};\r\ntypename m64::u64 m64::mod, m64::r, m64::n2;\r\n\r\nbool Miller(ll\
+    \ n){\r\n    if(n<2 or (n&1)==0)return (n==2);\r\n    m64::set_mod(n);\r\n   \
+    \ ll d=n-1; while((d&1)==0)d>>=1;\r\n    vector<ll> seeds;\r\n    if(n<(1<<30))seeds={2,\
+    \ 7, 61};\r\n    else seeds={2, 325, 9375, 28178, 450775, 9780504};\r\n    for(auto&\
+    \ x:seeds){\r\n        if(n<=x)break;\r\n        ll t=d;\r\n        m64 y=m64(x).pow(t);\r\
+    \n        while(t!=n-1 and y!=1 and y!=n-1){\r\n            y*=y;\r\n        \
+    \    t<<=1;\r\n        }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    }\
+    \ return 1;\r\n}\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\
+    \n\r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
+    \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
+    \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
+    \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
+    \ template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\n    }\r\
+    \n    double uniform(){\r\n        return double(get())/UINT_MAX;\r\n    }\r\n\
+    \    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
+    \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
+    \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
+    \     int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\n\
+    \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
     \ */\n#line 4 \"Math/pollard.hpp\"\n\r\nRandom genPollard;\r\nvector<ll> Pollard(ll\
@@ -342,32 +383,34 @@ data:
     \ sz++;}\r\n        a=_subroot(d,sz,a);\r\n    }\r\n    if(g>1)a=_subroot(g,1,a);\r\
     \n    return a;\r\n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n#line\
     \ 2 \"FPS/multievalgeom.hpp\"\n\ntemplate<typename T>vector<T> MultievalGeomSeq(vector<T>&\
-    \ f,T a,T w,int m){\n    int n=f.size();\n    vector<T> tri(n+m-1),itri(n+m-1);\n\
-    \    tri[0]=itri[0]=1;\n    T iw=w.inv(),pww=1,pwiw=1;\n    for(int i=1;i<n+m-1;i++,pww*=w,pwiw*=iw){\n\
+    \ f,T a,T w,int m){\n    int n=f.size();\n    vector<T> ret(m);\n    if(w==0){\n\
+    \        T base=1;\n        rep(i,0,n)ret[0]+=base*f[i],base*=a;\n        rep(i,1,m)ret[i]=f[0];\n\
+    \        return ret;\n    }\n    vector<T> tri(n+m-1),itri(n+m-1);\n    tri[0]=itri[0]=1;\n\
+    \    T iw=w.inv(),pww=1,pwiw=1;\n    for(int i=1;i<n+m-1;i++,pww*=w,pwiw*=iw){\n\
     \        tri[i]=tri[i-1]*pww;\n        itri[i]=itri[i-1]*pwiw;\n    }\n\n    Poly<T>\
     \ y(n),v(n+m-1);\n    T pwa=1;\n    for(int i=0;i<n;i++,pwa*=a){\n        y[i]=f[i]*itri[i]*pwa;\n\
-    \    }\n    rep(i,0,n+m-1)v[i]=tri[i];\n    reverse(ALL(y));\n    y*=v;\n    vector<T>\
-    \ ret(m);\n    rep(i,0,m)ret[i]=y[n-1+i]*itri[i];\n    return ret;\n}\n\n/**\n\
-    \ * @brief Multipoint Evaluation on Geometric Sequence\n*/\n#line 4 \"Convolution/multivariatecyclic.hpp\"\
-    \n\ntemplate<typename T>vector<T> MultivariateCyclic\n    (vector<T> f,vector<T>\
-    \ g,vector<int>& a){\n    int MO=T::get_mod();\n    int k=a.size(),n=1;\n    for(auto&\
-    \ x:a)n*=x;\n    T pr=getPrimitiveRoot(MO),ipr=T(pr).inv();\n\n    int offset=1;\n\
-    \    rep(x,0,k){\n        assert((MO-1)%a[x]==0);\n        T w=pr.pow((MO-1)/a[x]);\n\
-    \        rep(i,0,n)if(i%(offset*a[x])<offset){\n            vector<T> na(a[x]),nb(a[x]);\n\
-    \            rep(j,0,a[x]){\n                na[j]=f[i+offset*j];\n          \
-    \      nb[j]=g[i+offset*j];\n            }\n            na=MultievalGeomSeq(na,T(1),w,a[x]);\n\
-    \            nb=MultievalGeomSeq(nb,T(1),w,a[x]);\n            rep(j,0,a[x]){\n\
-    \                f[i+offset*j]=na[j];\n                g[i+offset*j]=nb[j];\n\
-    \            }\n        }\n        offset*=a[x];\n    }\n\n    rep(i,0,n)f[i]*=g[i];\n\
-    \    \n    offset=1;\n    rep(x,0,k){\n        T iw=ipr.pow((MO-1)/a[x]);\n  \
-    \      rep(i,0,n)if(i%(offset*a[x])<offset){\n            vector<T> na(a[x]);\n\
-    \            rep(j,0,a[x])na[j]=f[i+offset*j];\n            na=MultievalGeomSeq(na,T(1),iw,a[x]);\n\
-    \            rep(j,0,a[x])f[i+offset*j]=na[j];\n        }\n        offset*=a[x];\n\
-    \    }\n    T ninv=T(n).inv();\n    rep(i,0,n)f[i]*=ninv;\n    return f;\n}\n\n\
-    /**\n * @brief Multivarate Convolution Cyclic\n*/\n#line 13 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\
-    \n\nFastIO io;\nint main(){\n    int p,k;\n    io.read(p,k);\n    Fp::set_mod(p);\n\
-    \    vector<int> a(k);\n    io.read(a);\n    int n=1;\n    for(auto& x:a)n*=x;\n\
-    \    vector<Fp> f(n),g(n);\n    rep(i,0,n)io.read(f[i].v);\n    rep(i,0,n)io.read(g[i].v);\n\
+    \    }\n    rep(i,0,n+m-1)v[i]=tri[i];\n    reverse(ALL(y));\n    y*=v;\n    rep(i,0,m)ret[i]=y[n-1+i]*itri[i];\n\
+    \    return ret;\n}\n\n/**\n * @brief Multipoint Evaluation on Geometric Sequence\n\
+    */\n#line 4 \"Convolution/multivariatecyclic.hpp\"\n\ntemplate<typename T>vector<T>\
+    \ MultivariateCyclic\n    (vector<T> f,vector<T> g,vector<int>& a){\n    int MO=T::get_mod();\n\
+    \    int k=a.size(),n=1;\n    for(auto& x:a)n*=x;\n    T pr=getPrimitiveRoot(MO),ipr=T(pr).inv();\n\
+    \n    int offset=1;\n    rep(x,0,k){\n        assert((MO-1)%a[x]==0);\n      \
+    \  T w=pr.pow((MO-1)/a[x]);\n        rep(i,0,n)if(i%(offset*a[x])<offset){\n \
+    \           vector<T> na(a[x]),nb(a[x]);\n            rep(j,0,a[x]){\n       \
+    \         na[j]=f[i+offset*j];\n                nb[j]=g[i+offset*j];\n       \
+    \     }\n            na=MultievalGeomSeq(na,T(1),w,a[x]);\n            nb=MultievalGeomSeq(nb,T(1),w,a[x]);\n\
+    \            rep(j,0,a[x]){\n                f[i+offset*j]=na[j];\n          \
+    \      g[i+offset*j]=nb[j];\n            }\n        }\n        offset*=a[x];\n\
+    \    }\n\n    rep(i,0,n)f[i]*=g[i];\n    \n    offset=1;\n    rep(x,0,k){\n  \
+    \      T iw=ipr.pow((MO-1)/a[x]);\n        rep(i,0,n)if(i%(offset*a[x])<offset){\n\
+    \            vector<T> na(a[x]);\n            rep(j,0,a[x])na[j]=f[i+offset*j];\n\
+    \            na=MultievalGeomSeq(na,T(1),iw,a[x]);\n            rep(j,0,a[x])f[i+offset*j]=na[j];\n\
+    \        }\n        offset*=a[x];\n    }\n    T ninv=T(n).inv();\n    rep(i,0,n)f[i]*=ninv;\n\
+    \    return f;\n}\n\n/**\n * @brief Multivarate Convolution Cyclic\n*/\n#line\
+    \ 13 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\n\nFastIO io;\nint\
+    \ main(){\n    int p,k;\n    io.read(p,k);\n    Fp::set_mod(p);\n    vector<int>\
+    \ a(k);\n    io.read(a);\n    int n=1;\n    for(auto& x:a)n*=x;\n    vector<Fp>\
+    \ f(n),g(n);\n    rep(i,0,n)io.read(f[i].v);\n    rep(i,0,n)io.read(g[i].v);\n\
     \n    auto ret=MultivariateCyclic(f,g,a);\n    rep(i,0,n)io.write(ret[i].v);\n\
     \    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution_cyclic\"\
@@ -398,8 +441,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2023-01-17 02:40:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp
 layout: document

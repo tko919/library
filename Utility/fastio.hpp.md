@@ -48,129 +48,129 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_primes.test.cpp
     title: Verify/LC_enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_general_weighted_matching.test.cpp
     title: Verify/LC_general_weighted_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_kth_root_integer.test.cpp
     title: Verify/LC_kth_root_integer.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_lca_2.test.cpp
     title: Verify/LC_lca_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_manhattanmst.test.cpp
     title: Verify/LC_manhattanmst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_many_aplusb.test.cpp
     title: Verify/LC_many_aplusb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_persistent_unionfind.test.cpp
     title: Verify/LC_persistent_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_prefix_substring_lcs.test.cpp
     title: Verify/LC_prefix_substring_lcs.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_lis_query.test.cpp
     title: Verify/LC_static_range_lis_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Fast IO
     links: []
@@ -187,7 +187,16 @@ data:
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
     \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__uint128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        x=0;\r\n        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){\r\n  \
+    \          x=x*10+(rdbuf[rdLeft++]^48);\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
     \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
@@ -219,6 +228,16 @@ data:
     \ _write(\"2147483648\"); return;\r\n                case 8: _write(\"9223372036854775808\"\
     ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
     \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
+    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
+    \n        wtRight+=pos;\r\n    }\r\n    inline void _write(__int128_t x){\r\n\
+    \        if(wtRight>L-40)flush();\r\n        if(x==0){\r\n            _write('0');\r\
+    \n            return;\r\n        }\r\n        else if(x<0){\r\n            _write('-');\r\
+    \n            x=-x;\r\n        }\r\n        int pos=0;\r\n        while(x!=0){\r\
+    \n            tmp[pos++]=char((x%10)|48);\r\n            x/=10;\r\n        }\r\
+    \n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\n        wtRight+=pos;\r\
+    \n    }\r\n    inline void _write(__uint128_t x){\r\n        if(wtRight>L-40)flush();\r\
+    \n        if(x==0){\r\n            _write('0');\r\n            return;\r\n   \
+    \     }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
     \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
     \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
@@ -244,7 +263,16 @@ data:
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
     \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__uint128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        x=0;\r\n        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){\r\n  \
+    \          x=x*10+(rdbuf[rdLeft++]^48);\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
     \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
@@ -277,6 +305,16 @@ data:
     ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
     \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
+    \n        wtRight+=pos;\r\n    }\r\n    inline void _write(__int128_t x){\r\n\
+    \        if(wtRight>L-40)flush();\r\n        if(x==0){\r\n            _write('0');\r\
+    \n            return;\r\n        }\r\n        else if(x<0){\r\n            _write('-');\r\
+    \n            x=-x;\r\n        }\r\n        int pos=0;\r\n        while(x!=0){\r\
+    \n            tmp[pos++]=char((x%10)|48);\r\n            x/=10;\r\n        }\r\
+    \n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\n        wtRight+=pos;\r\
+    \n    }\r\n    inline void _write(__uint128_t x){\r\n        if(wtRight>L-40)flush();\r\
+    \n        if(x==0){\r\n            _write('0');\r\n            return;\r\n   \
+    \     }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
+    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
     \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
     \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
     \n            _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\
@@ -292,64 +330,64 @@ data:
   isVerificationFile: false
   path: Utility/fastio.hpp
   requiredBy: []
-  timestamp: '2022-02-01 00:33:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_enumerate_cliques.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/AOJ_DSL_1_B.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/LC_subset_convolution.test.cpp
-  - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_manhattanmst.test.cpp
-  - Verify/YUKI_1112.test.cpp
-  - Verify/YUKI_1080.test.cpp
-  - Verify/LC_biconnected_components.test.cpp
-  - Verify/LC_range_kth_smallest.test.cpp
-  - Verify/AOJ_DSL_2_D.test.cpp
-  - Verify/LC_area_of_union_of_rectangles.test.cpp
-  - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_static_range_lis_query.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
-  - Verify/YUKI_1781.test.cpp
-  - Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - Verify/LC_general_weighted_matching.test.cpp
-  - Verify/LC_min_cost_b_flow.test.cpp
-  - Verify/LC_range_kth_smallest-2.test.cpp
-  - Verify/AOJ_GRL_6_A.test.cpp
-  - Verify/LC_enumerate_primes.test.cpp
-  - Verify/LC_prefix_substring_lcs.test.cpp
-  - Verify/LC_cycle_detection_undirected.test.cpp
-  - Verify/LC_lca_2.test.cpp
-  - Verify/LC_sum_of_totient_function.test.cpp
-  - Verify/YUKI_901.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - Verify/LC_queue_operate_all_composite.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - Verify/LC_predecessor_problem.test.cpp
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/LC_cycle_detection.test.cpp
-  - Verify/AOJ_1595.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_sum_of_totient_function.test.cpp
   - Verify/LC_partition_function.test.cpp
-  - Verify/LC_static_range_frequency.test.cpp
-  - Verify/LC_persistent_unionfind.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_kth_root_integer.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
+  - Verify/LC_biconnected_components.test.cpp
+  - Verify/AOJ_1595.test.cpp
   - Verify/YUKI_310.test.cpp
-  - Verify/LC_associative_array.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/LC_area_of_union_of_rectangles.test.cpp
+  - Verify/LC_range_kth_smallest-2.test.cpp
+  - Verify/LC_range_kth_smallest.test.cpp
+  - Verify/LC_lca_2.test.cpp
+  - Verify/LC_cycle_detection.test.cpp
+  - Verify/LC_static_range_frequency.test.cpp
+  - Verify/AOJ_DSL_1_B.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_general_weighted_matching.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_persistent_unionfind.test.cpp
+  - Verify/YUKI_1781.test.cpp
   - Verify/LC_deque_operate_all_composite.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_subset_convolution.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - Verify/LC_min_cost_b_flow.test.cpp
+  - Verify/LC_point_set_range_sort_range_composite.test.cpp
+  - Verify/LC_enumerate_cliques.test.cpp
+  - Verify/LC_cycle_detection_undirected.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_prefix_substring_lcs.test.cpp
+  - Verify/AOJ_DSL_2_D.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - Verify/LC_associative_array.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
+  - Verify/LC_manhattanmst.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_predecessor_problem.test.cpp
+  - Verify/LC_many_aplusb.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/YUKI_901.test.cpp
+  - Verify/AOJ_GRL_6_A.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: Utility/fastio.hpp
 layout: document
 redirect_from:

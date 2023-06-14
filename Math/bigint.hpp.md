@@ -88,18 +88,19 @@ data:
     \n            if(j==(int)v.size())v.push_back(0);\r\n            v[j]+=val%B;\
     \ val/=B;\r\n         }\r\n      } norm(); return *this;\r\n   }\r\n   bigint&\
     \ operator/=(const bigint& x){  \r\n      bigint a=abs(),b=x.abs(); sign^=x.sign;\r\
-    \n      if(a<b)return *this=bigint();\r\n      int d=a.size()-b.size()+1;\r\n\
-    \      bigint inv(1LL*B*B/b.v.back()),pre;\r\n      int cur=2,bcur=1; pre=bigint(0);\r\
-    \n      while(inv!=pre or bcur<b.size()){\r\n         bcur=min(bcur<<1,b.size());\r\
-    \n         bigint c; c.v=vector<ll>(b.v.end()-bcur,b.v.end());\r\n         pre=inv;\
-    \ inv*=((bigint(2)<<(cur+bcur-1))-inv*c);\r\n         cur=min(cur<<1,d);\r\n \
-    \        inv.v=vector<ll>(inv.v.end()-cur,inv.v.end());\r\n      }\r\n      inv.v=vector<ll>(inv.v.end()-d,inv.v.end());\r\
-    \n      bigint res=a*inv; res>>=(a.size());\r\n      bigint mul=res*b; while(mul+b<=a){res+=bigint(1);\
-    \ mul+=b;}\r\n      v=res.v; return *this;\r\n   }\r\n   bigint& operator%=(const\
-    \ bigint& x){\r\n      bigint div=(*this)/x; (*this)-=div*x; return *this;\r\n\
-    \   }\r\n   bigint square(){\r\n      bigint res=*this; res.sign=0;\r\n      auto\
-    \ v1=FFT::mult(v,v);\r\n      res.v.assign(v1.size(),0);\r\n      rep(i,0,v1.size()){\r\
-    \n         ll val=v1[i];\r\n         for(int j=i;val;j++){\r\n            if(j==(int)res.v.size())res.v.push_back(0);\r\
+    \n      if(a<b)return *this=bigint();\r\n      if(b==bigint(1))return *this=a;\r\
+    \n      int d=a.size()-b.size()+1;\r\n      bigint inv(1LL*B*B/b.v.back()),pre;\r\
+    \n      int cur=2,bcur=1; pre=bigint(0);\r\n      while(inv!=pre or bcur<b.size()){\r\
+    \n         bcur=min(bcur<<1,b.size());\r\n         bigint c; c.v=vector<ll>(b.v.end()-bcur,b.v.end());\r\
+    \n         pre=inv; inv*=((bigint(2)<<(cur+bcur-1))-inv*c);\r\n         cur=min(cur<<1,d);\r\
+    \n         inv.v=vector<ll>(inv.v.end()-cur,inv.v.end());\r\n      }\r\n     \
+    \ inv.v=vector<ll>(inv.v.end()-d,inv.v.end());\r\n      bigint res=a*inv; res>>=(a.size());\r\
+    \n      bigint mul=res*b;\r\n      while(mul+b<=a){res+=bigint(1); mul+=b;}\r\n\
+    \      v=res.v; return *this;\r\n   }\r\n   bigint& operator%=(const bigint& x){\r\
+    \n      bigint div=(*this)/x; (*this)-=div*x; return *this;\r\n   }\r\n   bigint\
+    \ square(){\r\n      bigint res=*this; res.sign=0;\r\n      auto v1=FFT::mult(v,v);\r\
+    \n      res.v.assign(v1.size(),0);\r\n      rep(i,0,v1.size()){\r\n         ll\
+    \ val=v1[i];\r\n         for(int j=i;val;j++){\r\n            if(j==(int)res.v.size())res.v.push_back(0);\r\
     \n            res.v[j]+=val%B; val/=B;\r\n         }\r\n      } res.norm(); return\
     \ res;\r\n   }\r\n   bigint mul(ll x){\r\n      bigint res=*this; if(x<0)res.sign^=1,x*=-1;\r\
     \n      for(int i=res.v.size()-1;i>=0;i--)res.v[i]*=x;\r\n      res.norm(); return\
@@ -185,18 +186,19 @@ data:
     \n            if(j==(int)v.size())v.push_back(0);\r\n            v[j]+=val%B;\
     \ val/=B;\r\n         }\r\n      } norm(); return *this;\r\n   }\r\n   bigint&\
     \ operator/=(const bigint& x){  \r\n      bigint a=abs(),b=x.abs(); sign^=x.sign;\r\
-    \n      if(a<b)return *this=bigint();\r\n      int d=a.size()-b.size()+1;\r\n\
-    \      bigint inv(1LL*B*B/b.v.back()),pre;\r\n      int cur=2,bcur=1; pre=bigint(0);\r\
-    \n      while(inv!=pre or bcur<b.size()){\r\n         bcur=min(bcur<<1,b.size());\r\
-    \n         bigint c; c.v=vector<ll>(b.v.end()-bcur,b.v.end());\r\n         pre=inv;\
-    \ inv*=((bigint(2)<<(cur+bcur-1))-inv*c);\r\n         cur=min(cur<<1,d);\r\n \
-    \        inv.v=vector<ll>(inv.v.end()-cur,inv.v.end());\r\n      }\r\n      inv.v=vector<ll>(inv.v.end()-d,inv.v.end());\r\
-    \n      bigint res=a*inv; res>>=(a.size());\r\n      bigint mul=res*b; while(mul+b<=a){res+=bigint(1);\
-    \ mul+=b;}\r\n      v=res.v; return *this;\r\n   }\r\n   bigint& operator%=(const\
-    \ bigint& x){\r\n      bigint div=(*this)/x; (*this)-=div*x; return *this;\r\n\
-    \   }\r\n   bigint square(){\r\n      bigint res=*this; res.sign=0;\r\n      auto\
-    \ v1=FFT::mult(v,v);\r\n      res.v.assign(v1.size(),0);\r\n      rep(i,0,v1.size()){\r\
-    \n         ll val=v1[i];\r\n         for(int j=i;val;j++){\r\n            if(j==(int)res.v.size())res.v.push_back(0);\r\
+    \n      if(a<b)return *this=bigint();\r\n      if(b==bigint(1))return *this=a;\r\
+    \n      int d=a.size()-b.size()+1;\r\n      bigint inv(1LL*B*B/b.v.back()),pre;\r\
+    \n      int cur=2,bcur=1; pre=bigint(0);\r\n      while(inv!=pre or bcur<b.size()){\r\
+    \n         bcur=min(bcur<<1,b.size());\r\n         bigint c; c.v=vector<ll>(b.v.end()-bcur,b.v.end());\r\
+    \n         pre=inv; inv*=((bigint(2)<<(cur+bcur-1))-inv*c);\r\n         cur=min(cur<<1,d);\r\
+    \n         inv.v=vector<ll>(inv.v.end()-cur,inv.v.end());\r\n      }\r\n     \
+    \ inv.v=vector<ll>(inv.v.end()-d,inv.v.end());\r\n      bigint res=a*inv; res>>=(a.size());\r\
+    \n      bigint mul=res*b;\r\n      while(mul+b<=a){res+=bigint(1); mul+=b;}\r\n\
+    \      v=res.v; return *this;\r\n   }\r\n   bigint& operator%=(const bigint& x){\r\
+    \n      bigint div=(*this)/x; (*this)-=div*x; return *this;\r\n   }\r\n   bigint\
+    \ square(){\r\n      bigint res=*this; res.sign=0;\r\n      auto v1=FFT::mult(v,v);\r\
+    \n      res.v.assign(v1.size(),0);\r\n      rep(i,0,v1.size()){\r\n         ll\
+    \ val=v1[i];\r\n         for(int j=i;val;j++){\r\n            if(j==(int)res.v.size())res.v.push_back(0);\r\
     \n            res.v[j]+=val%B; val/=B;\r\n         }\r\n      } res.norm(); return\
     \ res;\r\n   }\r\n   bigint mul(ll x){\r\n      bigint res=*this; if(x<0)res.sign^=1,x*=-1;\r\
     \n      for(int i=res.v.size()-1;i>=0;i--)res.v[i]*=x;\r\n      res.norm(); return\
@@ -250,7 +252,7 @@ data:
   isVerificationFile: false
   path: Math/bigint.hpp
   requiredBy: []
-  timestamp: '2022-10-25 10:01:02+09:00'
+  timestamp: '2023-06-14 14:20:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/bigint.hpp

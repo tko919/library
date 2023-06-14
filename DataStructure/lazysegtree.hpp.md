@@ -79,8 +79,8 @@ data:
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_area_of_union_of_rectangles.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp
+  - Verify/LC_area_of_union_of_rectangles.test.cpp
 documentation_of: DataStructure/lazysegtree.hpp
 layout: document
 redirect_from:

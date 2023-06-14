@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/mincostflow.hpp
     title: Minimum Cost b-flow
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -36,7 +36,7 @@ data:
     \ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename\
     \ T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename\
     \ T>int lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Graph/mincostflow.hpp\"\
-    \n\r\ntemplate<typename Flow,typename Cost,int type=1>class MinCostFlow{ //Maximize=-1\r\
+    \n\r\ntemplate<typename Flow,typename Cost,bool Maximize=false>class MinCostFlow{\r\
     \n    struct ptr{int v_id,e_id;};\r\n    struct edge{\r\n        int from,to;\
     \ Flow flow,cap; Cost weight; int rev;\r\n        edge(int _f,int _t,Flow _c,Cost\
     \ _w,int _r)\r\n            :from(_f),to(_t),flow(0),cap(_c),weight(_w),rev(_r){}\r\
@@ -68,9 +68,10 @@ data:
     \      }\r\n            b[t]+=f; b[v]-=f;\r\n        }\r\n    }\r\npublic:\r\n\
     \    MinCostFlow(int _n):n(_n),g(_n),b(_n),pot(_n){}\r\n    void add_edge(int\
     \ from,int to,Flow lb,Flow ub,Cost cost){\r\n        int f_id=g[from].size(),t_id=(from==to?f_id+1:g[to].size());\r\
-    \n        g[from].push_back(edge(from,to,ub,cost*type,t_id));\r\n        g[to].push_back(edge(to,from,-lb,-cost*type,f_id));\r\
-    \n        ptrs.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int\
-    \ v,Flow amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
+    \n        g[from].push_back(edge(from,to,ub,Maximize?-cost:cost,t_id));\r\n  \
+    \      g[to].push_back(edge(to,from,-lb,Maximize?cost:-cost,f_id));\r\n      \
+    \  ptrs.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int v,Flow\
+    \ amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
     \n    Flow get_pot(int v){return pot[v];}\r\n    Flow get_flow(int v){return g[ptrs[v].v_id][ptrs[v].e_id].flow;}\r\
     \n    template<typename T=ll>pair<bool,T> run(const Flow& sf=2){\r\n        Flow\
     \ max_flow=1;\r\n        for(auto& t:b)chmax(max_flow,abs(t));\r\n        for(auto&\
@@ -83,11 +84,11 @@ data:
     \            }\r\n            rep(v,0,n)if(b[v]!=0){\r\n                (b[v]>0?exc:def).push_back(v);\r\
     \n            }\r\n            while(dual(delta))primal(delta);\r\n        }\r\
     \n        T res=0;\r\n        for(auto& es:g)for(auto& e:es)res+=T(e.flow)*T(e.weight);\r\
-    \n        res>>=1;\r\n        if(exc.empty() and def.empty())return {1,res*type};\r\
-    \n        else return {0,res*type};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Minimum\
-    \ Cost b-flow\r\n */\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\
-    \nclass FastIO{\r\n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\n\
-    \    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\
+    \n        res>>=1;\r\n        if(exc.empty() and def.empty())return {1,Maximize?-res:res};\r\
+    \n        else return {0,Maximize?-res:res};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Minimum Cost b-flow\r\n */\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\
+    \n\r\nclass FastIO{\r\n    static constexpr int L=1<<16;\r\n    char rdbuf[L];\r\
+    \n    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\n        int len=rdRight-rdLeft;\r\
     \n        memmove(rdbuf,rdbuf+rdLeft,len);\r\n        rdLeft=0,rdRight=len;\r\n\
     \        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\n    }\r\n    inline bool\
     \ skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight and rdbuf[rdLeft]<='\
@@ -99,7 +100,16 @@ data:
     \        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
     \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__uint128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        x=0;\r\n        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){\r\n  \
+    \          x=x*10+(rdbuf[rdLeft++]^48);\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
     \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
@@ -131,6 +141,16 @@ data:
     \ _write(\"2147483648\"); return;\r\n                case 8: _write(\"9223372036854775808\"\
     ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
     \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
+    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
+    \n        wtRight+=pos;\r\n    }\r\n    inline void _write(__int128_t x){\r\n\
+    \        if(wtRight>L-40)flush();\r\n        if(x==0){\r\n            _write('0');\r\
+    \n            return;\r\n        }\r\n        else if(x<0){\r\n            _write('-');\r\
+    \n            x=-x;\r\n        }\r\n        int pos=0;\r\n        while(x!=0){\r\
+    \n            tmp[pos++]=char((x%10)|48);\r\n            x/=10;\r\n        }\r\
+    \n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\n        wtRight+=pos;\r\
+    \n    }\r\n    inline void _write(__uint128_t x){\r\n        if(wtRight>L-40)flush();\r\
+    \n        if(x==0){\r\n            _write('0');\r\n            return;\r\n   \
+    \     }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
     \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
     \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
@@ -183,8 +203,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_min_cost_b_flow.test.cpp
   requiredBy: []
-  timestamp: '2023-01-17 02:40:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_min_cost_b_flow.test.cpp
 layout: document

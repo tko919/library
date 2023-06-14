@@ -3,17 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Minimum Cost b-flow
     links: []
   bundledCode: "#line 2 \"Graph/mincostflow.hpp\"\n\r\ntemplate<typename Flow,typename\
-    \ Cost,int type=1>class MinCostFlow{ //Maximize=-1\r\n    struct ptr{int v_id,e_id;};\r\
+    \ Cost,bool Maximize=false>class MinCostFlow{\r\n    struct ptr{int v_id,e_id;};\r\
     \n    struct edge{\r\n        int from,to; Flow flow,cap; Cost weight; int rev;\r\
     \n        edge(int _f,int _t,Flow _c,Cost _w,int _r)\r\n            :from(_f),to(_t),flow(0),cap(_c),weight(_w),rev(_r){}\r\
     \n        Flow residual_cap()const{return cap-flow;}\r\n    };\r\n    int n; vector<vector<edge>>\
@@ -44,9 +44,10 @@ data:
     \      }\r\n            b[t]+=f; b[v]-=f;\r\n        }\r\n    }\r\npublic:\r\n\
     \    MinCostFlow(int _n):n(_n),g(_n),b(_n),pot(_n){}\r\n    void add_edge(int\
     \ from,int to,Flow lb,Flow ub,Cost cost){\r\n        int f_id=g[from].size(),t_id=(from==to?f_id+1:g[to].size());\r\
-    \n        g[from].push_back(edge(from,to,ub,cost*type,t_id));\r\n        g[to].push_back(edge(to,from,-lb,-cost*type,f_id));\r\
-    \n        ptrs.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int\
-    \ v,Flow amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
+    \n        g[from].push_back(edge(from,to,ub,Maximize?-cost:cost,t_id));\r\n  \
+    \      g[to].push_back(edge(to,from,-lb,Maximize?cost:-cost,f_id));\r\n      \
+    \  ptrs.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int v,Flow\
+    \ amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
     \n    Flow get_pot(int v){return pot[v];}\r\n    Flow get_flow(int v){return g[ptrs[v].v_id][ptrs[v].e_id].flow;}\r\
     \n    template<typename T=ll>pair<bool,T> run(const Flow& sf=2){\r\n        Flow\
     \ max_flow=1;\r\n        for(auto& t:b)chmax(max_flow,abs(t));\r\n        for(auto&\
@@ -59,13 +60,13 @@ data:
     \            }\r\n            rep(v,0,n)if(b[v]!=0){\r\n                (b[v]>0?exc:def).push_back(v);\r\
     \n            }\r\n            while(dual(delta))primal(delta);\r\n        }\r\
     \n        T res=0;\r\n        for(auto& es:g)for(auto& e:es)res+=T(e.flow)*T(e.weight);\r\
-    \n        res>>=1;\r\n        if(exc.empty() and def.empty())return {1,res*type};\r\
-    \n        else return {0,res*type};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Minimum\
-    \ Cost b-flow\r\n */\n"
-  code: "#pragma once\r\n\r\ntemplate<typename Flow,typename Cost,int type=1>class\
-    \ MinCostFlow{ //Maximize=-1\r\n    struct ptr{int v_id,e_id;};\r\n    struct\
-    \ edge{\r\n        int from,to; Flow flow,cap; Cost weight; int rev;\r\n     \
-    \   edge(int _f,int _t,Flow _c,Cost _w,int _r)\r\n            :from(_f),to(_t),flow(0),cap(_c),weight(_w),rev(_r){}\r\
+    \n        res>>=1;\r\n        if(exc.empty() and def.empty())return {1,Maximize?-res:res};\r\
+    \n        else return {0,Maximize?-res:res};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Minimum Cost b-flow\r\n */\n"
+  code: "#pragma once\r\n\r\ntemplate<typename Flow,typename Cost,bool Maximize=false>class\
+    \ MinCostFlow{\r\n    struct ptr{int v_id,e_id;};\r\n    struct edge{\r\n    \
+    \    int from,to; Flow flow,cap; Cost weight; int rev;\r\n        edge(int _f,int\
+    \ _t,Flow _c,Cost _w,int _r)\r\n            :from(_f),to(_t),flow(0),cap(_c),weight(_w),rev(_r){}\r\
     \n        Flow residual_cap()const{return cap-flow;}\r\n    };\r\n    int n; vector<vector<edge>>\
     \ g;\r\n    vector<Flow> b,pot; vector<ptr> ptrs;\r\n    Cost farthest; vector<Cost>\
     \ dist; vector<edge*> par;\r\n    vector<int> exc,def;\r\n    void push(edge&\
@@ -94,9 +95,10 @@ data:
     \      }\r\n            b[t]+=f; b[v]-=f;\r\n        }\r\n    }\r\npublic:\r\n\
     \    MinCostFlow(int _n):n(_n),g(_n),b(_n),pot(_n){}\r\n    void add_edge(int\
     \ from,int to,Flow lb,Flow ub,Cost cost){\r\n        int f_id=g[from].size(),t_id=(from==to?f_id+1:g[to].size());\r\
-    \n        g[from].push_back(edge(from,to,ub,cost*type,t_id));\r\n        g[to].push_back(edge(to,from,-lb,-cost*type,f_id));\r\
-    \n        ptrs.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int\
-    \ v,Flow amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
+    \n        g[from].push_back(edge(from,to,ub,Maximize?-cost:cost,t_id));\r\n  \
+    \      g[to].push_back(edge(to,from,-lb,Maximize?cost:-cost,f_id));\r\n      \
+    \  ptrs.push_back(ptr{from,f_id});\r\n    }\r\n    void add_supply(int v,Flow\
+    \ amount){b[v]+=amount;}\r\n    void add_demand(int v,Flow amount){b[v]-=amount;}\r\
     \n    Flow get_pot(int v){return pot[v];}\r\n    Flow get_flow(int v){return g[ptrs[v].v_id][ptrs[v].e_id].flow;}\r\
     \n    template<typename T=ll>pair<bool,T> run(const Flow& sf=2){\r\n        Flow\
     \ max_flow=1;\r\n        for(auto& t:b)chmax(max_flow,abs(t));\r\n        for(auto&\
@@ -109,15 +111,15 @@ data:
     \            }\r\n            rep(v,0,n)if(b[v]!=0){\r\n                (b[v]>0?exc:def).push_back(v);\r\
     \n            }\r\n            while(dual(delta))primal(delta);\r\n        }\r\
     \n        T res=0;\r\n        for(auto& es:g)for(auto& e:es)res+=T(e.flow)*T(e.weight);\r\
-    \n        res>>=1;\r\n        if(exc.empty() and def.empty())return {1,res*type};\r\
-    \n        else return {0,res*type};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Minimum\
-    \ Cost b-flow\r\n */"
+    \n        res>>=1;\r\n        if(exc.empty() and def.empty())return {1,Maximize?-res:res};\r\
+    \n        else return {0,Maximize?-res:res};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Minimum Cost b-flow\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Graph/mincostflow.hpp
   requiredBy: []
-  timestamp: '2022-01-10 05:38:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_min_cost_b_flow.test.cpp
 documentation_of: Graph/mincostflow.hpp

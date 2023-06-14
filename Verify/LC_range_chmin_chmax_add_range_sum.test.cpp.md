@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/segtreebeats.hpp
     title: Segment Tree Beats
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
@@ -49,7 +49,16 @@ data:
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
     \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
+    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
+    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
+    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__uint128_t&\
+    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
+    \n        x=0;\r\n        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){\r\n  \
+    \          x=x*10+(rdbuf[rdLeft++]^48);\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
     \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
     \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
     \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
@@ -81,6 +90,16 @@ data:
     \ _write(\"2147483648\"); return;\r\n                case 8: _write(\"9223372036854775808\"\
     ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
     \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
+    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
+    \n        wtRight+=pos;\r\n    }\r\n    inline void _write(__int128_t x){\r\n\
+    \        if(wtRight>L-40)flush();\r\n        if(x==0){\r\n            _write('0');\r\
+    \n            return;\r\n        }\r\n        else if(x<0){\r\n            _write('-');\r\
+    \n            x=-x;\r\n        }\r\n        int pos=0;\r\n        while(x!=0){\r\
+    \n            tmp[pos++]=char((x%10)|48);\r\n            x/=10;\r\n        }\r\
+    \n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\n        wtRight+=pos;\r\
+    \n    }\r\n    inline void _write(__uint128_t x){\r\n        if(wtRight>L-40)flush();\r\
+    \n        if(x==0){\r\n            _write('0');\r\n            return;\r\n   \
+    \     }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
     \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
     \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
     \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
@@ -179,8 +198,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-01-17 02:40:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
 layout: document

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Persistent Randomized Binary Search Tree (set)
     links: []
@@ -30,7 +30,7 @@ data:
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
     \ */\n#line 3 \"DataStructure/persistentrbstset.hpp\"\n\r\nRandom genPRBSTset;\r\
-    \ntemplate<typename T,int LIM=5010101>struct PRBSTset{\r\n    struct Node{\r\n\
+    \ntemplate<typename T,int LIM=10101010>struct PRBSTset{\r\n    struct Node{\r\n\
     \        Node *lp=nullptr,*rp=nullptr;\r\n        int sz=1;\r\n        T val;\r\
     \n        Node(){}\r\n        void apply(){\r\n            sz=1;\r\n         \
     \   if(lp)sz+=lp->sz;\r\n            if(rp)sz+=rp->sz;\r\n        }\r\n    };\r\
@@ -74,7 +74,7 @@ data:
     \n    }\r\n};\r\n\r\n/**\r\n * @brief Persistent Randomized Binary Search Tree\
     \ (set)\r\n */\n"
   code: "#pragma once\r\n#include \"Utility/random.hpp\"\r\n\r\nRandom genPRBSTset;\r\
-    \ntemplate<typename T,int LIM=5010101>struct PRBSTset{\r\n    struct Node{\r\n\
+    \ntemplate<typename T,int LIM=10101010>struct PRBSTset{\r\n    struct Node{\r\n\
     \        Node *lp=nullptr,*rp=nullptr;\r\n        int sz=1;\r\n        T val;\r\
     \n        Node(){}\r\n        void apply(){\r\n            sz=1;\r\n         \
     \   if(lp)sz+=lp->sz;\r\n            if(rp)sz+=rp->sz;\r\n        }\r\n    };\r\
@@ -122,8 +122,8 @@ data:
   isVerificationFile: false
   path: DataStructure/persistentrbstset.hpp
   requiredBy: []
-  timestamp: '2022-01-22 19:43:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-14 14:20:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_range_kth_smallest-2.test.cpp
 documentation_of: DataStructure/persistentrbstset.hpp

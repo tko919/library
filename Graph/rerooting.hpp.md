@@ -19,7 +19,7 @@ data:
     \ Rerooting(int n):G(n){}\r\n    void add_edge(int u,int v,N w){\r\n        G[u].push_back({v,w});\r\
     \n        G[v].push_back({u,w});\r\n    }\r\n    void dfs1(int v,int p){\r\n \
     \       for(auto& [to,w]:G[v])if(to!=p){\r\n            dfs1(to,v);\r\n      \
-    \      buf[v]=h(buf[v],f(buf[to],w));\r\n       }\r\n       buf[v]=g(buf[v],v);\r\
+    \      buf[v]=h(buf[v],f(buf[to],w));\r\n        }\r\n        buf[v]=g(buf[v],v);\r\
     \n    }\r\n    void dfs2(int v,int p,M pc){\r\n        buf[v]=e();\r\n       \
     \ vector<M> cs;\r\n        for(auto& [to,w]:G[v])if(to!=p){\r\n            cs.push_back(f(buf[to],w));\r\
     \n            buf[v]=h(buf[v],f(buf[to],w));\r\n        }\r\n        buf[v]=g(h(buf[v],pc),v);\r\
@@ -42,7 +42,7 @@ data:
     \ u,int v,N w){\r\n        G[u].push_back({v,w});\r\n        G[v].push_back({u,w});\r\
     \n    }\r\n    void dfs1(int v,int p){\r\n        for(auto& [to,w]:G[v])if(to!=p){\r\
     \n            dfs1(to,v);\r\n            buf[v]=h(buf[v],f(buf[to],w));\r\n  \
-    \     }\r\n       buf[v]=g(buf[v],v);\r\n    }\r\n    void dfs2(int v,int p,M\
+    \      }\r\n        buf[v]=g(buf[v],v);\r\n    }\r\n    void dfs2(int v,int p,M\
     \ pc){\r\n        buf[v]=e();\r\n        vector<M> cs;\r\n        for(auto& [to,w]:G[v])if(to!=p){\r\
     \n            cs.push_back(f(buf[to],w));\r\n            buf[v]=h(buf[v],f(buf[to],w));\r\
     \n        }\r\n        buf[v]=g(h(buf[v],pc),v);\r\n        ret[v]=buf[v];\r\n\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: false
   path: Graph/rerooting.hpp
   requiredBy: []
-  timestamp: '2022-10-16 23:53:47+09:00'
+  timestamp: '2023-06-14 14:20:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/AOJ_1595.test.cpp

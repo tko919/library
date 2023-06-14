@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/2dsegtree.hpp
     title: 2D Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/sortablesegtree.hpp
     title: Sortable Segment Tree
   _extendedVerifiedWith:
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_set_range_composite.test.cpp
     title: Verify/LC_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Segment Tree
     links: []
@@ -64,14 +64,14 @@ data:
   - DataStructure/2dsegtree.hpp
   - DataStructure/sortablesegtree.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Verify/LC_point_set_range_sort_range_composite.test.cpp
+  - Verify/LC_rectangle_sum.test.cpp
   - Verify/LC_point_set_range_composite.test.cpp
   - Verify/LC_staticrmq.test.cpp
-  - Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
-  - Verify/LC_rectangle_sum.test.cpp
+  - Verify/LC_point_add_rectangle_sum.test.cpp
 documentation_of: DataStructure/segtree.hpp
 layout: document
 redirect_from:

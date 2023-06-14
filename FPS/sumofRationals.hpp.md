@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: FPS/compexp.hpp
+    title: $f(\exp(x))$
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -27,7 +30,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: FPS/sumofRationals.hpp
-  requiredBy: []
+  requiredBy:
+  - FPS/compexp.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
