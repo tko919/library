@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/factorial.hpp
     title: Factorial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
@@ -216,7 +216,7 @@ data:
   path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   requiredBy: []
   timestamp: '2023-06-14 14:20:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
 layout: document

@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Subset Convolution
     links: []
@@ -99,7 +99,7 @@ data:
   requiredBy:
   - Math/hafnian.hpp
   timestamp: '2022-12-28 03:34:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_subset_convolution.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp

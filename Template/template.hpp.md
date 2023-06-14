@@ -234,7 +234,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_sum.test.cpp
     title: Verify/LC_static_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -243,34 +243,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_staticrmq.test.cpp
     title: Verify/LC_staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_suffixarray.test.cpp
     title: Verify/LC_suffixarray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_floor_of_linear.test.cpp
     title: Verify/LC_sum_of_floor_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -288,7 +288,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -297,27 +297,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_zalgorithm.test.cpp
     title: Verify/LC_zalgorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing\
@@ -353,7 +353,7 @@ data:
   path: Template/template.hpp
   requiredBy: []
   timestamp: '2023-01-17 02:40:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_zalgorithm.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp

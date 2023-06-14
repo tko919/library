@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: FPS/sumofRationals.hpp
     title: Sum of Rationals
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/factorial.hpp
     title: Factorial
   _extendedRequiredBy: []

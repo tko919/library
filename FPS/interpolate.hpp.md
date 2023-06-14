@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/factorial.hpp
     title: Factorial
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: interpolate (one point)
     links: []
@@ -52,7 +52,7 @@ data:
   requiredBy:
   - FPS/sumofpolyexp.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
