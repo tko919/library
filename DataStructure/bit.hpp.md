@@ -11,14 +11,14 @@ data:
   - icon: ':x:'
     path: DataStructure/staticrectsum.hpp
     title: Static Rectangle Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/prefixsubstrlcs.hpp
     title: Prefix Substring LCS
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_range_sum.test.cpp
     title: Verify/LC_point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_prefix_substring_lcs.test.cpp
     title: Verify/LC_prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'

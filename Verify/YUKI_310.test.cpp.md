@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   - icon: ':question:'

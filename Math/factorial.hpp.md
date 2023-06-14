@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: FPS/prefixsumofpowers.hpp
     title: Enumerate $\sum_{k=0}^{N-1} k^i$
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':x:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'

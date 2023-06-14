@@ -82,19 +82,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/persistentrbstset.hpp
       title: Persistent Randomized Binary Search Tree (set)
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentunionfind.hpp
       title: Persistent Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/rangelis.hpp
       title: Range LIS Query
     - icon: ':warning:'
       path: DataStructure/rangeunionset.hpp
       title: Range Union Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
     - icon: ':warning:'
@@ -103,7 +103,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtreebeats.hpp
       title: Segment Tree Beats
     - icon: ':warning:'
@@ -118,7 +118,7 @@ data:
     - icon: ':x:'
       path: DataStructure/staticrectsum.hpp
       title: Static Rectangle Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -127,7 +127,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/unionrect.hpp
       title: Area of Union of Rectangles
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/wavelet.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -156,7 +156,7 @@ data:
     - icon: ':x:'
       path: FPS/interpolate.hpp
       title: interpolate (one point)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -174,10 +174,10 @@ data:
     - icon: ':x:'
       path: FPS/prodoffrkx.hpp
       title: $\Pi_{k=0}^{m-1} f(r^kx)$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
     - icon: ':warning:'
@@ -261,7 +261,7 @@ data:
     - icon: ':warning:'
       path: Math/algebra.hpp
       title: Algebra Structure
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
     - icon: ':warning:'
@@ -341,7 +341,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/manacher.hpp
       title: Manacher Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/prefixsubstrlcs.hpp
       title: Prefix Substring LCS
     - icon: ':heavy_check_mark:'
@@ -537,37 +537,37 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_sort_range_composite.test.cpp
       title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_interpolation.test.cpp
       title: Verify/LC_polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_taylor_shift.test.cpp
       title: Verify/LC_polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_predecessor_problem.test.cpp
       title: Verify/LC_predecessor_problem.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_prefix_substring_lcs.test.cpp
       title: Verify/LC_prefix_substring_lcs.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_product_of_polynomial_sequence.test.cpp
       title: Verify/LC_product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_queue_operate_all_composite.test.cpp
       title: Verify/LC_queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_affine_range_sum.test.cpp
       title: Verify/LC_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
       title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest-2.test.cpp
       title: Verify/LC_range_kth_smallest-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest.test.cpp
       title: Verify/LC_range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -579,19 +579,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
       title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sparse_matrix_det.test.cpp
       title: Verify/LC_sparse_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_lis_query.test.cpp
       title: Verify/LC_static_range_lis_query.test.cpp
     - icon: ':heavy_check_mark:'
