@@ -2,6 +2,13 @@
 
 template<typename T>vector<T> MultievalGeomSeq(vector<T>& f,T a,T w,int m){
     int n=f.size();
+    vector<T> ret(m);
+    if(w==0){
+        T base=1;
+        rep(i,0,n)ret[0]+=base*f[i],base*=a;
+        rep(i,1,m)ret[i]=f[0];
+        return ret;
+    }
     vector<T> tri(n+m-1),itri(n+m-1);
     tri[0]=itri[0]=1;
     T iw=w.inv(),pww=1,pwiw=1;
@@ -18,7 +25,6 @@ template<typename T>vector<T> MultievalGeomSeq(vector<T>& f,T a,T w,int m){
     rep(i,0,n+m-1)v[i]=tri[i];
     reverse(ALL(y));
     y*=v;
-    vector<T> ret(m);
     rep(i,0,m)ret[i]=y[n-1+i]*itri[i];
     return ret;
 }

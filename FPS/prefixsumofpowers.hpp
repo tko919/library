@@ -17,5 +17,5 @@ template<typename T>vector<T> PrefixSumOfPowers(ll n,int k){ // 0<=i<=k,sum_n=0^
 }
 
 /**
- * @brief Enumerate $sum_{k=0}^{N-1} k^i$
+ * @brief Enumerate $\sum_{k=0}^{N-1} k^i$
 */

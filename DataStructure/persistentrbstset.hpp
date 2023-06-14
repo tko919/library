@@ -2,7 +2,7 @@
 #include "Utility/random.hpp"
 
 Random genPRBSTset;
-template<typename T,int LIM=5010101>struct PRBSTset{
+template<typename T,int LIM=10101010>struct PRBSTset{
     struct Node{
         Node *lp=nullptr,*rp=nullptr;
         int sz=1;

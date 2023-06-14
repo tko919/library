@@ -36,6 +36,29 @@ class FastIO{
         }
         return true;
     }
+    inline bool _read(__int128_t& x){
+        if(!skip())return false;
+        if(rdLeft+40>=rdRight)reload();
+        bool neg=false;
+        if(rdbuf[rdLeft]=='-'){
+            neg=true;
+            rdLeft++;
+        }
+        x=0;
+        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){
+            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));
+        }
+        return true;
+    }
+    inline bool _read(__uint128_t& x){
+        if(!skip())return false;
+        if(rdLeft+40>=rdRight)reload();
+        x=0;
+        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){
+            x=x*10+(rdbuf[rdLeft++]^48);
+        }
+        return true;
+    }
     template<typename T,enable_if_t<is_floating_point<T>::value,int> =0>inline bool _read(T& x){
         if(!skip())return false;
         if(rdLeft+20>=rdRight)reload();
@@ -113,6 +136,38 @@ class FastIO{
                 }
             }
             x=-x;
+        }
+        int pos=0;
+        while(x!=0){
+            tmp[pos++]=char((x%10)|48);
+            x/=10;
+        }
+        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];
+        wtRight+=pos;
+    }
+    inline void _write(__int128_t x){
+        if(wtRight>L-40)flush();
+        if(x==0){
+            _write('0');
+            return;
+        }
+        else if(x<0){
+            _write('-');
+            x=-x;
+        }
+        int pos=0;
+        while(x!=0){
+            tmp[pos++]=char((x%10)|48);
+            x/=10;
+        }
+        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];
+        wtRight+=pos;
+    }
+    inline void _write(__uint128_t x){
+        if(wtRight>L-40)flush();
+        if(x==0){
+            _write('0');
+            return;
         }
         int pos=0;
         while(x!=0){

@@ -13,8 +13,8 @@ template<typename M,typename N,M (*f)(M,N),M (*g)(M,int),M (*h)(M,M),M (*e)()>st
         for(auto& [to,w]:G[v])if(to!=p){
             dfs1(to,v);
             buf[v]=h(buf[v],f(buf[to],w));
-       }
-       buf[v]=g(buf[v],v);
+        }
+        buf[v]=g(buf[v],v);
     }
     void dfs2(int v,int p,M pc){
         buf[v]=e();

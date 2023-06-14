@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename Flow,typename Cost,int type=1>class MinCostFlow{ //Maximize=-1
+template<typename Flow,typename Cost,bool Maximize=false>class MinCostFlow{
     struct ptr{int v_id,e_id;};
     struct edge{
         int from,to; Flow flow,cap; Cost weight; int rev;
@@ -64,8 +64,8 @@ public:
     MinCostFlow(int _n):n(_n),g(_n),b(_n),pot(_n){}
     void add_edge(int from,int to,Flow lb,Flow ub,Cost cost){
         int f_id=g[from].size(),t_id=(from==to?f_id+1:g[to].size());
-        g[from].push_back(edge(from,to,ub,cost*type,t_id));
-        g[to].push_back(edge(to,from,-lb,-cost*type,f_id));
+        g[from].push_back(edge(from,to,ub,Maximize?-cost:cost,t_id));
+        g[to].push_back(edge(to,from,-lb,Maximize?cost:-cost,f_id));
         ptrs.push_back(ptr{from,f_id});
     }
     void add_supply(int v,Flow amount){b[v]+=amount;}
@@ -96,8 +96,8 @@ public:
         T res=0;
         for(auto& es:g)for(auto& e:es)res+=T(e.flow)*T(e.weight);
         res>>=1;
-        if(exc.empty() and def.empty())return {1,res*type};
-        else return {0,res*type};
+        if(exc.empty() and def.empty())return {1,Maximize?-res:res};
+        else return {0,Maximize?-res:res};
     }
 };
 

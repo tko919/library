@@ -2,6 +2,7 @@
 
 template<typename T>struct Poly:vector<T>{
     Poly(int n=0){this->assign(n,T());}
+    Poly(const initializer_list<T> f):vector<T>::vector(f){}
     Poly(const vector<T>& f){this->assign(ALL(f));}
     T eval(const T& x){
         T res;
@@ -29,6 +30,11 @@ template<typename T>struct Poly:vector<T>{
     Poly operator*(const T& g)const{return Poly(*this)*=g;}
     Poly operator/(const Poly& g)const{return Poly(*this)/=g;}
     Poly operator%(const Poly& g)const{return Poly(*this)%=g;}
+    pair<Poly,Poly> divmod(const Poly& g)const{
+        Poly q=*this/g,r=*this-g*q;
+        r.shrink();
+        return {q,r};
+    }
     Poly& operator+=(const Poly& g){
         if(g.size()>this->size())this->resize(g.size());
         rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;

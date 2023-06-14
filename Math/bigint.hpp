@@ -90,6 +90,7 @@ template<int D>struct bigint{
    bigint& operator/=(const bigint& x){  
       bigint a=abs(),b=x.abs(); sign^=x.sign;
       if(a<b)return *this=bigint();
+      if(b==bigint(1))return *this=a;
       int d=a.size()-b.size()+1;
       bigint inv(1LL*B*B/b.v.back()),pre;
       int cur=2,bcur=1; pre=bigint(0);
@@ -102,7 +103,8 @@ template<int D>struct bigint{
       }
       inv.v=vector<ll>(inv.v.end()-d,inv.v.end());
       bigint res=a*inv; res>>=(a.size());
-      bigint mul=res*b; while(mul+b<=a){res+=bigint(1); mul+=b;}
+      bigint mul=res*b;
+      while(mul+b<=a){res+=bigint(1); mul+=b;}
       v=res.v; return *this;
    }
    bigint& operator%=(const bigint& x){
