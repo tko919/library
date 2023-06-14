@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/manhattanmst.hpp
     title: Manhattan MST
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/unionfind.hpp
     title: Union Find
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -152,7 +152,7 @@ data:
   path: Verify/LC_manhattanmst.test.cpp
   requiredBy: []
   timestamp: '2023-06-14 14:20:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_manhattanmst.test.cpp
 layout: document

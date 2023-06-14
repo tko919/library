@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':x:'
@@ -20,10 +20,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   _extendedVerifiedWith:
@@ -33,13 +33,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'

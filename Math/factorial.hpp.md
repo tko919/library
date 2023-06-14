@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
   - icon: ':x:'

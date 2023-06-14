@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/matrix.hpp
     title: Matrix
   - icon: ':question:'

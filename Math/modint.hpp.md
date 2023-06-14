@@ -36,22 +36,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,22 +60,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_product.test.cpp
     title: Verify/LC_matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution.test.cpp
     title: Verify/LC_multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_set_range_composite.test.cpp
     title: Verify/LC_point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
   - icon: ':x:'

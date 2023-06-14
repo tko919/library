@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/matrix.hpp
     title: Matrix
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -241,7 +241,7 @@ data:
   path: Verify/LC_hafnian_of_matrix.test.cpp
   requiredBy: []
   timestamp: '2023-06-14 14:20:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_hafnian_of_matrix.test.cpp
 layout: document

@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
   - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':heavy_check_mark:'
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Primitive Function
     links: []
@@ -184,7 +184,7 @@ data:
   - Math/binomquery.hpp
   - Convolution/multivariatecyclic.hpp
   timestamp: '2023-06-14 14:20:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
