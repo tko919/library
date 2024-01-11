@@ -206,16 +206,19 @@ data:
     \        ll r = ((vals[2][i] + M3::get_mod() - p) * r_1323 +\r\n             \
     \   (M3::get_mod() - q) * r_23) %\r\n               M3::get_mod();\r\n       \
     \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
-    /**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 8 \"Verify/LC_convolution_mod_1000000007.test.cpp\"\
-    \n\r\nusing Fp = fp<>;\r\n\r\nint main() {\r\n    int n, m;\r\n    cin >> n >>\
-    \ m;\r\n    vector<Fp> a(n), b(m);\r\n    for (auto &x : a)\r\n        cin >>\
-    \ x;\r\n    for (auto &x : b)\r\n        cin >> x;\r\n    auto ret = ArbitraryMult<Fp>(a,\
-    \ b);\r\n    for (auto &x : ret)\r\n        cout << x << '\\n';\r\n    return\
-    \ 0;\r\n}\n"
+    template <typename T>\r\nvector<T> ArbitraryMult(const vector<T> &a, const vector<T>\
+    \ &b) {\r\n    vector<int> A, B;\r\n    for (auto &x : a)\r\n        A.push_back(x.v);\r\
+    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMult<T>(A,\
+    \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 8 \"\
+    Verify/LC_convolution_mod_1000000007.test.cpp\"\n\r\nusing Fp = fp<>;\r\n\r\n\
+    int main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    vector<int> a(n), b(m);\r\
+    \n    for (auto &x : a)\r\n        cin >> x;\r\n    for (auto &x : b)\r\n    \
+    \    cin >> x;\r\n    auto ret = ArbitraryMult<Fp>(a, b);\r\n    for (auto &x\
+    \ : ret)\r\n        cout << x << '\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n\r\n#include \"Math/modint.hpp\"\
     \r\n\r\n#include \"Convolution/arbitrary.hpp\"\r\n\r\nusing Fp = fp<>;\r\n\r\n\
-    int main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    vector<Fp> a(n), b(m);\r\
+    int main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    vector<int> a(n), b(m);\r\
     \n    for (auto &x : a)\r\n        cin >> x;\r\n    for (auto &x : b)\r\n    \
     \    cin >> x;\r\n    auto ret = ArbitraryMult<Fp>(a, b);\r\n    for (auto &x\
     \ : ret)\r\n        cout << x << '\\n';\r\n    return 0;\r\n}"
@@ -227,7 +230,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 05:13:38+09:00'
+  timestamp: '2024-01-12 05:39:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_1000000007.test.cpp

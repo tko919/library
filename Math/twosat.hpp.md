@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/scc.hpp
     title: Strongly Connected Components
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/multieval.hpp
     title: Multipoint Evaluation
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation
@@ -348,7 +348,7 @@ data:
   path: Verify/LC_polynomial_interpolation.test.cpp
   requiredBy: []
   timestamp: '2024-01-12 05:13:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_polynomial_interpolation.test.cpp
 layout: document

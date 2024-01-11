@@ -6,7 +6,7 @@ data:
     path: Math/twosat.hpp
     title: 2-SAT
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_scc.test.cpp
     title: Verify/LC_scc.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: Verify/LC_two_sat.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Strongly Connected Components
     links: []
@@ -54,7 +54,7 @@ data:
   requiredBy:
   - Math/twosat.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_two_sat.test.cpp
   - Verify/LC_scc.test.cpp

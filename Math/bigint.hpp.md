@@ -183,31 +183,34 @@ data:
     \        ll r = ((vals[2][i] + M3::get_mod() - p) * r_1323 +\r\n             \
     \   (M3::get_mod() - q) * r_23) %\r\n               M3::get_mod();\r\n       \
     \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
-    /**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 3 \"Math/bigint.hpp\"\
-    \n\r\ntemplate <int D> struct bigint {\r\n    using u128 = __uint128_t;\r\n  \
-    \  static const int B = pow(10, D);\r\n    int sign = 0;\r\n    vector<int> v;\r\
-    \n    static int get_D() { return D; }\r\n    static int get_B() { return B; }\r\
-    \n    bigint() {}\r\n    bigint(const vector<int> &_v, bool _s = false) : sign(_s),\
-    \ v(_v) {}\r\n    bigint(ll x) {\r\n        if (x < 0)\r\n            x *= -1,\
-    \ sign = 1;\r\n        while (x) {\r\n            v.push_back(x % B);\r\n    \
-    \        x /= B;\r\n        }\r\n    }\r\n    bigint(string s) {\r\n        if\
-    \ (s[0] == '-')\r\n            s.erase(s.begin()), sign = 1;\r\n        int add\
-    \ = 0, cnt = 0, base = 1;\r\n        while (s.size()) {\r\n            if (cnt\
-    \ == D) {\r\n                v.push_back(add);\r\n                cnt = 0;\r\n\
-    \                add = 0;\r\n                base = 1;\r\n            }\r\n  \
-    \          add = (s.back() - '0') * base + add;\r\n            cnt++;\r\n    \
-    \        base *= 10;\r\n            s.pop_back();\r\n        }\r\n        if (add)\r\
-    \n            v.push_back(add);\r\n    }\r\n    bigint operator-() const {\r\n\
-    \        bigint res = *this;\r\n        res.sign ^= 1;\r\n        return res;\r\
-    \n    }\r\n    bigint abs() const {\r\n        bigint res = *this;\r\n       \
-    \ res.sign = 0;\r\n        return res;\r\n    }\r\n    int &operator[](const int\
-    \ i) { return v[i]; }\r\n    int size() const { return v.size(); }\r\n    void\
-    \ norm() {\r\n        rep(i, 0, v.size() - 1) {\r\n            if (v[i] >= 0)\
-    \ {\r\n                v[i + 1] += v[i] / B;\r\n                v[i] %= B;\r\n\
-    \            } else {\r\n                int c = (-v[i] + B - 1) / B;\r\n    \
-    \            v[i] += c * B;\r\n                v[i + 1] -= c;\r\n            }\r\
-    \n        }\r\n        while (!v.empty() and v.back() >= B) {\r\n            int\
-    \ c = v.back() / B;\r\n            v.back() %= B;\r\n            v.push_back(c);\r\
+    template <typename T>\r\nvector<T> ArbitraryMult(const vector<T> &a, const vector<T>\
+    \ &b) {\r\n    vector<int> A, B;\r\n    for (auto &x : a)\r\n        A.push_back(x.v);\r\
+    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMult<T>(A,\
+    \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 3 \"\
+    Math/bigint.hpp\"\n\r\ntemplate <int D> struct bigint {\r\n    using u128 = __uint128_t;\r\
+    \n    static const int B = pow(10, D);\r\n    int sign = 0;\r\n    vector<int>\
+    \ v;\r\n    static int get_D() { return D; }\r\n    static int get_B() { return\
+    \ B; }\r\n    bigint() {}\r\n    bigint(const vector<int> &_v, bool _s = false)\
+    \ : sign(_s), v(_v) {}\r\n    bigint(ll x) {\r\n        if (x < 0)\r\n       \
+    \     x *= -1, sign = 1;\r\n        while (x) {\r\n            v.push_back(x %\
+    \ B);\r\n            x /= B;\r\n        }\r\n    }\r\n    bigint(string s) {\r\
+    \n        if (s[0] == '-')\r\n            s.erase(s.begin()), sign = 1;\r\n  \
+    \      int add = 0, cnt = 0, base = 1;\r\n        while (s.size()) {\r\n     \
+    \       if (cnt == D) {\r\n                v.push_back(add);\r\n             \
+    \   cnt = 0;\r\n                add = 0;\r\n                base = 1;\r\n    \
+    \        }\r\n            add = (s.back() - '0') * base + add;\r\n           \
+    \ cnt++;\r\n            base *= 10;\r\n            s.pop_back();\r\n        }\r\
+    \n        if (add)\r\n            v.push_back(add);\r\n    }\r\n    bigint operator-()\
+    \ const {\r\n        bigint res = *this;\r\n        res.sign ^= 1;\r\n       \
+    \ return res;\r\n    }\r\n    bigint abs() const {\r\n        bigint res = *this;\r\
+    \n        res.sign = 0;\r\n        return res;\r\n    }\r\n    int &operator[](const\
+    \ int i) { return v[i]; }\r\n    int size() const { return v.size(); }\r\n   \
+    \ void norm() {\r\n        rep(i, 0, v.size() - 1) {\r\n            if (v[i] >=\
+    \ 0) {\r\n                v[i + 1] += v[i] / B;\r\n                v[i] %= B;\r\
+    \n            } else {\r\n                int c = (-v[i] + B - 1) / B;\r\n   \
+    \             v[i] += c * B;\r\n                v[i + 1] -= c;\r\n           \
+    \ }\r\n        }\r\n        while (!v.empty() and v.back() >= B) {\r\n       \
+    \     int c = v.back() / B;\r\n            v.back() %= B;\r\n            v.push_back(c);\r\
     \n        }\r\n        while (!v.empty() and v.back() == 0)\r\n            v.pop_back();\r\
     \n    }\r\n    string to_str() const {\r\n        string res;\r\n        if (v.empty())\r\
     \n            return \"0\";\r\n        if (sign)\r\n            res += '-';\r\n\
@@ -530,7 +533,7 @@ data:
   isVerificationFile: false
   path: Math/bigint.hpp
   requiredBy: []
-  timestamp: '2024-01-12 05:13:38+09:00'
+  timestamp: '2024-01-12 05:39:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/bigint.hpp

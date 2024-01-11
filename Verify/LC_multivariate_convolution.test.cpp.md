@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariate.hpp
     title: Multivariate Convolution
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
@@ -198,21 +198,23 @@ data:
     \n        }\r\n        rep(i,0,k)F[i][x]=tmp[i];\r\n    }\r\n    for(auto& v:F)ntt(v,1);\r\
     \n    vector<T> res(n);\r\n    rep(i,0,n)res[i]=F[chi[i]][i];\r\n    return res;\r\
     \n}\r\n\r\n/**\r\n * @brief Multivariate Convolution\r\n */\n#line 7 \"Verify/LC_multivariate_convolution.test.cpp\"\
-    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\nvoid F(vector<Fp>& a,bool f){ntt.ntt(a,f);}\r\
-    \n\r\nint main(){\r\n    int k,n=1;\r\n    cin>>k;\r\n    vector<int> a(k);\r\n\
-    \    rep(i,0,k){\r\n        cin>>a[i];\r\n        n*=a[i];\r\n    }\r\n    vector<Fp>\
-    \ f(n),g(n);\r\n    rep(i,0,n)cin>>f[i];\r\n    rep(i,0,n)cin>>g[i];\r\n\r\n \
-    \   auto res=MultivariateConvolution<Fp,F>(f,g,a);\r\n    for(auto& x:res)cout<<x<<'\\\
-    n';\r\n    return 0;\r\n}\n"
+    \n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\nvoid F(vector<Fp> &a, bool\
+    \ f) { ntt.ntt(a, f); }\r\n\r\nint main() {\r\n    int k, n = 1;\r\n    cin >>\
+    \ k;\r\n    vector<int> a(k);\r\n    rep(i, 0, k) {\r\n        cin >> a[i];\r\n\
+    \        n *= a[i];\r\n    }\r\n    vector<Fp> f(n), g(n);\r\n    rep(i, 0, n)\
+    \ cin >> f[i];\r\n    rep(i, 0, n) cin >> g[i];\r\n\r\n    auto res = MultivariateConvolution<Fp,\
+    \ F>(f, g, a);\r\n    for (auto &x : res)\r\n        cout << x << '\\n';\r\n \
+    \   return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"Convolution/ntt.hpp\"\r\n#include \"Convolution/multivariate.hpp\"\r\
-    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\nvoid F(vector<Fp>& a,bool f){ntt.ntt(a,f);}\r\
-    \n\r\nint main(){\r\n    int k,n=1;\r\n    cin>>k;\r\n    vector<int> a(k);\r\n\
-    \    rep(i,0,k){\r\n        cin>>a[i];\r\n        n*=a[i];\r\n    }\r\n    vector<Fp>\
-    \ f(n),g(n);\r\n    rep(i,0,n)cin>>f[i];\r\n    rep(i,0,n)cin>>g[i];\r\n\r\n \
-    \   auto res=MultivariateConvolution<Fp,F>(f,g,a);\r\n    for(auto& x:res)cout<<x<<'\\\
-    n';\r\n    return 0;\r\n}"
+    \n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\nvoid F(vector<Fp> &a, bool\
+    \ f) { ntt.ntt(a, f); }\r\n\r\nint main() {\r\n    int k, n = 1;\r\n    cin >>\
+    \ k;\r\n    vector<int> a(k);\r\n    rep(i, 0, k) {\r\n        cin >> a[i];\r\n\
+    \        n *= a[i];\r\n    }\r\n    vector<Fp> f(n), g(n);\r\n    rep(i, 0, n)\
+    \ cin >> f[i];\r\n    rep(i, 0, n) cin >> g[i];\r\n\r\n    auto res = MultivariateConvolution<Fp,\
+    \ F>(f, g, a);\r\n    for (auto &x : res)\r\n        cout << x << '\\n';\r\n \
+    \   return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/modint.hpp
@@ -221,8 +223,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 05:13:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:39:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/maxindependentset.hpp
     title: Maximum Independent Set
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/maximum_independent_set
@@ -51,20 +51,22 @@ data:
     \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
-    \ */\n#line 3 \"Graph/maxindependentset.hpp\"\n\r\nstruct MaxIndependentSet{\r\
-    \n    const int n;\r\n    vector<ll> es;\r\n    MaxIndependentSet(int _n):n(_n),es(n){}\r\
-    \n    void add_edge(int u,int v){\r\n        es[u]|=1LL<<v;\r\n        es[v]|=1LL<<u;\r\
-    \n    }\r\n    pair<ll,ll> run(vector<ll>& cost,int _rot=1e6){\r\n        vector<int>\
-    \ ord(n);\r\n        iota(ALL(ord),0);\r\n        Random gen;\r\n        ll ret=0;\r\
-    \n        ll cur=0;\r\n        rep(_,0,_rot){\r\n            gen.shuffle(ALL(ord));\r\
-    \n            ll add=0;\r\n            ll used=0;\r\n            for(auto& v:ord)if(!(used&es[v])){\r\
-    \n                used|=(1LL<<v);\r\n                add+=cost[v];\r\n       \
-    \     }\r\n            if(chmax(ret,add))cur=used;\r\n        }\r\n        return\
-    \ {ret,cur};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Independent Set\r\n\
-    \ */\n#line 5 \"Verify/LC_maximum_independent_set.test.cpp\"\n\r\nint main(){\r\
-    \n    int n,m;\r\n    cin>>n>>m;\r\n    MaxIndependentSet g(n);\r\n    rep(i,0,m){\r\
-    \n        int x,y;\r\n        cin>>x>>y;\r\n        g.add_edge(x,y);\r\n    }\r\
-    \n    vector<ll> cost(n,1);\r\n    auto [ret,mask]=g.run(cost);\r\n    cout<<__builtin_popcountll(mask)<<'\\\
+    \ */\n#line 3 \"Graph/maxindependentset.hpp\"\n\r\nstruct MaxIndependentSet {\r\
+    \n    const int n;\r\n    vector<ll> es;\r\n    MaxIndependentSet(int _n) : n(_n),\
+    \ es(n) {}\r\n    void add_edge(int u, int v) {\r\n        es[u] |= 1LL << v;\r\
+    \n        es[v] |= 1LL << u;\r\n    }\r\n    pair<ll, ll> run(vector<ll> &cost,\
+    \ int _rot = 1e6) {\r\n        vector<int> ord(n);\r\n        iota(ALL(ord), 0);\r\
+    \n        ll ret = 0;\r\n        ll cur = 0;\r\n        rep(_, 0, _rot) {\r\n\
+    \            Random::shuffle(ALL(ord));\r\n            ll add = 0;\r\n       \
+    \     ll used = 0;\r\n            for (auto &v : ord)\r\n                if (!(used\
+    \ & es[v])) {\r\n                    used |= (1LL << v);\r\n                 \
+    \   add += cost[v];\r\n                }\r\n            if (chmax(ret, add))\r\
+    \n                cur = used;\r\n        }\r\n        return {ret, cur};\r\n \
+    \   }\r\n};\r\n\r\n/**\r\n * @brief Maximum Independent Set\r\n */\n#line 5 \"\
+    Verify/LC_maximum_independent_set.test.cpp\"\n\r\nint main(){\r\n    int n,m;\r\
+    \n    cin>>n>>m;\r\n    MaxIndependentSet g(n);\r\n    rep(i,0,m){\r\n       \
+    \ int x,y;\r\n        cin>>x>>y;\r\n        g.add_edge(x,y);\r\n    }\r\n    vector<ll>\
+    \ cost(n,1);\r\n    auto [ret,mask]=g.run(cost);\r\n    cout<<__builtin_popcountll(mask)<<'\\\
     n';\r\n    rep(i,0,n)if(mask>>i&1)cout<<i<<' ';\r\n    cout<<'\\n';\r\n    return\
     \ 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/maximum_independent_set\"\
@@ -81,8 +83,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:39:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_maximum_independent_set.test.cpp
 layout: document

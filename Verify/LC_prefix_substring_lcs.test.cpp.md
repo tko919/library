@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/prefixsubstrlcs.hpp
     title: Prefix Substring LCS
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/prefix_substring_lcs
@@ -180,7 +180,7 @@ data:
   path: Verify/LC_prefix_substring_lcs.test.cpp
   requiredBy: []
   timestamp: '2024-01-12 04:46:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_prefix_substring_lcs.test.cpp
 layout: document

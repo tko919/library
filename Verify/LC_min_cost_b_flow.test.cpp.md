@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/maxflow.hpp
     title: Maximum Flow
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/mincostflow.hpp
     title: Minimum Cost b-flow
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -104,44 +104,45 @@ data:
     \               if (chmin(dual[e.to], cost)) {\r\n                           \
     \ upd = 1;\r\n                        }\r\n                    }\r\n         \
     \   }\r\n            if (!upd)\r\n                break;\r\n        }\r\n    \
-    \    return {true, ret};\r\n    }\r\n\r\n  private:\r\n    void refine(Cost &eps)\
-    \ {\r\n        exc.assign(n, 0);\r\n        vector<int> used(n);\r\n        queue<int>\
-    \ que;\r\n        vector<int> iter(n);\r\n\r\n        auto cost = [&](int from,\
-    \ const Edge &e) {\r\n            return e.cost + dual[from] - dual[e.to];\r\n\
-    \        };\r\n        auto push = [&](int from, Edge &e, Cap cap) {\r\n     \
-    \       exc[from] -= cap;\r\n            exc[e.to] += cap;\r\n            g[e.to][e.rev].cap\
-    \ += cap;\r\n            e.cap -= cap;\r\n        };\r\n        auto relabel =\
-    \ [&](int v) {\r\n            iter[v] = 0;\r\n            Cost down = MX * (n\
-    \ + 1);\r\n            for (auto &e : g[v])\r\n                if (e.cap) {\r\n\
-    \                    chmin(down, eps + cost(v, e));\r\n                }\r\n \
-    \           dual[v] -= down;\r\n            que.push(v);\r\n            used[v]\
-    \ = 1;\r\n        };\r\n\r\n        rep(i, 0, n) {\r\n            for (auto &e\
-    \ : g[i])\r\n                if (e.cap and cost(i, e) < 0) {\r\n             \
-    \       push(i, e, e.cap);\r\n                }\r\n        }\r\n        rep(i,\
-    \ 0, n) if (exc[i] > 0) {\r\n            used[i] = 1;\r\n            que.push(i);\r\
-    \n        }\r\n        while (!que.empty()) {\r\n            auto v = que.front();\r\
-    \n            que.pop();\r\n            used[v] = 0;\r\n            for (int &i\
-    \ = iter[v]; i < SZ(g[v]); i++) {\r\n                auto &e = g[v][i];\r\n  \
-    \              if (e.cap and cost(v, e) < 0) {\r\n                    push(v,\
-    \ e, min(exc[v], e.cap));\r\n                    if (!used[e.to] and exc[e.to]\
-    \ > 0) {\r\n                        used[e.to] = 1;\r\n                      \
-    \  que.push(e.to);\r\n                    }\r\n                    if (exc[v]\
-    \ == 0)\r\n                        break;\r\n                }\r\n           \
-    \ }\r\n            if (exc[v] > 0) {\r\n                relabel(v);\r\n      \
-    \      }\r\n        }\r\n        eps = 0;\r\n        rep(i, 0, n) {\r\n      \
-    \      for (auto &e : g[i])\r\n                if (e.cap) {\r\n              \
-    \      chmax(eps, -cost(i, e));\r\n                }\r\n        }\r\n    }\r\n\
-    };\r\n\r\n/**\r\n * @brief Minimum Cost b-flow\r\n */\n#line 2 \"Utility/fastio.hpp\"\
-    \n#include <unistd.h>\r\n\r\nclass FastIO {\r\n    static constexpr int L = 1\
-    \ << 16;\r\n    char rdbuf[L];\r\n    int rdLeft = 0, rdRight = 0;\r\n    inline\
-    \ void reload() {\r\n        int len = rdRight - rdLeft;\r\n        memmove(rdbuf,\
-    \ rdbuf + rdLeft, len);\r\n        rdLeft = 0, rdRight = len;\r\n        rdRight\
-    \ += fread(rdbuf + len, 1, L - len, stdin);\r\n    }\r\n    inline bool skip()\
-    \ {\r\n        for (;;) {\r\n            while (rdLeft != rdRight and rdbuf[rdLeft]\
-    \ <= ' ')\r\n                rdLeft++;\r\n            if (rdLeft == rdRight) {\r\
-    \n                reload();\r\n                if (rdLeft == rdRight)\r\n    \
-    \                return false;\r\n            } else\r\n                break;\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template <typename T, enable_if_t<is_integral<T>::value,\
+    \    return {true, ret};\r\n    }\r\n    Cap get_flow(int i) const { return es[i].flow;\
+    \ }\r\n\r\n  private:\r\n    void refine(Cost &eps) {\r\n        exc.assign(n,\
+    \ 0);\r\n        vector<int> used(n);\r\n        queue<int> que;\r\n        vector<int>\
+    \ iter(n);\r\n\r\n        auto cost = [&](int from, const Edge &e) {\r\n     \
+    \       return e.cost + dual[from] - dual[e.to];\r\n        };\r\n        auto\
+    \ push = [&](int from, Edge &e, Cap cap) {\r\n            exc[from] -= cap;\r\n\
+    \            exc[e.to] += cap;\r\n            g[e.to][e.rev].cap += cap;\r\n \
+    \           e.cap -= cap;\r\n        };\r\n        auto relabel = [&](int v) {\r\
+    \n            iter[v] = 0;\r\n            Cost down = MX * (n + 1);\r\n      \
+    \      for (auto &e : g[v])\r\n                if (e.cap) {\r\n              \
+    \      chmin(down, eps + cost(v, e));\r\n                }\r\n            dual[v]\
+    \ -= down;\r\n            que.push(v);\r\n            used[v] = 1;\r\n       \
+    \ };\r\n\r\n        rep(i, 0, n) {\r\n            for (auto &e : g[i])\r\n   \
+    \             if (e.cap and cost(i, e) < 0) {\r\n                    push(i, e,\
+    \ e.cap);\r\n                }\r\n        }\r\n        rep(i, 0, n) if (exc[i]\
+    \ > 0) {\r\n            used[i] = 1;\r\n            que.push(i);\r\n        }\r\
+    \n        while (!que.empty()) {\r\n            auto v = que.front();\r\n    \
+    \        que.pop();\r\n            used[v] = 0;\r\n            for (int &i = iter[v];\
+    \ i < SZ(g[v]); i++) {\r\n                auto &e = g[v][i];\r\n             \
+    \   if (e.cap and cost(v, e) < 0) {\r\n                    push(v, e, min(exc[v],\
+    \ e.cap));\r\n                    if (!used[e.to] and exc[e.to] > 0) {\r\n   \
+    \                     used[e.to] = 1;\r\n                        que.push(e.to);\r\
+    \n                    }\r\n                    if (exc[v] == 0)\r\n          \
+    \              break;\r\n                }\r\n            }\r\n            if\
+    \ (exc[v] > 0) {\r\n                relabel(v);\r\n            }\r\n        }\r\
+    \n        eps = 0;\r\n        rep(i, 0, n) {\r\n            for (auto &e : g[i])\r\
+    \n                if (e.cap) {\r\n                    chmax(eps, -cost(i, e));\r\
+    \n                }\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Minimum\
+    \ Cost b-flow\r\n */\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\
+    \nclass FastIO {\r\n    static constexpr int L = 1 << 16;\r\n    char rdbuf[L];\r\
+    \n    int rdLeft = 0, rdRight = 0;\r\n    inline void reload() {\r\n        int\
+    \ len = rdRight - rdLeft;\r\n        memmove(rdbuf, rdbuf + rdLeft, len);\r\n\
+    \        rdLeft = 0, rdRight = len;\r\n        rdRight += fread(rdbuf + len, 1,\
+    \ L - len, stdin);\r\n    }\r\n    inline bool skip() {\r\n        for (;;) {\r\
+    \n            while (rdLeft != rdRight and rdbuf[rdLeft] <= ' ')\r\n         \
+    \       rdLeft++;\r\n            if (rdLeft == rdRight) {\r\n                reload();\r\
+    \n                if (rdLeft == rdRight)\r\n                    return false;\r\
+    \n            } else\r\n                break;\r\n        }\r\n        return\
+    \ true;\r\n    }\r\n    template <typename T, enable_if_t<is_integral<T>::value,\
     \ int> = 0>\r\n    inline bool _read(T &x) {\r\n        if (!skip())\r\n     \
     \       return false;\r\n        if (rdLeft + 20 >= rdRight)\r\n            reload();\r\
     \n        bool neg = false;\r\n        if (rdbuf[rdLeft] == '-') {\r\n       \
@@ -229,38 +230,37 @@ data:
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 6 \"Verify/LC_min_cost_b_flow.test.cpp\"\
-    \n\r\nnamespace std {\r\n    string to_string(__int128_t x) {\r\n        if (x\
-    \ == 0)\r\n            return \"0\";\r\n        __uint128_t k = x;\r\n       \
-    \ if (k == (((__uint128_t)1) << 127))\r\n            return \"-170141183460469231731687303715884105728\"\
-    ;\r\n        string result;\r\n        if (x < 0) {\r\n            result += \"\
-    -\";\r\n            x *= -1;\r\n        }\r\n        string t;\r\n        while\
-    \ (x) {\r\n            t.push_back('0' + x % 10);\r\n            x /= 10;\r\n\
-    \        }\r\n        reverse(t.begin(), t.end());\r\n        return result +\
-    \ t;\r\n    }\r\n}\r\n\r\nint main(){\r\n    FastIO io;\r\n    int n,m;\r\n  \
-    \  io.read(n,m);\r\n    MinCostFlow<ll,ll> mcf(n);\r\n    rep(i,0,n){\r\n    \
-    \    int b;\r\n        io.read(b);\r\n        mcf.add_supply(i,b);\r\n    }\r\n\
-    \    rep(i,0,m){\r\n        int s,t,l,u,c;\r\n        io.read(s,t,l,u,c);\r\n\
-    \        mcf.add_edge(s,t,l,u,c);\r\n    }\r\n    auto [ok,ret]=mcf.run<__int128_t>();\r\
-    \n    if(!ok){\r\n        io.write(\"infeasible\");\r\n        return 0;\r\n \
-    \   }\r\n    io.write(to_string(ret));\r\n    rep(i,0,n)io.write(mcf.get_pot(i));\r\
-    \n    rep(i,0,m)io.write(mcf.get_flow(i));\r\n    return 0;\r\n}\n"
+    \n\r\nnamespace std {\r\nstring to_string(__int128_t x) {\r\n    if (x == 0)\r\
+    \n        return \"0\";\r\n    __uint128_t k = x;\r\n    if (k == (((__uint128_t)1)\
+    \ << 127))\r\n        return \"-170141183460469231731687303715884105728\";\r\n\
+    \    string result;\r\n    if (x < 0) {\r\n        result += \"-\";\r\n      \
+    \  x *= -1;\r\n    }\r\n    string t;\r\n    while (x) {\r\n        t.push_back('0'\
+    \ + x % 10);\r\n        x /= 10;\r\n    }\r\n    reverse(t.begin(), t.end());\r\
+    \n    return result + t;\r\n}\r\n} // namespace std\r\n\r\nint main() {\r\n  \
+    \  FastIO io;\r\n    int n, m;\r\n    io.read(n, m);\r\n    MinCostFlow<ll, i128>\
+    \ mcf(n);\r\n    rep(i, 0, n) {\r\n        int b;\r\n        io.read(b);\r\n \
+    \       mcf.add_excess(i, b);\r\n    }\r\n    rep(i, 0, m) {\r\n        int s,\
+    \ t, l, u, c;\r\n        io.read(s, t, l, u, c);\r\n        mcf.add_edge(s, t,\
+    \ l, u, c);\r\n    }\r\n    auto [ok, ret] = mcf.run();\r\n    if (!ok) {\r\n\
+    \        io.write(\"infeasible\");\r\n        return 0;\r\n    }\r\n    io.write(to_string(ret));\r\
+    \n    rep(i, 0, n) io.write(to_string(mcf.dual[i]));\r\n    rep(i, 0, m) io.write(mcf.get_flow(i));\r\
+    \n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Graph/mincostflow.hpp\"\r\n\
-    #include \"Utility/fastio.hpp\"\r\n\r\nnamespace std {\r\n    string to_string(__int128_t\
-    \ x) {\r\n        if (x == 0)\r\n            return \"0\";\r\n        __uint128_t\
-    \ k = x;\r\n        if (k == (((__uint128_t)1) << 127))\r\n            return\
-    \ \"-170141183460469231731687303715884105728\";\r\n        string result;\r\n\
-    \        if (x < 0) {\r\n            result += \"-\";\r\n            x *= -1;\r\
-    \n        }\r\n        string t;\r\n        while (x) {\r\n            t.push_back('0'\
-    \ + x % 10);\r\n            x /= 10;\r\n        }\r\n        reverse(t.begin(),\
-    \ t.end());\r\n        return result + t;\r\n    }\r\n}\r\n\r\nint main(){\r\n\
-    \    FastIO io;\r\n    int n,m;\r\n    io.read(n,m);\r\n    MinCostFlow<ll,ll>\
-    \ mcf(n);\r\n    rep(i,0,n){\r\n        int b;\r\n        io.read(b);\r\n    \
-    \    mcf.add_supply(i,b);\r\n    }\r\n    rep(i,0,m){\r\n        int s,t,l,u,c;\r\
-    \n        io.read(s,t,l,u,c);\r\n        mcf.add_edge(s,t,l,u,c);\r\n    }\r\n\
-    \    auto [ok,ret]=mcf.run<__int128_t>();\r\n    if(!ok){\r\n        io.write(\"\
-    infeasible\");\r\n        return 0;\r\n    }\r\n    io.write(to_string(ret));\r\
-    \n    rep(i,0,n)io.write(mcf.get_pot(i));\r\n    rep(i,0,m)io.write(mcf.get_flow(i));\r\
+    #include \"Utility/fastio.hpp\"\r\n\r\nnamespace std {\r\nstring to_string(__int128_t\
+    \ x) {\r\n    if (x == 0)\r\n        return \"0\";\r\n    __uint128_t k = x;\r\
+    \n    if (k == (((__uint128_t)1) << 127))\r\n        return \"-170141183460469231731687303715884105728\"\
+    ;\r\n    string result;\r\n    if (x < 0) {\r\n        result += \"-\";\r\n  \
+    \      x *= -1;\r\n    }\r\n    string t;\r\n    while (x) {\r\n        t.push_back('0'\
+    \ + x % 10);\r\n        x /= 10;\r\n    }\r\n    reverse(t.begin(), t.end());\r\
+    \n    return result + t;\r\n}\r\n} // namespace std\r\n\r\nint main() {\r\n  \
+    \  FastIO io;\r\n    int n, m;\r\n    io.read(n, m);\r\n    MinCostFlow<ll, i128>\
+    \ mcf(n);\r\n    rep(i, 0, n) {\r\n        int b;\r\n        io.read(b);\r\n \
+    \       mcf.add_excess(i, b);\r\n    }\r\n    rep(i, 0, m) {\r\n        int s,\
+    \ t, l, u, c;\r\n        io.read(s, t, l, u, c);\r\n        mcf.add_edge(s, t,\
+    \ l, u, c);\r\n    }\r\n    auto [ok, ret] = mcf.run();\r\n    if (!ok) {\r\n\
+    \        io.write(\"infeasible\");\r\n        return 0;\r\n    }\r\n    io.write(to_string(ret));\r\
+    \n    rep(i, 0, n) io.write(to_string(mcf.dual[i]));\r\n    rep(i, 0, m) io.write(mcf.get_flow(i));\r\
     \n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
@@ -270,8 +270,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_min_cost_b_flow.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:46:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:39:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_min_cost_b_flow.test.cpp
 layout: document

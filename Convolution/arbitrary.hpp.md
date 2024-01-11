@@ -192,7 +192,10 @@ data:
     \        ll r = ((vals[2][i] + M3::get_mod() - p) * r_1323 +\r\n             \
     \   (M3::get_mod() - q) * r_23) %\r\n               M3::get_mod();\r\n       \
     \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
-    /**\r\n * @brief Arbitrary Mod Convolution\r\n */\n"
+    template <typename T>\r\nvector<T> ArbitraryMult(const vector<T> &a, const vector<T>\
+    \ &b) {\r\n    vector<int> A, B;\r\n    for (auto &x : a)\r\n        A.push_back(x.v);\r\
+    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMult<T>(A,\
+    \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n"
   code: "#pragma once\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"Math/modint.hpp\"\
     \r\n\r\nusing M1 = fp<1045430273>;\r\nusing M2 = fp<1051721729>;\r\nusing M3 =\
     \ fp<1053818881>;\r\nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int\
@@ -213,7 +216,11 @@ data:
     \ * r_12 % M2::get_mod();\r\n        ll r = ((vals[2][i] + M3::get_mod() - p)\
     \ * r_1323 +\r\n                (M3::get_mod() - q) * r_23) %\r\n            \
     \   M3::get_mod();\r\n        res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n\
-    \    return res;\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */"
+    \    return res;\r\n}\r\n\r\ntemplate <typename T>\r\nvector<T> ArbitraryMult(const\
+    \ vector<T> &a, const vector<T> &b) {\r\n    vector<int> A, B;\r\n    for (auto\
+    \ &x : a)\r\n        A.push_back(x.v);\r\n    for (auto &x : b)\r\n        B.push_back(x.v);\r\
+    \n    return ArbitraryMult<T>(A, B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod\
+    \ Convolution\r\n */"
   dependsOn:
   - Convolution/ntt.hpp
   - Math/modint.hpp
@@ -221,7 +228,7 @@ data:
   path: Convolution/arbitrary.hpp
   requiredBy:
   - Math/bigint.hpp
-  timestamp: '2024-01-12 05:13:38+09:00'
+  timestamp: '2024-01-12 05:39:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/YUKI_1112.test.cpp

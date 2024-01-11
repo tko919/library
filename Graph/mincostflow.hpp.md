@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/maxflow.hpp
     title: Maximum Flow
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Minimum Cost b-flow
     links: []
@@ -80,34 +80,35 @@ data:
     \               if (chmin(dual[e.to], cost)) {\r\n                           \
     \ upd = 1;\r\n                        }\r\n                    }\r\n         \
     \   }\r\n            if (!upd)\r\n                break;\r\n        }\r\n    \
-    \    return {true, ret};\r\n    }\r\n\r\n  private:\r\n    void refine(Cost &eps)\
-    \ {\r\n        exc.assign(n, 0);\r\n        vector<int> used(n);\r\n        queue<int>\
-    \ que;\r\n        vector<int> iter(n);\r\n\r\n        auto cost = [&](int from,\
-    \ const Edge &e) {\r\n            return e.cost + dual[from] - dual[e.to];\r\n\
-    \        };\r\n        auto push = [&](int from, Edge &e, Cap cap) {\r\n     \
-    \       exc[from] -= cap;\r\n            exc[e.to] += cap;\r\n            g[e.to][e.rev].cap\
-    \ += cap;\r\n            e.cap -= cap;\r\n        };\r\n        auto relabel =\
-    \ [&](int v) {\r\n            iter[v] = 0;\r\n            Cost down = MX * (n\
-    \ + 1);\r\n            for (auto &e : g[v])\r\n                if (e.cap) {\r\n\
-    \                    chmin(down, eps + cost(v, e));\r\n                }\r\n \
-    \           dual[v] -= down;\r\n            que.push(v);\r\n            used[v]\
-    \ = 1;\r\n        };\r\n\r\n        rep(i, 0, n) {\r\n            for (auto &e\
-    \ : g[i])\r\n                if (e.cap and cost(i, e) < 0) {\r\n             \
-    \       push(i, e, e.cap);\r\n                }\r\n        }\r\n        rep(i,\
-    \ 0, n) if (exc[i] > 0) {\r\n            used[i] = 1;\r\n            que.push(i);\r\
-    \n        }\r\n        while (!que.empty()) {\r\n            auto v = que.front();\r\
-    \n            que.pop();\r\n            used[v] = 0;\r\n            for (int &i\
-    \ = iter[v]; i < SZ(g[v]); i++) {\r\n                auto &e = g[v][i];\r\n  \
-    \              if (e.cap and cost(v, e) < 0) {\r\n                    push(v,\
-    \ e, min(exc[v], e.cap));\r\n                    if (!used[e.to] and exc[e.to]\
-    \ > 0) {\r\n                        used[e.to] = 1;\r\n                      \
-    \  que.push(e.to);\r\n                    }\r\n                    if (exc[v]\
-    \ == 0)\r\n                        break;\r\n                }\r\n           \
-    \ }\r\n            if (exc[v] > 0) {\r\n                relabel(v);\r\n      \
-    \      }\r\n        }\r\n        eps = 0;\r\n        rep(i, 0, n) {\r\n      \
-    \      for (auto &e : g[i])\r\n                if (e.cap) {\r\n              \
-    \      chmax(eps, -cost(i, e));\r\n                }\r\n        }\r\n    }\r\n\
-    };\r\n\r\n/**\r\n * @brief Minimum Cost b-flow\r\n */\n"
+    \    return {true, ret};\r\n    }\r\n    Cap get_flow(int i) const { return es[i].flow;\
+    \ }\r\n\r\n  private:\r\n    void refine(Cost &eps) {\r\n        exc.assign(n,\
+    \ 0);\r\n        vector<int> used(n);\r\n        queue<int> que;\r\n        vector<int>\
+    \ iter(n);\r\n\r\n        auto cost = [&](int from, const Edge &e) {\r\n     \
+    \       return e.cost + dual[from] - dual[e.to];\r\n        };\r\n        auto\
+    \ push = [&](int from, Edge &e, Cap cap) {\r\n            exc[from] -= cap;\r\n\
+    \            exc[e.to] += cap;\r\n            g[e.to][e.rev].cap += cap;\r\n \
+    \           e.cap -= cap;\r\n        };\r\n        auto relabel = [&](int v) {\r\
+    \n            iter[v] = 0;\r\n            Cost down = MX * (n + 1);\r\n      \
+    \      for (auto &e : g[v])\r\n                if (e.cap) {\r\n              \
+    \      chmin(down, eps + cost(v, e));\r\n                }\r\n            dual[v]\
+    \ -= down;\r\n            que.push(v);\r\n            used[v] = 1;\r\n       \
+    \ };\r\n\r\n        rep(i, 0, n) {\r\n            for (auto &e : g[i])\r\n   \
+    \             if (e.cap and cost(i, e) < 0) {\r\n                    push(i, e,\
+    \ e.cap);\r\n                }\r\n        }\r\n        rep(i, 0, n) if (exc[i]\
+    \ > 0) {\r\n            used[i] = 1;\r\n            que.push(i);\r\n        }\r\
+    \n        while (!que.empty()) {\r\n            auto v = que.front();\r\n    \
+    \        que.pop();\r\n            used[v] = 0;\r\n            for (int &i = iter[v];\
+    \ i < SZ(g[v]); i++) {\r\n                auto &e = g[v][i];\r\n             \
+    \   if (e.cap and cost(v, e) < 0) {\r\n                    push(v, e, min(exc[v],\
+    \ e.cap));\r\n                    if (!used[e.to] and exc[e.to] > 0) {\r\n   \
+    \                     used[e.to] = 1;\r\n                        que.push(e.to);\r\
+    \n                    }\r\n                    if (exc[v] == 0)\r\n          \
+    \              break;\r\n                }\r\n            }\r\n            if\
+    \ (exc[v] > 0) {\r\n                relabel(v);\r\n            }\r\n        }\r\
+    \n        eps = 0;\r\n        rep(i, 0, n) {\r\n            for (auto &e : g[i])\r\
+    \n                if (e.cap) {\r\n                    chmax(eps, -cost(i, e));\r\
+    \n                }\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Minimum\
+    \ Cost b-flow\r\n */\n"
   code: "#pragma once\r\n#include \"Graph/maxflow.hpp\"\r\n\r\n// yosupo orz\r\ntemplate\
     \ <class Cap, class Cost> struct MinCostFlow {\r\n    struct X {\r\n        int\
     \ from, to;\r\n        Cap lb, ub, flow;\r\n        Cost cost;\r\n    };\r\n \
@@ -144,41 +145,42 @@ data:
     \               if (chmin(dual[e.to], cost)) {\r\n                           \
     \ upd = 1;\r\n                        }\r\n                    }\r\n         \
     \   }\r\n            if (!upd)\r\n                break;\r\n        }\r\n    \
-    \    return {true, ret};\r\n    }\r\n\r\n  private:\r\n    void refine(Cost &eps)\
-    \ {\r\n        exc.assign(n, 0);\r\n        vector<int> used(n);\r\n        queue<int>\
-    \ que;\r\n        vector<int> iter(n);\r\n\r\n        auto cost = [&](int from,\
-    \ const Edge &e) {\r\n            return e.cost + dual[from] - dual[e.to];\r\n\
-    \        };\r\n        auto push = [&](int from, Edge &e, Cap cap) {\r\n     \
-    \       exc[from] -= cap;\r\n            exc[e.to] += cap;\r\n            g[e.to][e.rev].cap\
-    \ += cap;\r\n            e.cap -= cap;\r\n        };\r\n        auto relabel =\
-    \ [&](int v) {\r\n            iter[v] = 0;\r\n            Cost down = MX * (n\
-    \ + 1);\r\n            for (auto &e : g[v])\r\n                if (e.cap) {\r\n\
-    \                    chmin(down, eps + cost(v, e));\r\n                }\r\n \
-    \           dual[v] -= down;\r\n            que.push(v);\r\n            used[v]\
-    \ = 1;\r\n        };\r\n\r\n        rep(i, 0, n) {\r\n            for (auto &e\
-    \ : g[i])\r\n                if (e.cap and cost(i, e) < 0) {\r\n             \
-    \       push(i, e, e.cap);\r\n                }\r\n        }\r\n        rep(i,\
-    \ 0, n) if (exc[i] > 0) {\r\n            used[i] = 1;\r\n            que.push(i);\r\
-    \n        }\r\n        while (!que.empty()) {\r\n            auto v = que.front();\r\
-    \n            que.pop();\r\n            used[v] = 0;\r\n            for (int &i\
-    \ = iter[v]; i < SZ(g[v]); i++) {\r\n                auto &e = g[v][i];\r\n  \
-    \              if (e.cap and cost(v, e) < 0) {\r\n                    push(v,\
-    \ e, min(exc[v], e.cap));\r\n                    if (!used[e.to] and exc[e.to]\
-    \ > 0) {\r\n                        used[e.to] = 1;\r\n                      \
-    \  que.push(e.to);\r\n                    }\r\n                    if (exc[v]\
-    \ == 0)\r\n                        break;\r\n                }\r\n           \
-    \ }\r\n            if (exc[v] > 0) {\r\n                relabel(v);\r\n      \
-    \      }\r\n        }\r\n        eps = 0;\r\n        rep(i, 0, n) {\r\n      \
-    \      for (auto &e : g[i])\r\n                if (e.cap) {\r\n              \
-    \      chmax(eps, -cost(i, e));\r\n                }\r\n        }\r\n    }\r\n\
-    };\r\n\r\n/**\r\n * @brief Minimum Cost b-flow\r\n */"
+    \    return {true, ret};\r\n    }\r\n    Cap get_flow(int i) const { return es[i].flow;\
+    \ }\r\n\r\n  private:\r\n    void refine(Cost &eps) {\r\n        exc.assign(n,\
+    \ 0);\r\n        vector<int> used(n);\r\n        queue<int> que;\r\n        vector<int>\
+    \ iter(n);\r\n\r\n        auto cost = [&](int from, const Edge &e) {\r\n     \
+    \       return e.cost + dual[from] - dual[e.to];\r\n        };\r\n        auto\
+    \ push = [&](int from, Edge &e, Cap cap) {\r\n            exc[from] -= cap;\r\n\
+    \            exc[e.to] += cap;\r\n            g[e.to][e.rev].cap += cap;\r\n \
+    \           e.cap -= cap;\r\n        };\r\n        auto relabel = [&](int v) {\r\
+    \n            iter[v] = 0;\r\n            Cost down = MX * (n + 1);\r\n      \
+    \      for (auto &e : g[v])\r\n                if (e.cap) {\r\n              \
+    \      chmin(down, eps + cost(v, e));\r\n                }\r\n            dual[v]\
+    \ -= down;\r\n            que.push(v);\r\n            used[v] = 1;\r\n       \
+    \ };\r\n\r\n        rep(i, 0, n) {\r\n            for (auto &e : g[i])\r\n   \
+    \             if (e.cap and cost(i, e) < 0) {\r\n                    push(i, e,\
+    \ e.cap);\r\n                }\r\n        }\r\n        rep(i, 0, n) if (exc[i]\
+    \ > 0) {\r\n            used[i] = 1;\r\n            que.push(i);\r\n        }\r\
+    \n        while (!que.empty()) {\r\n            auto v = que.front();\r\n    \
+    \        que.pop();\r\n            used[v] = 0;\r\n            for (int &i = iter[v];\
+    \ i < SZ(g[v]); i++) {\r\n                auto &e = g[v][i];\r\n             \
+    \   if (e.cap and cost(v, e) < 0) {\r\n                    push(v, e, min(exc[v],\
+    \ e.cap));\r\n                    if (!used[e.to] and exc[e.to] > 0) {\r\n   \
+    \                     used[e.to] = 1;\r\n                        que.push(e.to);\r\
+    \n                    }\r\n                    if (exc[v] == 0)\r\n          \
+    \              break;\r\n                }\r\n            }\r\n            if\
+    \ (exc[v] > 0) {\r\n                relabel(v);\r\n            }\r\n        }\r\
+    \n        eps = 0;\r\n        rep(i, 0, n) {\r\n            for (auto &e : g[i])\r\
+    \n                if (e.cap) {\r\n                    chmax(eps, -cost(i, e));\r\
+    \n                }\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Minimum\
+    \ Cost b-flow\r\n */"
   dependsOn:
   - Graph/maxflow.hpp
   isVerificationFile: false
   path: Graph/mincostflow.hpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-12 05:39:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_min_cost_b_flow.test.cpp
 documentation_of: Graph/mincostflow.hpp
