@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "Convolution/ntt.hpp"
-#include "Math/modint.hpp"
 #include "Template/template.hpp"
+#include "Math/modint.hpp"
+#include "Convolution/ntt.hpp"
 
 using Fp = fp<998244353>;
 NTT<Fp> ntt;

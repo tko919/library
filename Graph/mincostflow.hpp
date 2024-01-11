@@ -94,6 +94,7 @@ template <class Cap, class Cost> struct MinCostFlow {
         }
         return {true, ret};
     }
+    Cap get_flow(int i) const { return es[i].flow; }
 
   private:
     void refine(Cost &eps) {

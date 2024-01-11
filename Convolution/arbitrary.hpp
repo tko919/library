@@ -45,6 +45,16 @@ vector<T> ArbitraryMult(const vector<int> &a, const vector<int> &b) {
     return res;
 }
 
+template <typename T>
+vector<T> ArbitraryMult(const vector<T> &a, const vector<T> &b) {
+    vector<int> A, B;
+    for (auto &x : a)
+        A.push_back(x.v);
+    for (auto &x : b)
+        B.push_back(x.v);
+    return ArbitraryMult<T>(A, B);
+}
+
 /**
  * @brief Arbitrary Mod Convolution
  */
