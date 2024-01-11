@@ -4,13 +4,13 @@ data:
   - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
   - icon: ':x:'
     path: Graph/contour.hpp
     title: Contour Sum Query
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
   - icon: ':question:'
@@ -138,9 +138,9 @@ data:
     \ Tail &...tail) {\r\n        assert(_read(head));\r\n        read(tail...);\r\
     \n    }\r\n    template <bool ln = true, bool space = false> inline void write()\
     \ {\r\n        if (ln)\r\n            _write('\\n');\r\n    }\r\n    template\
-    \ <bool ln = true, bool space = true, typename Head,\r\n              typename...\
+    \ <bool ln = true, bool space = false, typename Head,\r\n              typename...\
     \ Tail>\r\n    inline void write(const Head &head, const Tail &...tail) {\r\n\
-    \        _write(head);\r\n        if (space)\r\n            _write(' ');\r\n \
+    \        if (space)\r\n            _write(' ');\r\n        _write(head);\r\n \
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
+  timestamp: '2024-01-12 04:46:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp

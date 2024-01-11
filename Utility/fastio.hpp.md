@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_1595.test.cpp
     title: Verify/AOJ_1595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_DSL_1_B.test.cpp
     title: Verify/AOJ_DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_DSL_2_D.test.cpp
     title: Verify/AOJ_DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_GRL_6_A.test.cpp
     title: Verify/AOJ_GRL_6_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_cycle_detection.test.cpp
     title: Verify/LC_cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,25 +45,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_primes.test.cpp
     title: Verify/LC_enumerate_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_general_weighted_matching.test.cpp
     title: Verify/LC_general_weighted_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_root_integer.test.cpp
     title: Verify/LC_kth_root_integer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_lca_2.test.cpp
     title: Verify/LC_lca_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
   - icon: ':x:'
@@ -257,9 +257,9 @@ data:
     \ Tail &...tail) {\r\n        assert(_read(head));\r\n        read(tail...);\r\
     \n    }\r\n    template <bool ln = true, bool space = false> inline void write()\
     \ {\r\n        if (ln)\r\n            _write('\\n');\r\n    }\r\n    template\
-    \ <bool ln = true, bool space = true, typename Head,\r\n              typename...\
+    \ <bool ln = true, bool space = false, typename Head,\r\n              typename...\
     \ Tail>\r\n    inline void write(const Head &head, const Tail &...tail) {\r\n\
-    \        _write(head);\r\n        if (space)\r\n            _write(' ');\r\n \
+    \        if (space)\r\n            _write(' ');\r\n        _write(head);\r\n \
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n"
@@ -355,9 +355,9 @@ data:
     \ Tail &...tail) {\r\n        assert(_read(head));\r\n        read(tail...);\r\
     \n    }\r\n    template <bool ln = true, bool space = false> inline void write()\
     \ {\r\n        if (ln)\r\n            _write('\\n');\r\n    }\r\n    template\
-    \ <bool ln = true, bool space = true, typename Head,\r\n              typename...\
+    \ <bool ln = true, bool space = false, typename Head,\r\n              typename...\
     \ Tail>\r\n    inline void write(const Head &head, const Tail &...tail) {\r\n\
-    \        _write(head);\r\n        if (space)\r\n            _write(' ');\r\n \
+    \        if (space)\r\n            _write(' ');\r\n        _write(head);\r\n \
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */"
@@ -365,7 +365,7 @@ data:
   isVerificationFile: false
   path: Utility/fastio.hpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
+  timestamp: '2024-01-12 04:46:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_deque_operate_all_composite.test.cpp

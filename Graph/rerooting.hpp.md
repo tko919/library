@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_1595.test.cpp
     title: Verify/AOJ_1595.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/rerooting.md
     document_title: Rerooting
@@ -64,7 +64,7 @@ data:
   path: Graph/rerooting.hpp
   requiredBy: []
   timestamp: '2023-06-14 14:20:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/AOJ_1595.test.cpp
 documentation_of: Graph/rerooting.hpp

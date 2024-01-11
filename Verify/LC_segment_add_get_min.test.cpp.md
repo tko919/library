@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/lichaotree.hpp
     title: Convex Hull Trick (Li Chao Tree)
   - icon: ':question:'

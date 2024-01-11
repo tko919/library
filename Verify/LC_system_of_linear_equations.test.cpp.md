@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
   - icon: ':question:'

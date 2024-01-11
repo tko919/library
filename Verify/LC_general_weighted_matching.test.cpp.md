@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/generalweightedmatching.hpp
     title: General Weighted Matching
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/general_weighted_matching
@@ -129,9 +129,9 @@ data:
     \ Tail &...tail) {\r\n        assert(_read(head));\r\n        read(tail...);\r\
     \n    }\r\n    template <bool ln = true, bool space = false> inline void write()\
     \ {\r\n        if (ln)\r\n            _write('\\n');\r\n    }\r\n    template\
-    \ <bool ln = true, bool space = true, typename Head,\r\n              typename...\
+    \ <bool ln = true, bool space = false, typename Head,\r\n              typename...\
     \ Tail>\r\n    inline void write(const Head &head, const Tail &...tail) {\r\n\
-    \        _write(head);\r\n        if (space)\r\n            _write(' ');\r\n \
+    \        if (space)\r\n            _write(' ');\r\n        _write(head);\r\n \
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_general_weighted_matching.test.cpp\"\
@@ -236,8 +236,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_general_weighted_matching.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 04:46:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_general_weighted_matching.test.cpp
 layout: document
