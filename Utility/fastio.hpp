@@ -236,12 +236,12 @@ class FastIO {
         if (ln)
             _write('\n');
     }
-    template <bool ln = true, bool space = true, typename Head,
+    template <bool ln = true, bool space = false, typename Head,
               typename... Tail>
     inline void write(const Head &head, const Tail &...tail) {
-        _write(head);
         if (space)
             _write(' ');
+        _write(head);
         write<ln, true>(tail...);
     }
     inline void flush() {
