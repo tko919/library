@@ -5,18 +5,20 @@
 #include "Convolution/ntt.hpp"
 #include "FPS/fps.hpp"
 
-using Fp=fp<998244353>;
-NTT<Fp,3> ntt;
-template<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}
+using Fp = fp<998244353>;
+NTT<Fp> ntt;
+template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
+    return ntt.ntt(v, inv);
+}
 
-int main(){
+int main() {
     int n;
-    cin>>n;
+    cin >> n;
     ll k;
-    cin>>k;
+    cin >> k;
     Poly<Fp> a(n);
-    rep(i,0,n)cin>>a[i];
-    a=a.pow(k);
-    rep(i,0,n)cout<<a[i]<<'\n';
+    rep(i, 0, n) cin >> a[i];
+    a = a.pow(k);
+    rep(i, 0, n) cout << a[i] << '\n';
     return 0;
 }

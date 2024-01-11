@@ -3,7 +3,7 @@
 template <int mod = 1000000007> struct fp {
     int v;
     static constexpr int get_mod() { return mod; }
-    int inv() const {
+    constexpr int inv() const {
         int tmp, a = v, b = mod, x = 1, y = 0;
         while (b)
             tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);
@@ -12,7 +12,7 @@ template <int mod = 1000000007> struct fp {
         }
         return x;
     }
-    fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}
+    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}
     fp operator-() const { return fp() - *this; }
     fp pow(ll t) {
         assert(t >= 0);
