@@ -1,16 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
-    path: Math/factorial.hpp
-    title: Factorial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
@@ -21,36 +18,26 @@ data:
   attributes:
     document_title: P-recursive
     links: []
-  bundledCode: "#line 2 \"Math/factorial.hpp\"\n\ntemplate<typename T>struct factorial\
-    \ {\n    vector<T> Fact,Finv,Inv;\n    factorial(int maxx){\n        Fact.resize(maxx);\
-    \ Finv.resize(maxx); Inv.resize(maxx);\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\n\
-    \        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=T(1)/Fact[maxx-1];\n\
-    \        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\n\
-    \    }\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\n\
-    \    T inv(int n){if(n<0)return 0; return Inv[n];}\n    T nPr(int n,int r,bool\
-    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\n   \
-    \ T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\n\
-    \    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\n};\n\n/**\n * @brief\
-    \ Factorial\n*/\n#line 3 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename T>Poly<T>\
+  bundledCode: "#line 2 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename T>Poly<T>\
     \ SamplePointsShift(vector<T>& ys,T c,int m=-1){\n    ll n=ys.size()-1,C=c.v%T::get_mod();\n\
-    \    if(m==-1)m=n+1;\n    factorial<T> fact(ys.size());\n    if(C<=n){\n     \
-    \   Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n        if(int(res.size())>=m){\n\
-    \            res.resize(m);\n            return res;\n        }\n        auto\
-    \ add=SamplePointsShift<T>(ys,n+1,m-res.size());\n        for(int i=0;int(res.size())<m;i++){\n\
-    \            res.push_back(add[i]);\n        }\n        return res;\n    }\n \
-    \   if(C+m>T::get_mod()){\n        auto res=SamplePointsShift<T>(ys,c,T::get_mod()-c.v);\n\
-    \        auto add=SamplePointsShift<T>(ys,0,m-res.size());\n        rep(i,0,add.size())res.push_back(add[i]);\n\
-    \        return res;\n    }\n\n    Poly<T> A(n+1),B(m+n);\n    rep(i,0,n+1){\n\
-    \        A[i]=ys[i]*fact.fact(i,1)*fact.fact(n-i,1);\n        if((n-i)&1)A[i]=-A[i];\n\
-    \    }\n    rep(i,0,m+n)B[i]=Fp(1)/(c-n+i);\n    auto AB=A*B;\n    vector<Fp>\
-    \ res(m);\n    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n    rep(i,0,m){\n   \
-    \     res[i]=AB[n+i]*base;\n        base*=(c+i+1);\n        base*=B[i];\n    }\n\
-    \    return res;\n}\n\n/**\n * @brief Shift of Sampling Points of Polynomial\n\
-    */\n#line 2 \"Math/matrix.hpp\"\n\r\ntemplate<class T>struct Matrix{\r\n    int\
-    \ h,w; vector<vector<T>> val; T det;\r\n    Matrix(){}\r\n    Matrix(int n):h(n),w(n),val(vector<vector<T>>(n,vector<T>(n))){}\r\
-    \n    Matrix(int n,int m):h(n),w(m),val(vector<vector<T>>(n,vector<T>(m))){}\r\
-    \n    vector<T>& operator[](const int i){return val[i];}\r\n    Matrix& operator+=(const\
-    \ Matrix& m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];\r\
+    \    if(m==-1)m=n+1;\n    if(C<=n){\n        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n\
+    \        if(int(res.size())>=m){\n            res.resize(m);\n            return\
+    \ res;\n        }\n        auto add=SamplePointsShift<T>(ys,n+1,m-res.size());\n\
+    \        for(int i=0;int(res.size())<m;i++){\n            res.push_back(add[i]);\n\
+    \        }\n        return res;\n    }\n    if(C+m>T::get_mod()){\n        auto\
+    \ res=SamplePointsShift<T>(ys,c,T::get_mod()-c.v);\n        auto add=SamplePointsShift<T>(ys,0,m-res.size());\n\
+    \        rep(i,0,add.size())res.push_back(add[i]);\n        return res;\n    }\n\
+    \n    Poly<T> A(n+1),B(m+n);\n    rep(i,0,n+1){\n        A[i]=ys[i]*Fact<T>(i,1)*Fact<T>(n-i,1);\n\
+    \        if((n-i)&1)A[i]=-A[i];\n    }\n    rep(i,0,m+n)B[i]=Fp(1)/(c-n+i);\n\
+    \    auto AB=A*B;\n    vector<T> res(m);\n    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n\
+    \    rep(i,0,m){\n        res[i]=AB[n+i]*base;\n        base*=(c+i+1);\n     \
+    \   base*=B[i];\n    }\n    return res;\n}\n\n/**\n * @brief Shift of Sampling\
+    \ Points of Polynomial\n*/\n#line 2 \"Math/matrix.hpp\"\n\r\ntemplate<class T>struct\
+    \ Matrix{\r\n    int h,w; vector<vector<T>> val; T det;\r\n    Matrix(){}\r\n\
+    \    Matrix(int n):h(n),w(n),val(vector<vector<T>>(n,vector<T>(n))){}\r\n    Matrix(int\
+    \ n,int m):h(n),w(m),val(vector<vector<T>>(n,vector<T>(m))){}\r\n    vector<T>&\
+    \ operator[](const int i){return val[i];}\r\n    Matrix& operator+=(const Matrix&\
+    \ m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];\r\
     \n        return *this;\r\n    }\r\n    Matrix& operator-=(const Matrix& m){\r\
     \n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]-=m.val[i][j];\r\
     \n        return *this;\r\n    }\r\n    Matrix& operator*=(const Matrix& m){\r\
@@ -70,9 +57,10 @@ data:
     \n            }\r\n            res.push_back(i);\r\n            cur++;\r\n   \
     \     }\r\n        return res;\r\n    }\r\n    Matrix inv(){\r\n        assert(h==w);\r\
     \n        Matrix base(h,h*2),res(h,h);\r\n        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];\r\
-    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\
-    \n        return res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n  \
-    \      assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
+    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        det=base.det;\r\
+    \n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\n        return\
+    \ res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n        assert(h==m.h\
+    \ and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
     \ false;\r\n        return true;\r\n    }\r\n    bool operator!=(const Matrix&\
     \ m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]==m.val[i][j])return\
     \ false;\r\n        return true;\r\n    }\r\n    friend istream& operator>>(istream&\
@@ -166,13 +154,12 @@ data:
     \ * @brief P-recursive\n*/"
   dependsOn:
   - FPS/samplepointshift.hpp
-  - Math/factorial.hpp
   - Math/matrix.hpp
   - Math/linearequation.hpp
   isVerificationFile: false
   path: FPS/p-recursive.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/p-recursive.hpp

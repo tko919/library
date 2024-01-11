@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Primitive Function
     links: []
@@ -72,14 +72,13 @@ data:
     \n        ll t=d;\r\n        m64 y=m64(x).pow(t);\r\n        while(t!=n-1 and\
     \ y!=1 and y!=n-1){\r\n            y*=y;\r\n            t<<=1;\r\n        }\r\n\
     \        if(y!=n-1 and (t&1)==0)return 0;\r\n    } return 1;\r\n}\r\n\r\n/**\r\
-    \n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\r\nstruct Random{\r\
-    \n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
-    \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
-    \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
-    \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
-    \ template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\n    }\r\
-    \n    double uniform(){\r\n        return double(get())/UINT_MAX;\r\n    }\r\n\
-    \    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\r\nnamespace\
+    \ Random{\r\n    mt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n    using u64=unsigned long long;\r\n    u64 get(){\r\n        return randgen();\r\
+    \n    }\r\n    template<typename T>T get(T L){\r\n        return get()%(L+1);\r\
+    \n    }\r\n    template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\
+    \n    }\r\n    double uniform(){\r\n        return double(get(1000000000))/1000000000;\r\
+    \n    }\r\n    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
     \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
     \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
     \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
@@ -181,10 +180,10 @@ data:
   isVerificationFile: false
   path: Math/primitive.hpp
   requiredBy:
-  - Math/binomquery.hpp
   - Convolution/multivariatecyclic.hpp
-  timestamp: '2023-06-14 14:20:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - Math/binomquery.hpp
+  timestamp: '2024-01-12 04:16:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp

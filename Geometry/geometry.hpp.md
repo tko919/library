@@ -89,24 +89,24 @@ data:
     \ isConvex(const Poly& a){\r\n    int n=a.size();\r\n    int cur,pre,nxt;\r\n\
     \    rep(i,0,n){\r\n        pre=(i-1+n)%n;\r\n        nxt=(i+1)%n;\r\n       \
     \ cur=i;\r\n        if(ccw(a[pre],a[cur],a[nxt])==-1)return 0;\r\n    }\r\n  \
-    \  return 1;\r\n}\r\nint isContained(const Poly& a,const Point& b){\r\n    bool\
-    \ res=0;\r\n    int n=a.size();\r\n    rep(i,0,n){\r\n        Point p=a[i]-b,q=a[(i+1)%n]-b;\r\
-    \n        if(p.Y>q.Y)swap(p,q);\r\n        if(p.Y<eps and eps<q.Y and cross(p,q)>eps)res^=1;\r\
-    \n        if(eq(cross(p,q),.0) and dot(p,q)<eps)return 1;\r\n    }\r\n    return\
-    \ (res?2:0);\r\n}\r\nPoly ConvexHull(Poly& a){\r\n    int n=a.size(),k=0;\r\n\
-    \    sort(ALL(a),[](const Point& p,const Point& q){\r\n        return (eq(p.Y,q.Y)?p.X<q.X:p.Y<q.Y);\r\
-    \n    });\r\n    Poly res(n*2);\r\n    for(int i=0;i<n;res[k++]=a[i++]){\r\n \
-    \       while(k>=2 and cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n  \
-    \  }\r\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\r\n        while(k>=t and\
-    \ cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n    }\r\n    res.resize(k-1);\
-    \ return res;\r\n}\r\nT Diam(const Poly& a){\r\n    int n=a.size();\r\n    int\
-    \ x=0,y=0;\r\n    rep(i,1,n){\r\n        if(a[i].Y>a[x].Y)x=i;\r\n        if(a[i].Y<a[y].Y)y=i;\r\
-    \n    }\r\n    T res=abs(a[x]-a[y]);\r\n    int i=x,j=y;\r\n    do{\r\n      \
-    \  if(cross(a[(i+1)%n]-a[i],a[(j+1)%n]-a[j])<0)i=(i+1)%n;\r\n        else j=(j+1)%n;\r\
-    \n        chmax(res,abs(a[i]-a[j]));\r\n    }while(i!=x or j!=y);\r\n    return\
-    \ res;\r\n}\r\nPoly Cut(const Poly& a,const Line& l){\r\n    int n=a.size(); Poly\
-    \ res;\r\n    rep(i,0,n){\r\n        Point p=a[i],q=a[(i+1)%n];\r\n        if(ccw(l.a,l.b,p)!=-1)res.push_back(p);\r\
-    \n        if(ccw(l.a,l.b,p)*ccw(l.a,l.b,q)<0)res.push_back(Intersection(Line(p,q),l));\r\
+    \  return 1;\r\n}\r\nint isContained(const Poly& a,const Point& b){ // 0:not contain,1:on\
+    \ edge,2:contain\r\n    bool res=0;\r\n    int n=a.size();\r\n    rep(i,0,n){\r\
+    \n        Point p=a[i]-b,q=a[(i+1)%n]-b;\r\n        if(p.Y>q.Y)swap(p,q);\r\n\
+    \        if(p.Y<eps and eps<q.Y and cross(p,q)>eps)res^=1;\r\n        if(eq(cross(p,q),.0)\
+    \ and dot(p,q)<eps)return 1;\r\n    }\r\n    return (res?2:0);\r\n}\r\nPoly ConvexHull(Poly&\
+    \ a){\r\n    int n=a.size(),k=0;\r\n    sort(ALL(a),[](const Point& p,const Point&\
+    \ q){\r\n        return (eq(p.Y,q.Y)?p.X<q.X:p.Y<q.Y);\r\n    });\r\n    Poly\
+    \ res(n*2);\r\n    for(int i=0;i<n;res[k++]=a[i++]){\r\n        while(k>=2 and\
+    \ cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n    }\r\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\r\
+    \n        while(k>=t and cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n\
+    \    }\r\n    res.resize(k-1); return res;\r\n}\r\nT Diam(const Poly& a){\r\n\
+    \    int n=a.size();\r\n    int x=0,y=0;\r\n    rep(i,1,n){\r\n        if(a[i].Y>a[x].Y)x=i;\r\
+    \n        if(a[i].Y<a[y].Y)y=i;\r\n    }\r\n    T res=abs(a[x]-a[y]);\r\n    int\
+    \ i=x,j=y;\r\n    do{\r\n        if(cross(a[(i+1)%n]-a[i],a[(j+1)%n]-a[j])<0)i=(i+1)%n;\r\
+    \n        else j=(j+1)%n;\r\n        chmax(res,abs(a[i]-a[j]));\r\n    }while(i!=x\
+    \ or j!=y);\r\n    return res;\r\n}\r\nPoly Cut(const Poly& a,const Line& l){\r\
+    \n    int n=a.size(); Poly res;\r\n    rep(i,0,n){\r\n        Point p=a[i],q=a[(i+1)%n];\r\
+    \n        if(ccw(l.a,l.b,p)!=-1)res.push_back(p);\r\n        if(ccw(l.a,l.b,p)*ccw(l.a,l.b,q)<0)res.push_back(Intersection(Line(p,q),l));\r\
     \n    }\r\n    return res;\r\n}\r\n\r\nT Closest(Poly& a){\r\n    int n=a.size();\r\
     \n    if(n<=1)return 0;\r\n    sort(ALL(a),[&](Point a,Point b){return (eq(a.X,b.X)?a.Y<b.Y:a.X<b.X);});\r\
     \n    Poly buf(n);\r\n    auto rec=[&](auto self,int lb,int rb)->T{\r\n      \
@@ -212,24 +212,24 @@ data:
     \ isConvex(const Poly& a){\r\n    int n=a.size();\r\n    int cur,pre,nxt;\r\n\
     \    rep(i,0,n){\r\n        pre=(i-1+n)%n;\r\n        nxt=(i+1)%n;\r\n       \
     \ cur=i;\r\n        if(ccw(a[pre],a[cur],a[nxt])==-1)return 0;\r\n    }\r\n  \
-    \  return 1;\r\n}\r\nint isContained(const Poly& a,const Point& b){\r\n    bool\
-    \ res=0;\r\n    int n=a.size();\r\n    rep(i,0,n){\r\n        Point p=a[i]-b,q=a[(i+1)%n]-b;\r\
-    \n        if(p.Y>q.Y)swap(p,q);\r\n        if(p.Y<eps and eps<q.Y and cross(p,q)>eps)res^=1;\r\
-    \n        if(eq(cross(p,q),.0) and dot(p,q)<eps)return 1;\r\n    }\r\n    return\
-    \ (res?2:0);\r\n}\r\nPoly ConvexHull(Poly& a){\r\n    int n=a.size(),k=0;\r\n\
-    \    sort(ALL(a),[](const Point& p,const Point& q){\r\n        return (eq(p.Y,q.Y)?p.X<q.X:p.Y<q.Y);\r\
-    \n    });\r\n    Poly res(n*2);\r\n    for(int i=0;i<n;res[k++]=a[i++]){\r\n \
-    \       while(k>=2 and cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n  \
-    \  }\r\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\r\n        while(k>=t and\
-    \ cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n    }\r\n    res.resize(k-1);\
-    \ return res;\r\n}\r\nT Diam(const Poly& a){\r\n    int n=a.size();\r\n    int\
-    \ x=0,y=0;\r\n    rep(i,1,n){\r\n        if(a[i].Y>a[x].Y)x=i;\r\n        if(a[i].Y<a[y].Y)y=i;\r\
-    \n    }\r\n    T res=abs(a[x]-a[y]);\r\n    int i=x,j=y;\r\n    do{\r\n      \
-    \  if(cross(a[(i+1)%n]-a[i],a[(j+1)%n]-a[j])<0)i=(i+1)%n;\r\n        else j=(j+1)%n;\r\
-    \n        chmax(res,abs(a[i]-a[j]));\r\n    }while(i!=x or j!=y);\r\n    return\
-    \ res;\r\n}\r\nPoly Cut(const Poly& a,const Line& l){\r\n    int n=a.size(); Poly\
-    \ res;\r\n    rep(i,0,n){\r\n        Point p=a[i],q=a[(i+1)%n];\r\n        if(ccw(l.a,l.b,p)!=-1)res.push_back(p);\r\
-    \n        if(ccw(l.a,l.b,p)*ccw(l.a,l.b,q)<0)res.push_back(Intersection(Line(p,q),l));\r\
+    \  return 1;\r\n}\r\nint isContained(const Poly& a,const Point& b){ // 0:not contain,1:on\
+    \ edge,2:contain\r\n    bool res=0;\r\n    int n=a.size();\r\n    rep(i,0,n){\r\
+    \n        Point p=a[i]-b,q=a[(i+1)%n]-b;\r\n        if(p.Y>q.Y)swap(p,q);\r\n\
+    \        if(p.Y<eps and eps<q.Y and cross(p,q)>eps)res^=1;\r\n        if(eq(cross(p,q),.0)\
+    \ and dot(p,q)<eps)return 1;\r\n    }\r\n    return (res?2:0);\r\n}\r\nPoly ConvexHull(Poly&\
+    \ a){\r\n    int n=a.size(),k=0;\r\n    sort(ALL(a),[](const Point& p,const Point&\
+    \ q){\r\n        return (eq(p.Y,q.Y)?p.X<q.X:p.Y<q.Y);\r\n    });\r\n    Poly\
+    \ res(n*2);\r\n    for(int i=0;i<n;res[k++]=a[i++]){\r\n        while(k>=2 and\
+    \ cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n    }\r\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\r\
+    \n        while(k>=t and cross(res[k-1]-res[k-2],a[i]-res[k-1])<-eps)k--;\r\n\
+    \    }\r\n    res.resize(k-1); return res;\r\n}\r\nT Diam(const Poly& a){\r\n\
+    \    int n=a.size();\r\n    int x=0,y=0;\r\n    rep(i,1,n){\r\n        if(a[i].Y>a[x].Y)x=i;\r\
+    \n        if(a[i].Y<a[y].Y)y=i;\r\n    }\r\n    T res=abs(a[x]-a[y]);\r\n    int\
+    \ i=x,j=y;\r\n    do{\r\n        if(cross(a[(i+1)%n]-a[i],a[(j+1)%n]-a[j])<0)i=(i+1)%n;\r\
+    \n        else j=(j+1)%n;\r\n        chmax(res,abs(a[i]-a[j]));\r\n    }while(i!=x\
+    \ or j!=y);\r\n    return res;\r\n}\r\nPoly Cut(const Poly& a,const Line& l){\r\
+    \n    int n=a.size(); Poly res;\r\n    rep(i,0,n){\r\n        Point p=a[i],q=a[(i+1)%n];\r\
+    \n        if(ccw(l.a,l.b,p)!=-1)res.push_back(p);\r\n        if(ccw(l.a,l.b,p)*ccw(l.a,l.b,q)<0)res.push_back(Intersection(Line(p,q),l));\r\
     \n    }\r\n    return res;\r\n}\r\n\r\nT Closest(Poly& a){\r\n    int n=a.size();\r\
     \n    if(n<=1)return 0;\r\n    sort(ALL(a),[&](Point a,Point b){return (eq(a.X,b.X)?a.Y<b.Y:a.X<b.X);});\r\
     \n    Poly buf(n);\r\n    auto rec=[&](auto self,int lb,int rb)->T{\r\n      \
@@ -259,7 +259,7 @@ data:
   isVerificationFile: false
   path: Geometry/geometry.hpp
   requiredBy: []
-  timestamp: '2022-01-06 10:09:32+09:00'
+  timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/geometry.hpp

@@ -38,13 +38,13 @@ data:
     }\nbool isParallel(const Line& a,const Line& b){\n    return cross(a.b-a.a,b.b-b.a)==0;\n\
     }\nbool isIntersect(const Segment& a,const Segment& b){\n    return ccw(a.a,a.b,b.a)*ccw(a.a,a.b,b.b)<=0\
     \ and\n        ccw(b.a,b.b,a.a)*ccw(b.a,b.b,a.b)<=0;\n}\n \nint isContained(const\
-    \ Poly& a,const Point& b){\n    bool res=0;\n    int n=a.size();\n    rep(i,0,n){\n\
-    \        Point p=a[i]-b,q=a[(i+1)%n]-b;\n        if(p.Y>q.Y)swap(p,q);\n     \
-    \   if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n        if(cross(p,q)==0 and\
-    \ dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n}\nPoly ConvexHull(Poly&\
-    \ a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n    sort(ALL(a),[](const\
-    \ Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n    });\n\
-    \    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
+    \ Poly& a,const Point& b){ // 0:not contain,1:on edge,2:contain\n    bool res=0;\n\
+    \    int n=a.size();\n    rep(i,0,n){\n        Point p=a[i]-b,q=a[(i+1)%n]-b;\n\
+    \        if(p.Y>q.Y)swap(p,q);\n        if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n\
+    \        if(cross(p,q)==0 and dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n\
+    }\nPoly ConvexHull(Poly& a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n\
+    \    sort(ALL(a),[](const Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n\
+    \    });\n    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
     \ and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\n\
     \        while(k>=t and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n\
     \    res.resize(k-1); return res;\n}\n \n/**\n * @brief Geometry(integer Coordinates)\n\
@@ -78,13 +78,13 @@ data:
     }\nbool isParallel(const Line& a,const Line& b){\n    return cross(a.b-a.a,b.b-b.a)==0;\n\
     }\nbool isIntersect(const Segment& a,const Segment& b){\n    return ccw(a.a,a.b,b.a)*ccw(a.a,a.b,b.b)<=0\
     \ and\n        ccw(b.a,b.b,a.a)*ccw(b.a,b.b,a.b)<=0;\n}\n \nint isContained(const\
-    \ Poly& a,const Point& b){\n    bool res=0;\n    int n=a.size();\n    rep(i,0,n){\n\
-    \        Point p=a[i]-b,q=a[(i+1)%n]-b;\n        if(p.Y>q.Y)swap(p,q);\n     \
-    \   if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n        if(cross(p,q)==0 and\
-    \ dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n}\nPoly ConvexHull(Poly&\
-    \ a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n    sort(ALL(a),[](const\
-    \ Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n    });\n\
-    \    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
+    \ Poly& a,const Point& b){ // 0:not contain,1:on edge,2:contain\n    bool res=0;\n\
+    \    int n=a.size();\n    rep(i,0,n){\n        Point p=a[i]-b,q=a[(i+1)%n]-b;\n\
+    \        if(p.Y>q.Y)swap(p,q);\n        if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n\
+    \        if(cross(p,q)==0 and dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n\
+    }\nPoly ConvexHull(Poly& a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n\
+    \    sort(ALL(a),[](const Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n\
+    \    });\n    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
     \ and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\n\
     \        while(k>=t and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n\
     \    res.resize(k-1); return res;\n}\n \n/**\n * @brief Geometry(integer Coordinates)\n\
@@ -93,7 +93,7 @@ data:
   isVerificationFile: false
   path: Geometry/intCoord.hpp
   requiredBy: []
-  timestamp: '2022-12-07 05:58:52+09:00'
+  timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/intCoord.hpp

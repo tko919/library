@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Randomized Binary Search Tree (set)
     links: []
   bundledCode: "#line 2 \"DataStructure/rbstset.hpp\"\n\r\n#line 2 \"Utility/random.hpp\"\
-    \n\r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
-    \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
-    \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
-    \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
-    \ template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\n    }\r\
-    \n    double uniform(){\r\n        return double(get())/UINT_MAX;\r\n    }\r\n\
-    \    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n\r\nnamespace Random{\r\n    mt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n    using u64=unsigned long long;\r\n    u64 get(){\r\n        return randgen();\r\
+    \n    }\r\n    template<typename T>T get(T L){\r\n        return get()%(L+1);\r\
+    \n    }\r\n    template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\
+    \n    }\r\n    double uniform(){\r\n        return double(get(1000000000))/1000000000;\r\
+    \n    }\r\n    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
     \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
     \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
     \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
@@ -119,8 +118,8 @@ data:
   isVerificationFile: false
   path: DataStructure/rbstset.hpp
   requiredBy: []
-  timestamp: '2022-02-06 02:40:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-12 04:16:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_predecessor_problem.test.cpp
 documentation_of: DataStructure/rbstset.hpp

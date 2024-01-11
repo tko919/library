@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -58,93 +58,116 @@ data:
     \n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\n#define UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())\r\
-    \n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v) *max_element(ALL(v))\r\
-    \n#define LB(v,x) lower_bound(ALL(v),(x))-(v).begin()\r\n#define UB(v,x) upper_bound(ALL(v),(x))-(v).begin()\r\
-    \n\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF =\
-    \ 0x1fffffffffffffff;\r\n\r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return\
-    \ 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return\
-    \ 1;}return 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0);\
-    \ if(y<0)x=-x,y=-y; return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename\
-    \ U>T floor(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\
-    \ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename\
-    \ T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename\
-    \ T>int lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Utility/fastio.hpp\"\
-    \n#include <unistd.h>\r\n\r\nclass FastIO{\r\n    static constexpr int L=1<<16;\r\
-    \n    char rdbuf[L];\r\n    int rdLeft=0,rdRight=0;\r\n    inline void reload(){\r\
-    \n        int len=rdRight-rdLeft;\r\n        memmove(rdbuf,rdbuf+rdLeft,len);\r\
-    \n        rdLeft=0,rdRight=len;\r\n        rdRight+=fread(rdbuf+len,1,L-len,stdin);\r\
-    \n    }\r\n    inline bool skip(){\r\n        for(;;){\r\n            while(rdLeft!=rdRight\
-    \ and rdbuf[rdLeft]<=' ')rdLeft++;\r\n            if(rdLeft==rdRight){\r\n   \
-    \             reload();\r\n                if(rdLeft==rdRight)return false;\r\n\
-    \            }\r\n            else break;\r\n        }\r\n        return true;\r\
-    \n    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
-    \ bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
-    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
-    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
-    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t&\
-    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
-    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
-    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdLeft<rdRight){\r\n            x=x*10+(neg?-(rdbuf[rdLeft++]^48):(rdbuf[rdLeft++]^48));\r\
-    \n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__uint128_t&\
-    \ x){\r\n        if(!skip())return false;\r\n        if(rdLeft+40>=rdRight)reload();\r\
-    \n        x=0;\r\n        while(rdbuf[rdLeft]>='0' and rdLeft<rdRight){\r\n  \
-    \          x=x*10+(rdbuf[rdLeft++]^48);\r\n        }\r\n        return true;\r\
-    \n    }\r\n    template<typename T,enable_if_t<is_floating_point<T>::value,int>\
-    \ =0>inline bool _read(T& x){\r\n        if(!skip())return false;\r\n        if(rdLeft+20>=rdRight)reload();\r\
-    \n        bool neg=false;\r\n        if(rdbuf[rdLeft]=='-'){\r\n            neg=true;\r\
-    \n            rdLeft++;\r\n        }\r\n        x=0;\r\n        while(rdbuf[rdLeft]>='0'\
-    \ and rdbuf[rdLeft]<='9' and rdLeft<rdRight){\r\n            x=x*10+(rdbuf[rdLeft++]^48);\r\
-    \n        }\r\n        if(rdbuf[rdLeft]!='.')return true;\r\n        rdLeft++;\r\
-    \n        T base=.1;\r\n        while(rdbuf[rdLeft]>='0' and rdbuf[rdLeft]<='9'\
-    \ and rdLeft<rdRight){\r\n            x+=base*(rdbuf[rdLeft++]^48);\r\n      \
-    \      base*=.1;\r\n        }\r\n        if(neg)x=-x;\r\n        return true;\r\
-    \n    }\r\n    inline bool _read(char& x){\r\n        if(!skip())return false;\r\
-    \n        if(rdLeft+1>=rdRight)reload();\r\n        x=rdbuf[rdLeft++];\r\n   \
-    \     return true;\r\n    }\r\n    inline bool _read(string& x){\r\n        if(!skip())return\
-    \ false;\r\n        for(;;){\r\n            int pos=rdLeft;\r\n            while(pos<rdRight\
-    \ and rdbuf[pos]>' ')pos++;\r\n            x.append(rdbuf+rdLeft,pos-rdLeft);\r\
-    \n            if(rdLeft==pos)break;\r\n            rdLeft=pos;\r\n           \
-    \ if(rdLeft==rdRight)reload();\r\n            else break;\r\n        }\r\n   \
-    \     return true;\r\n    }\r\n    template<typename T>inline bool _read(vector<T>&\
-    \ v){\r\n        for(auto& x:v){\r\n            if(!_read(x))return false;\r\n\
-    \        }\r\n        return true;\r\n    }\r\n\r\n    char wtbuf[L],tmp[50];\r\
-    \n    int wtRight=0;\r\n    inline void flush(){\r\n        fwrite(wtbuf,1,wtRight,stdout);\r\
-    \n        wtRight=0;\r\n    }\r\n    inline void _write(const char& x){\r\n  \
-    \      if(wtRight>L-32)flush();\r\n        wtbuf[wtRight++]=x;\r\n    }\r\n  \
-    \  inline void _write(const string& x){\r\n        for(auto& c:x)_write(c);\r\n\
-    \    }\r\n    template<typename T,enable_if_t<is_integral<T>::value,int> =0>inline\
-    \ void _write(T x){\r\n        if(wtRight>L-32)flush();\r\n        if(x==0){\r\
-    \n            _write('0');\r\n            return;\r\n        }\r\n        else\
-    \ if(x<0){\r\n            _write('-');\r\n            if (__builtin_expect(x ==\
-    \ std::numeric_limits<T>::min(), 0)) {\r\n                switch (sizeof(x)) {\r\
-    \n                case 2: _write(\"32768\"); return;\r\n                case 4:\
-    \ _write(\"2147483648\"); return;\r\n                case 8: _write(\"9223372036854775808\"\
-    ); return;\r\n                }\r\n            }\r\n            x=-x;\r\n    \
-    \    }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
-    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
-    \n        wtRight+=pos;\r\n    }\r\n    inline void _write(__int128_t x){\r\n\
-    \        if(wtRight>L-40)flush();\r\n        if(x==0){\r\n            _write('0');\r\
-    \n            return;\r\n        }\r\n        else if(x<0){\r\n            _write('-');\r\
-    \n            x=-x;\r\n        }\r\n        int pos=0;\r\n        while(x!=0){\r\
-    \n            tmp[pos++]=char((x%10)|48);\r\n            x/=10;\r\n        }\r\
-    \n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\n        wtRight+=pos;\r\
-    \n    }\r\n    inline void _write(__uint128_t x){\r\n        if(wtRight>L-40)flush();\r\
-    \n        if(x==0){\r\n            _write('0');\r\n            return;\r\n   \
-    \     }\r\n        int pos=0;\r\n        while(x!=0){\r\n            tmp[pos++]=char((x%10)|48);\r\
-    \n            x/=10;\r\n        }\r\n        rep(i,0,pos)wtbuf[wtRight+i]=tmp[pos-1-i];\r\
-    \n        wtRight+=pos;\r\n    }\r\n    template<typename T>inline void _write(const\
-    \ vector<T>& v){\r\n        rep(i,0,v.size()){\r\n            if(i)_write(' ');\r\
-    \n            _write(v[i]);\r\n        }\r\n    }\r\npublic:\r\n    FastIO(){}\r\
-    \n    ~FastIO(){flush();}\r\n    inline void read(){}\r\n    template <typename\
-    \ Head, typename... Tail>inline void read(Head& head,Tail&... tail){\r\n     \
-    \   assert(_read(head));\r\n        read(tail...); \r\n    }\r\n    template<bool\
-    \ ln=true,bool space=false>inline void write(){if(ln)_write('\\n');}\r\n    template\
-    \ <bool ln=true,bool space=false,typename Head, typename... Tail>inline void write(const\
-    \ Head& head,const Tail&... tail){\r\n        if(space)_write(' ');\r\n      \
-    \  _write(head);\r\n        write<ln,true>(tail...); \r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\
+    \n#define SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define\
+    \ MAX(v) *max_element(ALL(v))\r\n#define LB(v,x) int(lower_bound(ALL(v),(x))-(v).begin())\r\
+    \n#define UB(v,x) int(upper_bound(ALL(v),(x))-(v).begin())\r\n\r\nusing ll=long\
+    \ long int;\r\nusing ull=unsigned long long;\r\nusing i128=__int128_t;\r\nusing\
+    \ u128=__uint128_t;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
+    \n\r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
+    \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
+    \ 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y;\
+    \ return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename U>T floor(T x,U\
+    \ y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\ntemplate<typename\
+    \ T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename T>int\
+    \ topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename T>int\
+    \ lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Utility/fastio.hpp\"\
+    \n#include <unistd.h>\r\n\r\nclass FastIO {\r\n    static constexpr int L = 1\
+    \ << 16;\r\n    char rdbuf[L];\r\n    int rdLeft = 0, rdRight = 0;\r\n    inline\
+    \ void reload() {\r\n        int len = rdRight - rdLeft;\r\n        memmove(rdbuf,\
+    \ rdbuf + rdLeft, len);\r\n        rdLeft = 0, rdRight = len;\r\n        rdRight\
+    \ += fread(rdbuf + len, 1, L - len, stdin);\r\n    }\r\n    inline bool skip()\
+    \ {\r\n        for (;;) {\r\n            while (rdLeft != rdRight and rdbuf[rdLeft]\
+    \ <= ' ')\r\n                rdLeft++;\r\n            if (rdLeft == rdRight) {\r\
+    \n                reload();\r\n                if (rdLeft == rdRight)\r\n    \
+    \                return false;\r\n            } else\r\n                break;\r\
+    \n        }\r\n        return true;\r\n    }\r\n    template <typename T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n    inline bool _read(T &x) {\r\n        if (!skip())\r\n     \
+    \       return false;\r\n        if (rdLeft + 20 >= rdRight)\r\n            reload();\r\
+    \n        bool neg = false;\r\n        if (rdbuf[rdLeft] == '-') {\r\n       \
+    \     neg = true;\r\n            rdLeft++;\r\n        }\r\n        x = 0;\r\n\
+    \        while (rdbuf[rdLeft] >= '0' and rdLeft < rdRight) {\r\n            x\
+    \ = x * 10 +\r\n                (neg ? -(rdbuf[rdLeft++] ^ 48) : (rdbuf[rdLeft++]\
+    \ ^ 48));\r\n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t\
+    \ &x) {\r\n        if (!skip())\r\n            return false;\r\n        if (rdLeft\
+    \ + 40 >= rdRight)\r\n            reload();\r\n        bool neg = false;\r\n \
+    \       if (rdbuf[rdLeft] == '-') {\r\n            neg = true;\r\n           \
+    \ rdLeft++;\r\n        }\r\n        x = 0;\r\n        while (rdbuf[rdLeft] >=\
+    \ '0' and rdLeft < rdRight) {\r\n            x = x * 10 +\r\n                (neg\
+    \ ? -(rdbuf[rdLeft++] ^ 48) : (rdbuf[rdLeft++] ^ 48));\r\n        }\r\n      \
+    \  return true;\r\n    }\r\n    inline bool _read(__uint128_t &x) {\r\n      \
+    \  if (!skip())\r\n            return false;\r\n        if (rdLeft + 40 >= rdRight)\r\
+    \n            reload();\r\n        x = 0;\r\n        while (rdbuf[rdLeft] >= '0'\
+    \ and rdLeft < rdRight) {\r\n            x = x * 10 + (rdbuf[rdLeft++] ^ 48);\r\
+    \n        }\r\n        return true;\r\n    }\r\n    template <typename T, enable_if_t<is_floating_point<T>::value,\
+    \ int> = 0>\r\n    inline bool _read(T &x) {\r\n        if (!skip())\r\n     \
+    \       return false;\r\n        if (rdLeft + 20 >= rdRight)\r\n            reload();\r\
+    \n        bool neg = false;\r\n        if (rdbuf[rdLeft] == '-') {\r\n       \
+    \     neg = true;\r\n            rdLeft++;\r\n        }\r\n        x = 0;\r\n\
+    \        while (rdbuf[rdLeft] >= '0' and rdbuf[rdLeft] <= '9' and\r\n        \
+    \       rdLeft < rdRight) {\r\n            x = x * 10 + (rdbuf[rdLeft++] ^ 48);\r\
+    \n        }\r\n        if (rdbuf[rdLeft] != '.')\r\n            return true;\r\
+    \n        rdLeft++;\r\n        T base = .1;\r\n        while (rdbuf[rdLeft] >=\
+    \ '0' and rdbuf[rdLeft] <= '9' and\r\n               rdLeft < rdRight) {\r\n \
+    \           x += base * (rdbuf[rdLeft++] ^ 48);\r\n            base *= .1;\r\n\
+    \        }\r\n        if (neg)\r\n            x = -x;\r\n        return true;\r\
+    \n    }\r\n    inline bool _read(char &x) {\r\n        if (!skip())\r\n      \
+    \      return false;\r\n        if (rdLeft + 1 >= rdRight)\r\n            reload();\r\
+    \n        x = rdbuf[rdLeft++];\r\n        return true;\r\n    }\r\n    inline\
+    \ bool _read(string &x) {\r\n        if (!skip())\r\n            return false;\r\
+    \n        for (;;) {\r\n            int pos = rdLeft;\r\n            while (pos\
+    \ < rdRight and rdbuf[pos] > ' ')\r\n                pos++;\r\n            x.append(rdbuf\
+    \ + rdLeft, pos - rdLeft);\r\n            if (rdLeft == pos)\r\n             \
+    \   break;\r\n            rdLeft = pos;\r\n            if (rdLeft == rdRight)\r\
+    \n                reload();\r\n            else\r\n                break;\r\n\
+    \        }\r\n        return true;\r\n    }\r\n    template <typename T> inline\
+    \ bool _read(vector<T> &v) {\r\n        for (auto &x : v) {\r\n            if\
+    \ (!_read(x))\r\n                return false;\r\n        }\r\n        return\
+    \ true;\r\n    }\r\n\r\n    char wtbuf[L], tmp[50];\r\n    int wtRight = 0;\r\n\
+    \    inline void _write(const char &x) {\r\n        if (wtRight > L - 32)\r\n\
+    \            flush();\r\n        wtbuf[wtRight++] = x;\r\n    }\r\n    inline\
+    \ void _write(const string &x) {\r\n        for (auto &c : x)\r\n            _write(c);\r\
+    \n    }\r\n    template <typename T, enable_if_t<is_integral<T>::value, int> =\
+    \ 0>\r\n    inline void _write(T x) {\r\n        if (wtRight > L - 32)\r\n   \
+    \         flush();\r\n        if (x == 0) {\r\n            _write('0');\r\n  \
+    \          return;\r\n        } else if (x < 0) {\r\n            _write('-');\r\
+    \n            if (__builtin_expect(x == std::numeric_limits<T>::min(), 0)) {\r\
+    \n                switch (sizeof(x)) {\r\n                case 2:\r\n        \
+    \            _write(\"32768\");\r\n                    return;\r\n           \
+    \     case 4:\r\n                    _write(\"2147483648\");\r\n             \
+    \       return;\r\n                case 8:\r\n                    _write(\"9223372036854775808\"\
+    );\r\n                    return;\r\n                }\r\n            }\r\n  \
+    \          x = -x;\r\n        }\r\n        int pos = 0;\r\n        while (x !=\
+    \ 0) {\r\n            tmp[pos++] = char((x % 10) | 48);\r\n            x /= 10;\r\
+    \n        }\r\n        rep(i, 0, pos) wtbuf[wtRight + i] = tmp[pos - 1 - i];\r\
+    \n        wtRight += pos;\r\n    }\r\n    inline void _write(__int128_t x) {\r\
+    \n        if (wtRight > L - 40)\r\n            flush();\r\n        if (x == 0)\
+    \ {\r\n            _write('0');\r\n            return;\r\n        } else if (x\
+    \ < 0) {\r\n            _write('-');\r\n            x = -x;\r\n        }\r\n \
+    \       int pos = 0;\r\n        while (x != 0) {\r\n            tmp[pos++] = char((x\
+    \ % 10) | 48);\r\n            x /= 10;\r\n        }\r\n        rep(i, 0, pos)\
+    \ wtbuf[wtRight + i] = tmp[pos - 1 - i];\r\n        wtRight += pos;\r\n    }\r\
+    \n    inline void _write(__uint128_t x) {\r\n        if (wtRight > L - 40)\r\n\
+    \            flush();\r\n        if (x == 0) {\r\n            _write('0');\r\n\
+    \            return;\r\n        }\r\n        int pos = 0;\r\n        while (x\
+    \ != 0) {\r\n            tmp[pos++] = char((x % 10) | 48);\r\n            x /=\
+    \ 10;\r\n        }\r\n        rep(i, 0, pos) wtbuf[wtRight + i] = tmp[pos - 1\
+    \ - i];\r\n        wtRight += pos;\r\n    }\r\n    inline void _write(double x)\
+    \ {\r\n        ostringstream oss;\r\n        oss << fixed << setprecision(15)\
+    \ << double(x);\r\n        string s = oss.str();\r\n        _write(s);\r\n   \
+    \ }\r\n    template <typename T> inline void _write(const vector<T> &v) {\r\n\
+    \        rep(i, 0, v.size()) {\r\n            if (i)\r\n                _write('\
+    \ ');\r\n            _write(v[i]);\r\n        }\r\n    }\r\n\r\n  public:\r\n\
+    \    FastIO() {}\r\n    ~FastIO() { flush(); }\r\n    inline void read() {}\r\n\
+    \    template <typename Head, typename... Tail>\r\n    inline void read(Head &head,\
+    \ Tail &...tail) {\r\n        assert(_read(head));\r\n        read(tail...);\r\
+    \n    }\r\n    template <bool ln = true, bool space = false> inline void write()\
+    \ {\r\n        if (ln)\r\n            _write('\\n');\r\n    }\r\n    template\
+    \ <bool ln = true, bool space = true, typename Head,\r\n              typename...\
+    \ Tail>\r\n    inline void write(const Head &head, const Tail &...tail) {\r\n\
+    \        _write(head);\r\n        if (space)\r\n            _write(' ');\r\n \
+    \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
+    \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
+    };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\
     \n\n#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv{\n    using u64=uint64_t;\n\
     \    using u128=__uint128_t;\n    constexpr FastDiv():m(),s(),x(){}\n    constexpr\
     \ FastDiv(int _m)\n        :m(_m),s(__lg(m-1)),x(((u128(1)<<(s+64))+m-1)/m){}\n\
@@ -175,62 +198,172 @@ data:
     \ v==x.v;}\r\n    bool operator!=(const Fp& x)const{return v!=x.v;}\r\nprivate:\r\
     \n    static FastDiv bar;\r\n    static int _getmod(){return bar.get();}\r\n};\r\
     \nFastDiv Fp::bar(998244353);\r\n\r\n/**\r\n * @brief Dynamic Modint\r\n */\n\
-    #line 2 \"Math/modint.hpp\"\n\r\ntemplate<int mod=1000000007>struct fp {\r\n \
-    \   int v;\r\n    static constexpr int get_mod(){return mod;}\r\n    int inv()\
-    \ const{\r\n        int tmp,a=v,b=mod,x=1,y=0;\r\n        while(b)tmp=a/b,a-=tmp*b,swap(a,b),x-=tmp*y,swap(x,y);\r\
-    \n        if(x<0){x+=mod;} return x;\r\n    }\r\n    fp(ll x=0){init(x%mod+mod);}\r\
-    \n    fp& init(ll x){v=(x<mod?x:x-mod); return *this;}\r\n    fp operator-()const{return\
-    \ fp()-*this;}\r\n    fp pow(ll t){assert(t>=0); fp res=1,b=*this; while(t){if(t&1)res*=b;b*=b;t>>=1;}\
-    \ return res;}\r\n    fp& operator+=(const fp& x){return init(v+x.v);}\r\n   \
-    \ fp& operator-=(const fp& x){return init(v+mod-x.v);}\r\n    fp& operator*=(const\
-    \ fp& x){v=ll(v)*x.v%mod; return *this;}\r\n    fp& operator/=(const fp& x){v=ll(v)*x.inv()%mod;\
-    \ return *this;}\r\n    fp operator+(const fp& x)const{return fp(*this)+=x;}\r\
-    \n    fp operator-(const fp& x)const{return fp(*this)-=x;}\r\n    fp operator*(const\
-    \ fp& x)const{return fp(*this)*=x;}\r\n    fp operator/(const fp& x)const{return\
-    \ fp(*this)/=x;}\r\n    bool operator==(const fp& x)const{return v==x.v;}\r\n\
-    \    bool operator!=(const fp& x)const{return v!=x.v;}\r\n    friend istream&\
-    \ operator>>(istream& is,fp& x){return is>>x.v;}\r\n    friend ostream& operator<<(ostream&\
-    \ os,const fp& x){return os<<x.v;}\r\n};\r\n\r\n/**\r\n * @brief Modint\r\n */\n\
-    #line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate<typename T,unsigned p=3>struct NTT{\r\
-    \n    vector<T> rt,irt;\r\n    NTT(int lg=21){\r\n        unsigned m=T::get_mod()-1;\
-    \ T prt=p;\r\n        rt.resize(lg); irt.resize(lg);\r\n        rep(k,0,lg){\r\
-    \n            rt[k]=-prt.pow(m>>(k+2));\r\n            irt[k]=rt[k].inv();\r\n\
-    \        }\r\n    }\r\n    void ntt(vector<T>& f,bool inv=0){\r\n        int n=f.size();\r\
-    \n        if(inv){\r\n            for(int m=1;m<n;m<<=1){ T w=1;\r\n         \
-    \       for(int s=0,t=0;s<n;s+=m*2){\r\n                    for(int i=s,j=s+m;i<s+m;i++,j++){\r\
-    \n                        auto x=f[i],y=f[j];\r\n                        f[i]=x+y;\
-    \ f[j]=(x-y)*w;\r\n                    } w*=irt[__builtin_ctz(++t)];\r\n     \
-    \           }\r\n             } T mul=T(n).inv(); rep(i,0,n)f[i]*=mul;\r\n   \
-    \     }else{\r\n            for(int m=n;m>>=1;){ T w=1;\r\n                for(int\
-    \ s=0,t=0;s<n;s+=m*2){\r\n                    for(int i=s,j=s+m;i<s+m;i++,j++){\r\
-    \n                        auto x=f[i],y=f[j]*w;\r\n                        f[i]=x+y;\
-    \ f[j]=x-y;\r\n                    } w*=rt[__builtin_ctz(++t)];\r\n          \
-    \      }\r\n            }\r\n         }\r\n    }\r\n    vector<T> mult(const vector<T>&\
-    \ a,const vector<T>& b,bool same=0){\r\n        if(a.empty() or b.empty())return\
-    \ vector<T>();\r\n        int n=a.size()+b.size()-1,m=1<<__lg(n*2-1);\r\n    \
-    \    vector<T> res(m); rep(i,0,a.size()){res[i]=a[i];} ntt(res);\r\n        if(same)rep(i,0,m)res[i]*=res[i];\r\
-    \n        else{\r\n            vector<T> c(m); rep(i,0,b.size())c[i]=b[i];\r\n\
-    \            ntt(c); rep(i,0,m)res[i]*=c[i];\r\n        } ntt(res,1); res.resize(n);\
-    \ return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
-    \n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1=fp<1045430273>; using\
-    \ M2=fp<1051721729>; using M3=fp<1053818881>;\r\nNTT<fp<1045430273>,3> N1; NTT<fp<1051721729>,6>\
-    \ N2; NTT<fp<1053818881>,7> N3;\r\nconst M2 r_12=M2(M1::get_mod()).inv();\r\n\
-    const M3 r_13=M3(M1::get_mod()).inv();\r\nconst M3 r_23=M3(M2::get_mod()).inv();\r\
-    \nconst M3 r_1323=r_13*r_23;\r\ntemplate<typename T>vector<T> ArbitraryMult(const\
-    \ vector<T>& a,const vector<T>& b,bool same=0){\r\n    if(a.empty() or b.empty())return\
-    \ vector<T>();\r\n    int n=a.size()+b.size()-1; vector<T> res(n);\r\n    if(min(a.size(),b.size())<=60){\r\
-    \n        rep(i,0,a.size())rep(j,0,b.size())res[i+j]+=a[i]*b[j];\r\n        return\
-    \ res;\r\n    }\r\n    vector<int> vals[3];\r\n    vector<int> aa(a.size()),bb(b.size());\r\
-    \n    rep(i,0,a.size())aa[i]=a[i].v; rep(i,0,b.size())bb[i]=b[i].v;\r\n    vector<M1>\
-    \ a1(ALL(aa)),b1(ALL(bb)),c1=N1.mult(a1,b1,same);\r\n    vector<M2> a2(ALL(aa)),b2(ALL(bb)),c2=N2.mult(a2,b2,same);\r\
-    \n    vector<M3> a3(ALL(aa)),b3(ALL(bb)),c3=N3.mult(a3,b3,same);\r\n    for(M1\
-    \ x:c1)vals[0].push_back(x.v);\r\n    for(M2 x:c2)vals[1].push_back(x.v);\r\n\
-    \    for(M3 x:c3)vals[2].push_back(x.v);\r\n    T w1(M1::get_mod()),w2=w1*T(M2::get_mod());\r\
-    \n    rep(i,0,n){\r\n        ll p=vals[0][i];\r\n        ll q=(vals[1][i]+M2::get_mod()-p)*r_12.v%M2::get_mod();\r\
-    \n        ll r=((vals[2][i]+M3::get_mod()-p)*r_1323.v+\r\n            (M3::get_mod()-q)*r_23.v)%M3::get_mod();\r\
-    \n        res[i]=(p+q*w1.v+r*w2.v);\r\n    } return res;\r\n}\r\n\r\n/**\r\n *\
-    \ @brief Arbitrary Mod Convolution\r\n */\n#line 2 \"FPS/arbitraryfps.hpp\"\n\r\
-    \ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int n=0){this->assign(n,T());}\r\
+    #line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename T> struct NTT {\r\n  \
+    \  static constexpr int rank2 = __builtin_ctzll(T::get_mod() - 1);\r\n    std::array<T,\
+    \ rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T, rank2 + 1> iroot;\
+    \ // root[i] * iroot[i] == 1\r\n\r\n    std::array<T, std::max(0, rank2 - 2 +\
+    \ 1)> rate2;\r\n    std::array<T, std::max(0, rank2 - 2 + 1)> irate2;\r\n\r\n\
+    \    std::array<T, std::max(0, rank2 - 3 + 1)> rate3;\r\n    std::array<T, std::max(0,\
+    \ rank2 - 3 + 1)> irate3;\r\n\r\n    NTT() {\r\n        T g = 2;\r\n        while\
+    \ (g.pow((T::get_mod() - 1) >> 1) == 1) {\r\n            g += 1;\r\n        }\r\
+    \n        root[rank2] = g.pow((T::get_mod() - 1) >> rank2);\r\n        iroot[rank2]\
+    \ = root[rank2].inv();\r\n        for (int i = rank2 - 1; i >= 0; i--) {\r\n \
+    \           root[i] = root[i + 1] * root[i + 1];\r\n            iroot[i] = iroot[i\
+    \ + 1] * iroot[i + 1];\r\n        }\r\n\r\n        {\r\n            T prod = 1,\
+    \ iprod = 1;\r\n            for (int i = 0; i <= rank2 - 2; i++) {\r\n       \
+    \         rate2[i] = root[i + 2] * prod;\r\n                irate2[i] = iroot[i\
+    \ + 2] * iprod;\r\n                prod *= iroot[i + 2];\r\n                iprod\
+    \ *= root[i + 2];\r\n            }\r\n        }\r\n        {\r\n            T\
+    \ prod = 1, iprod = 1;\r\n            for (int i = 0; i <= rank2 - 3; i++) {\r\
+    \n                rate3[i] = root[i + 3] * prod;\r\n                irate3[i]\
+    \ = iroot[i + 3] * iprod;\r\n                prod *= iroot[i + 3];\r\n       \
+    \         iprod *= root[i + 3];\r\n            }\r\n        }\r\n    }\r\n\r\n\
+    \    void ntt(std::vector<T> &a, bool type = 0) {\r\n        int n = int(a.size());\r\
+    \n        int h = __builtin_ctzll((unsigned int)n);\r\n        a.resize(1 << h);\r\
+    \n\r\n        if (type) {\r\n            int len = h; // a[i, i+(n>>len), i+2*(n>>len),\
+    \ ..] is transformed\r\n            while (len) {\r\n                if (len ==\
+    \ 1) {\r\n                    int p = 1 << (h - len);\r\n                    T\
+    \ irot = 1;\r\n                    for (int s = 0; s < (1 << (len - 1)); s++)\
+    \ {\r\n                        int offset = s << (h - len + 1);\r\n          \
+    \              for (int i = 0; i < p; i++) {\r\n                            auto\
+    \ l = a[i + offset];\r\n                            auto r = a[i + offset + p];\r\
+    \n                            a[i + offset] = l + r;\r\n                     \
+    \       a[i + offset + p] =\r\n                                (unsigned long\
+    \ long)(T::get_mod() + l.v - r.v) *\r\n                                irot.v;\r\
+    \n                            ;\r\n                        }\r\n             \
+    \           if (s + 1 != (1 << (len - 1)))\r\n                            irot\
+    \ *= irate2[__builtin_ctzll(~(unsigned int)(s))];\r\n                    }\r\n\
+    \                    len--;\r\n                } else {\r\n                  \
+    \  // 4-base\r\n                    int p = 1 << (h - len);\r\n              \
+    \      T irot = 1, iimag = iroot[2];\r\n                    for (int s = 0; s\
+    \ < (1 << (len - 2)); s++) {\r\n                        T irot2 = irot * irot;\r\
+    \n                        T irot3 = irot2 * irot;\r\n                        int\
+    \ offset = s << (h - len + 2);\r\n                        for (int i = 0; i <\
+    \ p; i++) {\r\n                            auto a0 = 1ULL * a[i + offset + 0 *\
+    \ p].v;\r\n                            auto a1 = 1ULL * a[i + offset + 1 * p].v;\r\
+    \n                            auto a2 = 1ULL * a[i + offset + 2 * p].v;\r\n  \
+    \                          auto a3 = 1ULL * a[i + offset + 3 * p].v;\r\n\r\n \
+    \                           auto a2na3iimag =\r\n                            \
+    \    1ULL * T((T::get_mod() + a2 - a3) * iimag.v).v;\r\n\r\n                 \
+    \           a[i + offset] = a0 + a1 + a2 + a3;\r\n                           \
+    \ a[i + offset + 1 * p] =\r\n                                (a0 + (T::get_mod()\
+    \ - a1) + a2na3iimag) *\r\n                                irot.v;\r\n       \
+    \                     a[i + offset + 2 * p] =\r\n                            \
+    \    (a0 + a1 + (T::get_mod() - a2) +\r\n                                 (T::get_mod()\
+    \ - a3)) *\r\n                                irot2.v;\r\n                   \
+    \         a[i + offset + 3 * p] =\r\n                                (a0 + (T::get_mod()\
+    \ - a1) +\r\n                                 (T::get_mod() - a2na3iimag)) *\r\
+    \n                                irot3.v;\r\n                        }\r\n  \
+    \                      if (s + 1 != (1 << (len - 2)))\r\n                    \
+    \        irot *= irate3[__builtin_ctzll(~(unsigned int)(s))];\r\n            \
+    \        }\r\n                    len -= 2;\r\n                }\r\n         \
+    \   }\r\n            T e = T(n).inv();\r\n            for (auto &x : a)\r\n  \
+    \              x *= e;\r\n        } else {\r\n            int len = 0; // a[i,\
+    \ i+(n>>len), i+2*(n>>len), ..] is transformed\r\n            while (len < h)\
+    \ {\r\n                if (h - len == 1) {\r\n                    int p = 1 <<\
+    \ (h - len - 1);\r\n                    T rot = 1;\r\n                    for\
+    \ (int s = 0; s < (1 << len); s++) {\r\n                        int offset = s\
+    \ << (h - len);\r\n                        for (int i = 0; i < p; i++) {\r\n \
+    \                           auto l = a[i + offset];\r\n                      \
+    \      auto r = a[i + offset + p] * rot;\r\n                            a[i +\
+    \ offset] = l + r;\r\n                            a[i + offset + p] = l - r;\r\
+    \n                        }\r\n                        if (s + 1 != (1 << len))\r\
+    \n                            rot *= rate2[__builtin_ctzll(~(unsigned int)(s))];\r\
+    \n                    }\r\n                    len++;\r\n                } else\
+    \ {\r\n                    // 4-base\r\n                    int p = 1 << (h -\
+    \ len - 2);\r\n                    T rot = 1, imag = root[2];\r\n            \
+    \        for (int s = 0; s < (1 << len); s++) {\r\n                        T rot2\
+    \ = rot * rot;\r\n                        T rot3 = rot2 * rot;\r\n           \
+    \             int offset = s << (h - len);\r\n                        for (int\
+    \ i = 0; i < p; i++) {\r\n                            auto mod2 = 1ULL * T::get_mod()\
+    \ * T::get_mod();\r\n                            auto a0 = 1ULL * a[i + offset].v;\r\
+    \n                            auto a1 = 1ULL * a[i + offset + p].v * rot.v;\r\n\
+    \                            auto a2 = 1ULL * a[i + offset + 2 * p].v * rot2.v;\r\
+    \n                            auto a3 = 1ULL * a[i + offset + 3 * p].v * rot3.v;\r\
+    \n                            auto a1na3imag =\r\n                           \
+    \     1ULL * T(a1 + mod2 - a3).v * imag.v;\r\n                            auto\
+    \ na2 = mod2 - a2;\r\n                            a[i + offset] = a0 + a2 + a1\
+    \ + a3;\r\n                            a[i + offset + 1 * p] =\r\n           \
+    \                     a0 + a2 + (2 * mod2 - (a1 + a3));\r\n                  \
+    \          a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\n                 \
+    \           a[i + offset + 3 * p] =\r\n                                a0 + na2\
+    \ + (mod2 - a1na3imag);\r\n                        }\r\n                     \
+    \   if (s + 1 != (1 << len))\r\n                            rot *= rate3[__builtin_ctzll(~(unsigned\
+    \ int)(s))];\r\n                    }\r\n                    len += 2;\r\n   \
+    \             }\r\n            }\r\n        }\r\n    }\r\n    vector<T> mult(const\
+    \ vector<T> &a, const vector<T> &b) {\r\n        if (a.empty() or b.empty())\r\
+    \n            return vector<T>();\r\n        int as = a.size(), bs = b.size();\r\
+    \n        int n = as + bs - 1;\r\n        if (as <= 30 or bs <= 30) {\r\n    \
+    \        if (as > 30)\r\n                return mult(b, a);\r\n            vector<T>\
+    \ res(n);\r\n            rep(i, 0, as) rep(j, 0, bs) res[i + j] += a[i] * b[j];\r\
+    \n            return res;\r\n        }\r\n        int m = 1;\r\n        while\
+    \ (m < n)\r\n            m <<= 1;\r\n        vector<T> res(m);\r\n        rep(i,\
+    \ 0, as) res[i] = a[i];\r\n        ntt(res);\r\n        if (a == b)\r\n      \
+    \      rep(i, 0, m) res[i] *= res[i];\r\n        else {\r\n            vector<T>\
+    \ c(m);\r\n            rep(i, 0, bs) c[i] = b[i];\r\n            ntt(c);\r\n \
+    \           rep(i, 0, m) res[i] *= c[i];\r\n        }\r\n        ntt(res, 1);\r\
+    \n        res.resize(n);\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n\
+    \ * @brief Number Theoretic Transform\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\n\
+    template <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static constexpr\
+    \ int get_mod() { return mod; }\r\n    int inv() const {\r\n        int tmp, a\
+    \ = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n            tmp = a / b,\
+    \ a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n        if (x < 0) {\r\
+    \n            x += mod;\r\n        }\r\n        return x;\r\n    }\r\n    fp(ll\
+    \ x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
+    \ const { return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >=\
+    \ 0);\r\n        fp res = 1, b = *this;\r\n        while (t) {\r\n           \
+    \ if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\n         \
+    \   t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
+    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
+    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
+    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
+    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ll(v) * x.v % mod;\r\
+    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
+    \    v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
+    \ fp &x) const { return fp(*this) += x; }\r\n    fp operator-(const fp &x) const\
+    \ { return fp(*this) -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this)\
+    \ *= x; }\r\n    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n\
+    \    bool operator==(const fp &x) const { return v == x.v; }\r\n    bool operator!=(const\
+    \ fp &x) const { return v != x.v; }\r\n    friend istream &operator>>(istream\
+    \ &is, fp &x) { return is >> x.v; }\r\n    friend ostream &operator<<(ostream\
+    \ &os, const fp &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T\
+    \ Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n    static vector<T>\
+    \ buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <=\
+    \ n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k\
+    \ * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename\
+    \ T> T Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\
+    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n <\
+    \ md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
+    \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
+    \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
+    \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
+    \    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename\
+    \ T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\
+    \n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n\
+    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int n, int r, bool inv =\
+    \ 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\n/**\r\n * @brief Modint\r\
+    \n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1 = fp<1045430273>;\r\
+    \nusing M2 = fp<1051721729>;\r\nusing M3 = fp<1053818881>;\r\nNTT<M1> N1;\r\n\
+    NTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\n\
+    constexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
+    \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
+    \nconstexpr ll w2 = ll(w1) * M2::get_mod();\r\ntemplate <typename T>\r\nvector<T>\
+    \ ArbitraryMult(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
+    \ or b.empty())\r\n        return vector<T>();\r\n    int n = a.size() + b.size()\
+    \ - 1;\r\n    vector<T> res(n);\r\n    if (min(a.size(), b.size()) <= 60) {\r\n\
+    \        rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\
+    \n        return res;\r\n    }\r\n    vector<int> vals[3];\r\n    vector<M1> a1(ALL(a)),\
+    \ b1(ALL(b)), c1 = N1.mult(a1, b1);\r\n    vector<M2> a2(ALL(a)), b2(ALL(b)),\
+    \ c2 = N2.mult(a2, b2);\r\n    vector<M3> a3(ALL(a)), b3(ALL(b)), c3 = N3.mult(a3,\
+    \ b3);\r\n    for (M1 x : c1)\r\n        vals[0].push_back(x.v);\r\n    for (M2\
+    \ x : c2)\r\n        vals[1].push_back(x.v);\r\n    for (M3 x : c3)\r\n      \
+    \  vals[2].push_back(x.v);\r\n    rep(i, 0, n) {\r\n        ll p = vals[0][i];\r\
+    \n        ll q = (vals[1][i] + M2::get_mod() - p) * r_12 % M2::get_mod();\r\n\
+    \        ll r = ((vals[2][i] + M3::get_mod() - p) * r_1323 +\r\n             \
+    \   (M3::get_mod() - q) * r_23) %\r\n               M3::get_mod();\r\n       \
+    \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
+    /**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 2 \"FPS/arbitraryfps.hpp\"\
+    \n\r\ntemplate<typename T>struct Poly:vector<T>{\r\n    Poly(int n=0){this->assign(n,T());}\r\
     \n    Poly(const initializer_list<T> f):vector<T>::vector(f){}\r\n    Poly(const\
     \ vector<T>& f){this->assign(ALL(f));}\r\n    T eval(const T& x){\r\n        T\
     \ res;\r\n        for(int i=this->size()-1;i>=0;i--)res*=x,res+=this->at(i);\r\
@@ -241,24 +374,24 @@ data:
     \n            Poly g=res,h=*this; h.resize(k*2); res.resize(k*2);\r\n        \
     \    g=(g.square()*h); g.resize(k*2);\r\n            rep(i,k,min(k*2,n))res[i]-=g[i];\r\
     \n        }\r\n        res.resize(n); return res;\r\n    }\r\n    Poly square()const{return\
-    \ Poly(mult(*this,*this,1));}\r\n    Poly operator+(const Poly& g)const{return\
-    \ Poly(*this)+=g;}\r\n    Poly operator+(const T& g)const{return Poly(*this)+=g;}\r\
-    \n    Poly operator-(const Poly& g)const{return Poly(*this)-=g;}\r\n    Poly operator-(const\
-    \ T& g)const{return Poly(*this)-=g;}\r\n    Poly operator*(const Poly& g)const{return\
-    \ Poly(*this)*=g;}\r\n    Poly operator*(const T& g)const{return Poly(*this)*=g;}\r\
-    \n    Poly operator/(const Poly& g)const{return Poly(*this)/=g;}\r\n    Poly operator%(const\
-    \ Poly& g)const{return Poly(*this)%=g;}\r\n    pair<Poly,Poly> divmod(const Poly&\
-    \ g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\n        r.shrink();\r\n \
-    \       return {q,r};\r\n    }\r\n    Poly& operator+=(const Poly& g){\r\n   \
-    \     if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]+=g[i];}\
-    \ return *this;\r\n    }\r\n    Poly& operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\
-    \n        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const\
+    \ Poly(mult(*this,*this,1));}\r\n    Poly operator-()const{return Poly()-*this;}\r\
+    \n    Poly operator+(const Poly& g)const{return Poly(*this)+=g;}\r\n    Poly operator+(const\
+    \ T& g)const{return Poly(*this)+=g;}\r\n    Poly operator-(const Poly& g)const{return\
+    \ Poly(*this)-=g;}\r\n    Poly operator-(const T& g)const{return Poly(*this)-=g;}\r\
+    \n    Poly operator*(const Poly& g)const{return Poly(*this)*=g;}\r\n    Poly operator*(const\
+    \ T& g)const{return Poly(*this)*=g;}\r\n    Poly operator/(const Poly& g)const{return\
+    \ Poly(*this)/=g;}\r\n    Poly operator%(const Poly& g)const{return Poly(*this)%=g;}\r\
+    \n    pair<Poly,Poly> divmod(const Poly& g)const{\r\n        Poly q=*this/g,r=*this-g*q;\r\
+    \n        r.shrink();\r\n        return {q,r};\r\n    }\r\n    Poly& operator+=(const\
     \ Poly& g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n  \
-    \      rep(i,0,g.size()){(*this)[i]-=g[i];} return *this;\r\n    }\r\n    Poly&\
-    \ operator-=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
-    \        (*this)[0]-=g; return *this;\r\n    }\r\n    Poly& operator*=(const Poly&\
-    \ g){\r\n        *this=mult(*this,g,0);\r\n        return *this;\r\n    }\r\n\
-    \    Poly& operator*=(const T& g){\r\n        rep(i,0,this->size())(*this)[i]*=g;\r\
+    \      rep(i,0,g.size()){(*this)[i]+=g[i];} return *this;\r\n    }\r\n    Poly&\
+    \ operator+=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\n\
+    \        (*this)[0]+=g; return *this;\r\n    }\r\n    Poly& operator-=(const Poly&\
+    \ g){\r\n        if(g.size()>this->size())this->resize(g.size());\r\n        rep(i,0,g.size()){(*this)[i]-=g[i];}\
+    \ return *this;\r\n    }\r\n    Poly& operator-=(const T& g){\r\n        if(this->empty())this->push_back(0);\r\
+    \n        (*this)[0]-=g; return *this;\r\n    }\r\n    Poly& operator*=(const\
+    \ Poly& g){\r\n        *this=mult(*this,g,0);\r\n        return *this;\r\n   \
+    \ }\r\n    Poly& operator*=(const T& g){\r\n        rep(i,0,this->size())(*this)[i]*=g;\r\
     \n        return *this;\r\n    }\r\n    Poly& operator/=(const Poly& g){\r\n \
     \       if(g.size()>this->size()){\r\n            this->clear(); return *this;\r\
     \n        }\r\n        Poly g2=g;\r\n        reverse(ALL(*this));\r\n        reverse(ALL(g2));\r\
@@ -321,13 +454,12 @@ data:
     \n        while(t!=n-1 and y!=1 and y!=n-1){\r\n            y*=y;\r\n        \
     \    t<<=1;\r\n        }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    }\
     \ return 1;\r\n}\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\
-    \n\r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\
-    \n    Random(){}\r\n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n \
-    \       x=y,y=z,z=w;\r\n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n\
-    \    unsigned get(unsigned L){\r\n        return get()%(L+1);\r\n    }\r\n   \
-    \ template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\n    }\r\
-    \n    double uniform(){\r\n        return double(get())/UINT_MAX;\r\n    }\r\n\
-    \    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n\r\nnamespace Random{\r\n    mt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n    using u64=unsigned long long;\r\n    u64 get(){\r\n        return randgen();\r\
+    \n    }\r\n    template<typename T>T get(T L){\r\n        return get()%(L+1);\r\
+    \n    }\r\n    template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\
+    \n    }\r\n    double uniform(){\r\n        return double(get(1000000000))/1000000000;\r\
+    \n    }\r\n    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
     \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
     \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
     \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
@@ -429,8 +561,8 @@ data:
   - Math/dynamic.hpp
   - Math/fastdiv.hpp
   - Convolution/arbitrary.hpp
-  - Math/modint.hpp
   - Convolution/ntt.hpp
+  - Math/modint.hpp
   - FPS/arbitraryfps.hpp
   - Convolution/multivariatecyclic.hpp
   - Math/primitive.hpp
@@ -441,8 +573,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 14:20:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-12 04:16:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp
 layout: document

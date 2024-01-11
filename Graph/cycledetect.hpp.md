@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_cycle_detection.test.cpp
     title: Verify/LC_cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_cycle_detection_undirected.test.cpp
     title: Verify/LC_cycle_detection_undirected.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Cycle Detection
     links: []
@@ -46,10 +46,10 @@ data:
   path: Graph/cycledetect.hpp
   requiredBy: []
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_cycle_detection.test.cpp
   - Verify/LC_cycle_detection_undirected.test.cpp
+  - Verify/LC_cycle_detection.test.cpp
 documentation_of: Graph/cycledetect.hpp
 layout: document
 redirect_from:

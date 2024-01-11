@@ -3,27 +3,27 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_line_add_get_min.test.cpp
     title: Verify/LC_line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_segment_add_get_min.test.cpp
     title: Verify/LC_segment_add_get_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/lichaotree.md
     document_title: Convex Hull Trick (Li Chao Tree)
     links: []
   bundledCode: "#line 2 \"DataStructure/lichaotree.hpp\"\n\r\ntemplate<typename T,T\
     \ MX>struct CHT{\r\n    using Line=pair<T,T>;\r\n    int n;\r\n    vector<T> xs;\r\
-    \n    vector<Line> ls;\r\n    CHT(vector<T>& ps):xs(ps){\r\n        n=1;\r\n \
-    \       while(n<(int)xs.size())n<<=1;\r\n        xs.resize(n,xs.back());\r\n \
-    \       ls.resize(2*n-1,Line(0,MX));\r\n    }\r\n    T eval(Line& f,T x){return\
-    \ f.first*x+f.second;}\r\n    void add(T a,T b,int k=0,int L=0,int R=-1){\r\n\
-    \        if(R==-1)R=n;\r\n        Line f={a,b};\r\n        while(L!=R){\r\n  \
-    \          int mid=(L+R)>>1;\r\n            T lx=xs[L],mx=xs[mid],rx=xs[R-1];\r\
+    \n    vector<Line> ls;\r\n    CHT(vector<T>& ps){\r\n        xs=ps;\r\n      \
+    \  UNIQUE(xs);\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\n  \
+    \      xs.resize(n,xs.back());\r\n        ls.resize(2*n-1,Line(0,MX));\r\n   \
+    \ }\r\n    T eval(Line& f,T x){return f.first*x+f.second;}\r\n    void add(T a,T\
+    \ b,int k=0,int L=0,int R=-1){\r\n        if(R==-1)R=n;\r\n        Line f={a,b};\r\
+    \n        while(L!=R){\r\n            int mid=(L+R)>>1;\r\n            T lx=xs[L],mx=xs[mid],rx=xs[R-1];\r\
     \n            Line& g=ls[k];\r\n            if(eval(f,lx)<eval(g,lx) and eval(f,rx)<eval(g,rx)){\r\
     \n                g=f;\r\n                return;\r\n            }\r\n       \
     \     if(eval(f,lx)>=eval(g,lx) and eval(f,rx)>=eval(g,rx))return;\r\n       \
@@ -44,11 +44,11 @@ data:
     \ Hull Trick (Li Chao Tree)\r\n * @docs docs/lichaotree.md\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate<typename T,T MX>struct CHT{\r\n    using Line=pair<T,T>;\r\
     \n    int n;\r\n    vector<T> xs;\r\n    vector<Line> ls;\r\n    CHT(vector<T>&\
-    \ ps):xs(ps){\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\n   \
-    \     xs.resize(n,xs.back());\r\n        ls.resize(2*n-1,Line(0,MX));\r\n    }\r\
-    \n    T eval(Line& f,T x){return f.first*x+f.second;}\r\n    void add(T a,T b,int\
-    \ k=0,int L=0,int R=-1){\r\n        if(R==-1)R=n;\r\n        Line f={a,b};\r\n\
-    \        while(L!=R){\r\n            int mid=(L+R)>>1;\r\n            T lx=xs[L],mx=xs[mid],rx=xs[R-1];\r\
+    \ ps){\r\n        xs=ps;\r\n        UNIQUE(xs);\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\
+    \n        xs.resize(n,xs.back());\r\n        ls.resize(2*n-1,Line(0,MX));\r\n\
+    \    }\r\n    T eval(Line& f,T x){return f.first*x+f.second;}\r\n    void add(T\
+    \ a,T b,int k=0,int L=0,int R=-1){\r\n        if(R==-1)R=n;\r\n        Line f={a,b};\r\
+    \n        while(L!=R){\r\n            int mid=(L+R)>>1;\r\n            T lx=xs[L],mx=xs[mid],rx=xs[R-1];\r\
     \n            Line& g=ls[k];\r\n            if(eval(f,lx)<eval(g,lx) and eval(f,rx)<eval(g,rx)){\r\
     \n                g=f;\r\n                return;\r\n            }\r\n       \
     \     if(eval(f,lx)>=eval(g,lx) and eval(f,rx)>=eval(g,rx))return;\r\n       \
@@ -71,8 +71,8 @@ data:
   isVerificationFile: false
   path: DataStructure/lichaotree.hpp
   requiredBy: []
-  timestamp: '2022-02-05 01:38:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-12 04:16:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_line_add_get_min.test.cpp
   - Verify/LC_segment_add_get_min.test.cpp

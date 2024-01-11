@@ -13,25 +13,31 @@ data:
     _deprecated_at_docs: docs/cartesian.md
     document_title: Cartesian Tree
     links: []
-  bundledCode: "#line 2 \"Algorithm/cartesian.hpp\"\n\r\nvector<int> Cartesian(const\
-    \ vector<int>& a){\r\n   const int n=a.size(); vector<int> res(n,-1);\r\n   int\
-    \ cur;\r\n   rep(i,1,n){\r\n      cur=i-1;\r\n      if(a[cur]>a[i]){\r\n     \
-    \    int pre=cur;\r\n         while(cur!=-1 and a[cur]>a[i])pre=cur,cur=res[cur];\r\
-    \n         if(cur==-1){res[i]=-1; res[pre]=i;}\r\n         else{res[i]=cur; res[pre]=i;}\r\
-    \n      }\r\n      else res[i]=cur;\r\n   } return res;\r\n}\r\n\r\n/**\r\n *\
-    \ @brief Cartesian Tree\r\n * @docs docs/cartesian.md\r\n */\n"
-  code: "#pragma once\r\n\r\nvector<int> Cartesian(const vector<int>& a){\r\n   const\
-    \ int n=a.size(); vector<int> res(n,-1);\r\n   int cur;\r\n   rep(i,1,n){\r\n\
-    \      cur=i-1;\r\n      if(a[cur]>a[i]){\r\n         int pre=cur;\r\n       \
-    \  while(cur!=-1 and a[cur]>a[i])pre=cur,cur=res[cur];\r\n         if(cur==-1){res[i]=-1;\
-    \ res[pre]=i;}\r\n         else{res[i]=cur; res[pre]=i;}\r\n      }\r\n      else\
-    \ res[i]=cur;\r\n   } return res;\r\n}\r\n\r\n/**\r\n * @brief Cartesian Tree\r\
-    \n * @docs docs/cartesian.md\r\n */"
+  bundledCode: "#line 2 \"Algorithm/cartesian.hpp\"\n\r\ntemplate <typename T> vector<int>\
+    \ Cartesian(const vector<T> &a) {\r\n    const int n = a.size();\r\n    vector<int>\
+    \ res(n, -1);\r\n    int cur;\r\n    rep(i, 1, n) {\r\n        cur = i - 1;\r\n\
+    \        if (a[cur] > a[i]) {\r\n            int pre = cur;\r\n            while\
+    \ (cur != -1 and a[cur] > a[i])\r\n                pre = cur, cur = res[cur];\r\
+    \n            if (cur == -1) {\r\n                res[i] = -1;\r\n           \
+    \     res[pre] = i;\r\n            } else {\r\n                res[i] = cur;\r\
+    \n                res[pre] = i;\r\n            }\r\n        } else\r\n       \
+    \     res[i] = cur;\r\n    }\r\n    return res;\r\n}\r\n\r\n/**\r\n * @brief Cartesian\
+    \ Tree\r\n * @docs docs/cartesian.md\r\n */\n"
+  code: "#pragma once\r\n\r\ntemplate <typename T> vector<int> Cartesian(const vector<T>\
+    \ &a) {\r\n    const int n = a.size();\r\n    vector<int> res(n, -1);\r\n    int\
+    \ cur;\r\n    rep(i, 1, n) {\r\n        cur = i - 1;\r\n        if (a[cur] > a[i])\
+    \ {\r\n            int pre = cur;\r\n            while (cur != -1 and a[cur] >\
+    \ a[i])\r\n                pre = cur, cur = res[cur];\r\n            if (cur ==\
+    \ -1) {\r\n                res[i] = -1;\r\n                res[pre] = i;\r\n \
+    \           } else {\r\n                res[i] = cur;\r\n                res[pre]\
+    \ = i;\r\n            }\r\n        } else\r\n            res[i] = cur;\r\n   \
+    \ }\r\n    return res;\r\n}\r\n\r\n/**\r\n * @brief Cartesian Tree\r\n * @docs\
+    \ docs/cartesian.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Algorithm/cartesian.hpp
   requiredBy: []
-  timestamp: '2022-02-05 01:38:09+09:00'
+  timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_cartesian_tree.test.cpp

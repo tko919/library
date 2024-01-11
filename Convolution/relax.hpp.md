@@ -1,34 +1,21 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Math/factorial.hpp
-    title: Factorial
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Relaxed Convolution
     links: []
-  bundledCode: "#line 2 \"Math/factorial.hpp\"\n\ntemplate<typename T>struct factorial\
-    \ {\n    vector<T> Fact,Finv,Inv;\n    factorial(int maxx){\n        Fact.resize(maxx);\
-    \ Finv.resize(maxx); Inv.resize(maxx);\n        Fact[0]=Fact[1]=Finv[0]=Finv[1]=Inv[1]=1;\n\
-    \        rep(i,2,maxx){Fact[i]=Fact[i-1]*i;} Finv[maxx-1]=T(1)/Fact[maxx-1];\n\
-    \        for(int i=maxx-1;i>=2;i--){Finv[i-1]=Finv[i]*i; Inv[i]=Finv[i]*Fact[i-1];}\n\
-    \    }\n    T fact(int n,bool inv=0){if(n<0)return 0; return (inv?Finv[n]:Fact[n]);}\n\
-    \    T inv(int n){if(n<0)return 0; return Inv[n];}\n    T nPr(int n,int r,bool\
-    \ inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(n-r,inv^1);}\n   \
-    \ T nCr(int n,int r,bool inv=0){if(n<0||n<r||r<0)return 0; return fact(n,inv)*fact(r,inv^1)*fact(n-r,inv^1);}\n\
-    \    T nHr(int n,int r,bool inv=0){return nCr(n+r-1,r,inv);}\n};\n\n/**\n * @brief\
-    \ Factorial\n*/\n#line 3 \"Convolution/relax.hpp\"\n\r\ntemplate<typename T>class\
-    \ RelaxedConvolution{\r\n    using P=array<int,2>;\r\n    using Q=array<P,2>;\r\
-    \n    int N,pos;\r\n    Poly<T> f,g,buf;\r\n    vector<vector<Q>> event;\r\n \
-    \   void dfs1(int L,int R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
+  bundledCode: "#line 2 \"Convolution/relax.hpp\"\n\r\ntemplate<typename T>class RelaxedConvolution{\r\
+    \n    using P=array<int,2>;\r\n    using Q=array<P,2>;\r\n    int N,pos;\r\n \
+    \   Poly<T> f,g,buf;\r\n    vector<vector<Q>> event;\r\n    void dfs1(int L,int\
+    \ R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
     \n            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
     \n        event[R].push_back({P{mid,R},P{mid-L,R-L}});\r\n        dfs1(L,mid);\r\
     \n        dfs1(mid,R);\r\n    }\r\n    void dfs2(int L,int R){\r\n        if(R-L==1){\r\
@@ -55,25 +42,24 @@ data:
     \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
     \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
     \ buf;\r\n};\r\n\r\ntemplate<typename T>struct RelaxedExp{\r\n    RelaxedExp(){}\r\
-    \n    RelaxedExp(int _n):n(_n),pos(0),g(n),fact(n),buf(n){}\r\n    T next(T x){\r\
-    \n        if(pos==0){\r\n            assert(x==0);\r\n            g[pos]=1;\r\n\
-    \        }\r\n        else{\r\n            g[pos]=buf.next(x*pos,g[pos-1])*fact.inv(pos);\r\
+    \n    RelaxedExp(int _n):n(_n),pos(0),g(n),buf(n){}\r\n    T next(T x){\r\n  \
+    \      if(pos==0){\r\n            assert(x==0);\r\n            g[pos]=1;\r\n \
+    \       }\r\n        else{\r\n            g[pos]=buf.next(x*pos,g[pos-1])*Inv<T>(pos);\r\
     \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
-    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    factorial<T>\
-    \ fact;\r\n    RelaxedConvolution<T> buf;\r\n};\r\n\r\ntemplate<typename T>struct\
-    \ RelaxedLog{\r\n    RelaxedLog(){}\r\n    RelaxedLog(int _n):n(_n),pos(0),g(n),fact(n),buf(n),invf(n){}\r\
-    \n    T next(T x){\r\n        invf.next(x);\r\n        if(pos==0){\r\n       \
-    \     assert(x==1);\r\n            g[pos]=0;\r\n        }\r\n        else{\r\n\
-    \            g[pos]=buf.next(x*pos,invf[pos-1])*fact.inv(pos);\r\n        }\r\n\
-    \        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return g[i];}\r\
-    \nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    factorial<T> fact;\r\n\
-    \    RelaxedConvolution<T> buf;\r\n    RelaxedInv<T> invf;\r\n};\r\n\r\n/**\r\n\
-    \ * @brief Relaxed Convolution\r\n */\n"
-  code: "#pragma once\r\n#include \"Math/factorial.hpp\"\r\n\r\ntemplate<typename\
-    \ T>class RelaxedConvolution{\r\n    using P=array<int,2>;\r\n    using Q=array<P,2>;\r\
-    \n    int N,pos;\r\n    Poly<T> f,g,buf;\r\n    vector<vector<Q>> event;\r\n \
-    \   void dfs1(int L,int R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
-    \n            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
+    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
+    \ buf;\r\n};\r\n\r\ntemplate<typename T>struct RelaxedLog{\r\n    RelaxedLog(){}\r\
+    \n    RelaxedLog(int _n):n(_n),pos(0),g(n),buf(n),invf(n){}\r\n    T next(T x){\r\
+    \n        invf.next(x);\r\n        if(pos==0){\r\n            assert(x==1);\r\n\
+    \            g[pos]=0;\r\n        }\r\n        else{\r\n            g[pos]=buf.next(x*pos,invf[pos-1])*Inv<T>(pos);\r\
+    \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
+    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
+    \ buf;\r\n    RelaxedInv<T> invf;\r\n};\r\n\r\n/**\r\n * @brief Relaxed Convolution\r\
+    \n */\n"
+  code: "#pragma once\r\n\r\ntemplate<typename T>class RelaxedConvolution{\r\n   \
+    \ using P=array<int,2>;\r\n    using Q=array<P,2>;\r\n    int N,pos;\r\n    Poly<T>\
+    \ f,g,buf;\r\n    vector<vector<Q>> event;\r\n    void dfs1(int L,int R){\r\n\
+    \        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\n\
+    \            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
     \n        event[R].push_back({P{mid,R},P{mid-L,R-L}});\r\n        dfs1(L,mid);\r\
     \n        dfs1(mid,R);\r\n    }\r\n    void dfs2(int L,int R){\r\n        if(R-L==1){\r\
     \n            event[L].push_back({P{0,1},P{L,L+1}});\r\n            return;\r\n\
@@ -99,27 +85,25 @@ data:
     \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
     \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
     \ buf;\r\n};\r\n\r\ntemplate<typename T>struct RelaxedExp{\r\n    RelaxedExp(){}\r\
-    \n    RelaxedExp(int _n):n(_n),pos(0),g(n),fact(n),buf(n){}\r\n    T next(T x){\r\
-    \n        if(pos==0){\r\n            assert(x==0);\r\n            g[pos]=1;\r\n\
-    \        }\r\n        else{\r\n            g[pos]=buf.next(x*pos,g[pos-1])*fact.inv(pos);\r\
+    \n    RelaxedExp(int _n):n(_n),pos(0),g(n),buf(n){}\r\n    T next(T x){\r\n  \
+    \      if(pos==0){\r\n            assert(x==0);\r\n            g[pos]=1;\r\n \
+    \       }\r\n        else{\r\n            g[pos]=buf.next(x*pos,g[pos-1])*Inv<T>(pos);\r\
     \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
-    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    factorial<T>\
-    \ fact;\r\n    RelaxedConvolution<T> buf;\r\n};\r\n\r\ntemplate<typename T>struct\
-    \ RelaxedLog{\r\n    RelaxedLog(){}\r\n    RelaxedLog(int _n):n(_n),pos(0),g(n),fact(n),buf(n),invf(n){}\r\
-    \n    T next(T x){\r\n        invf.next(x);\r\n        if(pos==0){\r\n       \
-    \     assert(x==1);\r\n            g[pos]=0;\r\n        }\r\n        else{\r\n\
-    \            g[pos]=buf.next(x*pos,invf[pos-1])*fact.inv(pos);\r\n        }\r\n\
-    \        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return g[i];}\r\
-    \nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    factorial<T> fact;\r\n\
-    \    RelaxedConvolution<T> buf;\r\n    RelaxedInv<T> invf;\r\n};\r\n\r\n/**\r\n\
-    \ * @brief Relaxed Convolution\r\n */"
-  dependsOn:
-  - Math/factorial.hpp
+    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
+    \ buf;\r\n};\r\n\r\ntemplate<typename T>struct RelaxedLog{\r\n    RelaxedLog(){}\r\
+    \n    RelaxedLog(int _n):n(_n),pos(0),g(n),buf(n),invf(n){}\r\n    T next(T x){\r\
+    \n        invf.next(x);\r\n        if(pos==0){\r\n            assert(x==1);\r\n\
+    \            g[pos]=0;\r\n        }\r\n        else{\r\n            g[pos]=buf.next(x*pos,invf[pos-1])*Inv<T>(pos);\r\
+    \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
+    \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
+    \ buf;\r\n    RelaxedInv<T> invf;\r\n};\r\n\r\n/**\r\n * @brief Relaxed Convolution\r\
+    \n */"
+  dependsOn: []
   isVerificationFile: false
   path: Convolution/relax.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-12 04:16:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_convolution_mod_2.test.cpp
 documentation_of: Convolution/relax.hpp

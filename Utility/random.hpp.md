@@ -2,94 +2,96 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/persistentrbstset.hpp
     title: Persistent Randomized Binary Search Tree (set)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/rbstset.hpp
     title: Randomized Binary Search Tree (set)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/maxindependentset.hpp
     title: Maximum Independent Set
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: Math/detaplusbx.hpp
+    title: $\det(A+Bx)$
+  - icon: ':x:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/primitive.hpp
     title: Primitive Function
+  - icon: ':warning:'
+    path: String/rollinghash.hpp
+    title: Rolling Hash
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Verify/YUKI_310.test.cpp
-    title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Random
     links: []
-  bundledCode: "#line 2 \"Utility/random.hpp\"\n\r\nstruct Random{\r\n    random_device\
-    \ rnd;\r\n    unsigned x=123456789,y=362436069,z=521288629,w=rnd();\r\n    Random(){}\r\
-    \n    unsigned get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\
-    \n        return w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned\
-    \ L){\r\n        return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T\
-    \ L,T R){\r\n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n\
-    \        return double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n\
-    \        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return\
-    \ ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter first,Iter last){\r\
-    \n        if(first==last)return;\r\n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\
-    \n            len++;\r\n            int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\
-    \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
+  bundledCode: "#line 2 \"Utility/random.hpp\"\n\r\nnamespace Random{\r\n    mt19937_64\
+    \ randgen(chrono::steady_clock::now().time_since_epoch().count());\r\n    using\
+    \ u64=unsigned long long;\r\n    u64 get(){\r\n        return randgen();\r\n \
+    \   }\r\n    template<typename T>T get(T L){\r\n        return get()%(L+1);\r\n\
+    \    }\r\n    template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\
+    \n    }\r\n    double uniform(){\r\n        return double(get(1000000000))/1000000000;\r\
+    \n    }\r\n    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
+    \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
+    \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
+    \     int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\n\
+    \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
     \ */\n"
-  code: "#pragma once\r\n\r\nstruct Random{\r\n    random_device rnd;\r\n    unsigned\
-    \ x=123456789,y=362436069,z=521288629,w=rnd();\r\n    Random(){}\r\n    unsigned\
-    \ get(){\r\n        unsigned t=x^(x<<11);\r\n        x=y,y=z,z=w;\r\n        return\
-    \ w=(w^(w<<19))^(t^(t>>8));\r\n    }\r\n    unsigned get(unsigned L){\r\n    \
-    \    return get()%(L+1);\r\n    }\r\n    template<typename T>T get(T L,T R){\r\
-    \n        return get(R-L)+L;\r\n    }\r\n    double uniform(){\r\n        return\
-    \ double(get())/UINT_MAX;\r\n    }\r\n    string str(int n){\r\n        string\
-    \ ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\n        return ret;\r\n    }\r\
-    \n    template<typename Iter>void shuffle(Iter first,Iter last){\r\n        if(first==last)return;\r\
-    \n        int len=1;\r\n        for(auto it=first+1;it!=last;it++){\r\n      \
-    \      len++;\r\n            int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\
-    \n        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
+  code: "#pragma once\r\n\r\nnamespace Random{\r\n    mt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n    using u64=unsigned long long;\r\n    u64 get(){\r\n        return randgen();\r\
+    \n    }\r\n    template<typename T>T get(T L){\r\n        return get()%(L+1);\r\
+    \n    }\r\n    template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\
+    \n    }\r\n    double uniform(){\r\n        return double(get(1000000000))/1000000000;\r\
+    \n    }\r\n    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
+    \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
+    \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
+    \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
+    \     int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\n\
+    \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
     \ */"
@@ -97,27 +99,28 @@ data:
   isVerificationFile: false
   path: Utility/random.hpp
   requiredBy:
+  - Convolution/multivariatecyclic.hpp
+  - Math/bbla.hpp
+  - Math/binomquery.hpp
+  - Math/pollard.hpp
+  - Math/primitive.hpp
+  - Math/detaplusbx.hpp
   - DataStructure/persistentrbstset.hpp
   - DataStructure/rbstset.hpp
-  - Math/pollard.hpp
-  - Math/bbla.hpp
-  - Math/primitive.hpp
-  - Math/binomquery.hpp
-  - Convolution/multivariatecyclic.hpp
   - Graph/maxindependentset.hpp
-  timestamp: '2022-01-16 22:20:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - String/rollinghash.hpp
+  timestamp: '2024-01-12 04:16:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_range_kth_smallest-2.test.cpp
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
-  - Verify/LC_factorize.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp
-  - Verify/LC_predecessor_problem.test.cpp
+  - Verify/LC_factorize.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_range_kth_smallest-2.test.cpp
+  - Verify/LC_predecessor_problem.test.cpp
 documentation_of: Utility/random.hpp
 layout: document
 redirect_from:

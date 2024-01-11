@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/chromatic.hpp
     title: Chromatic Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -21,24 +21,26 @@ data:
     https://judge.yosupo.jp/problem/chromatic_number\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
     \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\n#define\
-    \ UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())\r\n#define MIN(v)\
-    \ *min_element(ALL(v))\r\n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v,x)\
-    \ lower_bound(ALL(v),(x))-(v).begin()\r\n#define UB(v,x) upper_bound(ALL(v),(x))-(v).begin()\r\
-    \n\r\nusing ll=long long int;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF =\
-    \ 0x1fffffffffffffff;\r\n\r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return\
-    \ 1;}return 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return\
-    \ 1;}return 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0);\
-    \ if(y<0)x=-x,y=-y; return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename\
-    \ U>T floor(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\
-    \ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename\
-    \ T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename\
-    \ T>int lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Graph/chromatic.hpp\"\
-    \n\r\nstruct Chromatic{\r\n    const int n;\r\n    vector<ll> es;\r\n    Chromatic(int\
-    \ _n):n(_n),es(n){}\r\n    void add_edge(int u,int v){\r\n        es[u]|=1<<v;\r\
-    \n        es[v]|=1<<u;\r\n    }\r\n    int run(){\r\n        vector<int> dp(1<<n),sign(1<<n);\r\
-    \n        dp[0]=1;\r\n        rep(mask,0,1<<n){\r\n            if(mask){\r\n \
-    \               int v=__builtin_ctz(mask);\r\n                dp[mask]=dp[mask^(1<<v)]+dp[(mask^(1<<v))&(~es[v])];\r\
-    \n            }\r\n            sign[mask]=((n-__builtin_popcountll(mask))&1?-1:1);\r\
+    \ UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())\r\n#define SZ(v)\
+    \ (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v) *max_element(ALL(v))\r\
+    \n#define LB(v,x) int(lower_bound(ALL(v),(x))-(v).begin())\r\n#define UB(v,x)\
+    \ int(upper_bound(ALL(v),(x))-(v).begin())\r\n\r\nusing ll=long long int;\r\n\
+    using ull=unsigned long long;\r\nusing i128=__int128_t;\r\nusing u128=__uint128_t;\r\
+    \nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate<typename\
+    \ T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename\
+    \ T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return 0;}\r\ntemplate<typename\
+    \ T,typename U>T ceil(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?(x+y-1)/y:x/y);}\r\
+    \ntemplate<typename T,typename U>T floor(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y;\
+    \ return (x>0?x/y:(x-y+1)/y);}\r\ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\
+    \ntemplate<typename T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\
+    \ntemplate<typename T>int lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n\
+    #line 2 \"Graph/chromatic.hpp\"\n\r\nstruct Chromatic{\r\n    const int n;\r\n\
+    \    vector<ll> es;\r\n    Chromatic(int _n):n(_n),es(n){}\r\n    void add_edge(int\
+    \ u,int v){\r\n        es[u]|=1<<v;\r\n        es[v]|=1<<u;\r\n    }\r\n    int\
+    \ run(){\r\n        vector<int> dp(1<<n),sign(1<<n);\r\n        dp[0]=1;\r\n \
+    \       rep(mask,0,1<<n){\r\n            if(mask){\r\n                int v=__builtin_ctz(mask);\r\
+    \n                dp[mask]=dp[mask^(1<<v)]+dp[(mask^(1<<v))&(~es[v])];\r\n   \
+    \         }\r\n            sign[mask]=((n-__builtin_popcountll(mask))&1?-1:1);\r\
     \n        }\r\n        int ret=n;\r\n        auto calc=[&](int md)->void{\r\n\
     \            vector<ll> cur(ALL(sign));\r\n            rep(k,1,ret){\r\n     \
     \           int cnt=0;\r\n                rep(mask,0,1<<n){\r\n              \
@@ -62,7 +64,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2023-01-17 02:40:02+09:00'
+  timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_chromatic_number.test.cpp

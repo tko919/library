@@ -5,28 +5,34 @@ data:
   - icon: ':warning:'
     path: FPS/p-recursive.hpp
     title: P-recursive
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: Math/charpoly.hpp
+    title: Characteristic Polynomial
+  - icon: ':warning:'
+    path: Math/detaplusbx.hpp
+    title: $\det(A+Bx)$
+  - icon: ':x:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_matrix_product.test.cpp
     title: Verify/LC_matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Matrix
     links: []
@@ -55,9 +61,10 @@ data:
     \n            }\r\n            res.push_back(i);\r\n            cur++;\r\n   \
     \     }\r\n        return res;\r\n    }\r\n    Matrix inv(){\r\n        assert(h==w);\r\
     \n        Matrix base(h,h*2),res(h,h);\r\n        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];\r\
-    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\
-    \n        return res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n  \
-    \      assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
+    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        det=base.det;\r\
+    \n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\n        return\
+    \ res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n        assert(h==m.h\
+    \ and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
     \ false;\r\n        return true;\r\n    }\r\n    bool operator!=(const Matrix&\
     \ m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]==m.val[i][j])return\
     \ false;\r\n        return true;\r\n    }\r\n    friend istream& operator>>(istream&\
@@ -90,9 +97,10 @@ data:
     \n            }\r\n            res.push_back(i);\r\n            cur++;\r\n   \
     \     }\r\n        return res;\r\n    }\r\n    Matrix inv(){\r\n        assert(h==w);\r\
     \n        Matrix base(h,h*2),res(h,h);\r\n        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];\r\
-    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\
-    \n        return res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n  \
-    \      assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
+    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        det=base.det;\r\
+    \n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\n        return\
+    \ res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n        assert(h==m.h\
+    \ and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
     \ false;\r\n        return true;\r\n    }\r\n    bool operator!=(const Matrix&\
     \ m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]==m.val[i][j])return\
     \ false;\r\n        return true;\r\n    }\r\n    friend istream& operator>>(istream&\
@@ -106,15 +114,17 @@ data:
   path: Math/matrix.hpp
   requiredBy:
   - FPS/p-recursive.hpp
-  - Math/hafnian.hpp
   - Math/linearequation.hpp
-  timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - Math/charpoly.hpp
+  - Math/hafnian.hpp
+  - Math/detaplusbx.hpp
+  timestamp: '2024-01-12 04:16:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_matrix_det.test.cpp
   - Verify/LC_matrix_product.test.cpp
-  - Verify/LC_system_of_linear_equations.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_system_of_linear_equations.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document
 redirect_from:

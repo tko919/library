@@ -24,27 +24,47 @@ data:
     \n            }\r\n        }\r\n    };\r\n    vector<int> tmp(R);\r\n    iota(ALL(tmp),0);\r\
     \n    rec(rec,tmp);\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Monotone Minima\r\
     \n * @docs docs/monotoneminima.md\r\n */\n#line 3 \"Convolution/convexminplus.hpp\"\
-    \n\r\ntemplate<typename T>vector<T> ConvexMinPlusConvolution(vector<T>& a,vector<T>&\
-    \ b){\r\n    int n=a.size(),m=b.size();\r\n    auto cmp=[&](int i,int j,int k)->bool{\r\
-    \n        if(i<k)return false;\r\n        if(i-j>=m)return true;\r\n        return\
-    \ a[j]+b[i-j]>=a[k]+b[i-k];\r\n    };\r\n    auto arg=MonotoneMinima(n+m-1,n,cmp);\r\
-    \n    vector<ll> ret(n+m-1);\r\n    rep(i,0,n+m-1)ret[i]=a[arg[i]]+b[i-arg[i]];\r\
-    \n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Convex Min Plus Convolution\r\n\
-    \ * @docs docs/convexminplus.md\r\n */\n"
-  code: "#pragma once\r\n#include \"Algorithm/monotoneminima.hpp\"\r\n\r\ntemplate<typename\
-    \ T>vector<T> ConvexMinPlusConvolution(vector<T>& a,vector<T>& b){\r\n    int\
-    \ n=a.size(),m=b.size();\r\n    auto cmp=[&](int i,int j,int k)->bool{\r\n   \
-    \     if(i<k)return false;\r\n        if(i-j>=m)return true;\r\n        return\
-    \ a[j]+b[i-j]>=a[k]+b[i-k];\r\n    };\r\n    auto arg=MonotoneMinima(n+m-1,n,cmp);\r\
-    \n    vector<ll> ret(n+m-1);\r\n    rep(i,0,n+m-1)ret[i]=a[arg[i]]+b[i-arg[i]];\r\
-    \n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Convex Min Plus Convolution\r\n\
-    \ * @docs docs/convexminplus.md\r\n */"
+    \n\r\ntemplate <typename T>\r\nvector<T> ConvexMinPlusConvolution(vector<T> &a,\
+    \ vector<T> &b) {\r\n    int n = a.size(), m = b.size();\r\n    auto cmp = [&](int\
+    \ i, int j, int k) -> bool {\r\n        if (i < k)\r\n            return false;\r\
+    \n        if (i - j >= m)\r\n            return true;\r\n        return a[j] +\
+    \ b[i - j] >= a[k] + b[i - k];\r\n    };\r\n    auto arg = MonotoneMinima(n +\
+    \ m - 1, n, cmp);\r\n    vector<ll> ret(n + m - 1);\r\n    rep(i, 0, n + m - 1)\
+    \ ret[i] = a[arg[i]] + b[i - arg[i]];\r\n    return ret;\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvector<T> Convex2MinPlusConvolution(vector<T> &a, vector<T>\
+    \ &b) {\r\n    int n = SZ(a), m = SZ(b);\r\n    // rep(i, 2, n) assert(a[i - 1]\
+    \ - a[i - 2] <= a[i] - a[i - 1]);\r\n    // rep(i, 2, m) assert(b[i - 1] - b[i\
+    \ - 2] <= b[i] - b[i - 1]);\r\n\r\n    vector<T> c(n + m - 1);\r\n    c[0] = a[0]\
+    \ + b[0];\r\n    for (int k = 0, i = 0; k < n + m - 2; k++) {\r\n        int j\
+    \ = k - i;\r\n        if (j == m - 1 or (i < n - 1 and a[i + 1] + b[j] < a[i]\
+    \ + b[j + 1])) {\r\n            c[k + 1] = a[++i] + b[j];\r\n        } else {\r\
+    \n            c[k + 1] = a[i] + b[++j];\r\n        }\r\n    }\r\n    return c;\r\
+    \n}\r\n\r\n/**\r\n * @brief Convex Min Plus Convolution\r\n * @docs docs/convexminplus.md\r\
+    \n */\n"
+  code: "#pragma once\r\n#include \"Algorithm/monotoneminima.hpp\"\r\n\r\ntemplate\
+    \ <typename T>\r\nvector<T> ConvexMinPlusConvolution(vector<T> &a, vector<T> &b)\
+    \ {\r\n    int n = a.size(), m = b.size();\r\n    auto cmp = [&](int i, int j,\
+    \ int k) -> bool {\r\n        if (i < k)\r\n            return false;\r\n    \
+    \    if (i - j >= m)\r\n            return true;\r\n        return a[j] + b[i\
+    \ - j] >= a[k] + b[i - k];\r\n    };\r\n    auto arg = MonotoneMinima(n + m -\
+    \ 1, n, cmp);\r\n    vector<ll> ret(n + m - 1);\r\n    rep(i, 0, n + m - 1) ret[i]\
+    \ = a[arg[i]] + b[i - arg[i]];\r\n    return ret;\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvector<T> Convex2MinPlusConvolution(vector<T> &a, vector<T> &b) {\r\n\
+    \    int n = SZ(a), m = SZ(b);\r\n    // rep(i, 2, n) assert(a[i - 1] - a[i -\
+    \ 2] <= a[i] - a[i - 1]);\r\n    // rep(i, 2, m) assert(b[i - 1] - b[i - 2] <=\
+    \ b[i] - b[i - 1]);\r\n\r\n    vector<T> c(n + m - 1);\r\n    c[0] = a[0] + b[0];\r\
+    \n    for (int k = 0, i = 0; k < n + m - 2; k++) {\r\n        int j = k - i;\r\
+    \n        if (j == m - 1 or (i < n - 1 and a[i + 1] + b[j] < a[i] + b[j + 1]))\
+    \ {\r\n            c[k + 1] = a[++i] + b[j];\r\n        } else {\r\n         \
+    \   c[k + 1] = a[i] + b[++j];\r\n        }\r\n    }\r\n    return c;\r\n}\r\n\r\
+    \n/**\r\n * @brief Convex Min Plus Convolution\r\n * @docs docs/convexminplus.md\r\
+    \n */"
   dependsOn:
   - Algorithm/monotoneminima.hpp
   isVerificationFile: false
   path: Convolution/convexminplus.hpp
   requiredBy: []
-  timestamp: '2022-02-05 01:38:09+09:00'
+  timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Convolution/convexminplus.hpp

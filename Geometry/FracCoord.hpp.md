@@ -12,44 +12,50 @@ data:
   attributes:
     document_title: Geometry(Fraction Coordinates)
     links: []
-  bundledCode: "#line 2 \"Math/fraction.hpp\"\n\r\nstruct Frac{\r\n    ll a,b;\r\n\
-    \    Frac(ll _a=0){init(_a,1);}\r\n    Frac(ll _a,ll _b){init(_a,_b);}\r\n   \
-    \ Frac& init(ll _a,ll _b){\r\n        ll g=gcd(_a,_b);\r\n        a=_a/g,b=_b/g;\r\
-    \n        if(b<0)a=-a,b=-b;\r\n        return *this;\r\n    }\r\n    Frac inv()const{return\
-    \ Frac(b,a);}\r\n    Frac operator-()const{return Frac(-a,b);}\r\n    Frac& operator+=(const\
-    \ Frac& x){return init(a*x.b+x.a*b,b*x.b);}\r\n    Frac& operator-=(const Frac&\
-    \ x){return init(a*x.b-x.a*b,b*x.b);}\r\n    Frac& operator*=(const Frac& x){return\
-    \ init(a*x.a,b*x.b);}\r\n    Frac& operator/=(const Frac& x){return init(a*x.b,b*x.a);}\r\
-    \n    Frac operator+(const Frac& x)const{return Frac(*this)+=x;}\r\n    Frac operator-(const\
-    \ Frac& x)const{return Frac(*this)-=x;}\r\n    Frac operator*(const Frac& x)const{return\
-    \ Frac(*this)*=x;}\r\n    Frac operator/(const Frac& x)const{return Frac(*this)/=x;}\r\
-    \n    bool operator<(const Frac& x)const{return a*x.b<b*x.a;}\r\n    bool operator>(const\
-    \ Frac& x)const{return x<*this;}\r\n    bool operator<=(const Frac& x)const{return\
-    \ !(x<*this);}\r\n    bool operator>=(const Frac& x)const{return !(*this<x);}\r\
-    \n    bool operator==(const Frac& x)const{return (*this<=x and x<=*this);}\r\n\
-    \    bool operator!=(const Frac& x)const{return !(*this==x);}\r\n};\r\nFrac between(const\
-    \ Frac& x,const Frac& y){\r\n    if(x.a<x.b and y.b<y.a)return Frac(1);\r\n  \
-    \  else if(x.b<=x.a){\r\n        ll add=floor(x.a/x.b);\r\n        return between(x-add,y-add)+add;\r\
-    \n    }\r\n    else return between(y.inv(),x.inv()).inv();\r\n}\r\n\r\n/**\r\n\
-    \ * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line 3 \"Geometry/FracCoord.hpp\"\
-    \n \nstruct Point{\n    Frac X,Y;\n    Point():X(0),Y(0){}\n    Point(Frac _X,Frac\
-    \ _Y):X(_X),Y(_Y){}\n    int pos()const{\n        if(Y<0)return -1;\n        if(Y==0\
-    \ and X>=0)return 0;\n        return 1;\n    }\n    Point& operator+=(const Point&\
-    \ p){\n        X+=p.X;\n        Y+=p.Y;\n        return *this;\n    }\n    Point&\
-    \ operator-=(const Point& p){\n        X-=p.X;\n        Y-=p.Y;\n        return\
-    \ *this;\n    }\n    Point& operator*=(const Frac& t){\n        X*=t,Y*=t;\n \
-    \       return *this;\n    }\n    Point& operator*=(const Point& p){\n       \
-    \ Frac NX=X*p.X-Y*p.Y,NY=X*p.Y+Y*p.X;\n        X=NX,Y=NY;\n        return *this;\n\
-    \    }\n    Point operator+(const Point &p) const { return Point(*this) += p;\
-    \ }\n    Point operator-(const Point &p) const { return Point(*this) -= p; }\n\
-    \    Point operator*(const Frac &p) const { return Point(*this) *= p; }\n    Point\
-    \ operator*(const Point &p) const { return Point(*this) *= p; }\n    Point operator-()\
-    \ const { return Point(-X, -Y); }\n    bool operator==(const Point &p) const {\
-    \ return X == p.X && Y == p.Y; }\n    bool operator!=(const Point &p) const {\
-    \ return X != p.X || Y != p.Y; }\n    bool operator<(const Point &p) const { return\
-    \ X == p.X ? Y < p.Y : X < p.X; }\n};\nstruct Line{\n    Point a,b;\n    Line(){}\n\
-    \    Line(Point _a,Point _b):a(_a),b(_b){}\n};\nstruct Segment:Line{\n    Segment(){}\n\
-    \    Segment(Point _a,Point _b):Line(_a,_b){}\n};\nusing Poly=vector<Point>;\n\
+  bundledCode: "#line 2 \"Math/fraction.hpp\"\n\r\ntemplate <typename T> struct Frac\
+    \ {\r\n    T a, b;\r\n    Frac(T _a = 0) { init(_a, 1); }\r\n    Frac(T _a, T\
+    \ _b) { init(_a, _b); }\r\n    Frac &init(T _a, T _b) {\r\n        T g = GCD(_a,\
+    \ _b);\r\n        a = _a / g, b = _b / g;\r\n        if (b < 0)\r\n          \
+    \  a = -a, b = -b;\r\n        return *this;\r\n    }\r\n    Frac inv() const {\
+    \ return Frac(b, a); }\r\n    Frac operator-() const { return Frac(-a, b); }\r\
+    \n    Frac &operator+=(const Frac &x) { return init(a * x.b + x.a * b, b * x.b);\
+    \ }\r\n    Frac &operator-=(const Frac &x) { return init(a * x.b - x.a * b, b\
+    \ * x.b); }\r\n    Frac &operator*=(const Frac &x) { return init(a * x.a, b *\
+    \ x.b); }\r\n    Frac &operator/=(const Frac &x) { return init(a * x.b, b * x.a);\
+    \ }\r\n    Frac operator+(const Frac &x) const { return Frac(*this) += x; }\r\n\
+    \    Frac operator-(const Frac &x) const { return Frac(*this) -= x; }\r\n    Frac\
+    \ operator*(const Frac &x) const { return Frac(*this) *= x; }\r\n    Frac operator/(const\
+    \ Frac &x) const { return Frac(*this) /= x; }\r\n    bool operator<(const Frac\
+    \ &x) const { return a * x.b < b * x.a; }\r\n    bool operator>(const Frac &x)\
+    \ const { return x < *this; }\r\n    bool operator<=(const Frac &x) const { return\
+    \ !(x < *this); }\r\n    bool operator>=(const Frac &x) const { return !(*this\
+    \ < x); }\r\n    bool operator==(const Frac &x) const { return (*this <= x and\
+    \ x <= *this); }\r\n    bool operator!=(const Frac &x) const { return !(*this\
+    \ == x); }\r\n    T GCD(T a, T b) {\r\n        if (b == 0)\r\n            return\
+    \ a;\r\n        else\r\n            return GCD(b, a % b);\r\n    }\r\n};\r\ntemplate\
+    \ <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y) {\r\n    if\
+    \ (x.a < x.b and y.b < y.a)\r\n        return Frac(1);\r\n    else if (x.b <=\
+    \ x.a) {\r\n        T add = floor(x.a / x.b);\r\n        return between(x - add,\
+    \ y - add) + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\
+    \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
+    \ 3 \"Geometry/FracCoord.hpp\"\n \nstruct Point{\n    Frac X,Y;\n    Point():X(0),Y(0){}\n\
+    \    Point(Frac _X,Frac _Y):X(_X),Y(_Y){}\n    int pos()const{\n        if(Y<0)return\
+    \ -1;\n        if(Y==0 and X>=0)return 0;\n        return 1;\n    }\n    Point&\
+    \ operator+=(const Point& p){\n        X+=p.X;\n        Y+=p.Y;\n        return\
+    \ *this;\n    }\n    Point& operator-=(const Point& p){\n        X-=p.X;\n   \
+    \     Y-=p.Y;\n        return *this;\n    }\n    Point& operator*=(const Frac&\
+    \ t){\n        X*=t,Y*=t;\n        return *this;\n    }\n    Point& operator*=(const\
+    \ Point& p){\n        Frac NX=X*p.X-Y*p.Y,NY=X*p.Y+Y*p.X;\n        X=NX,Y=NY;\n\
+    \        return *this;\n    }\n    Point operator+(const Point &p) const { return\
+    \ Point(*this) += p; }\n    Point operator-(const Point &p) const { return Point(*this)\
+    \ -= p; }\n    Point operator*(const Frac &p) const { return Point(*this) *= p;\
+    \ }\n    Point operator*(const Point &p) const { return Point(*this) *= p; }\n\
+    \    Point operator-() const { return Point(-X, -Y); }\n    bool operator==(const\
+    \ Point &p) const { return X == p.X && Y == p.Y; }\n    bool operator!=(const\
+    \ Point &p) const { return X != p.X || Y != p.Y; }\n    bool operator<(const Point\
+    \ &p) const { return X == p.X ? Y < p.Y : X < p.X; }\n};\nstruct Line{\n    Point\
+    \ a,b;\n    Line(){}\n    Line(Point _a,Point _b):a(_a),b(_b){}\n};\nstruct Segment:Line{\n\
+    \    Segment(){}\n    Segment(Point _a,Point _b):Line(_a,_b){}\n};\nusing Poly=vector<Point>;\n\
     \ \nFrac dot(const Point &a, const Point &b) { return a.X * b.X + a.Y * b.Y; }\n\
     Frac cross(const Point &a, const Point &b) { return a.X * b.Y - a.Y * b.X; }\n\
     Frac norm(const Point& a){return a.X*a.X+a.Y*a.Y;}\nbool cmp(const Point& a,const\
@@ -68,13 +74,14 @@ data:
     \ Line& a,const Line& b){\n    Frac d1=cross(a.b-a.a,b.b-b.a);\n    Frac d2=cross(a.b-a.a,a.b-b.a);\n\
     \    if(d1==0 and d2==0)return b.a;\n    return b.a+(b.b-b.a)*(d2/d1);\n}\n \n\
     Frac Area(const Poly& a){\n    Frac res=0;\n    int n=a.size();\n    rep(i,0,n)res+=cross(a[i],a[(i+1)%n]);\n\
-    \    return res/2;\n}\nint isContained(const Poly& a,const Point& b){\n    bool\
-    \ res=0;\n    int n=a.size();\n    rep(i,0,n){\n        Point p=a[i]-b,q=a[(i+1)%n]-b;\n\
-    \        if(p.Y>q.Y)swap(p,q);\n        if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n\
-    \        if(cross(p,q)==0 and dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n\
-    }\nPoly ConvexHull(Poly& a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n\
-    \    sort(ALL(a),[](const Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n\
-    \    });\n    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
+    \    return res/2;\n}\nint isContained(const Poly& a,const Point& b){ // 0:not\
+    \ contain,1:on edge,2:contain\n    bool res=0;\n    int n=a.size();\n    rep(i,0,n){\n\
+    \        Point p=a[i]-b,q=a[(i+1)%n]-b;\n        if(p.Y>q.Y)swap(p,q);\n     \
+    \   if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n        if(cross(p,q)==0 and\
+    \ dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n}\nPoly ConvexHull(Poly&\
+    \ a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n    sort(ALL(a),[](const\
+    \ Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n    });\n\
+    \    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
     \ and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\n\
     \        while(k>=t and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n\
     \    res.resize(k-1); return res;\n}\nPoly Cut(const Poly& a,const Line& l){\n\
@@ -119,13 +126,14 @@ data:
     \ Line& a,const Line& b){\n    Frac d1=cross(a.b-a.a,b.b-b.a);\n    Frac d2=cross(a.b-a.a,a.b-b.a);\n\
     \    if(d1==0 and d2==0)return b.a;\n    return b.a+(b.b-b.a)*(d2/d1);\n}\n \n\
     Frac Area(const Poly& a){\n    Frac res=0;\n    int n=a.size();\n    rep(i,0,n)res+=cross(a[i],a[(i+1)%n]);\n\
-    \    return res/2;\n}\nint isContained(const Poly& a,const Point& b){\n    bool\
-    \ res=0;\n    int n=a.size();\n    rep(i,0,n){\n        Point p=a[i]-b,q=a[(i+1)%n]-b;\n\
-    \        if(p.Y>q.Y)swap(p,q);\n        if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n\
-    \        if(cross(p,q)==0 and dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n\
-    }\nPoly ConvexHull(Poly& a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n\
-    \    sort(ALL(a),[](const Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n\
-    \    });\n    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
+    \    return res/2;\n}\nint isContained(const Poly& a,const Point& b){ // 0:not\
+    \ contain,1:on edge,2:contain\n    bool res=0;\n    int n=a.size();\n    rep(i,0,n){\n\
+    \        Point p=a[i]-b,q=a[(i+1)%n]-b;\n        if(p.Y>q.Y)swap(p,q);\n     \
+    \   if(p.Y<=0 and q.Y>0 and cross(p,q)>0)res^=1;\n        if(cross(p,q)==0 and\
+    \ dot(p,q)<=0)return 1;\n    }\n    return (res?2:0);\n}\nPoly ConvexHull(Poly&\
+    \ a){\n    int n=a.size(),k=0;\n    if(n<=2)return a;\n    sort(ALL(a),[](const\
+    \ Point& p,const Point& q){\n        return (p.Y==q.Y?p.X<q.X:p.Y<q.Y);\n    });\n\
+    \    Poly res(n*2);\n    for(int i=0;i<n;res[k++]=a[i++]){\n        while(k>=2\
     \ and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n    for(int i=n-2,t=k+1;i>=0;res[k++]=a[i--]){\n\
     \        while(k>=t and cross(res[k-1]-res[k-2],a[i]-res[k-1])<0)k--;\n    }\n\
     \    res.resize(k-1); return res;\n}\nPoly Cut(const Poly& a,const Line& l){\n\
@@ -138,7 +146,7 @@ data:
   isVerificationFile: false
   path: Geometry/FracCoord.hpp
   requiredBy: []
-  timestamp: '2022-12-07 05:58:52+09:00'
+  timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/FracCoord.hpp
