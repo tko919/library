@@ -36,7 +36,7 @@ template<typename T,int LG=20>struct SubsetConvolution{
         if(same)B=A;
         else zeta(B);
         rep(i,0,n){
-            POL c;
+            POL c={};
             rep(j,0,m+1)rep(k,0,m+1-j)c[j+k]+=A[i][j]*B[i][k];
             swap(A[i],c);
         }
@@ -51,7 +51,7 @@ template<typename T,int LG=20>struct SubsetConvolution{
         rep(i,0,n)A[i][bpc[i]]=a[i];
         zeta(A);
         rep(i,0,n){
-            POL ret;
+            POL ret={};
             ret[0]=1;
             rep(j,1,m+1){
                 rep(k,1,j+1)ret[j]+=ret[j-k]*A[i][k]*k;
@@ -70,7 +70,7 @@ template<typename T,int LG=20>struct SubsetConvolution{
         rep(i,0,n)A[i][bpc[i]]=a[i];
         zeta(A);
         rep(i,0,n){
-            POL ret;
+            POL ret={};
             rep(j,1,m+1){
                 ret[j]=A[i][j]*j;
                 rep(k,1,j)ret[j]-=ret[k]*A[i][j-k]*k;
@@ -89,7 +89,7 @@ template<typename T,int LG=20>struct SubsetConvolution{
         rep(i,0,n)A[i][bpc[i]]=a[i];
         zeta(A);
         rep(i,0,n){
-            POL ret;
+            POL ret={};
             ret[0]=1;
             rep(j,1,m+1){
                 ret[j]=A[i][j];

@@ -22,6 +22,7 @@ template<typename T>struct Poly:vector<T>{
         res.resize(n); return res;
     }
     Poly square()const{return Poly(mult(*this,*this,1));}
+    Poly operator-()const{return Poly()-*this;}
     Poly operator+(const Poly& g)const{return Poly(*this)+=g;}
     Poly operator+(const T& g)const{return Poly(*this)+=g;}
     Poly operator-(const Poly& g)const{return Poly(*this)-=g;}

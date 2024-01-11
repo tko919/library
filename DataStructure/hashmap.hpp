@@ -1,23 +1,32 @@
 #pragma once
 
-template<typename Key,typename Val,int N=1<<20,Val Default=Val()>struct HashMap{
-    Key* keys;
-    Val* vals;
+template<typename Key,typename Val,int N=1<<20>struct HashMap{
+    using u64 = uint64_t;
+private:
+    array<Key,N> keys;
+    array<Val,N> vals;
     bitset<N> used;
     const int shift;
-    const uint64_t r=11995408973635179863ULL;
-    HashMap():keys(new Key[N]),vals(new Val[N]),shift(64-__lg(N)){}
+    static constexpr u64 RNG() {
+        mt19937_64 gen(chrono::steady_clock::now().time_since_epoch().count());
+        return gen();
+    }
+public:
+    HashMap():shift(64-__lg(N)){
+        static_assert((N & (N - 1)) == 0 && N > 0);
+    }
     Val& operator[](const Key& x){
-        int hash=(uint64_t(x)*r)>>shift;
+        static u64 r=RNG();
+        int hash=(u64(x)*r)>>shift;
         for(;;){
             if(!used[hash]){
                 keys[hash]=x;
                 used[hash]=1;
-                return vals[hash]=Default;
+                return vals[hash]=Val();
             }
             if(keys[hash]==x)return vals[hash];
             hash++;
-            if(hash==N)hash=0;
+            hash=(hash+1)&(N-1);
         }
     }
 };

@@ -1,6 +1,5 @@
 #pragma once
 #include "FPS/sumofRationals.hpp"
-#include "Math/factorial.hpp"
 
 template<typename T>Poly<T> CompExp(Poly<T>& f,int m){
     int n=f.size();
@@ -14,8 +13,7 @@ template<typename T>Poly<T> CompExp(Poly<T>& f,int m){
     q.resize(m);
     p*=q.inv();
     p.resize(m);
-    factorial<T> fact(m+1);
-    rep(i,0,m)p[i]*=fact.fact(i,1);
+    rep(i,0,m)p[i]*=Fact<T>(i,1);
     return p;
 }
 

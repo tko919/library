@@ -102,7 +102,7 @@ Frac Area(const Poly& a){
     rep(i,0,n)res+=cross(a[i],a[(i+1)%n]);
     return res/2;
 }
-int isContained(const Poly& a,const Point& b){
+int isContained(const Poly& a,const Point& b){ // 0:not contain,1:on edge,2:contain
     bool res=0;
     int n=a.size();
     rep(i,0,n){

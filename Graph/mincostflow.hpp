@@ -1,103 +1,165 @@
 #pragma once
+#include "Graph/maxflow.hpp"
 
-template<typename Flow,typename Cost,bool Maximize=false>class MinCostFlow{
-    struct ptr{int v_id,e_id;};
-    struct edge{
-        int from,to; Flow flow,cap; Cost weight; int rev;
-        edge(int _f,int _t,Flow _c,Cost _w,int _r)
-            :from(_f),to(_t),flow(0),cap(_c),weight(_w),rev(_r){}
-        Flow residual_cap()const{return cap-flow;}
+// yosupo orz
+template <class Cap, class Cost> struct MinCostFlow {
+    struct X {
+        int from, to;
+        Cap lb, ub, flow;
+        Cost cost;
     };
-    int n; vector<vector<edge>> g;
-    vector<Flow> b,pot; vector<ptr> ptrs;
-    Cost farthest; vector<Cost> dist; vector<edge*> par;
-    vector<int> exc,def;
-    void push(edge& e,Flow amount){
-        e.flow+=amount; g[e.to][e.rev].flow-=amount;
+    struct Edge {
+        int to, rev;
+        Cap cap;
+        Cost cost;
+    };
+    using P = pair<int, int>;
+    int n, m;
+    vector<X> es;
+    vector<Cap> exc;
+    vector<Cost> dual;
+    vector<vector<Edge>> g;
+    Cost MX;
+    MinCostFlow(int _n) : n(_n), m(0), exc(n), dual(n), g(n), MX(0) {}
+    void add_edge(int from, int to, Cap lb, Cap ub, Cost cost) {
+        m++;
+        chmax(MX, cost);
+        chmax(MX, -cost);
+        es.push_back({from, to, lb, ub, 0, cost});
     }
-    Cost residual_cost(int from,int to,edge& e){
-        return e.weight+pot[from]-pot[to];
-    }
-    bool dual(const Flow& delta){
-        dist.assign(n,numeric_limits<Cost>::max()); par.assign(n,nullptr);
-        exc.erase(remove_if(ALL(exc),[&](int v){return b[v]<delta;}),exc.end());
-        def.erase(remove_if(ALL(def),[&](int v){return b[v]>-delta;}),def.end());
-        priority_queue<pair<Cost,int>,vector<pair<Cost,int>>,greater<>> pq;
-        for(auto& v:exc)pq.push({dist[v]=0,v});
-        farthest=0; int def_cnt=0;
-        while(!pq.empty()){
-            auto [d,u]=pq.top(); pq.pop();
-            if(dist[u]<d)continue;
-            farthest=d;
-            if(b[u]<=-delta)def_cnt++;
-            if(def_cnt>=(int)def.size())break;
-            for(auto& e:g[u]){
-                if(e.residual_cap()<delta)continue;
-                int v=e.to; Cost nd=d+residual_cost(u,v,e);
-                if(nd>=dist[v])continue;
-                pq.push({dist[v]=nd,v}); par[v]=&e;
+    void add_excess(int v, Cap c) { exc[v] += c; }
+    pair<bool, Cost> run() {
+        MaxFlow mf(n + 2);
+        int S = n, T = n + 1;
+        Cap psum = 0, nsum = 0;
+        for (auto &e : es) {
+            exc[e.to] += e.lb;
+            exc[e.from] -= e.lb;
+            mf.add_edge(e.from, e.to, e.ub - e.lb);
+        }
+        rep(i, 0, n) {
+            if (exc[i] > 0) {
+                psum += exc[i];
+                mf.add_edge(S, i, exc[i]);
+            }
+            if (exc[i] < 0) {
+                nsum += -exc[i];
+                mf.add_edge(i, T, -exc[i]);
             }
         }
-        rep(v,0,n)pot[v]+=min(dist[v],farthest);
-        return def_cnt>0;
-    }
-    void primal(const Flow& delta){
-        for(auto& t:def){
-            if(dist[t]>farthest)continue;
-            Flow f=-b[t]; int v;
-            for(v=t;par[v]!=nullptr;v=par[v]->from){
-                chmin(f,par[v]->residual_cap());
-            }
-            chmin(f,b[v]); f-=f%delta;
-            if(f<=0)continue;
-            for(v=t;par[v]!=nullptr;){
-                auto& e=*par[v];
-                push(e,f);
-                int u=par[v]->from;
-                if(e.residual_cap()<=0)par[v]=nullptr;
-                v=u;
-            }
-            b[t]+=f; b[v]-=f;
+
+        if (psum != nsum or mf.run(S, T) != psum)
+            return {false, 0};
+
+        using P = pair<int, int>;
+        vector<P> pos;
+        rep(i, 0, m) {
+            auto e = mf.get_edge(i);
+            Cost cost = es[i].cost * n;
+            int fid = SZ(g[e.from]), tid = SZ(g[e.to]);
+            if (e.from == e.to)
+                tid++;
+            pos.push_back({e.from, fid});
+            g[e.from].push_back({e.to, tid, e.cap, cost});
+            g[e.to].push_back({e.from, fid, e.recap, -cost});
         }
+
+        // solve
+        Cost eps = MX * n + 1;
+        while (eps > 1) {
+            eps = max<Cost>(eps >> 2, 1);
+            refine(eps);
+        }
+
+        Cost ret = 0;
+        rep(i, 0, m) {
+            auto [from, fid] = pos[i];
+            es[i].flow = es[i].ub - g[from][fid].cap;
+            ret += es[i].flow * es[i].cost;
+        }
+        dual.assign(n, 0);
+        for (;;) {
+            bool upd = 0;
+            rep(i, 0, n) {
+                for (auto &e : g[i])
+                    if (e.cap) {
+                        auto cost = dual[i] + e.cost / n;
+                        if (chmin(dual[e.to], cost)) {
+                            upd = 1;
+                        }
+                    }
+            }
+            if (!upd)
+                break;
+        }
+        return {true, ret};
     }
-public:
-    MinCostFlow(int _n):n(_n),g(_n),b(_n),pot(_n){}
-    void add_edge(int from,int to,Flow lb,Flow ub,Cost cost){
-        int f_id=g[from].size(),t_id=(from==to?f_id+1:g[to].size());
-        g[from].push_back(edge(from,to,ub,Maximize?-cost:cost,t_id));
-        g[to].push_back(edge(to,from,-lb,Maximize?cost:-cost,f_id));
-        ptrs.push_back(ptr{from,f_id});
-    }
-    void add_supply(int v,Flow amount){b[v]+=amount;}
-    void add_demand(int v,Flow amount){b[v]-=amount;}
-    Flow get_pot(int v){return pot[v];}
-    Flow get_flow(int v){return g[ptrs[v].v_id][ptrs[v].e_id].flow;}
-    template<typename T=ll>pair<bool,T> run(const Flow& sf=2){
-        Flow max_flow=1;
-        for(auto& t:b)chmax(max_flow,abs(t));
-        for(auto& es:g)for(auto& e:es)chmax(max_flow,abs(e.residual_cap()));
-        Flow delta=1;
-        while(delta<max_flow)delta*=sf;
-        for(;delta;delta/=sf){
-            for(auto& es:g)for(auto& e:es){
-                Flow rcap=e.residual_cap();
-                rcap-=rcap%delta;
-                Cost rcost=residual_cost(e.from,e.to,e);
-                if(rcost<0 or rcap<0){
-                    push(e,rcap);
-                    b[e.from]-=rcap; b[e.to]+=rcap;
+
+  private:
+    void refine(Cost &eps) {
+        exc.assign(n, 0);
+        vector<int> used(n);
+        queue<int> que;
+        vector<int> iter(n);
+
+        auto cost = [&](int from, const Edge &e) {
+            return e.cost + dual[from] - dual[e.to];
+        };
+        auto push = [&](int from, Edge &e, Cap cap) {
+            exc[from] -= cap;
+            exc[e.to] += cap;
+            g[e.to][e.rev].cap += cap;
+            e.cap -= cap;
+        };
+        auto relabel = [&](int v) {
+            iter[v] = 0;
+            Cost down = MX * (n + 1);
+            for (auto &e : g[v])
+                if (e.cap) {
+                    chmin(down, eps + cost(v, e));
+                }
+            dual[v] -= down;
+            que.push(v);
+            used[v] = 1;
+        };
+
+        rep(i, 0, n) {
+            for (auto &e : g[i])
+                if (e.cap and cost(i, e) < 0) {
+                    push(i, e, e.cap);
+                }
+        }
+        rep(i, 0, n) if (exc[i] > 0) {
+            used[i] = 1;
+            que.push(i);
+        }
+        while (!que.empty()) {
+            auto v = que.front();
+            que.pop();
+            used[v] = 0;
+            for (int &i = iter[v]; i < SZ(g[v]); i++) {
+                auto &e = g[v][i];
+                if (e.cap and cost(v, e) < 0) {
+                    push(v, e, min(exc[v], e.cap));
+                    if (!used[e.to] and exc[e.to] > 0) {
+                        used[e.to] = 1;
+                        que.push(e.to);
+                    }
+                    if (exc[v] == 0)
+                        break;
                 }
             }
-            rep(v,0,n)if(b[v]!=0){
-                (b[v]>0?exc:def).push_back(v);
+            if (exc[v] > 0) {
+                relabel(v);
             }
-            while(dual(delta))primal(delta);
         }
-        T res=0;
-        for(auto& es:g)for(auto& e:es)res+=T(e.flow)*T(e.weight);
-        res>>=1;
-        if(exc.empty() and def.empty())return {1,Maximize?-res:res};
-        else return {0,Maximize?-res:res};
+        eps = 0;
+        rep(i, 0, n) {
+            for (auto &e : g[i])
+                if (e.cap) {
+                    chmax(eps, -cost(i, e));
+                }
+        }
     }
 };
 

@@ -5,7 +5,9 @@ template<typename T,T MX>struct CHT{
     int n;
     vector<T> xs;
     vector<Line> ls;
-    CHT(vector<T>& ps):xs(ps){
+    CHT(vector<T>& ps){
+        xs=ps;
+        UNIQUE(xs);
         n=1;
         while(n<(int)xs.size())n<<=1;
         xs.resize(n,xs.back());

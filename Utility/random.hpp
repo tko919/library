@@ -1,22 +1,19 @@
 #pragma once
 
-struct Random{
-    random_device rnd;
-    unsigned x=123456789,y=362436069,z=521288629,w=rnd();
-    Random(){}
-    unsigned get(){
-        unsigned t=x^(x<<11);
-        x=y,y=z,z=w;
-        return w=(w^(w<<19))^(t^(t>>8));
+namespace Random{
+    mt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());
+    using u64=unsigned long long;
+    u64 get(){
+        return randgen();
     }
-    unsigned get(unsigned L){
+    template<typename T>T get(T L){
         return get()%(L+1);
     }
     template<typename T>T get(T L,T R){
         return get(R-L)+L;
     }
     double uniform(){
-        return double(get())/UINT_MAX;
+        return double(get(1000000000))/1000000000;
     }
     string str(int n){
         string ret;

@@ -1,12 +1,10 @@
 #pragma once
-#include "Math/factorial.hpp"
 
 template<typename T>vector<T> Bernoulli(int n){
-    factorial<T> fact(n+2);
     Poly<T> f(n+1);
-    rep(i,0,n+1)f[i]=fact.fact(i+1,1);
+    rep(i,0,n+1)f[i]=Fact<T>(i+1,1);
     f=f.inv();
-    rep(i,0,n+1)f[i]*=fact.fact(i);
+    rep(i,0,n+1)f[i]*=Fact<T>(i);
     return f;
 }
 
@@ -34,11 +32,10 @@ template<typename T>vector<T> StirlingNumber1st(int n){
 
 template<typename T>vector<T> StirlingNumber2nd(int n){
     if(n==0)return Poly<T>({T(1)});
-    factorial<T> fact(n+1);
     Poly<T> f(n+1),g(n+1);
     rep(i,0,n+1){
-        f[i]=Fp(i).pow(n)*fact.fact(i,1);
-        g[i]=fact.fact(i,1);
+        f[i]=Fp(i).pow(n)*Fact<T>(i,1);
+        g[i]=Fact<T>(i,1);
         if(i&1)g[i]=-g[i];
     }
     f*=g;

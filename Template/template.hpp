@@ -4,12 +4,16 @@ using namespace std;
 #define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)
 #define ALL(v) (v).begin(),(v).end()
 #define UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())
+#define SZ(v) (int)v.size()
 #define MIN(v) *min_element(ALL(v))
 #define MAX(v) *max_element(ALL(v))
-#define LB(v,x) lower_bound(ALL(v),(x))-(v).begin()
-#define UB(v,x) upper_bound(ALL(v),(x))-(v).begin()
+#define LB(v,x) int(lower_bound(ALL(v),(x))-(v).begin())
+#define UB(v,x) int(upper_bound(ALL(v),(x))-(v).begin())
 
 using ll=long long int;
+using ull=unsigned long long;
+using i128=__int128_t;
+using u128=__uint128_t;
 const int inf = 0x3fffffff;
 const ll INF = 0x1fffffffffffffff;
 

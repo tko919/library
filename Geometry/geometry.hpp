@@ -227,7 +227,7 @@ bool isConvex(const Poly& a){
     }
     return 1;
 }
-int isContained(const Poly& a,const Point& b){
+int isContained(const Poly& a,const Point& b){ // 0:not contain,1:on edge,2:contain
     bool res=0;
     int n=a.size();
     rep(i,0,n){

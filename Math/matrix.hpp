@@ -57,6 +57,7 @@ template<class T>struct Matrix{
         rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];
         rep(i,0,h)base[i][h+i]=1;
         base.gauss(h);
+        det=base.det;
         rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];
         return res;
     }

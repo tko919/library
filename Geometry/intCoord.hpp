@@ -78,7 +78,7 @@ bool isIntersect(const Segment& a,const Segment& b){
         ccw(b.a,b.b,a.a)*ccw(b.a,b.b,a.b)<=0;
 }
  
-int isContained(const Poly& a,const Point& b){
+int isContained(const Poly& a,const Point& b){ // 0:not contain,1:on edge,2:contain
     bool res=0;
     int n=a.size();
     rep(i,0,n){

@@ -2,7 +2,7 @@
 
 struct LowLink{
     const int n; vector<vector<int>> g;
-    vector<int> used,ord,low,id;
+    vector<int> used,ord,low,id,arti;
     LowLink(const int& _n=0):n(_n),g(n),
         used(n,0),ord(n,0),low(n,0),id(n,-1){
     }
@@ -11,15 +11,19 @@ struct LowLink{
      }
     void dfs(int v,int p,int& k){
         used[v]=1; low[v]=ord[v]=k++;
+        bool isarti=0;
         int cnt=0,sub=0;
         for(auto& to:g[v]){
             if(to==p and (++sub)<=1)continue;
             if(!used[to]){
                 cnt++; dfs(to,v,k);
                 chmin(low[v],low[to]);
+                isarti|=(p>=0&&low[to]>=ord[v]);
             }
             else chmin(low[v],ord[to]);
         }
+        isarti|=(p==-1&&cnt>1);
+        if(isarti)arti.push_back(v);
     }
     void dfs2(int v,int p,int& k){
         if(p!=-1 and ord[p]>=low[v])id[v]=id[p];

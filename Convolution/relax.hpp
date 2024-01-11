@@ -1,5 +1,4 @@
 #pragma once
-#include "Math/factorial.hpp"
 
 template<typename T>class RelaxedConvolution{
     using P=array<int,2>;
@@ -89,14 +88,14 @@ private:
 
 template<typename T>struct RelaxedExp{
     RelaxedExp(){}
-    RelaxedExp(int _n):n(_n),pos(0),g(n),fact(n),buf(n){}
+    RelaxedExp(int _n):n(_n),pos(0),g(n),buf(n){}
     T next(T x){
         if(pos==0){
             assert(x==0);
             g[pos]=1;
         }
         else{
-            g[pos]=buf.next(x*pos,g[pos-1])*fact.inv(pos);
+            g[pos]=buf.next(x*pos,g[pos-1])*Inv<T>(pos);
         }
         return g[pos++];
     }
@@ -104,13 +103,12 @@ template<typename T>struct RelaxedExp{
 private:
     int n,pos;
     vector<T> g;
-    factorial<T> fact;
     RelaxedConvolution<T> buf;
 };
 
 template<typename T>struct RelaxedLog{
     RelaxedLog(){}
-    RelaxedLog(int _n):n(_n),pos(0),g(n),fact(n),buf(n),invf(n){}
+    RelaxedLog(int _n):n(_n),pos(0),g(n),buf(n),invf(n){}
     T next(T x){
         invf.next(x);
         if(pos==0){
@@ -118,7 +116,7 @@ template<typename T>struct RelaxedLog{
             g[pos]=0;
         }
         else{
-            g[pos]=buf.next(x*pos,invf[pos-1])*fact.inv(pos);
+            g[pos]=buf.next(x*pos,invf[pos-1])*Inv<T>(pos);
         }
         return g[pos++];
     }
@@ -126,7 +124,6 @@ template<typename T>struct RelaxedLog{
 private:
     int n,pos;
     vector<T> g;
-    factorial<T> fact;
     RelaxedConvolution<T> buf;
     RelaxedInv<T> invf;
 };
