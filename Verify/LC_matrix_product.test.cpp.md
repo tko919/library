@@ -12,9 +12,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -38,49 +38,50 @@ data:
     \ntemplate<typename T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\
     \ntemplate<typename T>int lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n\
     #line 2 \"Math/modint.hpp\"\n\r\ntemplate <int mod = 1000000007> struct fp {\r\
-    \n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n    int\
-    \ inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while\
-    \ (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x,\
-    \ y);\r\n        if (x < 0) {\r\n            x += mod;\r\n        }\r\n      \
-    \  return x;\r\n    }\r\n    fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) %\
-    \ mod) % mod) {}\r\n    fp operator-() const { return fp() - *this; }\r\n    fp\
-    \ pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\n\
-    \        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\n\
-    \            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
-    \n    }\r\n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\
-    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
-    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
-    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
-    \   v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
-    \ fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n\
-    \    }\r\n    fp operator+(const fp &x) const { return fp(*this) += x; }\r\n \
-    \   fp operator-(const fp &x) const { return fp(*this) -= x; }\r\n    fp operator*(const\
-    \ fp &x) const { return fp(*this) *= x; }\r\n    fp operator/(const fp &x) const\
-    \ { return fp(*this) /= x; }\r\n    bool operator==(const fp &x) const { return\
-    \ v == x.v; }\r\n    bool operator!=(const fp &x) const { return v != x.v; }\r\
-    \n    friend istream &operator>>(istream &is, fp &x) { return is >> x.v; }\r\n\
-    \    friend ostream &operator<<(ostream &os, const fp &x) { return os << x.v;\
-    \ }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\n    static const int md\
-    \ = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\
-    \n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md\
-    \ + k - 1) / k;\r\n        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n  \
-    \  return buf[n];\r\n}\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0)\
-    \ {\r\n    static const int md = T::get_mod();\r\n    static vector<T> buf({1,\
-    \ 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <=\
-    \ n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\n        ibuf.push_back(ibuf.back()\
-    \ * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\
-    \r\ntemplate <typename T> T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0\
-    \ || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n\
-    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nCr(int n, int r, bool inv =\
-    \ 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n    return\
-    \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate\
-    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
-    \ - 1, r, inv);\r\n}\r\n\r\n/**\r\n * @brief Modint\r\n */\n#line 2 \"Math/matrix.hpp\"\
-    \n\r\ntemplate<class T>struct Matrix{\r\n    int h,w; vector<vector<T>> val; T\
-    \ det;\r\n    Matrix(){}\r\n    Matrix(int n):h(n),w(n),val(vector<vector<T>>(n,vector<T>(n))){}\r\
-    \n    Matrix(int n,int m):h(n),w(m),val(vector<vector<T>>(n,vector<T>(m))){}\r\
-    \n    vector<T>& operator[](const int i){return val[i];}\r\n    Matrix& operator+=(const\
-    \ Matrix& m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];\r\
+    \n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n    constexpr\
+    \ int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n    \
+    \    while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp\
+    \ * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\n      \
+    \  }\r\n        return x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ?\
+    \ x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const { return\
+    \ fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n       \
+    \ fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n\
+    \                res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n\
+    \        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const fp &x)\
+    \ {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return\
+    \ *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod\
+    \ - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\n    }\r\n\
+    \    fp &operator*=(const fp &x) {\r\n        v = ll(v) * x.v % mod;\r\n     \
+    \   return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n        v =\
+    \ ll(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
+    \ fp &x) const { return fp(*this) += x; }\r\n    fp operator-(const fp &x) const\
+    \ { return fp(*this) -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this)\
+    \ *= x; }\r\n    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n\
+    \    bool operator==(const fp &x) const { return v == x.v; }\r\n    bool operator!=(const\
+    \ fp &x) const { return v != x.v; }\r\n    friend istream &operator>>(istream\
+    \ &is, fp &x) { return is >> x.v; }\r\n    friend ostream &operator<<(ostream\
+    \ &os, const fp &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T\
+    \ Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n    static vector<T>\
+    \ buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <=\
+    \ n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k\
+    \ * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename\
+    \ T> T Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\
+    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n <\
+    \ md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
+    \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
+    \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
+    \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
+    \    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename\
+    \ T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\
+    \n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n\
+    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int n, int r, bool inv =\
+    \ 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\n/**\r\n * @brief Modint\r\
+    \n */\n#line 2 \"Math/matrix.hpp\"\n\r\ntemplate<class T>struct Matrix{\r\n  \
+    \  int h,w; vector<vector<T>> val; T det;\r\n    Matrix(){}\r\n    Matrix(int\
+    \ n):h(n),w(n),val(vector<vector<T>>(n,vector<T>(n))){}\r\n    Matrix(int n,int\
+    \ m):h(n),w(m),val(vector<vector<T>>(n,vector<T>(m))){}\r\n    vector<T>& operator[](const\
+    \ int i){return val[i];}\r\n    Matrix& operator+=(const Matrix& m){\r\n     \
+    \   assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];\r\
     \n        return *this;\r\n    }\r\n    Matrix& operator-=(const Matrix& m){\r\
     \n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]-=m.val[i][j];\r\
     \n        return *this;\r\n    }\r\n    Matrix& operator*=(const Matrix& m){\r\
@@ -130,8 +131,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:13:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_matrix_product.test.cpp
 layout: document

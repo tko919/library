@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
   - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Pollard-Rho
     links: []
@@ -78,25 +78,29 @@ data:
     \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
     \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
     \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
-    \ */\n#line 4 \"Math/pollard.hpp\"\n\r\nRandom genPollard;\r\nvector<ll> Pollard(ll\
-    \ n){\r\n    if(n<=1)return {};\r\n    if(Miller(n))return {n};\r\n    if((n&1)==0){\r\
-    \n        vector<ll> v=Pollard(n>>1); v.push_back(2);\r\n        return v;\r\n\
-    \    }\r\n    for(ll x=2,y=2,d;;){\r\n        ll c=genPollard.get(2LL,n-1);\r\n\
-    \        do{\r\n            x=(__int128_t(x)*x+c)%n;\r\n            y=(__int128_t(y)*y+c)%n;\r\
-    \n            y=(__int128_t(y)*y+c)%n;\r\n            d=__gcd(x-y+n,n);\r\n  \
-    \      }while(d==1);\r\n        if(d<n){\r\n            vector<ll> lb=Pollard(d),rb=Pollard(n/d);\r\
-    \n            lb.insert(lb.end(),ALL(rb)); return lb;\r\n        }\r\n    }\r\n\
-    }\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n"
+    \ */\n#line 4 \"Math/pollard.hpp\"\n\r\nvector<ll> Pollard(ll n) {\r\n    if (n\
+    \ <= 1)\r\n        return {};\r\n    if (Miller(n))\r\n        return {n};\r\n\
+    \    if ((n & 1) == 0) {\r\n        vector<ll> v = Pollard(n >> 1);\r\n      \
+    \  v.push_back(2);\r\n        return v;\r\n    }\r\n    for (ll x = 2, y = 2,\
+    \ d;;) {\r\n        ll c = Random::get(2LL, n - 1);\r\n        do {\r\n      \
+    \      x = (__int128_t(x) * x + c) % n;\r\n            y = (__int128_t(y) * y\
+    \ + c) % n;\r\n            y = (__int128_t(y) * y + c) % n;\r\n            d =\
+    \ __gcd(x - y + n, n);\r\n        } while (d == 1);\r\n        if (d < n) {\r\n\
+    \            vector<ll> lb = Pollard(d), rb = Pollard(n / d);\r\n            lb.insert(lb.end(),\
+    \ ALL(rb));\r\n            return lb;\r\n        }\r\n    }\r\n}\r\n\r\n/**\r\n\
+    \ * @brief Pollard-Rho\r\n */\n"
   code: "#pragma once\r\n#include \"Math/miller.hpp\"\r\n#include \"Utility/random.hpp\"\
-    \r\n\r\nRandom genPollard;\r\nvector<ll> Pollard(ll n){\r\n    if(n<=1)return\
-    \ {};\r\n    if(Miller(n))return {n};\r\n    if((n&1)==0){\r\n        vector<ll>\
-    \ v=Pollard(n>>1); v.push_back(2);\r\n        return v;\r\n    }\r\n    for(ll\
-    \ x=2,y=2,d;;){\r\n        ll c=genPollard.get(2LL,n-1);\r\n        do{\r\n  \
-    \          x=(__int128_t(x)*x+c)%n;\r\n            y=(__int128_t(y)*y+c)%n;\r\n\
-    \            y=(__int128_t(y)*y+c)%n;\r\n            d=__gcd(x-y+n,n);\r\n   \
-    \     }while(d==1);\r\n        if(d<n){\r\n            vector<ll> lb=Pollard(d),rb=Pollard(n/d);\r\
-    \n            lb.insert(lb.end(),ALL(rb)); return lb;\r\n        }\r\n    }\r\n\
-    }\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */"
+    \r\n\r\nvector<ll> Pollard(ll n) {\r\n    if (n <= 1)\r\n        return {};\r\n\
+    \    if (Miller(n))\r\n        return {n};\r\n    if ((n & 1) == 0) {\r\n    \
+    \    vector<ll> v = Pollard(n >> 1);\r\n        v.push_back(2);\r\n        return\
+    \ v;\r\n    }\r\n    for (ll x = 2, y = 2, d;;) {\r\n        ll c = Random::get(2LL,\
+    \ n - 1);\r\n        do {\r\n            x = (__int128_t(x) * x + c) % n;\r\n\
+    \            y = (__int128_t(y) * y + c) % n;\r\n            y = (__int128_t(y)\
+    \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
+    \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
+    \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\
+    \n */"
   dependsOn:
   - Math/miller.hpp
   - Utility/random.hpp
@@ -106,8 +110,8 @@ data:
   - Convolution/multivariatecyclic.hpp
   - Math/binomquery.hpp
   - Math/primitive.hpp
-  timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-12 05:13:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_factorize.test.cpp

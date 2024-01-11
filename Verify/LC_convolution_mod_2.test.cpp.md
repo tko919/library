@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/relax.hpp
     title: Relaxed Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
@@ -143,17 +143,18 @@ data:
     \        if (space)\r\n            _write(' ');\r\n        _write(head);\r\n \
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
-    };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate\
-    \ <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static constexpr int\
-    \ get_mod() { return mod; }\r\n    int inv() const {\r\n        int tmp, a = v,\
-    \ b = mod, x = 1, y = 0;\r\n        while (b)\r\n            tmp = a / b, a -=\
-    \ tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n        if (x < 0) {\r\n \
-    \           x += mod;\r\n        }\r\n        return x;\r\n    }\r\n    fp(ll\
-    \ x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
-    \ const { return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >=\
-    \ 0);\r\n        fp res = 1, b = *this;\r\n        while (t) {\r\n           \
-    \ if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\n         \
-    \   t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
+    };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_convolution_mod_2.test.cpp\"\
+    \n\r\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate <int mod = 1000000007> struct\
+    \ fp {\r\n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n\
+    \    constexpr int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y\
+    \ = 0;\r\n        while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a,\
+    \ b), x -= tmp * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\
+    \n        }\r\n        return x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x\
+    \ >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\
+    \ return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n\
+    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
+    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
+    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
     \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
     \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
     \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
@@ -402,11 +403,14 @@ data:
     \    x *= t;\r\n        g = g.exp();\r\n        c = c.pow(t);\r\n        rep(i,\
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(vector<T> &a, bool inv) const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power\
-    \ Series (NTT-friendly mod)\r\n */\n#line 2 \"Convolution/relax.hpp\"\n\r\ntemplate<typename\
-    \ T>class RelaxedConvolution{\r\n    using P=array<int,2>;\r\n    using Q=array<P,2>;\r\
-    \n    int N,pos;\r\n    Poly<T> f,g,buf;\r\n    vector<vector<Q>> event;\r\n \
-    \   void dfs1(int L,int R){\r\n        if(R-L==1){\r\n            event[L].push_back({P{L,L+1},P{0,1}});\r\
-    \n            return;\r\n        }\r\n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
+    \ Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_convolution_mod_2.test.cpp\"\
+    \nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n#line 2 \"Convolution/relax.hpp\"\
+    \n\r\ntemplate<typename T>class RelaxedConvolution{\r\n    using P=array<int,2>;\r\
+    \n    using Q=array<P,2>;\r\n    int N,pos;\r\n    Poly<T> f,g,buf;\r\n    vector<vector<Q>>\
+    \ event;\r\n    void dfs1(int L,int R){\r\n        if(R-L==1){\r\n           \
+    \ event[L].push_back({P{L,L+1},P{0,1}});\r\n            return;\r\n        }\r\
+    \n        int mid=(L+R)>>1;\r\n        event[mid].push_back({P{L,mid},P{mid-L,R-L}});\r\
     \n        event[R].push_back({P{mid,R},P{mid-L,R-L}});\r\n        dfs1(L,mid);\r\
     \n        dfs1(mid,R);\r\n    }\r\n    void dfs2(int L,int R){\r\n        if(R-L==1){\r\
     \n            event[L].push_back({P{0,1},P{L,L+1}});\r\n            return;\r\n\
@@ -444,23 +448,25 @@ data:
     \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
     \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
     \ buf;\r\n    RelaxedInv<T> invf;\r\n};\r\n\r\n/**\r\n * @brief Relaxed Convolution\r\
-    \n */\n#line 9 \"Verify/LC_convolution_mod_2.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
-    \nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return\
-    \ ntt.ntt(v,inv);}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\
-    \n    vector<Fp> _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        Fp\
-    \ x,y;\r\n        if(i<n)x=_f[i];\r\n        if(i<m)y=_g[i];\r\n        Fp ret=buf.next(x,y);\r\
-    \n        io.write(ret.v);\r\n    }\r\n    return 0;\r\n}\r\n"
+    \n */\n#line 15 \"Verify/LC_convolution_mod_2.test.cpp\"\n\r\nFastIO io;\r\nint\
+    \ main() {\r\n    int n, m;\r\n    io.read(n, m);\r\n    vector<Fp> _f(n), _g(m);\r\
+    \n    rep(i, 0, n) io.read(_f[i].v);\r\n    rep(i, 0, m) io.read(_g[i].v);\r\n\
+    \    RelaxedConvolution<Fp> buf(n + m - 1);\r\n    rep(i, 0, n + m - 1) {\r\n\
+    \        Fp x, y;\r\n        if (i < n)\r\n            x = _f[i];\r\n        if\
+    \ (i < m)\r\n            y = _g[i];\r\n        Fp ret = buf.next(x, y);\r\n  \
+    \      io.write(ret.v);\r\n    }\r\n    return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\
-    \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n#include\
-    \ \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\
-    \r\n#include \"Convolution/relax.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3>\
-    \ ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return ntt.ntt(v,inv);}\r\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    vector<Fp>\
-    \ _f(n),_g(m);\r\n    rep(i,0,n)io.read(_f[i].v);\r\n    rep(i,0,m)io.read(_g[i].v);\r\
-    \n    RelaxedConvolution<Fp> buf(n+m-1);\r\n    rep(i,0,n+m-1){\r\n        Fp\
-    \ x,y;\r\n        if(i<n)x=_f[i];\r\n        if(i<m)y=_g[i];\r\n        Fp ret=buf.next(x,y);\r\
-    \n        io.write(ret.v);\r\n    }\r\n    return 0;\r\n}\r\n"
+    \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n\
+    #include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"\
+    FPS/fps.hpp\"\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void\
+    \ Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\
+    \n}\r\n#include \"Convolution/relax.hpp\"\r\n\r\nFastIO io;\r\nint main() {\r\n\
+    \    int n, m;\r\n    io.read(n, m);\r\n    vector<Fp> _f(n), _g(m);\r\n    rep(i,\
+    \ 0, n) io.read(_f[i].v);\r\n    rep(i, 0, m) io.read(_g[i].v);\r\n    RelaxedConvolution<Fp>\
+    \ buf(n + m - 1);\r\n    rep(i, 0, n + m - 1) {\r\n        Fp x, y;\r\n      \
+    \  if (i < n)\r\n            x = _f[i];\r\n        if (i < m)\r\n            y\
+    \ = _g[i];\r\n        Fp ret = buf.next(x, y);\r\n        io.write(ret.v);\r\n\
+    \    }\r\n    return 0;\r\n}\r\n"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -471,8 +477,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:46:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:13:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_2.test.cpp
 layout: document

@@ -41,10 +41,10 @@ data:
     - icon: ':x:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
-    - icon: ':x:'
+    - icon: ':question:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/relax.hpp
       title: Relaxed Convolution
     - icon: ':question:'
@@ -82,7 +82,7 @@ data:
     - icon: ':question:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/manhattanmst.hpp
       title: Manhattan MST
     - icon: ':x:'
@@ -127,7 +127,7 @@ data:
     - icon: ':x:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/unionfind.hpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -153,10 +153,10 @@ data:
     - icon: ':warning:'
       path: FPS/composition.hpp
       title: Composition of Formal Power Series
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/famous.hpp
       title: Famous Sequence
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
     - icon: ':warning:'
@@ -168,13 +168,13 @@ data:
     - icon: ':warning:'
       path: FPS/mobius.hpp
       title: Mobius Transform
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
     - icon: ':x:'
       path: FPS/multievalgeom.hpp
       title: Multipoint Evaluation on Geometric Sequence
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
     - icon: ':warning:'
@@ -285,7 +285,7 @@ data:
     - icon: ':warning:'
       path: Math/bigint.hpp
       title: Big Integer(Float)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/binomquery.hpp
       title: Binomial Coefficient for query
     - icon: ':warning:'
@@ -300,7 +300,7 @@ data:
     - icon: ':x:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/fastdiv.hpp
       title: Fast Division
     - icon: ':x:'
@@ -324,7 +324,7 @@ data:
     - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/miller.hpp
       title: Miller-Rabin
     - icon: ':question:'
@@ -333,10 +333,10 @@ data:
     - icon: ':x:'
       path: Math/multiplicative.hpp
       title: Multiplicative Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/nimber.hpp
       title: Nimber
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/pollard.hpp
       title: Pollard-Rho
     - icon: ':x:'
@@ -345,7 +345,7 @@ data:
     - icon: ':question:'
       path: Math/primesum.hpp
       title: Prime Sum
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/primitive.hpp
       title: Primitive Function
     - icon: ':question:'
@@ -374,7 +374,7 @@ data:
     - icon: ':warning:'
       path: String/rollinghash.hpp
       title: Rolling Hash
-    - icon: ':x:'
+    - icon: ':question:'
       path: String/suffixarray.hpp
       title: Suffix Array
     - icon: ':warning:'
@@ -396,7 +396,7 @@ data:
     - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':x:'
+    - icon: ':question:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:
@@ -420,13 +420,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_associative_array.test.cpp
       title: Verify/LC_associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_bernoulli_number.test.cpp
       title: Verify/LC_bernoulli_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_biconnected_components.test.cpp
       title: Verify/LC_biconnected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_binomial_coefficient.test.cpp
       title: Verify/LC_binomial_coefficient.test.cpp
     - icon: ':heavy_check_mark:'
@@ -450,7 +450,7 @@ data:
     - icon: ':x:'
       path: Verify/LC_convolution_mod_1000000007.test.cpp
       title: Verify/LC_convolution_mod_1000000007.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod_2.test.cpp
       title: Verify/LC_convolution_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -465,7 +465,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_deque_operate_all_composite.test.cpp
       title: Verify/LC_deque_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_discrete_logarithm_mod.test.cpp
       title: Verify/LC_discrete_logarithm_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -477,10 +477,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_primes.test.cpp
       title: Verify/LC_enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_exp_of_formal_power_series.test.cpp
       title: Verify/LC_exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_factorize.test.cpp
       title: Verify/LC_factorize.test.cpp
     - icon: ':heavy_check_mark:'
@@ -498,13 +498,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_hafnian_of_matrix.test.cpp
       title: Verify/LC_hafnian_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_root_integer.test.cpp
       title: Verify/LC_kth_root_integer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
       title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -519,19 +519,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_line_add_get_min.test.cpp
       title: Verify/LC_line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_log_of_formal_power_series.test.cpp
       title: Verify/LC_log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_manhattanmst.test.cpp
       title: Verify/LC_manhattanmst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_many_aplusb.test.cpp
       title: Verify/LC_many_aplusb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_matrix_det.test.cpp
       title: Verify/LC_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_matrix_product.test.cpp
       title: Verify/LC_matrix_product.test.cpp
     - icon: ':x:'
@@ -540,7 +540,7 @@ data:
     - icon: ':x:'
       path: Verify/LC_min_cost_b_flow.test.cpp
       title: Verify/LC_min_cost_b_flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_multipoint_evaluation.test.cpp
       title: Verify/LC_multipoint_evaluation.test.cpp
     - icon: ':x:'
@@ -549,13 +549,13 @@ data:
     - icon: ':x:'
       path: Verify/LC_multivariate_convolution_cyclic.test.cpp
       title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_nim_product_64.test.cpp
       title: Verify/LC_nim_product_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_number_of_substrings.test.cpp
       title: Verify/LC_number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_partition_function.test.cpp
       title: Verify/LC_partition_function.test.cpp
     - icon: ':x:'

@@ -17,29 +17,29 @@ data:
   - icon: ':x:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   - icon: ':warning:'
     path: Math/detaplusbx.hpp
     title: $\det(A+Bx)$
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':warning:'
     path: String/rollinghash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
     title: Verify/YUKI_1112.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Random
     links: []
@@ -110,7 +110,7 @@ data:
   - Graph/maxindependentset.hpp
   - String/rollinghash.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp

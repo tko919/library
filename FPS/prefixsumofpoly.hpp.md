@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
   _extendedRequiredBy: []

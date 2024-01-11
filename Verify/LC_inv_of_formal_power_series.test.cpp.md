@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
@@ -42,20 +42,20 @@ data:
     \ topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename T>int\
     \ lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Math/modint.hpp\"\
     \n\r\ntemplate <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static\
-    \ constexpr int get_mod() { return mod; }\r\n    int inv() const {\r\n       \
-    \ int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n            tmp\
-    \ = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n        if (x\
-    \ < 0) {\r\n            x += mod;\r\n        }\r\n        return x;\r\n    }\r\
-    \n    fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n   \
-    \ fp operator-() const { return fp() - *this; }\r\n    fp pow(ll t) {\r\n    \
-    \    assert(t >= 0);\r\n        fp res = 1, b = *this;\r\n        while (t) {\r\
-    \n            if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\
-    \n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp\
-    \ &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n           \
-    \ v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const fp &x)\
-    \ {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n     \
-    \   return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n        v =\
-    \ ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
+    \ constexpr int get_mod() { return mod; }\r\n    constexpr int inv() const {\r\
+    \n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n    \
+    \        tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n\
+    \        if (x < 0) {\r\n            x += mod;\r\n        }\r\n        return\
+    \ x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x)\
+    \ % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this; }\r\n  \
+    \  fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\
+    \n        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\
+    \n            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
+    \n    }\r\n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\
+    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
+    \   v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
     \ fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n\
     \    }\r\n    fp operator+(const fp &x) const { return fp(*this) += x; }\r\n \
     \   fp operator-(const fp &x) const { return fp(*this) -= x; }\r\n    fp operator*(const\
@@ -300,17 +300,19 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(vector<T> &a, bool inv) const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power\
     \ Series (NTT-friendly mod)\r\n */\n#line 7 \"Verify/LC_inv_of_formal_power_series.test.cpp\"\
-    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int n;\r\n\
-    \    cin>>n;\r\n    Poly<Fp> a(n);\r\n    rep(i,0,n)cin>>a[i];\r\n    a=a.inv();\r\
-    \n    rep(i,0,n)cout<<a[i]<<'\\n';\r\n    return 0;\r\n}\n"
+    \n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main()\
+    \ {\r\n    int n;\r\n    cin >> n;\r\n    Poly<Fp> a(n);\r\n    rep(i, 0, n) cin\
+    \ >> a[i];\r\n    a = a.inv();\r\n    rep(i, 0, n) cout << a[i] << '\\n';\r\n\
+    \    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
-    #include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\
-    \nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>& v,bool inv)const{return\
-    \ ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    Poly<Fp>\
-    \ a(n);\r\n    rep(i,0,n)cin>>a[i];\r\n    a=a.inv();\r\n    rep(i,0,n)cout<<a[i]<<'\\\
-    n';\r\n    return 0;\r\n}"
+    #include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\r\n\r\nusing Fp =\
+    \ fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main()\
+    \ {\r\n    int n;\r\n    cin >> n;\r\n    Poly<Fp> a(n);\r\n    rep(i, 0, n) cin\
+    \ >> a[i];\r\n    a = a.inv();\r\n    rep(i, 0, n) cout << a[i] << '\\n';\r\n\
+    \    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/modint.hpp
@@ -319,8 +321,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_inv_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:13:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_inv_of_formal_power_series.test.cpp
 layout: document

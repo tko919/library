@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/nthterm.hpp
     title: Bostan-Mori Algorithm
   - icon: ':question:'
@@ -18,16 +18,17 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
     - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
   bundledCode: "#line 1 \"Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n#define PROBLEM                                                            \
+    \    \\\r\n    \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\n#define UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())\r\
@@ -45,20 +46,20 @@ data:
     \ topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename T>int\
     \ lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Math/modint.hpp\"\
     \n\r\ntemplate <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static\
-    \ constexpr int get_mod() { return mod; }\r\n    int inv() const {\r\n       \
-    \ int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n            tmp\
-    \ = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n        if (x\
-    \ < 0) {\r\n            x += mod;\r\n        }\r\n        return x;\r\n    }\r\
-    \n    fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n   \
-    \ fp operator-() const { return fp() - *this; }\r\n    fp pow(ll t) {\r\n    \
-    \    assert(t >= 0);\r\n        fp res = 1, b = *this;\r\n        while (t) {\r\
-    \n            if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\
-    \n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp\
-    \ &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n           \
-    \ v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const fp &x)\
-    \ {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n     \
-    \   return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n        v =\
-    \ ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
+    \ constexpr int get_mod() { return mod; }\r\n    constexpr int inv() const {\r\
+    \n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n    \
+    \        tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n\
+    \        if (x < 0) {\r\n            x += mod;\r\n        }\r\n        return\
+    \ x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x)\
+    \ % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this; }\r\n  \
+    \  fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\
+    \n        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\
+    \n            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
+    \n    }\r\n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\
+    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
+    \   v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
     \ fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n\
     \    }\r\n    fp operator+(const fp &x) const { return fp(*this) += x; }\r\n \
     \   fp operator-(const fp &x) const { return fp(*this) -= x; }\r\n    fp operator*(const\
@@ -308,22 +309,25 @@ data:
     \ q*=base;\r\n        for(int i=n&1;i<(int)p.size();i+=2)np.emplace_back(p[i]);\r\
     \n        for(int i=0;i<(int)q.size();i+=2)nq.emplace_back(q[i]);\r\n        swap(p,np);\
     \ swap(q,nq);\r\n        n>>=1;\r\n    }\r\n    return p[0]/q[0];\r\n}\r\n\r\n\
-    /**\r\n * @brief Bostan-Mori Algorithm\r\n */\n#line 8 \"Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int d; ll\
-    \ k;\r\n    cin>>d>>k;\r\n    Poly<Fp> a(d),c(d+1);\r\n    rep(i,0,d)cin>>a[i];\r\
-    \n    c[0]=1;\r\n    rep(i,1,d+1){\r\n        cin>>c[i];\r\n        c[i]=-c[i];\r\
-    \n    }\r\n    a*=c;\r\n    a.resize(d);\r\n    Fp res=nth<Fp>(a,c,k);\r\n   \
-    \ cout<<res<<'\\n';\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    /**\r\n * @brief Bostan-Mori Algorithm\r\n */\n#line 9 \"Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main()\
+    \ {\r\n    int d;\r\n    ll k;\r\n    cin >> d >> k;\r\n    Poly<Fp> a(d), c(d\
+    \ + 1);\r\n    rep(i, 0, d) cin >> a[i];\r\n    c[0] = 1;\r\n    rep(i, 1, d +\
+    \ 1) {\r\n        cin >> c[i];\r\n        c[i] = -c[i];\r\n    }\r\n    a *= c;\r\
+    \n    a.resize(d);\r\n    Fp res = nth<Fp>(a, c, k);\r\n    cout << res << '\\\
+    n';\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM                                                         \
+    \       \\\r\n    \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"Convolution/ntt.hpp\"\r\n#include \"FPS/fps.hpp\"\r\n#include \"FPS/nthterm.hpp\"\
-    \r\n\r\nusing Fp=fp<998244353>;\r\nNTT<Fp,3> ntt;\r\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\r\n\r\nint main(){\r\n    int d; ll\
-    \ k;\r\n    cin>>d>>k;\r\n    Poly<Fp> a(d),c(d+1);\r\n    rep(i,0,d)cin>>a[i];\r\
-    \n    c[0]=1;\r\n    rep(i,1,d+1){\r\n        cin>>c[i];\r\n        c[i]=-c[i];\r\
-    \n    }\r\n    a*=c;\r\n    a.resize(d);\r\n    Fp res=nth<Fp>(a,c,k);\r\n   \
-    \ cout<<res<<'\\n';\r\n    return 0;\r\n}"
+    \r\n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main()\
+    \ {\r\n    int d;\r\n    ll k;\r\n    cin >> d >> k;\r\n    Poly<Fp> a(d), c(d\
+    \ + 1);\r\n    rep(i, 0, d) cin >> a[i];\r\n    c[0] = 1;\r\n    rep(i, 1, d +\
+    \ 1) {\r\n        cin >> c[i];\r\n        c[i] = -c[i];\r\n    }\r\n    a *= c;\r\
+    \n    a.resize(d);\r\n    Fp res = nth<Fp>(a, c, k);\r\n    cout << res << '\\\
+    n';\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/modint.hpp
@@ -333,8 +337,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:13:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document

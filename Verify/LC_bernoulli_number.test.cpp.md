@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
@@ -146,35 +146,35 @@ data:
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_bernoulli_number.test.cpp\"\
     \n\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate <int mod = 1000000007> struct fp\
     \ {\r\n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n  \
-    \  int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n   \
-    \     while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp\
-    \ * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\n      \
-    \  }\r\n        return x;\r\n    }\r\n    fp(ll x = 0) : v(x >= 0 ? x % mod :\
-    \ (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this;\
-    \ }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b\
-    \ = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n              \
-    \  res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n        }\r\n \
-    \       return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n        if\
-    \ ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\n  \
-    \  }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\
-    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
-    \ fp &x) {\r\n        v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\
-    \n    fp &operator/=(const fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n\
-    \        return *this;\r\n    }\r\n    fp operator+(const fp &x) const { return\
-    \ fp(*this) += x; }\r\n    fp operator-(const fp &x) const { return fp(*this)\
-    \ -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this) *= x; }\r\n\
-    \    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n    bool operator==(const\
-    \ fp &x) const { return v == x.v; }\r\n    bool operator!=(const fp &x) const\
-    \ { return v != x.v; }\r\n    friend istream &operator>>(istream &is, fp &x) {\
-    \ return is >> x.v; }\r\n    friend ostream &operator<<(ostream &os, const fp\
-    \ &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\
-    \n    static const int md = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\
-    \n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n       \
-    \ int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k * q -\
-    \ md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename T> T\
-    \ Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\
-    \n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
+    \  constexpr int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y =\
+    \ 0;\r\n        while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b),\
+    \ x -= tmp * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\
+    \n        }\r\n        return x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x\
+    \ >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\
+    \ return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n\
+    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
+    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
+    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
+    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
+    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
+    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
+    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ll(v) * x.v % mod;\r\
+    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
+    \    v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
+    \ fp &x) const { return fp(*this) += x; }\r\n    fp operator-(const fp &x) const\
+    \ { return fp(*this) -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this)\
+    \ *= x; }\r\n    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n\
+    \    bool operator==(const fp &x) const { return v == x.v; }\r\n    bool operator!=(const\
+    \ fp &x) const { return v != x.v; }\r\n    friend istream &operator>>(istream\
+    \ &is, fp &x) { return is >> x.v; }\r\n    friend ostream &operator<<(ostream\
+    \ &os, const fp &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T\
+    \ Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n    static vector<T>\
+    \ buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <=\
+    \ n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k\
+    \ * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename\
+    \ T> T Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\
+    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n <\
+    \ md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
     \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
     \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
     \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
@@ -404,32 +404,33 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(vector<T> &a, bool inv) const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power\
     \ Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_bernoulli_number.test.cpp\"\
-    \nusing Fp=fp<998244353>;\nNTT<Fp,3> ntt;\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\n\n#line 2 \"FPS/famous.hpp\"\n\ntemplate<typename\
-    \ T>vector<T> Bernoulli(int n){\n    Poly<T> f(n+1);\n    rep(i,0,n+1)f[i]=Fact<T>(i+1,1);\n\
-    \    f=f.inv();\n    rep(i,0,n+1)f[i]*=Fact<T>(i);\n    return f;\n}\n\ntemplate<typename\
-    \ T>vector<T> Partition(int n){\n    Poly<T> f(n+1);\n    f[0]=1;\n    rep(k,1,n+1){\n\
-    \        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n\
-    \    }\n    return f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int\
-    \ n){\n    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int\
-    \ LG=topbit(n)-1;LG>=0;LG--){\n        int m=n>>LG;\n        f*=f.shift(m>>1);\n\
-    \        if(m&1)f=(f<<1)+f*T(m-1);\n    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n\
-    \    return f;\n}\n\ntemplate<typename T>vector<T> StirlingNumber2nd(int n){\n\
-    \    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n\
-    \        f[i]=Fp(i).pow(n)*Fact<T>(i,1);\n        g[i]=Fact<T>(i,1);\n       \
-    \ if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n    f.resize(n+1);\n    return f;\n}\n\
-    \ntemplate<typename T>vector<T> Bell(int n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n\
-    \    rep(i,2,n+1)f[i]=f[i-1]/i;\n    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n\
-    \    return f;\n}\n\n/**\n * @brief Famous Sequence\n*/\n#line 14 \"Verify/LC_bernoulli_number.test.cpp\"\
-    \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n\n    auto ret=Bernoulli<Fp>(n);\n\
-    \    rep(i,0,ret.size())io.write(ret[i].v);\n    return 0;\n}\n"
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#line 2 \"FPS/famous.hpp\"\
+    \n\ntemplate<typename T>vector<T> Bernoulli(int n){\n    Poly<T> f(n+1);\n   \
+    \ rep(i,0,n+1)f[i]=Fact<T>(i+1,1);\n    f=f.inv();\n    rep(i,0,n+1)f[i]*=Fact<T>(i);\n\
+    \    return f;\n}\n\ntemplate<typename T>vector<T> Partition(int n){\n    Poly<T>\
+    \ f(n+1);\n    f[0]=1;\n    rep(k,1,n+1){\n        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n\
+    \        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n    }\n    return\
+    \ f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int n){\n   \
+    \ if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int LG=topbit(n)-1;LG>=0;LG--){\n\
+    \        int m=n>>LG;\n        f*=f.shift(m>>1);\n        if(m&1)f=(f<<1)+f*T(m-1);\n\
+    \    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n    return f;\n}\n\ntemplate<typename\
+    \ T>vector<T> StirlingNumber2nd(int n){\n    if(n==0)return Poly<T>({T(1)});\n\
+    \    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n        f[i]=Fp(i).pow(n)*Fact<T>(i,1);\n\
+    \        g[i]=Fact<T>(i,1);\n        if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n  \
+    \  f.resize(n+1);\n    return f;\n}\n\ntemplate<typename T>vector<T> Bell(int\
+    \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
+    \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
+    }\n\n/**\n * @brief Famous Sequence\n*/\n#line 16 \"Verify/LC_bernoulli_number.test.cpp\"\
+    \n\nFastIO io;\nint main() {\n    int n;\n    io.read(n);\n\n    auto ret = Bernoulli<Fp>(n);\n\
+    \    rep(i, 0, ret.size()) io.write(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
     #include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
-    \nusing Fp=fp<998244353>;\nNTT<Fp,3> ntt;\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\n\n#include \"FPS/famous.hpp\"\n\n\
-    FastIO io;\nint main(){\n    int n;\n    io.read(n);\n\n    auto ret=Bernoulli<Fp>(n);\n\
-    \    rep(i,0,ret.size())io.write(ret[i].v);\n    return 0;\n}"
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/famous.hpp\"\
+    \n\nFastIO io;\nint main() {\n    int n;\n    io.read(n);\n\n    auto ret = Bernoulli<Fp>(n);\n\
+    \    rep(i, 0, ret.size()) io.write(ret[i].v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -440,8 +441,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:46:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-12 05:13:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bernoulli_number.test.cpp
 layout: document

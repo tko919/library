@@ -6,10 +6,10 @@ data:
     path: FPS/prefixsumofpoly.hpp
     title: Prefix Sum of Polynomial
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Famous Sequence
     links: []
@@ -62,7 +62,7 @@ data:
   requiredBy:
   - FPS/prefixsumofpoly.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_partition_function.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind.test.cpp

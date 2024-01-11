@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':x:'
@@ -146,35 +146,35 @@ data:
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\
     \n\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate <int mod = 1000000007> struct fp\
     \ {\r\n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n  \
-    \  int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n   \
-    \     while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp\
-    \ * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\n      \
-    \  }\r\n        return x;\r\n    }\r\n    fp(ll x = 0) : v(x >= 0 ? x % mod :\
-    \ (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this;\
-    \ }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b\
-    \ = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n              \
-    \  res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n        }\r\n \
-    \       return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n        if\
-    \ ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\n  \
-    \  }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\
-    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
-    \ fp &x) {\r\n        v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\
-    \n    fp &operator/=(const fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n\
-    \        return *this;\r\n    }\r\n    fp operator+(const fp &x) const { return\
-    \ fp(*this) += x; }\r\n    fp operator-(const fp &x) const { return fp(*this)\
-    \ -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this) *= x; }\r\n\
-    \    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n    bool operator==(const\
-    \ fp &x) const { return v == x.v; }\r\n    bool operator!=(const fp &x) const\
-    \ { return v != x.v; }\r\n    friend istream &operator>>(istream &is, fp &x) {\
-    \ return is >> x.v; }\r\n    friend ostream &operator<<(ostream &os, const fp\
-    \ &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\
-    \n    static const int md = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\
-    \n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n       \
-    \ int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k * q -\
-    \ md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename T> T\
-    \ Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\
-    \n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
+    \  constexpr int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y =\
+    \ 0;\r\n        while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b),\
+    \ x -= tmp * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\
+    \n        }\r\n        return x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x\
+    \ >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\
+    \ return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n\
+    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
+    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
+    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
+    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
+    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
+    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
+    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ll(v) * x.v % mod;\r\
+    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
+    \    v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
+    \ fp &x) const { return fp(*this) += x; }\r\n    fp operator-(const fp &x) const\
+    \ { return fp(*this) -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this)\
+    \ *= x; }\r\n    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n\
+    \    bool operator==(const fp &x) const { return v == x.v; }\r\n    bool operator!=(const\
+    \ fp &x) const { return v != x.v; }\r\n    friend istream &operator>>(istream\
+    \ &is, fp &x) { return is >> x.v; }\r\n    friend ostream &operator<<(ostream\
+    \ &os, const fp &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T\
+    \ Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n    static vector<T>\
+    \ buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <=\
+    \ n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k\
+    \ * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename\
+    \ T> T Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\
+    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n <\
+    \ md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
     \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
     \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
     \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
@@ -404,27 +404,28 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(vector<T> &a, bool inv) const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power\
     \ Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\
-    \nusing Fp=fp<998244353>;\nNTT<Fp,3> ntt;\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\n\n#line 2 \"FPS/prodofpolys.hpp\"\n\
-    \ntemplate<typename T>Poly<T> ProdOfPolys(vector<Poly<T>>& fs){\n    if(fs.empty())return\
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#line 2 \"FPS/prodofpolys.hpp\"\
+    \n\ntemplate<typename T>Poly<T> ProdOfPolys(vector<Poly<T>>& fs){\n    if(fs.empty())return\
     \ Poly<T>({T(1)});\n    sort(ALL(fs),[&](Poly<T>& a,Poly<T>& b){return a.size()<b.size();});\n\
     \    deque<Poly<T>> deq;\n    for(auto& f:fs)deq.push_back(f);\n    while(deq.size()>1){\n\
     \        deq.push_back(deq[0]*deq[1]);\n        deq.pop_front();\n        deq.pop_front();\n\
     \    }\n    return deq[0];\n}\n\n/**\n * @brief Product of Polynomials\n*/\n#line\
-    \ 14 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\n\nFastIO io;\nint\
-    \ main(){\n    int n;\n    io.read(n);\n    vector<Poly<Fp>> fs(n);\n    rep(i,0,n){\n\
-    \        int m;\n        io.read(m);\n        fs[i]=Poly<Fp>(m+1);\n        rep(j,0,m+1)io.read(fs[i][j].v);\n\
-    \    }\n\n    auto ret=ProdOfPolys(fs);\n    rep(i,0,ret.size())io.write(ret[i].v);\n\
-    \    return 0;\n}\n"
+    \ 16 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\n\nFastIO io;\nint\
+    \ main() {\n    int n;\n    io.read(n);\n    vector<Poly<Fp>> fs(n);\n    rep(i,\
+    \ 0, n) {\n        int m;\n        io.read(m);\n        fs[i] = Poly<Fp>(m + 1);\n\
+    \        rep(j, 0, m + 1) io.read(fs[i][j].v);\n    }\n\n    auto ret = ProdOfPolys(fs);\n\
+    \    rep(i, 0, ret.size()) io.write(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
-    \nusing Fp=fp<998244353>;\nNTT<Fp,3> ntt;\ntemplate<>void Poly<Fp>::NTT(vector<Fp>&\
-    \ v,bool inv)const{return ntt.ntt(v,inv);}\n\n#include \"FPS/prodofpolys.hpp\"\
-    \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n    vector<Poly<Fp>>\
-    \ fs(n);\n    rep(i,0,n){\n        int m;\n        io.read(m);\n        fs[i]=Poly<Fp>(m+1);\n\
-    \        rep(j,0,m+1)io.read(fs[i][j].v);\n    }\n\n    auto ret=ProdOfPolys(fs);\n\
-    \    rep(i,0,ret.size())io.write(ret[i].v);\n    return 0;\n}"
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/prodofpolys.hpp\"\
+    \n\nFastIO io;\nint main() {\n    int n;\n    io.read(n);\n    vector<Poly<Fp>>\
+    \ fs(n);\n    rep(i, 0, n) {\n        int m;\n        io.read(m);\n        fs[i]\
+    \ = Poly<Fp>(m + 1);\n        rep(j, 0, m + 1) io.read(fs[i][j].v);\n    }\n\n\
+    \    auto ret = ProdOfPolys(fs);\n    rep(i, 0, ret.size()) io.write(ret[i].v);\n\
+    \    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -435,7 +436,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_product_of_polynomial_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:46:01+09:00'
+  timestamp: '2024-01-12 05:13:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_product_of_polynomial_sequence.test.cpp

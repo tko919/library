@@ -42,20 +42,20 @@ data:
     \ topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename T>int\
     \ lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Math/modint.hpp\"\
     \n\r\ntemplate <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static\
-    \ constexpr int get_mod() { return mod; }\r\n    int inv() const {\r\n       \
-    \ int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n            tmp\
-    \ = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n        if (x\
-    \ < 0) {\r\n            x += mod;\r\n        }\r\n        return x;\r\n    }\r\
-    \n    fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n   \
-    \ fp operator-() const { return fp() - *this; }\r\n    fp pow(ll t) {\r\n    \
-    \    assert(t >= 0);\r\n        fp res = 1, b = *this;\r\n        while (t) {\r\
-    \n            if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\
-    \n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp\
-    \ &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n           \
-    \ v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const fp &x)\
-    \ {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n     \
-    \   return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n        v =\
-    \ ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
+    \ constexpr int get_mod() { return mod; }\r\n    constexpr int inv() const {\r\
+    \n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n    \
+    \        tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n\
+    \        if (x < 0) {\r\n            x += mod;\r\n        }\r\n        return\
+    \ x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x)\
+    \ % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this; }\r\n  \
+    \  fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\
+    \n        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\
+    \n            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
+    \n    }\r\n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\
+    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
+    \   v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
     \ fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n\
     \    }\r\n    fp operator+(const fp &x) const { return fp(*this) += x; }\r\n \
     \   fp operator-(const fp &x) const { return fp(*this) -= x; }\r\n    fp operator*(const\
@@ -148,7 +148,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
+  timestamp: '2024-01-12 05:13:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_system_of_linear_equations.test.cpp

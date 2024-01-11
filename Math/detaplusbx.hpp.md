@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

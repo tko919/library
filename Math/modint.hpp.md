@@ -9,7 +9,7 @@ data:
     path: Math/bigint.hpp
     title: Big Integer(Float)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,7 +24,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_exp_of_formal_power_series.test.cpp
     title: Verify/LC_exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,25 +45,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_product.test.cpp
     title: Verify/LC_matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
   - icon: ':x:'
@@ -72,7 +72,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
   - icon: ':x:'
@@ -146,35 +146,35 @@ data:
     links: []
   bundledCode: "#line 2 \"Math/modint.hpp\"\n\r\ntemplate <int mod = 1000000007> struct\
     \ fp {\r\n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n\
-    \    int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n \
-    \       while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp\
-    \ * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\n      \
-    \  }\r\n        return x;\r\n    }\r\n    fp(ll x = 0) : v(x >= 0 ? x % mod :\
-    \ (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this;\
-    \ }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b\
-    \ = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n              \
-    \  res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n        }\r\n \
-    \       return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n        if\
-    \ ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\n  \
-    \  }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\
-    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
-    \ fp &x) {\r\n        v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\
-    \n    fp &operator/=(const fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n\
-    \        return *this;\r\n    }\r\n    fp operator+(const fp &x) const { return\
-    \ fp(*this) += x; }\r\n    fp operator-(const fp &x) const { return fp(*this)\
-    \ -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this) *= x; }\r\n\
-    \    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n    bool operator==(const\
-    \ fp &x) const { return v == x.v; }\r\n    bool operator!=(const fp &x) const\
-    \ { return v != x.v; }\r\n    friend istream &operator>>(istream &is, fp &x) {\
-    \ return is >> x.v; }\r\n    friend ostream &operator<<(ostream &os, const fp\
-    \ &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\
-    \n    static const int md = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\
-    \n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n       \
-    \ int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k * q -\
-    \ md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename T> T\
-    \ Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\
-    \n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
+    \    constexpr int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y\
+    \ = 0;\r\n        while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a,\
+    \ b), x -= tmp * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\
+    \n        }\r\n        return x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x\
+    \ >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\
+    \ return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n\
+    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
+    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
+    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
+    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
+    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
+    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
+    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ll(v) * x.v % mod;\r\
+    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
+    \    v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
+    \ fp &x) const { return fp(*this) += x; }\r\n    fp operator-(const fp &x) const\
+    \ { return fp(*this) -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this)\
+    \ *= x; }\r\n    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n\
+    \    bool operator==(const fp &x) const { return v == x.v; }\r\n    bool operator!=(const\
+    \ fp &x) const { return v != x.v; }\r\n    friend istream &operator>>(istream\
+    \ &is, fp &x) { return is >> x.v; }\r\n    friend ostream &operator<<(ostream\
+    \ &os, const fp &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T\
+    \ Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n    static vector<T>\
+    \ buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <=\
+    \ n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k\
+    \ * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename\
+    \ T> T Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\
+    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n <\
+    \ md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
     \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
     \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
     \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
@@ -185,15 +185,15 @@ data:
     \ 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\n/**\r\n * @brief Modint\r\
     \n */\n"
   code: "#pragma once\r\n\r\ntemplate <int mod = 1000000007> struct fp {\r\n    int\
-    \ v;\r\n    static constexpr int get_mod() { return mod; }\r\n    int inv() const\
-    \ {\r\n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n\
-    \            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\
-    \n        if (x < 0) {\r\n            x += mod;\r\n        }\r\n        return\
-    \ x;\r\n    }\r\n    fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) %\
-    \ mod) {}\r\n    fp operator-() const { return fp() - *this; }\r\n    fp pow(ll\
-    \ t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\n      \
-    \  while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\n    \
-    \        b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
+    \ v;\r\n    static constexpr int get_mod() { return mod; }\r\n    constexpr int\
+    \ inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while\
+    \ (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x,\
+    \ y);\r\n        if (x < 0) {\r\n            x += mod;\r\n        }\r\n      \
+    \  return x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod\
+    \ - (-x) % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this; }\r\
+    \n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\
+    \n        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\
+    \n            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
     \n    }\r\n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\
     \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
     \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
@@ -229,7 +229,7 @@ data:
   requiredBy:
   - Convolution/arbitrary.hpp
   - Math/bigint.hpp
-  timestamp: '2024-01-12 04:16:01+09:00'
+  timestamp: '2024-01-12 05:13:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_deque_operate_all_composite.test.cpp

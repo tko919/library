@@ -5,23 +5,23 @@ data:
   - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   - icon: ':x:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':x:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Fast Division
     links: []
@@ -66,7 +66,7 @@ data:
   - Math/binomquery.hpp
   - Math/primitive.hpp
   timestamp: '2023-01-17 01:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
