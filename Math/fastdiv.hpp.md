@@ -14,7 +14,7 @@ data:
   - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
   _extendedVerifiedWith:
@@ -27,10 +27,10 @@ data:
   - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: true

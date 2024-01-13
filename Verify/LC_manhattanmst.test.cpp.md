@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/manhattanmst.hpp
     title: Manhattan MST
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/unionfind.hpp
     title: Union Find
   - icon: ':question:'

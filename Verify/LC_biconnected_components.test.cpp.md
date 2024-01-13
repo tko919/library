@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/bc.hpp
     title: Biconnected Components
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/lowlink.hpp
     title: Lowlink
   - icon: ':question:'

@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: Algorithm/maximalrect.hpp
       title: Maximal Rectangles
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Algorithm/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -47,7 +47,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/relax.hpp
       title: Relaxed Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/subset.hpp
       title: Subset Convolution
   - name: DataStructure
@@ -64,7 +64,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/dequeswag.hpp
       title: Sliding Window Aggregation for deque
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/disjointsparsetable.hpp
       title: Disjoint Sparse Table
     - icon: ':heavy_check_mark:'
@@ -79,7 +79,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
     - icon: ':heavy_check_mark:'
@@ -88,19 +88,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/persistentrbstset.hpp
       title: Persistent Randomized Binary Search Tree (set)
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentunionfind.hpp
       title: Persistent Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/rangelis.hpp
       title: Range LIS Query
     - icon: ':warning:'
       path: DataStructure/rangeunionset.hpp
       title: Range Union Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/rbstset.hpp
       title: Randomized Binary Search Tree (set)
     - icon: ':warning:'
@@ -118,22 +118,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/staticrectaddrectsum.hpp
       title: Static Rectangle Add Rectangle Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/staticrectsum.hpp
       title: Static Rectangle Sum
     - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/unionfind.hpp
       title: Union Find
     - icon: ':heavy_check_mark:'
       path: DataStructure/unionrect.hpp
       title: Area of Union of Rectangles
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/wavelet.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -153,10 +153,10 @@ data:
     - icon: ':warning:'
       path: FPS/composition.hpp
       title: Composition of Formal Power Series
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/famous.hpp
       title: Famous Sequence
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
     - icon: ':warning:'
@@ -192,7 +192,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
     - icon: ':warning:'
@@ -206,6 +206,9 @@ data:
       title: Enumerate $\sum_k a_k^i$
   - name: Geometry
     pages:
+    - icon: ':warning:'
+      path: Geometry/Enclosing.hpp
+      title: Enclosing Circle
     - icon: ':warning:'
       path: Geometry/FracCoord.hpp
       title: Geometry(Fraction Coordinates)
@@ -253,7 +256,7 @@ data:
     - icon: ':question:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/lowlink.hpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -268,7 +271,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/rerooting.hpp
       title: Rerooting
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/scc.hpp
       title: Strongly Connected Components
     - icon: ':warning:'
@@ -279,7 +282,7 @@ data:
     - icon: ':warning:'
       path: Math/algebra.hpp
       title: Algebra Structure
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
     - icon: ':warning:'
@@ -294,7 +297,7 @@ data:
     - icon: ':warning:'
       path: Math/detaplusbx.hpp
       title: $\det(A+Bx)$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
     - icon: ':x:'
@@ -303,7 +306,7 @@ data:
     - icon: ':question:'
       path: Math/fastdiv.hpp
       title: Fast Division
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/floorsum.hpp
       title: Floor Sum
     - icon: ':warning:'
@@ -318,10 +321,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':question:'
@@ -354,10 +357,10 @@ data:
     - icon: ':warning:'
       path: Math/sternbrocot.hpp
       title: Stern-Brocot Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/stirlingquery.hpp
       title: Stirling Number for query
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/twosat.hpp
       title: 2-SAT
   - name: String
@@ -368,13 +371,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/manacher.hpp
       title: Manacher Algorithm
+    - icon: ':warning:'
+      path: String/palindromictree.hpp
+      title: Palindromic Tree
     - icon: ':heavy_check_mark:'
       path: String/prefixsubstrlcs.hpp
       title: Prefix Substring LCS
     - icon: ':warning:'
       path: String/rollinghash.hpp
       title: Rolling Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: String/suffixarray.hpp
       title: Suffix Array
     - icon: ':warning:'
@@ -582,7 +588,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_predecessor_problem.test.cpp
       title: Verify/LC_predecessor_problem.test.cpp
     - icon: ':heavy_check_mark:'
@@ -600,7 +606,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
       title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest-2.test.cpp
       title: Verify/LC_range_kth_smallest-2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -612,52 +618,52 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_scc.test.cpp
       title: Verify/LC_scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
       title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sparse_matrix_det.test.cpp
       title: Verify/LC_sparse_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_inversions_query.test.cpp
       title: Verify/LC_static_range_inversions_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_lis_query.test.cpp
       title: Verify/LC_static_range_lis_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_sum.test.cpp
       title: Verify/LC_static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
       title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_staticrmq-2.test.cpp
       title: Verify/LC_staticrmq-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_staticrmq.test.cpp
       title: Verify/LC_staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
       title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
       title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
       title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
       title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_subset_convolution.test.cpp
       title: Verify/LC_subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_suffixarray.test.cpp
       title: Verify/LC_suffixarray.test.cpp
     - icon: ':x:'
@@ -666,25 +672,25 @@ data:
     - icon: ':x:'
       path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
       title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_floor_of_linear.test.cpp
       title: Verify/LC_sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_totient_function.test.cpp
       title: Verify/LC_sum_of_totient_function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_system_of_linear_equations.test.cpp
       title: Verify/LC_system_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_two_edge_connected_components.test.cpp
       title: Verify/LC_two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_two_sat.test.cpp
       title: Verify/LC_two_sat.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_unionfind.test.cpp
       title: Verify/LC_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_vertex_add_path_sum.test.cpp
       title: Verify/LC_vertex_add_path_sum.test.cpp
     - icon: ':x:'

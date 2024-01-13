@@ -6,12 +6,12 @@ data:
     path: FPS/p-recursive.hpp
     title: P-recursive
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Shift of Sampling Points of Polynomial
     links: []
@@ -51,7 +51,7 @@ data:
   requiredBy:
   - FPS/p-recursive.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: FPS/samplepointshift.hpp
