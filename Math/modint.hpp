@@ -3,14 +3,16 @@
 template <int mod = 1000000007> struct fp {
     int v;
     static constexpr int get_mod() { return mod; }
-    constexpr int inv() const {
-        int tmp, a = v, b = mod, x = 1, y = 0;
-        while (b)
-            tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);
-        if (x < 0) {
-            x += mod;
+    constexpr int inv() noexcept {
+        assert(v != 0);
+        int x = v, y = mod, u = 1, v = 0, t = 0, tmp = 0;
+        while (y > 0) {
+            t = x / y;
+            x -= t * y, u -= t * v;
+            tmp = x, x = y, y = tmp;
+            tmp = u, u = v, v = tmp;
         }
-        return x;
+        return u;
     }
     constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}
     fp operator-() const { return fp() - *this; }
