@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
   - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
   - icon: ':question:'

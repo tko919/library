@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':x:'

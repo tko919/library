@@ -9,12 +9,12 @@ data:
   - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Enumrate $n^k$
     links: []
@@ -51,7 +51,7 @@ data:
   path: Math/powertable.hpp
   requiredBy: []
   timestamp: '2023-01-17 01:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp

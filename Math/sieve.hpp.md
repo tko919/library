@@ -5,13 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/multiplicative.hpp
     title: Multiplicative Sum
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primesum.hpp
     title: Prime Sum
   _extendedVerifiedWith:
@@ -30,10 +30,10 @@ data:
   - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
   _isVerificationFailed: true

@@ -6,12 +6,12 @@ data:
     path: FPS/sumofpowers.hpp
     title: Enumerate $\sum_k a_k^i$
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Product of Polynomials
     links: []
@@ -33,7 +33,7 @@ data:
   requiredBy:
   - FPS/sumofpowers.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_product_of_polynomial_sequence.test.cpp
 documentation_of: FPS/prodofpolys.hpp
