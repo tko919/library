@@ -5,10 +5,10 @@ data:
   - icon: ':warning:'
     path: DataStructure/2dbit.hpp
     title: 2D Binary Indexed Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/staticrectaddrectsum.hpp
     title: Static Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/staticrectsum.hpp
     title: Static Rectangle Sum
   - icon: ':heavy_check_mark:'
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_sum.test.cpp
     title: Verify/LC_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'

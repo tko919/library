@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_general_weighted_matching.test.cpp
     title: Verify/LC_general_weighted_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,10 +93,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_prefix_substring_lcs.test.cpp
     title: Verify/LC_prefix_substring_lcs.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,10 +108,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,22 +120,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_lis_query.test.cpp
     title: Verify/LC_static_range_lis_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
   - icon: ':x:'
@@ -144,7 +144,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
   - icon: ':x:'

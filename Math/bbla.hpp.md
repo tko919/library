@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
   - icon: ':question:'
@@ -9,7 +9,7 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: Verify/YUKI_1112.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Black Box Linear Algebra
     links: []
@@ -121,7 +121,7 @@ data:
   path: Math/bbla.hpp
   requiredBy: []
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp

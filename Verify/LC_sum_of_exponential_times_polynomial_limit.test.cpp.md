@@ -149,35 +149,36 @@ data:
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp\"\
     \n\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate <int mod = 1000000007> struct fp\
     \ {\r\n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n  \
-    \  constexpr int inv() const {\r\n        int tmp, a = v, b = mod, x = 1, y =\
-    \ 0;\r\n        while (b)\r\n            tmp = a / b, a -= tmp * b, swap(a, b),\
-    \ x -= tmp * y, swap(x, y);\r\n        if (x < 0) {\r\n            x += mod;\r\
-    \n        }\r\n        return x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x\
-    \ >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\
-    \ return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n\
-    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
-    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
-    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
-    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
-    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
-    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
-    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ll(v) * x.v % mod;\r\
-    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
-    \    v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
-    \ fp &x) const { return fp(*this) += x; }\r\n    fp operator-(const fp &x) const\
-    \ { return fp(*this) -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this)\
-    \ *= x; }\r\n    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n\
-    \    bool operator==(const fp &x) const { return v == x.v; }\r\n    bool operator!=(const\
-    \ fp &x) const { return v != x.v; }\r\n    friend istream &operator>>(istream\
-    \ &is, fp &x) { return is >> x.v; }\r\n    friend ostream &operator<<(ostream\
-    \ &os, const fp &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T\
-    \ Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n    static vector<T>\
-    \ buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <=\
-    \ n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k\
-    \ * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename\
-    \ T> T Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\
-    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n <\
-    \ md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
+    \  constexpr int inv() noexcept {\r\n        assert(v != 0);\r\n        int x\
+    \ = v, y = mod, u = 1, v = 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n \
+    \           t = x / y;\r\n            x -= t * y, u -= t * v;\r\n            tmp\
+    \ = x, x = y, y = tmp;\r\n            tmp = u, u = v, v = tmp;\r\n        }\r\n\
+    \        return u;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod\
+    \ : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this;\
+    \ }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b\
+    \ = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n              \
+    \  res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n        }\r\n \
+    \       return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n        if\
+    \ ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\n  \
+    \  }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\
+    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
+    \ fp &x) {\r\n        v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\
+    \n    fp &operator/=(const fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp operator+(const fp &x) const { return\
+    \ fp(*this) += x; }\r\n    fp operator-(const fp &x) const { return fp(*this)\
+    \ -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this) *= x; }\r\n\
+    \    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n    bool operator==(const\
+    \ fp &x) const { return v == x.v; }\r\n    bool operator!=(const fp &x) const\
+    \ { return v != x.v; }\r\n    friend istream &operator>>(istream &is, fp &x) {\
+    \ return is >> x.v; }\r\n    friend ostream &operator<<(ostream &os, const fp\
+    \ &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\
+    \n    static const int md = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\
+    \n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n       \
+    \ int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k * q -\
+    \ md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename T> T\
+    \ Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\n  \
+    \  static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\
+    \n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
     \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
     \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
     \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
@@ -214,19 +215,24 @@ data:
     \    for(int i=d;i;i--)R[i-1]=R[i]*(t-i);\n    T ret;\n    rep(i,0,d+1){\n   \
     \     T add=ys[i]*L[i]*R[i]*Fact<T>(i,1)*Fact<T>(d-i,1);\n        if((d-i)&1)ret-=add;\n\
     \        else ret+=add;\n    }\n    return ret;\n}\n\n/**\n * @brief interpolate\
-    \ (one point)\n*/\n#line 3 \"FPS/sumofpolyexp.hpp\"\n\ntemplate<typename T>T LimitSumOfPolyExp(vector<T>&\
-    \ f,T r){ //sum_{k=0}^inf r^k*f(k)\n    assert(r!=1);\n    int d=f.size()-1;\n\
-    \    vector<T> rs(d+1);\n    rs[0]=1;\n    rep(i,0,d)rs[i+1]=rs[i]*r;\n    T c,add;\n\
-    \    rep(i,0,d+1){\n        add+=rs[i]*f[i];\n        if((d-i)&1)c-=nCr<T>(d+1,i+1)*rs[d-i]*add;\n\
-    \        else c+=nCr<T>(d+1,i+1)*rs[d-i]*add;\n    }\n    c/=(-r+1).pow(d+1);\n\
-    \    return c;\n}\n\ntemplate<typename T>T SumOfPolyExp(vector<T>& f,T r,ll n){\
-    \ //sum_{k=0}^{n-1} r^k*f(k)\n    n--;\n    if(n<0)return 0;\n    int d=f.size()-1;\n\
-    \    vector<T> rs(d+1),rui(d+1);\n    rs[0]=1;\n    rep(i,0,d)rs[i+1]=rs[i]*r;\n\
-    \    rep(i,0,d+1)rui[i]=rs[i]*f[i];\n    rep(i,0,d)rui[i+1]+=rui[i];\n    if(r==1)return\
-    \ Interpolate(rui,n);\n    else{\n        T c;\n        rep(i,0,d+1)c+=nCr(d+1,i+1)*rs[d-i]*rui[i]*((d-i)&1?-1:1);\n\
-    \        c/=T(-r+1).pow(d+1);\n        vector<T> ys(d+1);\n        T pwr=1,invr=T(r).inv();\n\
-    \        rep(i,0,d+1)ys[i]=(rui[i]-c)*pwr,pwr*=invr;\n        return T(r).pow(n)*Interpolate(ys,n)+c;\n\
-    \    }\n}\n\n/**\n * @brief $\\sum_{k} r^k\\cdot poly(k)$\n*/\n#line 11 \"Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp\"\
+    \ (one point)\n*/\n#line 3 \"FPS/sumofpolyexp.hpp\"\n\ntemplate <typename T>\n\
+    T LimitSumOfPolyExp(vector<T> &f, T r) { // sum_{k=0}^inf r^k*f(k)\n    assert(r\
+    \ != 1);\n    int d = f.size() - 1;\n    vector<T> rs(d + 1);\n    rs[0] = 1;\n\
+    \    rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    T c, add;\n    rep(i, 0, d + 1)\
+    \ {\n        add += rs[i] * f[i];\n        if ((d - i) & 1)\n            c -=\
+    \ nCr<T>(d + 1, i + 1) * rs[d - i] * add;\n        else\n            c += nCr<T>(d\
+    \ + 1, i + 1) * rs[d - i] * add;\n    }\n    c /= (-r + 1).pow(d + 1);\n    return\
+    \ c;\n}\n\ntemplate <typename T>\nT SumOfPolyExp(vector<T> &f, T r, ll n) { //\
+    \ sum_{k=0}^{n-1} r^k*f(k)\n    n--;\n    if (n < 0)\n        return 0;\n    int\
+    \ d = f.size() - 1;\n    vector<T> rs(d + 1), rui(d + 1);\n    rs[0] = 1;\n  \
+    \  rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    rep(i, 0, d + 1) rui[i] = rs[i] *\
+    \ f[i];\n    rep(i, 0, d) rui[i + 1] += rui[i];\n    if (r == 1)\n        return\
+    \ Interpolate(rui, n);\n    else {\n        T c;\n        rep(i, 0, d + 1) c +=\n\
+    \            nCr<T>(d + 1, i + 1) * rs[d - i] * rui[i] * ((d - i) & 1 ? -1 : 1);\n\
+    \        c /= T(-r + 1).pow(d + 1);\n        vector<T> ys(d + 1);\n        T pwr\
+    \ = 1, invr = T(r).inv();\n        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr,\
+    \ pwr *= invr;\n        return T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n\
+    }\n\n/**\n * @brief $\\sum_{k} r^k\\cdot poly(k)$\n */\n#line 11 \"Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp\"\
     \n\nFastIO io;\nint main(){\n    Fp r;\n    int d;\n    io.read(r.v,d);\n\n  \
     \  auto pws=powertable<Fp>(d+1,d);\n    auto ret=LimitSumOfPolyExp(pws,r);\n \
     \   io.write(ret.v);\n    return 0;\n}\n"
@@ -247,7 +253,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 05:13:38+09:00'
+  timestamp: '2024-01-14 02:07:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []

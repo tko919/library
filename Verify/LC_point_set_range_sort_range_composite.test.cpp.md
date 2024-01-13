@@ -209,17 +209,18 @@ data:
     \n        seg.set(k,Es[k]->value());\r\n        Ls.insert(k);\r\n    }\r\n};\r\
     \n\r\n/**\r\n * @brief Sortable Segment Tree\r\n */\n#line 2 \"Math/modint.hpp\"\
     \n\r\ntemplate <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static\
-    \ constexpr int get_mod() { return mod; }\r\n    constexpr int inv() const {\r\
-    \n        int tmp, a = v, b = mod, x = 1, y = 0;\r\n        while (b)\r\n    \
-    \        tmp = a / b, a -= tmp * b, swap(a, b), x -= tmp * y, swap(x, y);\r\n\
-    \        if (x < 0) {\r\n            x += mod;\r\n        }\r\n        return\
-    \ x;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x)\
-    \ % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this; }\r\n  \
-    \  fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\
-    \n        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\
-    \n            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
-    \n    }\r\n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\
-    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ constexpr int get_mod() { return mod; }\r\n    constexpr int inv() noexcept\
+    \ {\r\n        assert(v != 0);\r\n        int x = v, y = mod, u = 1, v = 0, t\
+    \ = 0, tmp = 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n     \
+    \       x -= t * y, u -= t * v;\r\n            tmp = x, x = y, y = tmp;\r\n  \
+    \          tmp = u, u = v, v = tmp;\r\n        }\r\n        return u;\r\n    }\r\
+    \n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod)\
+    \ {}\r\n    fp operator-() const { return fp() - *this; }\r\n    fp pow(ll t)\
+    \ {\r\n        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\n        while\
+    \ (t) {\r\n            if (t & 1)\r\n                res *= b;\r\n           \
+    \ b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\
+    \n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n    \
+    \        v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
     \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
     \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
     \   v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
@@ -285,7 +286,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_point_set_range_sort_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-01-12 05:13:38+09:00'
+  timestamp: '2024-01-14 02:07:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_point_set_range_sort_range_composite.test.cpp

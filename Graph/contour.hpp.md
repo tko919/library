@@ -51,104 +51,125 @@ data:
     \n        for(;;){\r\n            int to=hs[st];\r\n            if(in[st]-k>=in[to])return\
     \ rev[in[st]-k];\r\n            k-=in[st]-in[to]+1; st=par[to];\r\n        }\r\
     \n    }\r\n};\r\n\r\n/**\r\n * @brief Heavy Light Decomposition\r\n */\n#line\
-    \ 4 \"Graph/contour.hpp\"\n\r\nstruct ContourQuery{\r\n    using P=pair<int,int>;\r\
-    \n    using T=pair<int,P>;\r\n    ContourQuery(int _n=0):n(_n),m(_n),cd(_n),\r\
-    \n        hld(_n),tree(_n*3),depth(_n*3),\r\n        base(_n*3),parent(_n*3,-1),SZ(_n*3),width(_n*3,1),seg(_n*3){}\r\
-    \n    void add_edge(int u,int v){\r\n        cd.add_edge(u,v);\r\n        hld.add_edge(u,v);\r\
-    \n    }\r\n    vector<int> run(){\r\n        hld.run();\r\n        root=rec(0);\r\
-    \n        depth[0]=0;\r\n        dfs(0,-1);\r\n        rep(v,0,m)if(v!=root){\r\
-    \n            seg[v]=width[v];\r\n        }\r\n        return seg;\r\n    }\r\n\
-    \    vector<P> point(int v){\r\n        vector<P> ret;\r\n        int cur=v;\r\
-    \n        while(cur!=root){\r\n            int D=depth[v]+depth[base[cur]]-2*depth[hld.lca(v,base[cur])];\r\
-    \n            ret.push_back({cur,D});\r\n            cur=parent[cur];\r\n    \
-    \    }\r\n        return ret;\r\n    }\r\n    vector<T> range(int v,int L,int\
-    \ R){\r\n        vector<T> ret;\r\n        if(L<=0 and 0<R)ret.push_back({v,{0,1}});\r\
-    \n        int cur=parent[v],pre=v;\r\n        while(pre!=root){\r\n          \
-    \  int bro=-1;\r\n            for(auto& to:tree[cur])if(to!=parent[cur] and to!=pre){\r\
-    \n                bro=to;\r\n                break;\r\n            }\r\n     \
-    \       if(bro!=-1){\r\n                int D=depth[v]+depth[base[bro]]-2*depth[hld.lca(v,base[bro])];\r\
-    \n                ret.push_back({bro,{clamp(L-D,0,seg[bro]),clamp(R-D,0,seg[bro])}});\r\
-    \n            }\r\n            pre=cur;\r\n            cur=parent[cur];\r\n  \
-    \      }\r\n        return ret;\r\n    }\r\nprivate:\r\n    int n,m,root;\r\n\
-    \    CentroidDecomposition cd;\r\n    HLD hld;\r\n    vector<vector<int>> tree;\r\
-    \n    vector<int> depth,base,parent,SZ,width,seg;\r\n    int rec(int rt){\r\n\
-    \        int cen=cd.find(rt);\r\n        SZ[cen]=1;\r\n        queue<P> que;\r\
-    \n        auto cmp=[&](int u,int v){return SZ[u]>SZ[v];};\r\n        priority_queue<int,vector<int>,decltype(cmp)>\
-    \ pq{cmp};\r\n        pq.push(cen);\r\n        depth[cen]=0;\r\n        base[cen]=cen;\r\
-    \n        for(auto& to:cd.g[cen])if(!cd.used[to]){\r\n            int v=rec(to);\r\
-    \n            que.push({to,cen});\r\n            depth[to]=1;\r\n            while(!que.empty()){\r\
-    \n                auto [cur,par]=que.front();\r\n                que.pop();\r\n\
-    \                width[v]=depth[cur]+1;\r\n                for(auto& nxt:cd.g[cur])if(nxt!=par\
-    \ and !cd.used[nxt]){\r\n                    depth[nxt]=depth[cur]+1;\r\n    \
-    \                que.push({nxt,cur});\r\n                }\r\n            }\r\n\
-    \            pq.push(v);\r\n            base[v]=cen;\r\n        }\r\n        cd.used[cen]=0;\r\
-    \n        if(pq.size()>1){\r\n            for(;;){\r\n                int v1=pq.top();\r\
-    \n                pq.pop();\r\n                int v2=pq.top();\r\n          \
-    \      pq.pop();\r\n                int extra=m++;\r\n                tree[extra].push_back(v1);\r\
+    \ 4 \"Graph/contour.hpp\"\n\r\nstruct ContourQuery {\r\n    using P = pair<int,\
+    \ int>;\r\n    using T = pair<int, P>;\r\n    ContourQuery(int _n = 0)\r\n   \
+    \     : n(_n), m(_n), cd(_n), hld(_n), tree(_n * 3), depth(_n * 3),\r\n      \
+    \    base(_n * 3), parent(_n * 3, -1), buf(_n * 3), width(_n * 3, 1),\r\n    \
+    \      seg(_n * 3) {}\r\n    void add_edge(int u, int v) {\r\n        cd.add_edge(u,\
+    \ v);\r\n        hld.add_edge(u, v);\r\n    }\r\n    vector<int> run() {\r\n \
+    \       hld.run();\r\n        root = rec(0);\r\n        depth[0] = 0;\r\n    \
+    \    dfs(0, -1);\r\n        rep(v, 0, m) if (v != root) { seg[v] = width[v]; }\r\
+    \n        return seg;\r\n    }\r\n    vector<P> point(int v) {\r\n        vector<P>\
+    \ ret;\r\n        int cur = v;\r\n        while (cur != root) {\r\n          \
+    \  int D =\r\n                depth[v] + depth[base[cur]] - 2 * depth[hld.lca(v,\
+    \ base[cur])];\r\n            ret.push_back({cur, D});\r\n            cur = parent[cur];\r\
+    \n        }\r\n        return ret;\r\n    }\r\n    vector<T> range(int v, int\
+    \ L, int R) {\r\n        vector<T> ret;\r\n        if (L <= 0 and 0 < R)\r\n \
+    \           ret.push_back({v, {0, 1}});\r\n        int cur = parent[v], pre =\
+    \ v;\r\n        while (pre != root) {\r\n            int bro = -1;\r\n       \
+    \     for (auto &to : tree[cur])\r\n                if (to != parent[cur] and\
+    \ to != pre) {\r\n                    bro = to;\r\n                    break;\r\
+    \n                }\r\n            if (bro != -1) {\r\n                int D =\
+    \ depth[v] + depth[base[bro]] -\r\n                        2 * depth[hld.lca(v,\
+    \ base[bro])];\r\n                ret.push_back(\r\n                    {bro,\r\
+    \n                     {clamp(L - D, 0, seg[bro]), clamp(R - D, 0, seg[bro])}});\r\
+    \n            }\r\n            pre = cur;\r\n            cur = parent[cur];\r\n\
+    \        }\r\n        return ret;\r\n    }\r\n\r\n  private:\r\n    int n, m,\
+    \ root;\r\n    CentroidDecomposition cd;\r\n    HLD hld;\r\n    vector<vector<int>>\
+    \ tree;\r\n    vector<int> depth, base, parent, buf, width, seg;\r\n    int rec(int\
+    \ rt) {\r\n        int cen = cd.find(rt);\r\n        buf[cen] = 1;\r\n       \
+    \ queue<P> que;\r\n        auto cmp = [&](int u, int v) { return buf[u] > buf[v];\
+    \ };\r\n        priority_queue<int, vector<int>, decltype(cmp)> pq{cmp};\r\n \
+    \       pq.push(cen);\r\n        depth[cen] = 0;\r\n        base[cen] = cen;\r\
+    \n        for (auto &to : cd.g[cen])\r\n            if (!cd.used[to]) {\r\n  \
+    \              int v = rec(to);\r\n                que.push({to, cen});\r\n  \
+    \              depth[to] = 1;\r\n                while (!que.empty()) {\r\n  \
+    \                  auto [cur, par] = que.front();\r\n                    que.pop();\r\
+    \n                    width[v] = depth[cur] + 1;\r\n                    for (auto\
+    \ &nxt : cd.g[cur])\r\n                        if (nxt != par and !cd.used[nxt])\
+    \ {\r\n                            depth[nxt] = depth[cur] + 1;\r\n          \
+    \                  que.push({nxt, cur});\r\n                        }\r\n    \
+    \            }\r\n                pq.push(v);\r\n                base[v] = cen;\r\
+    \n            }\r\n        cd.used[cen] = 0;\r\n        if (pq.size() > 1) {\r\
+    \n            for (;;) {\r\n                int v1 = pq.top();\r\n           \
+    \     pq.pop();\r\n                int v2 = pq.top();\r\n                pq.pop();\r\
+    \n                int extra = m++;\r\n                tree[extra].push_back(v1);\r\
     \n                tree[extra].push_back(v2);\r\n                tree[v1].push_back(extra);\r\
-    \n                tree[v2].push_back(extra);\r\n                SZ[extra]=SZ[v1]+SZ[v2];\r\
-    \n                parent[v1]=parent[v2]=extra;\r\n                if(pq.empty()){\r\
-    \n                    return extra;\r\n                }\r\n                pq.push(extra);\r\
-    \n                base[extra]=cen;\r\n                width[extra]=max(width[v1],width[v2]);\r\
-    \n            }\r\n        }\r\n        else{\r\n            int extra=m++;\r\n\
-    \            tree[extra].push_back(cen);\r\n            tree[cen].push_back(extra);\r\
-    \n            SZ[extra]=1;\r\n            parent[cen]=extra;\r\n            return\
-    \ extra;\r\n        }\r\n    }\r\n    void dfs(int v,int p){\r\n        for(auto&\
-    \ to:cd.g[v])if(to!=p){\r\n            depth[to]=depth[v]+1;\r\n            dfs(to,v);\r\
-    \n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Contour Sum Query\r\n */\n"
+    \n                tree[v2].push_back(extra);\r\n                buf[extra] = buf[v1]\
+    \ + buf[v2];\r\n                parent[v1] = parent[v2] = extra;\r\n         \
+    \       if (pq.empty()) {\r\n                    return extra;\r\n           \
+    \     }\r\n                pq.push(extra);\r\n                base[extra] = cen;\r\
+    \n                width[extra] = max(width[v1], width[v2]);\r\n            }\r\
+    \n        } else {\r\n            int extra = m++;\r\n            tree[extra].push_back(cen);\r\
+    \n            tree[cen].push_back(extra);\r\n            buf[extra] = 1;\r\n \
+    \           parent[cen] = extra;\r\n            return extra;\r\n        }\r\n\
+    \    }\r\n    void dfs(int v, int p) {\r\n        for (auto &to : cd.g[v])\r\n\
+    \            if (to != p) {\r\n                depth[to] = depth[v] + 1;\r\n \
+    \               dfs(to, v);\r\n            }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Contour Sum Query\r\n */\n"
   code: "#pragma once\r\n#include \"Graph/centroid.hpp\"\r\n#include \"Graph/hld.hpp\"\
-    \r\n\r\nstruct ContourQuery{\r\n    using P=pair<int,int>;\r\n    using T=pair<int,P>;\r\
-    \n    ContourQuery(int _n=0):n(_n),m(_n),cd(_n),\r\n        hld(_n),tree(_n*3),depth(_n*3),\r\
-    \n        base(_n*3),parent(_n*3,-1),SZ(_n*3),width(_n*3,1),seg(_n*3){}\r\n  \
-    \  void add_edge(int u,int v){\r\n        cd.add_edge(u,v);\r\n        hld.add_edge(u,v);\r\
-    \n    }\r\n    vector<int> run(){\r\n        hld.run();\r\n        root=rec(0);\r\
-    \n        depth[0]=0;\r\n        dfs(0,-1);\r\n        rep(v,0,m)if(v!=root){\r\
-    \n            seg[v]=width[v];\r\n        }\r\n        return seg;\r\n    }\r\n\
-    \    vector<P> point(int v){\r\n        vector<P> ret;\r\n        int cur=v;\r\
-    \n        while(cur!=root){\r\n            int D=depth[v]+depth[base[cur]]-2*depth[hld.lca(v,base[cur])];\r\
-    \n            ret.push_back({cur,D});\r\n            cur=parent[cur];\r\n    \
-    \    }\r\n        return ret;\r\n    }\r\n    vector<T> range(int v,int L,int\
-    \ R){\r\n        vector<T> ret;\r\n        if(L<=0 and 0<R)ret.push_back({v,{0,1}});\r\
-    \n        int cur=parent[v],pre=v;\r\n        while(pre!=root){\r\n          \
-    \  int bro=-1;\r\n            for(auto& to:tree[cur])if(to!=parent[cur] and to!=pre){\r\
-    \n                bro=to;\r\n                break;\r\n            }\r\n     \
-    \       if(bro!=-1){\r\n                int D=depth[v]+depth[base[bro]]-2*depth[hld.lca(v,base[bro])];\r\
-    \n                ret.push_back({bro,{clamp(L-D,0,seg[bro]),clamp(R-D,0,seg[bro])}});\r\
-    \n            }\r\n            pre=cur;\r\n            cur=parent[cur];\r\n  \
-    \      }\r\n        return ret;\r\n    }\r\nprivate:\r\n    int n,m,root;\r\n\
-    \    CentroidDecomposition cd;\r\n    HLD hld;\r\n    vector<vector<int>> tree;\r\
-    \n    vector<int> depth,base,parent,SZ,width,seg;\r\n    int rec(int rt){\r\n\
-    \        int cen=cd.find(rt);\r\n        SZ[cen]=1;\r\n        queue<P> que;\r\
-    \n        auto cmp=[&](int u,int v){return SZ[u]>SZ[v];};\r\n        priority_queue<int,vector<int>,decltype(cmp)>\
-    \ pq{cmp};\r\n        pq.push(cen);\r\n        depth[cen]=0;\r\n        base[cen]=cen;\r\
-    \n        for(auto& to:cd.g[cen])if(!cd.used[to]){\r\n            int v=rec(to);\r\
-    \n            que.push({to,cen});\r\n            depth[to]=1;\r\n            while(!que.empty()){\r\
-    \n                auto [cur,par]=que.front();\r\n                que.pop();\r\n\
-    \                width[v]=depth[cur]+1;\r\n                for(auto& nxt:cd.g[cur])if(nxt!=par\
-    \ and !cd.used[nxt]){\r\n                    depth[nxt]=depth[cur]+1;\r\n    \
-    \                que.push({nxt,cur});\r\n                }\r\n            }\r\n\
-    \            pq.push(v);\r\n            base[v]=cen;\r\n        }\r\n        cd.used[cen]=0;\r\
-    \n        if(pq.size()>1){\r\n            for(;;){\r\n                int v1=pq.top();\r\
-    \n                pq.pop();\r\n                int v2=pq.top();\r\n          \
-    \      pq.pop();\r\n                int extra=m++;\r\n                tree[extra].push_back(v1);\r\
-    \n                tree[extra].push_back(v2);\r\n                tree[v1].push_back(extra);\r\
-    \n                tree[v2].push_back(extra);\r\n                SZ[extra]=SZ[v1]+SZ[v2];\r\
-    \n                parent[v1]=parent[v2]=extra;\r\n                if(pq.empty()){\r\
-    \n                    return extra;\r\n                }\r\n                pq.push(extra);\r\
-    \n                base[extra]=cen;\r\n                width[extra]=max(width[v1],width[v2]);\r\
-    \n            }\r\n        }\r\n        else{\r\n            int extra=m++;\r\n\
-    \            tree[extra].push_back(cen);\r\n            tree[cen].push_back(extra);\r\
-    \n            SZ[extra]=1;\r\n            parent[cen]=extra;\r\n            return\
-    \ extra;\r\n        }\r\n    }\r\n    void dfs(int v,int p){\r\n        for(auto&\
-    \ to:cd.g[v])if(to!=p){\r\n            depth[to]=depth[v]+1;\r\n            dfs(to,v);\r\
-    \n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Contour Sum Query\r\n */"
+    \r\n\r\nstruct ContourQuery {\r\n    using P = pair<int, int>;\r\n    using T\
+    \ = pair<int, P>;\r\n    ContourQuery(int _n = 0)\r\n        : n(_n), m(_n), cd(_n),\
+    \ hld(_n), tree(_n * 3), depth(_n * 3),\r\n          base(_n * 3), parent(_n *\
+    \ 3, -1), buf(_n * 3), width(_n * 3, 1),\r\n          seg(_n * 3) {}\r\n    void\
+    \ add_edge(int u, int v) {\r\n        cd.add_edge(u, v);\r\n        hld.add_edge(u,\
+    \ v);\r\n    }\r\n    vector<int> run() {\r\n        hld.run();\r\n        root\
+    \ = rec(0);\r\n        depth[0] = 0;\r\n        dfs(0, -1);\r\n        rep(v,\
+    \ 0, m) if (v != root) { seg[v] = width[v]; }\r\n        return seg;\r\n    }\r\
+    \n    vector<P> point(int v) {\r\n        vector<P> ret;\r\n        int cur =\
+    \ v;\r\n        while (cur != root) {\r\n            int D =\r\n             \
+    \   depth[v] + depth[base[cur]] - 2 * depth[hld.lca(v, base[cur])];\r\n      \
+    \      ret.push_back({cur, D});\r\n            cur = parent[cur];\r\n        }\r\
+    \n        return ret;\r\n    }\r\n    vector<T> range(int v, int L, int R) {\r\
+    \n        vector<T> ret;\r\n        if (L <= 0 and 0 < R)\r\n            ret.push_back({v,\
+    \ {0, 1}});\r\n        int cur = parent[v], pre = v;\r\n        while (pre !=\
+    \ root) {\r\n            int bro = -1;\r\n            for (auto &to : tree[cur])\r\
+    \n                if (to != parent[cur] and to != pre) {\r\n                 \
+    \   bro = to;\r\n                    break;\r\n                }\r\n         \
+    \   if (bro != -1) {\r\n                int D = depth[v] + depth[base[bro]] -\r\
+    \n                        2 * depth[hld.lca(v, base[bro])];\r\n              \
+    \  ret.push_back(\r\n                    {bro,\r\n                     {clamp(L\
+    \ - D, 0, seg[bro]), clamp(R - D, 0, seg[bro])}});\r\n            }\r\n      \
+    \      pre = cur;\r\n            cur = parent[cur];\r\n        }\r\n        return\
+    \ ret;\r\n    }\r\n\r\n  private:\r\n    int n, m, root;\r\n    CentroidDecomposition\
+    \ cd;\r\n    HLD hld;\r\n    vector<vector<int>> tree;\r\n    vector<int> depth,\
+    \ base, parent, buf, width, seg;\r\n    int rec(int rt) {\r\n        int cen =\
+    \ cd.find(rt);\r\n        buf[cen] = 1;\r\n        queue<P> que;\r\n        auto\
+    \ cmp = [&](int u, int v) { return buf[u] > buf[v]; };\r\n        priority_queue<int,\
+    \ vector<int>, decltype(cmp)> pq{cmp};\r\n        pq.push(cen);\r\n        depth[cen]\
+    \ = 0;\r\n        base[cen] = cen;\r\n        for (auto &to : cd.g[cen])\r\n \
+    \           if (!cd.used[to]) {\r\n                int v = rec(to);\r\n      \
+    \          que.push({to, cen});\r\n                depth[to] = 1;\r\n        \
+    \        while (!que.empty()) {\r\n                    auto [cur, par] = que.front();\r\
+    \n                    que.pop();\r\n                    width[v] = depth[cur]\
+    \ + 1;\r\n                    for (auto &nxt : cd.g[cur])\r\n                \
+    \        if (nxt != par and !cd.used[nxt]) {\r\n                            depth[nxt]\
+    \ = depth[cur] + 1;\r\n                            que.push({nxt, cur});\r\n \
+    \                       }\r\n                }\r\n                pq.push(v);\r\
+    \n                base[v] = cen;\r\n            }\r\n        cd.used[cen] = 0;\r\
+    \n        if (pq.size() > 1) {\r\n            for (;;) {\r\n                int\
+    \ v1 = pq.top();\r\n                pq.pop();\r\n                int v2 = pq.top();\r\
+    \n                pq.pop();\r\n                int extra = m++;\r\n          \
+    \      tree[extra].push_back(v1);\r\n                tree[extra].push_back(v2);\r\
+    \n                tree[v1].push_back(extra);\r\n                tree[v2].push_back(extra);\r\
+    \n                buf[extra] = buf[v1] + buf[v2];\r\n                parent[v1]\
+    \ = parent[v2] = extra;\r\n                if (pq.empty()) {\r\n             \
+    \       return extra;\r\n                }\r\n                pq.push(extra);\r\
+    \n                base[extra] = cen;\r\n                width[extra] = max(width[v1],\
+    \ width[v2]);\r\n            }\r\n        } else {\r\n            int extra =\
+    \ m++;\r\n            tree[extra].push_back(cen);\r\n            tree[cen].push_back(extra);\r\
+    \n            buf[extra] = 1;\r\n            parent[cen] = extra;\r\n        \
+    \    return extra;\r\n        }\r\n    }\r\n    void dfs(int v, int p) {\r\n \
+    \       for (auto &to : cd.g[v])\r\n            if (to != p) {\r\n           \
+    \     depth[to] = depth[v] + 1;\r\n                dfs(to, v);\r\n           \
+    \ }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Contour Sum Query\r\n */"
   dependsOn:
   - Graph/centroid.hpp
   - Graph/hld.hpp
   isVerificationFile: false
   path: Graph/contour.hpp
   requiredBy: []
-  timestamp: '2022-12-26 23:10:56+09:00'
+  timestamp: '2024-01-14 02:07:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
