@@ -24,7 +24,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_matrix_product.test.cpp
     title: Verify/LC_matrix_product.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: Verify/LC_system_of_linear_equations.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Matrix
     links: []
@@ -119,7 +119,7 @@ data:
   - Math/hafnian.hpp
   - Math/detaplusbx.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_matrix_det.test.cpp
   - Verify/LC_matrix_product.test.cpp

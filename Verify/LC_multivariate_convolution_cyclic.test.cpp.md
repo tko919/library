@@ -306,11 +306,11 @@ data:
     \n        res.resize(n);\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n\
     \ * @brief Number Theoretic Transform\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\n\
     template <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static constexpr\
-    \ int get_mod() { return mod; }\r\n    constexpr int inv() noexcept {\r\n    \
-    \    assert(v != 0);\r\n        int x = v, y = mod, u = 1, v = 0, t = 0, tmp =\
-    \ 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n            x -=\
-    \ t * y, u -= t * v;\r\n            tmp = x, x = y, y = tmp;\r\n            tmp\
-    \ = u, u = v, v = tmp;\r\n        }\r\n        return u;\r\n    }\r\n    constexpr\
+    \ int get_mod() { return mod; }\r\n    constexpr int inv() const {\r\n       \
+    \ assert(v != 0);\r\n        int x = v, y = mod, u = 1, v = 0, t = 0, tmp = 0;\r\
+    \n        while (y > 0) {\r\n            t = x / y;\r\n            x -= t * y,\
+    \ u -= t * v;\r\n            tmp = x, x = y, y = tmp;\r\n            tmp = u,\
+    \ u = v, v = tmp;\r\n        }\r\n        return u;\r\n    }\r\n    constexpr\
     \ fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
     \ const { return fp() - *this; }\r\n    fp pow(ll t) {\r\n        assert(t >=\
     \ 0);\r\n        fp res = 1, b = *this;\r\n        while (t) {\r\n           \
@@ -599,7 +599,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 02:07:43+09:00'
+  timestamp: '2024-01-14 02:23:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp

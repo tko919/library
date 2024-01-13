@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':question:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []

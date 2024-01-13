@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: Convolution/subset.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []

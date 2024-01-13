@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Convolution/multivariate.hpp
       title: Multivariate Convolution
     - icon: ':x:'
@@ -115,7 +115,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
     - icon: ':x:'
@@ -153,7 +153,7 @@ data:
     - icon: ':warning:'
       path: FPS/composition.hpp
       title: Composition of Formal Power Series
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/famous.hpp
       title: Famous Sequence
     - icon: ':question:'
@@ -174,7 +174,7 @@ data:
     - icon: ':x:'
       path: FPS/multievalgeom.hpp
       title: Multipoint Evaluation on Geometric Sequence
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
     - icon: ':warning:'
@@ -324,7 +324,7 @@ data:
     - icon: ':x:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':question:'
+    - icon: ':x:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':question:'
@@ -426,7 +426,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_associative_array.test.cpp
       title: Verify/LC_associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_bernoulli_number.test.cpp
       title: Verify/LC_bernoulli_number.test.cpp
     - icon: ':heavy_check_mark:'
@@ -483,7 +483,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_primes.test.cpp
       title: Verify/LC_enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_exp_of_formal_power_series.test.cpp
       title: Verify/LC_exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -510,7 +510,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_root_integer.test.cpp
       title: Verify/LC_kth_root_integer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
       title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -537,7 +537,7 @@ data:
     - icon: ':x:'
       path: Verify/LC_matrix_det.test.cpp
       title: Verify/LC_matrix_det.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_matrix_product.test.cpp
       title: Verify/LC_matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
@@ -549,7 +549,7 @@ data:
     - icon: ':x:'
       path: Verify/LC_multipoint_evaluation.test.cpp
       title: Verify/LC_multipoint_evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_multivariate_convolution.test.cpp
       title: Verify/LC_multivariate_convolution.test.cpp
     - icon: ':x:'
@@ -573,10 +573,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_rectangle_sum.test.cpp
       title: Verify/LC_point_add_rectangle_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_point_set_range_composite.test.cpp
       title: Verify/LC_point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_point_set_range_sort_range_composite.test.cpp
       title: Verify/LC_point_set_range_sort_range_composite.test.cpp
     - icon: ':x:'

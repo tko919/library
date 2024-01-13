@@ -142,7 +142,7 @@ data:
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
     };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate\
     \ <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static constexpr int\
-    \ get_mod() { return mod; }\r\n    constexpr int inv() noexcept {\r\n        assert(v\
+    \ get_mod() { return mod; }\r\n    constexpr int inv() const {\r\n        assert(v\
     \ != 0);\r\n        int x = v, y = mod, u = 1, v = 0, t = 0, tmp = 0;\r\n    \
     \    while (y > 0) {\r\n            t = x / y;\r\n            x -= t * y, u -=\
     \ t * v;\r\n            tmp = x, x = y, y = tmp;\r\n            tmp = u, u = v,\
@@ -235,7 +235,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 02:07:43+09:00'
+  timestamp: '2024-01-14 02:23:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_gcd_convolution.test.cpp
