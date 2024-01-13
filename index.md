@@ -20,7 +20,7 @@ data:
       title: Rollback Mo
   - name: Convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/arbitrary.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -141,10 +141,10 @@ data:
       title: Weighted Union Find
   - name: FPS
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
     - icon: ':warning:'
@@ -162,7 +162,7 @@ data:
     - icon: ':warning:'
       path: FPS/halfgcd.hpp
       title: Half GCD
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/interpolate.hpp
       title: interpolate (one point)
     - icon: ':warning:'
@@ -186,7 +186,7 @@ data:
     - icon: ':warning:'
       path: FPS/prefixsumofpowers.hpp
       title: Enumerate $\sum_{k=0}^{N-1} k^i$
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: FPS/prodoffrkx.hpp
       title: $\Pi_{k=0}^{m-1} f(r^kx)$
     - icon: ':heavy_check_mark:'
@@ -198,7 +198,7 @@ data:
     - icon: ':warning:'
       path: FPS/sumofRationals.hpp
       title: Sum of Rationals
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/sumofpolyexp.hpp
       title: $\sum_{k} r^k\cdot poly(k)$
     - icon: ':warning:'
@@ -282,7 +282,7 @@ data:
     - icon: ':warning:'
       path: Math/algebra.hpp
       title: Algebra Structure
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/bbla.hpp
       title: Black Box Linear Algebra
     - icon: ':warning:'
@@ -330,7 +330,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -342,7 +342,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/powertable.hpp
       title: Enumrate $n^k$
     - icon: ':heavy_check_mark:'
@@ -351,7 +351,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/sieve.hpp
       title: Prime Sieve
     - icon: ':warning:'
@@ -394,15 +394,15 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
   verificationCategories:
@@ -666,7 +666,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_suffixarray.test.cpp
       title: Verify/LC_suffixarray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
       title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
@@ -702,19 +702,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_zalgorithm.test.cpp
       title: Verify/LC_zalgorithm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1080.test.cpp
       title: Verify/YUKI_1080.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1112.test.cpp
       title: Verify/YUKI_1112.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1781.test.cpp
       title: Verify/YUKI_1781.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_2097.test.cpp
       title: Verify/YUKI_2097.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_310.test.cpp
       title: Verify/YUKI_310.test.cpp
     - icon: ':heavy_check_mark:'

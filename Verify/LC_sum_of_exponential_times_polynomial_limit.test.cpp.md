@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -226,13 +226,14 @@ data:
     \ sum_{k=0}^{n-1} r^k*f(k)\n    n--;\n    if (n < 0)\n        return 0;\n    int\
     \ d = f.size() - 1;\n    vector<T> rs(d + 1), rui(d + 1);\n    rs[0] = 1;\n  \
     \  rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    rep(i, 0, d + 1) rui[i] = rs[i] *\
-    \ f[i];\n    rep(i, 0, d) rui[i + 1] += rui[i];\n    if (r == 1)\n        return\
-    \ Interpolate(rui, n);\n    else {\n        T c;\n        rep(i, 0, d + 1) c +=\n\
-    \            nCr<T>(d + 1, i + 1) * rs[d - i] * rui[i] * ((d - i) & 1 ? -1 : 1);\n\
-    \        c /= T(-r + 1).pow(d + 1);\n        vector<T> ys(d + 1);\n        T pwr\
-    \ = 1, invr = T(r).inv();\n        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr,\
-    \ pwr *= invr;\n        return T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n\
-    }\n\n/**\n * @brief $\\sum_{k} r^k\\cdot poly(k)$\n */\n#line 11 \"Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp\"\
+    \ f[i];\n    rep(i, 0, d) rui[i + 1] += rui[i];\n    if (r == 0)\n        return\
+    \ f[0];\n    else if (r == 1)\n        return Interpolate(rui, n);\n    else {\n\
+    \        T c;\n        rep(i, 0, d + 1) c +=\n            nCr<T>(d + 1, i + 1)\
+    \ * rs[d - i] * rui[i] * ((d - i) & 1 ? -1 : 1);\n        c /= T(-r + 1).pow(d\
+    \ + 1);\n        vector<T> ys(d + 1);\n        T pwr = 1, invr = T(r).inv();\n\
+    \        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr, pwr *= invr;\n        return\
+    \ T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n}\n\n/**\n * @brief $\\sum_{k}\
+    \ r^k\\cdot poly(k)$\n */\n#line 11 \"Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp\"\
     \n\nFastIO io;\nint main(){\n    Fp r;\n    int d;\n    io.read(r.v,d);\n\n  \
     \  auto pws=powertable<Fp>(d+1,d);\n    auto ret=LimitSumOfPolyExp(pws,r);\n \
     \   io.write(ret.v);\n    return 0;\n}\n"
@@ -253,7 +254,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 02:40:58+09:00'
+  timestamp: '2024-01-14 04:04:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp

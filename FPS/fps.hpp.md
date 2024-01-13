@@ -51,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_2097.test.cpp
+    title: Verify/YUKI_2097.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -306,6 +309,7 @@ data:
   - Verify/LC_polynomial_taylor_shift.test.cpp
   - Verify/LC_product_of_polynomial_sequence.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_bernoulli_number.test.cpp
   - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_pow_of_formal_power_series.test.cpp

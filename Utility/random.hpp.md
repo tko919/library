@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/maxindependentset.hpp
     title: Maximum Independent Set
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   - icon: ':heavy_check_mark:'
@@ -60,12 +60,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Random
     links: []
@@ -114,7 +117,7 @@ data:
   - Graph/maxindependentset.hpp
   - String/rollinghash.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp
@@ -123,6 +126,7 @@ data:
   - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
   - Verify/LC_predecessor_problem.test.cpp
 documentation_of: Utility/random.hpp

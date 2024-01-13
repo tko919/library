@@ -138,7 +138,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,18 +150,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1080.test.cpp
+    title: Verify/YUKI_1080.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_2097.test.cpp
+    title: Verify/YUKI_2097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Fast IO
     links: []
@@ -366,7 +375,7 @@ data:
   path: Utility/fastio.hpp
   requiredBy: []
   timestamp: '2024-01-12 04:46:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_deque_operate_all_composite.test.cpp
   - Verify/LC_gcd_convolution.test.cpp
@@ -393,11 +402,13 @@ data:
   - Verify/AOJ_GRL_6_A.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp
   - Verify/LC_cycle_detection_undirected.test.cpp
+  - Verify/YUKI_1080.test.cpp
   - Verify/LC_product_of_polynomial_sequence.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/AOJ_1595.test.cpp
   - Verify/AOJ_DSL_1_B.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp
@@ -415,6 +426,7 @@ data:
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_cycle_detection.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/LC_manhattanmst.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
   - Verify/YUKI_1781.test.cpp

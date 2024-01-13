@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: Geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

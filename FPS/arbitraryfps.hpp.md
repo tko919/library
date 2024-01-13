@@ -6,12 +6,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1080.test.cpp
+    title: Verify/YUKI_1080.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Formal Power Series (Arbitrary mod)
     links: []
@@ -179,10 +185,12 @@ data:
   path: FPS/arbitraryfps.hpp
   requiredBy: []
   timestamp: '2024-01-12 05:39:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/YUKI_1112.test.cpp
+  - Verify/YUKI_1080.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/YUKI_310.test.cpp
 documentation_of: FPS/arbitraryfps.hpp
 layout: document
 redirect_from:

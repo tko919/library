@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: $\sum_{k} r^k\cdot poly(k)$
     links: []
@@ -35,13 +35,14 @@ data:
     \ sum_{k=0}^{n-1} r^k*f(k)\n    n--;\n    if (n < 0)\n        return 0;\n    int\
     \ d = f.size() - 1;\n    vector<T> rs(d + 1), rui(d + 1);\n    rs[0] = 1;\n  \
     \  rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    rep(i, 0, d + 1) rui[i] = rs[i] *\
-    \ f[i];\n    rep(i, 0, d) rui[i + 1] += rui[i];\n    if (r == 1)\n        return\
-    \ Interpolate(rui, n);\n    else {\n        T c;\n        rep(i, 0, d + 1) c +=\n\
-    \            nCr<T>(d + 1, i + 1) * rs[d - i] * rui[i] * ((d - i) & 1 ? -1 : 1);\n\
-    \        c /= T(-r + 1).pow(d + 1);\n        vector<T> ys(d + 1);\n        T pwr\
-    \ = 1, invr = T(r).inv();\n        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr,\
-    \ pwr *= invr;\n        return T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n\
-    }\n\n/**\n * @brief $\\sum_{k} r^k\\cdot poly(k)$\n */\n"
+    \ f[i];\n    rep(i, 0, d) rui[i + 1] += rui[i];\n    if (r == 0)\n        return\
+    \ f[0];\n    else if (r == 1)\n        return Interpolate(rui, n);\n    else {\n\
+    \        T c;\n        rep(i, 0, d + 1) c +=\n            nCr<T>(d + 1, i + 1)\
+    \ * rs[d - i] * rui[i] * ((d - i) & 1 ? -1 : 1);\n        c /= T(-r + 1).pow(d\
+    \ + 1);\n        vector<T> ys(d + 1);\n        T pwr = 1, invr = T(r).inv();\n\
+    \        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr, pwr *= invr;\n        return\
+    \ T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n}\n\n/**\n * @brief $\\sum_{k}\
+    \ r^k\\cdot poly(k)$\n */\n"
   code: "#pragma once\n#include \"FPS/interpolate.hpp\"\n\ntemplate <typename T>\n\
     T LimitSumOfPolyExp(vector<T> &f, T r) { // sum_{k=0}^inf r^k*f(k)\n    assert(r\
     \ != 1);\n    int d = f.size() - 1;\n    vector<T> rs(d + 1);\n    rs[0] = 1;\n\
@@ -53,20 +54,21 @@ data:
     \ sum_{k=0}^{n-1} r^k*f(k)\n    n--;\n    if (n < 0)\n        return 0;\n    int\
     \ d = f.size() - 1;\n    vector<T> rs(d + 1), rui(d + 1);\n    rs[0] = 1;\n  \
     \  rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    rep(i, 0, d + 1) rui[i] = rs[i] *\
-    \ f[i];\n    rep(i, 0, d) rui[i + 1] += rui[i];\n    if (r == 1)\n        return\
-    \ Interpolate(rui, n);\n    else {\n        T c;\n        rep(i, 0, d + 1) c +=\n\
-    \            nCr<T>(d + 1, i + 1) * rs[d - i] * rui[i] * ((d - i) & 1 ? -1 : 1);\n\
-    \        c /= T(-r + 1).pow(d + 1);\n        vector<T> ys(d + 1);\n        T pwr\
-    \ = 1, invr = T(r).inv();\n        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr,\
-    \ pwr *= invr;\n        return T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n\
-    }\n\n/**\n * @brief $\\sum_{k} r^k\\cdot poly(k)$\n */"
+    \ f[i];\n    rep(i, 0, d) rui[i + 1] += rui[i];\n    if (r == 0)\n        return\
+    \ f[0];\n    else if (r == 1)\n        return Interpolate(rui, n);\n    else {\n\
+    \        T c;\n        rep(i, 0, d + 1) c +=\n            nCr<T>(d + 1, i + 1)\
+    \ * rs[d - i] * rui[i] * ((d - i) & 1 ? -1 : 1);\n        c /= T(-r + 1).pow(d\
+    \ + 1);\n        vector<T> ys(d + 1);\n        T pwr = 1, invr = T(r).inv();\n\
+    \        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr, pwr *= invr;\n        return\
+    \ T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n}\n\n/**\n * @brief $\\sum_{k}\
+    \ r^k\\cdot poly(k)$\n */"
   dependsOn:
   - FPS/interpolate.hpp
   isVerificationFile: false
   path: FPS/sumofpolyexp.hpp
   requiredBy: []
-  timestamp: '2024-01-14 02:07:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-01-14 04:04:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
