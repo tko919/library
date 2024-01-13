@@ -31,7 +31,9 @@ T SumOfPolyExp(vector<T> &f, T r, ll n) { // sum_{k=0}^{n-1} r^k*f(k)
     rep(i, 0, d) rs[i + 1] = rs[i] * r;
     rep(i, 0, d + 1) rui[i] = rs[i] * f[i];
     rep(i, 0, d) rui[i + 1] += rui[i];
-    if (r == 1)
+    if (r == 0)
+        return f[0];
+    else if (r == 1)
         return Interpolate(rui, n);
     else {
         T c;
