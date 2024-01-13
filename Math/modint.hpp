@@ -12,6 +12,8 @@ template <int mod = 1000000007> struct fp {
             tmp = x, x = y, y = tmp;
             tmp = u, u = v, v = tmp;
         }
+        if (u < 0)
+            u += mod;
         return u;
     }
     constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}
