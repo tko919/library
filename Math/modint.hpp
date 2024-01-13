@@ -3,7 +3,7 @@
 template <int mod = 1000000007> struct fp {
     int v;
     static constexpr int get_mod() { return mod; }
-    constexpr int inv() noexcept {
+    constexpr int inv() const {
         assert(v != 0);
         int x = v, y = mod, u = 1, v = 0, t = 0, tmp = 0;
         while (y > 0) {
