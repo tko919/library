@@ -144,50 +144,50 @@ data:
     \ v, y = mod, u = 1, v = 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n   \
     \         t = x / y;\r\n            x -= t * y, u -= t * v;\r\n            tmp\
     \ = x, x = y, y = tmp;\r\n            tmp = u, u = v, v = tmp;\r\n        }\r\n\
-    \        return u;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod\
-    \ : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this;\
-    \ }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b\
-    \ = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n              \
-    \  res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n        }\r\n \
-    \       return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n        if\
-    \ ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\n  \
-    \  }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\
-    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
-    \ fp &x) {\r\n        v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\
-    \n    fp &operator/=(const fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n\
-    \        return *this;\r\n    }\r\n    fp operator+(const fp &x) const { return\
-    \ fp(*this) += x; }\r\n    fp operator-(const fp &x) const { return fp(*this)\
-    \ -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this) *= x; }\r\n\
-    \    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n    bool operator==(const\
-    \ fp &x) const { return v == x.v; }\r\n    bool operator!=(const fp &x) const\
-    \ { return v != x.v; }\r\n    friend istream &operator>>(istream &is, fp &x) {\
-    \ return is >> x.v; }\r\n    friend ostream &operator<<(ostream &os, const fp\
-    \ &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\
-    \n    static const int md = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\
-    \n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n       \
-    \ int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k * q -\
-    \ md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename T> T\
-    \ Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\
-    \n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
-    \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
-    \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
-    \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
-    \    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename\
-    \ T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\
-    \n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n\
-    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int n, int r, bool inv =\
-    \ 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\n/**\r\n * @brief Modint\r\
-    \n */\n#line 7 \"Verify/LC_sum_of_totient_function.test.cpp\"\nusing Fp=fp<998244353>;\r\
-    \n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename T,bool multi,unsigned\
-    \ L=1010101010>struct Dirichlet{\r\n    ll N,P,Q;\r\n    vector<T> a,rui,A;\r\n\
-    \    vector<ll> ps;\r\n    bool done=0;\r\n    Dirichlet(ll n):N(n),P(min<ll>(L,cbrt(n)*cbrt(n))),Q((n+P-1)/P),\r\
-    \n        a(P+1),rui(P+1),A(Q+1),done(0){}\r\n    const Dirichlet ident(){\r\n\
-    \        Dirichlet res(N);\r\n        res.a.assign(P+1,0);\r\n        res.a[1]=1;\r\
-    \n        res.rui.assign(P+1,1);\r\n        res.A.assign(Q+1,1);\r\n        res.done=1;\r\
-    \n        return res;\r\n    }\r\n    void sieve(){\r\n        if(!ps.empty())return;\r\
-    \n        static bitset<L> isp;\r\n        rep(p,2,P+1)isp[p]=1;\r\n        for(ll\
-    \ p=2;p*p<=P;p++)if(isp[p]){\r\n            for(ll q=p*p;q<=P;q+=p)isp[q]=0;\r\
+    \        if (u < 0)\r\n            u += mod;\r\n        return u;\r\n    }\r\n\
+    \    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\
+    \n    fp operator-() const { return fp() - *this; }\r\n    fp pow(ll t) {\r\n\
+    \        assert(t >= 0);\r\n        fp res = 1, b = *this;\r\n        while (t)\
+    \ {\r\n            if (t & 1)\r\n                res *= b;\r\n            b *=\
+    \ b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n\
+    \    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n     \
+    \       v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
+    \   v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
+    \ fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n        return *this;\r\n\
+    \    }\r\n    fp operator+(const fp &x) const { return fp(*this) += x; }\r\n \
+    \   fp operator-(const fp &x) const { return fp(*this) -= x; }\r\n    fp operator*(const\
+    \ fp &x) const { return fp(*this) *= x; }\r\n    fp operator/(const fp &x) const\
+    \ { return fp(*this) /= x; }\r\n    bool operator==(const fp &x) const { return\
+    \ v == x.v; }\r\n    bool operator!=(const fp &x) const { return v != x.v; }\r\
+    \n    friend istream &operator>>(istream &is, fp &x) { return is >> x.v; }\r\n\
+    \    friend ostream &operator<<(ostream &os, const fp &x) { return os << x.v;\
+    \ }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\n    static const int md\
+    \ = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\
+    \n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md\
+    \ + k - 1) / k;\r\n        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n  \
+    \  return buf[n];\r\n}\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0)\
+    \ {\r\n    static const int md = T::get_mod();\r\n    static vector<T> buf({1,\
+    \ 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <=\
+    \ n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\n        ibuf.push_back(ibuf.back()\
+    \ * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\
+    \r\ntemplate <typename T> T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0\
+    \ || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n\
+    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nCr(int n, int r, bool inv =\
+    \ 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n    return\
+    \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n\r\n/**\r\n * @brief Modint\r\n */\n#line 7 \"Verify/LC_sum_of_totient_function.test.cpp\"\
+    \nusing Fp=fp<998244353>;\r\n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename\
+    \ T,bool multi,unsigned L=1010101010>struct Dirichlet{\r\n    ll N,P,Q;\r\n  \
+    \  vector<T> a,rui,A;\r\n    vector<ll> ps;\r\n    bool done=0;\r\n    Dirichlet(ll\
+    \ n):N(n),P(min<ll>(L,cbrt(n)*cbrt(n))),Q((n+P-1)/P),\r\n        a(P+1),rui(P+1),A(Q+1),done(0){}\r\
+    \n    const Dirichlet ident(){\r\n        Dirichlet res(N);\r\n        res.a.assign(P+1,0);\r\
+    \n        res.a[1]=1;\r\n        res.rui.assign(P+1,1);\r\n        res.A.assign(Q+1,1);\r\
+    \n        res.done=1;\r\n        return res;\r\n    }\r\n    void sieve(){\r\n\
+    \        if(!ps.empty())return;\r\n        static bitset<L> isp;\r\n        rep(p,2,P+1)isp[p]=1;\r\
+    \n        for(ll p=2;p*p<=P;p++)if(isp[p]){\r\n            for(ll q=p*p;q<=P;q+=p)isp[q]=0;\r\
     \n        }\r\n        rep(p,2,P+1)if(isp[p])ps.push_back(p);\r\n    }\r\n   \
     \ void reset(){\r\n        a.assign(P+1,0);\r\n        rui.assign(P+1,0);\r\n\
     \        A.assign(Q+1,0);\r\n        done=0;\r\n    }\r\n    void ruith(){\r\n\
@@ -249,7 +249,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_totient_function.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 02:23:20+09:00'
+  timestamp: '2024-01-14 02:40:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_totient_function.test.cpp

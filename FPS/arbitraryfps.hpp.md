@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: Verify/YUKI_1112.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Formal Power Series (Arbitrary mod)
     links: []
@@ -179,7 +179,7 @@ data:
   path: FPS/arbitraryfps.hpp
   requiredBy: []
   timestamp: '2024-01-12 05:39:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
