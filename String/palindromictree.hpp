@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename T> struct PalindromicTree {
+struct PalindromicTree {
     struct Node {
         map<char, int> nxt;
         int link, len, id, cnt;
@@ -8,32 +8,31 @@ template <typename T> struct PalindromicTree {
         Node(int link, int len, int id, int cnt)
             : link(link), len(len), id(id), cnt(cnt) {}
     };
-    T S;
+    vector<char> S;
+    int cur;
     vector<Node> nodes;
-    PalindromicTree() {}
-    PalindromicTree(const T &S) : S(S) {
+    PalindromicTree() {
         nodes.push_back(Node(0, -1, -1, 0));
         nodes.push_back(Node(0, 0, -1, 0));
-        int cur = 0;
-
-        rep(i, 0, SZ(S)) {
-            int k = find(i, cur);
-            char c = S[i];
-            if (nodes[k].nxt.count(c)) {
-                cur = nodes[k].nxt[c];
-                nodes[cur].cnt++;
-                continue;
-            }
-            nodes[k].nxt[c] = SZ(nodes);
-            cur = SZ(nodes);
-            nodes.push_back(
-                Node(-1, nodes[k].len + 2, i - nodes[k].len - 1, 1));
-            if (nodes.back().len == 1)
-                nodes.back().link = 1;
-            else {
-                int n = find(i, nodes[k].link);
-                nodes.back().link = nodes[n].nxt[c];
-            }
+        cur = 0;
+    }
+    void push(char c) {
+        S.push_back(c);
+        int k = find(SZ(S) - 1, cur, S);
+        if (nodes[k].nxt.count(c)) {
+            cur = nodes[k].nxt[c];
+            nodes[cur].cnt++;
+            return;
+        }
+        nodes[k].nxt[c] = SZ(nodes);
+        cur = SZ(nodes);
+        nodes.push_back(
+            Node(-1, nodes[k].len + 2, (SZ(S) - 1) - nodes[k].len - 1, 1));
+        if (nodes.back().len == 1)
+            nodes.back().link = 1;
+        else {
+            int n = find(SZ(S) - 1, nodes[k].link, S);
+            nodes.back().link = nodes[n].nxt[c];
         }
     }
     vector<array<int, 3>> get_freq() {
@@ -46,7 +45,7 @@ template <typename T> struct PalindromicTree {
     }
 
   private:
-    int find(int last, int k) const {
+    template <typename T> int find(int last, int k, const T &S) const {
         for (;;) {
             int i = last - 1 - nodes[k].len;
             if (i >= 0 and S[i] == S[last])
