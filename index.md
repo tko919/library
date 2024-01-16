@@ -247,6 +247,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
+    - icon: ':warning:'
+      path: Graph/euler.hpp
+      title: Eulerian Trail
     - icon: ':heavy_check_mark:'
       path: Graph/generalweightedmatching.hpp
       title: General Weighted Matching

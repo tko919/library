@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/manhattanmst.hpp
     title: Manhattan MST
+  - icon: ':warning:'
+    path: Graph/euler.hpp
+    title: Eulerian Trail
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_manhattanmst.test.cpp
@@ -37,6 +40,7 @@ data:
   path: DataStructure/unionfind.hpp
   requiredBy:
   - DataStructure/manhattanmst.hpp
+  - Graph/euler.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
