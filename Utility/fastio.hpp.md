@@ -1,7 +1,19 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+    title: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+  - icon: ':warning:'
+    path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
+    title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
+  - icon: ':warning:'
+    path: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+    title: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+  - icon: ':warning:'
+    path: Verify/LC_many_factorials.cpp
+    title: Verify/LC_many_factorials.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/AOJ_1595.test.cpp
@@ -373,7 +385,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Utility/fastio.hpp
-  requiredBy: []
+  requiredBy:
+  - Verify/LC_many_factorials.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+  - Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+  - Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
   timestamp: '2024-01-12 04:46:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

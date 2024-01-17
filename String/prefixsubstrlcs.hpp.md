@@ -26,37 +26,43 @@ data:
     \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
     \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
     \n * @brief Binary Indexed Tree\r\n */\n#line 3 \"String/prefixsubstrlcs.hpp\"\
-    \n\ntemplate<typename T>struct PrefixSubstringLCS{\n    using P=pair<int,int>;\n\
-    \    T s,t;\n    int pos;\n    vector<vector<vector<P>>> que;\n    PrefixSubstringLCS(){}\n\
-    \    PrefixSubstringLCS(T& _s,T& _t):s(_s),t(_t)\n        ,pos(0),que(s.size(),vector(t.size(),vector<P>())){}\n\
-    \    void add(int a,int b,int c){\n        if(a==0 or c==0){pos++; return;}\n\
-    \        que[a-1][c-1].push_back({b,pos++});\n    }\n    vector<int> run(){\n\
-    \        vector<int> h(t.size()),ret(pos);\n        iota(ALL(h),0);\n        rep(a,0,s.size()){\n\
-    \            int pre=-1;\n            rep(c,0,t.size()){\n                if(s[a]==t[c]\
-    \ or h[c]<pre)swap(h[c],pre);\n            }\n            BIT<int> bit(t.size()+1);\n\
-    \            rep(c,0,t.size()){\n                if(h[c]!=-1)bit.add(h[c],1);\n\
-    \                for(auto &[b,id]:que[a][c]){\n                    ret[id]=(c-b+1)-(bit.all-bit.sum(b));\n\
+    \n\ntemplate <typename T> struct PrefixSubstringLCS {\n    using P = pair<int,\
+    \ int>;\n    T s, t;\n    int pos;\n    vector<vector<vector<P>>> que;\n    PrefixSubstringLCS()\
+    \ {\n    }\n    PrefixSubstringLCS(T &_s, T &_t)\n        : s(_s), t(_t), pos(0),\
+    \ que(s.size(), vector(t.size(), vector<P>())) {\n    }\n    void add(int a, int\
+    \ b, int c) {\n        if (a == 0 or c == 0) {\n            pos++;\n         \
+    \   return;\n        }\n        que[a - 1][c - 1].push_back({b, pos++});\n   \
+    \ }\n    vector<int> run() {\n        vector<int> h(t.size()), ret(pos);\n   \
+    \     iota(ALL(h), 0);\n        rep(a, 0, s.size()) {\n            int pre = -1;\n\
+    \            rep(c, 0, t.size()) {\n                if (s[a] == t[c] or h[c] <\
+    \ pre)\n                    swap(h[c], pre);\n            }\n            BIT<int>\
+    \ bit(t.size() + 1);\n            rep(c, 0, t.size()) {\n                if (h[c]\
+    \ != -1)\n                    bit.add(h[c], 1);\n                for (auto &[b,\
+    \ id] : que[a][c]) {\n                    ret[id] = (c - b + 1) - (bit.all - bit.sum(b));\n\
     \                }\n            }\n        }\n        return ret;\n    }\n};\n\
-    \n/**\n * @brief Prefix Substring LCS\n*/\n"
-  code: "#pragma once\n#include \"DataStructure/bit.hpp\"\n\ntemplate<typename T>struct\
-    \ PrefixSubstringLCS{\n    using P=pair<int,int>;\n    T s,t;\n    int pos;\n\
-    \    vector<vector<vector<P>>> que;\n    PrefixSubstringLCS(){}\n    PrefixSubstringLCS(T&\
-    \ _s,T& _t):s(_s),t(_t)\n        ,pos(0),que(s.size(),vector(t.size(),vector<P>())){}\n\
-    \    void add(int a,int b,int c){\n        if(a==0 or c==0){pos++; return;}\n\
-    \        que[a-1][c-1].push_back({b,pos++});\n    }\n    vector<int> run(){\n\
-    \        vector<int> h(t.size()),ret(pos);\n        iota(ALL(h),0);\n        rep(a,0,s.size()){\n\
-    \            int pre=-1;\n            rep(c,0,t.size()){\n                if(s[a]==t[c]\
-    \ or h[c]<pre)swap(h[c],pre);\n            }\n            BIT<int> bit(t.size()+1);\n\
-    \            rep(c,0,t.size()){\n                if(h[c]!=-1)bit.add(h[c],1);\n\
-    \                for(auto &[b,id]:que[a][c]){\n                    ret[id]=(c-b+1)-(bit.all-bit.sum(b));\n\
+    \n/**\n * @brief Prefix Substring LCS\n */\n"
+  code: "#pragma once\n#include \"DataStructure/bit.hpp\"\n\ntemplate <typename T>\
+    \ struct PrefixSubstringLCS {\n    using P = pair<int, int>;\n    T s, t;\n  \
+    \  int pos;\n    vector<vector<vector<P>>> que;\n    PrefixSubstringLCS() {\n\
+    \    }\n    PrefixSubstringLCS(T &_s, T &_t)\n        : s(_s), t(_t), pos(0),\
+    \ que(s.size(), vector(t.size(), vector<P>())) {\n    }\n    void add(int a, int\
+    \ b, int c) {\n        if (a == 0 or c == 0) {\n            pos++;\n         \
+    \   return;\n        }\n        que[a - 1][c - 1].push_back({b, pos++});\n   \
+    \ }\n    vector<int> run() {\n        vector<int> h(t.size()), ret(pos);\n   \
+    \     iota(ALL(h), 0);\n        rep(a, 0, s.size()) {\n            int pre = -1;\n\
+    \            rep(c, 0, t.size()) {\n                if (s[a] == t[c] or h[c] <\
+    \ pre)\n                    swap(h[c], pre);\n            }\n            BIT<int>\
+    \ bit(t.size() + 1);\n            rep(c, 0, t.size()) {\n                if (h[c]\
+    \ != -1)\n                    bit.add(h[c], 1);\n                for (auto &[b,\
+    \ id] : que[a][c]) {\n                    ret[id] = (c - b + 1) - (bit.all - bit.sum(b));\n\
     \                }\n            }\n        }\n        return ret;\n    }\n};\n\
-    \n/**\n * @brief Prefix Substring LCS\n*/"
+    \n/**\n * @brief Prefix Substring LCS\n */"
   dependsOn:
   - DataStructure/bit.hpp
   isVerificationFile: false
   path: String/prefixsubstrlcs.hpp
   requiredBy: []
-  timestamp: '2023-01-17 01:31:58+09:00'
+  timestamp: '2024-01-18 04:47:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_prefix_substring_lcs.test.cpp

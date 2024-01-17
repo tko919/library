@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Verify/LC_many_factorials.cpp
+    title: Verify/LC_many_factorials.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
@@ -293,7 +296,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: FPS/fps.hpp
-  requiredBy: []
+  requiredBy:
+  - Verify/LC_many_factorials.cpp
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

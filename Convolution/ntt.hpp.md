@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: Math/bigint.hpp
     title: Big Integer(Float)
+  - icon: ':warning:'
+    path: Verify/LC_many_factorials.cpp
+    title: Verify/LC_many_factorials.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
@@ -310,6 +313,7 @@ data:
   - Convolution/arbitrary.hpp
   - Convolution/multivariate.hpp
   - Math/bigint.hpp
+  - Verify/LC_many_factorials.cpp
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

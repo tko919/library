@@ -153,6 +153,9 @@ data:
     - icon: ':warning:'
       path: FPS/composition.hpp
       title: Composition of Formal Power Series
+    - icon: ':warning:'
+      path: FPS/factlarge.hpp
+      title: Factorial (Large)
     - icon: ':heavy_check_mark:'
       path: FPS/famous.hpp
       title: Famous Sequence
@@ -259,6 +262,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
+    - icon: ':warning:'
+      path: Graph/linkcut.hpp
+      title: Link-Cut Tree
     - icon: ':heavy_check_mark:'
       path: Graph/lowlink.hpp
       title: Lowlink
@@ -408,6 +414,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
+  - name: Verify
+    pages:
+    - icon: ':warning:'
+      path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+      title: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+    - icon: ':warning:'
+      path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
+      title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
+    - icon: ':warning:'
+      path: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+      title: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+    - icon: ':warning:'
+      path: Verify/LC_many_factorials.cpp
+      title: Verify/LC_many_factorials.cpp
   verificationCategories:
   - name: Verify
     pages:

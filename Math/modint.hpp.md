@@ -8,6 +8,12 @@ data:
   - icon: ':warning:'
     path: Math/bigint.hpp
     title: Big Integer(Float)
+  - icon: ':warning:'
+    path: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+    title: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+  - icon: ':warning:'
+    path: Verify/LC_many_factorials.cpp
+    title: Verify/LC_many_factorials.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
@@ -241,6 +247,8 @@ data:
   requiredBy:
   - Convolution/arbitrary.hpp
   - Math/bigint.hpp
+  - Verify/LC_many_factorials.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
   timestamp: '2024-01-14 02:40:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
