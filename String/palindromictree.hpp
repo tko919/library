@@ -4,9 +4,11 @@ struct PalindromicTree {
     struct Node {
         map<char, int> nxt;
         int link, len, id, cnt;
-        Node() {}
+        Node() {
+        }
         Node(int link, int len, int id, int cnt)
-            : link(link), len(len), id(id), cnt(cnt) {}
+            : link(link), len(len), id(id), cnt(cnt) {
+        }
     };
     vector<char> S;
     int cur;
