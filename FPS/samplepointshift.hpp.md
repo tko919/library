@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
   - icon: ':warning:'
     path: FPS/p-recursive.hpp
     title: P-recursive
-  - icon: ':warning:'
-    path: Verify/LC_many_factorials.cpp
-    title: Verify/LC_many_factorials.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_many_factorials.test.cpp
+    title: Verify/LC_many_factorials.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
@@ -57,10 +57,10 @@ data:
   requiredBy:
   - FPS/p-recursive.hpp
   - FPS/factlarge.hpp
-  - Verify/LC_many_factorials.cpp
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: FPS/samplepointshift.hpp
 layout: document

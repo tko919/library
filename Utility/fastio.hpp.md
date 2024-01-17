@@ -1,19 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
-    title: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
-  - icon: ':warning:'
-    path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
-    title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
-  - icon: ':warning:'
-    path: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-    title: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-  - icon: ':warning:'
-    path: Verify/LC_many_factorials.cpp
-    title: Verify/LC_many_factorials.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/AOJ_1595.test.cpp
@@ -55,6 +43,15 @@ data:
     path: Verify/LC_deque_operate_all_composite.test.cpp
     title: Verify/LC_deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
+    title: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
+    title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+    title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_many_aplusb.test.cpp
     title: Verify/LC_many_aplusb.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_many_factorials.test.cpp
+    title: Verify/LC_many_factorials.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
@@ -385,11 +385,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Utility/fastio.hpp
-  requiredBy:
-  - Verify/LC_many_factorials.cpp
-  - Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-  - Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
-  - Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
+  requiredBy: []
   timestamp: '2024-01-12 04:46:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -398,22 +394,26 @@ data:
   - Verify/LC_kth_root_integer.test.cpp
   - Verify/LC_enumerate_cliques.test.cpp
   - Verify/YUKI_901.test.cpp
+  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_point_set_range_sort_range_composite.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_partition_function.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp
   - Verify/LC_lca_2.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
   - Verify/LC_static_range_lis_query.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_biconnected_components.test.cpp
   - Verify/LC_prefix_substring_lcs.test.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
   - Verify/LC_sum_of_totient_function.test.cpp
   - Verify/LC_many_aplusb.test.cpp
+  - Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/AOJ_GRL_6_A.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp

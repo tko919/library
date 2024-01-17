@@ -153,7 +153,7 @@ data:
     - icon: ':warning:'
       path: FPS/composition.hpp
       title: Composition of Formal Power Series
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: FPS/factlarge.hpp
       title: Factorial (Large)
     - icon: ':heavy_check_mark:'
@@ -262,7 +262,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/linkcut.hpp
       title: Link-Cut Tree
     - icon: ':heavy_check_mark:'
@@ -414,20 +414,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
-  - name: Verify
-    pages:
-    - icon: ':warning:'
-      path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
-      title: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
-    - icon: ':warning:'
-      path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
-      title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.cpp
-    - icon: ':warning:'
-      path: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-      title: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-    - icon: ':warning:'
-      path: Verify/LC_many_factorials.cpp
-      title: Verify/LC_many_factorials.cpp
   verificationCategories:
   - name: Verify
     pages:
@@ -498,6 +484,15 @@ data:
       path: Verify/LC_discrete_logarithm_mod.test.cpp
       title: Verify/LC_discrete_logarithm_mod.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
+      title: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
+      title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+      title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_cliques.test.cpp
       title: Verify/LC_enumerate_cliques.test.cpp
     - icon: ':heavy_check_mark:'
@@ -557,6 +552,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_many_aplusb.test.cpp
       title: Verify/LC_many_aplusb.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/LC_many_factorials.test.cpp
+      title: Verify/LC_many_factorials.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_matrix_det.test.cpp
       title: Verify/LC_matrix_det.test.cpp

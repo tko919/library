@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Verify/LC_many_factorials.cpp
-    title: Verify/LC_many_factorials.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
@@ -24,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_many_factorials.test.cpp
+    title: Verify/LC_many_factorials.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
@@ -296,12 +296,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: FPS/fps.hpp
-  requiredBy:
-  - Verify/LC_many_factorials.cpp
+  requiredBy: []
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_partition_function.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind.test.cpp

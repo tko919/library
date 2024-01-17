@@ -1,12 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/linkcut.hpp
     title: Link-Cut Tree
-  - icon: ':heavy_check_mark:'
-    path: Math/modint.hpp
-    title: Modint
   - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
@@ -17,13 +14,15 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
     links:
-    - https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
-  bundledCode: "#line 1 \"Verify/LC_dynamic_tree_vertex_set_path_composite.cpp\"\n\
-    #define PROBLEM                                                              \
-    \  \\\n    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
+    - https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
+  bundledCode: "#line 1 \"Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
+    \n#define PROBLEM                                                            \
+    \    \\\n    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum\"\
     \n\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
     \ ALL(v) (v).begin(),(v).end()\r\n#define UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())\r\
@@ -136,7 +135,7 @@ data:
     \        if (space)\r\n            _write(' ');\r\n        _write(head);\r\n \
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
-    };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 6 \"Verify/LC_dynamic_tree_vertex_set_path_composite.cpp\"\
+    };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 6 \"Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
     \n\n#line 2 \"Graph/linkcut.hpp\"\n\ntemplate <typename M, typename N, N (*f)(N,\
     \ N)> struct LCT {\n    struct Node {\n        Node *lp = nullptr, *rp = nullptr,\
     \ *par = nullptr;\n        N val;\n        M sum;\n        int idx, sz = 1;\n\
@@ -191,107 +190,62 @@ data:
     \ update(Node *v, N x) {\n        expose(v);\n        v->val = f(v->val, x);\n\
     \        v->update();\n    }\n    M &query(Node *u, Node *v) { // root = u ->\
     \ v\n        evert(u);\n        expose(v);\n        return v->sum;\n    }\n};\n\
-    \n/**\n * @brief Link-Cut Tree\n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate\
-    \ <int mod = 1000000007> struct fp {\r\n    int v;\r\n    static constexpr int\
-    \ get_mod() { return mod; }\r\n    constexpr int inv() const {\r\n        assert(v\
-    \ != 0);\r\n        int x = v, y = mod, u = 1, v = 0, t = 0, tmp = 0;\r\n    \
-    \    while (y > 0) {\r\n            t = x / y;\r\n            x -= t * y, u -=\
-    \ t * v;\r\n            tmp = x, x = y, y = tmp;\r\n            tmp = u, u = v,\
-    \ v = tmp;\r\n        }\r\n        if (u < 0)\r\n            u += mod;\r\n   \
-    \     return u;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod :\
-    \ (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const { return fp() - *this;\
-    \ }\r\n    fp pow(ll t) {\r\n        assert(t >= 0);\r\n        fp res = 1, b\
-    \ = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n              \
-    \  res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n        }\r\n \
-    \       return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n        if\
-    \ ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\n  \
-    \  }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\
-    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
-    \ fp &x) {\r\n        v = ll(v) * x.v % mod;\r\n        return *this;\r\n    }\r\
-    \n    fp &operator/=(const fp &x) {\r\n        v = ll(v) * x.inv() % mod;\r\n\
-    \        return *this;\r\n    }\r\n    fp operator+(const fp &x) const { return\
-    \ fp(*this) += x; }\r\n    fp operator-(const fp &x) const { return fp(*this)\
-    \ -= x; }\r\n    fp operator*(const fp &x) const { return fp(*this) *= x; }\r\n\
-    \    fp operator/(const fp &x) const { return fp(*this) /= x; }\r\n    bool operator==(const\
-    \ fp &x) const { return v == x.v; }\r\n    bool operator!=(const fp &x) const\
-    \ { return v != x.v; }\r\n    friend istream &operator>>(istream &is, fp &x) {\
-    \ return is >> x.v; }\r\n    friend ostream &operator<<(ostream &os, const fp\
-    \ &x) { return os << x.v; }\r\n};\r\n\r\ntemplate <typename T> T Inv(ll n) {\r\
-    \n    static const int md = T::get_mod();\r\n    static vector<T> buf({0, 1});\r\
-    \n    assert(n > 0);\r\n    n %= md;\r\n    while (SZ(buf) <= n) {\r\n       \
-    \ int k = SZ(buf), q = (md + k - 1) / k;\r\n        buf.push_back(buf[k * q -\
-    \ md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\r\ntemplate <typename T> T\
-    \ Fact(ll n, bool inv = 0) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    assert(n >= 0 and n < md);\r\
-    \n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back() * SZ(buf));\r\
-    \n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return\
-    \ inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T> T nPr(int n, int r,\
-    \ bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n\
-    \    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename\
-    \ T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\
-    \n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n\
-    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int n, int r, bool inv =\
-    \ 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\n/**\r\n * @brief Modint\r\
-    \n */\n#line 9 \"Verify/LC_dynamic_tree_vertex_set_path_composite.cpp\"\nusing\
-    \ Fp = fp<998244353>;\nusing P = pair<Fp, Fp>;\n\nusing Key = P;\nstruct Monoid\
-    \ {\n    P base, inv;\n    Monoid() : base({1, 0}), inv({1, 0}) {}\n    void inverse()\
-    \ {\n        swap(base, inv);\n    }\n    void merge(Key val, Monoid p, Monoid\
-    \ c) {\n        auto f = [&](P x, P y) {\n            return P{x.first * y.first,\
-    \ x.second * y.first + y.second};\n        };\n        base = f(f(p.base, val),\
-    \ c.base);\n        inv = f(c.inv, f(val, p.inv));\n    }\n    void add(Monoid\
-    \ v) {}\n    void sub(Monoid v) {}\n};\nP f(P x, P y) {\n    return y;\n}\nusing\
-    \ V = LCT<Monoid, Key, f>::Node *;\n\nFastIO io;\nint main() {\n    int n, q;\n\
-    \    io.read(n, q);\n    LCT<Monoid, Key, f> tree;\n    vector<V> vs(n);\n   \
-    \ rep(i, 0, n) {\n        int a, b;\n        io.read(a, b);\n        vs[i] = tree.make(i,\
-    \ P{a, b});\n    }\n    rep(i, 0, n - 1) {\n        int x, y;\n        io.read(x,\
-    \ y);\n        tree.link(vs[x], vs[y]);\n    }\n    while (q--) {\n        int\
-    \ t;\n        io.read(t);\n        if (t == 0) {\n            int x, y;\n    \
-    \        io.read(x, y);\n            tree.cut(vs[x], vs[y]);\n            io.read(x,\
-    \ y);\n            tree.link(vs[x], vs[y]);\n        }\n        if (t == 1) {\n\
-    \            int v, a, b;\n            io.read(v, a, b);\n            tree.update(vs[v],\
-    \ P{a, b});\n        }\n        if (t == 2) {\n            int u, v, x;\n    \
-    \        io.read(u, v, x);\n            auto base = tree.query(vs[u], vs[v]).base;\n\
-    \            Fp ret = base.first * x + base.second;\n            io.write(ret.v);\n\
-    \        }\n    }\n    return 0;\n}\n"
+    \n/**\n * @brief Link-Cut Tree\n */\n#line 8 \"Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
+    \n\nusing Key = ll;\nstruct Monoid {\n    ll sum, psum, csum, light;\n    Monoid()\
+    \ : sum(0), psum(0), csum(0), light(0) {}\n    void inverse() {\n        swap(psum,\
+    \ csum);\n    }\n    void merge(Key val, Monoid p, Monoid c) {\n        sum =\
+    \ p.sum + c.sum + val + light;\n        psum = p.psum + val + light;\n       \
+    \ csum = c.csum + val + light;\n    }\n    void add(Monoid v) {\n        light\
+    \ += v.sum;\n    }\n    void sub(Monoid v) {\n        light -= v.sum;\n    }\n\
+    };\nll f(ll x, ll y) {\n    return x + y;\n}\nusing V = LCT<Monoid, Key, f>::Node\
+    \ *;\n\nFastIO io;\nint main() {\n    int n, q;\n    io.read(n, q);\n    LCT<Monoid,\
+    \ Key, f> tree;\n    vector<V> vs(n);\n    rep(i, 0, n) {\n        ll x;\n   \
+    \     io.read(x);\n        vs[i] = tree.make(i, x);\n    }\n    rep(i, 0, n -\
+    \ 1) {\n        int x, y;\n        io.read(x, y);\n        tree.link(vs[x], vs[y]);\n\
+    \    }\n    while (q--) {\n        int t;\n        io.read(t);\n        if (t\
+    \ == 0) {\n            int x, y;\n            io.read(x, y);\n            tree.cut(vs[x],\
+    \ vs[y]);\n            io.read(x, y);\n            tree.link(vs[x], vs[y]);\n\
+    \        }\n        if (t == 1) {\n            int v, x;\n            io.read(v,\
+    \ x);\n            tree.update(vs[v], x);\n        }\n        if (t == 2) {\n\
+    \            int v, p;\n            io.read(v, p);\n            auto ret = tree.query(vs[p],\
+    \ vs[v]);\n            io.write(ret.csum);\n        }\n    }\n    return 0;\n\
+    }\n"
   code: "#define PROBLEM                                                         \
-    \       \\\n    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
+    \       \\\n    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
-    \ \"Graph/linkcut.hpp\"\n#include \"Math/modint.hpp\"\nusing Fp = fp<998244353>;\n\
-    using P = pair<Fp, Fp>;\n\nusing Key = P;\nstruct Monoid {\n    P base, inv;\n\
-    \    Monoid() : base({1, 0}), inv({1, 0}) {}\n    void inverse() {\n        swap(base,\
-    \ inv);\n    }\n    void merge(Key val, Monoid p, Monoid c) {\n        auto f\
-    \ = [&](P x, P y) {\n            return P{x.first * y.first, x.second * y.first\
-    \ + y.second};\n        };\n        base = f(f(p.base, val), c.base);\n      \
-    \  inv = f(c.inv, f(val, p.inv));\n    }\n    void add(Monoid v) {}\n    void\
-    \ sub(Monoid v) {}\n};\nP f(P x, P y) {\n    return y;\n}\nusing V = LCT<Monoid,\
+    \ \"Graph/linkcut.hpp\"\n\nusing Key = ll;\nstruct Monoid {\n    ll sum, psum,\
+    \ csum, light;\n    Monoid() : sum(0), psum(0), csum(0), light(0) {}\n    void\
+    \ inverse() {\n        swap(psum, csum);\n    }\n    void merge(Key val, Monoid\
+    \ p, Monoid c) {\n        sum = p.sum + c.sum + val + light;\n        psum = p.psum\
+    \ + val + light;\n        csum = c.csum + val + light;\n    }\n    void add(Monoid\
+    \ v) {\n        light += v.sum;\n    }\n    void sub(Monoid v) {\n        light\
+    \ -= v.sum;\n    }\n};\nll f(ll x, ll y) {\n    return x + y;\n}\nusing V = LCT<Monoid,\
     \ Key, f>::Node *;\n\nFastIO io;\nint main() {\n    int n, q;\n    io.read(n,\
     \ q);\n    LCT<Monoid, Key, f> tree;\n    vector<V> vs(n);\n    rep(i, 0, n) {\n\
-    \        int a, b;\n        io.read(a, b);\n        vs[i] = tree.make(i, P{a,\
-    \ b});\n    }\n    rep(i, 0, n - 1) {\n        int x, y;\n        io.read(x, y);\n\
-    \        tree.link(vs[x], vs[y]);\n    }\n    while (q--) {\n        int t;\n\
-    \        io.read(t);\n        if (t == 0) {\n            int x, y;\n         \
-    \   io.read(x, y);\n            tree.cut(vs[x], vs[y]);\n            io.read(x,\
-    \ y);\n            tree.link(vs[x], vs[y]);\n        }\n        if (t == 1) {\n\
-    \            int v, a, b;\n            io.read(v, a, b);\n            tree.update(vs[v],\
-    \ P{a, b});\n        }\n        if (t == 2) {\n            int u, v, x;\n    \
-    \        io.read(u, v, x);\n            auto base = tree.query(vs[u], vs[v]).base;\n\
-    \            Fp ret = base.first * x + base.second;\n            io.write(ret.v);\n\
-    \        }\n    }\n    return 0;\n}"
+    \        ll x;\n        io.read(x);\n        vs[i] = tree.make(i, x);\n    }\n\
+    \    rep(i, 0, n - 1) {\n        int x, y;\n        io.read(x, y);\n        tree.link(vs[x],\
+    \ vs[y]);\n    }\n    while (q--) {\n        int t;\n        io.read(t);\n   \
+    \     if (t == 0) {\n            int x, y;\n            io.read(x, y);\n     \
+    \       tree.cut(vs[x], vs[y]);\n            io.read(x, y);\n            tree.link(vs[x],\
+    \ vs[y]);\n        }\n        if (t == 1) {\n            int v, x;\n         \
+    \   io.read(v, x);\n            tree.update(vs[v], x);\n        }\n        if\
+    \ (t == 2) {\n            int v, p;\n            io.read(v, p);\n            auto\
+    \ ret = tree.query(vs[p], vs[v]);\n            io.write(ret.csum);\n        }\n\
+    \    }\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
   - Graph/linkcut.hpp
-  - Math/modint.hpp
-  isVerificationFile: false
-  path: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+  isVerificationFile: true
+  path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-18 04:47:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-01-18 04:51:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+documentation_of: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-- /library/Verify/LC_dynamic_tree_vertex_set_path_composite.cpp.html
-title: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
+- /verify/Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
+- /verify/Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp.html
+title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
 ---

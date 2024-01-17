@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Verify/LC_many_factorials.cpp
-    title: Verify/LC_many_factorials.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_many_factorials.test.cpp
+    title: Verify/LC_many_factorials.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Factorial (Large)
     links: []
@@ -81,11 +81,11 @@ data:
   - FPS/samplepointshift.hpp
   isVerificationFile: false
   path: FPS/factlarge.hpp
-  requiredBy:
-  - Verify/LC_many_factorials.cpp
+  requiredBy: []
   timestamp: '2024-01-18 04:47:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Verify/LC_many_factorials.test.cpp
 documentation_of: FPS/factlarge.hpp
 layout: document
 redirect_from:

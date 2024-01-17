@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
   - icon: ':heavy_check_mark:'
@@ -26,43 +26,46 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/many_factorials
     links:
     - https://judge.yosupo.jp/problem/many_factorials
-  bundledCode: "#line 1 \"Verify/LC_many_factorials.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\"\
-    \n\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
-    \ std;\r\n\r\n#define rep(i,a,b) for(int i=(int)(a);i<(int)(b);i++)\r\n#define\
-    \ ALL(v) (v).begin(),(v).end()\r\n#define UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())\r\
-    \n#define SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define\
-    \ MAX(v) *max_element(ALL(v))\r\n#define LB(v,x) int(lower_bound(ALL(v),(x))-(v).begin())\r\
-    \n#define UB(v,x) int(upper_bound(ALL(v),(x))-(v).begin())\r\n\r\nusing ll=long\
-    \ long int;\r\nusing ull=unsigned long long;\r\nusing i128=__int128_t;\r\nusing\
-    \ u128=__uint128_t;\r\nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\
-    \n\r\ntemplate<typename T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return\
-    \ 0;}\r\ntemplate<typename T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return\
-    \ 0;}\r\ntemplate<typename T,typename U>T ceil(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y;\
-    \ return (x>0?(x+y-1)/y:x/y);}\r\ntemplate<typename T,typename U>T floor(T x,U\
-    \ y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?x/y:(x-y+1)/y);}\r\ntemplate<typename\
-    \ T>int popcnt(T x){return __builtin_popcountll(x);}\r\ntemplate<typename T>int\
-    \ topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\ntemplate<typename T>int\
-    \ lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n#line 2 \"Utility/fastio.hpp\"\
-    \n#include <unistd.h>\r\n\r\nclass FastIO {\r\n    static constexpr int L = 1\
-    \ << 16;\r\n    char rdbuf[L];\r\n    int rdLeft = 0, rdRight = 0;\r\n    inline\
-    \ void reload() {\r\n        int len = rdRight - rdLeft;\r\n        memmove(rdbuf,\
-    \ rdbuf + rdLeft, len);\r\n        rdLeft = 0, rdRight = len;\r\n        rdRight\
-    \ += fread(rdbuf + len, 1, L - len, stdin);\r\n    }\r\n    inline bool skip()\
-    \ {\r\n        for (;;) {\r\n            while (rdLeft != rdRight and rdbuf[rdLeft]\
-    \ <= ' ')\r\n                rdLeft++;\r\n            if (rdLeft == rdRight) {\r\
-    \n                reload();\r\n                if (rdLeft == rdRight)\r\n    \
-    \                return false;\r\n            } else\r\n                break;\r\
-    \n        }\r\n        return true;\r\n    }\r\n    template <typename T, enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\r\n    inline bool _read(T &x) {\r\n        if (!skip())\r\n     \
-    \       return false;\r\n        if (rdLeft + 20 >= rdRight)\r\n            reload();\r\
-    \n        bool neg = false;\r\n        if (rdbuf[rdLeft] == '-') {\r\n       \
-    \     neg = true;\r\n            rdLeft++;\r\n        }\r\n        x = 0;\r\n\
-    \        while (rdbuf[rdLeft] >= '0' and rdLeft < rdRight) {\r\n            x\
-    \ = x * 10 +\r\n                (neg ? -(rdbuf[rdLeft++] ^ 48) : (rdbuf[rdLeft++]\
+  bundledCode: "#line 1 \"Verify/LC_many_factorials.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/many_factorials\"\n\n#line 1 \"Template/template.hpp\"\
+    \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i,a,b) for(int\
+    \ i=(int)(a);i<(int)(b);i++)\r\n#define ALL(v) (v).begin(),(v).end()\r\n#define\
+    \ UNIQUE(v) sort(ALL(v)),(v).erase(unique(ALL(v)),(v).end())\r\n#define SZ(v)\
+    \ (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v) *max_element(ALL(v))\r\
+    \n#define LB(v,x) int(lower_bound(ALL(v),(x))-(v).begin())\r\n#define UB(v,x)\
+    \ int(upper_bound(ALL(v),(x))-(v).begin())\r\n\r\nusing ll=long long int;\r\n\
+    using ull=unsigned long long;\r\nusing i128=__int128_t;\r\nusing u128=__uint128_t;\r\
+    \nconst int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate<typename\
+    \ T>inline bool chmax(T& a,T b){if(a<b){a=b;return 1;}return 0;}\r\ntemplate<typename\
+    \ T>inline bool chmin(T& a,T b){if(a>b){a=b;return 1;}return 0;}\r\ntemplate<typename\
+    \ T,typename U>T ceil(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y; return (x>0?(x+y-1)/y:x/y);}\r\
+    \ntemplate<typename T,typename U>T floor(T x,U y){assert(y!=0); if(y<0)x=-x,y=-y;\
+    \ return (x>0?x/y:(x-y+1)/y);}\r\ntemplate<typename T>int popcnt(T x){return __builtin_popcountll(x);}\r\
+    \ntemplate<typename T>int topbit(T x){return (x==0?-1:63-__builtin_clzll(x));}\r\
+    \ntemplate<typename T>int lowbit(T x){return (x==0?-1:__builtin_ctzll(x));}\n\
+    #line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\r\nclass FastIO {\r\n\
+    \    static constexpr int L = 1 << 16;\r\n    char rdbuf[L];\r\n    int rdLeft\
+    \ = 0, rdRight = 0;\r\n    inline void reload() {\r\n        int len = rdRight\
+    \ - rdLeft;\r\n        memmove(rdbuf, rdbuf + rdLeft, len);\r\n        rdLeft\
+    \ = 0, rdRight = len;\r\n        rdRight += fread(rdbuf + len, 1, L - len, stdin);\r\
+    \n    }\r\n    inline bool skip() {\r\n        for (;;) {\r\n            while\
+    \ (rdLeft != rdRight and rdbuf[rdLeft] <= ' ')\r\n                rdLeft++;\r\n\
+    \            if (rdLeft == rdRight) {\r\n                reload();\r\n       \
+    \         if (rdLeft == rdRight)\r\n                    return false;\r\n    \
+    \        } else\r\n                break;\r\n        }\r\n        return true;\r\
+    \n    }\r\n    template <typename T, enable_if_t<is_integral<T>::value, int> =\
+    \ 0>\r\n    inline bool _read(T &x) {\r\n        if (!skip())\r\n            return\
+    \ false;\r\n        if (rdLeft + 20 >= rdRight)\r\n            reload();\r\n \
+    \       bool neg = false;\r\n        if (rdbuf[rdLeft] == '-') {\r\n         \
+    \   neg = true;\r\n            rdLeft++;\r\n        }\r\n        x = 0;\r\n  \
+    \      while (rdbuf[rdLeft] >= '0' and rdLeft < rdRight) {\r\n            x =\
+    \ x * 10 +\r\n                (neg ? -(rdbuf[rdLeft++] ^ 48) : (rdbuf[rdLeft++]\
     \ ^ 48));\r\n        }\r\n        return true;\r\n    }\r\n    inline bool _read(__int128_t\
     \ &x) {\r\n        if (!skip())\r\n            return false;\r\n        if (rdLeft\
     \ + 40 >= rdRight)\r\n            reload();\r\n        bool neg = false;\r\n \
@@ -143,7 +146,7 @@ data:
     \        if (space)\r\n            _write(' ');\r\n        _write(head);\r\n \
     \       write<ln, true>(tail...);\r\n    }\r\n    inline void flush() {\r\n  \
     \      fwrite(wtbuf, 1, wtRight, stdout);\r\n        wtRight = 0;\r\n    }\r\n\
-    };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_many_factorials.cpp\"\
+    };\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_many_factorials.test.cpp\"\
     \n\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate <int mod = 1000000007> struct fp\
     \ {\r\n    int v;\r\n    static constexpr int get_mod() { return mod; }\r\n  \
     \  constexpr int inv() const {\r\n        assert(v != 0);\r\n        int x = v,\
@@ -404,8 +407,8 @@ data:
     \    x *= t;\r\n        g = g.exp();\r\n        c = c.pow(t);\r\n        rep(i,\
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(vector<T> &a, bool inv) const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power\
-    \ Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_many_factorials.cpp\"\n\
-    using Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
+    \ Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_many_factorials.test.cpp\"\
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
     \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n#line 2 \"FPS/samplepointshift.hpp\"\
     \n\ntemplate<typename T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n\
     \    ll n=ys.size()-1,C=c.v%T::get_mod();\n    if(m==-1)m=n+1;\n    if(C<=n){\n\
@@ -444,7 +447,7 @@ data:
     \        } else\n            f.resize(BLOCK_NUM);\n        rep(i, 0, BLOCK_NUM)\
     \ f[i] *= T(i + 1) * BLOCK_SIZE;\n        buf = vector<T>(BLOCK_NUM + 1);\n  \
     \      buf[0] = 1;\n        rep(i, 0, BLOCK_NUM) buf[i + 1] = buf[i] * f[i];\n\
-    \    }\n};\n\n/**\n * @brief Factorial (Large)\n */\n#line 15 \"Verify/LC_many_factorials.cpp\"\
+    \    }\n};\n\n/**\n * @brief Factorial (Large)\n */\n#line 15 \"Verify/LC_many_factorials.test.cpp\"\
     \n\nFastIO io;\nvoid solve(int _rot) {\n    // io.write<false>(\"Case #\"+to_string(_rot)+\"\
     : \");\n    int n;\n    io.read(n);\n    Fp ret = FactLarge<Fp>::fact(n);\n  \
     \  io.write(ret.v);\n}\n\nint main() {\n    int t;\n    io.read(t);\n    rep(rot,\
@@ -466,16 +469,16 @@ data:
   - FPS/fps.hpp
   - FPS/factlarge.hpp
   - FPS/samplepointshift.hpp
-  isVerificationFile: false
-  path: Verify/LC_many_factorials.cpp
+  isVerificationFile: true
+  path: Verify/LC_many_factorials.test.cpp
   requiredBy: []
-  timestamp: '2024-01-18 04:47:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-01-18 04:51:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_many_factorials.cpp
+documentation_of: Verify/LC_many_factorials.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_many_factorials.cpp
-- /library/Verify/LC_many_factorials.cpp.html
-title: Verify/LC_many_factorials.cpp
+- /verify/Verify/LC_many_factorials.test.cpp
+- /verify/Verify/LC_many_factorials.test.cpp.html
+title: Verify/LC_many_factorials.test.cpp
 ---

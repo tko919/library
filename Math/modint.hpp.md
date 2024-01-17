@@ -8,12 +8,6 @@ data:
   - icon: ':warning:'
     path: Math/bigint.hpp
     title: Big Integer(Float)
-  - icon: ':warning:'
-    path: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-    title: Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
-  - icon: ':warning:'
-    path: Verify/LC_many_factorials.cpp
-    title: Verify/LC_many_factorials.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
@@ -36,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_deque_operate_all_composite.test.cpp
     title: Verify/LC_deque_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+    title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
@@ -63,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_many_factorials.test.cpp
+    title: Verify/LC_many_factorials.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
@@ -247,8 +247,6 @@ data:
   requiredBy:
   - Convolution/arbitrary.hpp
   - Math/bigint.hpp
-  - Verify/LC_many_factorials.cpp
-  - Verify/LC_dynamic_tree_vertex_set_path_composite.cpp
   timestamp: '2024-01-14 02:40:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -256,6 +254,7 @@ data:
   - Verify/LC_gcd_convolution.test.cpp
   - Verify/LC_enumerate_cliques.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_point_set_range_sort_range_composite.test.cpp
   - Verify/LC_matrix_det.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
@@ -264,6 +263,7 @@ data:
   - Verify/LC_multivariate_convolution.test.cpp
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_find_linear_recurrence.test.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
   - Verify/LC_point_set_range_composite.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
