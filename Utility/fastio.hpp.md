@@ -217,6 +217,9 @@ data:
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_system_of_linear_equations.test.cpp
+    title: Verify/LC_system_of_linear_equations.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -237,12 +240,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Fast IO
     links: []
@@ -428,7 +431,7 @@ data:
   requiredBy:
   - Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/AOJ_DSL_1_B.test.cpp
   - Verify/LC_range_kth_smallest.test.cpp
@@ -471,6 +474,7 @@ data:
   - Verify/LC_kth_root_integer.test.cpp
   - Verify/LC_log_of_formal_power_series.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp
+  - Verify/LC_system_of_linear_equations.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_partition_function.test.cpp

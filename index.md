@@ -244,7 +244,7 @@ data:
       title: Geometry(integer Coordinates)
   - name: Graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/auxiliarytree.hpp
       title: Auxiliary Tree(Virtual Tree)
     - icon: ':heavy_check_mark:'
@@ -280,7 +280,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
@@ -354,16 +354,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -427,12 +427,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -725,7 +725,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_sum_of_totient_function.test.cpp
       title: Verify/LC_sum_of_totient_function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_system_of_linear_equations.test.cpp
       title: Verify/LC_system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
@@ -764,7 +764,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/YUKI_310.test.cpp
       title: Verify/YUKI_310.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_901.test.cpp
       title: Verify/YUKI_901.test.cpp
 layout: toppage

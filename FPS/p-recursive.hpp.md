@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
