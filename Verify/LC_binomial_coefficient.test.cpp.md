@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
   - icon: ':heavy_check_mark:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

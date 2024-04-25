@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
@@ -461,7 +461,7 @@ data:
   path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
   timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_second_kind.test.cpp
 layout: document

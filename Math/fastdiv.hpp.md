@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
   _extendedVerifiedWith:
@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Fast Division
     links: []
@@ -66,7 +66,7 @@ data:
   - Math/stirlingquery.hpp
   - Convolution/multivariatecyclic.hpp
   timestamp: '2023-01-17 01:58:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp

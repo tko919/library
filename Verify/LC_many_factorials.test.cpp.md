@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':heavy_check_mark:'
