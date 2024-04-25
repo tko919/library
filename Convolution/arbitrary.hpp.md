@@ -12,10 +12,10 @@ data:
     path: Math/bigint.hpp
     title: Big Integer(Float)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Arbitrary Mod Convolution
     links: []
@@ -240,7 +240,7 @@ data:
   requiredBy:
   - Math/bigint.hpp
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_convolution_mod_1000000007.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp

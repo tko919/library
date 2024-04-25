@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
   - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':question:'
@@ -21,12 +21,12 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Multivarate Convolution Cyclic
     links: []
@@ -227,7 +227,7 @@ data:
   path: Convolution/multivariatecyclic.hpp
   requiredBy: []
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Convolution/multivariatecyclic.hpp

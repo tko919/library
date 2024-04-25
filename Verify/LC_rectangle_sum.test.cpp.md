@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/2dsegtree.hpp
     title: 2D Segment Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
   - icon: ':question:'

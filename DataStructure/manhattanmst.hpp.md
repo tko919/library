@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/unionfind.hpp
     title: Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_manhattanmst.test.cpp
     title: Verify/LC_manhattanmst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Manhattan MST
     links: []
@@ -57,7 +57,7 @@ data:
   path: DataStructure/manhattanmst.hpp
   requiredBy: []
   timestamp: '2023-01-17 01:31:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_manhattanmst.test.cpp
 documentation_of: DataStructure/manhattanmst.hpp

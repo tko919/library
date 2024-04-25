@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
   - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
   - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -667,7 +667,7 @@ data:
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
   timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp
 layout: document
