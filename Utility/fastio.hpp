@@ -1,254 +1,304 @@
 #pragma once
 #include <unistd.h>
+namespace fastio {
+static constexpr uint32_t SZ = 1 << 17;
+char ibuf[SZ];
+char obuf[SZ];
+char out[100];
+// pointer of ibuf, obuf
 
-class FastIO {
-    static constexpr int L = 1 << 16;
-    char rdbuf[L];
-    int rdLeft = 0, rdRight = 0;
-    inline void reload() {
-        int len = rdRight - rdLeft;
-        memmove(rdbuf, rdbuf + rdLeft, len);
-        rdLeft = 0, rdRight = len;
-        rdRight += fread(rdbuf + len, 1, L - len, stdin);
-    }
-    inline bool skip() {
-        for (;;) {
-            while (rdLeft != rdRight and rdbuf[rdLeft] <= ' ')
-                rdLeft++;
-            if (rdLeft == rdRight) {
-                reload();
-                if (rdLeft == rdRight)
-                    return false;
-            } else
-                break;
-        }
-        return true;
-    }
-    template <typename T, enable_if_t<is_integral<T>::value, int> = 0>
-    inline bool _read(T &x) {
-        if (!skip())
-            return false;
-        if (rdLeft + 20 >= rdRight)
-            reload();
-        bool neg = false;
-        if (rdbuf[rdLeft] == '-') {
-            neg = true;
-            rdLeft++;
-        }
-        x = 0;
-        while (rdbuf[rdLeft] >= '0' and rdLeft < rdRight) {
-            x = x * 10 +
-                (neg ? -(rdbuf[rdLeft++] ^ 48) : (rdbuf[rdLeft++] ^ 48));
-        }
-        return true;
-    }
-    inline bool _read(__int128_t &x) {
-        if (!skip())
-            return false;
-        if (rdLeft + 40 >= rdRight)
-            reload();
-        bool neg = false;
-        if (rdbuf[rdLeft] == '-') {
-            neg = true;
-            rdLeft++;
-        }
-        x = 0;
-        while (rdbuf[rdLeft] >= '0' and rdLeft < rdRight) {
-            x = x * 10 +
-                (neg ? -(rdbuf[rdLeft++] ^ 48) : (rdbuf[rdLeft++] ^ 48));
-        }
-        return true;
-    }
-    inline bool _read(__uint128_t &x) {
-        if (!skip())
-            return false;
-        if (rdLeft + 40 >= rdRight)
-            reload();
-        x = 0;
-        while (rdbuf[rdLeft] >= '0' and rdLeft < rdRight) {
-            x = x * 10 + (rdbuf[rdLeft++] ^ 48);
-        }
-        return true;
-    }
-    template <typename T, enable_if_t<is_floating_point<T>::value, int> = 0>
-    inline bool _read(T &x) {
-        if (!skip())
-            return false;
-        if (rdLeft + 20 >= rdRight)
-            reload();
-        bool neg = false;
-        if (rdbuf[rdLeft] == '-') {
-            neg = true;
-            rdLeft++;
-        }
-        x = 0;
-        while (rdbuf[rdLeft] >= '0' and rdbuf[rdLeft] <= '9' and
-               rdLeft < rdRight) {
-            x = x * 10 + (rdbuf[rdLeft++] ^ 48);
-        }
-        if (rdbuf[rdLeft] != '.')
-            return true;
-        rdLeft++;
-        T base = .1;
-        while (rdbuf[rdLeft] >= '0' and rdbuf[rdLeft] <= '9' and
-               rdLeft < rdRight) {
-            x += base * (rdbuf[rdLeft++] ^ 48);
-            base *= .1;
-        }
-        if (neg)
-            x = -x;
-        return true;
-    }
-    inline bool _read(char &x) {
-        if (!skip())
-            return false;
-        if (rdLeft + 1 >= rdRight)
-            reload();
-        x = rdbuf[rdLeft++];
-        return true;
-    }
-    inline bool _read(string &x) {
-        if (!skip())
-            return false;
-        for (;;) {
-            int pos = rdLeft;
-            while (pos < rdRight and rdbuf[pos] > ' ')
-                pos++;
-            x.append(rdbuf + rdLeft, pos - rdLeft);
-            if (rdLeft == pos)
-                break;
-            rdLeft = pos;
-            if (rdLeft == rdRight)
-                reload();
-            else
-                break;
-        }
-        return true;
-    }
-    template <typename T> inline bool _read(vector<T> &v) {
-        for (auto &x : v) {
-            if (!_read(x))
-                return false;
-        }
-        return true;
-    }
+uint32_t pil = 0, pir = 0, por = 0;
 
-    char wtbuf[L], tmp[50];
-    int wtRight = 0;
-    inline void _write(const char &x) {
-        if (wtRight > L - 32)
-            flush();
-        wtbuf[wtRight++] = x;
-    }
-    inline void _write(const string &x) {
-        for (auto &c : x)
-            _write(c);
-    }
-    template <typename T, enable_if_t<is_integral<T>::value, int> = 0>
-    inline void _write(T x) {
-        if (wtRight > L - 32)
-            flush();
-        if (x == 0) {
-            _write('0');
-            return;
-        } else if (x < 0) {
-            _write('-');
-            if (__builtin_expect(x == std::numeric_limits<T>::min(), 0)) {
-                switch (sizeof(x)) {
-                case 2:
-                    _write("32768");
-                    return;
-                case 4:
-                    _write("2147483648");
-                    return;
-                case 8:
-                    _write("9223372036854775808");
-                    return;
-                }
+struct Pre {
+    char num[10000][4];
+    constexpr Pre() : num() {
+        for (int i = 0; i < 10000; i++) {
+            int n = i;
+            for (int j = 3; j >= 0; j--) {
+                num[i][j] = n % 10 | '0';
+                n /= 10;
             }
-            x = -x;
-        }
-        int pos = 0;
-        while (x != 0) {
-            tmp[pos++] = char((x % 10) | 48);
-            x /= 10;
-        }
-        rep(i, 0, pos) wtbuf[wtRight + i] = tmp[pos - 1 - i];
-        wtRight += pos;
-    }
-    inline void _write(__int128_t x) {
-        if (wtRight > L - 40)
-            flush();
-        if (x == 0) {
-            _write('0');
-            return;
-        } else if (x < 0) {
-            _write('-');
-            x = -x;
-        }
-        int pos = 0;
-        while (x != 0) {
-            tmp[pos++] = char((x % 10) | 48);
-            x /= 10;
-        }
-        rep(i, 0, pos) wtbuf[wtRight + i] = tmp[pos - 1 - i];
-        wtRight += pos;
-    }
-    inline void _write(__uint128_t x) {
-        if (wtRight > L - 40)
-            flush();
-        if (x == 0) {
-            _write('0');
-            return;
-        }
-        int pos = 0;
-        while (x != 0) {
-            tmp[pos++] = char((x % 10) | 48);
-            x /= 10;
-        }
-        rep(i, 0, pos) wtbuf[wtRight + i] = tmp[pos - 1 - i];
-        wtRight += pos;
-    }
-    inline void _write(double x) {
-        ostringstream oss;
-        oss << fixed << setprecision(15) << double(x);
-        string s = oss.str();
-        _write(s);
-    }
-    template <typename T> inline void _write(const vector<T> &v) {
-        rep(i, 0, v.size()) {
-            if (i)
-                _write(' ');
-            _write(v[i]);
         }
     }
+} constexpr pre;
 
-  public:
-    FastIO() {}
-    ~FastIO() { flush(); }
-    inline void read() {}
-    template <typename Head, typename... Tail>
-    inline void read(Head &head, Tail &...tail) {
-        assert(_read(head));
-        read(tail...);
+inline void load() {
+    memmove(ibuf, ibuf + pil, pir - pil);
+    pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);
+    pil = 0;
+    if (pir < SZ)
+        ibuf[pir++] = '\n';
+}
+
+inline void flush() {
+    fwrite(obuf, 1, por, stdout);
+    por = 0;
+}
+
+void rd(char &c) {
+    do {
+        if (pil + 1 > pir)
+            load();
+        c = ibuf[pil++];
+    } while (isspace(c));
+}
+
+void rd(string &x) {
+    x.clear();
+    char c;
+    do {
+        if (pil + 1 > pir)
+            load();
+        c = ibuf[pil++];
+    } while (isspace(c));
+    do {
+        x += c;
+        if (pil == pir)
+            load();
+        c = ibuf[pil++];
+    } while (!isspace(c));
+}
+
+template <typename T> void rd_real(T &x) {
+    string s;
+    rd(s);
+    x = stod(s);
+}
+
+template <typename T> void rd_integer(T &x) {
+    if (pil + 100 > pir)
+        load();
+    char c;
+    do
+        c = ibuf[pil++];
+    while (c < '-');
+    bool minus = 0;
+    if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+        if (c == '-') {
+            minus = 1, c = ibuf[pil++];
+        }
     }
-    template <bool ln = true, bool space = false> inline void write() {
-        if (ln)
-            _write('\n');
+    x = 0;
+    while ('0' <= c) {
+        x = x * 10 + (c & 15), c = ibuf[pil++];
     }
-    template <bool ln = true, bool space = false, typename Head,
-              typename... Tail>
-    inline void write(const Head &head, const Tail &...tail) {
-        if (space)
-            _write(' ');
-        _write(head);
-        write<ln, true>(tail...);
+    if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+        if (minus)
+            x = -x;
     }
-    inline void flush() {
-        fwrite(wtbuf, 1, wtRight, stdout);
-        wtRight = 0;
+}
+
+void rd(int &x) {
+    rd_integer(x);
+}
+void rd(ll &x) {
+    rd_integer(x);
+}
+void rd(i128 &x) {
+    rd_integer(x);
+}
+void rd(uint &x) {
+    rd_integer(x);
+}
+void rd(ull &x) {
+    rd_integer(x);
+}
+void rd(u128 &x) {
+    rd_integer(x);
+}
+void rd(double &x) {
+    rd_real(x);
+}
+void rd(long double &x) {
+    rd_real(x);
+}
+
+template <class T, class U> void rd(pair<T, U> &p) {
+    return rd(p.first), rd(p.second);
+}
+template <size_t N = 0, typename T> void rd_tuple(T &t) {
+    if constexpr (N < std::tuple_size<T>::value) {
+        auto &x = std::get<N>(t);
+        rd(x);
+        rd_tuple<N + 1>(t);
     }
-};
+}
+template <class... T> void rd(tuple<T...> &tpl) {
+    rd_tuple(tpl);
+}
+
+template <size_t N = 0, typename T> void rd(array<T, N> &x) {
+    for (auto &d : x)
+        rd(d);
+}
+template <class T> void rd(vector<T> &x) {
+    for (auto &d : x)
+        rd(d);
+}
+
+void read() {}
+template <class H, class... T> void read(H &h, T &...t) {
+    rd(h), read(t...);
+}
+
+void wt(const char c) {
+    if (por == SZ)
+        flush();
+    obuf[por++] = c;
+}
+void wt(const string s) {
+    for (char c : s)
+        wt(c);
+}
+void wt(const char *s) {
+    size_t len = strlen(s);
+    for (size_t i = 0; i < len; i++)
+        wt(s[i]);
+}
+
+template <typename T> void wt_integer(T x) {
+    if (por > SZ - 100)
+        flush();
+    if (x < 0) {
+        obuf[por++] = '-', x = -x;
+    }
+    int outi;
+    for (outi = 96; x >= 10000; outi -= 4) {
+        memcpy(out + outi, pre.num[x % 10000], 4);
+        x /= 10000;
+    }
+    if (x >= 1000) {
+        memcpy(obuf + por, pre.num[x], 4);
+        por += 4;
+    } else if (x >= 100) {
+        memcpy(obuf + por, pre.num[x] + 1, 3);
+        por += 3;
+    } else if (x >= 10) {
+        int q = (x * 103) >> 10;
+        obuf[por] = q | '0';
+        obuf[por + 1] = (x - q * 10) | '0';
+        por += 2;
+    } else
+        obuf[por++] = x | '0';
+    memcpy(obuf + por, out + outi + 4, 96 - outi);
+    por += 96 - outi;
+}
+
+template <typename T> void wt_real(T x) {
+    ostringstream oss;
+    oss << fixed << setprecision(15) << double(x);
+    string s = oss.str();
+    wt(s);
+}
+
+void wt(int x) {
+    wt_integer(x);
+}
+void wt(ll x) {
+    wt_integer(x);
+}
+void wt(i128 x) {
+    wt_integer(x);
+}
+void wt(uint x) {
+    wt_integer(x);
+}
+void wt(ull x) {
+    wt_integer(x);
+}
+void wt(u128 x) {
+    wt_integer(x);
+}
+void wt(double x) {
+    wt_real(x);
+}
+void wt(long double x) {
+    wt_real(x);
+}
+
+template <class T, class U> void wt(const pair<T, U> val) {
+    wt(val.first);
+    wt(' ');
+    wt(val.second);
+}
+template <size_t N = 0, typename T> void wt_tuple(const T t) {
+    if constexpr (N < std::tuple_size<T>::value) {
+        if constexpr (N > 0) {
+            wt(' ');
+        }
+        const auto x = std::get<N>(t);
+        wt(x);
+        wt_tuple<N + 1>(t);
+    }
+}
+template <class... T> void wt(tuple<T...> tpl) {
+    wt_tuple(tpl);
+}
+template <class T, size_t S> void wt(const array<T, S> val) {
+    auto n = val.size();
+    for (size_t i = 0; i < n; i++) {
+        if (i)
+            wt(' ');
+        wt(val[i]);
+    }
+}
+template <class T> void wt(const vector<T> val) {
+    auto n = val.size();
+    for (size_t i = 0; i < n; i++) {
+        if (i)
+            wt(' ');
+        wt(val[i]);
+    }
+}
+
+void print() {
+    wt('\n');
+}
+template <class Head, class... Tail> void print(Head &&head, Tail &&...tail) {
+    wt(head);
+    if (sizeof...(Tail))
+        wt(' ');
+    print(forward<Tail>(tail)...);
+}
+void __attribute__((destructor)) _d() {
+    flush();
+}
+} // namespace fastio
+
+using fastio::flush;
+using fastio::print;
+using fastio::read;
+
+inline void first(bool i = true) {
+    print(i ? "first" : "second");
+}
+inline void Alice(bool i = true) {
+    print(i ? "Alice" : "Bob");
+}
+inline void yes(bool i = true) {
+    print(i ? "yes" : "no");
+}
+inline void Yes(bool i = true) {
+    print(i ? "Yes" : "No");
+}
+inline void No() {
+    print("No");
+}
+inline void YES(bool i = true) {
+    print(i ? "YES" : "NO");
+}
+inline void NO() {
+    print("NO");
+}
+inline void Yay(bool i = true) {
+    print(i ? "Yay!" : ":(");
+}
+inline void Possible(bool i = true) {
+    print(i ? "Possible" : "Impossible");
+}
+inline void POSSIBLE(bool i = true) {
+    print(i ? "POSSIBLE" : "IMPOSSIBLE");
+}
 
 /**
  * @brief Fast IO

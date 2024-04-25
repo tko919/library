@@ -1,9 +1,16 @@
 #pragma once
 
 template <typename T> struct Poly : vector<T> {
-    Poly(int n = 0) { this->assign(n, T()); }
+    Poly(int n = 0) {
+        this->assign(n, T());
+    }
     Poly(const initializer_list<T> f) : vector<T>::vector(f) {}
-    Poly(const vector<T> &f) { this->assign(ALL(f)); }
+    Poly(const vector<T> &f) {
+        this->assign(ALL(f));
+    }
+    int deg() const {
+        return this->size() - 1;
+    }
     T eval(const T &x) {
         T res;
         for (int i = this->size() - 1; i >= 0; i--)
@@ -61,17 +68,39 @@ template <typename T> struct Poly : vector<T> {
         res.resize(n);
         return res;
     }
-    Poly square() const { return Poly(mult(*this, *this)); }
-    Poly operator-() const { return Poly() - *this; }
-    Poly operator+(const Poly &g) const { return Poly(*this) += g; }
-    Poly operator+(const T &g) const { return Poly(*this) += g; }
-    Poly operator-(const Poly &g) const { return Poly(*this) -= g; }
-    Poly operator-(const T &g) const { return Poly(*this) -= g; }
-    Poly operator*(const Poly &g) const { return Poly(*this) *= g; }
-    Poly operator*(const T &g) const { return Poly(*this) *= g; }
-    Poly operator/(const Poly &g) const { return Poly(*this) /= g; }
-    Poly operator/(const T &g) const { return Poly(*this) /= g; }
-    Poly operator%(const Poly &g) const { return Poly(*this) %= g; }
+    Poly square() const {
+        return Poly(mult(*this, *this));
+    }
+    Poly operator-() const {
+        return Poly() - *this;
+    }
+    Poly operator+(const Poly &g) const {
+        return Poly(*this) += g;
+    }
+    Poly operator+(const T &g) const {
+        return Poly(*this) += g;
+    }
+    Poly operator-(const Poly &g) const {
+        return Poly(*this) -= g;
+    }
+    Poly operator-(const T &g) const {
+        return Poly(*this) -= g;
+    }
+    Poly operator*(const Poly &g) const {
+        return Poly(*this) *= g;
+    }
+    Poly operator*(const T &g) const {
+        return Poly(*this) *= g;
+    }
+    Poly operator/(const Poly &g) const {
+        return Poly(*this) /= g;
+    }
+    Poly operator/(const T &g) const {
+        return Poly(*this) /= g;
+    }
+    Poly operator%(const Poly &g) const {
+        return Poly(*this) %= g;
+    }
     pair<Poly, Poly> divmod(const Poly &g) const {
         Poly q = *this / g, r = *this - g * q;
         r.shrink();
@@ -80,7 +109,9 @@ template <typename T> struct Poly : vector<T> {
     Poly &operator+=(const Poly &g) {
         if (g.size() > this->size())
             this->resize(g.size());
-        rep(i, 0, g.size()) { (*this)[i] += g[i]; }
+        rep(i, 0, g.size()) {
+            (*this)[i] += g[i];
+        }
         return *this;
     }
     Poly &operator+=(const T &g) {
@@ -92,7 +123,9 @@ template <typename T> struct Poly : vector<T> {
     Poly &operator-=(const Poly &g) {
         if (g.size() > this->size())
             this->resize(g.size());
-        rep(i, 0, g.size()) { (*this)[i] -= g[i]; }
+        rep(i, 0, g.size()) {
+            (*this)[i] -= g[i];
+        }
         return *this;
     }
     Poly &operator-=(const T &g) {

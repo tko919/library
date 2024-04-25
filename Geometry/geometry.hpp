@@ -6,7 +6,9 @@ using Point = complex<T>;
 using Poly = vector<Point>;
 #define X real()
 #define Y imag()
-inline bool eq(const T &a, const T &b) { return fabs(a - b) < eps; }
+template <typename T> inline bool eq(const T &a, const T &b) {
+    return fabs(a - b) < eps;
+}
 bool cmp(const Point &a, const Point &b) {
     auto sub = [&](Point a) {
         return (a.Y < 0 ? -1 : (a.Y == 0 && a.X >= 0 ? 0 : 1));
@@ -16,9 +18,9 @@ bool cmp(const Point &a, const Point &b) {
     return a.Y * b.X < a.X * b.Y;
 }
 struct Line {
-    Point a, b;
+    Point a, b, dir;
     Line() {}
-    Line(Point _a, Point _b) : a(_a), b(_b) {}
+    Line(Point _a, Point _b) : a(_a), b(_b), dir(b - a) {}
     Line(T A, T B, T C) {
         if (eq(A, .0)) {
             a = Point(0, C / B), b = Point(1 / C / B);
@@ -50,15 +52,26 @@ ostream &operator<<(ostream &os, Point &p) {
     os << fixed << setprecision(12) << p.X << ' ' << p.Y;
     return os;
 }
-Point unit(const Point &a) { return a / abs(a); }
-T dot(const Point &a, const Point &b) { return a.X * b.X + a.Y * b.Y; }
-T cross(const Point &a, const Point &b) { return a.X * b.Y - a.Y * b.X; }
+Point unit(const Point &a) {
+    return a / abs(a);
+}
+T dot(const Point &a, const Point &b) {
+    return a.X * b.X + a.Y * b.Y;
+}
+T cross(const Point &a, const Point &b) {
+    return a.X * b.Y - a.Y * b.X;
+}
 Point rot(const Point &a, const T &theta) {
     return Point(cos(theta) * a.X - sin(theta) * a.Y,
                  sin(theta) * a.X + cos(theta) * a.Y);
 }
+Point rot90(const Point &a) {
+    return Point(-a.Y, a.X);
+}
 T arg(const Point &a, const Point &b, const Point &c) {
-    return acos(dot(a - b, c - b) / abs(a - b) / abs(c - b));
+    double ret= acos(dot(a - b, c - b) / abs(a - b) / abs(c - b));
+    if(cross(a-b,c-b)<0)ret=-ret;
+    return ret;
 }
 
 Point Projection(const Line &l, const Point &p) {
@@ -127,7 +140,7 @@ T Dist(const Segment &a, const Segment &b) {
 Point Intersection(const Line &a, const Line &b) {
     T d1 = cross(a.b - a.a, b.b - b.a);
     T d2 = cross(a.b - a.a, a.b - b.a);
-    if (eq(d1, 0) and eq(d2, 0))
+    if (eq(d1, 0.) and eq(d2, 0.))
         return b.a;
     return b.a + (b.b - b.a) * (d2 / d1);
 }
@@ -189,6 +202,53 @@ Poly Intersection(const Circle &a, const Circle &b) {
     res.push_back(a.p + rc * e + rs * e * Point(0, -1));
     return res;
 }
+Poly HalfplaneIntersection(vector<Line> &H) {
+    sort(ALL(H), [&](Line &l1, Line &l2) { return cmp(l1.dir, l2.dir); });
+    auto outside = [&](Line &L, Point p) -> bool {
+        return cross(L.dir, p - L.a) < -eps;
+    };
+    deque<Line> deq;
+    int sz = 0;
+    rep(i, 0, SZ(H)) {
+        while (sz > 1 and
+               outside(H[i], Intersection(deq[sz - 1], deq[sz - 2]))) {
+            deq.pop_back();
+            sz--;
+        }
+        while (sz > 1 and outside(H[i], Intersection(deq[0], deq[1]))) {
+            deq.pop_front();
+            sz--;
+        }
+        if (sz > 0 and fabs(cross(H[i].dir, deq[sz - 1].dir)) < eps) {
+            if (dot(H[i].dir, deq[sz - 1].dir) < 0) {
+                return {};
+            }
+            if (outside(H[i], deq[sz - 1].a)) {
+                deq.pop_back();
+                sz--;
+            } else
+                continue;
+        }
+        deq.push_back(H[i]);
+        sz++;
+    }
+
+    while (sz > 2 and outside(deq[0], Intersection(deq[sz - 1], deq[sz - 2]))) {
+        deq.pop_back();
+        sz--;
+    }
+    while (sz > 2 and outside(deq[sz - 1], Intersection(deq[0], deq[1]))) {
+        deq.pop_front();
+        sz--;
+    }
+    if (sz < 3)
+        return {};
+    deq.push_back(deq.front());
+    Poly ret;
+    rep(i, 0, sz) ret.push_back(Intersection(deq[i], deq[i + 1]));
+    return ret;
+}
+
 T Area(const Poly &a) {
     T res = 0;
     int n = a.size();
@@ -367,13 +427,13 @@ Poly tangent(const Point &a, const Circle &b) {
 vector<Line> tangent(const Circle &a, const Circle &b) {
     vector<Line> res;
     T d = abs(a.p - b.p);
-    if (eq(d, 0))
+    if (eq(d, 0.))
         return res;
     Point u = unit(b.p - a.p);
     Point v = u * Point(0, 1);
     for (int t : {-1, 1}) {
         T h = (a.r + b.r * t) / d;
-        if (eq(h * h, 1)) {
+        if (eq(h * h, 1.)) {
             res.push_back(Line(a.p + (h > 0 ? u : -u) * a.r,
                                a.p + (h > 0 ? u : -u) * a.r + v));
         } else if (1 > h * h) {
