@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':question:'

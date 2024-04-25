@@ -103,6 +103,9 @@ data:
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_log_of_formal_power_series.test.cpp
+    title: Verify/LC_log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_manhattanmst.test.cpp
     title: Verify/LC_manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,8 +115,20 @@ data:
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_matrix_det.test.cpp
+    title: Verify/LC_matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_matrix_product.test.cpp
+    title: Verify/LC_matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multipoint_evaluation.test.cpp
+    title: Verify/LC_multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution.test.cpp
+    title: Verify/LC_multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
@@ -123,31 +138,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_persistent_unionfind.test.cpp
     title: Verify/LC_persistent_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_point_set_range_composite.test.cpp
+    title: Verify/LC_point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_polynomial_interpolation.test.cpp
+    title: Verify/LC_polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_polynomial_taylor_shift.test.cpp
+    title: Verify/LC_polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_pow_of_formal_power_series.test.cpp
+    title: Verify/LC_pow_of_formal_power_series.test.cpp
   - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_prefix_substring_lcs.test.cpp
     title: Verify/LC_prefix_substring_lcs.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_range_affine_range_sum.test.cpp
+    title: Verify/LC_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'
@@ -189,6 +219,9 @@ data:
   - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_vertex_set_path_composite.test.cpp
+    title: Verify/LC_vertex_set_path_composite.test.cpp
   - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
@@ -418,9 +451,11 @@ data:
   - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_product_of_polynomial_sequence.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
   - Verify/LC_bernoulli_number.test.cpp
+  - Verify/LC_matrix_det.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - Verify/AOJ_GRL_6_A.test.cpp
@@ -434,6 +469,7 @@ data:
   - Verify/LC_lca_2.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_kth_root_integer.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp
   - Verify/AOJ_DSL_2_D.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
@@ -441,13 +477,16 @@ data:
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_queue_operate_all_composite.test.cpp
   - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+  - Verify/LC_point_set_range_composite.test.cpp
   - Verify/AOJ_1595.test.cpp
   - Verify/LC_many_aplusb.test.cpp
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
+  - Verify/LC_matrix_product.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp
   - Verify/LC_enumerate_cliques.test.cpp
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   - Verify/YUKI_1781.test.cpp
+  - Verify/LC_vertex_set_path_composite.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/YUKI_310.test.cpp
@@ -455,14 +494,19 @@ data:
   - Verify/YUKI_1112.test.cpp
   - Verify/LC_prefix_substring_lcs.test.cpp
   - Verify/LC_bitwise_and_convolution.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
   - Verify/YUKI_2097.test.cpp
   - Verify/LC_deque_operate_all_composite.test.cpp
+  - Verify/LC_range_affine_range_sum.test.cpp
   - Verify/LC_associative_array.test.cpp
   - Verify/LC_subset_convolution.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - Verify/LC_cycle_detection.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
   - Verify/LC_gcd_convolution.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
   - Verify/LC_predecessor_problem.test.cpp
 documentation_of: Utility/fastio.hpp
 layout: document

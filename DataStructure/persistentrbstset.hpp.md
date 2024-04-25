@@ -6,12 +6,12 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Persistent Randomized Binary Search Tree (set)
     links: []
@@ -157,7 +157,7 @@ data:
   path: DataStructure/persistentrbstset.hpp
   requiredBy: []
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_range_kth_smallest-2.test.cpp
 documentation_of: DataStructure/persistentrbstset.hpp

@@ -129,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_line_add_get_min.test.cpp
     title: Verify/LC_line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,10 +141,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_product.test.cpp
     title: Verify/LC_matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,10 +153,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution.test.cpp
     title: Verify/LC_multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -180,55 +180,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_point_add_rectangle_sum.test.cpp
     title: Verify/LC_point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_point_set_range_composite.test.cpp
     title: Verify/LC_point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
   - icon: ':x:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_prefix_substring_lcs.test.cpp
     title: Verify/LC_prefix_substring_lcs.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_affine_range_sum.test.cpp
     title: Verify/LC_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_rectangle_sum.test.cpp
     title: Verify/LC_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_scc.test.cpp
     title: Verify/LC_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_segment_add_get_min.test.cpp
     title: Verify/LC_segment_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/swag.hpp
     title: Sliding Window Aggregation
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -57,78 +57,22 @@ data:
     P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
     \ <typename T, template <class> class C>\r\nostream &operator<<(ostream &os, const\
     \ C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n        os << d <<\
-    \ \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Math/modint.hpp\"\
-    \n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n    unsigned v;\r\n\
-    \    static constexpr int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr\
-    \ unsigned inv() const {\r\n        assert(v != 0);\r\n        int x = v, y =\
-    \ mod, p = 1, q = 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n          \
-    \  t = x / y;\r\n            x -= t * y, p -= t * q;\r\n            tmp = x, x\
-    \ = y, y = tmp;\r\n            tmp = p, p = q, q = tmp;\r\n        }\r\n     \
-    \   if (p < 0)\r\n            p += mod;\r\n        return p;\r\n    }\r\n    constexpr\
-    \ fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
-    \ const {\r\n        return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n\
-    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
-    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
-    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
-    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
-    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
-    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
-    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ull(v) * x.v % mod;\r\
-    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
-    \    v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
-    \ fp &x) const {\r\n        return fp(*this) += x;\r\n    }\r\n    fp operator-(const\
-    \ fp &x) const {\r\n        return fp(*this) -= x;\r\n    }\r\n    fp operator*(const\
-    \ fp &x) const {\r\n        return fp(*this) *= x;\r\n    }\r\n    fp operator/(const\
-    \ fp &x) const {\r\n        return fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
-    \ fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
-    \ fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
-    \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
-    \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
-    \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
-    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
-    \ <typename T> T Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n   \
-    \ while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n\
-    \        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n\
-    }\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static const\
-    \ int md = T::get_mod();\r\n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n\
-    \    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back()\
-    \ * SZ(buf));\r\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n \
-    \   }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T>\
-    \ T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n\
-    \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
-    }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
-    \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"DataStructure/swag.hpp\"\n\r\ntemplate<typename\
-    \ M,M (*f)(M,M),M (*m0)()>struct SWAG{\r\n   stack<M> fval,bval; vector<M> fsum,bsum;\r\
-    \n   SWAG(){}\r\n   M fold(){\r\n      if(fsum.empty()){\r\n         if(bsum.empty())return\
-    \ m0();\r\n         return bsum.back();\r\n      }else{\r\n         if(bsum.empty())return\
-    \ fsum.back();\r\n         else return f(fsum.back(),bsum.back());\r\n      }\r\
-    \n   }\r\n   void push(M x){\r\n      bval.push(x);\r\n      if(bsum.empty())bsum.push_back(x);\r\
-    \n      else{\r\n         M y=f(bsum.back(),x);\r\n         bsum.push_back(y);\r\
-    \n      }\r\n   }\r\n   void pop(){\r\n      if(fval.empty()){\r\n         bsum.clear();\r\
-    \n         while(!bval.empty()){\r\n            auto x=bval.top(); bval.pop();\r\
-    \n            fval.push(x);\r\n            if(fsum.empty())fsum.push_back(x);\r\
-    \n            else{\r\n               M y=f(x,fsum.back());\r\n              \
-    \ fsum.push_back(y);\r\n            }\r\n         }\r\n      }\r\n      fval.pop();\
-    \ fsum.pop_back();\r\n   }\r\n};\r\n\r\n/**\r\n * @brief Sliding Window Aggregation\r\
-    \n */\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\nnamespace fastio\
-    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
-    \nchar out[100];\r\n// pointer of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0,\
-    \ por = 0;\r\n\r\nstruct Pre {\r\n    char num[10000][4];\r\n    constexpr Pre()\
-    \ : num() {\r\n        for (int i = 0; i < 10000; i++) {\r\n            int n\
-    \ = i;\r\n            for (int j = 3; j >= 0; j--) {\r\n                num[i][j]\
-    \ = n % 10 | '0';\r\n                n /= 10;\r\n            }\r\n        }\r\n\
-    \    }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n    memmove(ibuf, ibuf\
-    \ + pil, pir - pil);\r\n    pir = pir - pil + fread(ibuf + pir - pil, 1, SZ -\
-    \ pir + pil, stdin);\r\n    pil = 0;\r\n    if (pir < SZ)\r\n        ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n    fwrite(obuf, 1, por, stdout);\r\
-    \n    por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n    do {\r\n        if (pil +\
-    \ 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\
-    \n}\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\n    char c;\r\n    do {\r\
-    \n        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
+    \ \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
+    \n#include <unistd.h>\r\nnamespace fastio {\r\nstatic constexpr uint32_t SZ =\
+    \ 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar out[100];\r\n// pointer\
+    \ of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\
+    \n    char num[10000][4];\r\n    constexpr Pre() : num() {\r\n        for (int\
+    \ i = 0; i < 10000; i++) {\r\n            int n = i;\r\n            for (int j\
+    \ = 3; j >= 0; j--) {\r\n                num[i][j] = n % 10 | '0';\r\n       \
+    \         n /= 10;\r\n            }\r\n        }\r\n    }\r\n} constexpr pre;\r\
+    \n\r\ninline void load() {\r\n    memmove(ibuf, ibuf + pil, pir - pil);\r\n  \
+    \  pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);\r\n  \
+    \  pil = 0;\r\n    if (pir < SZ)\r\n        ibuf[pir++] = '\\n';\r\n}\r\n\r\n\
+    inline void flush() {\r\n    fwrite(obuf, 1, por, stdout);\r\n    por = 0;\r\n\
+    }\r\n\r\nvoid rd(char &c) {\r\n    do {\r\n        if (pil + 1 > pir)\r\n    \
+    \        load();\r\n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\n\
+    }\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\n    char c;\r\n    do {\r\n\
+    \        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
     \n    } while (isspace(c));\r\n    do {\r\n        x += c;\r\n        if (pil\
     \ == pir)\r\n            load();\r\n        c = ibuf[pil++];\r\n    } while (!isspace(c));\r\
     \n}\r\n\r\ntemplate <typename T> void rd_real(T &x) {\r\n    string s;\r\n   \
@@ -201,34 +145,95 @@ data:
     \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
     \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
     \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 7 \"Verify/LC_queue_operate_all_composite.test.cpp\"\n\
-    \r\nusing Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
-    \nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    int q;\r\n    read(q);\r\n\r\
-    \n    SWAG<P,f,e> swag;\r\n    int t,a,b,x;\r\n    while(q--){\r\n        read(t);\r\
-    \n        if(t==0){\r\n            read(a,b);\r\n            swag.push({a,b});\r\
-    \n        }\r\n        else if(t==1)swag.pop();\r\n        else{\r\n         \
-    \   read(x);\r\n            P ret=swag.fold();\r\n            cout<<ret[0]*x+ret[1]<<'\\\
-    n';\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
+    \ Fast IO\r\n */\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007>\
+    \ struct fp {\r\n    unsigned v;\r\n    static constexpr int get_mod() {\r\n \
+    \       return mod;\r\n    }\r\n    constexpr unsigned inv() const {\r\n     \
+    \   assert(v != 0);\r\n        int x = v, y = mod, p = 1, q = 0, t = 0, tmp =\
+    \ 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n            x -=\
+    \ t * y, p -= t * q;\r\n            tmp = x, x = y, y = tmp;\r\n            tmp\
+    \ = p, p = q, q = tmp;\r\n        }\r\n        if (p < 0)\r\n            p +=\
+    \ mod;\r\n        return p;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0\
+    \ ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\r\n \
+    \       return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n        fp res\
+    \ = 1, b = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n       \
+    \         res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n       \
+    \ }\r\n        return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n \
+    \       if ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
+    \n    }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >=\
+    \ mod)\r\n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
+    \ fp &x) {\r\n        v = ull(v) * x.v % mod;\r\n        return *this;\r\n   \
+    \ }\r\n    fp &operator/=(const fp &x) {\r\n        v = ull(v) * x.inv() % mod;\r\
+    \n        return *this;\r\n    }\r\n    fp operator+(const fp &x) const {\r\n\
+    \        return fp(*this) += x;\r\n    }\r\n    fp operator-(const fp &x) const\
+    \ {\r\n        return fp(*this) -= x;\r\n    }\r\n    fp operator*(const fp &x)\
+    \ const {\r\n        return fp(*this) *= x;\r\n    }\r\n    fp operator/(const\
+    \ fp &x) const {\r\n        return fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
+    \ fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
+    \ fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
+    \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
+    \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
+    \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
+    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
+    \ <typename T> T Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n  \
+    \  static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n   \
+    \ while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n\
+    \        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n\
+    }\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static const\
+    \ int md = T::get_mod();\r\n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n\
+    \    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back()\
+    \ * SZ(buf));\r\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n \
+    \   }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T>\
+    \ T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n\
+    \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
+    }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
+    \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
+    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
+    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"DataStructure/swag.hpp\"\n\r\ntemplate<typename\
+    \ M,M (*f)(M,M),M (*m0)()>struct SWAG{\r\n   stack<M> fval,bval; vector<M> fsum,bsum;\r\
+    \n   SWAG(){}\r\n   M fold(){\r\n      if(fsum.empty()){\r\n         if(bsum.empty())return\
+    \ m0();\r\n         return bsum.back();\r\n      }else{\r\n         if(bsum.empty())return\
+    \ fsum.back();\r\n         else return f(fsum.back(),bsum.back());\r\n      }\r\
+    \n   }\r\n   void push(M x){\r\n      bval.push(x);\r\n      if(bsum.empty())bsum.push_back(x);\r\
+    \n      else{\r\n         M y=f(bsum.back(),x);\r\n         bsum.push_back(y);\r\
+    \n      }\r\n   }\r\n   void pop(){\r\n      if(fval.empty()){\r\n         bsum.clear();\r\
+    \n         while(!bval.empty()){\r\n            auto x=bval.top(); bval.pop();\r\
+    \n            fval.push(x);\r\n            if(fsum.empty())fsum.push_back(x);\r\
+    \n            else{\r\n               M y=f(x,fsum.back());\r\n              \
+    \ fsum.push_back(y);\r\n            }\r\n         }\r\n      }\r\n      fval.pop();\
+    \ fsum.pop_back();\r\n   }\r\n};\r\n\r\n/**\r\n * @brief Sliding Window Aggregation\r\
+    \n */\n#line 8 \"Verify/LC_queue_operate_all_composite.test.cpp\"\n\r\nusing Fp\
+    \ = fp<998244353>;\r\nusing P = array<Fp, 2>;\r\nP f(P a, P b) {\r\n    return\
+    \ P{a[0] * b[0], a[1] * b[0] + b[1]};\r\n}\r\nP e() {\r\n    return P{1, 0};\r\
+    \n}\r\n\r\nint main() {\r\n    int q;\r\n    read(q);\r\n\r\n    SWAG<P, f, e>\
+    \ swag;\r\n    int t, a, b, x;\r\n    while (q--) {\r\n        read(t);\r\n  \
+    \      if (t == 0) {\r\n            read(a, b);\r\n            swag.push({a, b});\r\
+    \n        } else if (t == 1)\r\n            swag.pop();\r\n        else {\r\n\
+    \            read(x);\r\n            P ret = swag.fold();\r\n            cout\
+    \ << ret[0] * x + ret[1] << '\\n';\r\n        }\r\n    }\r\n    return 0;\r\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
-    #include \"DataStructure/swag.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n\
-    using Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
-    \nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    int q;\r\n    read(q);\r\n\r\
-    \n    SWAG<P,f,e> swag;\r\n    int t,a,b,x;\r\n    while(q--){\r\n        read(t);\r\
-    \n        if(t==0){\r\n            read(a,b);\r\n            swag.push({a,b});\r\
-    \n        }\r\n        else if(t==1)swag.pop();\r\n        else{\r\n         \
-    \   read(x);\r\n            P ret=swag.fold();\r\n            cout<<ret[0]*x+ret[1]<<'\\\
-    n';\r\n        }\r\n    }\r\n    return 0;\r\n}"
+    \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
+    \n#include \"Math/modint.hpp\"\r\n#include \"DataStructure/swag.hpp\"\r\n#include\
+    \ \"Utility/fastio.hpp\"\r\n\r\nusing Fp = fp<998244353>;\r\nusing P = array<Fp,\
+    \ 2>;\r\nP f(P a, P b) {\r\n    return P{a[0] * b[0], a[1] * b[0] + b[1]};\r\n\
+    }\r\nP e() {\r\n    return P{1, 0};\r\n}\r\n\r\nint main() {\r\n    int q;\r\n\
+    \    read(q);\r\n\r\n    SWAG<P, f, e> swag;\r\n    int t, a, b, x;\r\n    while\
+    \ (q--) {\r\n        read(t);\r\n        if (t == 0) {\r\n            read(a,\
+    \ b);\r\n            swag.push({a, b});\r\n        } else if (t == 1)\r\n    \
+    \        swag.pop();\r\n        else {\r\n            read(x);\r\n           \
+    \ P ret = swag.fold();\r\n            cout << ret[0] * x + ret[1] << '\\n';\r\n\
+    \        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
+  - Utility/fastio.hpp
   - Math/modint.hpp
   - DataStructure/swag.hpp
-  - Utility/fastio.hpp
   isVerificationFile: true
   path: Verify/LC_queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 04:11:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_queue_operate_all_composite.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: DataStructure/rangelis.hpp
     title: Range LIS Query
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/wavelet.hpp
     title: Wavelet Matrix
   - icon: ':question:'
