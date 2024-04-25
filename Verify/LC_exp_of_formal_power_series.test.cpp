@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
 
 #include "Template/template.hpp"
+#include "Utility/fastio.hpp"
 #include "Math/modint.hpp"
 #include "Convolution/ntt.hpp"
 #include "FPS/fps.hpp"

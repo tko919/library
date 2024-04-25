@@ -2,21 +2,24 @@
 
 #include "Template/template.hpp"
 #include "Graph/bimatching.hpp"
+#include "Utility/fastio.hpp"
 
-int main(){
-    int L,R,m;
-    cin>>L>>R>>m;
-    BiMatching buf(L,R);
-    rep(_,0,m){
-        int x,y;
-        cin>>x>>y;
-        buf.add_edge(x,y);
+int main() {
+    int L, R, m;
+    read(L, R, m);
+    vector g(L, vector<int>());
+    rep(_, 0, m) {
+        int x, y;
+        read(x, y);
+        g[x].push_back(y);
     }
-    int ret=buf.run();
-    
-    cout<<ret<<'\n';
-    rep(i,0,L)if(buf.nxt[i]!=-1){
-        cout<<i<<' '<<buf.nxt[i]<<'\n';
+    auto ret = BiMatching(L, R, g);
+
+    int sz = 0;
+    rep(i, 0, L) if (ret[i] != -1) sz++;
+    print(sz);
+    rep(i, 0, L) if (ret[i] != -1) {
+        print(i, ret[i]);
     }
     return 0;
 }

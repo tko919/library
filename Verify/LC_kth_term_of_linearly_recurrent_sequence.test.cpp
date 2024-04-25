@@ -2,6 +2,7 @@
     "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 
 #include "Template/template.hpp"
+#include "Utility/fastio.hpp"
 #include "Math/modint.hpp"
 #include "Convolution/ntt.hpp"
 #include "FPS/fps.hpp"

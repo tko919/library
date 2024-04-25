@@ -23,7 +23,7 @@ int main() {
     Rerooting<int, int, f, g, h, e> tree(n);
     rep(_, 0, n - 1) {
         int x, y;
-        io.read(x, y);
+        read(x, y);
         x--;
         y--;
         tree.add_edge(x, y, 1);

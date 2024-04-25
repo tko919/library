@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include "Template/template.hpp"
-
+#include "Utility/fastio.hpp"
 #include "Math/modint.hpp"
 
 #include "Convolution/arbitrary.hpp"
