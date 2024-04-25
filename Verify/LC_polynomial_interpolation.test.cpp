@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/polynomial_interpolation"
 
 #include "Template/template.hpp"
+#include "Utility/fastio.hpp"
 #include "Math/modint.hpp"
 #include "Convolution/ntt.hpp"
 #include "FPS/fps.hpp"

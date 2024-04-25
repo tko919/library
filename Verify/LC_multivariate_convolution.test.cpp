@@ -1,13 +1,16 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multivariate_convolution"
 
 #include "Template/template.hpp"
+#include "Utility/fastio.hpp"
 #include "Math/modint.hpp"
 #include "Convolution/ntt.hpp"
 #include "Convolution/multivariate.hpp"
 
 using Fp = fp<998244353>;
 NTT<Fp> ntt;
-void F(vector<Fp> &a, bool f) { ntt.ntt(a, f); }
+void F(vector<Fp> &a, bool f) {
+    ntt.ntt(a, f);
+}
 
 int main() {
     int k, n = 1;

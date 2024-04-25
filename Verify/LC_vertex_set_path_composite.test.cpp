@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 
 #include "Template/template.hpp"
+#include "Utility/fastio.hpp"
 #include "Math/modint.hpp"
 #include "Graph/hld.hpp"
 #include "DataStructure/segtree.hpp"
