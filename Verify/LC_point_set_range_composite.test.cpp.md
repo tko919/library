@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

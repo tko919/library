@@ -35,7 +35,7 @@ data:
   - icon: ':x:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   - icon: ':warning:'
@@ -51,7 +51,7 @@ data:
     path: String/rollinghash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
   - icon: ':x:'

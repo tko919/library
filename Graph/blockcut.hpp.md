@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Block Cut Tree
     links: []
@@ -61,7 +61,7 @@ data:
   path: Graph/blockcut.hpp
   requiredBy: []
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_biconnected_components.test.cpp
 documentation_of: Graph/blockcut.hpp

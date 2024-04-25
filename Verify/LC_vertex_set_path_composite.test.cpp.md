@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

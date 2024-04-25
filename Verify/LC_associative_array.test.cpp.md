@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/hashmap.hpp
     title: Hash Map
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/associative_array
@@ -154,18 +154,17 @@ data:
     \            }\r\n            if(keys[hash]==x)return vals[hash];\r\n        \
     \    hash++;\r\n            hash=(hash+1)&(N-1);\r\n        }\r\n    }\r\n};\r\
     \n\r\n/**\r\n * @brief Hash Map\r\n */\n#line 6 \"Verify/LC_associative_array.test.cpp\"\
-    \n\r\nint main(){\r\n    FastIO io;\r\n    int q,t;\r\n    ll k,v;\r\n    io.read(q);\r\
-    \n    HashMap<ll,ll> mp;\r\n    while(q--){\r\n        io.read(t,k);\r\n     \
-    \   if(t==0){\r\n            io.read(v);\r\n            mp[k]=v;\r\n        }\r\
-    \n        else{\r\n            io.write(mp[k]);\r\n        }\r\n    }\r\n    return\
-    \ 0;\r\n}\n"
+    \n\r\nint main(){\r\n    int q,t;\r\n    ll k,v;\r\n    read(q);\r\n    HashMap<ll,ll>\
+    \ mp;\r\n    while(q--){\r\n        read(t,k);\r\n        if(t==0){\r\n      \
+    \      read(v);\r\n            mp[k]=v;\r\n        }\r\n        else{\r\n    \
+    \        print(mp[k]);\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n\
     \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
-    #include \"DataStructure/hashmap.hpp\"\r\n\r\nint main(){\r\n    FastIO io;\r\n\
-    \    int q,t;\r\n    ll k,v;\r\n    io.read(q);\r\n    HashMap<ll,ll> mp;\r\n\
-    \    while(q--){\r\n        io.read(t,k);\r\n        if(t==0){\r\n           \
-    \ io.read(v);\r\n            mp[k]=v;\r\n        }\r\n        else{\r\n      \
-    \      io.write(mp[k]);\r\n        }\r\n    }\r\n    return 0;\r\n}"
+    #include \"DataStructure/hashmap.hpp\"\r\n\r\nint main(){\r\n    int q,t;\r\n\
+    \    ll k,v;\r\n    read(q);\r\n    HashMap<ll,ll> mp;\r\n    while(q--){\r\n\
+    \        read(t,k);\r\n        if(t==0){\r\n            read(v);\r\n         \
+    \   mp[k]=v;\r\n        }\r\n        else{\r\n            print(mp[k]);\r\n  \
+    \      }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -173,8 +172,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_associative_array.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_associative_array.test.cpp
 layout: document

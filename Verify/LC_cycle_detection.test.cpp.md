@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/cycledetect.hpp
     title: Cycle Detection
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
@@ -155,18 +155,17 @@ data:
     \ -2;\n                cycle.push_back({to,id});\n                if(nxt==v)return\
     \ -2;\n                return nxt;\n            }\n        }\n        used[v]=2;\n\
     \        return -1;\n    }\n};\n\n/**\n * @brief Cycle Detection\n*/\n#line 7\
-    \ \"Verify/LC_cycle_detection.test.cpp\"\n\nFastIO io;\nint main(){\n    int n,m;\n\
-    \    io.read(n,m);\n    \n    CycleDetect<1> g(n);\n    rep(_,0,m){\n        int\
-    \ u,v;\n        io.read(u,v);\n        g.add_edge(u,v);\n    }\n    g.run();\n\
-    \n    if(g.cycle.empty()){io.write(-1); return 0;}\n    int k=g.cycle.size();\n\
-    \    io.write(k);\n    rep(i,0,k)io.write(g.cycle[i].second);\n    return 0;\n\
-    }\n"
+    \ \"Verify/LC_cycle_detection.test.cpp\"\n\nint main(){\n    int n,m;\n    read(n,m);\n\
+    \    \n    CycleDetect<1> g(n);\n    rep(_,0,m){\n        int u,v;\n        read(u,v);\n\
+    \        g.add_edge(u,v);\n    }\n    g.run();\n\n    if(g.cycle.empty()){print(-1);\
+    \ return 0;}\n    int k=g.cycle.size();\n    print(k);\n    rep(i,0,k)print(g.cycle[i].second);\n\
+    \    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\n\n#include\
     \ \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include \"Graph/cycledetect.hpp\"\
-    \n\nFastIO io;\nint main(){\n    int n,m;\n    io.read(n,m);\n    \n    CycleDetect<1>\
-    \ g(n);\n    rep(_,0,m){\n        int u,v;\n        io.read(u,v);\n        g.add_edge(u,v);\n\
-    \    }\n    g.run();\n\n    if(g.cycle.empty()){io.write(-1); return 0;}\n   \
-    \ int k=g.cycle.size();\n    io.write(k);\n    rep(i,0,k)io.write(g.cycle[i].second);\n\
+    \n\nint main(){\n    int n,m;\n    read(n,m);\n    \n    CycleDetect<1> g(n);\n\
+    \    rep(_,0,m){\n        int u,v;\n        read(u,v);\n        g.add_edge(u,v);\n\
+    \    }\n    g.run();\n\n    if(g.cycle.empty()){print(-1); return 0;}\n    int\
+    \ k=g.cycle.size();\n    print(k);\n    rep(i,0,k)print(g.cycle[i].second);\n\
     \    return 0;\n}"
   dependsOn:
   - Template/template.hpp
@@ -175,8 +174,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_cycle_detection.test.cpp
 layout: document

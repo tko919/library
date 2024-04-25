@@ -35,7 +35,7 @@ data:
     - icon: ':warning:'
       path: Convolution/convexminplus.hpp
       title: Convex Min Plus Convolution
-    - icon: ':x:'
+    - icon: ':question:'
       path: Convolution/divisor.hpp
       title: Divisor Multiple Transform
     - icon: ':heavy_check_mark:'
@@ -47,13 +47,13 @@ data:
     - icon: ':x:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
-    - icon: ':x:'
+    - icon: ':question:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/relax.hpp
       title: Relaxed Convolution
-    - icon: ':x:'
+    - icon: ':question:'
       path: Convolution/subset.hpp
       title: Subset Convolution
   - name: DataStructure
@@ -67,22 +67,22 @@ data:
     - icon: ':x:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/dequeswag.hpp
       title: Sliding Window Aggregation for deque
     - icon: ':x:'
       path: DataStructure/disjointsparsetable.hpp
       title: Disjoint Sparse Table
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/dualsegtree.hpp
       title: Dual Segment Tree
     - icon: ':warning:'
       path: DataStructure/fastset.hpp
       title: Fast Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/hashmap.hpp
       title: Hash Map
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
     - icon: ':x:'
@@ -139,13 +139,13 @@ data:
     - icon: ':x:'
       path: DataStructure/unionfind.hpp
       title: Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/unionrect.hpp
       title: Area of Union of Rectangles
     - icon: ':x:'
       path: DataStructure/wavelet.hpp
       title: Wavelet Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/weightedunionfind.hpp
       title: Weighted Union Find
   - name: FPS
@@ -171,13 +171,13 @@ data:
     - icon: ':warning:'
       path: FPS/factorize.hpp
       title: Factorize Polynomial
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/famous.hpp
       title: Famous Sequence
     - icon: ':warning:'
       path: FPS/findroots.hpp
       title: Find roots
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/fps.hpp
       title: Formal Power Series (NTT-friendly mod)
     - icon: ':warning:'
@@ -250,7 +250,7 @@ data:
     - icon: ':x:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/blockcut.hpp
       title: Block Cut Tree
     - icon: ':question:'
@@ -262,19 +262,19 @@ data:
     - icon: ':x:'
       path: Graph/contour.hpp
       title: Contour Sum Query
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/cycledetect.hpp
       title: Cycle Detection
     - icon: ':warning:'
       path: Graph/dmdecomp.hpp
       title: DM decomposition
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
     - icon: ':warning:'
       path: Graph/euler.hpp
       title: Eulerian Trail
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/generalweightedmatching.hpp
       title: General Weighted Matching
     - icon: ':x:'
@@ -283,13 +283,13 @@ data:
     - icon: ':x:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/linkcut.hpp
       title: Link-Cut Tree
     - icon: ':x:'
       path: Graph/lowlink.hpp
       title: Lowlink
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/maxflow.hpp
       title: Maximum Flow
     - icon: ':x:'
@@ -318,7 +318,7 @@ data:
     - icon: ':warning:'
       path: Math/bigint.hpp
       title: Big Integer(Float)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/binomquery.hpp
       title: Binomial Coefficient for query
     - icon: ':warning:'
@@ -348,22 +348,22 @@ data:
     - icon: ':warning:'
       path: Math/gaussian.hpp
       title: Gaussian Integer
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/hafnian.hpp
       title: Hafnian of matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
     - icon: ':x:'
       path: Math/linearequation.hpp
       title: Linear Equation
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':question:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':x:'
@@ -432,7 +432,7 @@ data:
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':question:'
@@ -449,28 +449,28 @@ data:
     - icon: ':x:'
       path: Verify/AOJ_1595.test.cpp
       title: Verify/AOJ_1595.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/AOJ_DSL_1_B.test.cpp
       title: Verify/AOJ_DSL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/AOJ_DSL_2_D.test.cpp
       title: Verify/AOJ_DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/AOJ_GRL_6_A.test.cpp
       title: Verify/AOJ_GRL_6_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_area_of_union_of_rectangles.test.cpp
       title: Verify/LC_area_of_union_of_rectangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_associative_array.test.cpp
       title: Verify/LC_associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_bernoulli_number.test.cpp
       title: Verify/LC_bernoulli_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_biconnected_components.test.cpp
       title: Verify/LC_biconnected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_binomial_coefficient.test.cpp
       title: Verify/LC_binomial_coefficient.test.cpp
     - icon: ':x:'
@@ -494,37 +494,37 @@ data:
     - icon: ':x:'
       path: Verify/LC_convolution_mod_1000000007.test.cpp
       title: Verify/LC_convolution_mod_1000000007.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod_2.test.cpp
       title: Verify/LC_convolution_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_counting_primes.test.cpp
       title: Verify/LC_counting_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_cycle_detection.test.cpp
       title: Verify/LC_cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_cycle_detection_undirected.test.cpp
       title: Verify/LC_cycle_detection_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_deque_operate_all_composite.test.cpp
       title: Verify/LC_deque_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_discrete_logarithm_mod.test.cpp
       title: Verify/LC_discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
       title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_cliques.test.cpp
       title: Verify/LC_enumerate_cliques.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_palindromes.test.cpp
       title: Verify/LC_enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_primes.test.cpp
       title: Verify/LC_enumerate_primes.test.cpp
     - icon: ':x:'
@@ -539,19 +539,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_frequency_table_of_tree_distance.test.cpp
       title: Verify/LC_frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_gcd_convolution.test.cpp
       title: Verify/LC_gcd_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_general_weighted_matching.test.cpp
       title: Verify/LC_general_weighted_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_hafnian_of_matrix.test.cpp
       title: Verify/LC_hafnian_of_matrix.test.cpp
     - icon: ':x:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_root_integer.test.cpp
       title: Verify/LC_kth_root_integer.test.cpp
     - icon: ':x:'

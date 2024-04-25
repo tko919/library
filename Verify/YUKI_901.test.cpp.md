@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -185,37 +185,41 @@ data:
     \         dfs(to,v);\r\n        }\r\n    }\r\n    void add(int u,int v){\r\n \
     \       g[u].push_back(v);\r\n        g[v].push_back(u);\r\n    }\r\n};\r\n\r\n\
     /**\r\n * @brief Auxiliary Tree(Virtual Tree)\r\n */\n#line 8 \"Verify/YUKI_901.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n;\r\n    io.read(n);\r\n    AuxiliaryTree\
-    \ g(n);\r\n    LCA lca(n);\r\n    using P=pair<int,int>;\r\n    vector tree(n,vector<P>());\r\
-    \n    rep(_,0,n-1){\r\n        int u,v,w;\r\n        io.read(u,v,w);\r\n     \
-    \   g.add_edge(u,v);\r\n        lca.add_edge(u,v);\r\n        tree[u].push_back({v,w});\r\
-    \n        tree[v].push_back({u,w});\r\n    }\r\n    g.run();\r\n    lca.run();\r\
-    \n\r\n    vector<ll> dep(n);\r\n    auto dfs=[&](auto& dfs,int v,int p)->void{\r\
-    \n        for(auto& [to,w]:tree[v])if(to!=p){\r\n            dep[to]=dep[v]+w;\r\
-    \n            dfs(dfs,to,v);\r\n        }\r\n    };\r\n    dfs(dfs,0,-1);\r\n\
-    \    auto dist=[&](int u,int v)->ll{\r\n        return dep[u]+dep[v]-2*dep[lca.lca(u,v)];\r\
-    \n    };\r\n\r\n    int q;\r\n    io.read(q);\r\n    while(q--){\r\n        int\
-    \ k;\r\n        io.read(k);\r\n        vector<int> vs(k);\r\n        io.read(vs);\r\
-    \n        g.query(vs);\r\n        ll ret=0;\r\n        for(auto& v:vs)for(auto&\
-    \ to:g.g[v])ret+=dist(v,to);\r\n        ret/=2;\r\n        io.write(ret);\r\n\
-    \        g.clear(vs);\r\n    }\r\n    return 0;\r\n}\n"
+    \n\r\nint main() {\r\n    int n;\r\n    read(n);\r\n    AuxiliaryTree g(n);\r\n\
+    \    LCA lca(n);\r\n    using P = pair<int, int>;\r\n    vector tree(n, vector<P>());\r\
+    \n    rep(_, 0, n - 1) {\r\n        int u, v, w;\r\n        read(u, v, w);\r\n\
+    \        g.add_edge(u, v);\r\n        lca.add_edge(u, v);\r\n        tree[u].push_back({v,\
+    \ w});\r\n        tree[v].push_back({u, w});\r\n    }\r\n    g.run();\r\n    lca.run();\r\
+    \n\r\n    vector<ll> dep(n);\r\n    auto dfs = [&](auto &dfs, int v, int p) ->\
+    \ void {\r\n        for (auto &[to, w] : tree[v])\r\n            if (to != p)\
+    \ {\r\n                dep[to] = dep[v] + w;\r\n                dfs(dfs, to, v);\r\
+    \n            }\r\n    };\r\n    dfs(dfs, 0, -1);\r\n    auto dist = [&](int u,\
+    \ int v) -> ll {\r\n        return dep[u] + dep[v] - 2 * dep[lca.lca(u, v)];\r\
+    \n    };\r\n\r\n    int q;\r\n    read(q);\r\n    while (q--) {\r\n        int\
+    \ k;\r\n        read(k);\r\n        vector<int> vs(k);\r\n        read(vs);\r\n\
+    \        g.query(vs);\r\n        ll ret = 0;\r\n        for (auto &v : vs)\r\n\
+    \            for (auto &to : g.g[v])\r\n                ret += dist(v, to);\r\n\
+    \        ret /= 2;\r\n        print(ret);\r\n        g.clear(vs);\r\n    }\r\n\
+    \    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/901\"\r\n\r\n#include\
     \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n#include\
-    \ \"Graph/lca.hpp\"\r\n#include \"Graph/auxiliarytree.hpp\"\r\n\r\nFastIO io;\r\
-    \nint main(){\r\n    int n;\r\n    io.read(n);\r\n    AuxiliaryTree g(n);\r\n\
-    \    LCA lca(n);\r\n    using P=pair<int,int>;\r\n    vector tree(n,vector<P>());\r\
-    \n    rep(_,0,n-1){\r\n        int u,v,w;\r\n        io.read(u,v,w);\r\n     \
-    \   g.add_edge(u,v);\r\n        lca.add_edge(u,v);\r\n        tree[u].push_back({v,w});\r\
-    \n        tree[v].push_back({u,w});\r\n    }\r\n    g.run();\r\n    lca.run();\r\
-    \n\r\n    vector<ll> dep(n);\r\n    auto dfs=[&](auto& dfs,int v,int p)->void{\r\
-    \n        for(auto& [to,w]:tree[v])if(to!=p){\r\n            dep[to]=dep[v]+w;\r\
-    \n            dfs(dfs,to,v);\r\n        }\r\n    };\r\n    dfs(dfs,0,-1);\r\n\
-    \    auto dist=[&](int u,int v)->ll{\r\n        return dep[u]+dep[v]-2*dep[lca.lca(u,v)];\r\
-    \n    };\r\n\r\n    int q;\r\n    io.read(q);\r\n    while(q--){\r\n        int\
-    \ k;\r\n        io.read(k);\r\n        vector<int> vs(k);\r\n        io.read(vs);\r\
-    \n        g.query(vs);\r\n        ll ret=0;\r\n        for(auto& v:vs)for(auto&\
-    \ to:g.g[v])ret+=dist(v,to);\r\n        ret/=2;\r\n        io.write(ret);\r\n\
-    \        g.clear(vs);\r\n    }\r\n    return 0;\r\n}"
+    \ \"Graph/lca.hpp\"\r\n#include \"Graph/auxiliarytree.hpp\"\r\n\r\nint main()\
+    \ {\r\n    int n;\r\n    read(n);\r\n    AuxiliaryTree g(n);\r\n    LCA lca(n);\r\
+    \n    using P = pair<int, int>;\r\n    vector tree(n, vector<P>());\r\n    rep(_,\
+    \ 0, n - 1) {\r\n        int u, v, w;\r\n        read(u, v, w);\r\n        g.add_edge(u,\
+    \ v);\r\n        lca.add_edge(u, v);\r\n        tree[u].push_back({v, w});\r\n\
+    \        tree[v].push_back({u, w});\r\n    }\r\n    g.run();\r\n    lca.run();\r\
+    \n\r\n    vector<ll> dep(n);\r\n    auto dfs = [&](auto &dfs, int v, int p) ->\
+    \ void {\r\n        for (auto &[to, w] : tree[v])\r\n            if (to != p)\
+    \ {\r\n                dep[to] = dep[v] + w;\r\n                dfs(dfs, to, v);\r\
+    \n            }\r\n    };\r\n    dfs(dfs, 0, -1);\r\n    auto dist = [&](int u,\
+    \ int v) -> ll {\r\n        return dep[u] + dep[v] - 2 * dep[lca.lca(u, v)];\r\
+    \n    };\r\n\r\n    int q;\r\n    read(q);\r\n    while (q--) {\r\n        int\
+    \ k;\r\n        read(k);\r\n        vector<int> vs(k);\r\n        read(vs);\r\n\
+    \        g.query(vs);\r\n        ll ret = 0;\r\n        for (auto &v : vs)\r\n\
+    \            for (auto &to : g.g[v])\r\n                ret += dist(v, to);\r\n\
+    \        ret /= 2;\r\n        print(ret);\r\n        g.clear(vs);\r\n    }\r\n\
+    \    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -224,7 +228,7 @@ data:
   isVerificationFile: true
   path: Verify/YUKI_901.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/YUKI_901.test.cpp

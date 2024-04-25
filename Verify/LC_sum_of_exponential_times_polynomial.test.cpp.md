@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':x:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -246,15 +246,15 @@ data:
     \        rep(i, 0, d + 1) ys[i] = (rui[i] - c) * pwr, pwr *= invr;\n        return\
     \ T(r).pow(n) * Interpolate(ys, n) + c;\n    }\n}\n\n/**\n * @brief $\\sum_{k}\
     \ r^k\\cdot poly(k)$\n */\n#line 11 \"Verify/LC_sum_of_exponential_times_polynomial.test.cpp\"\
-    \n\nFastIO io;\nint main(){\n    Fp r;\n    int d;\n    ll n;\n    io.read(r.v,d,n);\n\
-    \n    auto pws=powertable<Fp>(d+1,d);\n    auto ret=SumOfPolyExp(pws,r,n);\n \
-    \   io.write(ret.v);\n    return 0;\n}\n"
+    \n\n\nint main(){\n    Fp r;\n    int d;\n    ll n;\n    read(r.v,d,n);\n\n  \
+    \  auto pws=powertable<Fp>(d+1,d);\n    auto ret=SumOfPolyExp(pws,r,n);\n    print(ret.v);\n\
+    \    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\nusing Fp=fp<998244353>;\n\n#include \"Math/powertable.hpp\"\
-    \n#include \"FPS/sumofpolyexp.hpp\"\n\nFastIO io;\nint main(){\n    Fp r;\n  \
-    \  int d;\n    ll n;\n    io.read(r.v,d,n);\n\n    auto pws=powertable<Fp>(d+1,d);\n\
-    \    auto ret=SumOfPolyExp(pws,r,n);\n    io.write(ret.v);\n    return 0;\n}"
+    \n#include \"FPS/sumofpolyexp.hpp\"\n\n\nint main(){\n    Fp r;\n    int d;\n\
+    \    ll n;\n    read(r.v,d,n);\n\n    auto pws=powertable<Fp>(d+1,d);\n    auto\
+    \ ret=SumOfPolyExp(pws,r,n);\n    print(ret.v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -266,7 +266,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_exponential_times_polynomial.test.cpp

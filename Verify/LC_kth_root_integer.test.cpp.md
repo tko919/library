@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/kthroot.hpp
     title: Kth Root(Integer)
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -152,17 +152,16 @@ data:
     \          n /= 2;\n        }\n        return v;\n    };\n    uint64_t res = pow(a,\
     \ nextafter(1 / double(k), 0));\n    while (power(S{res + 1}, k).v <= a) ++res;\n\
     \    return res;\n}\n\n/**\n * @brief Kth Root(Integer)\n*/\n#line 7 \"Verify/LC_kth_root_integer.test.cpp\"\
-    \nusing ull=unsigned long long;\n\nFastIO io;\nvoid solve(int _rot){\n    // io.write<false>(\"\
-    Case #\"+to_string(_rot)+\": \");\n    ull a,k;\n    io.read(a,k);\n    ull ret=Kthroot(k,a);\n\
-    \    io.write(ret);\n}\n\nint main(){\n    int t;\n    io.read(t);\n    rep(rot,0,t)solve(rot+1);\n\
+    \nusing ull=unsigned long long;\n\nvoid solve(int _rot){\n    // io.write<false>(\"\
+    Case #\"+to_string(_rot)+\": \");\n    ull a,k;\n    read(a,k);\n    ull ret=Kthroot(k,a);\n\
+    \    print(ret);\n}\n\nint main(){\n    int t;\n    read(t);\n    rep(rot,0,t)solve(rot+1);\n\
     \    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n\
     #include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
-    \ \"Math/kthroot.hpp\"\nusing ull=unsigned long long;\n\nFastIO io;\nvoid solve(int\
-    \ _rot){\n    // io.write<false>(\"Case #\"+to_string(_rot)+\": \");\n    ull\
-    \ a,k;\n    io.read(a,k);\n    ull ret=Kthroot(k,a);\n    io.write(ret);\n}\n\n\
-    int main(){\n    int t;\n    io.read(t);\n    rep(rot,0,t)solve(rot+1);\n    return\
-    \ 0;\n}"
+    \ \"Math/kthroot.hpp\"\nusing ull=unsigned long long;\n\nvoid solve(int _rot){\n\
+    \    // io.write<false>(\"Case #\"+to_string(_rot)+\": \");\n    ull a,k;\n  \
+    \  read(a,k);\n    ull ret=Kthroot(k,a);\n    print(ret);\n}\n\nint main(){\n\
+    \    int t;\n    read(t);\n    rep(rot,0,t)solve(rot+1);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -170,8 +169,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_kth_root_integer.test.cpp
 layout: document

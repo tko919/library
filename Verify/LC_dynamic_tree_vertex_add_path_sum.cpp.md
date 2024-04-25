@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/linkcut.hpp
     title: Link-Cut Tree
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -201,18 +201,17 @@ data:
     \    void inverse() {}\n    void merge(Key val, Monoid p, Monoid c) {\n      \
     \  sum = p.sum + c.sum + val;\n    }\n    void add(Monoid v) {}\n    void sub(Monoid\
     \ v) {}\n};\nll f(ll x, ll y) {\n    return x + y;\n}\nusing V = LCT<Monoid, Key,\
-    \ f>::Node *;\n\nFastIO io;\nint main() {\n    int n, q;\n    io.read(n, q);\n\
-    \    LCT<Monoid, Key, f> tree;\n    vector<V> vs(n);\n    rep(i, 0, n) {\n   \
-    \     ll x;\n        io.read(x);\n        vs[i] = tree.make(i, x);\n    }\n  \
-    \  rep(i, 0, n - 1) {\n        int x, y;\n        io.read(x, y);\n        tree.link(vs[x],\
-    \ vs[y]);\n    }\n    while (q--) {\n        int t;\n        io.read(t);\n   \
-    \     if (t == 0) {\n            int x, y;\n            io.read(x, y);\n     \
-    \       tree.cut(vs[x], vs[y]);\n            io.read(x, y);\n            tree.link(vs[x],\
-    \ vs[y]);\n        }\n        if (t == 1) {\n            int v, x;\n         \
-    \   io.read(v, x);\n            tree.update(vs[v], x);\n        }\n        if\
-    \ (t == 2) {\n            int v, p;\n            io.read(v, p);\n            auto\
-    \ ret = tree.query(vs[p], vs[v]);\n            io.write(ret.sum);\n        }\n\
-    \    }\n    return 0;\n}\n"
+    \ f>::Node *;\n\nint main() {\n    int n, q;\n    read(n, q);\n    LCT<Monoid,\
+    \ Key, f> tree;\n    vector<V> vs(n);\n    rep(i, 0, n) {\n        ll x;\n   \
+    \     read(x);\n        vs[i] = tree.make(i, x);\n    }\n    rep(i, 0, n - 1)\
+    \ {\n        int x, y;\n        read(x, y);\n        tree.link(vs[x], vs[y]);\n\
+    \    }\n    while (q--) {\n        int t;\n        read(t);\n        if (t ==\
+    \ 0) {\n            int x, y;\n            read(x, y);\n            tree.cut(vs[x],\
+    \ vs[y]);\n            read(x, y);\n            tree.link(vs[x], vs[y]);\n   \
+    \     }\n        if (t == 1) {\n            int v, x;\n            read(v, x);\n\
+    \            tree.update(vs[v], x);\n        }\n        if (t == 2) {\n      \
+    \      int v, p;\n            read(v, p);\n            auto ret = tree.query(vs[p],\
+    \ vs[v]);\n            print(ret.sum);\n        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM                                                         \
     \       \\\n    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
@@ -220,17 +219,17 @@ data:
     \ Monoid() : sum(0) {}\n    void inverse() {}\n    void merge(Key val, Monoid\
     \ p, Monoid c) {\n        sum = p.sum + c.sum + val;\n    }\n    void add(Monoid\
     \ v) {}\n    void sub(Monoid v) {}\n};\nll f(ll x, ll y) {\n    return x + y;\n\
-    }\nusing V = LCT<Monoid, Key, f>::Node *;\n\nFastIO io;\nint main() {\n    int\
-    \ n, q;\n    io.read(n, q);\n    LCT<Monoid, Key, f> tree;\n    vector<V> vs(n);\n\
-    \    rep(i, 0, n) {\n        ll x;\n        io.read(x);\n        vs[i] = tree.make(i,\
-    \ x);\n    }\n    rep(i, 0, n - 1) {\n        int x, y;\n        io.read(x, y);\n\
-    \        tree.link(vs[x], vs[y]);\n    }\n    while (q--) {\n        int t;\n\
-    \        io.read(t);\n        if (t == 0) {\n            int x, y;\n         \
-    \   io.read(x, y);\n            tree.cut(vs[x], vs[y]);\n            io.read(x,\
-    \ y);\n            tree.link(vs[x], vs[y]);\n        }\n        if (t == 1) {\n\
-    \            int v, x;\n            io.read(v, x);\n            tree.update(vs[v],\
-    \ x);\n        }\n        if (t == 2) {\n            int v, p;\n            io.read(v,\
-    \ p);\n            auto ret = tree.query(vs[p], vs[v]);\n            io.write(ret.sum);\n\
+    }\nusing V = LCT<Monoid, Key, f>::Node *;\n\nint main() {\n    int n, q;\n   \
+    \ read(n, q);\n    LCT<Monoid, Key, f> tree;\n    vector<V> vs(n);\n    rep(i,\
+    \ 0, n) {\n        ll x;\n        read(x);\n        vs[i] = tree.make(i, x);\n\
+    \    }\n    rep(i, 0, n - 1) {\n        int x, y;\n        read(x, y);\n     \
+    \   tree.link(vs[x], vs[y]);\n    }\n    while (q--) {\n        int t;\n     \
+    \   read(t);\n        if (t == 0) {\n            int x, y;\n            read(x,\
+    \ y);\n            tree.cut(vs[x], vs[y]);\n            read(x, y);\n        \
+    \    tree.link(vs[x], vs[y]);\n        }\n        if (t == 1) {\n            int\
+    \ v, x;\n            read(v, x);\n            tree.update(vs[v], x);\n       \
+    \ }\n        if (t == 2) {\n            int v, p;\n            read(v, p);\n \
+    \           auto ret = tree.query(vs[p], vs[v]);\n            print(ret.sum);\n\
     \        }\n    }\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
@@ -239,7 +238,7 @@ data:
   isVerificationFile: false
   path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp

@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -30,7 +30,8 @@ data:
     links:
     - https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
   bundledCode: "#line 1 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
+    \n#define PROBLEM                                                            \
+    \    \\\r\n    \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
     \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
@@ -151,7 +152,7 @@ data:
     \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
     \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
     \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 5 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
+    \ Fast IO\r\n */\n#line 6 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
     \n\r\n#line 2 \"Graph/centroid.hpp\"\n\r\nclass CentroidDecomposition{\r\n   \
     \ void get(int v,int p){\r\n        sz[v]=1;\r\n        for(auto& to:g[v])if(to!=p\
     \ and !used[to]){\r\n            get(to,v);\r\n            sz[v]+=sz[to];\r\n\
@@ -250,36 +251,39 @@ data:
     \  while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\n            if(ret+len<=n\
     \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
     \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Binary Indexed Tree\r\n */\n#line 8 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
-    \n\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n \
-    \   vector<ll> a(n);\r\n    io.read(a);\r\n    ContourQuery buf(n);\r\n    rep(_,0,n-1){\r\
-    \n        int u,v;\r\n        io.read(u,v);\r\n        buf.add_edge(u,v);\r\n\
-    \    }\r\n    auto len=buf.run();\r\n    vector<BIT<ll>> seg(len.size());\r\n\
-    \    rep(i,0,len.size())seg[i]=BIT<ll>(len[i]);\r\n    rep(v,0,n){\r\n       \
-    \ for(auto& [i,p]:buf.point(v))seg[i].add(p,a[v]);\r\n    }\r\n\r\n    while(q--){\r\
-    \n        int t;\r\n        io.read(t);\r\n        if(t==0){\r\n            int\
-    \ v,x;\r\n            io.read(v,x);\r\n            for(auto& [i,p]:buf.point(v))seg[i].add(p,x);\r\
-    \n        }\r\n        else{\r\n            int v,L,R;\r\n            io.read(v,L,R);\r\
-    \n            ll ret=0;\r\n            for(auto& [i,LR]:buf.range(v,L,R)){\r\n\
-    \                auto [lb,rb]=LR;\r\n                ret+=seg[i].sum(lb,rb);\r\
-    \n            }\r\n            io.write(ret);\r\n        }\r\n    }\r\n    return\
-    \ 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
+    \n * @brief Binary Indexed Tree\r\n */\n#line 9 \"Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp\"\
+    \n\r\nint main() {\r\n    int n, q;\r\n    read(n, q);\r\n    vector<ll> a(n);\r\
+    \n    read(a);\r\n    ContourQuery buf(n);\r\n    rep(_, 0, n - 1) {\r\n     \
+    \   int u, v;\r\n        read(u, v);\r\n        buf.add_edge(u, v);\r\n    }\r\
+    \n    auto len = buf.run();\r\n    vector<BIT<ll>> seg(len.size());\r\n    rep(i,\
+    \ 0, len.size()) seg[i] = BIT<ll>(len[i]);\r\n    rep(v, 0, n) {\r\n        for\
+    \ (auto &[i, p] : buf.point(v))\r\n            seg[i].add(p, a[v]);\r\n    }\r\
+    \n\r\n    while (q--) {\r\n        int t;\r\n        read(t);\r\n        if (t\
+    \ == 0) {\r\n            int v, x;\r\n            read(v, x);\r\n            for\
+    \ (auto &[i, p] : buf.point(v))\r\n                seg[i].add(p, x);\r\n     \
+    \   } else {\r\n            int v, L, R;\r\n            read(v, L, R);\r\n   \
+    \         ll ret = 0;\r\n            for (auto &[i, LR] : buf.range(v, L, R))\
+    \ {\r\n                auto [lb, rb] = LR;\r\n                ret += seg[i].sum(lb,\
+    \ rb);\r\n            }\r\n            print(ret);\r\n        }\r\n    }\r\n \
+    \   return 0;\r\n}\n"
+  code: "#define PROBLEM                                                         \
+    \       \\\r\n    \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n\r\n#include \"Graph/contour.hpp\"\r\n#include \"DataStructure/bit.hpp\"\r\n\
-    \r\n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n   \
-    \ vector<ll> a(n);\r\n    io.read(a);\r\n    ContourQuery buf(n);\r\n    rep(_,0,n-1){\r\
-    \n        int u,v;\r\n        io.read(u,v);\r\n        buf.add_edge(u,v);\r\n\
-    \    }\r\n    auto len=buf.run();\r\n    vector<BIT<ll>> seg(len.size());\r\n\
-    \    rep(i,0,len.size())seg[i]=BIT<ll>(len[i]);\r\n    rep(v,0,n){\r\n       \
-    \ for(auto& [i,p]:buf.point(v))seg[i].add(p,a[v]);\r\n    }\r\n\r\n    while(q--){\r\
-    \n        int t;\r\n        io.read(t);\r\n        if(t==0){\r\n            int\
-    \ v,x;\r\n            io.read(v,x);\r\n            for(auto& [i,p]:buf.point(v))seg[i].add(p,x);\r\
-    \n        }\r\n        else{\r\n            int v,L,R;\r\n            io.read(v,L,R);\r\
-    \n            ll ret=0;\r\n            for(auto& [i,LR]:buf.range(v,L,R)){\r\n\
-    \                auto [lb,rb]=LR;\r\n                ret+=seg[i].sum(lb,rb);\r\
-    \n            }\r\n            io.write(ret);\r\n        }\r\n    }\r\n    return\
-    \ 0;\r\n}"
+    \r\nint main() {\r\n    int n, q;\r\n    read(n, q);\r\n    vector<ll> a(n);\r\
+    \n    read(a);\r\n    ContourQuery buf(n);\r\n    rep(_, 0, n - 1) {\r\n     \
+    \   int u, v;\r\n        read(u, v);\r\n        buf.add_edge(u, v);\r\n    }\r\
+    \n    auto len = buf.run();\r\n    vector<BIT<ll>> seg(len.size());\r\n    rep(i,\
+    \ 0, len.size()) seg[i] = BIT<ll>(len[i]);\r\n    rep(v, 0, n) {\r\n        for\
+    \ (auto &[i, p] : buf.point(v))\r\n            seg[i].add(p, a[v]);\r\n    }\r\
+    \n\r\n    while (q--) {\r\n        int t;\r\n        read(t);\r\n        if (t\
+    \ == 0) {\r\n            int v, x;\r\n            read(v, x);\r\n            for\
+    \ (auto &[i, p] : buf.point(v))\r\n                seg[i].add(p, x);\r\n     \
+    \   } else {\r\n            int v, L, R;\r\n            read(v, L, R);\r\n   \
+    \         ll ret = 0;\r\n            for (auto &[i, LR] : buf.range(v, L, R))\
+    \ {\r\n                auto [lb, rb] = LR;\r\n                ret += seg[i].sum(lb,\
+    \ rb);\r\n            }\r\n            print(ret);\r\n        }\r\n    }\r\n \
+    \   return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -290,7 +294,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp

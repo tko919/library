@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []

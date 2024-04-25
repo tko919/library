@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/lazysegtree.hpp
     title: Lazy Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_area_of_union_of_rectangles.test.cpp
     title: Verify/LC_area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Area of Union of Rectangles
     links: []
@@ -111,7 +111,7 @@ data:
   path: DataStructure/unionrect.hpp
   requiredBy: []
   timestamp: '2022-10-24 03:26:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_area_of_union_of_rectangles.test.cpp
 documentation_of: DataStructure/unionrect.hpp

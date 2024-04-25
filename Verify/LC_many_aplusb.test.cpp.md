@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -138,22 +138,20 @@ data:
     \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
     \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
     \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 5 \"Verify/LC_many_aplusb.test.cpp\"\n\r\nint main(){\r\
-    \n    FastIO io;\r\n    int t;\r\n    ll a,b;\r\n    io.read(t);\r\n    while(t--){\r\
-    \n        io.read(a,b);\r\n        io.write(a+b);\r\n    }\r\n    return 0;\r\n\
-    }\n"
+    \ Fast IO\r\n */\n#line 5 \"Verify/LC_many_aplusb.test.cpp\"\n\r\nint main() {\r\
+    \n    int t;\r\n    ll a, b;\r\n    read(t);\r\n    while (t--) {\r\n        read(a,\
+    \ b);\r\n        print(a + b);\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\r\n\r\n#include\
-    \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\nint main(){\r\
-    \n    FastIO io;\r\n    int t;\r\n    ll a,b;\r\n    io.read(t);\r\n    while(t--){\r\
-    \n        io.read(a,b);\r\n        io.write(a+b);\r\n    }\r\n    return 0;\r\n\
-    }"
+    \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\nint main()\
+    \ {\r\n    int t;\r\n    ll a, b;\r\n    read(t);\r\n    while (t--) {\r\n   \
+    \     read(a, b);\r\n        print(a + b);\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
   isVerificationFile: true
   path: Verify/LC_many_aplusb.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_many_aplusb.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -202,26 +202,25 @@ data:
     \    ll res=query_sum(a,b,k*2,l,(l+r)/2)+query_sum(a,b,k*2+1,(l+r)/2,r);\r\n \
     \           return res;\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Segment\
     \ Tree Beats\r\n */\n#line 6 \"Verify/LC_range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<ll>\
-    \ a(n);\r\n    io.read(a);\r\n    Segtreebeats seg(a);\r\n\r\n    int t,L,R;\r\
-    \n    ll x;\r\n    while(q--){\r\n        io.read(t);\r\n        if(t==0){\r\n\
-    \            io.read(L,R,x);\r\n            seg.range_chmin(L,R,x);\r\n      \
-    \  }\r\n        if(t==1){\r\n            io.read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\
-    \n        }   \r\n        if(t==2){\r\n            io.read(L,R,x);\r\n       \
-    \     seg.range_add(L,R,x);\r\n        }\r\n        if(t==3){\r\n            io.read(L,R);\r\
-    \n            io.write(seg.query_sum(L,R));\r\n        }\r\n    }\r\n    return\
-    \ 0;\r\n}\n"
+    \n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\n    vector<ll> a(n);\r\n\
+    \    read(a);\r\n    Segtreebeats seg(a);\r\n\r\n    int t,L,R;\r\n    ll x;\r\
+    \n    while(q--){\r\n        read(t);\r\n        if(t==0){\r\n            read(L,R,x);\r\
+    \n            seg.range_chmin(L,R,x);\r\n        }\r\n        if(t==1){\r\n  \
+    \          read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\n        }  \
+    \ \r\n        if(t==2){\r\n            read(L,R,x);\r\n            seg.range_add(L,R,x);\r\
+    \n        }\r\n        if(t==3){\r\n            read(L,R);\r\n            print(seg.query_sum(L,R));\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n#include \"DataStructure/segtreebeats.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\
-    \n    int n,q;\r\n    io.read(n,q);\r\n    vector<ll> a(n);\r\n    io.read(a);\r\
-    \n    Segtreebeats seg(a);\r\n\r\n    int t,L,R;\r\n    ll x;\r\n    while(q--){\r\
-    \n        io.read(t);\r\n        if(t==0){\r\n            io.read(L,R,x);\r\n\
-    \            seg.range_chmin(L,R,x);\r\n        }\r\n        if(t==1){\r\n   \
-    \         io.read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\n        }\
-    \   \r\n        if(t==2){\r\n            io.read(L,R,x);\r\n            seg.range_add(L,R,x);\r\
-    \n        }\r\n        if(t==3){\r\n            io.read(L,R);\r\n            io.write(seg.query_sum(L,R));\r\
-    \n        }\r\n    }\r\n    return 0;\r\n}"
+    \n#include \"DataStructure/segtreebeats.hpp\"\r\n\r\nint main(){\r\n    int n,q;\r\
+    \n    read(n,q);\r\n    vector<ll> a(n);\r\n    read(a);\r\n    Segtreebeats seg(a);\r\
+    \n\r\n    int t,L,R;\r\n    ll x;\r\n    while(q--){\r\n        read(t);\r\n \
+    \       if(t==0){\r\n            read(L,R,x);\r\n            seg.range_chmin(L,R,x);\r\
+    \n        }\r\n        if(t==1){\r\n            read(L,R,x);\r\n            seg.range_chmax(L,R,x);\r\
+    \n        }   \r\n        if(t==2){\r\n            read(L,R,x);\r\n          \
+    \  seg.range_add(L,R,x);\r\n        }\r\n        if(t==3){\r\n            read(L,R);\r\
+    \n            print(seg.query_sum(L,R));\r\n        }\r\n    }\r\n    return 0;\r\
+    \n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -229,7 +228,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp

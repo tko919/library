@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -176,15 +176,15 @@ data:
     \       if(a<0 or b<j)return 0;\r\n        if(b==p-1 and j==0)return nCr(a,i-1);\r\
     \n        else return (nCr(a,i)*S[b][j])%ip;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
     \ Stirling Number for query\r\n */\n#line 7 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery\
-    \ buf(p);\r\n    while(T--){\r\n        ll n,k;\r\n        io.read(n,k);\r\n \
-    \       io.write(buf.FirstKind(n,k));\r\n    }\r\n    return 0;\r\n}\n"
+    \n\r\nint main(){\r\n    int T,p;\r\n    read(T,p);\r\n    StirlingNumberQuery\
+    \ buf(p);\r\n    while(T--){\r\n        ll n,k;\r\n        read(n,k);\r\n    \
+    \    print(buf.FirstKind(n,k));\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n\r\n#include \"Math/stirlingquery.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n\
-    \    int T,p;\r\n    io.read(T,p);\r\n    StirlingNumberQuery buf(p);\r\n    while(T--){\r\
-    \n        ll n,k;\r\n        io.read(n,k);\r\n        io.write(buf.FirstKind(n,k));\r\
-    \n    }\r\n    return 0;\r\n}"
+    \n\r\n#include \"Math/stirlingquery.hpp\"\r\n\r\nint main(){\r\n    int T,p;\r\
+    \n    read(T,p);\r\n    StirlingNumberQuery buf(p);\r\n    while(T--){\r\n   \
+    \     ll n,k;\r\n        read(n,k);\r\n        print(buf.FirstKind(n,k));\r\n\
+    \    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -193,7 +193,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp

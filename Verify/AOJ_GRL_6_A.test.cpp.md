@@ -1,26 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/maxflow.hpp
     title: Maximum Flow
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
-  bundledCode: "#line 1 \"Verify/AOJ_GRL_6_A.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
+  bundledCode: "#line 1 \"Verify/AOJ_GRL_6_A.test.cpp\"\n#define PROBLEM         \
+    \                                                       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
     \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
@@ -169,17 +170,18 @@ data:
     \ ll run(int s, int t) {\r\n        ll ret = 0, f;\r\n        while (bfs(s), level[t]\
     \ >= 0) {\r\n            itr.assign(V, 0);\r\n            while ((f = dfs(s, t,\
     \ INF)) > 0)\r\n                ret += f;\r\n        }\r\n        return ret;\r\
-    \n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Flow\r\n */\n#line 6 \"Verify/AOJ_GRL_6_A.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\n    MaxFlow\
-    \ mf(n);\r\n    rep(i,0,m){\r\n        int x,y,w;\r\n        io.read(x,y,w);\r\
-    \n        mf.add_edge(x,y,w);\r\n    }\r\n    auto ret=mf.run(0,n-1);\r\n    io.write(ret);\r\
-    \n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
+    \n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Flow\r\n */\n#line 7 \"Verify/AOJ_GRL_6_A.test.cpp\"\
+    \n\r\nint main() {\r\n    int n, m;\r\n    read(n, m);\r\n    MaxFlow mf(n);\r\
+    \n    rep(i, 0, m) {\r\n        int x, y, w;\r\n        read(x, y, w);\r\n   \
+    \     mf.add_edge(x, y, w);\r\n    }\r\n    auto ret = mf.run(0, n - 1);\r\n \
+    \   print(ret);\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM                                                         \
+    \       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n#include \"Graph/maxflow.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\
-    \n    io.read(n,m);\r\n    MaxFlow mf(n);\r\n    rep(i,0,m){\r\n        int x,y,w;\r\
-    \n        io.read(x,y,w);\r\n        mf.add_edge(x,y,w);\r\n    }\r\n    auto\
-    \ ret=mf.run(0,n-1);\r\n    io.write(ret);\r\n    return 0;\r\n}"
+    \n#include \"Graph/maxflow.hpp\"\r\n\r\nint main() {\r\n    int n, m;\r\n    read(n,\
+    \ m);\r\n    MaxFlow mf(n);\r\n    rep(i, 0, m) {\r\n        int x, y, w;\r\n\
+    \        read(x, y, w);\r\n        mf.add_edge(x, y, w);\r\n    }\r\n    auto\
+    \ ret = mf.run(0, n - 1);\r\n    print(ret);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -187,8 +189,8 @@ data:
   isVerificationFile: true
   path: Verify/AOJ_GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/AOJ_GRL_6_A.test.cpp
 layout: document

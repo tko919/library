@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

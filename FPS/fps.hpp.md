@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':x:'
@@ -59,7 +59,7 @@ data:
     title: Verify/YUKI_2097.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Formal Power Series (NTT-friendly mod)
     links: []
@@ -306,7 +306,7 @@ data:
   path: FPS/fps.hpp
   requiredBy: []
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
   - Verify/LC_inv_of_formal_power_series.test.cpp

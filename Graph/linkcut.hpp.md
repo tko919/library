@@ -6,15 +6,15 @@ data:
     path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
     title: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
     title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Link-Cut Tree
     links: []
@@ -133,7 +133,7 @@ data:
   requiredBy:
   - Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
   timestamp: '2024-01-18 04:47:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
   - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp

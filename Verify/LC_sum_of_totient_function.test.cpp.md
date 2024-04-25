@@ -4,13 +4,13 @@ data:
   - icon: ':x:'
     path: Math/dirichlet.hpp
     title: Dirichlet series
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -191,7 +191,7 @@ data:
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
     \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
     \n/**\r\n * @brief Modint\r\n */\n#line 7 \"Verify/LC_sum_of_totient_function.test.cpp\"\
-    \nusing Fp=fp<998244353>;\r\n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename\
+    \nusing Fp = fp<998244353>;\r\n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename\
     \ T,bool multi,unsigned L=1010101010>struct Dirichlet{\r\n    ll N,P,Q;\r\n  \
     \  vector<T> a,rui,A;\r\n    vector<ll> ps;\r\n    bool done=0;\r\n    Dirichlet(ll\
     \ n):N(n),P(min<ll>(L,cbrt(n)*cbrt(n))),Q((n+P-1)/P),\r\n        a(P+1),rui(P+1),A(Q+1),done(0){}\r\
@@ -238,21 +238,22 @@ data:
     \          t>>=1;\r\n        }\r\n        return res;\r\n    }\r\n    const T&\
     \ operator[](ll x){\r\n        assert(done);\r\n        if(x<=P)return rui[x];\r\
     \n        else return A[N/x];\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Dirichlet\
-    \ series\r\n */\n#line 9 \"Verify/LC_sum_of_totient_function.test.cpp\"\n\r\n\r\
-    \nFastIO io;\r\nint main(){\r\n    ll n;\r\n    io.read(n);\r\n    \r\n    Dirichlet<Fp,1>\
-    \ phi(n),one(n);\r\n    rep(d,1,phi.P+1)phi.a[d]=d;\r\n    rep(d,1,phi.Q+1){\r\
-    \n        Fp x=n/d;\r\n        phi.A[d]=x*(x+1)/2;\r\n    }\r\n    rep(d,1,one.P+1)one.a[d]=1;\r\
-    \n    rep(d,1,one.Q+1)one.A[d]=n/d;\r\n    phi.ruith();\r\n    one.ruith();\r\n\
-    \    \r\n    phi=phi/one;\r\n    cout<<phi[n]<<'\\n';\r\n    return 0;\r\n}\n"
+    \ series\r\n */\n#line 9 \"Verify/LC_sum_of_totient_function.test.cpp\"\n\r\n\
+    int main() {\r\n    ll n;\r\n    read(n);\r\n\r\n    Dirichlet<Fp, 1> phi(n),\
+    \ one(n);\r\n    rep(d, 1, phi.P + 1) phi.a[d] = d;\r\n    rep(d, 1, phi.Q + 1)\
+    \ {\r\n        Fp x = n / d;\r\n        phi.A[d] = x * (x + 1) / 2;\r\n    }\r\
+    \n    rep(d, 1, one.P + 1) one.a[d] = 1;\r\n    rep(d, 1, one.Q + 1) one.A[d]\
+    \ = n / d;\r\n    phi.ruith();\r\n    one.ruith();\r\n\r\n    phi = phi / one;\r\
+    \n    cout << phi[n] << '\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n\r\n#include \"Math/modint.hpp\"\r\nusing Fp=fp<998244353>;\r\n#include \"Math/dirichlet.hpp\"\
-    \r\n\r\n\r\nFastIO io;\r\nint main(){\r\n    ll n;\r\n    io.read(n);\r\n    \r\
-    \n    Dirichlet<Fp,1> phi(n),one(n);\r\n    rep(d,1,phi.P+1)phi.a[d]=d;\r\n  \
-    \  rep(d,1,phi.Q+1){\r\n        Fp x=n/d;\r\n        phi.A[d]=x*(x+1)/2;\r\n \
-    \   }\r\n    rep(d,1,one.P+1)one.a[d]=1;\r\n    rep(d,1,one.Q+1)one.A[d]=n/d;\r\
-    \n    phi.ruith();\r\n    one.ruith();\r\n    \r\n    phi=phi/one;\r\n    cout<<phi[n]<<'\\\
-    n';\r\n    return 0;\r\n}"
+    \n\r\n#include \"Math/modint.hpp\"\r\nusing Fp = fp<998244353>;\r\n#include \"\
+    Math/dirichlet.hpp\"\r\n\r\nint main() {\r\n    ll n;\r\n    read(n);\r\n\r\n\
+    \    Dirichlet<Fp, 1> phi(n), one(n);\r\n    rep(d, 1, phi.P + 1) phi.a[d] = d;\r\
+    \n    rep(d, 1, phi.Q + 1) {\r\n        Fp x = n / d;\r\n        phi.A[d] = x\
+    \ * (x + 1) / 2;\r\n    }\r\n    rep(d, 1, one.P + 1) one.a[d] = 1;\r\n    rep(d,\
+    \ 1, one.Q + 1) one.A[d] = n / d;\r\n    phi.ruith();\r\n    one.ruith();\r\n\r\
+    \n    phi = phi / one;\r\n    cout << phi[n] << '\\n';\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -261,7 +262,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_totient_function.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_totient_function.test.cpp

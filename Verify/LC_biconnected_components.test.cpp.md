@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/blockcut.hpp
     title: Block Cut Tree
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
@@ -165,20 +165,19 @@ data:
     \                   nxt++;\n                    }\n                } else {\n\
     \                    chmin(low[v], ord[to]);\n                }\n            }\n\
     \    }\n};\n\n/**\n * @brief Block Cut Tree\n */\n#line 7 \"Verify/LC_biconnected_components.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main() {\r\n    int n, m;\r\n    io.read(n, m);\r\n  \
-    \  BlockCut buf(n);\r\n    rep(_, 0, m) {\r\n        int u, v;\r\n        io.read(u,\
-    \ v);\r\n        buf.add_edge(u, v);\r\n    }\r\n\r\n    auto ret = buf.run();\r\
-    \n    int k = SZ(ret) - n;\r\n    io.write(k);\r\n    rep(i, 0, k) {\r\n     \
-    \   io.write(SZ(ret[i + n]));\r\n        io.write(ret[i + n]);\r\n    }\r\n  \
-    \  return 0;\r\n}\n"
+    \n\r\nint main() {\r\n    int n, m;\r\n    read(n, m);\r\n    BlockCut buf(n);\r\
+    \n    rep(_, 0, m) {\r\n        int u, v;\r\n        read(u, v);\r\n        buf.add_edge(u,\
+    \ v);\r\n    }\r\n\r\n    auto ret = buf.run();\r\n    int k = SZ(ret) - n;\r\n\
+    \    print(k);\r\n    rep(i, 0, k) {\r\n        print(SZ(ret[i + n]));\r\n   \
+    \     print(ret[i + n]);\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n\r\n#include \"Graph/blockcut.hpp\"\r\n\r\nFastIO io;\r\nint main() {\r\n  \
-    \  int n, m;\r\n    io.read(n, m);\r\n    BlockCut buf(n);\r\n    rep(_, 0, m)\
-    \ {\r\n        int u, v;\r\n        io.read(u, v);\r\n        buf.add_edge(u,\
-    \ v);\r\n    }\r\n\r\n    auto ret = buf.run();\r\n    int k = SZ(ret) - n;\r\n\
-    \    io.write(k);\r\n    rep(i, 0, k) {\r\n        io.write(SZ(ret[i + n]));\r\
-    \n        io.write(ret[i + n]);\r\n    }\r\n    return 0;\r\n}"
+    \n\r\n#include \"Graph/blockcut.hpp\"\r\n\r\nint main() {\r\n    int n, m;\r\n\
+    \    read(n, m);\r\n    BlockCut buf(n);\r\n    rep(_, 0, m) {\r\n        int\
+    \ u, v;\r\n        read(u, v);\r\n        buf.add_edge(u, v);\r\n    }\r\n\r\n\
+    \    auto ret = buf.run();\r\n    int k = SZ(ret) - n;\r\n    print(k);\r\n  \
+    \  rep(i, 0, k) {\r\n        print(SZ(ret[i + n]));\r\n        print(ret[i + n]);\r\
+    \n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -186,8 +185,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_biconnected_components.test.cpp
 layout: document

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':x:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   - icon: ':question:'
@@ -631,23 +631,23 @@ data:
     \            na=MultievalGeomSeq(na,T(1),iw,a[x]);\n            rep(j,0,a[x])f[i+offset*j]=na[j];\n\
     \        }\n        offset*=a[x];\n    }\n    T ninv=T(n).inv();\n    rep(i,0,n)f[i]*=ninv;\n\
     \    return f;\n}\n\n/**\n * @brief Multivarate Convolution Cyclic\n*/\n#line\
-    \ 15 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\n\nFastIO io;\nint\
-    \ main() {\n    int p, k;\n    io.read(p, k);\n    Fp::set_mod(p);\n    vector<int>\
-    \ a(k);\n    io.read(a);\n    int n = 1;\n    for (auto &x : a)\n        n *=\
-    \ x;\n    vector<Fp> f(n), g(n);\n    rep(i, 0, n) io.read(f[i].v);\n    rep(i,\
-    \ 0, n) io.read(g[i].v);\n\n    auto ret = MultivariateCyclic(f, g, a);\n    rep(i,\
-    \ 0, n) io.write(ret[i].v);\n    return 0;\n}\n"
+    \ 15 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\n\nint main() {\n\
+    \    int p, k;\n    read(p, k);\n    Fp::set_mod(p);\n    vector<int> a(k);\n\
+    \    read(a);\n    int n = 1;\n    for (auto &x : a)\n        n *= x;\n    vector<Fp>\
+    \ f(n), g(n);\n    rep(i, 0, n) read(f[i].v);\n    rep(i, 0, n) read(g[i].v);\n\
+    \n    auto ret = MultivariateCyclic(f, g, a);\n    rep(i, 0, n) print(ret[i].v);\n\
+    \    return 0;\n}\n"
   code: "#define PROBLEM                                                         \
     \       \\\n    \"https://judge.yosupo.jp/problem/multivariate_convolution_cyclic\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/dynamic.hpp\"\n#include \"Convolution/arbitrary.hpp\"\n#include \"FPS/arbitraryfps.hpp\"\
     \ntemplate <>\nvector<Fp> Poly<Fp>::mult(const vector<Fp> &a, const vector<Fp>\
     \ &b) const {\n    return ArbitraryMult<Fp>(a, b);\n}\n#include \"Convolution/multivariatecyclic.hpp\"\
-    \n\nFastIO io;\nint main() {\n    int p, k;\n    io.read(p, k);\n    Fp::set_mod(p);\n\
-    \    vector<int> a(k);\n    io.read(a);\n    int n = 1;\n    for (auto &x : a)\n\
-    \        n *= x;\n    vector<Fp> f(n), g(n);\n    rep(i, 0, n) io.read(f[i].v);\n\
-    \    rep(i, 0, n) io.read(g[i].v);\n\n    auto ret = MultivariateCyclic(f, g,\
-    \ a);\n    rep(i, 0, n) io.write(ret[i].v);\n    return 0;\n}\n"
+    \n\nint main() {\n    int p, k;\n    read(p, k);\n    Fp::set_mod(p);\n    vector<int>\
+    \ a(k);\n    read(a);\n    int n = 1;\n    for (auto &x : a)\n        n *= x;\n\
+    \    vector<Fp> f(n), g(n);\n    rep(i, 0, n) read(f[i].v);\n    rep(i, 0, n)\
+    \ read(g[i].v);\n\n    auto ret = MultivariateCyclic(f, g, a);\n    rep(i, 0,\
+    \ n) print(ret[i].v);\n    return 0;\n}\n"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -666,7 +666,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp

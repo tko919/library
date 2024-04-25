@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/enumcliques.hpp
     title: Enumerate Cliques
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
@@ -216,21 +216,21 @@ data:
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
     \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
     \n/**\r\n * @brief Modint\r\n */\n#line 8 \"Verify/LC_enumerate_cliques.test.cpp\"\
-    \nusing Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n\
-    \    io.read(n,m);\r\n    vector<int> x(n);\r\n    io.read(x);\r\n    EnumCliques\
-    \ g(n);\r\n    rep(_,0,m){\r\n        int u,v;\r\n        io.read(u,v);\r\n  \
-    \      g.add_edge(u,v);\r\n    }\r\n    auto cs=g.run();\r\n    Fp res;\r\n  \
-    \  for(auto& clique:cs){\r\n        Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\
-    \n        res+=add;\r\n    }\r\n    io.write(res.v);\r\n    return 0;\r\n}\n"
+    \nusing Fp=fp<998244353>;\r\n\r\nint main(){\r\n    int n,m;\r\n    read(n,m);\r\
+    \n    vector<int> x(n);\r\n    read(x);\r\n    EnumCliques g(n);\r\n    rep(_,0,m){\r\
+    \n        int u,v;\r\n        read(u,v);\r\n        g.add_edge(u,v);\r\n    }\r\
+    \n    auto cs=g.run();\r\n    Fp res;\r\n    for(auto& clique:cs){\r\n       \
+    \ Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\n\
+    \    }\r\n    print(res.v);\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\r\n\
     \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\
     \n#include \"Graph/enumcliques.hpp\"\r\n#include \"Math/modint.hpp\"\r\nusing\
-    \ Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,m;\r\n    io.read(n,m);\r\
-    \n    vector<int> x(n);\r\n    io.read(x);\r\n    EnumCliques g(n);\r\n    rep(_,0,m){\r\
-    \n        int u,v;\r\n        io.read(u,v);\r\n        g.add_edge(u,v);\r\n  \
-    \  }\r\n    auto cs=g.run();\r\n    Fp res;\r\n    for(auto& clique:cs){\r\n \
-    \       Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\
-    \n    }\r\n    io.write(res.v);\r\n    return 0;\r\n}"
+    \ Fp=fp<998244353>;\r\n\r\nint main(){\r\n    int n,m;\r\n    read(n,m);\r\n \
+    \   vector<int> x(n);\r\n    read(x);\r\n    EnumCliques g(n);\r\n    rep(_,0,m){\r\
+    \n        int u,v;\r\n        read(u,v);\r\n        g.add_edge(u,v);\r\n    }\r\
+    \n    auto cs=g.run();\r\n    Fp res;\r\n    for(auto& clique:cs){\r\n       \
+    \ Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\n\
+    \    }\r\n    print(res.v);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -239,8 +239,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_enumerate_cliques.test.cpp
 layout: document

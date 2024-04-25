@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -240,16 +240,16 @@ data:
     \ chij<n and chi[chij]!=inf and chi[chij]>=chii)res[chij]=chi[chij];\r\n     \
     \       if(cloi==chii and cloj==chij)res[cloj]=cloi;\r\n        }\r\n        return\
     \ res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Range LIS Query\r\n */\n#line 6\
-    \ \"Verify/LC_static_range_lis_query.test.cpp\"\n\r\nFastIO io;\r\nint main(){\r\
-    \n    int n,q;\r\n    io.read(n,q);\r\n    vector<int> p(n);\r\n    io.read(p);\r\
-    \n\r\n    RangeLIS buf(p);\r\n    while(q--){\r\n        int L,R;\r\n        io.read(L,R);\r\
-    \n        io.write(buf.query(L,R));\r\n    }\r\n    return 0;\r\n}\n"
+    \ \"Verify/LC_static_range_lis_query.test.cpp\"\n\r\nint main(){\r\n    int n,q;\r\
+    \n    read(n,q);\r\n    vector<int> p(n);\r\n    read(p);\r\n\r\n    RangeLIS\
+    \ buf(p);\r\n    while(q--){\r\n        int L,R;\r\n        read(L,R);\r\n   \
+    \     print(buf.query(L,R));\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_lis_query\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n#include \"DataStructure/rangelis.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n\
-    \    int n,q;\r\n    io.read(n,q);\r\n    vector<int> p(n);\r\n    io.read(p);\r\
-    \n\r\n    RangeLIS buf(p);\r\n    while(q--){\r\n        int L,R;\r\n        io.read(L,R);\r\
-    \n        io.write(buf.query(L,R));\r\n    }\r\n    return 0;\r\n}"
+    \n#include \"DataStructure/rangelis.hpp\"\r\n\r\nint main(){\r\n    int n,q;\r\
+    \n    read(n,q);\r\n    vector<int> p(n);\r\n    read(p);\r\n\r\n    RangeLIS\
+    \ buf(p);\r\n    while(q--){\r\n        int L,R;\r\n        read(L,R);\r\n   \
+    \     print(buf.query(L,R));\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -258,7 +258,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_lis_query.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_static_range_lis_query.test.cpp

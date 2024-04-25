@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/dequeswag.hpp
     title: Sliding Window Aggregation for deque
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/deque_operate_all_composite
@@ -215,29 +215,28 @@ data:
     \n        bsum.pop_back();\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Sliding Window\
     \ Aggregation for deque\r\n */\n#line 8 \"Verify/LC_deque_operate_all_composite.test.cpp\"\
     \n\r\nusing Fp=fp<998244353>;\r\nusing P=pair<Fp,Fp>;\r\nP f(P a,P b){return {a.first*b.first,a.second*b.first+b.second};}\r\
-    \nP e0(){return {1,0};}\r\n\r\nFastIO io;\r\nint main(){\r\n    int Q;\r\n   \
-    \ io.read(Q);\r\n    SWAGdeque<P,f,e0> swag;\r\n    while(Q--){\r\n        int\
-    \ t;\r\n        io.read(t);\r\n        if(t==0){\r\n            int a,b;\r\n \
-    \           io.read(a,b);\r\n            swag.push_front({a,b});\r\n        }\r\
-    \n        if(t==1){\r\n            int a,b;\r\n            io.read(a,b);\r\n \
-    \           swag.push_back({a,b});\r\n        }\r\n        if(t==2)swag.pop_front();\r\
-    \n        if(t==3)swag.pop_back();\r\n        if(t==4){\r\n            int x;\r\
-    \n            io.read(x);\r\n            auto [p,q]=swag.fold();\r\n         \
-    \   io.write((p*x+q).v);\r\n        }\r\n    }\r\n    return 0;\r\n}\r\n"
+    \nP e0(){return {1,0};}\r\n\r\nint main(){\r\n    int Q;\r\n    read(Q);\r\n \
+    \   SWAGdeque<P,f,e0> swag;\r\n    while(Q--){\r\n        int t;\r\n        read(t);\r\
+    \n        if(t==0){\r\n            int a,b;\r\n            read(a,b);\r\n    \
+    \        swag.push_front({a,b});\r\n        }\r\n        if(t==1){\r\n       \
+    \     int a,b;\r\n            read(a,b);\r\n            swag.push_back({a,b});\r\
+    \n        }\r\n        if(t==2)swag.pop_front();\r\n        if(t==3)swag.pop_back();\r\
+    \n        if(t==4){\r\n            int x;\r\n            read(x);\r\n        \
+    \    auto [p,q]=swag.fold();\r\n            print((p*x+q).v);\r\n        }\r\n\
+    \    }\r\n    return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n\r\n#include \"Math/modint.hpp\"\r\n#include \"DataStructure/dequeswag.hpp\"\
     \r\n\r\nusing Fp=fp<998244353>;\r\nusing P=pair<Fp,Fp>;\r\nP f(P a,P b){return\
     \ {a.first*b.first,a.second*b.first+b.second};}\r\nP e0(){return {1,0};}\r\n\r\
-    \nFastIO io;\r\nint main(){\r\n    int Q;\r\n    io.read(Q);\r\n    SWAGdeque<P,f,e0>\
-    \ swag;\r\n    while(Q--){\r\n        int t;\r\n        io.read(t);\r\n      \
-    \  if(t==0){\r\n            int a,b;\r\n            io.read(a,b);\r\n        \
-    \    swag.push_front({a,b});\r\n        }\r\n        if(t==1){\r\n           \
-    \ int a,b;\r\n            io.read(a,b);\r\n            swag.push_back({a,b});\r\
-    \n        }\r\n        if(t==2)swag.pop_front();\r\n        if(t==3)swag.pop_back();\r\
-    \n        if(t==4){\r\n            int x;\r\n            io.read(x);\r\n     \
-    \       auto [p,q]=swag.fold();\r\n            io.write((p*x+q).v);\r\n      \
-    \  }\r\n    }\r\n    return 0;\r\n}\r\n"
+    \nint main(){\r\n    int Q;\r\n    read(Q);\r\n    SWAGdeque<P,f,e0> swag;\r\n\
+    \    while(Q--){\r\n        int t;\r\n        read(t);\r\n        if(t==0){\r\n\
+    \            int a,b;\r\n            read(a,b);\r\n            swag.push_front({a,b});\r\
+    \n        }\r\n        if(t==1){\r\n            int a,b;\r\n            read(a,b);\r\
+    \n            swag.push_back({a,b});\r\n        }\r\n        if(t==2)swag.pop_front();\r\
+    \n        if(t==3)swag.pop_back();\r\n        if(t==4){\r\n            int x;\r\
+    \n            read(x);\r\n            auto [p,q]=swag.fold();\r\n            print((p*x+q).v);\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}\r\n"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -246,8 +245,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_deque_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_deque_operate_all_composite.test.cpp
 layout: document

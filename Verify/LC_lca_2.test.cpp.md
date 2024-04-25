@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -158,18 +158,18 @@ data:
     \            dfs(to,v);\r\n            euler.push_back(v);\r\n        }\r\n  \
     \  }\r\n    int op(int u,int v){\r\n        if(depth[u]<depth[v])return u;\r\n\
     \        else return v;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Lowest Common Ancestor\r\
-    \n */\n#line 7 \"Verify/LC_lca_2.test.cpp\"\n\r\nFastIO io;\r\nint main(){\r\n\
-    \    int n,q;\r\n    io.read(n,q);\r\n    LCA lca(n);\r\n    rep(i,1,n){\r\n \
-    \       int p;\r\n        io.read(p);\r\n        lca.add_edge(p,i);\r\n    }\r\
-    \n    lca.run();\r\n    while(q--){\r\n        int u,v;\r\n        io.read(u,v);\r\
-    \n        io.write(lca.lca(u,v));\r\n    }\r\n    return 0;\r\n}\n"
+    \n */\n#line 7 \"Verify/LC_lca_2.test.cpp\"\n\r\nint main(){\r\n    int n,q;\r\
+    \n    read(n,q);\r\n    LCA lca(n);\r\n    rep(i,1,n){\r\n        int p;\r\n \
+    \       read(p);\r\n        lca.add_edge(p,i);\r\n    }\r\n    lca.run();\r\n\
+    \    while(q--){\r\n        int u,v;\r\n        read(u,v);\r\n        print(lca.lca(u,v));\r\
+    \n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\r\n\r\n#include \"\
     Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n#include \"\
-    Graph/lca.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\
-    \n    LCA lca(n);\r\n    rep(i,1,n){\r\n        int p;\r\n        io.read(p);\r\
-    \n        lca.add_edge(p,i);\r\n    }\r\n    lca.run();\r\n    while(q--){\r\n\
-    \        int u,v;\r\n        io.read(u,v);\r\n        io.write(lca.lca(u,v));\r\
-    \n    }\r\n    return 0;\r\n}"
+    Graph/lca.hpp\"\r\n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\n    LCA\
+    \ lca(n);\r\n    rep(i,1,n){\r\n        int p;\r\n        read(p);\r\n       \
+    \ lca.add_edge(p,i);\r\n    }\r\n    lca.run();\r\n    while(q--){\r\n       \
+    \ int u,v;\r\n        read(u,v);\r\n        print(lca.lca(u,v));\r\n    }\r\n\
+    \    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -177,7 +177,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_lca_2.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_lca_2.test.cpp

@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -165,22 +165,21 @@ data:
     \        return true;\r\n    }\r\n    bool same(int x,int y){return root(x)==root(y);}\r\
     \n    int size(int a){return -dat.get(root(a));}\r\n};\r\n\r\n/**\r\n * @brief\
     \ Persistent Union Find\r\n */\n#line 6 \"Verify/LC_persistent_unionfind.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<PersistentUnionFind>\
+    \n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\n    vector<PersistentUnionFind>\
     \ buf;\r\n    buf.push_back(PersistentUnionFind(n));\r\n    while(q--){\r\n  \
-    \      int t,k,u,v;\r\n        io.read(t,k,u,v);\r\n        k++;\r\n        if(t==0){\r\
+    \      int t,k,u,v;\r\n        read(t,k,u,v);\r\n        k++;\r\n        if(t==0){\r\
     \n            buf.push_back(buf[k]);\r\n            buf.back().unite(u,v);\r\n\
     \        }\r\n        else{\r\n            buf.push_back(buf[k]);\r\n        \
-    \    io.write((int)buf.back().same(u,v));\r\n        }\r\n    }\r\n    return\
-    \ 0;\r\n}\n"
+    \    print((int)buf.back().same(u,v));\r\n        }\r\n    }\r\n    return 0;\r\
+    \n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\
     \n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
-    #include \"DataStructure/persistentunionfind.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\
-    \n    int n,q;\r\n    io.read(n,q);\r\n    vector<PersistentUnionFind> buf;\r\n\
-    \    buf.push_back(PersistentUnionFind(n));\r\n    while(q--){\r\n        int\
-    \ t,k,u,v;\r\n        io.read(t,k,u,v);\r\n        k++;\r\n        if(t==0){\r\
-    \n            buf.push_back(buf[k]);\r\n            buf.back().unite(u,v);\r\n\
-    \        }\r\n        else{\r\n            buf.push_back(buf[k]);\r\n        \
-    \    io.write((int)buf.back().same(u,v));\r\n        }\r\n    }\r\n    return\
+    #include \"DataStructure/persistentunionfind.hpp\"\r\n\r\nint main(){\r\n    int\
+    \ n,q;\r\n    read(n,q);\r\n    vector<PersistentUnionFind> buf;\r\n    buf.push_back(PersistentUnionFind(n));\r\
+    \n    while(q--){\r\n        int t,k,u,v;\r\n        read(t,k,u,v);\r\n      \
+    \  k++;\r\n        if(t==0){\r\n            buf.push_back(buf[k]);\r\n       \
+    \     buf.back().unite(u,v);\r\n        }\r\n        else{\r\n            buf.push_back(buf[k]);\r\
+    \n            print((int)buf.back().same(u,v));\r\n        }\r\n    }\r\n    return\
     \ 0;\r\n}"
   dependsOn:
   - Template/template.hpp
@@ -190,7 +189,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_persistent_unionfind.test.cpp

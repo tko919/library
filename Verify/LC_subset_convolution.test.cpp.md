@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -250,19 +250,18 @@ data:
     \ (i + j < m) {\r\n            f[i + j] += coe[i] * g[j];\r\n        }\r\n   \
     \     rep(i, 0, m) f[i] *= Fact<T>(i);\r\n        return f;\r\n    }\r\n};\r\n\
     \r\n/**\r\n * @brief Subset Convolution\r\n */\n#line 8 \"Verify/LC_subset_convolution.test.cpp\"\
-    \n\r\nusing Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    SubsetConvolution<Fp>\
-    \ buf;\r\n    int n;\r\n    io.read(n);\r\n    vector<Fp> a(1<<n),b(1<<n);\r\n\
-    \    rep(i,0,1<<n)io.read(a[i].v);\r\n    rep(i,0,1<<n)io.read(b[i].v);\r\n  \
-    \  \r\n    auto ret=buf.mult(a,b);\r\n    rep(i,0,1<<n)io.write(ret[i].v);\r\n\
-    \    return 0;\r\n}\n"
+    \n\r\nusing Fp=fp<998244353>;\r\n\r\nint main(){\r\n    SubsetConvolution<Fp>\
+    \ buf;\r\n    int n;\r\n    read(n);\r\n    vector<Fp> a(1<<n),b(1<<n);\r\n  \
+    \  rep(i,0,1<<n)read(a[i].v);\r\n    rep(i,0,1<<n)read(b[i].v);\r\n    \r\n  \
+    \  auto ret=buf.mult(a,b);\r\n    rep(i,0,1<<n)print(ret[i].v);\r\n    return\
+    \ 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n\
     \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\
     \n#include \"Math/modint.hpp\"\r\n#include \"Convolution/subset.hpp\"\r\n\r\n\
-    using Fp=fp<998244353>;\r\n\r\nFastIO io;\r\nint main(){\r\n    SubsetConvolution<Fp>\
-    \ buf;\r\n    int n;\r\n    io.read(n);\r\n    vector<Fp> a(1<<n),b(1<<n);\r\n\
-    \    rep(i,0,1<<n)io.read(a[i].v);\r\n    rep(i,0,1<<n)io.read(b[i].v);\r\n  \
-    \  \r\n    auto ret=buf.mult(a,b);\r\n    rep(i,0,1<<n)io.write(ret[i].v);\r\n\
-    \    return 0;\r\n}"
+    using Fp=fp<998244353>;\r\n\r\nint main(){\r\n    SubsetConvolution<Fp> buf;\r\
+    \n    int n;\r\n    read(n);\r\n    vector<Fp> a(1<<n),b(1<<n);\r\n    rep(i,0,1<<n)read(a[i].v);\r\
+    \n    rep(i,0,1<<n)read(b[i].v);\r\n    \r\n    auto ret=buf.mult(a,b);\r\n  \
+    \  rep(i,0,1<<n)print(ret[i].v);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -271,7 +270,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_subset_convolution.test.cpp

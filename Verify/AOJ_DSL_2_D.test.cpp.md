@@ -1,26 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/dualsegtree.hpp
     title: Dual Segment Tree
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
-  bundledCode: "#line 1 \"Verify/AOJ_DSL_2_D.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
+  bundledCode: "#line 1 \"Verify/AOJ_DSL_2_D.test.cpp\"\n#define PROBLEM         \
+    \                                                       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
     \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
@@ -156,24 +157,25 @@ data:
     \ i=height;i;i--){\r\n            if(((k>>i)<<i)!=k)down(k>>i);\r\n        }\r\
     \n        M ret=data[k];\r\n        while(k>>=1)ret=f(ret,data[k]);\r\n      \
     \  return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Dual Segment Tree\r\n */\n\
-    #line 6 \"Verify/AOJ_DSL_2_D.test.cpp\"\n\r\nint f(int a,int b){\r\n    if(b!=INT32_MAX)return\
-    \ b;\r\n    else return a;\r\n}\r\nint e(){return INT32_MAX;}\r\n\r\nFastIO io;\r\
-    \nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    \r\n    DualSegmentTree<int,f,e>\
-    \ seg(n);\r\n    int c,L,R,x;\r\n    while(q--){\r\n        io.read(c);\r\n  \
-    \      if(c==0){\r\n            io.read(L,R,x);\r\n            R++;\r\n      \
-    \      seg.update(L,R,x);\r\n        }\r\n        else{\r\n            io.read(x);\r\
-    \n            io.write(seg.query(x));\r\n        }\r\n    }\r\n    return 0;\r\
-    \n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
+    #line 7 \"Verify/AOJ_DSL_2_D.test.cpp\"\n\r\nint f(int a, int b) {\r\n    if (b\
+    \ != INT32_MAX)\r\n        return b;\r\n    else\r\n        return a;\r\n}\r\n\
+    int e() {\r\n    return INT32_MAX;\r\n}\r\n\r\nint main() {\r\n    int n, q;\r\
+    \n    read(n, q);\r\n\r\n    DualSegmentTree<int, f, e> seg(n);\r\n    int c,\
+    \ L, R, x;\r\n    while (q--) {\r\n        read(c);\r\n        if (c == 0) {\r\
+    \n            read(L, R, x);\r\n            R++;\r\n            seg.update(L,\
+    \ R, x);\r\n        } else {\r\n            read(x);\r\n            print(seg.query(x));\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM                                                         \
+    \       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n#include \"DataStructure/dualsegtree.hpp\"\r\n\r\nint f(int a,int b){\r\n  \
-    \  if(b!=INT32_MAX)return b;\r\n    else return a;\r\n}\r\nint e(){return INT32_MAX;}\r\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    \r\
-    \n    DualSegmentTree<int,f,e> seg(n);\r\n    int c,L,R,x;\r\n    while(q--){\r\
-    \n        io.read(c);\r\n        if(c==0){\r\n            io.read(L,R,x);\r\n\
-    \            R++;\r\n            seg.update(L,R,x);\r\n        }\r\n        else{\r\
-    \n            io.read(x);\r\n            io.write(seg.query(x));\r\n        }\r\
-    \n    }\r\n    return 0;\r\n}"
+    \n#include \"DataStructure/dualsegtree.hpp\"\r\n\r\nint f(int a, int b) {\r\n\
+    \    if (b != INT32_MAX)\r\n        return b;\r\n    else\r\n        return a;\r\
+    \n}\r\nint e() {\r\n    return INT32_MAX;\r\n}\r\n\r\nint main() {\r\n    int\
+    \ n, q;\r\n    read(n, q);\r\n\r\n    DualSegmentTree<int, f, e> seg(n);\r\n \
+    \   int c, L, R, x;\r\n    while (q--) {\r\n        read(c);\r\n        if (c\
+    \ == 0) {\r\n            read(L, R, x);\r\n            R++;\r\n            seg.update(L,\
+    \ R, x);\r\n        } else {\r\n            read(x);\r\n            print(seg.query(x));\r\
+    \n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -181,8 +183,8 @@ data:
   isVerificationFile: true
   path: Verify/AOJ_DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/AOJ_DSL_2_D.test.cpp
 layout: document

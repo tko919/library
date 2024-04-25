@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':x:'
     path: FPS/prodofpolys.hpp
     title: Product of Polynomials
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -428,21 +428,20 @@ data:
     \    deque<Poly<T>> deq;\n    for(auto& f:fs)deq.push_back(f);\n    while(deq.size()>1){\n\
     \        deq.push_back(deq[0]*deq[1]);\n        deq.pop_front();\n        deq.pop_front();\n\
     \    }\n    return deq[0];\n}\n\n/**\n * @brief Product of Polynomials\n*/\n#line\
-    \ 16 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\n\nFastIO io;\nint\
-    \ main() {\n    int n;\n    io.read(n);\n    vector<Poly<Fp>> fs(n);\n    rep(i,\
-    \ 0, n) {\n        int m;\n        io.read(m);\n        fs[i] = Poly<Fp>(m + 1);\n\
-    \        rep(j, 0, m + 1) io.read(fs[i][j].v);\n    }\n\n    auto ret = ProdOfPolys(fs);\n\
-    \    rep(i, 0, ret.size()) io.write(ret[i].v);\n    return 0;\n}\n"
+    \ 16 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\n\nint main() {\n \
+    \   int n;\n    read(n);\n    vector<Poly<Fp>> fs(n);\n    rep(i, 0, n) {\n  \
+    \      int m;\n        read(m);\n        fs[i] = Poly<Fp>(m + 1);\n        rep(j,\
+    \ 0, m + 1) read(fs[i][j].v);\n    }\n\n    auto ret = ProdOfPolys(fs);\n    rep(i,\
+    \ 0, ret.size()) print(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
     \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
     \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/prodofpolys.hpp\"\
-    \n\nFastIO io;\nint main() {\n    int n;\n    io.read(n);\n    vector<Poly<Fp>>\
-    \ fs(n);\n    rep(i, 0, n) {\n        int m;\n        io.read(m);\n        fs[i]\
-    \ = Poly<Fp>(m + 1);\n        rep(j, 0, m + 1) io.read(fs[i][j].v);\n    }\n\n\
-    \    auto ret = ProdOfPolys(fs);\n    rep(i, 0, ret.size()) io.write(ret[i].v);\n\
-    \    return 0;\n}"
+    \n\nint main() {\n    int n;\n    read(n);\n    vector<Poly<Fp>> fs(n);\n    rep(i,\
+    \ 0, n) {\n        int m;\n        read(m);\n        fs[i] = Poly<Fp>(m + 1);\n\
+    \        rep(j, 0, m + 1) read(fs[i][j].v);\n    }\n\n    auto ret = ProdOfPolys(fs);\n\
+    \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -453,7 +452,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_product_of_polynomial_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_product_of_polynomial_sequence.test.cpp

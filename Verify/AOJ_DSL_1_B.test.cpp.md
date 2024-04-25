@@ -1,26 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/weightedunionfind.hpp
     title: Weighted Union Find
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
-  bundledCode: "#line 1 \"Verify/AOJ_DSL_1_B.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
+  bundledCode: "#line 1 \"Verify/AOJ_DSL_1_B.test.cpp\"\n#define PROBLEM         \
+    \                                                       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
     \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
@@ -152,22 +153,25 @@ data:
     \n        if(rx==ry)return false;\r\n        if(size(x)<size(y))swap(x,y),swap(rx,ry),w=-w;\r\
     \n        par[rx]+=par[ry];\r\n        par[ry]=rx;\r\n        pot[ry]=diff(x,y)-w;\r\
     \n        n--;\r\n        return true;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Weighted Union Find\r\n */\n#line 6 \"Verify/AOJ_DSL_1_B.test.cpp\"\n\r\nFastIO\
-    \ io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    WeightedUnionFind<int>\
-    \ uni(n);\r\n    while(q--){\r\n        int t;\r\n        io.read(t);\r\n    \
-    \    if(t==0){\r\n            int x,y,z;\r\n            io.read(x,y,z);\r\n  \
-    \          uni.unite(x,y,z);\r\n        }\r\n        else{\r\n            int\
-    \ x,y;\r\n            io.read(x,y);\r\n            if(uni.same(x,y))io.write(uni.diff(x,y));\r\
-    \n            else io.write('?');\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
+    \ Weighted Union Find\r\n */\n#line 7 \"Verify/AOJ_DSL_1_B.test.cpp\"\n\r\nint\
+    \ main() {\r\n    int n, q;\r\n    read(n, q);\r\n    WeightedUnionFind<int> uni(n);\r\
+    \n    while (q--) {\r\n        int t;\r\n        read(t);\r\n        if (t ==\
+    \ 0) {\r\n            int x, y, z;\r\n            read(x, y, z);\r\n         \
+    \   uni.unite(x, y, z);\r\n        } else {\r\n            int x, y;\r\n     \
+    \       read(x, y);\r\n            if (uni.same(x, y))\r\n                print(uni.diff(x,\
+    \ y));\r\n            else\r\n                print('?');\r\n        }\r\n   \
+    \ }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM                                                         \
+    \       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n#include \"DataStructure/weightedunionfind.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\
-    \n    int n,q;\r\n    io.read(n,q);\r\n    WeightedUnionFind<int> uni(n);\r\n\
-    \    while(q--){\r\n        int t;\r\n        io.read(t);\r\n        if(t==0){\r\
-    \n            int x,y,z;\r\n            io.read(x,y,z);\r\n            uni.unite(x,y,z);\r\
-    \n        }\r\n        else{\r\n            int x,y;\r\n            io.read(x,y);\r\
-    \n            if(uni.same(x,y))io.write(uni.diff(x,y));\r\n            else io.write('?');\r\
-    \n        }\r\n    }\r\n    return 0;\r\n}"
+    \n#include \"DataStructure/weightedunionfind.hpp\"\r\n\r\nint main() {\r\n   \
+    \ int n, q;\r\n    read(n, q);\r\n    WeightedUnionFind<int> uni(n);\r\n    while\
+    \ (q--) {\r\n        int t;\r\n        read(t);\r\n        if (t == 0) {\r\n \
+    \           int x, y, z;\r\n            read(x, y, z);\r\n            uni.unite(x,\
+    \ y, z);\r\n        } else {\r\n            int x, y;\r\n            read(x, y);\r\
+    \n            if (uni.same(x, y))\r\n                print(uni.diff(x, y));\r\n\
+    \            else\r\n                print('?');\r\n        }\r\n    }\r\n   \
+    \ return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -175,8 +179,8 @@ data:
   isVerificationFile: true
   path: Verify/AOJ_DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/AOJ_DSL_1_B.test.cpp
 layout: document

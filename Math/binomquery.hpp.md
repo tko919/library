@@ -18,12 +18,12 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Binomial Coefficient for query
     links: []
@@ -233,7 +233,7 @@ data:
   path: Math/binomquery.hpp
   requiredBy: []
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_binomial_coefficient.test.cpp
 documentation_of: Math/binomquery.hpp

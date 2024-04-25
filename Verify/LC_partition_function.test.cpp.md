@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -438,15 +438,15 @@ data:
     \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
     \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
     }\n\n/**\n * @brief Famous Sequence\n*/\n#line 16 \"Verify/LC_partition_function.test.cpp\"\
-    \n\nFastIO io;\nint main() {\n    int n;\n    io.read(n);\n\n    auto ret = Partition<Fp>(n);\n\
-    \    rep(i, 0, ret.size()) io.write(ret[i].v);\n    return 0;\n}\n"
+    \n\nint main() {\n    int n;\n    read(n);\n\n    auto ret = Partition<Fp>(n);\n\
+    \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\n\n\
     #include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
     \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
     \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/famous.hpp\"\
-    \n\nFastIO io;\nint main() {\n    int n;\n    io.read(n);\n\n    auto ret = Partition<Fp>(n);\n\
-    \    rep(i, 0, ret.size()) io.write(ret[i].v);\n    return 0;\n}"
+    \n\nint main() {\n    int n;\n    read(n);\n\n    auto ret = Partition<Fp>(n);\n\
+    \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -457,7 +457,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_partition_function.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_partition_function.test.cpp

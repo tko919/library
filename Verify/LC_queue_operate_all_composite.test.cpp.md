@@ -4,13 +4,13 @@ data:
   - icon: ':x:'
     path: DataStructure/swag.hpp
     title: Sliding Window Aggregation
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -203,24 +203,22 @@ data:
     \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
     \ Fast IO\r\n */\n#line 7 \"Verify/LC_queue_operate_all_composite.test.cpp\"\n\
     \r\nusing Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
-    \nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    FastIO io;\r\n    int q;\r\n\
-    \    io.read(q);\r\n\r\n    SWAG<P,f,e> swag;\r\n    int t,a,b,x;\r\n    while(q--){\r\
-    \n        io.read(t);\r\n        if(t==0){\r\n            io.read(a,b);\r\n  \
-    \          swag.push({a,b});\r\n        }\r\n        else if(t==1)swag.pop();\r\
-    \n        else{\r\n            io.read(x);\r\n            P ret=swag.fold();\r\
-    \n            cout<<ret[0]*x+ret[1]<<'\\n';\r\n        }\r\n    }\r\n    return\
-    \ 0;\r\n}\n"
+    \nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    int q;\r\n    read(q);\r\n\r\
+    \n    SWAG<P,f,e> swag;\r\n    int t,a,b,x;\r\n    while(q--){\r\n        read(t);\r\
+    \n        if(t==0){\r\n            read(a,b);\r\n            swag.push({a,b});\r\
+    \n        }\r\n        else if(t==1)swag.pop();\r\n        else{\r\n         \
+    \   read(x);\r\n            P ret=swag.fold();\r\n            cout<<ret[0]*x+ret[1]<<'\\\
+    n';\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/modint.hpp\"\r\n\
     #include \"DataStructure/swag.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n\
     using Fp=fp<998244353>;\r\nusing P=array<Fp,2>;\r\nP f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}\r\
-    \nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    FastIO io;\r\n    int q;\r\n\
-    \    io.read(q);\r\n\r\n    SWAG<P,f,e> swag;\r\n    int t,a,b,x;\r\n    while(q--){\r\
-    \n        io.read(t);\r\n        if(t==0){\r\n            io.read(a,b);\r\n  \
-    \          swag.push({a,b});\r\n        }\r\n        else if(t==1)swag.pop();\r\
-    \n        else{\r\n            io.read(x);\r\n            P ret=swag.fold();\r\
-    \n            cout<<ret[0]*x+ret[1]<<'\\n';\r\n        }\r\n    }\r\n    return\
-    \ 0;\r\n}"
+    \nP e(){return P{1,0};}\r\n\r\nint main(){\r\n    int q;\r\n    read(q);\r\n\r\
+    \n    SWAG<P,f,e> swag;\r\n    int t,a,b,x;\r\n    while(q--){\r\n        read(t);\r\
+    \n        if(t==0){\r\n            read(a,b);\r\n            swag.push({a,b});\r\
+    \n        }\r\n        else if(t==1)swag.pop();\r\n        else{\r\n         \
+    \   read(x);\r\n            P ret=swag.fold();\r\n            cout<<ret[0]*x+ret[1]<<'\\\
+    n';\r\n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/modint.hpp
@@ -229,7 +227,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_queue_operate_all_composite.test.cpp

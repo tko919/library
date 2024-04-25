@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/generalweightedmatching.hpp
     title: General Weighted Matching
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/general_weighted_matching
@@ -221,22 +221,22 @@ data:
     \    chmax(G[u][v].w,w*2);\n        chmax(G[v][u].w,w*2);\n    }\n    vector<int>\
     \ run(){\n        while(augment());\n        vector<int> res(n,-1);\n        rep(i,1,n+1)if(mate[i])res[i-1]=mate[i]-1;\n\
     \        return res;\n    }\n};\n\n/**\n * @brief General Weighted Matching\n\
-    */\n#line 7 \"Verify/LC_general_weighted_matching.test.cpp\"\n\n\nFastIO io;\n\
-    int main(){\n    int n,m;\n    io.read(n,m);\n    GeneralWeightedMatching solver(n);\n\
-    \    vector g(n,vector<ll>(n));\n    rep(_,0,m){\n        int u,v,w;\n       \
-    \ io.read(u,v,w);\n        g[u][v]=g[v][u]=w;\n        solver.add_edge(u,v,w);\n\
-    \    }\n    auto res=solver.run();\n    ll r1=0,r2=0;\n    rep(i,0,n)if(res[i]>i){\n\
-    \        r1++;\n        r2+=g[res[i]][i];\n    }\n    io.write(r1,r2);\n    rep(i,0,n)if(res[i]>i)io.write(res[i],i);\n\
+    */\n#line 7 \"Verify/LC_general_weighted_matching.test.cpp\"\n\n\nint main(){\n\
+    \    int n,m;\n    read(n,m);\n    GeneralWeightedMatching solver(n);\n    vector\
+    \ g(n,vector<ll>(n));\n    rep(_,0,m){\n        int u,v,w;\n        read(u,v,w);\n\
+    \        g[u][v]=g[v][u]=w;\n        solver.add_edge(u,v,w);\n    }\n    auto\
+    \ res=solver.run();\n    ll r1=0,r2=0;\n    rep(i,0,n)if(res[i]>i){\n        r1++;\n\
+    \        r2+=g[res[i]][i];\n    }\n    print(r1,r2);\n    rep(i,0,n)if(res[i]>i)print(res[i],i);\n\
     \    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/general_weighted_matching\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
-    \ \"Graph/generalweightedmatching.hpp\"\n\n\nFastIO io;\nint main(){\n    int\
-    \ n,m;\n    io.read(n,m);\n    GeneralWeightedMatching solver(n);\n    vector\
-    \ g(n,vector<ll>(n));\n    rep(_,0,m){\n        int u,v,w;\n        io.read(u,v,w);\n\
-    \        g[u][v]=g[v][u]=w;\n        solver.add_edge(u,v,w);\n    }\n    auto\
-    \ res=solver.run();\n    ll r1=0,r2=0;\n    rep(i,0,n)if(res[i]>i){\n        r1++;\n\
-    \        r2+=g[res[i]][i];\n    }\n    io.write(r1,r2);\n    rep(i,0,n)if(res[i]>i)io.write(res[i],i);\n\
-    \    return 0;\n}"
+    \ \"Graph/generalweightedmatching.hpp\"\n\n\nint main(){\n    int n,m;\n    read(n,m);\n\
+    \    GeneralWeightedMatching solver(n);\n    vector g(n,vector<ll>(n));\n    rep(_,0,m){\n\
+    \        int u,v,w;\n        read(u,v,w);\n        g[u][v]=g[v][u]=w;\n      \
+    \  solver.add_edge(u,v,w);\n    }\n    auto res=solver.run();\n    ll r1=0,r2=0;\n\
+    \    rep(i,0,n)if(res[i]>i){\n        r1++;\n        r2+=g[res[i]][i];\n    }\n\
+    \    print(r1,r2);\n    rep(i,0,n)if(res[i]>i)print(res[i],i);\n    return 0;\n\
+    }"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -244,8 +244,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_general_weighted_matching.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_general_weighted_matching.test.cpp
 layout: document

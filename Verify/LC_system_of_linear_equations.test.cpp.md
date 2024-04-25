@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

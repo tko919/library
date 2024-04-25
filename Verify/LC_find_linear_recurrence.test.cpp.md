@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

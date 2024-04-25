@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: DataStructure/sortablesegtree.hpp
     title: Sortable Segment Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -262,33 +262,33 @@ data:
     \n/**\r\n * @brief Modint\r\n */\n#line 8 \"Verify/LC_point_set_range_sort_range_composite.test.cpp\"\
     \n\r\nusing Fp=fp<998244353>;\r\nusing P=pair<Fp,Fp>;\r\n\r\nP f(P a,P b){\r\n\
     \    return {a.first*b.first,b.first*a.second+b.second};\r\n}\r\nP g(P a,P b){return\
-    \ b;}\r\nP m1(){return {1,0};}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\
-    \n    io.read(n,q);\r\n    vector<int> ps(n);\r\n    vector<P> vs(n);\r\n    rep(i,0,n)io.read(ps[i],vs[i].first.v,vs[i].second.v);\r\
+    \ b;}\r\nP m1(){return {1,0};}\r\n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\
+    \n    vector<int> ps(n);\r\n    vector<P> vs(n);\r\n    rep(i,0,n)read(ps[i],vs[i].first.v,vs[i].second.v);\r\
     \n    SortableSegmentTree<P,P,f,g,m1> seg(ps,vs);\r\n\r\n    while(q--){\r\n \
-    \       int t;\r\n        io.read(t);\r\n        if(t==0){\r\n            int\
-    \ i,p,a,b;\r\n            io.read(i,p,a,b);\r\n            seg.update(i,p,P{a,b});\r\
-    \n        }\r\n        if(t==1){\r\n            int L,R,x;\r\n            io.read(L,R,x);\r\
+    \       int t;\r\n        read(t);\r\n        if(t==0){\r\n            int i,p,a,b;\r\
+    \n            read(i,p,a,b);\r\n            seg.update(i,p,P{a,b});\r\n      \
+    \  }\r\n        if(t==1){\r\n            int L,R,x;\r\n            read(L,R,x);\r\
     \n            auto ab=seg.query(L,R);\r\n            Fp res=Fp(x)*ab.first+ab.second;\r\
-    \n            io.write(res.v);\r\n        }\r\n        if(t==2){\r\n         \
-    \   int L,R;\r\n            io.read(L,R);\r\n            seg.sort(L,R);\r\n  \
-    \      }\r\n        if(t==3){\r\n            int L,R;\r\n            io.read(L,R);\r\
-    \n            seg.sort(L,R,1);\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
+    \n            print(res.v);\r\n        }\r\n        if(t==2){\r\n            int\
+    \ L,R;\r\n            read(L,R);\r\n            seg.sort(L,R);\r\n        }\r\n\
+    \        if(t==3){\r\n            int L,R;\r\n            read(L,R);\r\n     \
+    \       seg.sort(L,R,1);\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n\r\n#include \"DataStructure/sortablesegtree.hpp\"\r\n#include \"Math/modint.hpp\"\
     \r\n\r\nusing Fp=fp<998244353>;\r\nusing P=pair<Fp,Fp>;\r\n\r\nP f(P a,P b){\r\
     \n    return {a.first*b.first,b.first*a.second+b.second};\r\n}\r\nP g(P a,P b){return\
-    \ b;}\r\nP m1(){return {1,0};}\r\n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\
-    \n    io.read(n,q);\r\n    vector<int> ps(n);\r\n    vector<P> vs(n);\r\n    rep(i,0,n)io.read(ps[i],vs[i].first.v,vs[i].second.v);\r\
+    \ b;}\r\nP m1(){return {1,0};}\r\n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\
+    \n    vector<int> ps(n);\r\n    vector<P> vs(n);\r\n    rep(i,0,n)read(ps[i],vs[i].first.v,vs[i].second.v);\r\
     \n    SortableSegmentTree<P,P,f,g,m1> seg(ps,vs);\r\n\r\n    while(q--){\r\n \
-    \       int t;\r\n        io.read(t);\r\n        if(t==0){\r\n            int\
-    \ i,p,a,b;\r\n            io.read(i,p,a,b);\r\n            seg.update(i,p,P{a,b});\r\
-    \n        }\r\n        if(t==1){\r\n            int L,R,x;\r\n            io.read(L,R,x);\r\
+    \       int t;\r\n        read(t);\r\n        if(t==0){\r\n            int i,p,a,b;\r\
+    \n            read(i,p,a,b);\r\n            seg.update(i,p,P{a,b});\r\n      \
+    \  }\r\n        if(t==1){\r\n            int L,R,x;\r\n            read(L,R,x);\r\
     \n            auto ab=seg.query(L,R);\r\n            Fp res=Fp(x)*ab.first+ab.second;\r\
-    \n            io.write(res.v);\r\n        }\r\n        if(t==2){\r\n         \
-    \   int L,R;\r\n            io.read(L,R);\r\n            seg.sort(L,R);\r\n  \
-    \      }\r\n        if(t==3){\r\n            int L,R;\r\n            io.read(L,R);\r\
-    \n            seg.sort(L,R,1);\r\n        }\r\n    }\r\n    return 0;\r\n}"
+    \n            print(res.v);\r\n        }\r\n        if(t==2){\r\n            int\
+    \ L,R;\r\n            read(L,R);\r\n            seg.sort(L,R);\r\n        }\r\n\
+    \        if(t==3){\r\n            int L,R;\r\n            read(L,R);\r\n     \
+    \       seg.sort(L,R,1);\r\n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -298,7 +298,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_point_set_range_sort_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_point_set_range_sort_range_composite.test.cpp

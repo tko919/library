@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/maxflow.hpp
     title: Maximum Flow
   - icon: ':x:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -244,14 +244,13 @@ data:
     \  x *= -1;\r\n    }\r\n    string t;\r\n    while (x) {\r\n        t.push_back('0'\
     \ + x % 10);\r\n        x /= 10;\r\n    }\r\n    reverse(t.begin(), t.end());\r\
     \n    return result + t;\r\n}\r\n} // namespace std\r\n\r\nint main() {\r\n  \
-    \  FastIO io;\r\n    int n, m;\r\n    io.read(n, m);\r\n    MinCostFlow<ll, i128>\
-    \ mcf(n);\r\n    rep(i, 0, n) {\r\n        int b;\r\n        io.read(b);\r\n \
-    \       mcf.add_excess(i, b);\r\n    }\r\n    rep(i, 0, m) {\r\n        int s,\
-    \ t, l, u, c;\r\n        io.read(s, t, l, u, c);\r\n        mcf.add_edge(s, t,\
-    \ l, u, c);\r\n    }\r\n    auto [ok, ret] = mcf.run();\r\n    if (!ok) {\r\n\
-    \        io.write(\"infeasible\");\r\n        return 0;\r\n    }\r\n    io.write(to_string(ret));\r\
-    \n    rep(i, 0, n) io.write(to_string(mcf.dual[i]));\r\n    rep(i, 0, m) io.write(mcf.get_flow(i));\r\
-    \n    return 0;\r\n}\n"
+    \  int n, m;\r\n    read(n, m);\r\n    MinCostFlow<ll, i128> mcf(n);\r\n    rep(i,\
+    \ 0, n) {\r\n        int b;\r\n        read(b);\r\n        mcf.add_excess(i, b);\r\
+    \n    }\r\n    rep(i, 0, m) {\r\n        int s, t, l, u, c;\r\n        read(s,\
+    \ t, l, u, c);\r\n        mcf.add_edge(s, t, l, u, c);\r\n    }\r\n    auto [ok,\
+    \ ret] = mcf.run();\r\n    if (!ok) {\r\n        print(\"infeasible\");\r\n  \
+    \      return 0;\r\n    }\r\n    print(to_string(ret));\r\n    rep(i, 0, n) print(to_string(mcf.dual[i]));\r\
+    \n    rep(i, 0, m) print(mcf.get_flow(i));\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Graph/mincostflow.hpp\"\r\n\
     #include \"Utility/fastio.hpp\"\r\n\r\nnamespace std {\r\nstring to_string(__int128_t\
@@ -261,14 +260,13 @@ data:
     \      x *= -1;\r\n    }\r\n    string t;\r\n    while (x) {\r\n        t.push_back('0'\
     \ + x % 10);\r\n        x /= 10;\r\n    }\r\n    reverse(t.begin(), t.end());\r\
     \n    return result + t;\r\n}\r\n} // namespace std\r\n\r\nint main() {\r\n  \
-    \  FastIO io;\r\n    int n, m;\r\n    io.read(n, m);\r\n    MinCostFlow<ll, i128>\
-    \ mcf(n);\r\n    rep(i, 0, n) {\r\n        int b;\r\n        io.read(b);\r\n \
-    \       mcf.add_excess(i, b);\r\n    }\r\n    rep(i, 0, m) {\r\n        int s,\
-    \ t, l, u, c;\r\n        io.read(s, t, l, u, c);\r\n        mcf.add_edge(s, t,\
-    \ l, u, c);\r\n    }\r\n    auto [ok, ret] = mcf.run();\r\n    if (!ok) {\r\n\
-    \        io.write(\"infeasible\");\r\n        return 0;\r\n    }\r\n    io.write(to_string(ret));\r\
-    \n    rep(i, 0, n) io.write(to_string(mcf.dual[i]));\r\n    rep(i, 0, m) io.write(mcf.get_flow(i));\r\
-    \n    return 0;\r\n}"
+    \  int n, m;\r\n    read(n, m);\r\n    MinCostFlow<ll, i128> mcf(n);\r\n    rep(i,\
+    \ 0, n) {\r\n        int b;\r\n        read(b);\r\n        mcf.add_excess(i, b);\r\
+    \n    }\r\n    rep(i, 0, m) {\r\n        int s, t, l, u, c;\r\n        read(s,\
+    \ t, l, u, c);\r\n        mcf.add_edge(s, t, l, u, c);\r\n    }\r\n    auto [ok,\
+    \ ret] = mcf.run();\r\n    if (!ok) {\r\n        print(\"infeasible\");\r\n  \
+    \      return 0;\r\n    }\r\n    print(to_string(ret));\r\n    rep(i, 0, n) print(to_string(mcf.dual[i]));\r\
+    \n    rep(i, 0, m) print(mcf.get_flow(i));\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Graph/mincostflow.hpp
@@ -277,7 +275,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_min_cost_b_flow.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_min_cost_b_flow.test.cpp

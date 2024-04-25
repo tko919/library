@@ -12,7 +12,7 @@ data:
     path: Math/bigint.hpp
     title: Big Integer(Float)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
   - icon: ':x:'
@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Number Theoretic Transform
     links: []
@@ -314,7 +314,7 @@ data:
   - Convolution/multivariate.hpp
   - Convolution/arbitrary.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_convolution_mod_1000000007.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp

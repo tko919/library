@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   - icon: ':x:'
@@ -18,7 +18,7 @@ data:
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
@@ -225,19 +225,17 @@ data:
     \ p:ps){\r\n            for(int k=1;k*p<=N;k++)a[k]-=a[k*p];\r\n        }\r\n\
     \    }\r\n};\r\n\r\n/**\r\n * @brief Divisor Multiple Transform\r\n * @docs docs/divisor.md\r\
     \n */\n#line 7 \"Verify/LC_gcd_convolution.test.cpp\"\n\r\nusing Fp=fp<998244353>;\r\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n;\r\n    io.read(n);\r\n    vector<Fp>\
-    \ a(n+1),b(n+1);\r\n    rep(i,1,n+1)io.read(a[i].v);\r\n    rep(i,1,n+1)io.read(b[i].v);\r\
-    \n\r\n    MultipleTransform::zeta(a);\r\n    MultipleTransform::zeta(b);\r\n \
-    \   rep(i,1,n+1)a[i]*=b[i];\r\n    MultipleTransform::mobius(a);\r\n    rep(i,1,n+1)io.write(a[i].v);\r\
-    \n    return 0;\r\n}\n"
+    \n\r\nint main(){\r\n    int n;\r\n    read(n);\r\n    vector<Fp> a(n+1),b(n+1);\r\
+    \n    rep(i,1,n+1)read(a[i].v);\r\n    rep(i,1,n+1)read(b[i].v);\r\n\r\n    MultipleTransform::zeta(a);\r\
+    \n    MultipleTransform::zeta(b);\r\n    rep(i,1,n+1)a[i]*=b[i];\r\n    MultipleTransform::mobius(a);\r\
+    \n    rep(i,1,n+1)print(a[i].v);\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n#include\
     \ \"Math/modint.hpp\"\r\n#include \"Convolution/divisor.hpp\"\r\n\r\nusing Fp=fp<998244353>;\r\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n;\r\n    io.read(n);\r\n    vector<Fp>\
-    \ a(n+1),b(n+1);\r\n    rep(i,1,n+1)io.read(a[i].v);\r\n    rep(i,1,n+1)io.read(b[i].v);\r\
-    \n\r\n    MultipleTransform::zeta(a);\r\n    MultipleTransform::zeta(b);\r\n \
-    \   rep(i,1,n+1)a[i]*=b[i];\r\n    MultipleTransform::mobius(a);\r\n    rep(i,1,n+1)io.write(a[i].v);\r\
-    \n    return 0;\r\n}"
+    \n\r\nint main(){\r\n    int n;\r\n    read(n);\r\n    vector<Fp> a(n+1),b(n+1);\r\
+    \n    rep(i,1,n+1)read(a[i].v);\r\n    rep(i,1,n+1)read(b[i].v);\r\n\r\n    MultipleTransform::zeta(a);\r\
+    \n    MultipleTransform::zeta(b);\r\n    rep(i,1,n+1)a[i]*=b[i];\r\n    MultipleTransform::mobius(a);\r\
+    \n    rep(i,1,n+1)print(a[i].v);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -247,8 +245,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_gcd_convolution.test.cpp
 layout: document

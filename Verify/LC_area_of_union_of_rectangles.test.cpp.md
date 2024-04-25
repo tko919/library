@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/lazysegtree.hpp
     title: Lazy Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/unionrect.hpp
     title: Area of Union of Rectangles
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
@@ -204,16 +204,15 @@ data:
     \n            for(auto& [d,u]:out[i])buf.erase(d,u);\r\n            ret+=buf.run()*(xs[i+1]-xs[i]);\r\
     \n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Area\
     \ of Union of Rectangles\r\n */\n#line 7 \"Verify/LC_area_of_union_of_rectangles.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n;\r\n    io.read(n);\r\n    UnionRect\
-    \ buf;\r\n    rep(_,0,n){\r\n        int L,D,R,U;\r\n        io.read(L,D,R,U);\r\
-    \n        buf.add(L,R,D,U);\r\n    }\r\n    ll ret=buf.run();\r\n    io.write(ret);\r\
-    \n    return 0;\r\n}\n"
+    \n\r\nint main(){\r\n    int n;\r\n    read(n);\r\n    UnionRect buf;\r\n    rep(_,0,n){\r\
+    \n        int L,D,R,U;\r\n        read(L,D,R,U);\r\n        buf.add(L,R,D,U);\r\
+    \n    }\r\n    ll ret=buf.run();\r\n    print(ret);\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
-    \n\r\n#include \"DataStructure/unionrect.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\
-    \n    int n;\r\n    io.read(n);\r\n    UnionRect buf;\r\n    rep(_,0,n){\r\n \
-    \       int L,D,R,U;\r\n        io.read(L,D,R,U);\r\n        buf.add(L,R,D,U);\r\
-    \n    }\r\n    ll ret=buf.run();\r\n    io.write(ret);\r\n    return 0;\r\n}"
+    \n\r\n#include \"DataStructure/unionrect.hpp\"\r\n\r\nint main(){\r\n    int n;\r\
+    \n    read(n);\r\n    UnionRect buf;\r\n    rep(_,0,n){\r\n        int L,D,R,U;\r\
+    \n        read(L,D,R,U);\r\n        buf.add(L,R,D,U);\r\n    }\r\n    ll ret=buf.run();\r\
+    \n    print(ret);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -222,8 +221,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_area_of_union_of_rectangles.test.cpp
 layout: document

@@ -9,28 +9,28 @@ data:
   - icon: ':x:'
     path: Verify/AOJ_1595.test.cpp
     title: Verify/AOJ_1595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_DSL_1_B.test.cpp
     title: Verify/AOJ_DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_DSL_2_D.test.cpp
     title: Verify/AOJ_DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_GRL_6_A.test.cpp
     title: Verify/AOJ_GRL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_area_of_union_of_rectangles.test.cpp
     title: Verify/LC_area_of_union_of_rectangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
   - icon: ':x:'
@@ -54,37 +54,37 @@ data:
   - icon: ':x:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_cycle_detection.test.cpp
     title: Verify/LC_cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_cycle_detection_undirected.test.cpp
     title: Verify/LC_cycle_detection_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_deque_operate_all_composite.test.cpp
     title: Verify/LC_deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
     title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_palindromes.test.cpp
     title: Verify/LC_enumerate_palindromes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_primes.test.cpp
     title: Verify/LC_enumerate_primes.test.cpp
   - icon: ':x:'
@@ -99,19 +99,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_frequency_table_of_tree_distance.test.cpp
     title: Verify/LC_frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_general_weighted_matching.test.cpp
     title: Verify/LC_general_weighted_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
   - icon: ':x:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_root_integer.test.cpp
     title: Verify/LC_kth_root_integer.test.cpp
   - icon: ':x:'

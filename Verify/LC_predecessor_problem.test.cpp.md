@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   - icon: ':question:'
@@ -225,26 +225,25 @@ data:
     \ v) { return lower_bound(root, v); }\r\n    int upper_bound(T v) { return upper_bound(root,\
     \ v); }\r\n    void dump() { _dump(root, \"*\"); }\r\n};\r\n\r\n/**\r\n * @brief\
     \ Randomized Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_predecessor_problem.test.cpp\"\
-    \n\r\nFastIO io;\r\nint main(){\r\n    int n,q;\r\n    string s;\r\n    io.read(n,q,s);\r\
-    \n    RBSTset<int> tree;\r\n    rep(i,0,n)if(s[i]=='1'){\r\n        tree.insert(i);\r\
+    \n\r\nint main(){\r\n    int n,q;\r\n    string s;\r\n    read(n,q,s);\r\n   \
+    \ RBSTset<int> tree;\r\n    rep(i,0,n)if(s[i]=='1'){\r\n        tree.insert(i);\r\
     \n    }\r\n    while(q--){\r\n        //tree.dump();\r\n        int t,x;\r\n \
-    \       io.read(t,x);\r\n        if(t==0){\r\n            if(!tree.find(x))tree.insert(x);\r\
+    \       read(t,x);\r\n        if(t==0){\r\n            if(!tree.find(x))tree.insert(x);\r\
     \n        }\r\n        if(t==1){\r\n            if(tree.find(x))tree.erase(x);\r\
-    \n        }\r\n        if(t==2){\r\n            io.write((int)tree.find(x));\r\
-    \n        }\r\n        if(t==3){\r\n            io.write(tree.kth_element(tree.lower_bound(x)));\r\
-    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)-1));\r\
+    \n        }\r\n        if(t==2){\r\n            print((int)tree.find(x));\r\n\
+    \        }\r\n        if(t==3){\r\n            print(tree.kth_element(tree.lower_bound(x)));\r\
+    \n        }\r\n        if(t==4){\r\n            print(tree.kth_element(tree.upper_bound(x)-1));\r\
     \n        }\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\r\
     \n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
-    #include \"DataStructure/rbstset.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n  \
-    \  int n,q;\r\n    string s;\r\n    io.read(n,q,s);\r\n    RBSTset<int> tree;\r\
-    \n    rep(i,0,n)if(s[i]=='1'){\r\n        tree.insert(i);\r\n    }\r\n    while(q--){\r\
-    \n        //tree.dump();\r\n        int t,x;\r\n        io.read(t,x);\r\n    \
-    \    if(t==0){\r\n            if(!tree.find(x))tree.insert(x);\r\n        }\r\n\
-    \        if(t==1){\r\n            if(tree.find(x))tree.erase(x);\r\n        }\r\
-    \n        if(t==2){\r\n            io.write((int)tree.find(x));\r\n        }\r\
-    \n        if(t==3){\r\n            io.write(tree.kth_element(tree.lower_bound(x)));\r\
-    \n        }\r\n        if(t==4){\r\n            io.write(tree.kth_element(tree.upper_bound(x)-1));\r\
+    #include \"DataStructure/rbstset.hpp\"\r\n\r\nint main(){\r\n    int n,q;\r\n\
+    \    string s;\r\n    read(n,q,s);\r\n    RBSTset<int> tree;\r\n    rep(i,0,n)if(s[i]=='1'){\r\
+    \n        tree.insert(i);\r\n    }\r\n    while(q--){\r\n        //tree.dump();\r\
+    \n        int t,x;\r\n        read(t,x);\r\n        if(t==0){\r\n            if(!tree.find(x))tree.insert(x);\r\
+    \n        }\r\n        if(t==1){\r\n            if(tree.find(x))tree.erase(x);\r\
+    \n        }\r\n        if(t==2){\r\n            print((int)tree.find(x));\r\n\
+    \        }\r\n        if(t==3){\r\n            print(tree.kth_element(tree.lower_bound(x)));\r\
+    \n        }\r\n        if(t==4){\r\n            print(tree.kth_element(tree.upper_bound(x)-1));\r\
     \n        }\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
@@ -254,7 +253,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_predecessor_problem.test.cpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/relax.hpp
     title: Relaxed Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
@@ -464,25 +464,25 @@ data:
     \n        }\r\n        return g[pos++];\r\n    }\r\n    T operator[](int i)const{return\
     \ g[i];}\r\nprivate:\r\n    int n,pos;\r\n    vector<T> g;\r\n    RelaxedConvolution<T>\
     \ buf;\r\n    RelaxedInv<T> invf;\r\n};\r\n\r\n/**\r\n * @brief Relaxed Convolution\r\
-    \n */\n#line 15 \"Verify/LC_convolution_mod_2.test.cpp\"\n\r\nFastIO io;\r\nint\
-    \ main() {\r\n    int n, m;\r\n    io.read(n, m);\r\n    vector<Fp> _f(n), _g(m);\r\
-    \n    rep(i, 0, n) io.read(_f[i].v);\r\n    rep(i, 0, m) io.read(_g[i].v);\r\n\
-    \    RelaxedConvolution<Fp> buf(n + m - 1);\r\n    rep(i, 0, n + m - 1) {\r\n\
-    \        Fp x, y;\r\n        if (i < n)\r\n            x = _f[i];\r\n        if\
-    \ (i < m)\r\n            y = _g[i];\r\n        Fp ret = buf.next(x, y);\r\n  \
-    \      io.write(ret.v);\r\n    }\r\n    return 0;\r\n}\r\n"
+    \n */\n#line 15 \"Verify/LC_convolution_mod_2.test.cpp\"\n\r\nint main() {\r\n\
+    \    int n, m;\r\n    read(n, m);\r\n    vector<Fp> _f(n), _g(m);\r\n    rep(i,\
+    \ 0, n) read(_f[i].v);\r\n    rep(i, 0, m) read(_g[i].v);\r\n    RelaxedConvolution<Fp>\
+    \ buf(n + m - 1);\r\n    rep(i, 0, n + m - 1) {\r\n        Fp x, y;\r\n      \
+    \  if (i < n)\r\n            x = _f[i];\r\n        if (i < m)\r\n            y\
+    \ = _g[i];\r\n        Fp ret = buf.next(x, y);\r\n        print(ret.v);\r\n  \
+    \  }\r\n    return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n\
     #include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"\
     FPS/fps.hpp\"\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void\
     \ Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\
-    \n}\r\n#include \"Convolution/relax.hpp\"\r\n\r\nFastIO io;\r\nint main() {\r\n\
-    \    int n, m;\r\n    io.read(n, m);\r\n    vector<Fp> _f(n), _g(m);\r\n    rep(i,\
-    \ 0, n) io.read(_f[i].v);\r\n    rep(i, 0, m) io.read(_g[i].v);\r\n    RelaxedConvolution<Fp>\
-    \ buf(n + m - 1);\r\n    rep(i, 0, n + m - 1) {\r\n        Fp x, y;\r\n      \
-    \  if (i < n)\r\n            x = _f[i];\r\n        if (i < m)\r\n            y\
-    \ = _g[i];\r\n        Fp ret = buf.next(x, y);\r\n        io.write(ret.v);\r\n\
-    \    }\r\n    return 0;\r\n}\r\n"
+    \n}\r\n#include \"Convolution/relax.hpp\"\r\n\r\nint main() {\r\n    int n, m;\r\
+    \n    read(n, m);\r\n    vector<Fp> _f(n), _g(m);\r\n    rep(i, 0, n) read(_f[i].v);\r\
+    \n    rep(i, 0, m) read(_g[i].v);\r\n    RelaxedConvolution<Fp> buf(n + m - 1);\r\
+    \n    rep(i, 0, n + m - 1) {\r\n        Fp x, y;\r\n        if (i < n)\r\n   \
+    \         x = _f[i];\r\n        if (i < m)\r\n            y = _g[i];\r\n     \
+    \   Fp ret = buf.next(x, y);\r\n        print(ret.v);\r\n    }\r\n    return 0;\r\
+    \n}\r\n"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -493,8 +493,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_2.test.cpp
 layout: document

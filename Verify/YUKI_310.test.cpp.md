@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':x:'
@@ -16,13 +16,13 @@ data:
   - icon: ':x:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   - icon: ':question:'
@@ -500,39 +500,13 @@ data:
     \nusing Fp = fp<>;\r\ntemplate <>\r\nvector<Fp> Poly<Fp>::mult(const vector<Fp>\
     \ &a, const vector<Fp> &b) const {\r\n    return ArbitraryMult<Fp>(a, b);\r\n\
     }\r\n\r\nint g[4010][4010] = {}, in[4010], out[4010];\r\nvoid fail() {\r\n   \
-    \ puts(\"0\");\r\n    exit(0);\r\n}\r\n\r\nFastIO io;\r\nint main() {\r\n    int\
-    \ n, m;\r\n    io.read(n, m);\r\n    if (n * n == m) {\r\n        puts(\"1\");\r\
-    \n        return 0;\r\n    }\r\n    rep(i, 0, n) {\r\n        g[i][i] = in[i]\
-    \ = out[i] = n;\r\n        rep(j, 0, n) g[i][j]--;\r\n    }\r\n    rep(_, 0, m)\
-    \ {\r\n        int x, y;\r\n        io.read(x, y);\r\n        x--;\r\n       \
-    \ y--;\r\n        in[y]--;\r\n        out[x]--;\r\n        g[x][y]++;\r\n    \
-    \    g[y][y]--;\r\n    }\r\n    int s = -1, t = -1, N = 0, v[4010];\r\n    rep(i,\
-    \ 0, n) {\r\n        if (in[i] == 0 and out[i] == 0)\r\n            continue;\r\
-    \n        v[N++] = i;\r\n        if (abs(in[i] - out[i]) > 1)\r\n            fail();\r\
-    \n        if (out[i] == in[i] + 1) {\r\n            if (s != -1)\r\n         \
-    \       fail();\r\n            s = i;\r\n        }\r\n        if (out[i] + 1 ==\
-    \ in[i]) {\r\n            if (t != -1)\r\n                fail();\r\n        \
-    \    t = i;\r\n        }\r\n    }\r\n\r\n    Fp ret = n * n - m;\r\n    if (s\
-    \ != -1 and t != -1) {\r\n        in[s]++;\r\n        out[t]++;\r\n        g[t][s]--;\r\
-    \n        g[s][s]++;\r\n        ret = 1;\r\n    }\r\n    rep(i, 0, N) ret *= Fact<Fp>(in[v[i]]\
-    \ - 1);\r\n    SparseMatrix<Fp> mat(N - 1, -1);\r\n    rep(i, 0, N - 1) rep(j,\
-    \ 0, N - 1) if (g[v[i]][v[j]] != -1 or i == j) {\r\n        mat.add(i, j, g[v[i]][v[j]]);\r\
-    \n    }\r\n    ret *= FastDet(mat);\r\n    io.write(ret.v);\r\n    return 0;\r\
-    \n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/310\"\r\n\r\n#include\
-    \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n#include\
-    \ \"Math/modint.hpp\"\r\n#include \"Convolution/arbitrary.hpp\"\r\n#include \"\
-    FPS/arbitraryfps.hpp\"\r\n#include \"Math/bbla.hpp\"\r\nusing Fp = fp<>;\r\ntemplate\
-    \ <>\r\nvector<Fp> Poly<Fp>::mult(const vector<Fp> &a, const vector<Fp> &b) const\
-    \ {\r\n    return ArbitraryMult<Fp>(a, b);\r\n}\r\n\r\nint g[4010][4010] = {},\
-    \ in[4010], out[4010];\r\nvoid fail() {\r\n    puts(\"0\");\r\n    exit(0);\r\n\
-    }\r\n\r\nFastIO io;\r\nint main() {\r\n    int n, m;\r\n    io.read(n, m);\r\n\
-    \    if (n * n == m) {\r\n        puts(\"1\");\r\n        return 0;\r\n    }\r\
-    \n    rep(i, 0, n) {\r\n        g[i][i] = in[i] = out[i] = n;\r\n        rep(j,\
-    \ 0, n) g[i][j]--;\r\n    }\r\n    rep(_, 0, m) {\r\n        int x, y;\r\n   \
-    \     io.read(x, y);\r\n        x--;\r\n        y--;\r\n        in[y]--;\r\n \
-    \       out[x]--;\r\n        g[x][y]++;\r\n        g[y][y]--;\r\n    }\r\n   \
-    \ int s = -1, t = -1, N = 0, v[4010];\r\n    rep(i, 0, n) {\r\n        if (in[i]\
+    \ puts(\"0\");\r\n    exit(0);\r\n}\r\n\r\nint main() {\r\n    int n, m;\r\n \
+    \   read(n, m);\r\n    if (n * n == m) {\r\n        puts(\"1\");\r\n        return\
+    \ 0;\r\n    }\r\n    rep(i, 0, n) {\r\n        g[i][i] = in[i] = out[i] = n;\r\
+    \n        rep(j, 0, n) g[i][j]--;\r\n    }\r\n    rep(_, 0, m) {\r\n        int\
+    \ x, y;\r\n        read(x, y);\r\n        x--;\r\n        y--;\r\n        in[y]--;\r\
+    \n        out[x]--;\r\n        g[x][y]++;\r\n        g[y][y]--;\r\n    }\r\n \
+    \   int s = -1, t = -1, N = 0, v[4010];\r\n    rep(i, 0, n) {\r\n        if (in[i]\
     \ == 0 and out[i] == 0)\r\n            continue;\r\n        v[N++] = i;\r\n  \
     \      if (abs(in[i] - out[i]) > 1)\r\n            fail();\r\n        if (out[i]\
     \ == in[i] + 1) {\r\n            if (s != -1)\r\n                fail();\r\n \
@@ -543,8 +517,33 @@ data:
     \ g[s][s]++;\r\n        ret = 1;\r\n    }\r\n    rep(i, 0, N) ret *= Fact<Fp>(in[v[i]]\
     \ - 1);\r\n    SparseMatrix<Fp> mat(N - 1, -1);\r\n    rep(i, 0, N - 1) rep(j,\
     \ 0, N - 1) if (g[v[i]][v[j]] != -1 or i == j) {\r\n        mat.add(i, j, g[v[i]][v[j]]);\r\
-    \n    }\r\n    ret *= FastDet(mat);\r\n    io.write(ret.v);\r\n    return 0;\r\
-    \n}"
+    \n    }\r\n    ret *= FastDet(mat);\r\n    print(ret.v);\r\n    return 0;\r\n\
+    }\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/310\"\r\n\r\n#include\
+    \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n#include\
+    \ \"Math/modint.hpp\"\r\n#include \"Convolution/arbitrary.hpp\"\r\n#include \"\
+    FPS/arbitraryfps.hpp\"\r\n#include \"Math/bbla.hpp\"\r\nusing Fp = fp<>;\r\ntemplate\
+    \ <>\r\nvector<Fp> Poly<Fp>::mult(const vector<Fp> &a, const vector<Fp> &b) const\
+    \ {\r\n    return ArbitraryMult<Fp>(a, b);\r\n}\r\n\r\nint g[4010][4010] = {},\
+    \ in[4010], out[4010];\r\nvoid fail() {\r\n    puts(\"0\");\r\n    exit(0);\r\n\
+    }\r\n\r\nint main() {\r\n    int n, m;\r\n    read(n, m);\r\n    if (n * n ==\
+    \ m) {\r\n        puts(\"1\");\r\n        return 0;\r\n    }\r\n    rep(i, 0,\
+    \ n) {\r\n        g[i][i] = in[i] = out[i] = n;\r\n        rep(j, 0, n) g[i][j]--;\r\
+    \n    }\r\n    rep(_, 0, m) {\r\n        int x, y;\r\n        read(x, y);\r\n\
+    \        x--;\r\n        y--;\r\n        in[y]--;\r\n        out[x]--;\r\n   \
+    \     g[x][y]++;\r\n        g[y][y]--;\r\n    }\r\n    int s = -1, t = -1, N =\
+    \ 0, v[4010];\r\n    rep(i, 0, n) {\r\n        if (in[i] == 0 and out[i] == 0)\r\
+    \n            continue;\r\n        v[N++] = i;\r\n        if (abs(in[i] - out[i])\
+    \ > 1)\r\n            fail();\r\n        if (out[i] == in[i] + 1) {\r\n      \
+    \      if (s != -1)\r\n                fail();\r\n            s = i;\r\n     \
+    \   }\r\n        if (out[i] + 1 == in[i]) {\r\n            if (t != -1)\r\n  \
+    \              fail();\r\n            t = i;\r\n        }\r\n    }\r\n\r\n   \
+    \ Fp ret = n * n - m;\r\n    if (s != -1 and t != -1) {\r\n        in[s]++;\r\n\
+    \        out[t]++;\r\n        g[t][s]--;\r\n        g[s][s]++;\r\n        ret\
+    \ = 1;\r\n    }\r\n    rep(i, 0, N) ret *= Fact<Fp>(in[v[i]] - 1);\r\n    SparseMatrix<Fp>\
+    \ mat(N - 1, -1);\r\n    rep(i, 0, N - 1) rep(j, 0, N - 1) if (g[v[i]][v[j]] !=\
+    \ -1 or i == j) {\r\n        mat.add(i, j, g[v[i]][v[j]]);\r\n    }\r\n    ret\
+    \ *= FastDet(mat);\r\n    print(ret.v);\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -558,7 +557,7 @@ data:
   isVerificationFile: true
   path: Verify/YUKI_310.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/YUKI_310.test.cpp

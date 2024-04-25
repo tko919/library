@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -171,16 +171,16 @@ data:
     \ id] : que[a][c]) {\n                    ret[id] = (c - b + 1) - (bit.all - bit.sum(b));\n\
     \                }\n            }\n        }\n        return ret;\n    }\n};\n\
     \n/**\n * @brief Prefix Substring LCS\n */\n#line 7 \"Verify/LC_prefix_substring_lcs.test.cpp\"\
-    \n\nFastIO io;\nint main(){\n    int q;\n    string S,T;\n    io.read(q,S,T);\n\
-    \    PrefixSubstringLCS buf(S,T);\n    while(q--){\n        int a,b,c;\n     \
-    \   io.read(a,b,c);\n        buf.add(a,b,c);\n    }\n    auto ret=buf.run();\n\
-    \    io.write(ret);\n    return 0;\n}\n"
+    \n\nint main(){\n    int q;\n    string S,T;\n    read(q,S,T);\n    PrefixSubstringLCS\
+    \ buf(S,T);\n    while(q--){\n        int a,b,c;\n        read(a,b,c);\n     \
+    \   buf.add(a,b,c);\n    }\n    auto ret=buf.run();\n    print(ret);\n    return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/prefix_substring_lcs\"\n\
     \n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
-    \ \"String/prefixsubstrlcs.hpp\"\n\nFastIO io;\nint main(){\n    int q;\n    string\
-    \ S,T;\n    io.read(q,S,T);\n    PrefixSubstringLCS buf(S,T);\n    while(q--){\n\
-    \        int a,b,c;\n        io.read(a,b,c);\n        buf.add(a,b,c);\n    }\n\
-    \    auto ret=buf.run();\n    io.write(ret);\n    return 0;\n}"
+    \ \"String/prefixsubstrlcs.hpp\"\n\nint main(){\n    int q;\n    string S,T;\n\
+    \    read(q,S,T);\n    PrefixSubstringLCS buf(S,T);\n    while(q--){\n       \
+    \ int a,b,c;\n        read(a,b,c);\n        buf.add(a,b,c);\n    }\n    auto ret=buf.run();\n\
+    \    print(ret);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_prefix_substring_lcs.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':x:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -463,19 +463,19 @@ data:
     \ f[i] *= T(i + 1) * BLOCK_SIZE;\n        buf = vector<T>(BLOCK_NUM + 1);\n  \
     \      buf[0] = 1;\n        rep(i, 0, BLOCK_NUM) buf[i + 1] = buf[i] * f[i];\n\
     \    }\n};\n\n/**\n * @brief Factorial (Large)\n */\n#line 15 \"Verify/LC_many_factorials.test.cpp\"\
-    \n\nFastIO io;\nvoid solve(int _rot) {\n    // io.write<false>(\"Case #\"+to_string(_rot)+\"\
-    : \");\n    int n;\n    io.read(n);\n    Fp ret = FactLarge<Fp>::fact(n);\n  \
-    \  io.write(ret.v);\n}\n\nint main() {\n    int t;\n    io.read(t);\n    rep(rot,\
-    \ 0, t) solve(rot + 1);\n    return 0;\n}\n"
+    \n\nvoid solve(int _rot) {\n    // io.write<false>(\"Case #\"+to_string(_rot)+\"\
+    : \");\n    int n;\n    read(n);\n    Fp ret = FactLarge<Fp>::fact(n);\n    print(ret.v);\n\
+    }\n\nint main() {\n    int t;\n    read(t);\n    rep(rot, 0, t) solve(rot + 1);\n\
+    \    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\"\n\n#include\
     \ \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include \"Math/modint.hpp\"\
     \n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\nusing Fp = fp<998244353>;\n\
     NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\n\
-    \    return ntt.ntt(v, inv);\n}\n#include \"FPS/factlarge.hpp\"\n\nFastIO io;\n\
-    void solve(int _rot) {\n    // io.write<false>(\"Case #\"+to_string(_rot)+\":\
-    \ \");\n    int n;\n    io.read(n);\n    Fp ret = FactLarge<Fp>::fact(n);\n  \
-    \  io.write(ret.v);\n}\n\nint main() {\n    int t;\n    io.read(t);\n    rep(rot,\
-    \ 0, t) solve(rot + 1);\n    return 0;\n}"
+    \    return ntt.ntt(v, inv);\n}\n#include \"FPS/factlarge.hpp\"\n\nvoid solve(int\
+    \ _rot) {\n    // io.write<false>(\"Case #\"+to_string(_rot)+\": \");\n    int\
+    \ n;\n    read(n);\n    Fp ret = FactLarge<Fp>::fact(n);\n    print(ret.v);\n\
+    }\n\nint main() {\n    int t;\n    read(t);\n    rep(rot, 0, t) solve(rot + 1);\n\
+    \    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -487,7 +487,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_many_factorials.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_many_factorials.test.cpp

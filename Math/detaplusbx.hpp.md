@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: Math/charpoly.hpp
     title: Characteristic Polynomial
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
   - icon: ':question:'

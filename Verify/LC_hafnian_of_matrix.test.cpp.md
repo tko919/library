@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -304,15 +304,13 @@ data:
     \        rep(base,0,n*2)cycle[mask]+=dp[mask][base]*a[base][top*2+1];\n    }\n\
     \    \n    SubsetConvolution<T> buf;\n    auto ret=buf.exp(cycle);\n    return\
     \ ret[(1<<n)-1];\n}\n\n/**\n * @brief Hafnian of matrix\n*/\n#line 10 \"Verify/LC_hafnian_of_matrix.test.cpp\"\
-    \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n    Matrix<Fp> mat(n);\n\
-    \    rep(i,0,n)rep(j,0,n)io.read(mat[i][j].v);\n\n    auto ret=Hafnian(mat);\n\
-    \    io.write(ret.v);\n    return 0;\n}\n"
+    \n\nint main(){\n    int n;\n    read(n);\n    Matrix<Fp> mat(n);\n    rep(i,0,n)rep(j,0,n)read(mat[i][j].v);\n\
+    \n    auto ret=Hafnian(mat);\n    print(ret.v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n\
     #include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\nusing Fp=fp<998244353>;\n\n#include \"Math/hafnian.hpp\"\
-    \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n    Matrix<Fp> mat(n);\n\
-    \    rep(i,0,n)rep(j,0,n)io.read(mat[i][j].v);\n\n    auto ret=Hafnian(mat);\n\
-    \    io.write(ret.v);\n    return 0;\n}"
+    \n\nint main(){\n    int n;\n    read(n);\n    Matrix<Fp> mat(n);\n    rep(i,0,n)rep(j,0,n)read(mat[i][j].v);\n\
+    \n    auto ret=Hafnian(mat);\n    print(ret.v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -323,8 +321,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_hafnian_of_matrix.test.cpp
 layout: document

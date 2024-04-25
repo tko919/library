@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -176,22 +176,21 @@ data:
     \      return cnt==R-L?T(-1):quantile(L,R,cnt);\r\n    }\r\n    T next(int L,int\
     \ R,T x){\r\n        int cnt=freq(L,R,x);\r\n        return cnt==0?T(-1):quantile(L,R,cnt-1);\r\
     \n    }\r\n};\r\n\r\n/**\r\n * @brief Wavelet Matrix\r\n * @docs docs/wavelet.md\r\
-    \n */\n#line 6 \"Verify/LC_range_kth_smallest.test.cpp\"\n\r\nFastIO io;\r\nint\
-    \ main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<int> a(n);\r\n  \
-    \  io.read(a);\r\n\r\n    vector<int> zip;\r\n    for(auto& x:a)zip.push_back(x);\r\
-    \n    sort(ALL(zip));\r\n    zip.erase(unique(ALL(zip)),zip.end());\r\n    rep(i,0,n)a[i]=lower_bound(ALL(zip),a[i])-zip.begin();\r\
-    \n\r\n    WaveletMatrix<int> wm(a);\r\n    int L,R,k;\r\n    while(q--){\r\n \
-    \       io.read(L,R,k);\r\n        io.write(zip[wm.quantile(L,R,k)]);\r\n    }\r\
-    \n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\r\n\
-    \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
-    #include \"DataStructure/wavelet.hpp\"\r\n\r\nFastIO io;\r\nint main(){\r\n  \
-    \  int n,q;\r\n    io.read(n,q);\r\n    vector<int> a(n);\r\n    io.read(a);\r\
-    \n\r\n    vector<int> zip;\r\n    for(auto& x:a)zip.push_back(x);\r\n    sort(ALL(zip));\r\
+    \n */\n#line 6 \"Verify/LC_range_kth_smallest.test.cpp\"\n\r\nint main(){\r\n\
+    \    int n,q;\r\n    read(n,q);\r\n    vector<int> a(n);\r\n    read(a);\r\n\r\
+    \n    vector<int> zip;\r\n    for(auto& x:a)zip.push_back(x);\r\n    sort(ALL(zip));\r\
     \n    zip.erase(unique(ALL(zip)),zip.end());\r\n    rep(i,0,n)a[i]=lower_bound(ALL(zip),a[i])-zip.begin();\r\
     \n\r\n    WaveletMatrix<int> wm(a);\r\n    int L,R,k;\r\n    while(q--){\r\n \
-    \       io.read(L,R,k);\r\n        io.write(zip[wm.quantile(L,R,k)]);\r\n    }\r\
-    \n    return 0;\r\n}"
+    \       read(L,R,k);\r\n        print(zip[wm.quantile(L,R,k)]);\r\n    }\r\n \
+    \   return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\r\n\
+    \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
+    #include \"DataStructure/wavelet.hpp\"\r\n\r\nint main(){\r\n    int n,q;\r\n\
+    \    read(n,q);\r\n    vector<int> a(n);\r\n    read(a);\r\n\r\n    vector<int>\
+    \ zip;\r\n    for(auto& x:a)zip.push_back(x);\r\n    sort(ALL(zip));\r\n    zip.erase(unique(ALL(zip)),zip.end());\r\
+    \n    rep(i,0,n)a[i]=lower_bound(ALL(zip),a[i])-zip.begin();\r\n\r\n    WaveletMatrix<int>\
+    \ wm(a);\r\n    int L,R,k;\r\n    while(q--){\r\n        read(L,R,k);\r\n    \
+    \    print(zip[wm.quantile(L,R,k)]);\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -199,7 +198,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_range_kth_smallest.test.cpp

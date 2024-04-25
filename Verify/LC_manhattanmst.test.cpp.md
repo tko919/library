@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -165,14 +165,14 @@ data:
     \ [cost,uv]:cand){\n        auto [u,v]=uv;\n        if(uni.unite(u,v)){\n    \
     \        ret+=cost;\n            es.push_back(uv);\n        }\n    }\n    return\
     \ {ret,es};\n}\n\n/**\n * @brief Manhattan MST\n*/\n#line 7 \"Verify/LC_manhattanmst.test.cpp\"\
-    \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n    vector<ll> x(n),y(n);\n\
-    \    rep(i,0,n)io.read(x[i],y[i]);\n    auto ret=ManhattanMST(x,y);\n    io.write(ret.first);\n\
-    \    for(auto& [u,v]:ret.second)io.write(u,v);\n    return 0;\n}\n"
+    \n\nint main() {\n    int n;\n    read(n);\n    vector<ll> x(n), y(n);\n    rep(i,\
+    \ 0, n) read(x[i], y[i]);\n    auto ret = ManhattanMST(x, y);\n    print(ret.first);\n\
+    \    for (auto &[u, v] : ret.second)\n        print(u, v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n\n#include\
     \ \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include \"DataStructure/manhattanmst.hpp\"\
-    \n\nFastIO io;\nint main(){\n    int n;\n    io.read(n);\n    vector<ll> x(n),y(n);\n\
-    \    rep(i,0,n)io.read(x[i],y[i]);\n    auto ret=ManhattanMST(x,y);\n    io.write(ret.first);\n\
-    \    for(auto& [u,v]:ret.second)io.write(u,v);\n    return 0;\n}"
+    \n\nint main() {\n    int n;\n    read(n);\n    vector<ll> x(n), y(n);\n    rep(i,\
+    \ 0, n) read(x[i], y[i]);\n    auto ret = ManhattanMST(x, y);\n    print(ret.first);\n\
+    \    for (auto &[u, v] : ret.second)\n        print(u, v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -181,7 +181,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_manhattanmst.test.cpp

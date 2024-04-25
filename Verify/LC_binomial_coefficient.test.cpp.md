@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient
@@ -326,15 +326,15 @@ data:
     \        }\n    }\n    int nCr(ll n,ll r){\n        if(mod==1)return 0;\n    \
     \    vector<ll> ret;\n        for(auto& buf:Xs)ret.push_back(buf.nCr(n,r));\n\
     \        return crt(ret,ms).first;\n    }\n};\n\n/**\n * @brief Binomial Coefficient\
-    \ for query\n*/\n#line 7 \"Verify/LC_binomial_coefficient.test.cpp\"\n\nFastIO\
-    \ io;\nint main(){\n    int q,m;\n    io.read(q,m);\n    BinomialQuery buf(m);\n\
-    \    while(q--){\n        ll n,r;\n        io.read(n,r);\n        io.write(buf.nCr(n,r));\n\
-    \    }\n    return 0;\n}\n"
+    \ for query\n*/\n#line 7 \"Verify/LC_binomial_coefficient.test.cpp\"\n\nint main()\
+    \ {\n    int q, m;\n    read(q, m);\n    BinomialQuery buf(m);\n    while (q--)\
+    \ {\n        ll n, r;\n        read(n, r);\n        print(buf.nCr(n, r));\n  \
+    \  }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient\"\n\
     \n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
-    \ \"Math/binomquery.hpp\"\n\nFastIO io;\nint main(){\n    int q,m;\n    io.read(q,m);\n\
-    \    BinomialQuery buf(m);\n    while(q--){\n        ll n,r;\n        io.read(n,r);\n\
-    \        io.write(buf.nCr(n,r));\n    }\n    return 0;\n}"
+    \ \"Math/binomquery.hpp\"\n\nint main() {\n    int q, m;\n    read(q, m);\n  \
+    \  BinomialQuery buf(m);\n    while (q--) {\n        ll n, r;\n        read(n,\
+    \ r);\n        print(buf.nCr(n, r));\n    }\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -347,8 +347,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_binomial_coefficient.test.cpp
 layout: document

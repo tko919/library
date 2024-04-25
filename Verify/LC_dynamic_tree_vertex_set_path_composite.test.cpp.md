@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/linkcut.hpp
     title: Link-Cut Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
@@ -253,20 +253,19 @@ data:
     \ P{x.first * y.first, x.second * y.first + y.second};\n        };\n        base\
     \ = f(f(p.base, val), c.base);\n        inv = f(c.inv, f(val, p.inv));\n    }\n\
     \    void add(Monoid v) {}\n    void sub(Monoid v) {}\n};\nP f(P x, P y) {\n \
-    \   return y;\n}\nusing V = LCT<Monoid, Key, f>::Node *;\n\nFastIO io;\nint main()\
-    \ {\n    int n, q;\n    io.read(n, q);\n    LCT<Monoid, Key, f> tree;\n    vector<V>\
-    \ vs(n);\n    rep(i, 0, n) {\n        int a, b;\n        io.read(a, b);\n    \
-    \    vs[i] = tree.make(i, P{a, b});\n    }\n    rep(i, 0, n - 1) {\n        int\
-    \ x, y;\n        io.read(x, y);\n        tree.link(vs[x], vs[y]);\n    }\n   \
-    \ while (q--) {\n        int t;\n        io.read(t);\n        if (t == 0) {\n\
-    \            int x, y;\n            io.read(x, y);\n            tree.cut(vs[x],\
-    \ vs[y]);\n            io.read(x, y);\n            tree.link(vs[x], vs[y]);\n\
-    \        }\n        if (t == 1) {\n            int v, a, b;\n            io.read(v,\
-    \ a, b);\n            tree.update(vs[v], P{a, b});\n        }\n        if (t ==\
-    \ 2) {\n            int u, v, x;\n            io.read(u, v, x);\n            auto\
-    \ base = tree.query(vs[u], vs[v]).base;\n            Fp ret = base.first * x +\
-    \ base.second;\n            io.write(ret.v);\n        }\n    }\n    return 0;\n\
-    }\n"
+    \   return y;\n}\nusing V = LCT<Monoid, Key, f>::Node *;\n\nint main() {\n   \
+    \ int n, q;\n    read(n, q);\n    LCT<Monoid, Key, f> tree;\n    vector<V> vs(n);\n\
+    \    rep(i, 0, n) {\n        int a, b;\n        read(a, b);\n        vs[i] = tree.make(i,\
+    \ P{a, b});\n    }\n    rep(i, 0, n - 1) {\n        int x, y;\n        read(x,\
+    \ y);\n        tree.link(vs[x], vs[y]);\n    }\n    while (q--) {\n        int\
+    \ t;\n        read(t);\n        if (t == 0) {\n            int x, y;\n       \
+    \     read(x, y);\n            tree.cut(vs[x], vs[y]);\n            read(x, y);\n\
+    \            tree.link(vs[x], vs[y]);\n        }\n        if (t == 1) {\n    \
+    \        int v, a, b;\n            read(v, a, b);\n            tree.update(vs[v],\
+    \ P{a, b});\n        }\n        if (t == 2) {\n            int u, v, x;\n    \
+    \        read(u, v, x);\n            auto base = tree.query(vs[u], vs[v]).base;\n\
+    \            Fp ret = base.first * x + base.second;\n            print(ret.v);\n\
+    \        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM                                                         \
     \       \\\n    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
@@ -278,19 +277,19 @@ data:
     \ + y.second};\n        };\n        base = f(f(p.base, val), c.base);\n      \
     \  inv = f(c.inv, f(val, p.inv));\n    }\n    void add(Monoid v) {}\n    void\
     \ sub(Monoid v) {}\n};\nP f(P x, P y) {\n    return y;\n}\nusing V = LCT<Monoid,\
-    \ Key, f>::Node *;\n\nFastIO io;\nint main() {\n    int n, q;\n    io.read(n,\
-    \ q);\n    LCT<Monoid, Key, f> tree;\n    vector<V> vs(n);\n    rep(i, 0, n) {\n\
-    \        int a, b;\n        io.read(a, b);\n        vs[i] = tree.make(i, P{a,\
-    \ b});\n    }\n    rep(i, 0, n - 1) {\n        int x, y;\n        io.read(x, y);\n\
-    \        tree.link(vs[x], vs[y]);\n    }\n    while (q--) {\n        int t;\n\
-    \        io.read(t);\n        if (t == 0) {\n            int x, y;\n         \
-    \   io.read(x, y);\n            tree.cut(vs[x], vs[y]);\n            io.read(x,\
-    \ y);\n            tree.link(vs[x], vs[y]);\n        }\n        if (t == 1) {\n\
-    \            int v, a, b;\n            io.read(v, a, b);\n            tree.update(vs[v],\
-    \ P{a, b});\n        }\n        if (t == 2) {\n            int u, v, x;\n    \
-    \        io.read(u, v, x);\n            auto base = tree.query(vs[u], vs[v]).base;\n\
-    \            Fp ret = base.first * x + base.second;\n            io.write(ret.v);\n\
-    \        }\n    }\n    return 0;\n}"
+    \ Key, f>::Node *;\n\nint main() {\n    int n, q;\n    read(n, q);\n    LCT<Monoid,\
+    \ Key, f> tree;\n    vector<V> vs(n);\n    rep(i, 0, n) {\n        int a, b;\n\
+    \        read(a, b);\n        vs[i] = tree.make(i, P{a, b});\n    }\n    rep(i,\
+    \ 0, n - 1) {\n        int x, y;\n        read(x, y);\n        tree.link(vs[x],\
+    \ vs[y]);\n    }\n    while (q--) {\n        int t;\n        read(t);\n      \
+    \  if (t == 0) {\n            int x, y;\n            read(x, y);\n           \
+    \ tree.cut(vs[x], vs[y]);\n            read(x, y);\n            tree.link(vs[x],\
+    \ vs[y]);\n        }\n        if (t == 1) {\n            int v, a, b;\n      \
+    \      read(v, a, b);\n            tree.update(vs[v], P{a, b});\n        }\n \
+    \       if (t == 2) {\n            int u, v, x;\n            read(u, v, x);\n\
+    \            auto base = tree.query(vs[u], vs[v]).base;\n            Fp ret =\
+    \ base.first * x + base.second;\n            print(ret.v);\n        }\n    }\n\
+    \    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -299,8 +298,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-26 03:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
 layout: document

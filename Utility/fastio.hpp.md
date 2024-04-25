@@ -9,64 +9,64 @@ data:
   - icon: ':x:'
     path: Verify/AOJ_1595.test.cpp
     title: Verify/AOJ_1595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_DSL_1_B.test.cpp
     title: Verify/AOJ_DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_DSL_2_D.test.cpp
     title: Verify/AOJ_DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/AOJ_GRL_6_A.test.cpp
     title: Verify/AOJ_GRL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_area_of_union_of_rectangles.test.cpp
     title: Verify/LC_area_of_union_of_rectangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_biconnected_components.test.cpp
     title: Verify/LC_biconnected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_cycle_detection.test.cpp
     title: Verify/LC_cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_cycle_detection_undirected.test.cpp
     title: Verify/LC_cycle_detection_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_deque_operate_all_composite.test.cpp
     title: Verify/LC_deque_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
     title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_primes.test.cpp
     title: Verify/LC_enumerate_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_general_weighted_matching.test.cpp
     title: Verify/LC_general_weighted_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_root_integer.test.cpp
     title: Verify/LC_kth_root_integer.test.cpp
   - icon: ':x:'
@@ -182,7 +182,7 @@ data:
     title: Verify/YUKI_901.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Fast IO
     links: []
@@ -368,7 +368,7 @@ data:
   requiredBy:
   - Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/AOJ_DSL_1_B.test.cpp
   - Verify/LC_range_kth_smallest.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   - icon: ':question:'
@@ -228,31 +228,30 @@ data:
     \     return;\r\n        dump(root->lp);\r\n        cerr << root->val << '\\n';\r\
     \n        dump(root->rp);\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Persistent Randomized\
     \ Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_range_kth_smallest-2.test.cpp\"\
-    \n\r\nconst int LIM=201010*20*5;\r\nusing np=PRBSTset<int,LIM>::np;\r\n\r\nFastIO\
-    \ io;\r\nint main(){\r\n    int n,q;\r\n    io.read(n,q);\r\n    vector<int> a(n);\r\
-    \n    io.read(a);\r\n\r\n    vector<int> zip;\r\n    rep(i,0,n)zip.push_back(a[i]);\r\
-    \n    sort(ALL(zip));\r\n    zip.erase(unique(ALL(zip)),zip.end());\r\n    rep(i,0,n)a[i]=lower_bound(ALL(zip),a[i])-zip.begin();\r\
-    \n\r\n    PRBSTset<int,LIM> manager;\r\n    vector<np> buf(1,nullptr);\r\n   \
-    \ rep(i,0,n)buf.push_back(manager.insert(buf.back(),a[i]));\r\n    int L,R,k;\r\
-    \n    \r\n    while(q--){\r\n        io.read(L,R,k);\r\n        int lb=0,rb=zip.size();\r\
-    \n        while(rb-lb>1){\r\n            int mid=(lb+rb)>>1;\r\n            int\
-    \ cnt=manager.upper_bound(buf[R],mid)-manager.upper_bound(buf[L],mid);\r\n   \
-    \         if(cnt<=k)lb=mid;\r\n            else rb=mid;\r\n        }\r\n     \
-    \   io.write(zip[lb]);\r\n    }\r\n    return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\r\n\
-    \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
-    #include \"DataStructure/persistentrbstset.hpp\"\r\n\r\nconst int LIM=201010*20*5;\r\
-    \nusing np=PRBSTset<int,LIM>::np;\r\n\r\nFastIO io;\r\nint main(){\r\n    int\
-    \ n,q;\r\n    io.read(n,q);\r\n    vector<int> a(n);\r\n    io.read(a);\r\n\r\n\
-    \    vector<int> zip;\r\n    rep(i,0,n)zip.push_back(a[i]);\r\n    sort(ALL(zip));\r\
+    \n\r\nconst int LIM=201010*20*5;\r\nusing np=PRBSTset<int,LIM>::np;\r\n\r\nint\
+    \ main(){\r\n    int n,q;\r\n    read(n,q);\r\n    vector<int> a(n);\r\n    read(a);\r\
+    \n\r\n    vector<int> zip;\r\n    rep(i,0,n)zip.push_back(a[i]);\r\n    sort(ALL(zip));\r\
     \n    zip.erase(unique(ALL(zip)),zip.end());\r\n    rep(i,0,n)a[i]=lower_bound(ALL(zip),a[i])-zip.begin();\r\
     \n\r\n    PRBSTset<int,LIM> manager;\r\n    vector<np> buf(1,nullptr);\r\n   \
     \ rep(i,0,n)buf.push_back(manager.insert(buf.back(),a[i]));\r\n    int L,R,k;\r\
-    \n    \r\n    while(q--){\r\n        io.read(L,R,k);\r\n        int lb=0,rb=zip.size();\r\
+    \n    \r\n    while(q--){\r\n        read(L,R,k);\r\n        int lb=0,rb=zip.size();\r\
     \n        while(rb-lb>1){\r\n            int mid=(lb+rb)>>1;\r\n            int\
     \ cnt=manager.upper_bound(buf[R],mid)-manager.upper_bound(buf[L],mid);\r\n   \
     \         if(cnt<=k)lb=mid;\r\n            else rb=mid;\r\n        }\r\n     \
-    \   io.write(zip[lb]);\r\n    }\r\n    return 0;\r\n}"
+    \   print(zip[lb]);\r\n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\r\n\
+    \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\
+    #include \"DataStructure/persistentrbstset.hpp\"\r\n\r\nconst int LIM=201010*20*5;\r\
+    \nusing np=PRBSTset<int,LIM>::np;\r\n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\
+    \n    vector<int> a(n);\r\n    read(a);\r\n\r\n    vector<int> zip;\r\n    rep(i,0,n)zip.push_back(a[i]);\r\
+    \n    sort(ALL(zip));\r\n    zip.erase(unique(ALL(zip)),zip.end());\r\n    rep(i,0,n)a[i]=lower_bound(ALL(zip),a[i])-zip.begin();\r\
+    \n\r\n    PRBSTset<int,LIM> manager;\r\n    vector<np> buf(1,nullptr);\r\n   \
+    \ rep(i,0,n)buf.push_back(manager.insert(buf.back(),a[i]));\r\n    int L,R,k;\r\
+    \n    \r\n    while(q--){\r\n        read(L,R,k);\r\n        int lb=0,rb=zip.size();\r\
+    \n        while(rb-lb>1){\r\n            int mid=(lb+rb)>>1;\r\n            int\
+    \ cnt=manager.upper_bound(buf[R],mid)-manager.upper_bound(buf[L],mid);\r\n   \
+    \         if(cnt<=k)lb=mid;\r\n            else rb=mid;\r\n        }\r\n     \
+    \   print(zip[lb]);\r\n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -261,7 +260,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_kth_smallest-2.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_range_kth_smallest-2.test.cpp

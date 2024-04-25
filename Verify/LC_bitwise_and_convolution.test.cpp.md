@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: Convolution/bitwise.hpp
     title: Bitwise Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'

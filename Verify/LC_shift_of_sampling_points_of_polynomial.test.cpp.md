@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
   - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -438,18 +438,18 @@ data:
     \    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n    rep(i,0,m){\n        res[i]=AB[n+i]*base;\n\
     \        base*=(c+i+1);\n        base*=B[i];\n    }\n    return res;\n}\n\n/**\n\
     \ * @brief Shift of Sampling Points of Polynomial\n*/\n#line 17 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
-    \n\nFastIO io;\nint main() {\n    int n, m;\n    Fp c;\n    io.read(n, m, c.v);\n\
-    \    vector<Fp> a(n);\n    rep(i, 0, n) io.read(a[i].v);\n\n    auto ret = SamplePointsShift(a,\
-    \ c, m);\n    rep(i, 0, m) io.write(ret[i].v);\n    return 0;\n}\n"
+    \n\nint main() {\n    int n, m;\n    Fp c;\n    read(n, m, c.v);\n    vector<Fp>\
+    \ a(n);\n    rep(i, 0, n) read(a[i].v);\n\n    auto ret = SamplePointsShift(a,\
+    \ c, m);\n    rep(i, 0, m) print(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM                                                         \
     \       \\\n    \"https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
     \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
     \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/samplepointshift.hpp\"\
-    \n\nFastIO io;\nint main() {\n    int n, m;\n    Fp c;\n    io.read(n, m, c.v);\n\
-    \    vector<Fp> a(n);\n    rep(i, 0, n) io.read(a[i].v);\n\n    auto ret = SamplePointsShift(a,\
-    \ c, m);\n    rep(i, 0, m) io.write(ret[i].v);\n    return 0;\n}"
+    \n\nint main() {\n    int n, m;\n    Fp c;\n    read(n, m, c.v);\n    vector<Fp>\
+    \ a(n);\n    rep(i, 0, n) read(a[i].v);\n\n    auto ret = SamplePointsShift(a,\
+    \ c, m);\n    rep(i, 0, m) print(ret[i].v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -460,7 +460,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-26 03:32:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp

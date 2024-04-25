@@ -9,7 +9,7 @@ data:
     path: Math/bigint.hpp
     title: Big Integer(Float)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_bernoulli_number.test.cpp
     title: Verify/LC_bernoulli_number.test.cpp
   - icon: ':x:'
@@ -24,16 +24,16 @@ data:
   - icon: ':x:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_deque_operate_all_composite.test.cpp
     title: Verify/LC_deque_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
     title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
   - icon: ':x:'
@@ -42,10 +42,10 @@ data:
   - icon: ':x:'
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -155,7 +155,7 @@ data:
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Modint
     links: []
@@ -256,7 +256,7 @@ data:
   - Math/bigint.hpp
   - Convolution/arbitrary.hpp
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_sum_of_totient_function.test.cpp
   - Verify/LC_convolution_mod_1000000007.test.cpp
