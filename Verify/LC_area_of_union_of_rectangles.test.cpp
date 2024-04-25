@@ -5,17 +5,16 @@
 
 #include "DataStructure/unionrect.hpp"
 
-FastIO io;
 int main(){
     int n;
-    io.read(n);
+    read(n);
     UnionRect buf;
     rep(_,0,n){
         int L,D,R,U;
-        io.read(L,D,R,U);
+        read(L,D,R,U);
         buf.add(L,R,D,U);
     }
     ll ret=buf.run();
-    io.write(ret);
+    print(ret);
     return 0;
 }

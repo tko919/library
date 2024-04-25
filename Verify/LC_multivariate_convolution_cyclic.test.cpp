@@ -13,21 +13,20 @@ vector<Fp> Poly<Fp>::mult(const vector<Fp> &a, const vector<Fp> &b) const {
 }
 #include "Convolution/multivariatecyclic.hpp"
 
-FastIO io;
 int main() {
     int p, k;
-    io.read(p, k);
+    read(p, k);
     Fp::set_mod(p);
     vector<int> a(k);
-    io.read(a);
+    read(a);
     int n = 1;
     for (auto &x : a)
         n *= x;
     vector<Fp> f(n), g(n);
-    rep(i, 0, n) io.read(f[i].v);
-    rep(i, 0, n) io.read(g[i].v);
+    rep(i, 0, n) read(f[i].v);
+    rep(i, 0, n) read(g[i].v);
 
     auto ret = MultivariateCyclic(f, g, a);
-    rep(i, 0, n) io.write(ret[i].v);
+    rep(i, 0, n) print(ret[i].v);
     return 0;
 }

@@ -14,15 +14,14 @@ Fp memo[50];
 Fp pe(int p,int e){return memo[e];}
 Fp psum(ll x){return memo[1]*buf[x];}
 
-FastIO io;
 int main(){
     ll n,m;
-    io.read(n,m);
+    read(n,m);
 
     rep(e,0,45)memo[e]=Fp(e+1).pow(n);
     buf=PrimeSum<ll,F>(m);
 
     auto ret=MultiplicativeSum<Fp,pe,psum>(m);
-    io.write(ret.v);
+    print(ret.v);
     return 0;
 }

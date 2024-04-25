@@ -14,19 +14,18 @@ template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
 
 #include "FPS/prodofpolys.hpp"
 
-FastIO io;
 int main() {
     int n;
-    io.read(n);
+    read(n);
     vector<Poly<Fp>> fs(n);
     rep(i, 0, n) {
         int m;
-        io.read(m);
+        read(m);
         fs[i] = Poly<Fp>(m + 1);
-        rep(j, 0, m + 1) io.read(fs[i][j].v);
+        rep(j, 0, m + 1) read(fs[i][j].v);
     }
 
     auto ret = ProdOfPolys(fs);
-    rep(i, 0, ret.size()) io.write(ret[i].v);
+    rep(i, 0, ret.size()) print(ret[i].v);
     return 0;
 }

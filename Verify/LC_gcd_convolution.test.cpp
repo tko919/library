@@ -7,18 +7,17 @@
 
 using Fp=fp<998244353>;
 
-FastIO io;
 int main(){
     int n;
-    io.read(n);
+    read(n);
     vector<Fp> a(n+1),b(n+1);
-    rep(i,1,n+1)io.read(a[i].v);
-    rep(i,1,n+1)io.read(b[i].v);
+    rep(i,1,n+1)read(a[i].v);
+    rep(i,1,n+1)read(b[i].v);
 
     MultipleTransform::zeta(a);
     MultipleTransform::zeta(b);
     rep(i,1,n+1)a[i]*=b[i];
     MultipleTransform::mobius(a);
-    rep(i,1,n+1)io.write(a[i].v);
+    rep(i,1,n+1)print(a[i].v);
     return 0;
 }

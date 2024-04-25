@@ -4,15 +4,14 @@
 #include "Utility/fastio.hpp"
 #include "DataStructure/persistentunionfind.hpp"
 
-FastIO io;
 int main(){
     int n,q;
-    io.read(n,q);
+    read(n,q);
     vector<PersistentUnionFind> buf;
     buf.push_back(PersistentUnionFind(n));
     while(q--){
         int t,k,u,v;
-        io.read(t,k,u,v);
+        read(t,k,u,v);
         k++;
         if(t==0){
             buf.push_back(buf[k]);
@@ -20,7 +19,7 @@ int main(){
         }
         else{
             buf.push_back(buf[k]);
-            io.write((int)buf.back().same(u,v));
+            print((int)buf.back().same(u,v));
         }
     }
     return 0;

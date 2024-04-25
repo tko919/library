@@ -13,18 +13,17 @@ template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
 }
 #include "FPS/factlarge.hpp"
 
-FastIO io;
 void solve(int _rot) {
     // io.write<false>("Case #"+to_string(_rot)+": ");
     int n;
-    io.read(n);
+    read(n);
     Fp ret = FactLarge<Fp>::fact(n);
-    io.write(ret.v);
+    print(ret.v);
 }
 
 int main() {
     int t;
-    io.read(t);
+    read(t);
     rep(rot, 0, t) solve(rot + 1);
     return 0;
 }

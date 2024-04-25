@@ -19,10 +19,9 @@ void fail() {
     exit(0);
 }
 
-FastIO io;
 int main() {
     int n, m;
-    io.read(n, m);
+    read(n, m);
     if (n * n == m) {
         puts("1");
         return 0;
@@ -33,7 +32,7 @@ int main() {
     }
     rep(_, 0, m) {
         int x, y;
-        io.read(x, y);
+        read(x, y);
         x--;
         y--;
         in[y]--;
@@ -74,6 +73,6 @@ int main() {
         mat.add(i, j, g[v[i]][v[j]]);
     }
     ret *= FastDet(mat);
-    io.write(ret.v);
+    print(ret.v);
     return 0;
 }

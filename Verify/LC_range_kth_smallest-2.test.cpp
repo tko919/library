@@ -7,12 +7,11 @@
 const int LIM=201010*20*5;
 using np=PRBSTset<int,LIM>::np;
 
-FastIO io;
 int main(){
     int n,q;
-    io.read(n,q);
+    read(n,q);
     vector<int> a(n);
-    io.read(a);
+    read(a);
 
     vector<int> zip;
     rep(i,0,n)zip.push_back(a[i]);
@@ -26,7 +25,7 @@ int main(){
     int L,R,k;
     
     while(q--){
-        io.read(L,R,k);
+        read(L,R,k);
         int lb=0,rb=zip.size();
         while(rb-lb>1){
             int mid=(lb+rb)>>1;
@@ -34,7 +33,7 @@ int main(){
             if(cnt<=k)lb=mid;
             else rb=mid;
         }
-        io.write(zip[lb]);
+        print(zip[lb]);
     }
     return 0;
 }

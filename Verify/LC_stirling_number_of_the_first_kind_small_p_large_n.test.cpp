@@ -5,15 +5,14 @@
 
 #include "Math/stirlingquery.hpp"
 
-FastIO io;
 int main(){
     int T,p;
-    io.read(T,p);
+    read(T,p);
     StirlingNumberQuery buf(p);
     while(T--){
         ll n,k;
-        io.read(n,k);
-        io.write(buf.FirstKind(n,k));
+        read(n,k);
+        print(buf.FirstKind(n,k));
     }
     return 0;
 }

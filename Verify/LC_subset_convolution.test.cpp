@@ -8,16 +8,15 @@
 
 using Fp=fp<998244353>;
 
-FastIO io;
 int main(){
     SubsetConvolution<Fp> buf;
     int n;
-    io.read(n);
+    read(n);
     vector<Fp> a(1<<n),b(1<<n);
-    rep(i,0,1<<n)io.read(a[i].v);
-    rep(i,0,1<<n)io.read(b[i].v);
+    rep(i,0,1<<n)read(a[i].v);
+    rep(i,0,1<<n)read(b[i].v);
     
     auto ret=buf.mult(a,b);
-    rep(i,0,1<<n)io.write(ret[i].v);
+    rep(i,0,1<<n)print(ret[i].v);
     return 0;
 }

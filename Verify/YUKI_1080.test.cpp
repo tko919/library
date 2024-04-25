@@ -14,10 +14,9 @@ vector<Fp> Poly<Fp>::mult(const vector<Fp> &a, const vector<Fp> &b) const {
 
 constexpr int I = 430477711;
 
-FastIO io;
 int main() {
     int n;
-    io.read(n);
+    read(n);
     Poly<Fp> f(n + 1);
     rep(i, 1, n + 1) f[i] = Fp(i + 1) * (i + 1) * I;
     auto s = f.exp(), t = s.inv();
@@ -25,7 +24,7 @@ int main() {
     rep(i, 1, n + 1) {
         Fp ret = (s[i] - t[i]) * c1 + (s[i] + t[i]) * c2;
         ret *= Fact<Fp>(n);
-        io.write(ret.v);
+        print(ret.v);
     }
     return 0;
 }

@@ -8,23 +8,22 @@ using Fp=fp<998244353>;
 
 #include "DataStructure/staticrectaddrectsum.hpp"
 
-FastIO io;
 int main(){
     int n,q;
-    io.read(n,q);
+    read(n,q);
 
     StaticRectangleAddRectangleSum<Fp> buf;
     rep(i,0,n){
         int L,D,R,U,w;
-        io.read(L,D,R,U,w);
+        read(L,D,R,U,w);
         buf.add(L,D,R,U,w);
     }
     rep(i,0,q){
         int L,D,R,U;
-        io.read(L,D,R,U);
+        read(L,D,R,U);
         buf.query(L,D,R,U);
     }
     auto ret=buf.run();
-    rep(i,0,q)io.write(ret[i].v);
+    rep(i,0,q)print(ret[i].v);
     return 0;
 }

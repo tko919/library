@@ -5,19 +5,18 @@
 #include "DataStructure/hashmap.hpp"
 
 int main(){
-    FastIO io;
     int q,t;
     ll k,v;
-    io.read(q);
+    read(q);
     HashMap<ll,ll> mp;
     while(q--){
-        io.read(t,k);
+        read(t,k);
         if(t==0){
-            io.read(v);
+            read(v);
             mp[k]=v;
         }
         else{
-            io.write(mp[k]);
+            print(mp[k]);
         }
     }
     return 0;

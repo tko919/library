@@ -4,10 +4,9 @@
 #include "Utility/fastio.hpp"
 #include "Math/sieve.hpp"
 
-FastIO io;
 int main(){
     int N,A,B;
-    io.read(N,A,B);
+    read(N,A,B);
     
     auto base=sieve<501010101>(N);
     int pi=0;
@@ -16,7 +15,7 @@ int main(){
         if(pi%A==B)ret.push_back(p);
         pi++;
     }
-    io.write(pi,(int)ret.size());
-    io.write(ret);
+    print(pi,(int)ret.size());
+    print(ret);
     return 0;
 }

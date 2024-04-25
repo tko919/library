@@ -14,12 +14,11 @@ template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
 
 #include "FPS/famous.hpp"
 
-FastIO io;
 int main() {
     int n;
-    io.read(n);
+    read(n);
 
     auto ret = Bernoulli<Fp>(n);
-    rep(i, 0, ret.size()) io.write(ret[i].v);
+    rep(i, 0, ret.size()) print(ret[i].v);
     return 0;
 }

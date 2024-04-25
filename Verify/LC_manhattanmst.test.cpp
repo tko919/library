@@ -5,14 +5,14 @@
 
 #include "DataStructure/manhattanmst.hpp"
 
-FastIO io;
-int main(){
+int main() {
     int n;
-    io.read(n);
-    vector<ll> x(n),y(n);
-    rep(i,0,n)io.read(x[i],y[i]);
-    auto ret=ManhattanMST(x,y);
-    io.write(ret.first);
-    for(auto& [u,v]:ret.second)io.write(u,v);
+    read(n);
+    vector<ll> x(n), y(n);
+    rep(i, 0, n) read(x[i], y[i]);
+    auto ret = ManhattanMST(x, y);
+    print(ret.first);
+    for (auto &[u, v] : ret.second)
+        print(u, v);
     return 0;
 }

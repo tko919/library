@@ -13,15 +13,14 @@ vector<Fp> Poly<Fp>::mult(const vector<Fp> &a, const vector<Fp> &b) const {
     return ArbitraryMult(a, b);
 }
 
-FastIO io;
 int main() {
     int k, m;
     ll n;
-    io.read(k, m, n);
+    read(k, m, n);
     SparseMatrix<Fp> mat(k * k);
     int p, q, r;
     rep(_, 0, m) {
-        io.read(p, q, r);
+        read(p, q, r);
         p--;
         q--;
         r--;
@@ -32,6 +31,6 @@ int main() {
     auto c = FastPow(mat, b, n - 2);
     Fp ret;
     rep(i, 0, k) ret += c[i];
-    io.write(ret.v);
+    print(ret.v);
     return 0;
 }

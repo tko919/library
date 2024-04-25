@@ -22,42 +22,41 @@ ll f(ll x, ll y) {
 }
 using V = LCT<Monoid, Key, f>::Node *;
 
-FastIO io;
 int main() {
     int n, q;
-    io.read(n, q);
+    read(n, q);
     LCT<Monoid, Key, f> tree;
     vector<V> vs(n);
     rep(i, 0, n) {
         ll x;
-        io.read(x);
+        read(x);
         vs[i] = tree.make(i, x);
     }
     rep(i, 0, n - 1) {
         int x, y;
-        io.read(x, y);
+        read(x, y);
         tree.link(vs[x], vs[y]);
     }
     while (q--) {
         int t;
-        io.read(t);
+        read(t);
         if (t == 0) {
             int x, y;
-            io.read(x, y);
+            read(x, y);
             tree.cut(vs[x], vs[y]);
-            io.read(x, y);
+            read(x, y);
             tree.link(vs[x], vs[y]);
         }
         if (t == 1) {
             int v, x;
-            io.read(v, x);
+            read(v, x);
             tree.update(vs[v], x);
         }
         if (t == 2) {
             int v, p;
-            io.read(v, p);
+            read(v, p);
             auto ret = tree.query(vs[p], vs[v]);
-            io.write(ret.sum);
+            print(ret.sum);
         }
     }
     return 0;

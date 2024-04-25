@@ -13,13 +13,12 @@ template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
 }
 #include "Convolution/relax.hpp"
 
-FastIO io;
 int main() {
     int n, m;
-    io.read(n, m);
+    read(n, m);
     vector<Fp> _f(n), _g(m);
-    rep(i, 0, n) io.read(_f[i].v);
-    rep(i, 0, m) io.read(_g[i].v);
+    rep(i, 0, n) read(_f[i].v);
+    rep(i, 0, m) read(_g[i].v);
     RelaxedConvolution<Fp> buf(n + m - 1);
     rep(i, 0, n + m - 1) {
         Fp x, y;
@@ -28,7 +27,7 @@ int main() {
         if (i < m)
             y = _g[i];
         Fp ret = buf.next(x, y);
-        io.write(ret.v);
+        print(ret.v);
     }
     return 0;
 }

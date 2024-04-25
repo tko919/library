@@ -11,21 +11,20 @@ P f(P a,P b){return P{a[0]*b[0],a[1]*b[0]+b[1]};}
 P e(){return P{1,0};}
 
 int main(){
-    FastIO io;
     int q;
-    io.read(q);
+    read(q);
 
     SWAG<P,f,e> swag;
     int t,a,b,x;
     while(q--){
-        io.read(t);
+        read(t);
         if(t==0){
-            io.read(a,b);
+            read(a,b);
             swag.push({a,b});
         }
         else if(t==1)swag.pop();
         else{
-            io.read(x);
+            read(x);
             P ret=swag.fold();
             cout<<ret[0]*x+ret[1]<<'\n';
         }

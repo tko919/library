@@ -15,15 +15,14 @@ template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
 
 #include "FPS/samplepointshift.hpp"
 
-FastIO io;
 int main() {
     int n, m;
     Fp c;
-    io.read(n, m, c.v);
+    read(n, m, c.v);
     vector<Fp> a(n);
-    rep(i, 0, n) io.read(a[i].v);
+    rep(i, 0, n) read(a[i].v);
 
     auto ret = SamplePointsShift(a, c, m);
-    rep(i, 0, m) io.write(ret[i].v);
+    rep(i, 0, m) print(ret[i].v);
     return 0;
 }

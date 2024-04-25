@@ -4,12 +4,11 @@
 #include "Utility/fastio.hpp"
 #include "DataStructure/wavelet.hpp"
 
-FastIO io;
 int main(){
     int n,q;
-    io.read(n,q);
+    read(n,q);
     vector<int> a(n);
-    io.read(a);
+    read(a);
 
     vector<int> zip;
     for(auto& x:a)zip.push_back(x);
@@ -20,8 +19,8 @@ int main(){
     WaveletMatrix<int> wm(a);
     int L,R,k;
     while(q--){
-        io.read(L,R,k);
-        io.write(zip[wm.quantile(L,R,k)]);
+        read(L,R,k);
+        print(zip[wm.quantile(L,R,k)]);
     }
     return 0;
 }

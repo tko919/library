@@ -5,15 +5,14 @@
 
 #include "Math/binomquery.hpp"
 
-FastIO io;
-int main(){
-    int q,m;
-    io.read(q,m);
+int main() {
+    int q, m;
+    read(q, m);
     BinomialQuery buf(m);
-    while(q--){
-        ll n,r;
-        io.read(n,r);
-        io.write(buf.nCr(n,r));
+    while (q--) {
+        ll n, r;
+        read(n, r);
+        print(buf.nCr(n, r));
     }
     return 0;
 }

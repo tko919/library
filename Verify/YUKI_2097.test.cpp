@@ -14,10 +14,9 @@ template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
 
 #include "FPS/prodoffrkx.hpp"
 
-FastIO io;
 int main() {
     int n, m, L;
-    io.read(n, m, L);
+    read(n, m, L);
 
     Fp two = Fp(2).pow(n).inv();
     Poly<Fp> f(L + 1);
@@ -27,7 +26,7 @@ int main() {
     two = Fp(2).pow(ll(n) * m);
     rep(i, 1, L + 1) {
         ret[i] *= Fact<Fp>(i) * two;
-        io.write(ret[i].v);
+        print(ret[i].v);
     }
     return 0;
 }

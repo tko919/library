@@ -8,14 +8,13 @@ using Fp=fp<998244353>;
 
 #include "Math/hafnian.hpp"
 
-FastIO io;
 int main(){
     int n;
-    io.read(n);
+    read(n);
     Matrix<Fp> mat(n);
-    rep(i,0,n)rep(j,0,n)io.read(mat[i][j].v);
+    rep(i,0,n)rep(j,0,n)read(mat[i][j].v);
 
     auto ret=Hafnian(mat);
-    io.write(ret.v);
+    print(ret.v);
     return 0;
 }

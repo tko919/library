@@ -27,27 +27,26 @@ string to_string(__int128_t x) {
 } // namespace std
 
 int main() {
-    FastIO io;
     int n, m;
-    io.read(n, m);
+    read(n, m);
     MinCostFlow<ll, i128> mcf(n);
     rep(i, 0, n) {
         int b;
-        io.read(b);
+        read(b);
         mcf.add_excess(i, b);
     }
     rep(i, 0, m) {
         int s, t, l, u, c;
-        io.read(s, t, l, u, c);
+        read(s, t, l, u, c);
         mcf.add_edge(s, t, l, u, c);
     }
     auto [ok, ret] = mcf.run();
     if (!ok) {
-        io.write("infeasible");
+        print("infeasible");
         return 0;
     }
-    io.write(to_string(ret));
-    rep(i, 0, n) io.write(to_string(mcf.dual[i]));
-    rep(i, 0, m) io.write(mcf.get_flow(i));
+    print(to_string(ret));
+    rep(i, 0, n) print(to_string(mcf.dual[i]));
+    rep(i, 0, m) print(mcf.get_flow(i));
     return 0;
 }

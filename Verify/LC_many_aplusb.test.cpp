@@ -3,14 +3,13 @@
 #include "Template/template.hpp"
 #include "Utility/fastio.hpp"
 
-int main(){
-    FastIO io;
+int main() {
     int t;
-    ll a,b;
-    io.read(t);
-    while(t--){
-        io.read(a,b);
-        io.write(a+b);
+    ll a, b;
+    read(t);
+    while (t--) {
+        read(a, b);
+        print(a + b);
     }
     return 0;
 }
