@@ -38,62 +38,66 @@ data:
     \ x.a) {\r\n        T add = floor(x.a / x.b);\r\n        return between(x - add,\
     \ y - add) + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\
     \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
-    \ 3 \"Math/sternbrocot.hpp\"\n \nstruct SternBrocotTree{\n    // R start\n   \
-    \ static vector<int> encode(Frac x){\n        return get(x).first;\n    }\n  \
-    \  static Frac decode(vector<int>& v){\n        Frac L(0,1),R(1,0);\n        rep(i,0,v.size()){\n\
-    \            if(i&1)R=Frac(L.a*v[i]+R.a,L.b*v[i]+R.b);\n            else L=Frac(R.a*v[i]+L.a,R.b*v[i]+L.b);\n\
-    \        }\n        return Frac(L.a+R.a,L.b+R.b);\n    }\n    static Frac lca(Frac\
-    \ x,Frac y){\n        auto px=encode(x),py=encode(y);\n        vector<int> q;\n\
-    \        rep(i,0,min(px.size(),py.size())){\n            q.push_back(min(px[i],py[i]));\n\
-    \            if(q.back()!=px[i] or q.back()!=py[i])break;\n        }\n       \
-    \ return decode(q);\n    }\n    static pair<Frac,Frac> child(Frac x){\n      \
-    \  auto [L,R]=subtree(x);\n        Frac lb(L.a+x.a,L.b+x.b),rb(R.a+x.a,R.b+x.b);\n\
-    \        return {lb,rb};\n    }\n    static Frac la(Frac x,ll k){\n        auto\
-    \ path=encode(x);\n        for(;;){\n            if(path.empty())return Frac(-1,1);\n\
-    \            if(k<=path.back()){\n                path.back()-=k;\n          \
-    \      break;\n            }\n            else{\n                k=path.back();\n\
-    \                path.pop_back();\n            }\n        }\n        return decode(path);\n\
-    \    }\n    static pair<Frac,Frac> subtree(Frac x){\n        return get(x).second;\n\
-    \    }\nprivate:\n    static ll ceil(ll a,ll b){return (a+b-1)/b;}\n    static\
-    \ pair<vector<int>,pair<Frac,Frac>> get(Frac& x){\n        Frac L(0,1),R(1,0),mid(1,1);\n\
-    \        vector<int> path;\n        for(;;){\n            if(mid==x)break;\n \
-    \           ll k=ceil(x.a*L.b-x.b*L.a,x.b*R.a-x.a*R.b)-1;\n            L=Frac(L.a+k*R.a,L.b+k*R.b);\n\
-    \            mid=Frac(L.a+R.a,L.b+R.b);\n            path.push_back(k);\n    \
-    \        if(mid==x)break;\n            k=ceil(x.b*R.a-x.a*R.b,x.a*L.b-x.b*L.a)-1;\n\
-    \            R=Frac(R.a+k*L.a,R.b+k*L.b);\n            mid=Frac(L.a+R.a,L.b+R.b);\n\
-    \            path.push_back(k);\n        }\n        return {path,{L,R}};\n   \
-    \ }\n};\n \n/**\n * @brief Stern-Brocot Tree\n */\n"
-  code: "#pragma once\n#include \"Math/fraction.hpp\"\n \nstruct SternBrocotTree{\n\
-    \    // R start\n    static vector<int> encode(Frac x){\n        return get(x).first;\n\
-    \    }\n    static Frac decode(vector<int>& v){\n        Frac L(0,1),R(1,0);\n\
-    \        rep(i,0,v.size()){\n            if(i&1)R=Frac(L.a*v[i]+R.a,L.b*v[i]+R.b);\n\
-    \            else L=Frac(R.a*v[i]+L.a,R.b*v[i]+L.b);\n        }\n        return\
-    \ Frac(L.a+R.a,L.b+R.b);\n    }\n    static Frac lca(Frac x,Frac y){\n       \
-    \ auto px=encode(x),py=encode(y);\n        vector<int> q;\n        rep(i,0,min(px.size(),py.size())){\n\
-    \            q.push_back(min(px[i],py[i]));\n            if(q.back()!=px[i] or\
-    \ q.back()!=py[i])break;\n        }\n        return decode(q);\n    }\n    static\
-    \ pair<Frac,Frac> child(Frac x){\n        auto [L,R]=subtree(x);\n        Frac\
-    \ lb(L.a+x.a,L.b+x.b),rb(R.a+x.a,R.b+x.b);\n        return {lb,rb};\n    }\n \
-    \   static Frac la(Frac x,ll k){\n        auto path=encode(x);\n        for(;;){\n\
-    \            if(path.empty())return Frac(-1,1);\n            if(k<=path.back()){\n\
-    \                path.back()-=k;\n                break;\n            }\n    \
-    \        else{\n                k=path.back();\n                path.pop_back();\n\
-    \            }\n        }\n        return decode(path);\n    }\n    static pair<Frac,Frac>\
-    \ subtree(Frac x){\n        return get(x).second;\n    }\nprivate:\n    static\
-    \ ll ceil(ll a,ll b){return (a+b-1)/b;}\n    static pair<vector<int>,pair<Frac,Frac>>\
-    \ get(Frac& x){\n        Frac L(0,1),R(1,0),mid(1,1);\n        vector<int> path;\n\
-    \        for(;;){\n            if(mid==x)break;\n            ll k=ceil(x.a*L.b-x.b*L.a,x.b*R.a-x.a*R.b)-1;\n\
-    \            L=Frac(L.a+k*R.a,L.b+k*R.b);\n            mid=Frac(L.a+R.a,L.b+R.b);\n\
-    \            path.push_back(k);\n            if(mid==x)break;\n            k=ceil(x.b*R.a-x.a*R.b,x.a*L.b-x.b*L.a)-1;\n\
-    \            R=Frac(R.a+k*L.a,R.b+k*L.b);\n            mid=Frac(L.a+R.a,L.b+R.b);\n\
-    \            path.push_back(k);\n        }\n        return {path,{L,R}};\n   \
-    \ }\n};\n \n/**\n * @brief Stern-Brocot Tree\n */\n"
+    \ 3 \"Math/sternbrocot.hpp\"\n\nnamespace SternBrocotTree {\n// R start\nstatic\
+    \ vector<int> encode(Frac x) {\n    return get(x).first;\n}\nstatic Frac decode(vector<int>\
+    \ &v) {\n    Frac L(0, 1), R(1, 0);\n    rep(i, 0, v.size()) {\n        if (i\
+    \ & 1)\n            R = Frac(L.a * v[i] + R.a, L.b * v[i] + R.b);\n        else\n\
+    \            L = Frac(R.a * v[i] + L.a, R.b * v[i] + L.b);\n    }\n    return\
+    \ Frac(L.a + R.a, L.b + R.b);\n}\nstatic Frac lca(Frac x, Frac y) {\n    auto\
+    \ px = encode(x), py = encode(y);\n    vector<int> q;\n    rep(i, 0, min(px.size(),\
+    \ py.size())) {\n        q.push_back(min(px[i], py[i]));\n        if (q.back()\
+    \ != px[i] or q.back() != py[i])\n            break;\n    }\n    return decode(q);\n\
+    }\nstatic pair<Frac, Frac> child(Frac x) {\n    auto [L, R] = subtree(x);\n  \
+    \  Frac lb(L.a + x.a, L.b + x.b), rb(R.a + x.a, R.b + x.b);\n    return {lb, rb};\n\
+    }\nstatic Frac la(Frac x, ll k) {\n    auto path = encode(x);\n    for (;;) {\n\
+    \        if (path.empty())\n            return Frac(-1, 1);\n        if (k <=\
+    \ path.back()) {\n            path.back() -= k;\n            break;\n        }\
+    \ else {\n            k = path.back();\n            path.pop_back();\n       \
+    \ }\n    }\n    return decode(path);\n}\nstatic pair<Frac, Frac> subtree(Frac\
+    \ x) {\n    return get(x).second;\n}\n\nprivate:\nstatic ll ceil(ll a, ll b) {\n\
+    \    return (a + b - 1) / b;\n}\nstatic pair<vector<int>, pair<Frac, Frac>> get(Frac\
+    \ &x) {\n    Frac L(0, 1), R(1, 0), mid(1, 1);\n    vector<int> path;\n    for\
+    \ (;;) {\n        if (mid == x)\n            break;\n        ll k = ceil(x.a *\
+    \ L.b - x.b * L.a, x.b * R.a - x.a * R.b) - 1;\n        L = Frac(L.a + k * R.a,\
+    \ L.b + k * R.b);\n        mid = Frac(L.a + R.a, L.b + R.b);\n        path.push_back(k);\n\
+    \        if (mid == x)\n            break;\n        k = ceil(x.b * R.a - x.a *\
+    \ R.b, x.a * L.b - x.b * L.a) - 1;\n        R = Frac(R.a + k * L.a, R.b + k *\
+    \ L.b);\n        mid = Frac(L.a + R.a, L.b + R.b);\n        path.push_back(k);\n\
+    \    }\n    return {path, {L, R}};\n}\n}; // namespace SternBrocotTree\n\n/**\n\
+    \ * @brief Stern-Brocot Tree\n */\n"
+  code: "#pragma once\n#include \"Math/fraction.hpp\"\n\nnamespace SternBrocotTree\
+    \ {\n// R start\nstatic vector<int> encode(Frac x) {\n    return get(x).first;\n\
+    }\nstatic Frac decode(vector<int> &v) {\n    Frac L(0, 1), R(1, 0);\n    rep(i,\
+    \ 0, v.size()) {\n        if (i & 1)\n            R = Frac(L.a * v[i] + R.a, L.b\
+    \ * v[i] + R.b);\n        else\n            L = Frac(R.a * v[i] + L.a, R.b * v[i]\
+    \ + L.b);\n    }\n    return Frac(L.a + R.a, L.b + R.b);\n}\nstatic Frac lca(Frac\
+    \ x, Frac y) {\n    auto px = encode(x), py = encode(y);\n    vector<int> q;\n\
+    \    rep(i, 0, min(px.size(), py.size())) {\n        q.push_back(min(px[i], py[i]));\n\
+    \        if (q.back() != px[i] or q.back() != py[i])\n            break;\n   \
+    \ }\n    return decode(q);\n}\nstatic pair<Frac, Frac> child(Frac x) {\n    auto\
+    \ [L, R] = subtree(x);\n    Frac lb(L.a + x.a, L.b + x.b), rb(R.a + x.a, R.b +\
+    \ x.b);\n    return {lb, rb};\n}\nstatic Frac la(Frac x, ll k) {\n    auto path\
+    \ = encode(x);\n    for (;;) {\n        if (path.empty())\n            return\
+    \ Frac(-1, 1);\n        if (k <= path.back()) {\n            path.back() -= k;\n\
+    \            break;\n        } else {\n            k = path.back();\n        \
+    \    path.pop_back();\n        }\n    }\n    return decode(path);\n}\nstatic pair<Frac,\
+    \ Frac> subtree(Frac x) {\n    return get(x).second;\n}\n\nprivate:\nstatic ll\
+    \ ceil(ll a, ll b) {\n    return (a + b - 1) / b;\n}\nstatic pair<vector<int>,\
+    \ pair<Frac, Frac>> get(Frac &x) {\n    Frac L(0, 1), R(1, 0), mid(1, 1);\n  \
+    \  vector<int> path;\n    for (;;) {\n        if (mid == x)\n            break;\n\
+    \        ll k = ceil(x.a * L.b - x.b * L.a, x.b * R.a - x.a * R.b) - 1;\n    \
+    \    L = Frac(L.a + k * R.a, L.b + k * R.b);\n        mid = Frac(L.a + R.a, L.b\
+    \ + R.b);\n        path.push_back(k);\n        if (mid == x)\n            break;\n\
+    \        k = ceil(x.b * R.a - x.a * R.b, x.a * L.b - x.b * L.a) - 1;\n       \
+    \ R = Frac(R.a + k * L.a, R.b + k * L.b);\n        mid = Frac(L.a + R.a, L.b +\
+    \ R.b);\n        path.push_back(k);\n    }\n    return {path, {L, R}};\n}\n};\
+    \ // namespace SternBrocotTree\n\n/**\n * @brief Stern-Brocot Tree\n */\n"
   dependsOn:
   - Math/fraction.hpp
   isVerificationFile: false
   path: Math/sternbrocot.hpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
+  timestamp: '2024-04-26 03:18:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/sternbrocot.hpp

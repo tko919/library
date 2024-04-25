@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
   _extendedRequiredBy: []

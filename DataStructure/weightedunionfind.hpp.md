@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/AOJ_DSL_1_B.test.cpp
     title: Verify/AOJ_DSL_1_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Weighted Union Find
     links: []
@@ -41,7 +41,7 @@ data:
   path: DataStructure/weightedunionfind.hpp
   requiredBy: []
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/AOJ_DSL_1_B.test.cpp
 documentation_of: DataStructure/weightedunionfind.hpp

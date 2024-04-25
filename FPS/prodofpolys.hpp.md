@@ -3,15 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: FPS/findroots.hpp
+    title: Find roots
+  - icon: ':warning:'
     path: FPS/sumofpowers.hpp
     title: Enumerate $\sum_k a_k^i$
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Product of Polynomials
     links: []
@@ -32,8 +35,9 @@ data:
   path: FPS/prodofpolys.hpp
   requiredBy:
   - FPS/sumofpowers.hpp
+  - FPS/findroots.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_product_of_polynomial_sequence.test.cpp
 documentation_of: FPS/prodofpolys.hpp

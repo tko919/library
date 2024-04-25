@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+    title: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
-    title: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
     title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Link-Cut Tree
     links: []
@@ -130,13 +130,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Graph/linkcut.hpp
-  requiredBy: []
+  requiredBy:
+  - Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
   timestamp: '2024-01-18 04:47:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
   - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
 documentation_of: Graph/linkcut.hpp
 layout: document
 redirect_from:

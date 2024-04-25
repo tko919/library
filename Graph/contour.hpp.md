@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Contour Sum Query
     links: []
@@ -170,7 +170,7 @@ data:
   path: Graph/contour.hpp
   requiredBy: []
   timestamp: '2024-01-14 02:07:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: Graph/contour.hpp

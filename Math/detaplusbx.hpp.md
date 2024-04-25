@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: Math/charpoly.hpp
     title: Characteristic Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -66,23 +66,41 @@ data:
     \        }\n        T prod=1;\n        for(int j=i-1;j>=0;j--){\n            prod*=a[j+1][j];\n\
     \            T base=prod*a[j][i];\n            rep(k,0,i+1)dp[i+1][k]-=dp[j][k]*base;\n\
     \        }\n    }\n    return dp[n];\n}\n\n/**\n * @brief Characteristic Polynomial\n\
-    */\n#line 2 \"Utility/random.hpp\"\n\r\nnamespace Random{\r\n    mt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
-    \n    using u64=unsigned long long;\r\n    u64 get(){\r\n        return randgen();\r\
-    \n    }\r\n    template<typename T>T get(T L){\r\n        return get()%(L+1);\r\
-    \n    }\r\n    template<typename T>T get(T L,T R){\r\n        return get(R-L)+L;\r\
-    \n    }\r\n    double uniform(){\r\n        return double(get(1000000000))/1000000000;\r\
-    \n    }\r\n    string str(int n){\r\n        string ret;\r\n        rep(i,0,n)ret+=get('a','z');\r\
-    \n        return ret;\r\n    }\r\n    template<typename Iter>void shuffle(Iter\
-    \ first,Iter last){\r\n        if(first==last)return;\r\n        int len=1;\r\n\
-    \        for(auto it=first+1;it!=last;it++){\r\n            len++;\r\n       \
-    \     int j=get(0,len-1);\r\n            if(j!=len-1)iter_swap(it,first+j);\r\n\
-    \        }\r\n    }\r\n    template<typename T>vector<T> select(int n,T L,T R){\r\
-    \n        set<T> ret;\r\n        while(ret.size()<n)ret.insert(get(L,R));\r\n\
-    \        return {ALL(ret)};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Random\r\n\
-    \ */\n#line 5 \"Math/detaplusbx.hpp\"\n\ntemplate<typename T>vector<T> detApBx(Matrix<T>\
-    \ a,Matrix<T> b){\n    Random gen;\n    int n=a.h;\n    vector<T> f(n+1);\n  \
-    \  T ran=gen.get();\n    rep(i,0,n)rep(j,0,n)a[i][j]-=b[i][j]*ran;\n    auto ainv=a.inv();\n\
-    \    if(a.det==0)return f;\n    b*=ainv;\n    rep(i,0,n)rep(j,0,n)b[i][j]=-b[i][j];\n\
+    */\n#line 2 \"Utility/random.hpp\"\n\r\nnamespace Random {\r\nmt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \nusing u64 = unsigned long long;\r\nu64 get() {\r\n    return randgen();\r\n\
+    }\r\ntemplate <typename T> T get(T L) { // [0,L]\r\n    return get() % (L + 1);\r\
+    \n}\r\ntemplate <typename T> T get(T L, T R) { // [L,R]\r\n    return get(R -\
+    \ L) + L;\r\n}\r\ndouble uniform() {\r\n    return double(get(1000000000)) / 1000000000;\r\
+    \n}\r\nstring str(int n) {\r\n    string ret;\r\n    rep(i, 0, n) ret += get('a',\
+    \ 'z');\r\n    return ret;\r\n}\r\ntemplate <typename Iter> void shuffle(Iter\
+    \ first, Iter last) {\r\n    if (first == last)\r\n        return;\r\n    int\
+    \ len = 1;\r\n    for (auto it = first + 1; it != last; it++) {\r\n        len++;\r\
+    \n        int j = get(0, len - 1);\r\n        if (j != len - 1)\r\n          \
+    \  iter_swap(it, first + j);\r\n    }\r\n}\r\ntemplate <typename T> vector<T>\
+    \ select(int n, T L, T R) { // [L,R]\r\n    if (n * 2 >= R - L + 1) {\r\n    \
+    \    vector<T> ret(R - L + 1);\r\n        iota(ALL(ret), L);\r\n        shuffle(ALL(ret));\r\
+    \n        ret.resize(n);\r\n        return ret;\r\n    } else {\r\n        unordered_set<T>\
+    \ used;\r\n        vector<T> ret;\r\n        while (SZ(used) < n) {\r\n      \
+    \      T x = get(L, R);\r\n            if (!used.count(x)) {\r\n             \
+    \   used.insert(x);\r\n                ret.push_back(x);\r\n            }\r\n\
+    \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
+    \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
+    \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple> vector<pair<int,\
+    \ int>> genGraph(int n) {\r\n    vector<pair<int, int>> cand, es;\r\n    rep(u,\
+    \ 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n            continue;\r\
+    \n        if (!directed and u > v)\r\n            continue;\r\n        cand.push_back({u,\
+    \ v});\r\n    }\r\n    int m = get(SZ(cand));\r\n    vector<int> ord;\r\n    if\
+    \ (simple)\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n    \
+    \    rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n    }\r\n    for (auto\
+    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
+    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
+    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
+    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
+    \ Random\r\n */\n#line 5 \"Math/detaplusbx.hpp\"\n\ntemplate<typename T>vector<T>\
+    \ detApBx(Matrix<T> a,Matrix<T> b){\n    Random gen;\n    int n=a.h;\n    vector<T>\
+    \ f(n+1);\n    T ran=gen.get();\n    rep(i,0,n)rep(j,0,n)a[i][j]-=b[i][j]*ran;\n\
+    \    auto ainv=a.inv();\n    if(a.det==0)return f;\n    b*=ainv;\n    rep(i,0,n)rep(j,0,n)b[i][j]=-b[i][j];\n\
     \    f=CharPoly(b);\n    reverse(ALL(f));\n    for(auto& x:f)x*=a.det;\n    vector\
     \ C(n+1,vector<T>(n+1));\n    vector<T> pw(n+1,1);\n    rep(i,0,n+1){\n      \
     \  if(i)pw[i]=pw[i-1]*ran;\n        C[i][0]=C[i][i]=1;\n        rep(j,1,i)C[i][j]=C[i-1][j-1]+C[i-1][j];\n\
@@ -105,7 +123,7 @@ data:
   isVerificationFile: false
   path: Math/detaplusbx.hpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
+  timestamp: '2024-04-26 03:18:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/detaplusbx.hpp

@@ -9,45 +9,53 @@ data:
   attributes:
     document_title: Composition of Formal Power Series
     links: []
-  bundledCode: "#line 2 \"FPS/composition.hpp\"\n\ntemplate<typename T>Poly<T> Composition(Poly<T>&\
-    \ p,Poly<T>& q){\n    int n=min(p.size(),q.size());\n    int m=1;\n    while(m*m<n)m++;\n\
-    \    vector pwb(m+1,Poly<T>()),pwg(m+1,Poly<T>());\n    pwb[0]=pwg[0]=Poly<T>({T(1)});\n\
-    \    pwb[1]=q;\n    rep(i,2,m+1){\n        pwb[i]=pwb[i-1]*pwb[1];\n        pwb[i].resize(n);\n\
-    \    }\n    pwg[1]=pwb[m];\n    rep(i,2,m+1){\n        pwg[i]=pwg[i-1]*pwg[1];\n\
-    \        pwg[i].resize(n);\n    }\n    Poly<T> res(n);\n    rep(i,0,m+1){\n  \
-    \      Poly<T> f;\n        rep(j,0,m){\n            if(m*i+j<(int)p.size()){\n\
-    \                f+=pwb[j]*p[m*i+j];\n            }\n        }\n        f*=pwg[i];\n\
-    \        f.resize(n);\n        res+=f;\n    }\n    return res;\n}\n\n/*\nf(x)-t=0\n\
-    \nx_{n+1}=x_n-{f(x_n)-t}/{f'(x_n)}\n*/\n\ntemplate<typename T>Poly<T> CompositionInv(Poly<T>&\
-    \ f){\n    assert(f.size()>=2 and f[0]==0 and f[1]!=0);\n    const int n=f.size();\n\
-    \    Poly<T> ret(1),df=f.diff();\n    for(int k=1;k<n;k<<=1){\n        ret.resize(k*2);\n\
-    \        Poly<T> sub=f;\n        sub.resize(k*2);\n        sub=Composition(sub,ret);\n\
-    \        sub[1]-=1;\n        Poly<T> base=df;\n        base.resize(k*2);\n   \
-    \     base=Composition(base,ret);\n        sub*=base.inv();\n        sub.resize(k*2);\n\
-    \        ret-=sub;\n    }\n    ret.resize(n);\n    return ret;\n}\n\n/**\n * @brief\
-    \ Composition of Formal Power Series\n*/\n"
-  code: "#pragma once\n\ntemplate<typename T>Poly<T> Composition(Poly<T>& p,Poly<T>&\
-    \ q){\n    int n=min(p.size(),q.size());\n    int m=1;\n    while(m*m<n)m++;\n\
-    \    vector pwb(m+1,Poly<T>()),pwg(m+1,Poly<T>());\n    pwb[0]=pwg[0]=Poly<T>({T(1)});\n\
-    \    pwb[1]=q;\n    rep(i,2,m+1){\n        pwb[i]=pwb[i-1]*pwb[1];\n        pwb[i].resize(n);\n\
-    \    }\n    pwg[1]=pwb[m];\n    rep(i,2,m+1){\n        pwg[i]=pwg[i-1]*pwg[1];\n\
-    \        pwg[i].resize(n);\n    }\n    Poly<T> res(n);\n    rep(i,0,m+1){\n  \
-    \      Poly<T> f;\n        rep(j,0,m){\n            if(m*i+j<(int)p.size()){\n\
-    \                f+=pwb[j]*p[m*i+j];\n            }\n        }\n        f*=pwg[i];\n\
-    \        f.resize(n);\n        res+=f;\n    }\n    return res;\n}\n\n/*\nf(x)-t=0\n\
-    \nx_{n+1}=x_n-{f(x_n)-t}/{f'(x_n)}\n*/\n\ntemplate<typename T>Poly<T> CompositionInv(Poly<T>&\
-    \ f){\n    assert(f.size()>=2 and f[0]==0 and f[1]!=0);\n    const int n=f.size();\n\
-    \    Poly<T> ret(1),df=f.diff();\n    for(int k=1;k<n;k<<=1){\n        ret.resize(k*2);\n\
-    \        Poly<T> sub=f;\n        sub.resize(k*2);\n        sub=Composition(sub,ret);\n\
-    \        sub[1]-=1;\n        Poly<T> base=df;\n        base.resize(k*2);\n   \
-    \     base=Composition(base,ret);\n        sub*=base.inv();\n        sub.resize(k*2);\n\
-    \        ret-=sub;\n    }\n    ret.resize(n);\n    return ret;\n}\n\n/**\n * @brief\
-    \ Composition of Formal Power Series\n*/"
+  bundledCode: "#line 2 \"FPS/composition.hpp\"\n\ntemplate <typename T> Poly<T> Composition(Poly<T>\
+    \ &f, Poly<T> &g) {\n    assert(SZ(f) == SZ(g) and g[0] == 0);\n    const int\
+    \ N = f.deg();\n\n    auto dfs = [&](auto &dfs, int n, int k, Poly<T> &Q) -> Poly<T>\
+    \ {\n        if (n == 0) {\n            Poly<T> P(k * 2 + 1);\n            rep(i,\
+    \ 0, N + 1) P[i] = f[i];\n            return P;\n        }\n        int n2 = n\
+    \ >> 1, k2 = k << 1;\n\n        auto R = Q;\n        for (int i = 1; i <= n; i\
+    \ += 2)\n            rep(j, 0, k + 1) R[i * (k * 2 + 1) + j] = -R[i * (k * 2 +\
+    \ 1) + j];\n        auto bufQ = Q * R;\n        Poly<T> nQ((n2 + 1) * (k2 * 2\
+    \ + 1));\n        for (int i = 0, x = 0; x <= n; i++, x += 2)\n            rep(j,\
+    \ 0, k * 2 + 1) nQ[i * (k2 * 2 + 1) + j] =\n                bufQ[x * (k * 2 +\
+    \ 1) + j];\n        auto nP = dfs(dfs, n2, k2, nQ);\n\n        Poly<T> bufP((n\
+    \ + 1) * (k * 2 + 1));\n        for (int i = 0, x = n & 1; x <= n; i++, x += 2)\n\
+    \            rep(j, 0, k * 2 + 1) bufP[x * (k * 2 + 1) + j] =\n              \
+    \  nP[i * (k * 4 + 1) + j];\n\n        // middle product\n        const int M\
+    \ = R.deg();\n        reverse(ALL(R));\n        bufP *= R;\n        Poly<T> P((n\
+    \ + 1) * (k * 2 + 1));\n        rep(i, 0, SZ(P)) P[i] = bufP[i + M];\n       \
+    \ return P;\n    };\n    int k = 1;\n    Poly<T> Q((N + 1) * (k * 2 + 1));\n \
+    \   Q[0] = 1;\n    rep(i, 1, N + 1) Q[i * (k * 2 + 1) + 1] = -g[i];\n    auto\
+    \ P = dfs(dfs, N, 1, Q);\n    Poly<T> ret(N + 1);\n    rep(i, 0, N + 1) ret[i]\
+    \ = P[i * (k * 2 + 1)];\n    reverse(ALL(ret));\n    return ret;\n};\n\n/**\n\
+    \ * @brief Composition of Formal Power Series\n */\n"
+  code: "#pragma once\n\ntemplate <typename T> Poly<T> Composition(Poly<T> &f, Poly<T>\
+    \ &g) {\n    assert(SZ(f) == SZ(g) and g[0] == 0);\n    const int N = f.deg();\n\
+    \n    auto dfs = [&](auto &dfs, int n, int k, Poly<T> &Q) -> Poly<T> {\n     \
+    \   if (n == 0) {\n            Poly<T> P(k * 2 + 1);\n            rep(i, 0, N\
+    \ + 1) P[i] = f[i];\n            return P;\n        }\n        int n2 = n >> 1,\
+    \ k2 = k << 1;\n\n        auto R = Q;\n        for (int i = 1; i <= n; i += 2)\n\
+    \            rep(j, 0, k + 1) R[i * (k * 2 + 1) + j] = -R[i * (k * 2 + 1) + j];\n\
+    \        auto bufQ = Q * R;\n        Poly<T> nQ((n2 + 1) * (k2 * 2 + 1));\n  \
+    \      for (int i = 0, x = 0; x <= n; i++, x += 2)\n            rep(j, 0, k *\
+    \ 2 + 1) nQ[i * (k2 * 2 + 1) + j] =\n                bufQ[x * (k * 2 + 1) + j];\n\
+    \        auto nP = dfs(dfs, n2, k2, nQ);\n\n        Poly<T> bufP((n + 1) * (k\
+    \ * 2 + 1));\n        for (int i = 0, x = n & 1; x <= n; i++, x += 2)\n      \
+    \      rep(j, 0, k * 2 + 1) bufP[x * (k * 2 + 1) + j] =\n                nP[i\
+    \ * (k * 4 + 1) + j];\n\n        // middle product\n        const int M = R.deg();\n\
+    \        reverse(ALL(R));\n        bufP *= R;\n        Poly<T> P((n + 1) * (k\
+    \ * 2 + 1));\n        rep(i, 0, SZ(P)) P[i] = bufP[i + M];\n        return P;\n\
+    \    };\n    int k = 1;\n    Poly<T> Q((N + 1) * (k * 2 + 1));\n    Q[0] = 1;\n\
+    \    rep(i, 1, N + 1) Q[i * (k * 2 + 1) + 1] = -g[i];\n    auto P = dfs(dfs, N,\
+    \ 1, Q);\n    Poly<T> ret(N + 1);\n    rep(i, 0, N + 1) ret[i] = P[i * (k * 2\
+    \ + 1)];\n    reverse(ALL(ret));\n    return ret;\n};\n\n/**\n * @brief Composition\
+    \ of Formal Power Series\n */"
   dependsOn: []
   isVerificationFile: false
   path: FPS/composition.hpp
   requiredBy: []
-  timestamp: '2023-06-14 14:20:49+09:00'
+  timestamp: '2024-04-26 03:18:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/composition.hpp

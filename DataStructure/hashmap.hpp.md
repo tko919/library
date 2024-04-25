@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_associative_array.test.cpp
     title: Verify/LC_associative_array.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Hash Map
     links: []
@@ -42,7 +42,7 @@ data:
   path: DataStructure/hashmap.hpp
   requiredBy: []
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_associative_array.test.cpp
 documentation_of: DataStructure/hashmap.hpp

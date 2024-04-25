@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_deque_operate_all_composite.test.cpp
     title: Verify/LC_deque_operate_all_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Sliding Window Aggregation for deque
     links: []
@@ -64,7 +64,7 @@ data:
   path: DataStructure/dequeswag.hpp
   requiredBy: []
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_deque_operate_all_composite.test.cpp
 documentation_of: DataStructure/dequeswag.hpp

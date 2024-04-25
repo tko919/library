@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: FPS/factorize.hpp
+    title: Factorize Polynomial
+  - icon: ':warning:'
+    path: FPS/findroots.hpp
+    title: Find roots
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -68,7 +74,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: FPS/halfgcd.hpp
-  requiredBy: []
+  requiredBy:
+  - FPS/factorize.hpp
+  - FPS/findroots.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

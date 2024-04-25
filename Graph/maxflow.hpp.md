@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/mincostflow.hpp
     title: Minimum Cost b-flow
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/AOJ_GRL_6_A.test.cpp
     title: Verify/AOJ_GRL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Maximum Flow
     links: []
@@ -82,10 +82,10 @@ data:
   requiredBy:
   - Graph/mincostflow.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_min_cost_b_flow.test.cpp
   - Verify/AOJ_GRL_6_A.test.cpp
+  - Verify/LC_min_cost_b_flow.test.cpp
 documentation_of: Graph/maxflow.hpp
 layout: document
 redirect_from:

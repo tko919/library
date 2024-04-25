@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/unionrect.hpp
     title: Area of Union of Rectangles
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_area_of_union_of_rectangles.test.cpp
     title: Verify/LC_area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_affine_range_sum.test.cpp
     title: Verify/LC_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Lazy Segment Tree
     links: []
@@ -77,7 +77,7 @@ data:
   requiredBy:
   - DataStructure/unionrect.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_area_of_union_of_rectangles.test.cpp
   - Verify/LC_range_affine_range_sum.test.cpp
