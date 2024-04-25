@@ -16,7 +16,9 @@ template <typename T> class RBSTset {
                 size += rp->size;
         }
     };
-    int size(Node *x) { return x ? x->size : 0; }
+    int size(Node *x) {
+        return x ? x->size : 0;
+    }
     Node *merge(Node *L, Node *R) {
         if (!L)
             return R;
@@ -67,19 +69,24 @@ template <typename T> class RBSTset {
         else
             return size(x->lp) + 1 + upper_bound(x->rp, v);
     }
-    void _dump(Node *cur, string add) {
+    void _dump(Node *cur, int depth) {
         if (!cur)
             return;
-        _dump(cur->lp, add + "*");
-        cerr << add << cur->key << '\n';
-        _dump(cur->rp, add + "*");
+        _dump(cur->lp, depth + 1);
+        rep(_, 0, depth) cerr << ' ';
+        cerr << cur->key << '\n';
+        _dump(cur->rp, depth + 1);
     }
 
   public:
     Node *root;
     RBSTset(Node *_r = nullptr) : root(_r) {}
-    int size() { return size(root); }
-    void merge(RBSTset &a) { root = merge(root, a.root); }
+    int size() {
+        return size(root);
+    }
+    void merge(RBSTset &a) {
+        root = merge(root, a.root);
+    }
     RBSTset split(int k) {
         auto [L, R] = split(root, k);
         root = L;
@@ -121,9 +128,15 @@ template <typename T> class RBSTset {
         root = merge(L, R);
         return cur->key;
     }
-    int lower_bound(T v) { return lower_bound(root, v); }
-    int upper_bound(T v) { return upper_bound(root, v); }
-    void dump() { _dump(root, "*"); }
+    int lower_bound(T v) {
+        return lower_bound(root, v);
+    }
+    int upper_bound(T v) {
+        return upper_bound(root, v);
+    }
+    void dump() {
+        _dump(root, 1);
+    }
 };
 
 /**
