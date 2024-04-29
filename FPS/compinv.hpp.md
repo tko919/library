@@ -13,7 +13,7 @@ data:
     document_title: Compositional Inverse
     links: []
   bundledCode: "#line 2 \"FPS/powenum.hpp\"\n\ntemplate <typename T>\nvector<T> PowEnumerate(Poly<T>\
-    \ &f, Poly<T> &g,\n                       int m) { // [x^{deg f}]g f^i (i=0..m)\n\
+    \ &f, Poly<T> &g,\n                       int m) { // sum_j g_j [x^j] f^i (i=0..m)\n\
     \    assert(f[0] == 0);\n    int n = 1;\n    while (n < SZ(f))\n        n <<=\
     \ 1;\n    int k = 1;\n    Poly<T> P(n * 2), Q(n * 2);\n    f.resize(n);\n    g.resize(n);\n\
     \    reverse(ALL(g));\n    rep(i, 0, n) P[i] = g[i];\n    rep(i, 1, n) Q[i] =\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: FPS/compinv.hpp
   requiredBy: []
-  timestamp: '2024-04-29 14:20:00+09:00'
+  timestamp: '2024-04-30 04:21:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/compinv.hpp

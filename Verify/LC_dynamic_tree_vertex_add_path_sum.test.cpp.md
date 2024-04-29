@@ -4,24 +4,26 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/linkcut.hpp
     title: Link-Cut Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
-  bundledCode: "#line 1 \"Verify/LC_dynamic_tree_vertex_add_path_sum.cpp\"\n#define\
-    \ PROBLEM                                                                \\\n\
-    \    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\n\n\
-    #line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
+  bundledCode: "#line 1 \"Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp\"\n\
+    #define PROBLEM                                                              \
+    \  \\\n    \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
+    \n\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
     \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
     \ ALL(v) (v).begin(), (v).end()\r\n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)),\
@@ -141,8 +143,8 @@ data:
     \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
     \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
     \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 6 \"Verify/LC_dynamic_tree_vertex_add_path_sum.cpp\"\n\
-    \n#line 2 \"Graph/linkcut.hpp\"\n\ntemplate <typename M, typename N, N (*f)(N,\
+    \ Fast IO\r\n */\n#line 6 \"Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp\"\
+    \n\n#line 2 \"Graph/linkcut.hpp\"\n\ntemplate <typename M, typename N, N (*f)(N,\
     \ N)> struct LCT {\n    struct Node {\n        Node *lp = nullptr, *rp = nullptr,\
     \ *par = nullptr;\n        N val;\n        M sum;\n        int idx, sz = 1;\n\
     \        bool rev = 0;\n        Node() {}\n        Node(int idx, N val) : idx(idx),\
@@ -196,7 +198,7 @@ data:
     \ update(Node *v, N x) {\n        expose(v);\n        v->val = f(v->val, x);\n\
     \        v->update();\n    }\n    M &query(Node *u, Node *v) { // root = u ->\
     \ v\n        evert(u);\n        expose(v);\n        return v->sum;\n    }\n};\n\
-    \n/**\n * @brief Link-Cut Tree\n */\n#line 8 \"Verify/LC_dynamic_tree_vertex_add_path_sum.cpp\"\
+    \n/**\n * @brief Link-Cut Tree\n */\n#line 8 \"Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp\"\
     \n\nusing Key = ll;\nstruct Monoid {\n    ll sum;\n    Monoid() : sum(0) {}\n\
     \    void inverse() {}\n    void merge(Key val, Monoid p, Monoid c) {\n      \
     \  sum = p.sum + c.sum + val;\n    }\n    void add(Monoid v) {}\n    void sub(Monoid\
@@ -235,16 +237,16 @@ data:
   - Template/template.hpp
   - Utility/fastio.hpp
   - Graph/linkcut.hpp
-  isVerificationFile: false
-  path: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+  isVerificationFile: true
+  path: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-04-30 04:21:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+documentation_of: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
 layout: document
 redirect_from:
-- /library/Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
-- /library/Verify/LC_dynamic_tree_vertex_add_path_sum.cpp.html
-title: Verify/LC_dynamic_tree_vertex_add_path_sum.cpp
+- /verify/Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
+- /verify/Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp.html
+title: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
 ---

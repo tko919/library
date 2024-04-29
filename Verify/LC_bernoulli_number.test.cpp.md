@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
@@ -323,11 +323,11 @@ data:
     \     rep(i, 0, as) rep(j, 0, bs) res[i + j] += a[i] * b[j];\r\n            return\
     \ res;\r\n        }\r\n        int m = 1;\r\n        while (m < n)\r\n       \
     \     m <<= 1;\r\n        Poly<T> res(m);\r\n        rep(i, 0, as) res[i] = a[i];\r\
-    \n        NTT(res, 0);\r\n        if (a == b)\r\n            rep(i, 0, m) res[i]\
+    \n        res.NTT(0);\r\n        if (a == b)\r\n            rep(i, 0, m) res[i]\
     \ *= res[i];\r\n        else {\r\n            Poly<T> c(m);\r\n            rep(i,\
-    \ 0, bs) c[i] = b[i];\r\n            NTT(c, 0);\r\n            rep(i, 0, m) res[i]\
-    \ *= c[i];\r\n        }\r\n        NTT(res, 1);\r\n        res.resize(n);\r\n\
-    \        return res;\r\n    }\r\n    Poly square() const {\r\n        return Poly(mult(*this,\
+    \ 0, bs) c[i] = b[i];\r\n            c.NTT(0);\r\n            rep(i, 0, m) res[i]\
+    \ *= c[i];\r\n        }\r\n        res.NTT(1);\r\n        res.resize(n);\r\n \
+    \       return res;\r\n    }\r\n    Poly square() const {\r\n        return Poly(mult(*this,\
     \ *this));\r\n    }\r\n    Poly operator-() const {\r\n        return Poly() -\
     \ *this;\r\n    }\r\n    Poly operator+(const Poly &g) const {\r\n        return\
     \ Poly(*this) += g;\r\n    }\r\n    Poly operator+(const T &g) const {\r\n   \
@@ -381,35 +381,35 @@ data:
     \n        Poly res(1);\r\n        res.front() = T(1) / this->front();\r\n    \
     \    for (int k = 1; k < n; k <<= 1) {\r\n            Poly f(k * 2), g(k * 2);\r\
     \n            rep(i, 0, min(n, k * 2)) f[i] = (*this)[i];\r\n            rep(i,\
-    \ 0, k) g[i] = res[i];\r\n            NTT(f, 0);\r\n            NTT(g, 0);\r\n\
-    \            rep(i, 0, k * 2) f[i] *= g[i];\r\n            NTT(f, 1);\r\n    \
-    \        rep(i, 0, k) {\r\n                f[i] = 0;\r\n                f[i +\
-    \ k] = -f[i + k];\r\n            }\r\n            NTT(f, 0);\r\n            rep(i,\
-    \ 0, k * 2) f[i] *= g[i];\r\n            NTT(f, 1);\r\n            rep(i, 0, k)\
+    \ 0, k) g[i] = res[i];\r\n            f.NTT(0);\r\n            g.NTT(0);\r\n \
+    \           rep(i, 0, k * 2) f[i] *= g[i];\r\n            f.NTT(1);\r\n      \
+    \      rep(i, 0, k) {\r\n                f[i] = 0;\r\n                f[i + k]\
+    \ = -f[i + k];\r\n            }\r\n            f.NTT(0);\r\n            rep(i,\
+    \ 0, k * 2) f[i] *= g[i];\r\n            f.NTT(1);\r\n            rep(i, 0, k)\
     \ f[i] = res[i];\r\n            swap(res, f);\r\n        }\r\n        res.resize(n);\r\
     \n        return res;\r\n    }\r\n    Poly exp() const {\r\n        const int\
     \ n = this->size();\r\n        if (n == 1)\r\n            return Poly({T(1)});\r\
     \n        Poly b(2), c(1), z1, z2(2);\r\n        b[0] = c[0] = z2[0] = z2[1] =\
     \ 1;\r\n        b[1] = (*this)[1];\r\n        for (int k = 2; k < n; k <<= 1)\
     \ {\r\n            Poly y = b;\r\n            y.resize(k * 2);\r\n           \
-    \ NTT(y, 0);\r\n            z1 = z2;\r\n            Poly z(k);\r\n           \
-    \ rep(i, 0, k) z[i] = y[i] * z1[i];\r\n            NTT(z, 1);\r\n            rep(i,\
-    \ 0, k >> 1) z[i] = 0;\r\n            NTT(z, 0);\r\n            rep(i, 0, k) z[i]\
-    \ *= -z1[i];\r\n            NTT(z, 1);\r\n            c.insert(c.end(), z.begin()\
+    \ y.NTT(0);\r\n            z1 = z2;\r\n            Poly z(k);\r\n            rep(i,\
+    \ 0, k) z[i] = y[i] * z1[i];\r\n            z.NTT(1);\r\n            rep(i, 0,\
+    \ k >> 1) z[i] = 0;\r\n            z.NTT(0);\r\n            rep(i, 0, k) z[i]\
+    \ *= -z1[i];\r\n            z.NTT(1);\r\n            c.insert(c.end(), z.begin()\
     \ + (k >> 1), z.end());\r\n            z2 = c;\r\n            z2.resize(k * 2);\r\
-    \n            NTT(z2, 0);\r\n            Poly x = *this;\r\n            x.resize(k);\r\
-    \n            x = x.diff();\r\n            x.resize(k);\r\n            NTT(x,\
-    \ 0);\r\n            rep(i, 0, k) x[i] *= y[i];\r\n            NTT(x, 1);\r\n\
-    \            Poly bb = b.diff();\r\n            rep(i, 0, k - 1) x[i] -= bb[i];\r\
-    \n            x.resize(k * 2);\r\n            rep(i, 0, k - 1) {\r\n         \
-    \       x[k + i] = x[i];\r\n                x[i] = 0;\r\n            }\r\n   \
-    \         NTT(x, 0);\r\n            rep(i, 0, k * 2) x[i] *= z2[i];\r\n      \
-    \      NTT(x, 1);\r\n            x.pop_back();\r\n            x = x.inte();\r\n\
-    \            rep(i, k, min(n, k * 2)) x[i] += (*this)[i];\r\n            rep(i,\
-    \ 0, k) x[i] = 0;\r\n            NTT(x, 0);\r\n            rep(i, 0, k * 2) x[i]\
-    \ *= y[i];\r\n            NTT(x, 1);\r\n            b.insert(b.end(), x.begin()\
-    \ + k, x.end());\r\n        }\r\n        b.resize(n);\r\n        return b;\r\n\
-    \    }\r\n    Poly pow(ll t) {\r\n        if (t == 0) {\r\n            Poly res(this->size());\r\
+    \n            z2.NTT(0);\r\n            Poly x = *this;\r\n            x.resize(k);\r\
+    \n            x = x.diff();\r\n            x.resize(k);\r\n            x.NTT(0);\r\
+    \n            rep(i, 0, k) x[i] *= y[i];\r\n            x.NTT(1);\r\n        \
+    \    Poly bb = b.diff();\r\n            rep(i, 0, k - 1) x[i] -= bb[i];\r\n  \
+    \          x.resize(k * 2);\r\n            rep(i, 0, k - 1) {\r\n            \
+    \    x[k + i] = x[i];\r\n                x[i] = 0;\r\n            }\r\n      \
+    \      x.NTT(0);\r\n            rep(i, 0, k * 2) x[i] *= z2[i];\r\n          \
+    \  x.NTT(1);\r\n            x.pop_back();\r\n            x = x.inte();\r\n   \
+    \         rep(i, k, min(n, k * 2)) x[i] += (*this)[i];\r\n            rep(i, 0,\
+    \ k) x[i] = 0;\r\n            x.NTT(0);\r\n            rep(i, 0, k * 2) x[i] *=\
+    \ y[i];\r\n            x.NTT(1);\r\n            b.insert(b.end(), x.begin() +\
+    \ k, x.end());\r\n        }\r\n        b.resize(n);\r\n        return b;\r\n \
+    \   }\r\n    Poly pow(ll t) {\r\n        if (t == 0) {\r\n            Poly res(this->size());\r\
     \n            res[0] = 1;\r\n            return res;\r\n        }\r\n        int\
     \ n = this->size(), k = 0;\r\n        while (k < n and (*this)[k] == 0)\r\n  \
     \          k++;\r\n        Poly res(n);\r\n        if (__int128_t(t) * k >= n)\r\
@@ -418,26 +418,25 @@ data:
     \ + k] * ic;\r\n        g = g.log();\r\n        for (auto &x : g)\r\n        \
     \    x *= t;\r\n        g = g.exp();\r\n        c = c.pow(t);\r\n        rep(i,\
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
-    \ NTT(vector<T> &a, bool inv) const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power\
-    \ Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_bernoulli_number.test.cpp\"\
-    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#line 2 \"FPS/famous.hpp\"\
-    \n\ntemplate<typename T>vector<T> Bernoulli(int n){\n    Poly<T> f(n+1);\n   \
-    \ rep(i,0,n+1)f[i]=Fact<T>(i+1,1);\n    f=f.inv();\n    rep(i,0,n+1)f[i]*=Fact<T>(i);\n\
-    \    return f;\n}\n\ntemplate<typename T>vector<T> Partition(int n){\n    Poly<T>\
-    \ f(n+1);\n    f[0]=1;\n    rep(k,1,n+1){\n        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n\
-    \        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n    }\n    return\
-    \ f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int n){\n   \
-    \ if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int LG=topbit(n)-1;LG>=0;LG--){\n\
-    \        int m=n>>LG;\n        f*=f.shift(m>>1);\n        if(m&1)f=(f<<1)+f*T(m-1);\n\
-    \    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n    return f;\n}\n\ntemplate<typename\
-    \ T>vector<T> StirlingNumber2nd(int n){\n    if(n==0)return Poly<T>({T(1)});\n\
-    \    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n        f[i]=Fp(i).pow(n)*Fact<T>(i,1);\n\
-    \        g[i]=Fact<T>(i,1);\n        if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n  \
-    \  f.resize(n+1);\n    return f;\n}\n\ntemplate<typename T>vector<T> Bell(int\
-    \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
-    \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
-    }\n\n/**\n * @brief Famous Sequence\n*/\n#line 16 \"Verify/LC_bernoulli_number.test.cpp\"\
+    \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */\n#line 9 \"Verify/LC_bernoulli_number.test.cpp\"\nusing Fp = fp<998244353>;\n\
+    NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\n\
+    \    return ntt.ntt(v, inv);\n}\n\n#line 2 \"FPS/famous.hpp\"\n\ntemplate<typename\
+    \ T>vector<T> Bernoulli(int n){\n    Poly<T> f(n+1);\n    rep(i,0,n+1)f[i]=Fact<T>(i+1,1);\n\
+    \    f=f.inv();\n    rep(i,0,n+1)f[i]*=Fact<T>(i);\n    return f;\n}\n\ntemplate<typename\
+    \ T>vector<T> Partition(int n){\n    Poly<T> f(n+1);\n    f[0]=1;\n    rep(k,1,n+1){\n\
+    \        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n\
+    \    }\n    return f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int\
+    \ n){\n    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int\
+    \ LG=topbit(n)-1;LG>=0;LG--){\n        int m=n>>LG;\n        f*=f.shift(m>>1);\n\
+    \        if(m&1)f=(f<<1)+f*T(m-1);\n    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n\
+    \    return f;\n}\n\ntemplate<typename T>vector<T> StirlingNumber2nd(int n){\n\
+    \    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n\
+    \        f[i]=Fp(i).pow(n)*Fact<T>(i,1);\n        g[i]=Fact<T>(i,1);\n       \
+    \ if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n    f.resize(n+1);\n    return f;\n}\n\
+    \ntemplate<typename T>vector<T> Bell(int n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n\
+    \    rep(i,2,n+1)f[i]=f[i-1]/i;\n    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n\
+    \    return f;\n}\n\n/**\n * @brief Famous Sequence\n*/\n#line 16 \"Verify/LC_bernoulli_number.test.cpp\"\
     \n\nint main() {\n    int n;\n    read(n);\n\n    auto ret = Bernoulli<Fp>(n);\n\
     \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
@@ -457,8 +456,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-30 04:21:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_bernoulli_number.test.cpp
 layout: document

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_factorials
@@ -326,11 +326,11 @@ data:
     \     rep(i, 0, as) rep(j, 0, bs) res[i + j] += a[i] * b[j];\r\n            return\
     \ res;\r\n        }\r\n        int m = 1;\r\n        while (m < n)\r\n       \
     \     m <<= 1;\r\n        Poly<T> res(m);\r\n        rep(i, 0, as) res[i] = a[i];\r\
-    \n        NTT(res, 0);\r\n        if (a == b)\r\n            rep(i, 0, m) res[i]\
+    \n        res.NTT(0);\r\n        if (a == b)\r\n            rep(i, 0, m) res[i]\
     \ *= res[i];\r\n        else {\r\n            Poly<T> c(m);\r\n            rep(i,\
-    \ 0, bs) c[i] = b[i];\r\n            NTT(c, 0);\r\n            rep(i, 0, m) res[i]\
-    \ *= c[i];\r\n        }\r\n        NTT(res, 1);\r\n        res.resize(n);\r\n\
-    \        return res;\r\n    }\r\n    Poly square() const {\r\n        return Poly(mult(*this,\
+    \ 0, bs) c[i] = b[i];\r\n            c.NTT(0);\r\n            rep(i, 0, m) res[i]\
+    \ *= c[i];\r\n        }\r\n        res.NTT(1);\r\n        res.resize(n);\r\n \
+    \       return res;\r\n    }\r\n    Poly square() const {\r\n        return Poly(mult(*this,\
     \ *this));\r\n    }\r\n    Poly operator-() const {\r\n        return Poly() -\
     \ *this;\r\n    }\r\n    Poly operator+(const Poly &g) const {\r\n        return\
     \ Poly(*this) += g;\r\n    }\r\n    Poly operator+(const T &g) const {\r\n   \
@@ -384,35 +384,35 @@ data:
     \n        Poly res(1);\r\n        res.front() = T(1) / this->front();\r\n    \
     \    for (int k = 1; k < n; k <<= 1) {\r\n            Poly f(k * 2), g(k * 2);\r\
     \n            rep(i, 0, min(n, k * 2)) f[i] = (*this)[i];\r\n            rep(i,\
-    \ 0, k) g[i] = res[i];\r\n            NTT(f, 0);\r\n            NTT(g, 0);\r\n\
-    \            rep(i, 0, k * 2) f[i] *= g[i];\r\n            NTT(f, 1);\r\n    \
-    \        rep(i, 0, k) {\r\n                f[i] = 0;\r\n                f[i +\
-    \ k] = -f[i + k];\r\n            }\r\n            NTT(f, 0);\r\n            rep(i,\
-    \ 0, k * 2) f[i] *= g[i];\r\n            NTT(f, 1);\r\n            rep(i, 0, k)\
+    \ 0, k) g[i] = res[i];\r\n            f.NTT(0);\r\n            g.NTT(0);\r\n \
+    \           rep(i, 0, k * 2) f[i] *= g[i];\r\n            f.NTT(1);\r\n      \
+    \      rep(i, 0, k) {\r\n                f[i] = 0;\r\n                f[i + k]\
+    \ = -f[i + k];\r\n            }\r\n            f.NTT(0);\r\n            rep(i,\
+    \ 0, k * 2) f[i] *= g[i];\r\n            f.NTT(1);\r\n            rep(i, 0, k)\
     \ f[i] = res[i];\r\n            swap(res, f);\r\n        }\r\n        res.resize(n);\r\
     \n        return res;\r\n    }\r\n    Poly exp() const {\r\n        const int\
     \ n = this->size();\r\n        if (n == 1)\r\n            return Poly({T(1)});\r\
     \n        Poly b(2), c(1), z1, z2(2);\r\n        b[0] = c[0] = z2[0] = z2[1] =\
     \ 1;\r\n        b[1] = (*this)[1];\r\n        for (int k = 2; k < n; k <<= 1)\
     \ {\r\n            Poly y = b;\r\n            y.resize(k * 2);\r\n           \
-    \ NTT(y, 0);\r\n            z1 = z2;\r\n            Poly z(k);\r\n           \
-    \ rep(i, 0, k) z[i] = y[i] * z1[i];\r\n            NTT(z, 1);\r\n            rep(i,\
-    \ 0, k >> 1) z[i] = 0;\r\n            NTT(z, 0);\r\n            rep(i, 0, k) z[i]\
-    \ *= -z1[i];\r\n            NTT(z, 1);\r\n            c.insert(c.end(), z.begin()\
+    \ y.NTT(0);\r\n            z1 = z2;\r\n            Poly z(k);\r\n            rep(i,\
+    \ 0, k) z[i] = y[i] * z1[i];\r\n            z.NTT(1);\r\n            rep(i, 0,\
+    \ k >> 1) z[i] = 0;\r\n            z.NTT(0);\r\n            rep(i, 0, k) z[i]\
+    \ *= -z1[i];\r\n            z.NTT(1);\r\n            c.insert(c.end(), z.begin()\
     \ + (k >> 1), z.end());\r\n            z2 = c;\r\n            z2.resize(k * 2);\r\
-    \n            NTT(z2, 0);\r\n            Poly x = *this;\r\n            x.resize(k);\r\
-    \n            x = x.diff();\r\n            x.resize(k);\r\n            NTT(x,\
-    \ 0);\r\n            rep(i, 0, k) x[i] *= y[i];\r\n            NTT(x, 1);\r\n\
-    \            Poly bb = b.diff();\r\n            rep(i, 0, k - 1) x[i] -= bb[i];\r\
-    \n            x.resize(k * 2);\r\n            rep(i, 0, k - 1) {\r\n         \
-    \       x[k + i] = x[i];\r\n                x[i] = 0;\r\n            }\r\n   \
-    \         NTT(x, 0);\r\n            rep(i, 0, k * 2) x[i] *= z2[i];\r\n      \
-    \      NTT(x, 1);\r\n            x.pop_back();\r\n            x = x.inte();\r\n\
-    \            rep(i, k, min(n, k * 2)) x[i] += (*this)[i];\r\n            rep(i,\
-    \ 0, k) x[i] = 0;\r\n            NTT(x, 0);\r\n            rep(i, 0, k * 2) x[i]\
-    \ *= y[i];\r\n            NTT(x, 1);\r\n            b.insert(b.end(), x.begin()\
-    \ + k, x.end());\r\n        }\r\n        b.resize(n);\r\n        return b;\r\n\
-    \    }\r\n    Poly pow(ll t) {\r\n        if (t == 0) {\r\n            Poly res(this->size());\r\
+    \n            z2.NTT(0);\r\n            Poly x = *this;\r\n            x.resize(k);\r\
+    \n            x = x.diff();\r\n            x.resize(k);\r\n            x.NTT(0);\r\
+    \n            rep(i, 0, k) x[i] *= y[i];\r\n            x.NTT(1);\r\n        \
+    \    Poly bb = b.diff();\r\n            rep(i, 0, k - 1) x[i] -= bb[i];\r\n  \
+    \          x.resize(k * 2);\r\n            rep(i, 0, k - 1) {\r\n            \
+    \    x[k + i] = x[i];\r\n                x[i] = 0;\r\n            }\r\n      \
+    \      x.NTT(0);\r\n            rep(i, 0, k * 2) x[i] *= z2[i];\r\n          \
+    \  x.NTT(1);\r\n            x.pop_back();\r\n            x = x.inte();\r\n   \
+    \         rep(i, k, min(n, k * 2)) x[i] += (*this)[i];\r\n            rep(i, 0,\
+    \ k) x[i] = 0;\r\n            x.NTT(0);\r\n            rep(i, 0, k * 2) x[i] *=\
+    \ y[i];\r\n            x.NTT(1);\r\n            b.insert(b.end(), x.begin() +\
+    \ k, x.end());\r\n        }\r\n        b.resize(n);\r\n        return b;\r\n \
+    \   }\r\n    Poly pow(ll t) {\r\n        if (t == 0) {\r\n            Poly res(this->size());\r\
     \n            res[0] = 1;\r\n            return res;\r\n        }\r\n        int\
     \ n = this->size(), k = 0;\r\n        while (k < n and (*this)[k] == 0)\r\n  \
     \          k++;\r\n        Poly res(n);\r\n        if (__int128_t(t) * k >= n)\r\
@@ -421,43 +421,42 @@ data:
     \ + k] * ic;\r\n        g = g.log();\r\n        for (auto &x : g)\r\n        \
     \    x *= t;\r\n        g = g.exp();\r\n        c = c.pow(t);\r\n        rep(i,\
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
-    \ NTT(vector<T> &a, bool inv) const;\r\n};\r\n\r\n/**\r\n * @brief Formal Power\
-    \ Series (NTT-friendly mod)\r\n */\n#line 9 \"Verify/LC_many_factorials.test.cpp\"\
-    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n#line 2 \"FPS/samplepointshift.hpp\"\
-    \n\ntemplate<typename T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n\
-    \    ll n=ys.size()-1,C=c.v%T::get_mod();\n    if(m==-1)m=n+1;\n    if(C<=n){\n\
-    \        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n        if(int(res.size())>=m){\n\
-    \            res.resize(m);\n            return res;\n        }\n        auto\
-    \ add=SamplePointsShift<T>(ys,n+1,m-res.size());\n        for(int i=0;int(res.size())<m;i++){\n\
-    \            res.push_back(add[i]);\n        }\n        return res;\n    }\n \
-    \   if(C+m>T::get_mod()){\n        auto res=SamplePointsShift<T>(ys,c,T::get_mod()-c.v);\n\
-    \        auto add=SamplePointsShift<T>(ys,0,m-res.size());\n        rep(i,0,add.size())res.push_back(add[i]);\n\
-    \        return res;\n    }\n\n    Poly<T> A(n+1),B(m+n);\n    rep(i,0,n+1){\n\
-    \        A[i]=ys[i]*Fact<T>(i,1)*Fact<T>(n-i,1);\n        if((n-i)&1)A[i]=-A[i];\n\
-    \    }\n    rep(i,0,m+n)B[i]=Fp(1)/(c-n+i);\n    auto AB=A*B;\n    vector<T> res(m);\n\
-    \    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n    rep(i,0,m){\n        res[i]=AB[n+i]*base;\n\
-    \        base*=(c+i+1);\n        base*=B[i];\n    }\n    return res;\n}\n\n/**\n\
-    \ * @brief Shift of Sampling Points of Polynomial\n*/\n#line 3 \"FPS/factlarge.hpp\"\
-    \n\ntemplate <typename T> struct FactLarge {\n    static constexpr int LOG_BLOCK_SIZE\
-    \ = 9;\n    static constexpr int BLOCK_SIZE = 1 << LOG_BLOCK_SIZE;\n    static\
-    \ constexpr int BLOCK_NUM = T::get_mod() >> LOG_BLOCK_SIZE;\n    static inline\
-    \ vector<T> buf;\n    static T fact(int n) {\n        if (buf.empty())\n     \
-    \       run();\n        int q = n / BLOCK_SIZE, r = n % BLOCK_SIZE;\n        T\
-    \ ret;\n        if (r * 2 <= BLOCK_SIZE) {\n            ret = buf[q];\n      \
-    \      rep(i, n + 1 - r, n + 1) ret *= i;\n        } else if (q != BLOCK_NUM)\
-    \ {\n            ret = buf[q + 1];\n            T den = 1;\n            rep(i,\
-    \ 1, BLOCK_SIZE - r + 1) den *= n + i;\n            ret /= den;\n        } else\
-    \ {\n            ret = T::get_mod() - 1;\n            T den = 1;\n           \
-    \ rep(i, n + 1, T::get_mod()) den *= i;\n            ret /= den;\n        }\n\
-    \        return ret;\n    }\n\n  private:\n    static void run() {\n        vector<T>\
-    \ f(2);\n        f[0] = 1, f[1] = 3;\n        for (int x = 2; x < BLOCK_SIZE;\
-    \ x <<= 1) {\n            auto ext = SamplePointsShift(f, T(x), x * 3);\n    \
-    \        vector<T> g(x * 2);\n            rep(j, 0, x >> 1) g[j] =\n         \
-    \       f[j * 2] * f[j * 2 + 1] * ((2 * j + 1) * x);\n            rep(j, x >>\
-    \ 1, x * 2) g[j] =\n                ext[j * 2 - x] * ext[j * 2 + 1 - x] * ((2\
-    \ * j + 1) * x);\n            swap(f, g);\n        }\n        if (BLOCK_NUM >\
-    \ BLOCK_SIZE) {\n            auto add =\n                SamplePointsShift(f,\
+    \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
+    \ mod)\r\n */\n#line 9 \"Verify/LC_many_factorials.test.cpp\"\nusing Fp = fp<998244353>;\n\
+    NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\n\
+    \    return ntt.ntt(v, inv);\n}\n#line 2 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename\
+    \ T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n    ll n=ys.size()-1,C=c.v%T::get_mod();\n\
+    \    if(m==-1)m=n+1;\n    if(C<=n){\n        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n\
+    \        if(int(res.size())>=m){\n            res.resize(m);\n            return\
+    \ res;\n        }\n        auto add=SamplePointsShift<T>(ys,n+1,m-res.size());\n\
+    \        for(int i=0;int(res.size())<m;i++){\n            res.push_back(add[i]);\n\
+    \        }\n        return res;\n    }\n    if(C+m>T::get_mod()){\n        auto\
+    \ res=SamplePointsShift<T>(ys,c,T::get_mod()-c.v);\n        auto add=SamplePointsShift<T>(ys,0,m-res.size());\n\
+    \        rep(i,0,add.size())res.push_back(add[i]);\n        return res;\n    }\n\
+    \n    Poly<T> A(n+1),B(m+n);\n    rep(i,0,n+1){\n        A[i]=ys[i]*Fact<T>(i,1)*Fact<T>(n-i,1);\n\
+    \        if((n-i)&1)A[i]=-A[i];\n    }\n    rep(i,0,m+n)B[i]=Fp(1)/(c-n+i);\n\
+    \    auto AB=A*B;\n    vector<T> res(m);\n    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n\
+    \    rep(i,0,m){\n        res[i]=AB[n+i]*base;\n        base*=(c+i+1);\n     \
+    \   base*=B[i];\n    }\n    return res;\n}\n\n/**\n * @brief Shift of Sampling\
+    \ Points of Polynomial\n*/\n#line 3 \"FPS/factlarge.hpp\"\n\ntemplate <typename\
+    \ T> struct FactLarge {\n    static constexpr int LOG_BLOCK_SIZE = 9;\n    static\
+    \ constexpr int BLOCK_SIZE = 1 << LOG_BLOCK_SIZE;\n    static constexpr int BLOCK_NUM\
+    \ = T::get_mod() >> LOG_BLOCK_SIZE;\n    static inline vector<T> buf;\n    static\
+    \ T fact(int n) {\n        if (buf.empty())\n            run();\n        int q\
+    \ = n / BLOCK_SIZE, r = n % BLOCK_SIZE;\n        T ret;\n        if (r * 2 <=\
+    \ BLOCK_SIZE) {\n            ret = buf[q];\n            rep(i, n + 1 - r, n +\
+    \ 1) ret *= i;\n        } else if (q != BLOCK_NUM) {\n            ret = buf[q\
+    \ + 1];\n            T den = 1;\n            rep(i, 1, BLOCK_SIZE - r + 1) den\
+    \ *= n + i;\n            ret /= den;\n        } else {\n            ret = T::get_mod()\
+    \ - 1;\n            T den = 1;\n            rep(i, n + 1, T::get_mod()) den *=\
+    \ i;\n            ret /= den;\n        }\n        return ret;\n    }\n\n  private:\n\
+    \    static void run() {\n        vector<T> f(2);\n        f[0] = 1, f[1] = 3;\n\
+    \        for (int x = 2; x < BLOCK_SIZE; x <<= 1) {\n            auto ext = SamplePointsShift(f,\
+    \ T(x), x * 3);\n            vector<T> g(x * 2);\n            rep(j, 0, x >> 1)\
+    \ g[j] =\n                f[j * 2] * f[j * 2 + 1] * ((2 * j + 1) * x);\n     \
+    \       rep(j, x >> 1, x * 2) g[j] =\n                ext[j * 2 - x] * ext[j *\
+    \ 2 + 1 - x] * ((2 * j + 1) * x);\n            swap(f, g);\n        }\n      \
+    \  if (BLOCK_NUM > BLOCK_SIZE) {\n            auto add =\n                SamplePointsShift(f,\
     \ T(BLOCK_SIZE), BLOCK_NUM - BLOCK_SIZE);\n            f.insert(f.end(), ALL(add));\n\
     \        } else\n            f.resize(BLOCK_NUM);\n        rep(i, 0, BLOCK_NUM)\
     \ f[i] *= T(i + 1) * BLOCK_SIZE;\n        buf = vector<T>(BLOCK_NUM + 1);\n  \
@@ -487,8 +486,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_many_factorials.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-30 04:21:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_many_factorials.test.cpp
 layout: document
