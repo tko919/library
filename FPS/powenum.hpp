@@ -2,7 +2,7 @@
 
 template <typename T>
 vector<T> PowEnumerate(Poly<T> &f, Poly<T> &g,
-                       int m) { // [x^{deg f}]g f^i (i=0..m)
+                       int m) { // sum_j g_j [x^j] f^i (i=0..m)
     assert(f[0] == 0);
     int n = 1;
     while (n < SZ(f))

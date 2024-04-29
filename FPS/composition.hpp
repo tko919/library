@@ -28,7 +28,11 @@ template <typename T> Poly<T> Composition(Poly<T> &f, Poly<T> &g) {
         // middle product
         const int M = R.deg();
         reverse(ALL(R));
-        PR *= R;
+        R.resize(4 * n * k);
+        PR.NTT(0);
+        R.NTT(0);
+        rep(i, 0, 4 * n * k) PR[i] *= R[i];
+        PR.NTT(1);
         rep(i, 0, 2 * n * k) P[i] += PR[i + M];
         return P;
     };

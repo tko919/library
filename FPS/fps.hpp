@@ -55,16 +55,16 @@ template <typename T> struct Poly : vector<T> {
             m <<= 1;
         Poly<T> res(m);
         rep(i, 0, as) res[i] = a[i];
-        NTT(res, 0);
+        res.NTT(0);
         if (a == b)
             rep(i, 0, m) res[i] *= res[i];
         else {
             Poly<T> c(m);
             rep(i, 0, bs) c[i] = b[i];
-            NTT(c, 0);
+            c.NTT(0);
             rep(i, 0, m) res[i] *= c[i];
         }
-        NTT(res, 1);
+        res.NTT(1);
         res.resize(n);
         return res;
     }
@@ -213,17 +213,17 @@ template <typename T> struct Poly : vector<T> {
             Poly f(k * 2), g(k * 2);
             rep(i, 0, min(n, k * 2)) f[i] = (*this)[i];
             rep(i, 0, k) g[i] = res[i];
-            NTT(f, 0);
-            NTT(g, 0);
+            f.NTT(0);
+            g.NTT(0);
             rep(i, 0, k * 2) f[i] *= g[i];
-            NTT(f, 1);
+            f.NTT(1);
             rep(i, 0, k) {
                 f[i] = 0;
                 f[i + k] = -f[i + k];
             }
-            NTT(f, 0);
+            f.NTT(0);
             rep(i, 0, k * 2) f[i] *= g[i];
-            NTT(f, 1);
+            f.NTT(1);
             rep(i, 0, k) f[i] = res[i];
             swap(res, f);
         }
@@ -240,26 +240,26 @@ template <typename T> struct Poly : vector<T> {
         for (int k = 2; k < n; k <<= 1) {
             Poly y = b;
             y.resize(k * 2);
-            NTT(y, 0);
+            y.NTT(0);
             z1 = z2;
             Poly z(k);
             rep(i, 0, k) z[i] = y[i] * z1[i];
-            NTT(z, 1);
+            z.NTT(1);
             rep(i, 0, k >> 1) z[i] = 0;
-            NTT(z, 0);
+            z.NTT(0);
             rep(i, 0, k) z[i] *= -z1[i];
-            NTT(z, 1);
+            z.NTT(1);
             c.insert(c.end(), z.begin() + (k >> 1), z.end());
             z2 = c;
             z2.resize(k * 2);
-            NTT(z2, 0);
+            z2.NTT(0);
             Poly x = *this;
             x.resize(k);
             x = x.diff();
             x.resize(k);
-            NTT(x, 0);
+            x.NTT(0);
             rep(i, 0, k) x[i] *= y[i];
-            NTT(x, 1);
+            x.NTT(1);
             Poly bb = b.diff();
             rep(i, 0, k - 1) x[i] -= bb[i];
             x.resize(k * 2);
@@ -267,16 +267,16 @@ template <typename T> struct Poly : vector<T> {
                 x[k + i] = x[i];
                 x[i] = 0;
             }
-            NTT(x, 0);
+            x.NTT(0);
             rep(i, 0, k * 2) x[i] *= z2[i];
-            NTT(x, 1);
+            x.NTT(1);
             x.pop_back();
             x = x.inte();
             rep(i, k, min(n, k * 2)) x[i] += (*this)[i];
             rep(i, 0, k) x[i] = 0;
-            NTT(x, 0);
+            x.NTT(0);
             rep(i, 0, k * 2) x[i] *= y[i];
-            NTT(x, 1);
+            x.NTT(1);
             b.insert(b.end(), x.begin() + k, x.end());
         }
         b.resize(n);
@@ -306,7 +306,7 @@ template <typename T> struct Poly : vector<T> {
         rep(i, 0, n) res[i + t * k] = g[i] * c;
         return res;
     }
-    void NTT(vector<T> &a, bool inv) const;
+    void NTT(bool inv);
 };
 
 /**
