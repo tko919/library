@@ -7,6 +7,9 @@ data:
       path: Algorithm/cartesian.hpp
       title: Cartesian Tree
     - icon: ':warning:'
+      path: Algorithm/kprojectselection.hpp
+      title: K-Project Selection
+    - icon: ':warning:'
       path: Algorithm/matroid.hpp
       title: Matroid
     - icon: ':warning:'
@@ -19,13 +22,13 @@ data:
       path: Algorithm/monotoneminima.hpp
       title: Monotone Minima
     - icon: ':warning:'
+      path: Algorithm/projectselection.hpp
+      title: Project Selection
+    - icon: ':warning:'
       path: Algorithm/rollbackmo.hpp
       title: Rollback Mo
   - name: Convolution
     pages:
-    - icon: ':warning:'
-      path: Convolution/2D.hpp
-      title: 2D Convolution
     - icon: ':heavy_check_mark:'
       path: Convolution/arbitrary.hpp
       title: Arbitrary Mod Convolution

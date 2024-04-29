@@ -40,49 +40,49 @@ data:
     \ rot(const Point &a, const T &theta) {\r\n    return Point(cos(theta) * a.X -\
     \ sin(theta) * a.Y,\r\n                 sin(theta) * a.X + cos(theta) * a.Y);\r\
     \n}\r\nPoint rot90(const Point &a) {\r\n    return Point(-a.Y, a.X);\r\n}\r\n\
-    T arg(const Point &a, const Point &b, const Point &c) {\r\n    double ret= acos(dot(a\
-    \ - b, c - b) / abs(a - b) / abs(c - b));\r\n    if(cross(a-b,c-b)<0)ret=-ret;\r\
-    \n    return ret;\r\n}\r\n\r\nPoint Projection(const Line &l, const Point &p)\
-    \ {\r\n    T t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b);\r\n    return l.a\
-    \ + (l.a - l.b) * t;\r\n}\r\nPoint Projection(const Segment &l, const Point &p)\
-    \ {\r\n    T t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b);\r\n    return l.a\
-    \ + (l.a - l.b) * t;\r\n}\r\nPoint Reflection(const Line &l, const Point &p) {\r\
-    \n    return p + (Projection(l, p) - p) * 2.;\r\n}\r\nint ccw(const Point &a,\
-    \ Point b, Point c) {\r\n    b -= a;\r\n    c -= a;\r\n    if (cross(b, c) > eps)\r\
-    \n        return 1; // ccw\r\n    if (cross(b, c) < -eps)\r\n        return -1;\
-    \ // cw\r\n    if (dot(b, c) < 0)\r\n        return 2; // c,a,b\r\n    if (norm(b)\
-    \ < norm(c))\r\n        return -2; // a,b,c\r\n    return 0;      // a,c,b\r\n\
-    }\r\nbool isOrthogonal(const Line &a, const Line &b) {\r\n    return eq(dot(a.b\
-    \ - a.a, b.b - b.a), .0);\r\n}\r\nbool isParallel(const Line &a, const Line &b)\
-    \ {\r\n    return eq(cross(a.b - a.a, b.b - b.a), .0);\r\n}\r\nbool isIntersect(const\
-    \ Segment &a, const Segment &b) {\r\n    return ccw(a.a, a.b, b.a) * ccw(a.a,\
-    \ a.b, b.b) <= 0 and\r\n           ccw(b.a, b.b, a.a) * ccw(b.a, b.b, a.b) <=\
-    \ 0;\r\n}\r\nint isIntersect(const Circle &a, const Circle &b) {\r\n    T d =\
-    \ abs(a.p - b.p);\r\n    if (d > a.r + b.r + eps)\r\n        return 4;\r\n   \
-    \ if (eq(d, a.r + b.r))\r\n        return 3;\r\n    if (eq(d, abs(a.r - b.r)))\r\
-    \n        return 1;\r\n    if (d < abs(a.r - b.r) - eps)\r\n        return 0;\r\
-    \n    return 2;\r\n}\r\nT Dist(const Line &a, const Point &b) {\r\n    Point c\
-    \ = Projection(a, b);\r\n    return abs(c - b);\r\n}\r\nT Dist(const Segment &a,\
-    \ const Point &b) {\r\n    if (dot(a.b - a.a, b - a.a) < eps)\r\n        return\
-    \ abs(b - a.a);\r\n    if (dot(a.a - a.b, b - a.b) < eps)\r\n        return abs(b\
-    \ - a.b);\r\n    return abs(cross(a.b - a.a, b - a.a)) / abs(a.b - a.a);\r\n}\r\
-    \nT Dist(const Segment &a, const Segment &b) {\r\n    if (isIntersect(a, b))\r\
-    \n        return .0;\r\n    T res = min({Dist(a, b.a), Dist(a, b.b), Dist(b, a.a),\
-    \ Dist(b, a.b)});\r\n    return res;\r\n}\r\nPoint Intersection(const Line &a,\
-    \ const Line &b) {\r\n    T d1 = cross(a.b - a.a, b.b - b.a);\r\n    T d2 = cross(a.b\
-    \ - a.a, a.b - b.a);\r\n    if (eq(d1, 0.) and eq(d2, 0.))\r\n        return b.a;\r\
-    \n    return b.a + (b.b - b.a) * (d2 / d1);\r\n}\r\nPoly Intersection(const Circle\
-    \ &a, const Line &b) {\r\n    Poly res;\r\n    T d = Dist(b, a.p);\r\n    if (d\
-    \ > a.r + eps)\r\n        return res;\r\n    Point h = Projection(b, a.p);\r\n\
-    \    if (eq(d, a.r)) {\r\n        res.push_back(h);\r\n        return res;\r\n\
-    \    }\r\n    Point e = unit(b.b - b.a);\r\n    T ph = sqrt(a.r * a.r - d * d);\r\
-    \n    res.push_back(h - e * ph);\r\n    res.push_back(h + e * ph);\r\n    return\
-    \ res;\r\n}\r\nPoly Intersection(const Circle &a, const Segment &b) {\r\n    Line\
-    \ c(b.a, b.b);\r\n    Poly sub = Intersection(a, c);\r\n    double xmi = min(b.a.X,\
-    \ b.b.X), xma = max(b.a.X, b.b.X);\r\n    double ymi = min(b.a.Y, b.b.Y), yma\
-    \ = max(b.a.Y, b.b.Y);\r\n    Poly res;\r\n    rep(i, 0, sub.size()) {\r\n   \
-    \     if (xmi <= sub[i].X + eps and sub[i].X - eps <= xma and\r\n            ymi\
-    \ <= sub[i].Y + eps and sub[i].Y - eps <= yma) {\r\n            res.push_back(sub[i]);\r\
+    T arg(const Point &a, const Point &b, const Point &c) {\r\n    double ret = acos(dot(a\
+    \ - b, c - b) / abs(a - b) / abs(c - b));\r\n    if (cross(a - b, c - b) < 0)\r\
+    \n        ret = -ret;\r\n    return ret;\r\n}\r\n\r\nPoint Projection(const Line\
+    \ &l, const Point &p) {\r\n    T t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b);\r\
+    \n    return l.a + (l.a - l.b) * t;\r\n}\r\nPoint Projection(const Segment &l,\
+    \ const Point &p) {\r\n    T t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b);\r\n\
+    \    return l.a + (l.a - l.b) * t;\r\n}\r\nPoint Reflection(const Line &l, const\
+    \ Point &p) {\r\n    return p + (Projection(l, p) - p) * 2.;\r\n}\r\nint ccw(const\
+    \ Point &a, Point b, Point c) {\r\n    b -= a;\r\n    c -= a;\r\n    if (cross(b,\
+    \ c) > eps)\r\n        return 1; // ccw\r\n    if (cross(b, c) < -eps)\r\n   \
+    \     return -1; // cw\r\n    if (dot(b, c) < 0)\r\n        return 2; // c,a,b\r\
+    \n    if (norm(b) < norm(c))\r\n        return -2; // a,b,c\r\n    return 0; \
+    \     // a,c,b\r\n}\r\nbool isOrthogonal(const Line &a, const Line &b) {\r\n \
+    \   return eq(dot(a.b - a.a, b.b - b.a), .0);\r\n}\r\nbool isParallel(const Line\
+    \ &a, const Line &b) {\r\n    return eq(cross(a.b - a.a, b.b - b.a), .0);\r\n\
+    }\r\nbool isIntersect(const Segment &a, const Segment &b) {\r\n    return ccw(a.a,\
+    \ a.b, b.a) * ccw(a.a, a.b, b.b) <= 0 and\r\n           ccw(b.a, b.b, a.a) * ccw(b.a,\
+    \ b.b, a.b) <= 0;\r\n}\r\nint isIntersect(const Circle &a, const Circle &b) {\r\
+    \n    T d = abs(a.p - b.p);\r\n    if (d > a.r + b.r + eps)\r\n        return\
+    \ 4;\r\n    if (eq(d, a.r + b.r))\r\n        return 3;\r\n    if (eq(d, abs(a.r\
+    \ - b.r)))\r\n        return 1;\r\n    if (d < abs(a.r - b.r) - eps)\r\n     \
+    \   return 0;\r\n    return 2;\r\n}\r\nT Dist(const Line &a, const Point &b) {\r\
+    \n    Point c = Projection(a, b);\r\n    return abs(c - b);\r\n}\r\nT Dist(const\
+    \ Segment &a, const Point &b) {\r\n    if (dot(a.b - a.a, b - a.a) < eps)\r\n\
+    \        return abs(b - a.a);\r\n    if (dot(a.a - a.b, b - a.b) < eps)\r\n  \
+    \      return abs(b - a.b);\r\n    return abs(cross(a.b - a.a, b - a.a)) / abs(a.b\
+    \ - a.a);\r\n}\r\nT Dist(const Segment &a, const Segment &b) {\r\n    if (isIntersect(a,\
+    \ b))\r\n        return .0;\r\n    T res = min({Dist(a, b.a), Dist(a, b.b), Dist(b,\
+    \ a.a), Dist(b, a.b)});\r\n    return res;\r\n}\r\nPoint Intersection(const Line\
+    \ &a, const Line &b) {\r\n    T d1 = cross(a.b - a.a, b.b - b.a);\r\n    T d2\
+    \ = cross(a.b - a.a, a.b - b.a);\r\n    if (eq(d1, 0.) and eq(d2, 0.))\r\n   \
+    \     return b.a;\r\n    return b.a + (b.b - b.a) * (d2 / d1);\r\n}\r\nPoly Intersection(const\
+    \ Circle &a, const Line &b) {\r\n    Poly res;\r\n    T d = Dist(b, a.p);\r\n\
+    \    if (d > a.r + eps)\r\n        return res;\r\n    Point h = Projection(b,\
+    \ a.p);\r\n    if (eq(d, a.r)) {\r\n        res.push_back(h);\r\n        return\
+    \ res;\r\n    }\r\n    Point e = unit(b.b - b.a);\r\n    T ph = sqrt(a.r * a.r\
+    \ - d * d);\r\n    res.push_back(h - e * ph);\r\n    res.push_back(h + e * ph);\r\
+    \n    return res;\r\n}\r\nPoly Intersection(const Circle &a, const Segment &b)\
+    \ {\r\n    Line c(b.a, b.b);\r\n    Poly sub = Intersection(a, c);\r\n    double\
+    \ xmi = min(b.a.X, b.b.X), xma = max(b.a.X, b.b.X);\r\n    double ymi = min(b.a.Y,\
+    \ b.b.Y), yma = max(b.a.Y, b.b.Y);\r\n    Poly res;\r\n    rep(i, 0, sub.size())\
+    \ {\r\n        if (xmi <= sub[i].X + eps and sub[i].X - eps <= xma and\r\n   \
+    \         ymi <= sub[i].Y + eps and sub[i].Y - eps <= yma) {\r\n            res.push_back(sub[i]);\r\
     \n        }\r\n    }\r\n    return res;\r\n}\r\nPoly Intersection(const Circle\
     \ &a, const Circle &b) {\r\n    Poly res;\r\n    int mode = isIntersect(a, b);\r\
     \n    T d = abs(a.p - b.p);\r\n    if (mode == 4 or mode == 0)\r\n        return\
@@ -145,25 +145,26 @@ data:
     \          swap(p, q);\r\n        if (p.Y < eps and eps < q.Y and cross(p, q)\
     \ > eps)\r\n            res ^= 1;\r\n        if (eq(cross(p, q), .0) and dot(p,\
     \ q) < eps)\r\n            return 1;\r\n    }\r\n    return (res ? 2 : 0);\r\n\
-    }\r\nPoly ConvexHull(Poly &a) {\r\n    int n = a.size(), k = 0;\r\n    sort(ALL(a),\
-    \ [](const Point &p, const Point &q) {\r\n        return (eq(p.Y, q.Y) ? p.X <\
-    \ q.X : p.Y < q.Y);\r\n    });\r\n    Poly res(n * 2);\r\n    for (int i = 0;\
-    \ i < n; res[k++] = a[i++]) {\r\n        while (k >= 2 and\r\n               cross(res[k\
-    \ - 1] - res[k - 2], a[i] - res[k - 1]) < -eps)\r\n            k--;\r\n    }\r\
-    \n    for (int i = n - 2, t = k + 1; i >= 0; res[k++] = a[i--]) {\r\n        while\
-    \ (k >= t and\r\n               cross(res[k - 1] - res[k - 2], a[i] - res[k -\
-    \ 1]) < -eps)\r\n            k--;\r\n    }\r\n    res.resize(k - 1);\r\n    return\
-    \ res;\r\n}\r\nT Diam(const Poly &a) {\r\n    int n = a.size();\r\n    int x =\
-    \ 0, y = 0;\r\n    rep(i, 1, n) {\r\n        if (a[i].Y > a[x].Y)\r\n        \
-    \    x = i;\r\n        if (a[i].Y < a[y].Y)\r\n            y = i;\r\n    }\r\n\
-    \    T res = abs(a[x] - a[y]);\r\n    int i = x, j = y;\r\n    do {\r\n      \
-    \  if (cross(a[(i + 1) % n] - a[i], a[(j + 1) % n] - a[j]) < 0)\r\n          \
-    \  i = (i + 1) % n;\r\n        else\r\n            j = (j + 1) % n;\r\n      \
-    \  chmax(res, abs(a[i] - a[j]));\r\n    } while (i != x or j != y);\r\n    return\
-    \ res;\r\n}\r\nPoly Cut(const Poly &a, const Line &l) {\r\n    int n = a.size();\r\
-    \n    Poly res;\r\n    rep(i, 0, n) {\r\n        Point p = a[i], q = a[(i + 1)\
-    \ % n];\r\n        if (ccw(l.a, l.b, p) != -1)\r\n            res.push_back(p);\r\
-    \n        if (ccw(l.a, l.b, p) * ccw(l.a, l.b, q) < 0)\r\n            res.push_back(Intersection(Line(p,\
+    }\r\nPoly ConvexHull(Poly &a) {\r\n    sort(ALL(a), [](const Point &p, const Point\
+    \ &q) {\r\n        return (eq(p.Y, q.Y) ? p.X < q.X : p.Y < q.Y);\r\n    });\r\
+    \n    a.erase(unique(ALL(a)), a.end());\r\n    int n = a.size(), k = 0;\r\n  \
+    \  Poly res(n * 2);\r\n    for (int i = 0; i < n; res[k++] = a[i++]) {\r\n   \
+    \     while (k >= 2 and\r\n               cross(res[k - 1] - res[k - 2], a[i]\
+    \ - res[k - 1]) < eps)\r\n            k--;\r\n    }\r\n    for (int i = n - 2,\
+    \ t = k + 1; i >= 0; res[k++] = a[i--]) {\r\n        while (k >= t and\r\n   \
+    \            cross(res[k - 1] - res[k - 2], a[i] - res[k - 1]) < eps)\r\n    \
+    \        k--;\r\n    }\r\n    res.resize(k - 1);\r\n    return res;\r\n}\r\nT\
+    \ Diam(const Poly &a) {\r\n    int n = a.size();\r\n    int x = 0, y = 0;\r\n\
+    \    rep(i, 1, n) {\r\n        if (a[i].Y > a[x].Y)\r\n            x = i;\r\n\
+    \        if (a[i].Y < a[y].Y)\r\n            y = i;\r\n    }\r\n    T res = abs(a[x]\
+    \ - a[y]);\r\n    int i = x, j = y;\r\n    do {\r\n        if (cross(a[(i + 1)\
+    \ % n] - a[i], a[(j + 1) % n] - a[j]) < 0)\r\n            i = (i + 1) % n;\r\n\
+    \        else\r\n            j = (j + 1) % n;\r\n        chmax(res, abs(a[i] -\
+    \ a[j]));\r\n    } while (i != x or j != y);\r\n    return res;\r\n}\r\nPoly Cut(const\
+    \ Poly &a, const Line &l) {\r\n    int n = a.size();\r\n    Poly res;\r\n    rep(i,\
+    \ 0, n) {\r\n        Point p = a[i], q = a[(i + 1) % n];\r\n        if (ccw(l.a,\
+    \ l.b, p) != -1)\r\n            res.push_back(p);\r\n        if (ccw(l.a, l.b,\
+    \ p) * ccw(l.a, l.b, q) < 0)\r\n            res.push_back(Intersection(Line(p,\
     \ q), l));\r\n    }\r\n    return res;\r\n}\r\n\r\nT Closest(Poly &a) {\r\n  \
     \  int n = a.size();\r\n    if (n <= 1)\r\n        return 0;\r\n    sort(ALL(a),\
     \ [&](Point a, Point b) {\r\n        return (eq(a.X, b.X) ? a.Y < b.Y : a.X <\
@@ -258,7 +259,7 @@ data:
   isVerificationFile: false
   path: Geometry/Enclosing.hpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-04-29 14:20:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/Enclosing.hpp
