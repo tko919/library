@@ -13,7 +13,9 @@ struct MaxFlow {
 
   public:
     MaxFlow() {}
-    MaxFlow(int V) : V(V) { G.assign(V, vector<Edge>()); }
+    MaxFlow(int V) : V(V) {
+        G.assign(V, vector<Edge>());
+    }
     int add_vertex() {
         G.push_back(vector<Edge>());
         return V++;
@@ -74,6 +76,11 @@ struct MaxFlow {
             while ((f = dfs(s, t, INF)) > 0)
                 ret += f;
         }
+        return ret;
+    }
+    vector<int> cut() {
+        vector<int> ret(V);
+        rep(v, 0, V) if (level[v] < 0) ret[v] = 1;
         return ret;
     }
 };

@@ -69,8 +69,9 @@ Point rot90(const Point &a) {
     return Point(-a.Y, a.X);
 }
 T arg(const Point &a, const Point &b, const Point &c) {
-    double ret= acos(dot(a - b, c - b) / abs(a - b) / abs(c - b));
-    if(cross(a-b,c-b)<0)ret=-ret;
+    double ret = acos(dot(a - b, c - b) / abs(a - b) / abs(c - b));
+    if (cross(a - b, c - b) < 0)
+        ret = -ret;
     return ret;
 }
 
@@ -324,19 +325,20 @@ int isContained(const Poly &a,
     return (res ? 2 : 0);
 }
 Poly ConvexHull(Poly &a) {
-    int n = a.size(), k = 0;
     sort(ALL(a), [](const Point &p, const Point &q) {
         return (eq(p.Y, q.Y) ? p.X < q.X : p.Y < q.Y);
     });
+    a.erase(unique(ALL(a)), a.end());
+    int n = a.size(), k = 0;
     Poly res(n * 2);
     for (int i = 0; i < n; res[k++] = a[i++]) {
         while (k >= 2 and
-               cross(res[k - 1] - res[k - 2], a[i] - res[k - 1]) < -eps)
+               cross(res[k - 1] - res[k - 2], a[i] - res[k - 1]) < eps)
             k--;
     }
     for (int i = n - 2, t = k + 1; i >= 0; res[k++] = a[i--]) {
         while (k >= t and
-               cross(res[k - 1] - res[k - 2], a[i] - res[k - 1]) < -eps)
+               cross(res[k - 1] - res[k - 2], a[i] - res[k - 1]) < eps)
             k--;
     }
     res.resize(k - 1);
