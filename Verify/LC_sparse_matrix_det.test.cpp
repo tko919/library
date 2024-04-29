@@ -9,8 +9,8 @@
 #include "Math/bbla.hpp"
 using Fp = fp<998244353>;
 NTT<Fp> ntt;
-template <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {
-    return ntt.ntt(v, inv);
+template <> void Poly<Fp>::NTT(bool inv) {
+    ntt.ntt(*this, inv);
 }
 
 int main() {
