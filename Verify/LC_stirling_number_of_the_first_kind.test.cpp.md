@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
@@ -422,34 +422,33 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 10 \"Verify/LC_stirling_number_of_the_first_kind.test.cpp\"\
-    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#line 2 \"FPS/famous.hpp\"\
-    \n\ntemplate<typename T>vector<T> Bernoulli(int n){\n    Poly<T> f(n+1);\n   \
-    \ rep(i,0,n+1)f[i]=Fact<T>(i+1,1);\n    f=f.inv();\n    rep(i,0,n+1)f[i]*=Fact<T>(i);\n\
-    \    return f;\n}\n\ntemplate<typename T>vector<T> Partition(int n){\n    Poly<T>\
-    \ f(n+1);\n    f[0]=1;\n    rep(k,1,n+1){\n        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n\
-    \        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n    }\n    return\
-    \ f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int n){\n   \
-    \ if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int LG=topbit(n)-1;LG>=0;LG--){\n\
-    \        int m=n>>LG;\n        f*=f.shift(m>>1);\n        if(m&1)f=(f<<1)+f*T(m-1);\n\
-    \    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n    return f;\n}\n\ntemplate<typename\
-    \ T>vector<T> StirlingNumber2nd(int n){\n    if(n==0)return Poly<T>({T(1)});\n\
-    \    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n        f[i]=Fp(i).pow(n)*Fact<T>(i,1);\n\
-    \        g[i]=Fact<T>(i,1);\n        if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n  \
-    \  f.resize(n+1);\n    return f;\n}\n\ntemplate<typename T>vector<T> Bell(int\
-    \ n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n    rep(i,2,n+1)f[i]=f[i-1]/i;\n\
-    \    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n    return f;\n\
-    }\n\n/**\n * @brief Famous Sequence\n*/\n#line 17 \"Verify/LC_stirling_number_of_the_first_kind.test.cpp\"\
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool\
+    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#line 2 \"FPS/famous.hpp\"\n\ntemplate<typename\
+    \ T>vector<T> Bernoulli(int n){\n    Poly<T> f(n+1);\n    rep(i,0,n+1)f[i]=Fact<T>(i+1,1);\n\
+    \    f=f.inv();\n    rep(i,0,n+1)f[i]*=Fact<T>(i);\n    return f;\n}\n\ntemplate<typename\
+    \ T>vector<T> Partition(int n){\n    Poly<T> f(n+1);\n    f[0]=1;\n    rep(k,1,n+1){\n\
+    \        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n\
+    \    }\n    return f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int\
+    \ n){\n    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int\
+    \ LG=topbit(n)-1;LG>=0;LG--){\n        int m=n>>LG;\n        f*=f.shift(m>>1);\n\
+    \        if(m&1)f=(f<<1)+f*T(m-1);\n    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n\
+    \    return f;\n}\n\ntemplate<typename T>vector<T> StirlingNumber2nd(int n){\n\
+    \    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n\
+    \        f[i]=Fp(i).pow(n)*Fact<T>(i,1);\n        g[i]=Fact<T>(i,1);\n       \
+    \ if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n    f.resize(n+1);\n    return f;\n}\n\
+    \ntemplate<typename T>vector<T> Bell(int n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n\
+    \    rep(i,2,n+1)f[i]=f[i-1]/i;\n    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n\
+    \    return f;\n}\n\n/**\n * @brief Famous Sequence\n*/\n#line 17 \"Verify/LC_stirling_number_of_the_first_kind.test.cpp\"\
     \n\nint main() {\n    int n;\n    read(n);\n\n    auto ret = StirlingNumber1st<Fp>(n);\n\
     \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM                                                         \
     \       \\\n    \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
-    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/famous.hpp\"\
-    \n\nint main() {\n    int n;\n    read(n);\n\n    auto ret = StirlingNumber1st<Fp>(n);\n\
-    \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}"
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool\
+    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#include \"FPS/famous.hpp\"\n\nint main()\
+    \ {\n    int n;\n    read(n);\n\n    auto ret = StirlingNumber1st<Fp>(n);\n  \
+    \  rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -460,8 +459,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 06:38:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_first_kind.test.cpp
 layout: document

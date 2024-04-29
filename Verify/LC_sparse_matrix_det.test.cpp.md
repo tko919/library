@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
@@ -501,21 +501,20 @@ data:
     \n        if (n & 1)\r\n            ret = -ret;\r\n        for (auto &v : d)\r\
     \n            base *= v;\r\n        return ret / base;\r\n    }\r\n}\r\n\r\n/**\r\
     \n * @brief Black Box Linear Algebra\r\n */\n#line 10 \"Verify/LC_sparse_matrix_det.test.cpp\"\
-    \nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main()\
-    \ {\r\n    int n, k;\r\n    read(n, k);\r\n    SparseMatrix<Fp> mat(n);\r\n  \
-    \  int a, b, c;\r\n    rep(_, 0, k) {\r\n        read(a, b, c);\r\n        mat.add(a,\
-    \ b, c);\r\n    }\r\n    Fp ret = FastDet(mat);\r\n    print(ret.v);\r\n    return\
-    \ 0;\r\n}\n"
+    \nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(bool\
+    \ inv) {\r\n    ntt.ntt(*this, inv);\r\n}\r\n\r\nint main() {\r\n    int n, k;\r\
+    \n    read(n, k);\r\n    SparseMatrix<Fp> mat(n);\r\n    int a, b, c;\r\n    rep(_,\
+    \ 0, k) {\r\n        read(a, b, c);\r\n        mat.add(a, b, c);\r\n    }\r\n\
+    \    Fp ret = FastDet(mat);\r\n    print(ret.v);\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n\
     \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\
     \n#include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include\
     \ \"FPS/fps.hpp\"\r\n#include \"Math/bbla.hpp\"\r\nusing Fp = fp<998244353>;\r\
-    \nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const\
-    \ {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main() {\r\n    int n, k;\r\
-    \n    read(n, k);\r\n    SparseMatrix<Fp> mat(n);\r\n    int a, b, c;\r\n    rep(_,\
-    \ 0, k) {\r\n        read(a, b, c);\r\n        mat.add(a, b, c);\r\n    }\r\n\
-    \    Fp ret = FastDet(mat);\r\n    print(ret.v);\r\n    return 0;\r\n}"
+    \nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(bool inv) {\r\n    ntt.ntt(*this,\
+    \ inv);\r\n}\r\n\r\nint main() {\r\n    int n, k;\r\n    read(n, k);\r\n    SparseMatrix<Fp>\
+    \ mat(n);\r\n    int a, b, c;\r\n    rep(_, 0, k) {\r\n        read(a, b, c);\r\
+    \n        mat.add(a, b, c);\r\n    }\r\n    Fp ret = FastDet(mat);\r\n    print(ret.v);\r\
+    \n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -528,8 +527,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 06:38:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_sparse_matrix_det.test.cpp
 layout: document

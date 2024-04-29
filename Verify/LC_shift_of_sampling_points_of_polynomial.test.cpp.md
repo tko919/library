@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
@@ -422,9 +422,9 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 10 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
-    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#line 2 \"FPS/samplepointshift.hpp\"\
-    \n\ntemplate<typename T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n\
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool\
+    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#line 2 \"FPS/samplepointshift.hpp\"\n\
+    \ntemplate<typename T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n\
     \    ll n=ys.size()-1,C=c.v%T::get_mod();\n    if(m==-1)m=n+1;\n    if(C<=n){\n\
     \        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n        if(int(res.size())>=m){\n\
     \            res.resize(m);\n            return res;\n        }\n        auto\
@@ -445,8 +445,8 @@ data:
     \       \\\n    \"https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
-    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/samplepointshift.hpp\"\
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool\
+    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#include \"FPS/samplepointshift.hpp\"\
     \n\nint main() {\n    int n, m;\n    Fp c;\n    read(n, m, c.v);\n    vector<Fp>\
     \ a(n);\n    rep(i, 0, n) read(a[i].v);\n\n    auto ret = SamplePointsShift(a,\
     \ c, m);\n    rep(i, 0, m) print(ret[i].v);\n    return 0;\n}"
@@ -460,8 +460,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 06:38:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 layout: document

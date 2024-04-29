@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/nthterm.hpp
     title: Bostan-Mori Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
@@ -427,25 +427,24 @@ data:
     \n        for(int i=0;i<(int)q.size();i+=2)nq.emplace_back(q[i]);\r\n        swap(p,np);\
     \ swap(q,nq);\r\n        n>>=1;\r\n    }\r\n    return p[0]/q[0];\r\n}\r\n\r\n\
     /**\r\n * @brief Bostan-Mori Algorithm\r\n */\n#line 10 \"Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main()\
-    \ {\r\n    int d;\r\n    ll k;\r\n    cin >> d >> k;\r\n    Poly<Fp> a(d), c(d\
-    \ + 1);\r\n    rep(i, 0, d) cin >> a[i];\r\n    c[0] = 1;\r\n    rep(i, 1, d +\
-    \ 1) {\r\n        cin >> c[i];\r\n        c[i] = -c[i];\r\n    }\r\n    a *= c;\r\
-    \n    a.resize(d);\r\n    Fp res = nth<Fp>(a, c, k);\r\n    cout << res << '\\\
-    n';\r\n    return 0;\r\n}\n"
+    \n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(bool\
+    \ inv) {\r\n    ntt.ntt(*this, inv);\r\n}\r\n\r\nint main() {\r\n    int d;\r\n\
+    \    ll k;\r\n    cin >> d >> k;\r\n    Poly<Fp> a(d), c(d + 1);\r\n    rep(i,\
+    \ 0, d) cin >> a[i];\r\n    c[0] = 1;\r\n    rep(i, 1, d + 1) {\r\n        cin\
+    \ >> c[i];\r\n        c[i] = -c[i];\r\n    }\r\n    a *= c;\r\n    a.resize(d);\r\
+    \n    Fp res = nth<Fp>(a, c, k);\r\n    cout << res << '\\n';\r\n    return 0;\r\
+    \n}\n"
   code: "#define PROBLEM                                                         \
     \       \\\r\n    \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include\
     \ \"FPS/fps.hpp\"\r\n#include \"FPS/nthterm.hpp\"\r\n\r\nusing Fp = fp<998244353>;\r\
-    \nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const\
-    \ {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main() {\r\n    int d;\r\n\
-    \    ll k;\r\n    cin >> d >> k;\r\n    Poly<Fp> a(d), c(d + 1);\r\n    rep(i,\
-    \ 0, d) cin >> a[i];\r\n    c[0] = 1;\r\n    rep(i, 1, d + 1) {\r\n        cin\
-    \ >> c[i];\r\n        c[i] = -c[i];\r\n    }\r\n    a *= c;\r\n    a.resize(d);\r\
-    \n    Fp res = nth<Fp>(a, c, k);\r\n    cout << res << '\\n';\r\n    return 0;\r\
-    \n}"
+    \nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(bool inv) {\r\n    ntt.ntt(*this,\
+    \ inv);\r\n}\r\n\r\nint main() {\r\n    int d;\r\n    ll k;\r\n    cin >> d >>\
+    \ k;\r\n    Poly<Fp> a(d), c(d + 1);\r\n    rep(i, 0, d) cin >> a[i];\r\n    c[0]\
+    \ = 1;\r\n    rep(i, 1, d + 1) {\r\n        cin >> c[i];\r\n        c[i] = -c[i];\r\
+    \n    }\r\n    a *= c;\r\n    a.resize(d);\r\n    Fp res = nth<Fp>(a, c, k);\r\
+    \n    cout << res << '\\n';\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -456,8 +455,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 06:38:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document

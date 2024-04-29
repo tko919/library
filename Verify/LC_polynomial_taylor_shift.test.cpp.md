@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -417,19 +417,19 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 8 \"Verify/LC_polynomial_taylor_shift.test.cpp\"\n\r\nusing\
-    \ Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\r\n    return ntt.ntt(v, inv);\r\n}\r\n\r\nint main()\
-    \ {\r\n    int n, c;\r\n    cin >> n >> c;\r\n    Poly<Fp> a(n);\r\n    for (auto\
-    \ &x : a)\r\n        cin >> x;\r\n    a = a.shift(c);\r\n    rep(i, 0, n) cout\
-    \ << a[i] << '\\n';\r\n    return 0;\r\n}\n"
+    \ Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate <> void Poly<Fp>::NTT(bool inv)\
+    \ {\r\n    ntt.ntt(*this, inv);\r\n}\r\n\r\nint main() {\r\n    int n, c;\r\n\
+    \    cin >> n >> c;\r\n    Poly<Fp> a(n);\r\n    for (auto &x : a)\r\n       \
+    \ cin >> x;\r\n    a = a.shift(c);\r\n    rep(i, 0, n) cout << a[i] << '\\n';\r\
+    \n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include\
     \ \"FPS/fps.hpp\"\r\n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\ntemplate\
-    \ <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\r\n    return ntt.ntt(v,\
-    \ inv);\r\n}\r\n\r\nint main() {\r\n    int n, c;\r\n    cin >> n >> c;\r\n  \
-    \  Poly<Fp> a(n);\r\n    for (auto &x : a)\r\n        cin >> x;\r\n    a = a.shift(c);\r\
-    \n    rep(i, 0, n) cout << a[i] << '\\n';\r\n    return 0;\r\n}"
+    \ <> void Poly<Fp>::NTT(bool inv) {\r\n    ntt.ntt(*this, inv);\r\n}\r\n\r\nint\
+    \ main() {\r\n    int n, c;\r\n    cin >> n >> c;\r\n    Poly<Fp> a(n);\r\n  \
+    \  for (auto &x : a)\r\n        cin >> x;\r\n    a = a.shift(c);\r\n    rep(i,\
+    \ 0, n) cout << a[i] << '\\n';\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -439,8 +439,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 06:38:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_polynomial_taylor_shift.test.cpp
 layout: document

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/prodofpolys.hpp
     title: Product of Polynomials
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/product_of_polynomial_sequence
@@ -421,11 +421,11 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 9 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\n\
-    using Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#line 2 \"FPS/prodofpolys.hpp\"\
-    \n\ntemplate<typename T>Poly<T> ProdOfPolys(vector<Poly<T>>& fs){\n    if(fs.empty())return\
-    \ Poly<T>({T(1)});\n    sort(ALL(fs),[&](Poly<T>& a,Poly<T>& b){return a.size()<b.size();});\n\
-    \    deque<Poly<T>> deq;\n    for(auto& f:fs)deq.push_back(f);\n    while(deq.size()>1){\n\
+    using Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool inv)\
+    \ {\n    ntt.ntt(*this, inv);\n}\n\n#line 2 \"FPS/prodofpolys.hpp\"\n\ntemplate<typename\
+    \ T>Poly<T> ProdOfPolys(vector<Poly<T>>& fs){\n    if(fs.empty())return Poly<T>({T(1)});\n\
+    \    sort(ALL(fs),[&](Poly<T>& a,Poly<T>& b){return a.size()<b.size();});\n  \
+    \  deque<Poly<T>> deq;\n    for(auto& f:fs)deq.push_back(f);\n    while(deq.size()>1){\n\
     \        deq.push_back(deq[0]*deq[1]);\n        deq.pop_front();\n        deq.pop_front();\n\
     \    }\n    return deq[0];\n}\n\n/**\n * @brief Product of Polynomials\n*/\n#line\
     \ 16 \"Verify/LC_product_of_polynomial_sequence.test.cpp\"\n\nint main() {\n \
@@ -436,9 +436,9 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
     \ \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\
-    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp>\
-    \ &v, bool inv) const {\n    return ntt.ntt(v, inv);\n}\n\n#include \"FPS/prodofpolys.hpp\"\
-    \n\nint main() {\n    int n;\n    read(n);\n    vector<Poly<Fp>> fs(n);\n    rep(i,\
+    \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool\
+    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#include \"FPS/prodofpolys.hpp\"\n\n\
+    int main() {\n    int n;\n    read(n);\n    vector<Poly<Fp>> fs(n);\n    rep(i,\
     \ 0, n) {\n        int m;\n        read(m);\n        fs[i] = Poly<Fp>(m + 1);\n\
     \        rep(j, 0, m + 1) read(fs[i][j].v);\n    }\n\n    auto ret = ProdOfPolys(fs);\n\
     \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}"
@@ -452,8 +452,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_product_of_polynomial_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 06:38:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_product_of_polynomial_sequence.test.cpp
 layout: document

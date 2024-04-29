@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_factorials
@@ -423,10 +423,10 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 9 \"Verify/LC_many_factorials.test.cpp\"\nusing Fp = fp<998244353>;\n\
-    NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\n\
-    \    return ntt.ntt(v, inv);\n}\n#line 2 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename\
-    \ T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n    ll n=ys.size()-1,C=c.v%T::get_mod();\n\
-    \    if(m==-1)m=n+1;\n    if(C<=n){\n        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n\
+    NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool inv) {\n    ntt.ntt(*this, inv);\n\
+    }\n#line 2 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename T>Poly<T> SamplePointsShift(vector<T>&\
+    \ ys,T c,int m=-1){\n    ll n=ys.size()-1,C=c.v%T::get_mod();\n    if(m==-1)m=n+1;\n\
+    \    if(C<=n){\n        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n\
     \        if(int(res.size())>=m){\n            res.resize(m);\n            return\
     \ res;\n        }\n        auto add=SamplePointsShift<T>(ys,n+1,m-res.size());\n\
     \        for(int i=0;int(res.size())<m;i++){\n            res.push_back(add[i]);\n\
@@ -469,12 +469,11 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\"\n\n#include\
     \ \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include \"Math/modint.hpp\"\
     \n#include \"Convolution/ntt.hpp\"\n#include \"FPS/fps.hpp\"\nusing Fp = fp<998244353>;\n\
-    NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(vector<Fp> &v, bool inv) const {\n\
-    \    return ntt.ntt(v, inv);\n}\n#include \"FPS/factlarge.hpp\"\n\nvoid solve(int\
-    \ _rot) {\n    // io.write<false>(\"Case #\"+to_string(_rot)+\": \");\n    int\
-    \ n;\n    read(n);\n    Fp ret = FactLarge<Fp>::fact(n);\n    print(ret.v);\n\
-    }\n\nint main() {\n    int t;\n    read(t);\n    rep(rot, 0, t) solve(rot + 1);\n\
-    \    return 0;\n}"
+    NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool inv) {\n    ntt.ntt(*this, inv);\n\
+    }\n#include \"FPS/factlarge.hpp\"\n\nvoid solve(int _rot) {\n    // io.write<false>(\"\
+    Case #\"+to_string(_rot)+\": \");\n    int n;\n    read(n);\n    Fp ret = FactLarge<Fp>::fact(n);\n\
+    \    print(ret.v);\n}\n\nint main() {\n    int t;\n    read(t);\n    rep(rot,\
+    \ 0, t) solve(rot + 1);\n    return 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -486,8 +485,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_many_factorials.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 06:38:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_many_factorials.test.cpp
 layout: document
