@@ -75,11 +75,37 @@ ostream &operator<<(ostream &os, const pair<T, U> &p) {
     os << "P(" << p.first << ", " << p.second << ")";
     return os;
 }
-template <typename T, template <class> class C>
-ostream &operator<<(ostream &os, const C<T> &v) {
-    os << "[";
-    for (auto d : v)
-        os << d << ", ";
-    os << "]";
+template <typename T> ostream &operator<<(ostream &os, vector<T> &vec) {
+    os << "{";
+    for (int i = 0; i < vec.size(); i++) {
+        os << vec[i] << (i + 1 == vec.size() ? "" : ", ");
+    }
+    os << "}";
+    return os;
+}
+template <typename T, typename U>
+ostream &operator<<(ostream &os, map<T, U> &map_var) {
+    os << "{";
+    for (auto itr = map_var.begin(); itr != map_var.end();
+         itr++) {
+        os << "(" << itr->first << ", " << itr->second << ")";
+        itr++;
+        if (itr != map_var.end())
+            os << ", ";
+        itr--;
+    }
+    os << "}";
+    return os;
+}
+template <typename T> ostream &operator<<(ostream &os, set<T> &set_var) {
+    os << "{";
+    for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {
+        os << *itr;
+        ++itr;
+        if (itr != set_var.end())
+            os << ", ";
+        itr--;
+    }
+    os << "}";
     return os;
 }

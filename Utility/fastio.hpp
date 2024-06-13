@@ -275,6 +275,9 @@ inline void first(bool i = true) {
 inline void Alice(bool i = true) {
     print(i ? "Alice" : "Bob");
 }
+inline void Takahashi(bool i = true) {
+    print(i ? "Takahashi" : "Aoki");
+}
 inline void yes(bool i = true) {
     print(i ? "yes" : "no");
 }

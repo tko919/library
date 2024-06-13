@@ -2,8 +2,12 @@
 
 template <typename T> struct Frac {
     T a, b;
-    Frac(T _a = 0) { init(_a, 1); }
-    Frac(T _a, T _b) { init(_a, _b); }
+    Frac(T _a = 0) {
+        init(_a, 1);
+    }
+    Frac(T _a, T _b) {
+        init(_a, _b);
+    }
     Frac &init(T _a, T _b) {
         T g = GCD(_a, _b);
         a = _a / g, b = _b / g;
@@ -11,27 +15,66 @@ template <typename T> struct Frac {
             a = -a, b = -b;
         return *this;
     }
-    Frac inv() const { return Frac(b, a); }
-    Frac operator-() const { return Frac(-a, b); }
-    Frac &operator+=(const Frac &x) { return init(a * x.b + x.a * b, b * x.b); }
-    Frac &operator-=(const Frac &x) { return init(a * x.b - x.a * b, b * x.b); }
-    Frac &operator*=(const Frac &x) { return init(a * x.a, b * x.b); }
-    Frac &operator/=(const Frac &x) { return init(a * x.b, b * x.a); }
-    Frac operator+(const Frac &x) const { return Frac(*this) += x; }
-    Frac operator-(const Frac &x) const { return Frac(*this) -= x; }
-    Frac operator*(const Frac &x) const { return Frac(*this) *= x; }
-    Frac operator/(const Frac &x) const { return Frac(*this) /= x; }
-    bool operator<(const Frac &x) const { return a * x.b < b * x.a; }
-    bool operator>(const Frac &x) const { return x < *this; }
-    bool operator<=(const Frac &x) const { return !(x < *this); }
-    bool operator>=(const Frac &x) const { return !(*this < x); }
-    bool operator==(const Frac &x) const { return (*this <= x and x <= *this); }
-    bool operator!=(const Frac &x) const { return !(*this == x); }
+    Frac inv() const {
+        return Frac(b, a);
+    }
+    Frac operator-() const {
+        return Frac(-a, b);
+    }
+    Frac &operator+=(const Frac &x) {
+        return init(a * x.b + x.a * b, b * x.b);
+    }
+    Frac &operator-=(const Frac &x) {
+        return init(a * x.b - x.a * b, b * x.b);
+    }
+    Frac &operator*=(const Frac &x) {
+        return init(a * x.a, b * x.b);
+    }
+    Frac &operator/=(const Frac &x) {
+        return init(a * x.b, b * x.a);
+    }
+    Frac operator+(const Frac &x) const {
+        return Frac(*this) += x;
+    }
+    Frac operator-(const Frac &x) const {
+        return Frac(*this) -= x;
+    }
+    Frac operator*(const Frac &x) const {
+        return Frac(*this) *= x;
+    }
+    Frac operator/(const Frac &x) const {
+        return Frac(*this) /= x;
+    }
+    bool operator<(const Frac &x) const {
+        return a * x.b < b * x.a;
+    }
+    bool operator>(const Frac &x) const {
+        return x < *this;
+    }
+    bool operator<=(const Frac &x) const {
+        return !(x < *this);
+    }
+    bool operator>=(const Frac &x) const {
+        return !(*this < x);
+    }
+    bool operator==(const Frac &x) const {
+        return (*this <= x and x <= *this);
+    }
+    bool operator!=(const Frac &x) const {
+        return !(*this == x);
+    }
     T GCD(T a, T b) {
         if (b == 0)
             return a;
         else
             return GCD(b, a % b);
+    }
+
+    friend istream &operator>>(istream &is, Frac &x) {
+        return is >> x.a >> x.b;
+    }
+    friend ostream &operator<<(ostream &os, const Frac &x) {
+        return os << x.a << '/' << x.b;
     }
 };
 template <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y) {
