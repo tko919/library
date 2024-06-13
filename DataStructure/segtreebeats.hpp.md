@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Segment Tree Beats
     links: []
@@ -137,7 +137,7 @@ data:
   path: DataStructure/segtreebeats.hpp
   requiredBy: []
   timestamp: '2022-01-16 22:20:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: DataStructure/segtreebeats.hpp

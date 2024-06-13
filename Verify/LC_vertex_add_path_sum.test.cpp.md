@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/hld.hpp
     title: Heavy Light Decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -24,7 +24,7 @@ data:
     \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i, a, b)\
     \ for (int i = (int)(a); i < (int)(b); i++)\r\n#define rrep(i, a, b) for (int\
-    \ i = (int)(b-1); i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
+    \ i = (int)(b)-1; i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
     \n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)), (v).end())\r\n#define\
     \ SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v)\
     \ *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v), (x)) - (v).begin())\r\
@@ -51,16 +51,27 @@ data:
     \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
     \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
     \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T, template <class> class C>\r\nostream &operator<<(ostream\
-    \ &os, const C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n      \
-    \  os << d << \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Graph/hld.hpp\"\
-    \n\r\nstruct HLD{\r\n    using P=pair<int,int>;\r\n    vector<vector<int>> g;\
-    \ vector<int> sz,in,out,rev,hs,par,dist;\r\n    void dfs(int v,int p){\r\n   \
-    \     par[v]=p; sz[v]=1;\r\n        if(p!=-1)dist[v]=dist[p]+1;\r\n        if(!g[v].empty()\
-    \ and g[v][0]==p)swap(g[v][0],g[v].back());\r\n        for(auto& to:g[v])if(to!=p){\r\
-    \n           dfs(to,v); sz[v]+=sz[to];\r\n           if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\
-    \n        }\r\n    }\r\n    void dfs2(int v,int p,int& k){\r\n        in[v]=k++;\
-    \ rev[in[v]]=v;\r\n        for(auto& to:g[v])if(to!=p){\r\n            hs[to]=(g[v][0]==to?hs[v]:to);\r\
+    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, vector<T>\
+    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
+    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
+    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
+    \nostream &operator<<(ostream &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\
+    \n    for (auto itr = map_var.begin(); itr != map_var.end();\r\n         itr++)\
+    \ {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n\
+    \        itr++;\r\n        if (itr != map_var.end())\r\n            os << \",\
+    \ \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\n\
+    template <typename T> ostream &operator<<(ostream &os, set<T> &set_var) {\r\n\
+    \    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\n#line 2 \"Graph/hld.hpp\"\n\r\nstruct HLD{\r\n    using\
+    \ P=pair<int,int>;\r\n    vector<vector<int>> g; vector<int> sz,in,out,rev,hs,par,dist;\r\
+    \n    void dfs(int v,int p){\r\n        par[v]=p; sz[v]=1;\r\n        if(p!=-1)dist[v]=dist[p]+1;\r\
+    \n        if(!g[v].empty() and g[v][0]==p)swap(g[v][0],g[v].back());\r\n     \
+    \   for(auto& to:g[v])if(to!=p){\r\n           dfs(to,v); sz[v]+=sz[to];\r\n \
+    \          if(sz[g[v][0]]<sz[to])swap(g[v][0],to);\r\n        }\r\n    }\r\n \
+    \   void dfs2(int v,int p,int& k){\r\n        in[v]=k++; rev[in[v]]=v;\r\n   \
+    \     for(auto& to:g[v])if(to!=p){\r\n            hs[to]=(g[v][0]==to?hs[v]:to);\r\
     \n            dfs2(to,v,k);\r\n        }\r\n        out[v]=k;\r\n    }\r\n   \
     \ HLD(int _n):g(_n),sz(_n),in(_n),out(_n),rev(_n),hs(_n),par(_n),dist(_n){}\r\n\
     \    void add_edge(int u,int v){\r\n        g[u].emplace_back(v); g[v].emplace_back(u);\r\
@@ -118,8 +129,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-14 02:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_vertex_add_path_sum.test.cpp
 layout: document

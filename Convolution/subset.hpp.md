@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: Graph/chromaticpoly.hpp
+    title: Chromatic Number
+  - icon: ':x:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Subset Convolution
     links: []
@@ -143,12 +146,13 @@ data:
   isVerificationFile: false
   path: Convolution/subset.hpp
   requiredBy:
+  - Graph/chromaticpoly.hpp
   - Math/hafnian.hpp
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_subset_convolution.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
 documentation_of: Convolution/subset.hpp
 layout: document
 redirect_from:

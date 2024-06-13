@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

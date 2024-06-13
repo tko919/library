@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/chromatic.hpp
     title: Chromatic Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -21,7 +21,7 @@ data:
     https://judge.yosupo.jp/problem/chromatic_number\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i, a, b)\
     \ for (int i = (int)(a); i < (int)(b); i++)\r\n#define rrep(i, a, b) for (int\
-    \ i = (int)(b-1); i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
+    \ i = (int)(b)-1; i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
     \n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)), (v).end())\r\n#define\
     \ SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v)\
     \ *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v), (x)) - (v).begin())\r\
@@ -48,14 +48,25 @@ data:
     \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
     \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
     \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T, template <class> class C>\r\nostream &operator<<(ostream\
-    \ &os, const C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n      \
-    \  os << d << \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Graph/chromatic.hpp\"\
-    \n\r\nstruct Chromatic{\r\n    const int n;\r\n    vector<ll> es;\r\n    Chromatic(int\
-    \ _n):n(_n),es(n){}\r\n    void add_edge(int u,int v){\r\n        es[u]|=1<<v;\r\
-    \n        es[v]|=1<<u;\r\n    }\r\n    int run(){\r\n        vector<int> dp(1<<n),sign(1<<n);\r\
-    \n        dp[0]=1;\r\n        rep(mask,0,1<<n){\r\n            if(mask){\r\n \
-    \               int v=__builtin_ctz(mask);\r\n                dp[mask]=dp[mask^(1<<v)]+dp[(mask^(1<<v))&(~es[v])];\r\
+    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, vector<T>\
+    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
+    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
+    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
+    \nostream &operator<<(ostream &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\
+    \n    for (auto itr = map_var.begin(); itr != map_var.end();\r\n         itr++)\
+    \ {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n\
+    \        itr++;\r\n        if (itr != map_var.end())\r\n            os << \",\
+    \ \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\n\
+    template <typename T> ostream &operator<<(ostream &os, set<T> &set_var) {\r\n\
+    \    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\n#line 2 \"Graph/chromatic.hpp\"\n\r\nstruct Chromatic{\r\
+    \n    const int n;\r\n    vector<ll> es;\r\n    Chromatic(int _n):n(_n),es(n){}\r\
+    \n    void add_edge(int u,int v){\r\n        es[u]|=1<<v;\r\n        es[v]|=1<<u;\r\
+    \n    }\r\n    int run(){\r\n        vector<int> dp(1<<n),sign(1<<n);\r\n    \
+    \    dp[0]=1;\r\n        rep(mask,0,1<<n){\r\n            if(mask){\r\n      \
+    \          int v=__builtin_ctz(mask);\r\n                dp[mask]=dp[mask^(1<<v)]+dp[(mask^(1<<v))&(~es[v])];\r\
     \n            }\r\n            sign[mask]=((n-__builtin_popcountll(mask))&1?-1:1);\r\
     \n        }\r\n        int ret=n;\r\n        auto calc=[&](int md)->void{\r\n\
     \            vector<ll> cur(ALL(sign));\r\n            rep(k,1,ret){\r\n     \
@@ -80,7 +91,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2024-06-14 02:46:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_chromatic_number.test.cpp

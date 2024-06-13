@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/maxflow.hpp
     title: Maximum Flow
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -24,7 +24,7 @@ data:
     \                                                       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
-    \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
+    \n#define rrep(i, a, b) for (int i = (int)(b)-1; i >= (int)(a); i--)\r\n#define\
     \ ALL(v) (v).begin(), (v).end()\r\n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)),\
     \ (v).end())\r\n#define SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\
     \n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v),\
@@ -52,9 +52,19 @@ data:
     \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
     \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
     P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T, template <class> class C>\r\nostream &operator<<(ostream &os, const\
-    \ C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n        os << d <<\
-    \ \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
+    \ <typename T> ostream &operator<<(ostream &os, vector<T> &vec) {\r\n    os <<\
+    \ \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os << vec[i]\
+    \ << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\";\r\n \
+    \   return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
+    \ &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin();\
+    \ itr != map_var.end();\r\n         itr++) {\r\n        os << \"(\" << itr->first\
+    \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
+    \ set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
+    \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
+    \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
     \n#include <unistd.h>\r\nnamespace fastio {\r\nstatic constexpr uint32_t SZ =\
     \ 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar out[100];\r\n// pointer\
     \ of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\
@@ -134,26 +144,27 @@ data:
     \ fastio\r\n\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
     \n\r\ninline void first(bool i = true) {\r\n    print(i ? \"first\" : \"second\"\
     );\r\n}\r\ninline void Alice(bool i = true) {\r\n    print(i ? \"Alice\" : \"\
-    Bob\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\" : \"\
-    no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\" : \"\
-    No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void YES(bool\
-    \ i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void NO() {\r\
-    \n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n    print(i ?\
-    \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
-    \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
-    \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 2 \"Graph/maxflow.hpp\"\n\r\nstruct MaxFlow {\r\n    struct\
-    \ Edge {\r\n        int to, rev;\r\n        ll cap;\r\n    };\r\n    int V;\r\n\
-    \    vector<vector<Edge>> G;\r\n    vector<int> itr, level;\r\n    using P = pair<int,\
-    \ int>;\r\n    vector<P> es;\r\n\r\n  public:\r\n    MaxFlow() {}\r\n    MaxFlow(int\
-    \ V) : V(V) {\r\n        G.assign(V, vector<Edge>());\r\n    }\r\n    int add_vertex()\
-    \ {\r\n        G.push_back(vector<Edge>());\r\n        return V++;\r\n    }\r\n\
-    \    void add_edge(int from, int to, ll cap) {\r\n        int fid = SZ(G[from]),\
-    \ tid = SZ(G[to]);\r\n        if (from == to)\r\n            tid++;\r\n      \
-    \  es.push_back({from, fid});\r\n        G[from].push_back({to, tid, cap});\r\n\
-    \        G[to].push_back({from, fid, 0});\r\n    }\r\n    struct Type {\r\n  \
-    \      int from, to;\r\n        ll cap, recap;\r\n    };\r\n    Type get_edge(int\
-    \ i) {\r\n        auto [from, pos] = es[i];\r\n        auto e = G[from][pos];\r\
+    Bob\");\r\n}\r\ninline void Takahashi(bool i = true) {\r\n    print(i ? \"Takahashi\"\
+    \ : \"Aoki\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\"\
+    \ : \"no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\"\
+    \ : \"No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void\
+    \ YES(bool i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void\
+    \ NO() {\r\n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n  \
+    \  print(i ? \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\
+    \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
+    \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */\n#line 2 \"Graph/maxflow.hpp\"\n\r\nstruct MaxFlow\
+    \ {\r\n    struct Edge {\r\n        int to, rev;\r\n        ll cap;\r\n    };\r\
+    \n    int V;\r\n    vector<vector<Edge>> G;\r\n    vector<int> itr, level;\r\n\
+    \    using P = pair<int, int>;\r\n    vector<P> es;\r\n\r\n  public:\r\n    MaxFlow()\
+    \ {}\r\n    MaxFlow(int V) : V(V) {\r\n        G.assign(V, vector<Edge>());\r\n\
+    \    }\r\n    int add_vertex() {\r\n        G.push_back(vector<Edge>());\r\n \
+    \       return V++;\r\n    }\r\n    void add_edge(int from, int to, ll cap) {\r\
+    \n        int fid = SZ(G[from]), tid = SZ(G[to]);\r\n        if (from == to)\r\
+    \n            tid++;\r\n        es.push_back({from, fid});\r\n        G[from].push_back({to,\
+    \ tid, cap});\r\n        G[to].push_back({from, fid, 0});\r\n    }\r\n    struct\
+    \ Type {\r\n        int from, to;\r\n        ll cap, recap;\r\n    };\r\n    Type\
+    \ get_edge(int i) {\r\n        auto [from, pos] = es[i];\r\n        auto e = G[from][pos];\r\
     \n        auto re = G[e.to][e.rev];\r\n        return Type{from, e.to, e.cap,\
     \ re.cap};\r\n    }\r\n    void bfs(int s) {\r\n        level.assign(V, -1);\r\
     \n        queue<int> q;\r\n        level[s] = 0;\r\n        q.push(s);\r\n   \
@@ -192,7 +203,7 @@ data:
   isVerificationFile: true
   path: Verify/AOJ_GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2024-04-29 14:20:00+09:00'
+  timestamp: '2024-06-14 02:46:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/AOJ_GRL_6_A.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/staticrectsum.hpp
     title: Static Rectangle Sum
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Static Rectangle Add Rectangle Sum
     links: []
@@ -98,7 +98,7 @@ data:
   path: DataStructure/staticrectaddrectsum.hpp
   requiredBy: []
   timestamp: '2023-01-17 01:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: DataStructure/staticrectaddrectsum.hpp

@@ -8,19 +8,19 @@ data:
   - icon: ':warning:'
     path: Algorithm/projectselection.hpp
     title: Project Selection
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/mincostflow.hpp
     title: Minimum Cost b-flow
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/AOJ_GRL_6_A.test.cpp
     title: Verify/AOJ_GRL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_min_cost_b_flow.test.cpp
     title: Verify/LC_min_cost_b_flow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Maximum Flow
     links: []
@@ -91,14 +91,14 @@ data:
   isVerificationFile: false
   path: Graph/maxflow.hpp
   requiredBy:
-  - Algorithm/kprojectselection.hpp
-  - Algorithm/projectselection.hpp
   - Graph/mincostflow.hpp
+  - Algorithm/projectselection.hpp
+  - Algorithm/kprojectselection.hpp
   timestamp: '2024-04-29 14:20:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/AOJ_GRL_6_A.test.cpp
   - Verify/LC_min_cost_b_flow.test.cpp
+  - Verify/AOJ_GRL_6_A.test.cpp
 documentation_of: Graph/maxflow.hpp
 layout: document
 redirect_from:

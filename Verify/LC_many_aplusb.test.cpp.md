@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
@@ -20,7 +20,7 @@ data:
   bundledCode: "#line 1 \"Verify/LC_many_aplusb.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
-    \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
+    \n#define rrep(i, a, b) for (int i = (int)(b)-1; i >= (int)(a); i--)\r\n#define\
     \ ALL(v) (v).begin(), (v).end()\r\n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)),\
     \ (v).end())\r\n#define SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\
     \n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v),\
@@ -48,9 +48,19 @@ data:
     \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
     \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
     P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T, template <class> class C>\r\nostream &operator<<(ostream &os, const\
-    \ C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n        os << d <<\
-    \ \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
+    \ <typename T> ostream &operator<<(ostream &os, vector<T> &vec) {\r\n    os <<\
+    \ \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os << vec[i]\
+    \ << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\";\r\n \
+    \   return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
+    \ &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin();\
+    \ itr != map_var.end();\r\n         itr++) {\r\n        os << \"(\" << itr->first\
+    \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
+    \ set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
+    \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
+    \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
     \n#include <unistd.h>\r\nnamespace fastio {\r\nstatic constexpr uint32_t SZ =\
     \ 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar out[100];\r\n// pointer\
     \ of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\
@@ -130,17 +140,18 @@ data:
     \ fastio\r\n\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
     \n\r\ninline void first(bool i = true) {\r\n    print(i ? \"first\" : \"second\"\
     );\r\n}\r\ninline void Alice(bool i = true) {\r\n    print(i ? \"Alice\" : \"\
-    Bob\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\" : \"\
-    no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\" : \"\
-    No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void YES(bool\
-    \ i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void NO() {\r\
-    \n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n    print(i ?\
-    \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
-    \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
-    \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 5 \"Verify/LC_many_aplusb.test.cpp\"\n\r\nint main() {\r\
-    \n    int t;\r\n    ll a, b;\r\n    read(t);\r\n    while (t--) {\r\n        read(a,\
-    \ b);\r\n        print(a + b);\r\n    }\r\n    return 0;\r\n}\n"
+    Bob\");\r\n}\r\ninline void Takahashi(bool i = true) {\r\n    print(i ? \"Takahashi\"\
+    \ : \"Aoki\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\"\
+    \ : \"no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\"\
+    \ : \"No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void\
+    \ YES(bool i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void\
+    \ NO() {\r\n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n  \
+    \  print(i ? \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\
+    \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
+    \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_many_aplusb.test.cpp\"\n\r\nint\
+    \ main() {\r\n    int t;\r\n    ll a, b;\r\n    read(t);\r\n    while (t--) {\r\
+    \n        read(a, b);\r\n        print(a + b);\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\r\n\r\n#include\
     \ \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\nint main()\
     \ {\r\n    int t;\r\n    ll a, b;\r\n    read(t);\r\n    while (t--) {\r\n   \
@@ -151,8 +162,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_many_aplusb.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-14 02:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_many_aplusb.test.cpp
 layout: document

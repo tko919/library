@@ -1,32 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Sortable Segment Tree
     links: []
-  bundledCode: "#line 2 \"DataStructure/segtree.hpp\"\n\r\ntemplate<typename M,typename\
-    \ N,M (*f)(M,M),M (*g)(M,N),M (*m1)()>struct SegmentTree{\r\n    int n; vector<M>\
-    \ data;\r\n    SegmentTree(int _n=0){\r\n        n=1; while(n<_n)n<<=1; data.assign(2*n,m1());\r\
-    \n    }\r\n    void run(vector<M>& v){\r\n        for(int i=0;i<(int)v.size();i++)data[i+n]=v[i];\r\
-    \n        for(int k=n-1;k>0;k--)data[k]=f(data[2*k],data[2*k+1]);\r\n    }\r\n\
-    \    void set(int k,const M &x){\r\n        k+=n; data[k]=x;\r\n        while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\
-    \n    }\r\n    void update(int k,const N &x){\r\n        k+=n; data[k]=g(data[k],x);\r\
-    \n        while(k>>=1)data[k]=f(data[2*k],data[2*k+1]);\r\n    }\r\n    M query(int\
-    \ a,int b){\r\n        M L=m1(),R=m1();\r\n        for(a+=n,b+=n;a<b;a>>=1,b>>=1){\r\
-    \n            if(a&1)L=f(L,data[a++]);\r\n            if(b&1)R=f(data[--b],R);\r\
-    \n        }\r\n        return f(L,R);\r\n    }\r\n    M operator[](const int &k)const{return\
-    \ data[k+n];}\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 3 \"DataStructure/sortablesegtree.hpp\"\
+  bundledCode: "#line 2 \"DataStructure/segtree.hpp\"\n\r\ntemplate <typename M, typename\
+    \ N, M (*f)(M, M), M (*g)(M, N), M (*m1)()>\r\nstruct SegmentTree {\r\n    int\
+    \ n;\r\n    vector<M> data;\r\n    SegmentTree(int _n = 0) {\r\n        n = 1;\r\
+    \n        while (n < _n)\r\n            n <<= 1;\r\n        data.assign(2 * n,\
+    \ m1());\r\n    }\r\n    void run(vector<M> &v) {\r\n        for (int i = 0; i\
+    \ < (int)v.size(); i++)\r\n            data[i + n] = v[i];\r\n        for (int\
+    \ k = n - 1; k > 0; k--)\r\n            data[k] = f(data[2 * k], data[2 * k +\
+    \ 1]);\r\n    }\r\n    void set(int k, const M &x) {\r\n        k += n;\r\n  \
+    \      data[k] = x;\r\n        while (k >>= 1)\r\n            data[k] = f(data[2\
+    \ * k], data[2 * k + 1]);\r\n    }\r\n    void update(int k, const N &x) {\r\n\
+    \        k += n;\r\n        data[k] = g(data[k], x);\r\n        while (k >>= 1)\r\
+    \n            data[k] = f(data[2 * k], data[2 * k + 1]);\r\n    }\r\n    M query(int\
+    \ a, int b) {\r\n        M L = m1(), R = m1();\r\n        for (a += n, b += n;\
+    \ a < b; a >>= 1, b >>= 1) {\r\n            if (a & 1)\r\n                L =\
+    \ f(L, data[a++]);\r\n            if (b & 1)\r\n                R = f(data[--b],\
+    \ R);\r\n        }\r\n        return f(L, R);\r\n    }\r\n    M operator[](const\
+    \ int &k) const {\r\n        return data[k + n];\r\n    }\r\n\r\n    template\
+    \ <class F> int max_right(int L, F ch) const {\r\n        int l = n + L, w = 1;\r\
+    \n        M ansL = m1();\r\n        for (; L + w <= n; l >>= 1, w <<= 1)\r\n \
+    \           if (l & 1) {\r\n                if (not ch(f(ansL, data[l])))\r\n\
+    \                    break;\r\n                ansL = f(ansL, data[l++]);\r\n\
+    \                L += w;\r\n            }\r\n        while (l <<= 1, w >>= 1)\
+    \ {\r\n            if (L + w <= n && ch(f(ansL, data[l]))) {\r\n             \
+    \   ansL = f(ansL, data[l++]);\r\n                L += w;\r\n            }\r\n\
+    \        }\r\n        return L;\r\n    }\r\n\r\n    template <class F> int min_left(int\
+    \ R, F ch) const {\r\n        int r = n + R, w = 1;\r\n        M ansR = m1();\r\
+    \n        for (; R - w >= 0; r >>= 1, w <<= 1)\r\n            if (r & 1) {\r\n\
+    \                if (not ch(f(data[r - 1], ansR)))\r\n                    break;\r\
+    \n                ansR = f(data[--r], ansR);\r\n                R -= w;\r\n  \
+    \          }\r\n        while (r <<= 1, w >>= 1) {\r\n            if (R - w >=\
+    \ 0 && ch(f(data[r - 1], ansR))) {\r\n                ansR = f(data[--r], ansR);\r\
+    \n                R -= w;\r\n            }\r\n        }\r\n        return R;\r\
+    \n    }\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 3 \"DataStructure/sortablesegtree.hpp\"\
     \n\r\ntemplate<typename M,typename N,M (*f)(M,M),M (*g)(M,N),M (*m1)(),int LG=30>struct\
     \ SortableSegmentTree{\r\n    SortableSegmentTree(){}\r\n    SortableSegmentTree(vector<int>&\
     \ ks,vector<M>& vs):n(ks.size()),seg(n),Es(n){\r\n        rep(i,0,n){\r\n    \
@@ -143,8 +164,8 @@ data:
   isVerificationFile: false
   path: DataStructure/sortablesegtree.hpp
   requiredBy: []
-  timestamp: '2022-10-24 03:26:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-29 21:46:51+00:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_point_set_range_sort_range_composite.test.cpp
 documentation_of: DataStructure/sortablesegtree.hpp

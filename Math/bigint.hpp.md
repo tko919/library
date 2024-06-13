@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   _extendedRequiredBy: []

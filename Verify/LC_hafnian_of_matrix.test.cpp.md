@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/subset.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -33,7 +33,7 @@ data:
     \ \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i, a, b)\
     \ for (int i = (int)(a); i < (int)(b); i++)\r\n#define rrep(i, a, b) for (int\
-    \ i = (int)(b-1); i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
+    \ i = (int)(b)-1; i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
     \n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)), (v).end())\r\n#define\
     \ SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v)\
     \ *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v), (x)) - (v).begin())\r\
@@ -60,123 +60,134 @@ data:
     \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
     \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
     \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T, template <class> class C>\r\nostream &operator<<(ostream\
-    \ &os, const C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n      \
-    \  os << d << \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
-    \n#include <unistd.h>\r\nnamespace fastio {\r\nstatic constexpr uint32_t SZ =\
-    \ 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar out[100];\r\n// pointer\
-    \ of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\
-    \n    char num[10000][4];\r\n    constexpr Pre() : num() {\r\n        for (int\
-    \ i = 0; i < 10000; i++) {\r\n            int n = i;\r\n            for (int j\
-    \ = 3; j >= 0; j--) {\r\n                num[i][j] = n % 10 | '0';\r\n       \
-    \         n /= 10;\r\n            }\r\n        }\r\n    }\r\n} constexpr pre;\r\
-    \n\r\ninline void load() {\r\n    memmove(ibuf, ibuf + pil, pir - pil);\r\n  \
-    \  pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);\r\n  \
-    \  pil = 0;\r\n    if (pir < SZ)\r\n        ibuf[pir++] = '\\n';\r\n}\r\n\r\n\
-    inline void flush() {\r\n    fwrite(obuf, 1, por, stdout);\r\n    por = 0;\r\n\
-    }\r\n\r\nvoid rd(char &c) {\r\n    do {\r\n        if (pil + 1 > pir)\r\n    \
-    \        load();\r\n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\n\
-    }\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\n    char c;\r\n    do {\r\n\
-    \        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
-    \n    } while (isspace(c));\r\n    do {\r\n        x += c;\r\n        if (pil\
-    \ == pir)\r\n            load();\r\n        c = ibuf[pil++];\r\n    } while (!isspace(c));\r\
-    \n}\r\n\r\ntemplate <typename T> void rd_real(T &x) {\r\n    string s;\r\n   \
-    \ rd(s);\r\n    x = stod(s);\r\n}\r\n\r\ntemplate <typename T> void rd_integer(T\
-    \ &x) {\r\n    if (pil + 100 > pir)\r\n        load();\r\n    char c;\r\n    do\r\
-    \n        c = ibuf[pil++];\r\n    while (c < '-');\r\n    bool minus = 0;\r\n\
-    \    if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n        if\
-    \ (c == '-') {\r\n            minus = 1, c = ibuf[pil++];\r\n        }\r\n   \
-    \ }\r\n    x = 0;\r\n    while ('0' <= c) {\r\n        x = x * 10 + (c & 15),\
-    \ c = ibuf[pil++];\r\n    }\r\n    if constexpr (is_signed<T>::value || is_same_v<T,\
-    \ i128>) {\r\n        if (minus)\r\n            x = -x;\r\n    }\r\n}\r\n\r\n\
-    void rd(int &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(ll &x) {\r\n    rd_integer(x);\r\
-    \n}\r\nvoid rd(i128 &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(uint &x) {\r\n\
-    \    rd_integer(x);\r\n}\r\nvoid rd(ull &x) {\r\n    rd_integer(x);\r\n}\r\nvoid\
-    \ rd(u128 &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(double &x) {\r\n    rd_real(x);\r\
-    \n}\r\nvoid rd(long double &x) {\r\n    rd_real(x);\r\n}\r\n\r\ntemplate <class\
-    \ T, class U> void rd(pair<T, U> &p) {\r\n    return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T> void rd_tuple(T &t) {\r\n    if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n        auto &x = std::get<N>(t);\r\n \
-    \       rd(x);\r\n        rd_tuple<N + 1>(t);\r\n    }\r\n}\r\ntemplate <class...\
-    \ T> void rd(tuple<T...> &tpl) {\r\n    rd_tuple(tpl);\r\n}\r\n\r\ntemplate <size_t\
-    \ N = 0, typename T> void rd(array<T, N> &x) {\r\n    for (auto &d : x)\r\n  \
-    \      rd(d);\r\n}\r\ntemplate <class T> void rd(vector<T> &x) {\r\n    for (auto\
-    \ &d : x)\r\n        rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T> void read(H &h, T &...t) {\r\n    rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n    if (por == SZ)\r\n        flush();\r\n    obuf[por++] = c;\r\
-    \n}\r\nvoid wt(const string s) {\r\n    for (char c : s)\r\n        wt(c);\r\n\
-    }\r\nvoid wt(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t\
-    \ i = 0; i < len; i++)\r\n        wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\
-    \ void wt_integer(T x) {\r\n    if (por > SZ - 100)\r\n        flush();\r\n  \
-    \  if (x < 0) {\r\n        obuf[por++] = '-', x = -x;\r\n    }\r\n    int outi;\r\
-    \n    for (outi = 96; x >= 10000; outi -= 4) {\r\n        memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n        x /= 10000;\r\n    }\r\n    if (x >= 1000) {\r\n  \
-    \      memcpy(obuf + por, pre.num[x], 4);\r\n        por += 4;\r\n    } else if\
-    \ (x >= 100) {\r\n        memcpy(obuf + por, pre.num[x] + 1, 3);\r\n        por\
-    \ += 3;\r\n    } else if (x >= 10) {\r\n        int q = (x * 103) >> 10;\r\n \
-    \       obuf[por] = q | '0';\r\n        obuf[por + 1] = (x - q * 10) | '0';\r\n\
-    \        por += 2;\r\n    } else\r\n        obuf[por++] = x | '0';\r\n    memcpy(obuf\
-    \ + por, out + outi + 4, 96 - outi);\r\n    por += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T> void wt_real(T x) {\r\n    ostringstream oss;\r\n    oss << fixed\
-    \ << setprecision(15) << double(x);\r\n    string s = oss.str();\r\n    wt(s);\r\
-    \n}\r\n\r\nvoid wt(int x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(ll x) {\r\n\
-    \    wt_integer(x);\r\n}\r\nvoid wt(i128 x) {\r\n    wt_integer(x);\r\n}\r\nvoid\
-    \ wt(uint x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(ull x) {\r\n    wt_integer(x);\r\
-    \n}\r\nvoid wt(u128 x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(double x) {\r\n\
-    \    wt_real(x);\r\n}\r\nvoid wt(long double x) {\r\n    wt_real(x);\r\n}\r\n\r\
-    \ntemplate <class T, class U> void wt(const pair<T, U> val) {\r\n    wt(val.first);\r\
-    \n    wt(' ');\r\n    wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename\
-    \ T> void wt_tuple(const T t) {\r\n    if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n        if constexpr (N > 0) {\r\n            wt(' ');\r\n        }\r\n\
-    \        const auto x = std::get<N>(t);\r\n        wt(x);\r\n        wt_tuple<N\
-    \ + 1>(t);\r\n    }\r\n}\r\ntemplate <class... T> void wt(tuple<T...> tpl) {\r\
-    \n    wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S> void wt(const array<T,\
-    \ S> val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n        if (i)\r\n            wt(' ');\r\n        wt(val[i]);\r\n    }\r\
-    \n}\r\ntemplate <class T> void wt(const vector<T> val) {\r\n    auto n = val.size();\r\
-    \n    for (size_t i = 0; i < n; i++) {\r\n        if (i)\r\n            wt(' ');\r\
-    \n        wt(val[i]);\r\n    }\r\n}\r\n\r\nvoid print() {\r\n    wt('\\n');\r\n\
-    }\r\ntemplate <class Head, class... Tail> void print(Head &&head, Tail &&...tail)\
-    \ {\r\n    wt(head);\r\n    if (sizeof...(Tail))\r\n        wt(' ');\r\n    print(forward<Tail>(tail)...);\r\
-    \n}\r\nvoid __attribute__((destructor)) _d() {\r\n    flush();\r\n}\r\n} // namespace\
-    \ fastio\r\n\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
-    \n\r\ninline void first(bool i = true) {\r\n    print(i ? \"first\" : \"second\"\
-    );\r\n}\r\ninline void Alice(bool i = true) {\r\n    print(i ? \"Alice\" : \"\
-    Bob\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\" : \"\
-    no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\" : \"\
-    No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void YES(bool\
-    \ i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void NO() {\r\
-    \n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n    print(i ?\
-    \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
-    \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
-    \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 5 \"Verify/LC_hafnian_of_matrix.test.cpp\"\n\n#line 2\
-    \ \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n\
-    \    unsigned v;\r\n    static constexpr int get_mod() {\r\n        return mod;\r\
-    \n    }\r\n    constexpr unsigned inv() const {\r\n        assert(v != 0);\r\n\
-    \        int x = v, y = mod, p = 1, q = 0, t = 0, tmp = 0;\r\n        while (y\
-    \ > 0) {\r\n            t = x / y;\r\n            x -= t * y, p -= t * q;\r\n\
-    \            tmp = x, x = y, y = tmp;\r\n            tmp = p, p = q, q = tmp;\r\
-    \n        }\r\n        if (p < 0)\r\n            p += mod;\r\n        return p;\r\
-    \n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod)\
-    \ % mod) {}\r\n    fp operator-() const {\r\n        return fp() - *this;\r\n\
-    \    }\r\n    fp pow(ull t) {\r\n        fp res = 1, b = *this;\r\n        while\
-    \ (t) {\r\n            if (t & 1)\r\n                res *= b;\r\n           \
-    \ b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\
-    \n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n    \
-    \        v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
-    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
-    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
-    \   v = ull(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
-    \ fp &x) {\r\n        v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n\
-    \    }\r\n    fp operator+(const fp &x) const {\r\n        return fp(*this) +=\
-    \ x;\r\n    }\r\n    fp operator-(const fp &x) const {\r\n        return fp(*this)\
-    \ -= x;\r\n    }\r\n    fp operator*(const fp &x) const {\r\n        return fp(*this)\
-    \ *= x;\r\n    }\r\n    fp operator/(const fp &x) const {\r\n        return fp(*this)\
-    \ /= x;\r\n    }\r\n    bool operator==(const fp &x) const {\r\n        return\
-    \ v == x.v;\r\n    }\r\n    bool operator!=(const fp &x) const {\r\n        return\
-    \ v != x.v;\r\n    }\r\n    friend istream &operator>>(istream &is, fp &x) {\r\
-    \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
+    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, vector<T>\
+    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
+    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
+    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
+    \nostream &operator<<(ostream &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\
+    \n    for (auto itr = map_var.begin(); itr != map_var.end();\r\n         itr++)\
+    \ {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n\
+    \        itr++;\r\n        if (itr != map_var.end())\r\n            os << \",\
+    \ \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\n\
+    template <typename T> ostream &operator<<(ostream &os, set<T> &set_var) {\r\n\
+    \    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\n\
+    namespace fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\
+    \nchar obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\n\r\nuint32_t\
+    \ pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\n    char num[10000][4];\r\n\
+    \    constexpr Pre() : num() {\r\n        for (int i = 0; i < 10000; i++) {\r\n\
+    \            int n = i;\r\n            for (int j = 3; j >= 0; j--) {\r\n    \
+    \            num[i][j] = n % 10 | '0';\r\n                n /= 10;\r\n       \
+    \     }\r\n        }\r\n    }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\
+    \n    memmove(ibuf, ibuf + pil, pir - pil);\r\n    pir = pir - pil + fread(ibuf\
+    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n    pil = 0;\r\n    if (pir < SZ)\r\
+    \n        ibuf[pir++] = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n    fwrite(obuf,\
+    \ 1, por, stdout);\r\n    por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n    do {\r\
+    \n        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
+    \n    } while (isspace(c));\r\n}\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\
+    \n    char c;\r\n    do {\r\n        if (pil + 1 > pir)\r\n            load();\r\
+    \n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\n    do {\r\n      \
+    \  x += c;\r\n        if (pil == pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
+    \n    } while (!isspace(c));\r\n}\r\n\r\ntemplate <typename T> void rd_real(T\
+    \ &x) {\r\n    string s;\r\n    rd(s);\r\n    x = stod(s);\r\n}\r\n\r\ntemplate\
+    \ <typename T> void rd_integer(T &x) {\r\n    if (pil + 100 > pir)\r\n       \
+    \ load();\r\n    char c;\r\n    do\r\n        c = ibuf[pil++];\r\n    while (c\
+    \ < '-');\r\n    bool minus = 0;\r\n    if constexpr (is_signed<T>::value || is_same_v<T,\
+    \ i128>) {\r\n        if (c == '-') {\r\n            minus = 1, c = ibuf[pil++];\r\
+    \n        }\r\n    }\r\n    x = 0;\r\n    while ('0' <= c) {\r\n        x = x\
+    \ * 10 + (c & 15), c = ibuf[pil++];\r\n    }\r\n    if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n        if (minus)\r\n            x = -x;\r\n  \
+    \  }\r\n}\r\n\r\nvoid rd(int &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(ll &x)\
+    \ {\r\n    rd_integer(x);\r\n}\r\nvoid rd(i128 &x) {\r\n    rd_integer(x);\r\n\
+    }\r\nvoid rd(uint &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(ull &x) {\r\n  \
+    \  rd_integer(x);\r\n}\r\nvoid rd(u128 &x) {\r\n    rd_integer(x);\r\n}\r\nvoid\
+    \ rd(double &x) {\r\n    rd_real(x);\r\n}\r\nvoid rd(long double &x) {\r\n   \
+    \ rd_real(x);\r\n}\r\n\r\ntemplate <class T, class U> void rd(pair<T, U> &p) {\r\
+    \n    return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename\
+    \ T> void rd_tuple(T &t) {\r\n    if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n        auto &x = std::get<N>(t);\r\n        rd(x);\r\n        rd_tuple<N\
+    \ + 1>(t);\r\n    }\r\n}\r\ntemplate <class... T> void rd(tuple<T...> &tpl) {\r\
+    \n    rd_tuple(tpl);\r\n}\r\n\r\ntemplate <size_t N = 0, typename T> void rd(array<T,\
+    \ N> &x) {\r\n    for (auto &d : x)\r\n        rd(d);\r\n}\r\ntemplate <class\
+    \ T> void rd(vector<T> &x) {\r\n    for (auto &d : x)\r\n        rd(d);\r\n}\r\
+    \n\r\nvoid read() {}\r\ntemplate <class H, class... T> void read(H &h, T &...t)\
+    \ {\r\n    rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n    if (por\
+    \ == SZ)\r\n        flush();\r\n    obuf[por++] = c;\r\n}\r\nvoid wt(const string\
+    \ s) {\r\n    for (char c : s)\r\n        wt(c);\r\n}\r\nvoid wt(const char *s)\
+    \ {\r\n    size_t len = strlen(s);\r\n    for (size_t i = 0; i < len; i++)\r\n\
+    \        wt(s[i]);\r\n}\r\n\r\ntemplate <typename T> void wt_integer(T x) {\r\n\
+    \    if (por > SZ - 100)\r\n        flush();\r\n    if (x < 0) {\r\n        obuf[por++]\
+    \ = '-', x = -x;\r\n    }\r\n    int outi;\r\n    for (outi = 96; x >= 10000;\
+    \ outi -= 4) {\r\n        memcpy(out + outi, pre.num[x % 10000], 4);\r\n     \
+    \   x /= 10000;\r\n    }\r\n    if (x >= 1000) {\r\n        memcpy(obuf + por,\
+    \ pre.num[x], 4);\r\n        por += 4;\r\n    } else if (x >= 100) {\r\n     \
+    \   memcpy(obuf + por, pre.num[x] + 1, 3);\r\n        por += 3;\r\n    } else\
+    \ if (x >= 10) {\r\n        int q = (x * 103) >> 10;\r\n        obuf[por] = q\
+    \ | '0';\r\n        obuf[por + 1] = (x - q * 10) | '0';\r\n        por += 2;\r\
+    \n    } else\r\n        obuf[por++] = x | '0';\r\n    memcpy(obuf + por, out +\
+    \ outi + 4, 96 - outi);\r\n    por += 96 - outi;\r\n}\r\n\r\ntemplate <typename\
+    \ T> void wt_real(T x) {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15)\
+    \ << double(x);\r\n    string s = oss.str();\r\n    wt(s);\r\n}\r\n\r\nvoid wt(int\
+    \ x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(ll x) {\r\n    wt_integer(x);\r\n\
+    }\r\nvoid wt(i128 x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(uint x) {\r\n   \
+    \ wt_integer(x);\r\n}\r\nvoid wt(ull x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(u128\
+    \ x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(double x) {\r\n    wt_real(x);\r\n\
+    }\r\nvoid wt(long double x) {\r\n    wt_real(x);\r\n}\r\n\r\ntemplate <class T,\
+    \ class U> void wt(const pair<T, U> val) {\r\n    wt(val.first);\r\n    wt(' ');\r\
+    \n    wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T> void wt_tuple(const\
+    \ T t) {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n        if constexpr\
+    \ (N > 0) {\r\n            wt(' ');\r\n        }\r\n        const auto x = std::get<N>(t);\r\
+    \n        wt(x);\r\n        wt_tuple<N + 1>(t);\r\n    }\r\n}\r\ntemplate <class...\
+    \ T> void wt(tuple<T...> tpl) {\r\n    wt_tuple(tpl);\r\n}\r\ntemplate <class\
+    \ T, size_t S> void wt(const array<T, S> val) {\r\n    auto n = val.size();\r\n\
+    \    for (size_t i = 0; i < n; i++) {\r\n        if (i)\r\n            wt(' ');\r\
+    \n        wt(val[i]);\r\n    }\r\n}\r\ntemplate <class T> void wt(const vector<T>\
+    \ val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\
+    \n        if (i)\r\n            wt(' ');\r\n        wt(val[i]);\r\n    }\r\n}\r\
+    \n\r\nvoid print() {\r\n    wt('\\n');\r\n}\r\ntemplate <class Head, class...\
+    \ Tail> void print(Head &&head, Tail &&...tail) {\r\n    wt(head);\r\n    if (sizeof...(Tail))\r\
+    \n        wt(' ');\r\n    print(forward<Tail>(tail)...);\r\n}\r\nvoid __attribute__((destructor))\
+    \ _d() {\r\n    flush();\r\n}\r\n} // namespace fastio\r\n\r\nusing fastio::flush;\r\
+    \nusing fastio::print;\r\nusing fastio::read;\r\n\r\ninline void first(bool i\
+    \ = true) {\r\n    print(i ? \"first\" : \"second\");\r\n}\r\ninline void Alice(bool\
+    \ i = true) {\r\n    print(i ? \"Alice\" : \"Bob\");\r\n}\r\ninline void Takahashi(bool\
+    \ i = true) {\r\n    print(i ? \"Takahashi\" : \"Aoki\");\r\n}\r\ninline void\
+    \ yes(bool i = true) {\r\n    print(i ? \"yes\" : \"no\");\r\n}\r\ninline void\
+    \ Yes(bool i = true) {\r\n    print(i ? \"Yes\" : \"No\");\r\n}\r\ninline void\
+    \ No() {\r\n    print(\"No\");\r\n}\r\ninline void YES(bool i = true) {\r\n  \
+    \  print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void NO() {\r\n    print(\"NO\"\
+    );\r\n}\r\ninline void Yay(bool i = true) {\r\n    print(i ? \"Yay!\" : \":(\"\
+    );\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i ? \"Possible\"\
+    \ : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true) {\r\n    print(i\
+    \ ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n\
+    #line 5 \"Verify/LC_hafnian_of_matrix.test.cpp\"\n\n#line 2 \"Math/modint.hpp\"\
+    \n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n    unsigned v;\r\n\
+    \    static constexpr int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr\
+    \ unsigned inv() const {\r\n        assert(v != 0);\r\n        int x = v, y =\
+    \ mod, p = 1, q = 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n          \
+    \  t = x / y;\r\n            x -= t * y, p -= t * q;\r\n            tmp = x, x\
+    \ = y, y = tmp;\r\n            tmp = p, p = q, q = tmp;\r\n        }\r\n     \
+    \   if (p < 0)\r\n            p += mod;\r\n        return p;\r\n    }\r\n    constexpr\
+    \ fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
+    \ const {\r\n        return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n\
+    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
+    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
+    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
+    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
+    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
+    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
+    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ull(v) * x.v % mod;\r\
+    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
+    \    v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
+    \ fp &x) const {\r\n        return fp(*this) += x;\r\n    }\r\n    fp operator-(const\
+    \ fp &x) const {\r\n        return fp(*this) -= x;\r\n    }\r\n    fp operator*(const\
+    \ fp &x) const {\r\n        return fp(*this) *= x;\r\n    }\r\n    fp operator/(const\
+    \ fp &x) const {\r\n        return fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
+    \ fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
+    \ fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
+    \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
@@ -197,86 +208,96 @@ data:
     \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
     \n/**\r\n * @brief Modint\r\n */\n#line 7 \"Verify/LC_hafnian_of_matrix.test.cpp\"\
     \nusing Fp=fp<998244353>;\n\n#line 2 \"Math/hafnian.hpp\"\n\n#line 2 \"Math/matrix.hpp\"\
-    \n\r\ntemplate<class T>struct Matrix{\r\n    int h,w; vector<vector<T>> val; T\
-    \ det;\r\n    Matrix(){}\r\n    Matrix(int n):h(n),w(n),val(vector<vector<T>>(n,vector<T>(n))){}\r\
-    \n    Matrix(int n,int m):h(n),w(m),val(vector<vector<T>>(n,vector<T>(m))){}\r\
-    \n    vector<T>& operator[](const int i){return val[i];}\r\n    Matrix& operator+=(const\
-    \ Matrix& m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]+=m.val[i][j];\r\
-    \n        return *this;\r\n    }\r\n    Matrix& operator-=(const Matrix& m){\r\
-    \n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)val[i][j]-=m.val[i][j];\r\
-    \n        return *this;\r\n    }\r\n    Matrix& operator*=(const Matrix& m){\r\
-    \n        assert(w==m.h);\r\n        Matrix<T> res(h,m.w);\r\n        rep(i,0,h)rep(j,0,m.w)rep(k,0,w)res.val[i][j]+=val[i][k]*m.val[k][j];\r\
-    \n        *this=res; return *this;\r\n    }\r\n    Matrix operator+(const Matrix&\
-    \ m)const{return Matrix(*this)+=m;}\r\n    Matrix operator-(const Matrix& m)const{return\
-    \ Matrix(*this)-=m;}\r\n    Matrix operator*(const Matrix& m)const{return Matrix(*this)*=m;}\r\
-    \n    Matrix pow(ll k){\r\n        Matrix<T> res(h,h),c=*this; rep(i,0,h)res.val[i][i]=1;\r\
-    \n        while(k){if(k&1)res*=c; c*=c; k>>=1;} return res;\r\n    }\r\n    vector<int>\
-    \ gauss(int c=-1){\r\n        if(val.empty())return {};\r\n        if(c==-1)c=w;\r\
-    \n        int cur=0; vector<int> res; det=1;\r\n        rep(i,0,c){\r\n      \
-    \      if(cur==h)break;\r\n            rep(j,cur,h)if(val[j][i]!=0){\r\n     \
-    \           swap(val[cur],val[j]);\r\n                if(cur!=j)det*=-1;\r\n \
-    \               break;\r\n            }\r\n            det*=val[cur][i];\r\n \
-    \           if(val[cur][i]==0)continue;\r\n            rep(j,0,h)if(j!=cur){\r\
-    \n                T z=val[j][i]/val[cur][i];\r\n                rep(k,i,w)val[j][k]-=val[cur][k]*z;\r\
-    \n            }\r\n            res.push_back(i);\r\n            cur++;\r\n   \
-    \     }\r\n        return res;\r\n    }\r\n    Matrix inv(){\r\n        assert(h==w);\r\
-    \n        Matrix base(h,h*2),res(h,h);\r\n        rep(i,0,h)rep(j,0,h)base[i][j]=val[i][j];\r\
-    \n        rep(i,0,h)base[i][h+i]=1;\r\n        base.gauss(h);\r\n        det=base.det;\r\
-    \n        rep(i,0,h)rep(j,0,h)res[i][j]=base[i][h+j]/base[i][i];\r\n        return\
-    \ res;\r\n    }\r\n    bool operator==(const Matrix& m){\r\n        assert(h==m.h\
-    \ and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]!=m.val[i][j])return\
-    \ false;\r\n        return true;\r\n    }\r\n    bool operator!=(const Matrix&\
-    \ m){\r\n        assert(h==m.h and w==m.w);\r\n        rep(i,0,h)rep(j,0,w)if(val[i][j]==m.val[i][j])return\
-    \ false;\r\n        return true;\r\n    }\r\n    friend istream& operator>>(istream&\
-    \ is,Matrix& m){\r\n        rep(i,0,m.h)rep(j,0,m.w)is>>m[i][j];\r\n        return\
-    \ is;\r\n    }\r\n    friend ostream& operator<<(ostream& os,Matrix& m){\r\n \
-    \       rep(i,0,m.h){\r\n            rep(j,0,m.w)os<<m[i][j]<<(j==m.w-1 and i!=m.h-1?'\\\
-    n':' ');\r\n        }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Matrix\r\n */\n#line 2 \"Convolution/subset.hpp\"\n\r\ntemplate <typename T,\
-    \ int LG = 20> struct SubsetConvolution {\r\n    using POL = array<T, LG + 1>;\r\
-    \n    vector<int> bpc;\r\n    SubsetConvolution() : bpc(1 << LG) {\r\n       \
-    \ rep(i, 1, 1 << LG) bpc[i] = bpc[i - (i & -i)] + 1;\r\n    }\r\n    void zeta(vector<POL>\
-    \ &a) {\r\n        int n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n      \
-    \      rep(i, 0, 1 << n) if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\
-    \n                rep(j, 0, pc) a[i][j] += a[i ^ (1 << d)][j];\r\n           \
-    \ }\r\n        }\r\n    }\r\n    void mobius(vector<POL> &a) {\r\n        int\
-    \ n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n            rep(i, 0, 1 << n)\
-    \ if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\n            \
-    \    rep(j, pc, n + 1) a[i][j] -= a[i ^ (1 << d)][j];\r\n            }\r\n   \
-    \     }\r\n    }\r\n    vector<T> mult(vector<T> &a, vector<T> &b) {\r\n     \
-    \   assert(a.size() == b.size());\r\n        int n = SZ(a), m = topbit(n);\r\n\
-    \        vector<POL> A(n), B(n);\r\n        rep(i, 0, n) {\r\n            A[i][bpc[i]]\
-    \ = a[i];\r\n            B[i][bpc[i]] = b[i];\r\n        }\r\n        zeta(A);\r\
-    \n        zeta(B);\r\n        rep(i, 0, n) {\r\n            POL c = {};\r\n  \
-    \          rep(j, 0, m + 1) rep(k, 0, m + 1 - j) c[j + k] += A[i][j] * B[i][k];\r\
-    \n            swap(A[i], c);\r\n        }\r\n        mobius(A);\r\n        vector<T>\
-    \ ret(n);\r\n        rep(i, 0, n) ret[i] = A[i][bpc[i]];\r\n        return ret;\r\
-    \n    }\r\n    vector<T> TransposeMult(vector<T> &a, vector<T> &b) {\r\n     \
-    \   auto ret = a;\r\n        reverse(ALL(ret));\r\n        ret = mult(ret, b);\r\
-    \n        reverse(ALL(ret));\r\n        return ret;\r\n    }\r\n    vector<T>\
-    \ exp(vector<T> &f) {\r\n        int n = topbit(SZ(f));\r\n        vector<T> ret(1\
-    \ << n);\r\n        ret[0] = 1;\r\n        rep(i, 0, n) {\r\n            vector<T>\
-    \ a = {ret.begin(), ret.begin() + (1 << i)};\r\n            vector<T> b = {f.begin()\
-    \ + (1 << i), f.begin() + (2 << i)};\r\n            a = mult(a, b);\r\n      \
-    \      copy(ALL(a), ret.begin() + (1 << i));\r\n        }\r\n        return ret;\r\
-    \n    }\r\n    vector<T> CompositionEGF(vector<T> &s, vector<T> &f) {\r\n    \
-    \    int n = topbit(SZ(s));\r\n        f.resize(n + 1);\r\n        vector<T> dp(1);\r\
-    \n        dp[0] = f.back();\r\n        rrep(d, 0, n) {\r\n            vector<T>\
-    \ ndp(1 << (n - d));\r\n            ndp[0] = f[d];\r\n            rep(i, 0, n\
-    \ - d) {\r\n                vector<T> a = {dp.begin(), dp.begin() + (1 << i)};\r\
-    \n                vector<T> b = {s.begin() + (1 << i), s.begin() + (2 << i)};\r\
-    \n                a = mult(a, b);\r\n                copy(ALL(a), ndp.begin()\
-    \ + (1 << i));\r\n            }\r\n            swap(dp, ndp);\r\n        }\r\n\
-    \        return dp;\r\n    }\r\n    vector<T> Composition(vector<T> &s, vector<T>\
-    \ &f) {\r\n        int n = topbit(SZ(s));\r\n        T c = s[0];\r\n        s[0]\
-    \ = 0;\r\n        // taylor shift\r\n        vector<T> pw(n + 1), g(n + 1);\r\n\
-    \        pw[0] = 1;\r\n        rep(i, 0, SZ(f)) {\r\n            rep(j, 0, n +\
-    \ 1) g[j] += f[i] * pw[j];\r\n            rrep(j, 0, n + 1) {\r\n            \
-    \    if (j != n)\r\n                    pw[j + 1] += pw[j];\r\n              \
-    \  pw[j] *= c;\r\n            }\r\n        }\r\n        // to EGF\r\n        T\
-    \ fact = 1;\r\n        rep(i, 1, n + 1) {\r\n            fact *= i;\r\n      \
-    \      g[i] *= fact;\r\n        }\r\n        return CompositionEGF(s, g);\r\n\
-    \    }\r\n    vector<T> TransposeCompositionEGF(vector<T> &s, vector<T> &t) {\r\
+    \n\r\ntemplate <class T> struct Matrix {\r\n    int h, w;\r\n    vector<vector<T>>\
+    \ val;\r\n    T det;\r\n    Matrix() {}\r\n    Matrix(int n) : h(n), w(n), val(vector<vector<T>>(n,\
+    \ vector<T>(n))) {}\r\n    Matrix(int n, int m)\r\n        : h(n), w(m), val(vector<vector<T>>(n,\
+    \ vector<T>(m))) {}\r\n    vector<T> &operator[](const int i) {\r\n        return\
+    \ val[i];\r\n    }\r\n    Matrix &operator+=(const Matrix &m) {\r\n        assert(h\
+    \ == m.h and w == m.w);\r\n        rep(i, 0, h) rep(j, 0, w) val[i][j] += m.val[i][j];\r\
+    \n        return *this;\r\n    }\r\n    Matrix &operator-=(const Matrix &m) {\r\
+    \n        assert(h == m.h and w == m.w);\r\n        rep(i, 0, h) rep(j, 0, w)\
+    \ val[i][j] -= m.val[i][j];\r\n        return *this;\r\n    }\r\n    Matrix &operator*=(const\
+    \ Matrix &m) {\r\n        assert(w == m.h);\r\n        Matrix<T> res(h, m.w);\r\
+    \n        rep(i, 0, h) rep(j, 0, m.w) rep(k, 0, w) res.val[i][j] +=\r\n      \
+    \      val[i][k] * m.val[k][j];\r\n        *this = res;\r\n        return *this;\r\
+    \n    }\r\n    Matrix operator+(const Matrix &m) const {\r\n        return Matrix(*this)\
+    \ += m;\r\n    }\r\n    Matrix operator-(const Matrix &m) const {\r\n        return\
+    \ Matrix(*this) -= m;\r\n    }\r\n    Matrix operator*(const Matrix &m) const\
+    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k) {\r\
+    \n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
+    \ = 1;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
+    \ *= c;\r\n            c *= c;\r\n            k >>= 1;\r\n        }\r\n      \
+    \  return res;\r\n    }\r\n    vector<int> gauss(int c = -1) {\r\n        det\
+    \ = 1;\r\n        if (val.empty())\r\n            return {};\r\n        if (c\
+    \ == -1)\r\n            c = w;\r\n        int cur = 0;\r\n        vector<int>\
+    \ res;\r\n        rep(i, 0, c) {\r\n            if (cur == h)\r\n            \
+    \    break;\r\n            rep(j, cur, h) if (val[j][i] != 0) {\r\n          \
+    \      swap(val[cur], val[j]);\r\n                if (cur != j)\r\n          \
+    \          det *= -1;\r\n                break;\r\n            }\r\n         \
+    \   det *= val[cur][i];\r\n            if (val[cur][i] == 0)\r\n             \
+    \   continue;\r\n            rep(j, 0, h) if (j != cur) {\r\n                T\
+    \ z = val[j][i] / val[cur][i];\r\n                rep(k, i, w) val[j][k] -= val[cur][k]\
+    \ * z;\r\n            }\r\n            res.push_back(i);\r\n            cur++;\r\
+    \n        }\r\n        return res;\r\n    }\r\n    Matrix inv() {\r\n        assert(h\
+    \ == w);\r\n        Matrix base(h, h * 2), res(h, h);\r\n        rep(i, 0, h)\
+    \ rep(j, 0, h) base[i][j] = val[i][j];\r\n        rep(i, 0, h) base[i][h + i]\
+    \ = 1;\r\n        base.gauss(h);\r\n        det = base.det;\r\n        rep(i,\
+    \ 0, h) rep(j, 0, h) res[i][j] = base[i][h + j] / base[i][i];\r\n        return\
+    \ res;\r\n    }\r\n    bool operator==(const Matrix &m) {\r\n        assert(h\
+    \ == m.h and w == m.w);\r\n        rep(i, 0, h) rep(j, 0, w) if (val[i][j] !=\
+    \ m.val[i][j]) return false;\r\n        return true;\r\n    }\r\n    bool operator!=(const\
+    \ Matrix &m) {\r\n        assert(h == m.h and w == m.w);\r\n        rep(i, 0,\
+    \ h) rep(j, 0, w) if (val[i][j] == m.val[i][j]) return false;\r\n        return\
+    \ true;\r\n    }\r\n    friend istream &operator>>(istream &is, Matrix &m) {\r\
+    \n        rep(i, 0, m.h) rep(j, 0, m.w) is >> m[i][j];\r\n        return is;\r\
+    \n    }\r\n    friend ostream &operator<<(ostream &os, Matrix &m) {\r\n      \
+    \  rep(i, 0, m.h) {\r\n            rep(j, 0, m.w) os << m[i][j]\r\n          \
+    \                    << (j == m.w - 1 and i != m.h - 1 ? '\\n' : ' ');\r\n   \
+    \     }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Matrix\r\n\
+    \ */\n#line 2 \"Convolution/subset.hpp\"\n\r\ntemplate <typename T, int LG = 20>\
+    \ struct SubsetConvolution {\r\n    using POL = array<T, LG + 1>;\r\n    vector<int>\
+    \ bpc;\r\n    SubsetConvolution() : bpc(1 << LG) {\r\n        rep(i, 1, 1 << LG)\
+    \ bpc[i] = bpc[i - (i & -i)] + 1;\r\n    }\r\n    void zeta(vector<POL> &a) {\r\
+    \n        int n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n            rep(i,\
+    \ 0, 1 << n) if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\n \
+    \               rep(j, 0, pc) a[i][j] += a[i ^ (1 << d)][j];\r\n            }\r\
+    \n        }\r\n    }\r\n    void mobius(vector<POL> &a) {\r\n        int n = topbit(SZ(a));\r\
+    \n        rep(d, 0, n) {\r\n            rep(i, 0, 1 << n) if (i >> d & 1) {\r\n\
+    \                const int pc = bpc[i];\r\n                rep(j, pc, n + 1) a[i][j]\
+    \ -= a[i ^ (1 << d)][j];\r\n            }\r\n        }\r\n    }\r\n    vector<T>\
+    \ mult(vector<T> &a, vector<T> &b) {\r\n        assert(a.size() == b.size());\r\
+    \n        int n = SZ(a), m = topbit(n);\r\n        vector<POL> A(n), B(n);\r\n\
+    \        rep(i, 0, n) {\r\n            A[i][bpc[i]] = a[i];\r\n            B[i][bpc[i]]\
+    \ = b[i];\r\n        }\r\n        zeta(A);\r\n        zeta(B);\r\n        rep(i,\
+    \ 0, n) {\r\n            POL c = {};\r\n            rep(j, 0, m + 1) rep(k, 0,\
+    \ m + 1 - j) c[j + k] += A[i][j] * B[i][k];\r\n            swap(A[i], c);\r\n\
+    \        }\r\n        mobius(A);\r\n        vector<T> ret(n);\r\n        rep(i,\
+    \ 0, n) ret[i] = A[i][bpc[i]];\r\n        return ret;\r\n    }\r\n    vector<T>\
+    \ TransposeMult(vector<T> &a, vector<T> &b) {\r\n        auto ret = a;\r\n   \
+    \     reverse(ALL(ret));\r\n        ret = mult(ret, b);\r\n        reverse(ALL(ret));\r\
+    \n        return ret;\r\n    }\r\n    vector<T> exp(vector<T> &f) {\r\n      \
+    \  int n = topbit(SZ(f));\r\n        vector<T> ret(1 << n);\r\n        ret[0]\
+    \ = 1;\r\n        rep(i, 0, n) {\r\n            vector<T> a = {ret.begin(), ret.begin()\
+    \ + (1 << i)};\r\n            vector<T> b = {f.begin() + (1 << i), f.begin() +\
+    \ (2 << i)};\r\n            a = mult(a, b);\r\n            copy(ALL(a), ret.begin()\
+    \ + (1 << i));\r\n        }\r\n        return ret;\r\n    }\r\n    vector<T> CompositionEGF(vector<T>\
+    \ &s, vector<T> &f) {\r\n        int n = topbit(SZ(s));\r\n        f.resize(n\
+    \ + 1);\r\n        vector<T> dp(1);\r\n        dp[0] = f.back();\r\n        rrep(d,\
+    \ 0, n) {\r\n            vector<T> ndp(1 << (n - d));\r\n            ndp[0] =\
+    \ f[d];\r\n            rep(i, 0, n - d) {\r\n                vector<T> a = {dp.begin(),\
+    \ dp.begin() + (1 << i)};\r\n                vector<T> b = {s.begin() + (1 <<\
+    \ i), s.begin() + (2 << i)};\r\n                a = mult(a, b);\r\n          \
+    \      copy(ALL(a), ndp.begin() + (1 << i));\r\n            }\r\n            swap(dp,\
+    \ ndp);\r\n        }\r\n        return dp;\r\n    }\r\n    vector<T> Composition(vector<T>\
+    \ &s, vector<T> &f) {\r\n        int n = topbit(SZ(s));\r\n        T c = s[0];\r\
+    \n        s[0] = 0;\r\n        // taylor shift\r\n        vector<T> pw(n + 1),\
+    \ g(n + 1);\r\n        pw[0] = 1;\r\n        rep(i, 0, SZ(f)) {\r\n          \
+    \  rep(j, 0, n + 1) g[j] += f[i] * pw[j];\r\n            rrep(j, 0, n + 1) {\r\
+    \n                if (j != n)\r\n                    pw[j + 1] += pw[j];\r\n \
+    \               pw[j] *= c;\r\n            }\r\n        }\r\n        // to EGF\r\
+    \n        T fact = 1;\r\n        rep(i, 1, n + 1) {\r\n            fact *= i;\r\
+    \n            g[i] *= fact;\r\n        }\r\n        return CompositionEGF(s, g);\r\
+    \n    }\r\n    vector<T> TransposeCompositionEGF(vector<T> &s, vector<T> &t) {\r\
     \n        int n = topbit(SZ(s));\r\n        vector<T> dp = t, ret(n + 1);\r\n\
     \        ret[0] = dp[0];\r\n        rep(d, 0, n) {\r\n            vector<T> ndp(1\
     \ << (n - d - 1), 0);\r\n            rrep(i, 0, n - d) {\r\n                vector<T>\
@@ -321,8 +342,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-14 02:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_hafnian_of_matrix.test.cpp
 layout: document

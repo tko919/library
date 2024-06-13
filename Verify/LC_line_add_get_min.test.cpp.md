@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/lichaotree.hpp
     title: Convex Hull Trick (Li Chao Tree)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -21,7 +21,7 @@ data:
     https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i, a, b)\
     \ for (int i = (int)(a); i < (int)(b); i++)\r\n#define rrep(i, a, b) for (int\
-    \ i = (int)(b-1); i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
+    \ i = (int)(b)-1; i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
     \n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)), (v).end())\r\n#define\
     \ SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v)\
     \ *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v), (x)) - (v).begin())\r\
@@ -48,12 +48,23 @@ data:
     \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
     \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
     \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T, template <class> class C>\r\nostream &operator<<(ostream\
-    \ &os, const C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n      \
-    \  os << d << \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"DataStructure/lichaotree.hpp\"\
-    \n\r\ntemplate<typename T,T MX>struct CHT{\r\n    using Line=pair<T,T>;\r\n  \
-    \  int n;\r\n    vector<T> xs;\r\n    vector<Line> ls;\r\n    CHT(vector<T>& ps){\r\
-    \n        xs=ps;\r\n        UNIQUE(xs);\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\
+    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, vector<T>\
+    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
+    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
+    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
+    \nostream &operator<<(ostream &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\
+    \n    for (auto itr = map_var.begin(); itr != map_var.end();\r\n         itr++)\
+    \ {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n\
+    \        itr++;\r\n        if (itr != map_var.end())\r\n            os << \",\
+    \ \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\n\
+    template <typename T> ostream &operator<<(ostream &os, set<T> &set_var) {\r\n\
+    \    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\n#line 2 \"DataStructure/lichaotree.hpp\"\n\r\ntemplate<typename\
+    \ T,T MX>struct CHT{\r\n    using Line=pair<T,T>;\r\n    int n;\r\n    vector<T>\
+    \ xs;\r\n    vector<Line> ls;\r\n    CHT(vector<T>& ps){\r\n        xs=ps;\r\n\
+    \        UNIQUE(xs);\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\
     \n        xs.resize(n,xs.back());\r\n        ls.resize(2*n-1,Line(0,MX));\r\n\
     \    }\r\n    T eval(Line& f,T x){return f.first*x+f.second;}\r\n    void add(T\
     \ a,T b,int k=0,int L=0,int R=-1){\r\n        if(R==-1)R=n;\r\n        Line f={a,b};\r\
@@ -101,8 +112,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-14 02:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_line_add_get_min.test.cpp
 layout: document

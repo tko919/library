@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -21,7 +21,7 @@ data:
     https://judge.yosupo.jp/problem/static_range_sum\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i, a, b)\
     \ for (int i = (int)(a); i < (int)(b); i++)\r\n#define rrep(i, a, b) for (int\
-    \ i = (int)(b-1); i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
+    \ i = (int)(b)-1; i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
     \n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)), (v).end())\r\n#define\
     \ SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v)\
     \ *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v), (x)) - (v).begin())\r\
@@ -48,24 +48,34 @@ data:
     \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
     \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
     \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T, template <class> class C>\r\nostream &operator<<(ostream\
-    \ &os, const C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n      \
-    \  os << d << \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"DataStructure/bit.hpp\"\
-    \n\r\ntemplate<typename T>struct BIT{\r\n    int n; T all=0; vector<T> val;\r\n\
-    \    BIT(int _n=0):n(_n),val(_n+10){}\r\n    void clear(){val.assign(n+10,0);\
-    \ all=T();}\r\n    void add(int i,T x){\r\n        for(i++;i<=n;i+=(i&-i))val[i]=val[i]+x;\r\
-    \n        all+=x;\r\n    }\r\n    T sum(int i){\r\n        T res=0;\r\n      \
-    \  for(;i;i-=(i&-i))res+=val[i];\r\n        return res;\r\n    }\r\n    T sum(int\
-    \ L,int R){return sum(R)-sum(L);} // [L,R)\r\n    int lower_bound(T x){\r\n  \
-    \      int ret=0,len=1;\r\n        while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\
-    \n            if(ret+len<=n and val[ret+len]<x){\r\n                ret+=len;\r\
-    \n                x-=val[ret];\r\n            }\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n */\n#line\
-    \ 5 \"Verify/LC_static_range_sum.test.cpp\"\n\r\n\r\nint main(){\r\n    int N,Q;\r\
-    \n    cin>>N>>Q;\r\n    vector<int> a(N);\r\n    rep(i,0,N)cin>>a[i];\r\n\r\n\
-    \    BIT<ll> bit(N);\r\n    rep(i,0,N)bit.add(i,a[i]);\r\n    while(Q--){\r\n\
-    \        int L,R;\r\n        cin>>L>>R;\r\n        cout<<bit.sum(L,R)<<'\\n';\r\
-    \n    }\r\n    return 0;\r\n}\n"
+    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, vector<T>\
+    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
+    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
+    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
+    \nostream &operator<<(ostream &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\
+    \n    for (auto itr = map_var.begin(); itr != map_var.end();\r\n         itr++)\
+    \ {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n\
+    \        itr++;\r\n        if (itr != map_var.end())\r\n            os << \",\
+    \ \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\n\
+    template <typename T> ostream &operator<<(ostream &os, set<T> &set_var) {\r\n\
+    \    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\n#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename\
+    \ T>struct BIT{\r\n    int n; T all=0; vector<T> val;\r\n    BIT(int _n=0):n(_n),val(_n+10){}\r\
+    \n    void clear(){val.assign(n+10,0); all=T();}\r\n    void add(int i,T x){\r\
+    \n        for(i++;i<=n;i+=(i&-i))val[i]=val[i]+x;\r\n        all+=x;\r\n    }\r\
+    \n    T sum(int i){\r\n        T res=0;\r\n        for(;i;i-=(i&-i))res+=val[i];\r\
+    \n        return res;\r\n    }\r\n    T sum(int L,int R){return sum(R)-sum(L);}\
+    \ // [L,R)\r\n    int lower_bound(T x){\r\n        int ret=0,len=1;\r\n      \
+    \  while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\n            if(ret+len<=n\
+    \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
+    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Binary Indexed Tree\r\n */\n#line 5 \"Verify/LC_static_range_sum.test.cpp\"\
+    \n\r\n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N);\r\
+    \n    rep(i,0,N)cin>>a[i];\r\n\r\n    BIT<ll> bit(N);\r\n    rep(i,0,N)bit.add(i,a[i]);\r\
+    \n    while(Q--){\r\n        int L,R;\r\n        cin>>L>>R;\r\n        cout<<bit.sum(L,R)<<'\\\
+    n';\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"DataStructure/bit.hpp\"\r\n\
     \r\n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N);\r\
@@ -78,8 +88,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-14 02:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_static_range_sum.test.cpp
 layout: document

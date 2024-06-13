@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/310
@@ -41,7 +41,7 @@ data:
   bundledCode: "#line 1 \"Verify/YUKI_310.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/310\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
-    \n#define rrep(i, a, b) for (int i = (int)(b-1); i >= (int)(a); i--)\r\n#define\
+    \n#define rrep(i, a, b) for (int i = (int)(b)-1; i >= (int)(a); i--)\r\n#define\
     \ ALL(v) (v).begin(), (v).end()\r\n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)),\
     \ (v).end())\r\n#define SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\
     \n#define MAX(v) *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v),\
@@ -69,9 +69,19 @@ data:
     \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
     \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
     P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T, template <class> class C>\r\nostream &operator<<(ostream &os, const\
-    \ C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n        os << d <<\
-    \ \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
+    \ <typename T> ostream &operator<<(ostream &os, vector<T> &vec) {\r\n    os <<\
+    \ \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os << vec[i]\
+    \ << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\";\r\n \
+    \   return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
+    \ &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin();\
+    \ itr != map_var.end();\r\n         itr++) {\r\n        os << \"(\" << itr->first\
+    \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
+    \ set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
+    \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
+    \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
     \n#include <unistd.h>\r\nnamespace fastio {\r\nstatic constexpr uint32_t SZ =\
     \ 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar out[100];\r\n// pointer\
     \ of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\
@@ -151,40 +161,42 @@ data:
     \ fastio\r\n\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
     \n\r\ninline void first(bool i = true) {\r\n    print(i ? \"first\" : \"second\"\
     );\r\n}\r\ninline void Alice(bool i = true) {\r\n    print(i ? \"Alice\" : \"\
-    Bob\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\" : \"\
-    no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\" : \"\
-    No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void YES(bool\
-    \ i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void NO() {\r\
-    \n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n    print(i ?\
-    \ \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i\
-    \ ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true)\
-    \ {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Fast IO\r\n */\n#line 5 \"Verify/YUKI_310.test.cpp\"\n\r\n#line 2 \"Math/modint.hpp\"\
-    \n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n    unsigned v;\r\n\
-    \    static constexpr int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr\
-    \ unsigned inv() const {\r\n        assert(v != 0);\r\n        int x = v, y =\
-    \ mod, p = 1, q = 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n          \
-    \  t = x / y;\r\n            x -= t * y, p -= t * q;\r\n            tmp = x, x\
-    \ = y, y = tmp;\r\n            tmp = p, p = q, q = tmp;\r\n        }\r\n     \
-    \   if (p < 0)\r\n            p += mod;\r\n        return p;\r\n    }\r\n    constexpr\
-    \ fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
-    \ const {\r\n        return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n\
-    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
-    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
-    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
-    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
-    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
-    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
-    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ull(v) * x.v % mod;\r\
-    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
-    \    v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
-    \ fp &x) const {\r\n        return fp(*this) += x;\r\n    }\r\n    fp operator-(const\
-    \ fp &x) const {\r\n        return fp(*this) -= x;\r\n    }\r\n    fp operator*(const\
-    \ fp &x) const {\r\n        return fp(*this) *= x;\r\n    }\r\n    fp operator/(const\
-    \ fp &x) const {\r\n        return fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
-    \ fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
-    \ fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
-    \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
+    Bob\");\r\n}\r\ninline void Takahashi(bool i = true) {\r\n    print(i ? \"Takahashi\"\
+    \ : \"Aoki\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\"\
+    \ : \"no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\"\
+    \ : \"No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void\
+    \ YES(bool i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void\
+    \ NO() {\r\n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n  \
+    \  print(i ? \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\
+    \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
+    \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
+    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/YUKI_310.test.cpp\"\n\r\n#line 2\
+    \ \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n\
+    \    unsigned v;\r\n    static constexpr int get_mod() {\r\n        return mod;\r\
+    \n    }\r\n    constexpr unsigned inv() const {\r\n        assert(v != 0);\r\n\
+    \        int x = v, y = mod, p = 1, q = 0, t = 0, tmp = 0;\r\n        while (y\
+    \ > 0) {\r\n            t = x / y;\r\n            x -= t * y, p -= t * q;\r\n\
+    \            tmp = x, x = y, y = tmp;\r\n            tmp = p, p = q, q = tmp;\r\
+    \n        }\r\n        if (p < 0)\r\n            p += mod;\r\n        return p;\r\
+    \n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod)\
+    \ % mod) {}\r\n    fp operator-() const {\r\n        return fp() - *this;\r\n\
+    \    }\r\n    fp pow(ull t) {\r\n        fp res = 1, b = *this;\r\n        while\
+    \ (t) {\r\n            if (t & 1)\r\n                res *= b;\r\n           \
+    \ b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\
+    \n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n    \
+    \        v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
+    \   v = ull(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
+    \ fp &x) {\r\n        v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n\
+    \    }\r\n    fp operator+(const fp &x) const {\r\n        return fp(*this) +=\
+    \ x;\r\n    }\r\n    fp operator-(const fp &x) const {\r\n        return fp(*this)\
+    \ -= x;\r\n    }\r\n    fp operator*(const fp &x) const {\r\n        return fp(*this)\
+    \ *= x;\r\n    }\r\n    fp operator/(const fp &x) const {\r\n        return fp(*this)\
+    \ /= x;\r\n    }\r\n    bool operator==(const fp &x) const {\r\n        return\
+    \ v == x.v;\r\n    }\r\n    bool operator!=(const fp &x) const {\r\n        return\
+    \ v != x.v;\r\n    }\r\n    friend istream &operator>>(istream &is, fp &x) {\r\
+    \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
@@ -557,8 +569,8 @@ data:
   isVerificationFile: true
   path: Verify/YUKI_310.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:32:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-14 02:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/YUKI_310.test.cpp
 layout: document

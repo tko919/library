@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
   _extendedRequiredBy: []
@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/primesum.md
     document_title: Prime Sum
@@ -65,10 +65,10 @@ data:
   path: Math/primesum.hpp
   requiredBy: []
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_counting_primes.test.cpp
   - Verify/YUKI_1781.test.cpp
+  - Verify/LC_counting_primes.test.cpp
 documentation_of: Math/primesum.hpp
 layout: document
 redirect_from:

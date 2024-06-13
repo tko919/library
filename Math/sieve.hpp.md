@@ -2,43 +2,43 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/multiplicative.hpp
     title: Multiplicative Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primesum.hpp
     title: Prime Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_enumerate_primes.test.cpp
     title: Verify/LC_enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_gcd_convolution.test.cpp
     title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Prime Sieve
     links: []
@@ -79,20 +79,20 @@ data:
   isVerificationFile: false
   path: Math/sieve.hpp
   requiredBy:
-  - Math/multiplicative.hpp
-  - Math/primesum.hpp
-  - Math/powertable.hpp
   - Convolution/divisor.hpp
+  - Math/multiplicative.hpp
+  - Math/powertable.hpp
+  - Math/primesum.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/LC_enumerate_primes.test.cpp
-  - Verify/LC_counting_primes.test.cpp
   - Verify/YUKI_1781.test.cpp
   - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_counting_primes.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
 documentation_of: Math/sieve.hpp
 layout: document
 redirect_from:

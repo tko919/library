@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/nimber.hpp
     title: Nimber
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/nim_product_64
@@ -21,7 +21,7 @@ data:
     https://judge.yosupo.jp/problem/nim_product_64\"\r\n\r\n#line 1 \"Template/template.hpp\"\
     \n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n#define rep(i, a, b)\
     \ for (int i = (int)(a); i < (int)(b); i++)\r\n#define rrep(i, a, b) for (int\
-    \ i = (int)(b-1); i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
+    \ i = (int)(b)-1; i >= (int)(a); i--)\r\n#define ALL(v) (v).begin(), (v).end()\r\
     \n#define UNIQUE(v) sort(ALL(v)), (v).erase(unique(ALL(v)), (v).end())\r\n#define\
     \ SZ(v) (int)v.size()\r\n#define MIN(v) *min_element(ALL(v))\r\n#define MAX(v)\
     \ *max_element(ALL(v))\r\n#define LB(v, x) int(lower_bound(ALL(v), (x)) - (v).begin())\r\
@@ -48,29 +48,40 @@ data:
     \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
     \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
     \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T, template <class> class C>\r\nostream &operator<<(ostream\
-    \ &os, const C<T> &v) {\r\n    os << \"[\";\r\n    for (auto d : v)\r\n      \
-    \  os << d << \", \";\r\n    os << \"]\";\r\n    return os;\r\n}\n#line 2 \"Math/nimber.hpp\"\
-    \n\r\nusing ull=unsigned long long;\r\nstruct NimberManager{\r\n    ull memo[256][256];\r\
-    \n    NimberManager(){\r\n        rep(i,0,256)rep(j,0,256)memo[i][j]=256;\r\n\
-    \        memo[0][0]=memo[0][1]=memo[1][0]=0;\r\n        memo[1][1]=1;\r\n    \
-    \    rep(i,0,256)rep(j,0,256)memo[i][j]=mul(i,j,8);\r\n    }\r\n    ull mul(ull\
-    \ x,ull y,int k=64){\r\n        if(k<=8&&memo[x][y]<256)return memo[x][y];\r\n\
-    \        k>>=1;\r\n        ull a=x>>k,b=x^(a<<k),c=y>>k,d=y^(c<<k);\r\n      \
-    \  ull ac=mul(a,c,k),bd=mul(b,d,k),abcd=mul(a^b,c^d,k);\r\n        return mul(ac,1ull<<(k-1),k)^(abcd^bd)<<k^bd;\r\
-    \n    }\r\n};\r\nNimberManager Nim;\r\nstruct Nimber{\r\n    ull v;\r\n    Nimber(ull\
-    \ _v=0):v(_v){}\r\n    Nimber& operator+=(const Nimber& x){v^=x.v; return *this;}\r\
-    \n    Nimber& operator-=(const Nimber& x){v^=x.v; return *this;}\r\n    Nimber&\
-    \ operator*=(const Nimber& x){v=Nim.mul(v,x.v); return *this;}\r\n    Nimber operator+(const\
-    \ Nimber& x)const{return Nimber(*this)+=x;}\r\n    Nimber operator-(const Nimber&\
-    \ x)const{return Nimber(*this)-=x;}\r\n    Nimber operator*(const Nimber& x)const{return\
-    \ Nimber(*this)*=x;}\r\n    bool operator==(const Nimber& x)const{return v==x.v;}\r\
-    \n    bool operator!=(const Nimber& x)const{return v!=x.v;}\r\n    friend istream&\
-    \ operator>>(istream& is,Nimber& x){return is>>x.v;}\r\n    friend ostream& operator<<(ostream&\
-    \ os,const Nimber& x){return os<<x.v;}\r\n};\r\n\r\n/**\r\n * @brief Nimber\r\n\
-    \ */\n#line 5 \"Verify/LC_nim_product_64.test.cpp\"\n\r\nint main(){\r\n    int\
-    \ t;\r\n    cin>>t;\r\n    while(t--){\r\n        Nimber a,b;\r\n        cin>>a>>b;\r\
-    \n        cout<<a*b<<'\\n';\r\n    }\r\n    return 0;\r\n}\n"
+    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, vector<T>\
+    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
+    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
+    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
+    \nostream &operator<<(ostream &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\
+    \n    for (auto itr = map_var.begin(); itr != map_var.end();\r\n         itr++)\
+    \ {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n\
+    \        itr++;\r\n        if (itr != map_var.end())\r\n            os << \",\
+    \ \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\n\
+    template <typename T> ostream &operator<<(ostream &os, set<T> &set_var) {\r\n\
+    \    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\n#line 2 \"Math/nimber.hpp\"\n\r\nusing ull=unsigned long\
+    \ long;\r\nstruct NimberManager{\r\n    ull memo[256][256];\r\n    NimberManager(){\r\
+    \n        rep(i,0,256)rep(j,0,256)memo[i][j]=256;\r\n        memo[0][0]=memo[0][1]=memo[1][0]=0;\r\
+    \n        memo[1][1]=1;\r\n        rep(i,0,256)rep(j,0,256)memo[i][j]=mul(i,j,8);\r\
+    \n    }\r\n    ull mul(ull x,ull y,int k=64){\r\n        if(k<=8&&memo[x][y]<256)return\
+    \ memo[x][y];\r\n        k>>=1;\r\n        ull a=x>>k,b=x^(a<<k),c=y>>k,d=y^(c<<k);\r\
+    \n        ull ac=mul(a,c,k),bd=mul(b,d,k),abcd=mul(a^b,c^d,k);\r\n        return\
+    \ mul(ac,1ull<<(k-1),k)^(abcd^bd)<<k^bd;\r\n    }\r\n};\r\nNimberManager Nim;\r\
+    \nstruct Nimber{\r\n    ull v;\r\n    Nimber(ull _v=0):v(_v){}\r\n    Nimber&\
+    \ operator+=(const Nimber& x){v^=x.v; return *this;}\r\n    Nimber& operator-=(const\
+    \ Nimber& x){v^=x.v; return *this;}\r\n    Nimber& operator*=(const Nimber& x){v=Nim.mul(v,x.v);\
+    \ return *this;}\r\n    Nimber operator+(const Nimber& x)const{return Nimber(*this)+=x;}\r\
+    \n    Nimber operator-(const Nimber& x)const{return Nimber(*this)-=x;}\r\n   \
+    \ Nimber operator*(const Nimber& x)const{return Nimber(*this)*=x;}\r\n    bool\
+    \ operator==(const Nimber& x)const{return v==x.v;}\r\n    bool operator!=(const\
+    \ Nimber& x)const{return v!=x.v;}\r\n    friend istream& operator>>(istream& is,Nimber&\
+    \ x){return is>>x.v;}\r\n    friend ostream& operator<<(ostream& os,const Nimber&\
+    \ x){return os<<x.v;}\r\n};\r\n\r\n/**\r\n * @brief Nimber\r\n */\n#line 5 \"\
+    Verify/LC_nim_product_64.test.cpp\"\n\r\nint main(){\r\n    int t;\r\n    cin>>t;\r\
+    \n    while(t--){\r\n        Nimber a,b;\r\n        cin>>a>>b;\r\n        cout<<a*b<<'\\\
+    n';\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/nim_product_64\"\r\n\r\n\
     #include \"Template/template.hpp\"\r\n#include \"Math/nimber.hpp\"\r\n\r\nint\
     \ main(){\r\n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        Nimber a,b;\r\
@@ -82,8 +93,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_nim_product_64.test.cpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-14 02:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_nim_product_64.test.cpp
 layout: document

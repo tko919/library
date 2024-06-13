@@ -7,10 +7,10 @@ data:
   - icon: ':warning:'
     path: Graph/dmdecomp.hpp
     title: DM decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/scc.hpp
     title: Strongly Connected Components
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
