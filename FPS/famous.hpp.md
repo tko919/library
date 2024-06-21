@@ -66,8 +66,8 @@ data:
   verifiedWith:
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
   - Verify/LC_partition_function.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - Verify/LC_bernoulli_number.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
 documentation_of: FPS/famous.hpp
 layout: document
 redirect_from:

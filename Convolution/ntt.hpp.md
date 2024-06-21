@@ -315,36 +315,36 @@ data:
   requiredBy:
   - Convolution/arbitrary.hpp
   - Convolution/multivariate.hpp
-  - Math/bigint.hpp
   - Algorithm/wildcardpatternmatching.hpp
+  - Math/bigint.hpp
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
   - Verify/YUKI_310.test.cpp
-  - Verify/YUKI_1080.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
   - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/LC_partition_function.test.cpp
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
   - Verify/LC_pow_of_formal_power_series.test.cpp
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_many_factorials.test.cpp
-  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_partition_function.test.cpp
   - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_many_factorials.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
-  - Verify/LC_multivariate_convolution.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
 documentation_of: Convolution/ntt.hpp
 layout: document
 redirect_from:

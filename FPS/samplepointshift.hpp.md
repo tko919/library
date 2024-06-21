@@ -60,8 +60,8 @@ data:
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_many_factorials.test.cpp
 documentation_of: FPS/samplepointshift.hpp
 layout: document
 redirect_from:

@@ -86,12 +86,12 @@ data:
   timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_1781.test.cpp
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/LC_counting_primes.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_enumerate_primes.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_counting_primes.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/YUKI_1781.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
 documentation_of: Math/sieve.hpp
 layout: document

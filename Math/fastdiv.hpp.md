@@ -61,18 +61,18 @@ data:
   path: Math/fastdiv.hpp
   requiredBy:
   - Convolution/multivariatecyclic.hpp
-  - Math/stirlingquery.hpp
   - Math/binomquery.hpp
   - Math/primitive.hpp
   - Math/dynamic.hpp
+  - Math/stirlingquery.hpp
   timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Math/fastdiv.hpp
 layout: document
 redirect_from:

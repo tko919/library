@@ -52,16 +52,16 @@ data:
     \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
     \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
     P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T> ostream &operator<<(ostream &os, vector<T> &vec) {\r\n    os <<\
-    \ \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os << vec[i]\
-    \ << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\";\r\n \
-    \   return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
-    \ &os, map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin();\
-    \ itr != map_var.end();\r\n         itr++) {\r\n        os << \"(\" << itr->first\
+    \ <typename T> ostream &operator<<(ostream &os, const vector<T> &vec) {\r\n  \
+    \  os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os <<\
+    \ vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\"\
+    ;\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
+    \ &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr =\
+    \ map_var.begin(); itr != map_var.end(); itr++) {\r\n        os << \"(\" << itr->first\
     \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
     \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
     \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
-    \ set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
+    \ const set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
     \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
     \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
     \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"Utility/fastio.hpp\"\
@@ -196,7 +196,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 02:46:58+09:00'
+  timestamp: '2024-06-22 00:56:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_biconnected_components.test.cpp

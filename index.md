@@ -100,6 +100,9 @@ data:
     - icon: ':x:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
+    - icon: ':warning:'
+      path: DataStructure/linkedlist.hpp
+      title: Linked List
     - icon: ':x:'
       path: DataStructure/manhattanmst.hpp
       title: Manhattan MST
@@ -265,6 +268,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/bimatching.hpp
       title: Bipartite Matching
+    - icon: ':warning:'
+      path: Graph/bipolar.hpp
+      title: Bipolar Orientation
     - icon: ':heavy_check_mark:'
       path: Graph/blockcut.hpp
       title: Block Cut Tree
@@ -292,7 +298,7 @@ data:
     - icon: ':warning:'
       path: Graph/dmdecomp.hpp
       title: DM decomposition
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
     - icon: ':warning:'
@@ -307,7 +313,7 @@ data:
     - icon: ':x:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Graph/linkcut.hpp
       title: Link-Cut Tree
     - icon: ':x:'
@@ -411,6 +417,9 @@ data:
     - icon: ':question:'
       path: Math/primitive.hpp
       title: Primitive Function
+    - icon: ':warning:'
+      path: Math/qbinom.hpp
+      title: $q$-binomial
     - icon: ':question:'
       path: Math/sieve.hpp
       title: Prime Sieve
@@ -540,10 +549,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
       title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_enumerate_cliques.test.cpp
       title: Verify/LC_enumerate_cliques.test.cpp
     - icon: ':x:'

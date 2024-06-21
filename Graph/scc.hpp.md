@@ -59,13 +59,13 @@ data:
   path: Graph/scc.hpp
   requiredBy:
   - Graph/dmdecomp.hpp
-  - Math/twosat.hpp
   - Algorithm/matroid.hpp
+  - Math/twosat.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_two_sat.test.cpp
   - Verify/LC_scc.test.cpp
+  - Verify/LC_two_sat.test.cpp
 documentation_of: Graph/scc.hpp
 layout: document
 redirect_from:
