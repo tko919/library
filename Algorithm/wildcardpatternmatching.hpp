@@ -39,3 +39,7 @@ vector<int> WildcardPatternMatching(string &s, string &t, char wild) {
     }
     return ret;
 }
+
+/**
+ * @brief Wildcard Pattern Matching
+ */

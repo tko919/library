@@ -55,21 +55,6 @@ template <typename T> int lowbit(T x) {
     return (x == 0 ? -1 : __builtin_ctzll(x));
 }
 
-#ifdef LOCAL
-#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)
-#else
-#define show(...) true
-#endif
-template <typename T> void _show(int i, T name) {
-    cerr << '\n';
-}
-template <typename T1, typename T2, typename... T3>
-void _show(int i, const T1 &a, const T2 &b, const T3 &...c) {
-    for (; a[i] != ',' && a[i] != '\0'; i++)
-        cerr << a[i];
-    cerr << ":" << b << " ";
-    _show(i + 1, a, c...);
-}
 template <class T, class U>
 ostream &operator<<(ostream &os, const pair<T, U> &p) {
     os << "P(" << p.first << ", " << p.second << ")";
@@ -107,4 +92,19 @@ template <typename T> ostream &operator<<(ostream &os, const set<T> &set_var) {
     }
     os << "}";
     return os;
+}
+#ifdef LOCAL
+#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)
+#else
+#define show(...) true
+#endif
+template <typename T> void _show(int i, T name) {
+    cerr << '\n';
+}
+template <typename T1, typename T2, typename... T3>
+void _show(int i, const T1 &a, const T2 &b, const T3 &...c) {
+    for (; a[i] != ',' && a[i] != '\0'; i++)
+        cerr << a[i];
+    cerr << ":" << b << " ";
+    _show(i + 1, a, c...);
 }
