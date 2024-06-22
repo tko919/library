@@ -40,28 +40,28 @@ data:
     \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
     \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
     \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
-    \n}\r\n\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\
-    \n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename T> void _show(int\
-    \ i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename T1, typename T2,\
-    \ typename... T3>\r\nvoid _show(int i, const T1 &a, const T2 &b, const T3 &...c)\
-    \ {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\
-    \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
-    \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
-    \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T>\
-    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
-    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
-    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
-    \nostream &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"\
-    {\";\r\n    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n\
-    \        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n    \
-    \    itr++;\r\n        if (itr != map_var.end())\r\n            os << \", \";\r\
-    \n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T> ostream &operator<<(ostream &os, const set<T> &set_var) {\r\n \
-    \   os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
+    \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
+    )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const vector<T> &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i <\
+    \ vec.size(); i++) {\r\n        os << vec[i] << (i + 1 == vec.size() ? \"\" :\
+    \ \", \");\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename\
+    \ T, typename U>\r\nostream &operator<<(ostream &os, const map<T, U> &map_var)\
+    \ {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin(); itr != map_var.end();\
+    \ itr++) {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \"\
+    )\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\n            os\
+    \ << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\
+    \n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, const set<T> &set_var)\
+    \ {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
     \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
     \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\n#line 2 \"DataStructure/lichaotree.hpp\"\n\r\ntemplate<typename\
+    \    return os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__,\
+    \ __VA_ARGS__)\r\n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename\
+    \ T> void _show(int i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename\
+    \ T1, typename T2, typename... T3>\r\nvoid _show(int i, const T1 &a, const T2\
+    \ &b, const T3 &...c) {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n \
+    \       cerr << a[i];\r\n    cerr << \":\" << b << \" \";\r\n    _show(i + 1,\
+    \ a, c...);\r\n}\n#line 2 \"DataStructure/lichaotree.hpp\"\n\r\ntemplate<typename\
     \ T,T MX>struct CHT{\r\n    using Line=pair<T,T>;\r\n    int n;\r\n    vector<T>\
     \ xs;\r\n    vector<Line> ls;\r\n    CHT(vector<T>& ps){\r\n        xs=ps;\r\n\
     \        UNIQUE(xs);\r\n        n=1;\r\n        while(n<(int)xs.size())n<<=1;\r\
@@ -118,7 +118,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2024-06-22 00:56:30+09:00'
+  timestamp: '2024-06-23 06:04:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_segment_add_get_min.test.cpp

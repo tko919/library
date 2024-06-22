@@ -39,38 +39,39 @@ data:
     \ / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\
     \n}\r\ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63\
     \ - __builtin_clzll(x));\r\n}\r\ntemplate <typename T> int lowbit(T x) {\r\n \
-    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\n#ifdef LOCAL\r\n#define\
-    \ show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define show(...)\
-    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
-    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
-    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
-    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
-    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
-    P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T> ostream &operator<<(ostream &os, const vector<T> &vec) {\r\n  \
-    \  os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os <<\
-    \ vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\"\
-    ;\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
-    \ &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr =\
-    \ map_var.begin(); itr != map_var.end(); itr++) {\r\n        os << \"(\" << itr->first\
-    \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
-    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
-    \ const set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
-    \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
-    \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
-    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"DataStructure/disjointsparsetable.hpp\"\
-    \n\r\ntemplate<typename T,T (*f)(T,T)>struct DisjointSparseTable{\r\n    vector<vector<T>>\
-    \ buf;\r\n    vector<int> height;\r\n    DisjointSparseTable(const vector<T>&\
-    \ a){\r\n        int n=a.size(),LG=0;\r\n        while((1<<LG)<=n)LG++;\r\n  \
-    \      buf.assign(LG,vector<T>(n));\r\n        height.assign(1<<LG,0);\r\n   \
-    \     rep(i,2,1<<LG)height[i]=height[i>>1]+1;\r\n        rep(i,0,n)buf[0][i]=a[i];\r\
-    \n        rep(lg,1,LG){\r\n            int add=1<<lg;\r\n            for(int j=0;j<n;j+=(add<<1)){\r\
-    \n                int pos=min(j+add,n);\r\n                buf[lg][pos-1]=a[pos-1];\r\
-    \n                for(int k=pos-2;k>=j;k--)buf[lg][k]=f(a[k],buf[lg][k+1]);\r\n\
-    \                if(n<=pos)break;\r\n                buf[lg][pos]=a[pos];\r\n\
-    \                for(int k=pos+1;k<min(pos+add,n);k++)buf[lg][k]=f(buf[lg][k-1],a[k]);\r\
+    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\ntemplate <class T,\
+    \ class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os\
+    \ << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\
+    \ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T> &vec)\
+    \ {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n    \
+    \    os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os\
+    \ << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream\
+    \ &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n\
+    \    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n     \
+    \   os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n        itr++;\r\
+    \n        if (itr != map_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream\
+    \ &operator<<(ostream &os, const set<T> &set_var) {\r\n    os << \"{\";\r\n  \
+    \  for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {\r\n       \
+    \ os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\n     \
+    \       os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return\
+    \ os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\
+    \n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename T> void _show(int\
+    \ i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename T1, typename T2,\
+    \ typename... T3>\r\nvoid _show(int i, const T1 &a, const T2 &b, const T3 &...c)\
+    \ {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\
+    \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2\
+    \ \"DataStructure/disjointsparsetable.hpp\"\n\r\ntemplate<typename T,T (*f)(T,T)>struct\
+    \ DisjointSparseTable{\r\n    vector<vector<T>> buf;\r\n    vector<int> height;\r\
+    \n    DisjointSparseTable(const vector<T>& a){\r\n        int n=a.size(),LG=0;\r\
+    \n        while((1<<LG)<=n)LG++;\r\n        buf.assign(LG,vector<T>(n));\r\n \
+    \       height.assign(1<<LG,0);\r\n        rep(i,2,1<<LG)height[i]=height[i>>1]+1;\r\
+    \n        rep(i,0,n)buf[0][i]=a[i];\r\n        rep(lg,1,LG){\r\n            int\
+    \ add=1<<lg;\r\n            for(int j=0;j<n;j+=(add<<1)){\r\n                int\
+    \ pos=min(j+add,n);\r\n                buf[lg][pos-1]=a[pos-1];\r\n          \
+    \      for(int k=pos-2;k>=j;k--)buf[lg][k]=f(a[k],buf[lg][k+1]);\r\n         \
+    \       if(n<=pos)break;\r\n                buf[lg][pos]=a[pos];\r\n         \
+    \       for(int k=pos+1;k<min(pos+add,n);k++)buf[lg][k]=f(buf[lg][k-1],a[k]);\r\
     \n            }\r\n        }\r\n    }\r\n    T query(int L,int R){\r\n       \
     \ if(L>=--R)return buf[0][L];\r\n        return f(buf[height[L^R]][L],buf[height[L^R]][R]);\r\
     \n    }\r\n};\r\n\r\n/**\r\n * @brief Disjoint Sparse Table\r\n */\n#line 5 \"\
@@ -92,7 +93,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_staticrmq-2.test.cpp
   requiredBy: []
-  timestamp: '2024-06-22 00:56:30+09:00'
+  timestamp: '2024-06-23 06:04:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_staticrmq-2.test.cpp

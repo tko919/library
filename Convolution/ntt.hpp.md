@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: Algorithm/wildcardpatternmatching.hpp
-    title: Algorithm/wildcardpatternmatching.hpp
+    title: Wildcard Pattern Matching
   - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution

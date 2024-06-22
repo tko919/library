@@ -45,57 +45,58 @@ data:
     \ / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\
     \n}\r\ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63\
     \ - __builtin_clzll(x));\r\n}\r\ntemplate <typename T> int lowbit(T x) {\r\n \
-    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\n#ifdef LOCAL\r\n#define\
-    \ show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define show(...)\
-    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
-    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
-    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
-    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
-    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
-    P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T> ostream &operator<<(ostream &os, const vector<T> &vec) {\r\n  \
-    \  os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os <<\
-    \ vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\"\
-    ;\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
-    \ &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr =\
-    \ map_var.begin(); itr != map_var.end(); itr++) {\r\n        os << \"(\" << itr->first\
-    \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
-    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
-    \ const set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
-    \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
-    \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
-    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"Math/miller.hpp\"\
-    \n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\n    using u64 = uint64_t;\r\n\
-    \    using u128 = __uint128_t;\r\n\r\n    static u64 mod;\r\n    static u64 r;\r\
-    \n    static u64 n2;\r\n\r\n    static u64 get_r() {\r\n        u64 ret = mod;\r\
-    \n        rep(_,0,5) ret *= 2 - mod * ret;\r\n        return ret;\r\n    }\r\n\
-    \r\n    static void set_mod(u64 m) {\r\n        assert(m < (1LL << 62));\r\n \
-    \       assert((m & 1) == 1);\r\n        mod = m;\r\n        n2 = -u128(m) % m;\r\
-    \n        r = get_r();\r\n        assert(r * mod == 1);\r\n    }\r\n    static\
-    \ u64 get_mod() { return mod; }\r\n\r\n    u64 a;\r\n    m64() : a(0) {}\r\n \
-    \   m64(const int64_t &b) : a(reduce((u128(b) + mod) * n2)){};\r\n\r\n    static\
-    \ u64 reduce(const u128 &b) {\r\n        return (b + u128(u64(b) * u64(-r)) *\
-    \ mod) >> 64;\r\n    }\r\n    u64 get() const {\r\n        u64 ret = reduce(a);\r\
-    \n        return ret >= mod ? ret - mod : ret;\r\n    }\r\n    m64 &operator*=(const\
-    \ m64 &b) {\r\n        a = reduce(u128(a) * b.a);\r\n        return *this;\r\n\
-    \    }\r\n    m64 operator*(const m64 &b) const { return m64(*this) *= b; }\r\n\
-    \    bool operator==(const m64 &b) const {\r\n        return (a >= mod ? a - mod\
-    \ : a) == (b.a >= mod ? b.a - mod : b.a);\r\n    }\r\n    bool operator!=(const\
-    \ m64 &b) const {\r\n        return (a >= mod ? a - mod : a) != (b.a >= mod ?\
-    \ b.a - mod : b.a);\r\n    }\r\n    m64 pow(u128 n) const {\r\n        m64 ret(1),\
-    \ mul(*this);\r\n        while (n > 0) {\r\n        if (n & 1) ret *= mul;\r\n\
-    \        mul *= mul;\r\n        n >>= 1;\r\n        }\r\n        return ret;\r\
-    \n    }\r\n};\r\ntypename m64::u64 m64::mod, m64::r, m64::n2;\r\n\r\nbool Miller(ll\
-    \ n){\r\n    if(n<2 or (n&1)==0)return (n==2);\r\n    m64::set_mod(n);\r\n   \
-    \ ll d=n-1; while((d&1)==0)d>>=1;\r\n    vector<ll> seeds;\r\n    if(n<(1<<30))seeds={2,\
-    \ 7, 61};\r\n    else seeds={2, 325, 9375, 28178, 450775, 9780504};\r\n    for(auto&\
-    \ x:seeds){\r\n        if(n<=x)break;\r\n        ll t=d;\r\n        m64 y=m64(x).pow(t);\r\
-    \n        while(t!=n-1 and y!=1 and y!=n-1){\r\n            y*=y;\r\n        \
-    \    t<<=1;\r\n        }\r\n        if(y!=n-1 and (t&1)==0)return 0;\r\n    }\
-    \ return 1;\r\n}\r\n\r\n/**\r\n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\
-    \n\r\nnamespace Random {\r\nmt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\ntemplate <class T,\
+    \ class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os\
+    \ << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\
+    \ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T> &vec)\
+    \ {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n    \
+    \    os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os\
+    \ << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream\
+    \ &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n\
+    \    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n     \
+    \   os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n        itr++;\r\
+    \n        if (itr != map_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream\
+    \ &operator<<(ostream &os, const set<T> &set_var) {\r\n    os << \"{\";\r\n  \
+    \  for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {\r\n       \
+    \ os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\n     \
+    \       os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return\
+    \ os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\
+    \n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename T> void _show(int\
+    \ i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename T1, typename T2,\
+    \ typename... T3>\r\nvoid _show(int i, const T1 &a, const T2 &b, const T3 &...c)\
+    \ {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\
+    \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2\
+    \ \"Math/miller.hpp\"\n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\n    using\
+    \ u64 = uint64_t;\r\n    using u128 = __uint128_t;\r\n\r\n    static u64 mod;\r\
+    \n    static u64 r;\r\n    static u64 n2;\r\n\r\n    static u64 get_r() {\r\n\
+    \        u64 ret = mod;\r\n        rep(_,0,5) ret *= 2 - mod * ret;\r\n      \
+    \  return ret;\r\n    }\r\n\r\n    static void set_mod(u64 m) {\r\n        assert(m\
+    \ < (1LL << 62));\r\n        assert((m & 1) == 1);\r\n        mod = m;\r\n   \
+    \     n2 = -u128(m) % m;\r\n        r = get_r();\r\n        assert(r * mod ==\
+    \ 1);\r\n    }\r\n    static u64 get_mod() { return mod; }\r\n\r\n    u64 a;\r\
+    \n    m64() : a(0) {}\r\n    m64(const int64_t &b) : a(reduce((u128(b) + mod)\
+    \ * n2)){};\r\n\r\n    static u64 reduce(const u128 &b) {\r\n        return (b\
+    \ + u128(u64(b) * u64(-r)) * mod) >> 64;\r\n    }\r\n    u64 get() const {\r\n\
+    \        u64 ret = reduce(a);\r\n        return ret >= mod ? ret - mod : ret;\r\
+    \n    }\r\n    m64 &operator*=(const m64 &b) {\r\n        a = reduce(u128(a) *\
+    \ b.a);\r\n        return *this;\r\n    }\r\n    m64 operator*(const m64 &b) const\
+    \ { return m64(*this) *= b; }\r\n    bool operator==(const m64 &b) const {\r\n\
+    \        return (a >= mod ? a - mod : a) == (b.a >= mod ? b.a - mod : b.a);\r\n\
+    \    }\r\n    bool operator!=(const m64 &b) const {\r\n        return (a >= mod\
+    \ ? a - mod : a) != (b.a >= mod ? b.a - mod : b.a);\r\n    }\r\n    m64 pow(u128\
+    \ n) const {\r\n        m64 ret(1), mul(*this);\r\n        while (n > 0) {\r\n\
+    \        if (n & 1) ret *= mul;\r\n        mul *= mul;\r\n        n >>= 1;\r\n\
+    \        }\r\n        return ret;\r\n    }\r\n};\r\ntypename m64::u64 m64::mod,\
+    \ m64::r, m64::n2;\r\n\r\nbool Miller(ll n){\r\n    if(n<2 or (n&1)==0)return\
+    \ (n==2);\r\n    m64::set_mod(n);\r\n    ll d=n-1; while((d&1)==0)d>>=1;\r\n \
+    \   vector<ll> seeds;\r\n    if(n<(1<<30))seeds={2, 7, 61};\r\n    else seeds={2,\
+    \ 325, 9375, 28178, 450775, 9780504};\r\n    for(auto& x:seeds){\r\n        if(n<=x)break;\r\
+    \n        ll t=d;\r\n        m64 y=m64(x).pow(t);\r\n        while(t!=n-1 and\
+    \ y!=1 and y!=n-1){\r\n            y*=y;\r\n            t<<=1;\r\n        }\r\n\
+    \        if(y!=n-1 and (t&1)==0)return 0;\r\n    } return 1;\r\n}\r\n\r\n/**\r\
+    \n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\r\nnamespace\
+    \ Random {\r\nmt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
     \nusing u64 = unsigned long long;\r\nu64 get() {\r\n    return randgen();\r\n\
     }\r\ntemplate <typename T> T get(T L) { // [0,L]\r\n    return get() % (L + 1);\r\
     \n}\r\ntemplate <typename T> T get(T L, T R) { // [L,R]\r\n    return get(R -\
@@ -154,7 +155,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_factorize.test.cpp
   requiredBy: []
-  timestamp: '2024-06-22 00:56:30+09:00'
+  timestamp: '2024-06-23 06:04:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_factorize.test.cpp

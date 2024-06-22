@@ -46,42 +46,42 @@ data:
     \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
     \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
     \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
-    \n}\r\n\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\
-    \n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename T> void _show(int\
-    \ i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename T1, typename T2,\
-    \ typename... T3>\r\nvoid _show(int i, const T1 &a, const T2 &b, const T3 &...c)\
-    \ {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\
-    \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate\
-    \ <class T, class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p)\
-    \ {\r\n    os << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return\
-    \ os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T>\
-    \ &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n\
-    \        os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n \
-    \   os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\
-    \nostream &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"\
-    {\";\r\n    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n\
-    \        os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n    \
-    \    itr++;\r\n        if (itr != map_var.end())\r\n            os << \", \";\r\
-    \n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T> ostream &operator<<(ostream &os, const set<T> &set_var) {\r\n \
-    \   os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
+    \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
+    )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const vector<T> &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i <\
+    \ vec.size(); i++) {\r\n        os << vec[i] << (i + 1 == vec.size() ? \"\" :\
+    \ \", \");\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename\
+    \ T, typename U>\r\nostream &operator<<(ostream &os, const map<T, U> &map_var)\
+    \ {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin(); itr != map_var.end();\
+    \ itr++) {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \"\
+    )\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\n            os\
+    \ << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\
+    \n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, const set<T> &set_var)\
+    \ {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
     \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
     \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\n#line 2 \"Utility/random.hpp\"\n\r\nnamespace Random {\r\
-    \nmt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
-    \nusing u64 = unsigned long long;\r\nu64 get() {\r\n    return randgen();\r\n\
-    }\r\ntemplate <typename T> T get(T L) { // [0,L]\r\n    return get() % (L + 1);\r\
-    \n}\r\ntemplate <typename T> T get(T L, T R) { // [L,R]\r\n    return get(R -\
-    \ L) + L;\r\n}\r\ndouble uniform() {\r\n    return double(get(1000000000)) / 1000000000;\r\
-    \n}\r\nstring str(int n) {\r\n    string ret;\r\n    rep(i, 0, n) ret += get('a',\
-    \ 'z');\r\n    return ret;\r\n}\r\ntemplate <typename Iter> void shuffle(Iter\
-    \ first, Iter last) {\r\n    if (first == last)\r\n        return;\r\n    int\
-    \ len = 1;\r\n    for (auto it = first + 1; it != last; it++) {\r\n        len++;\r\
-    \n        int j = get(0, len - 1);\r\n        if (j != len - 1)\r\n          \
-    \  iter_swap(it, first + j);\r\n    }\r\n}\r\ntemplate <typename T> vector<T>\
-    \ select(int n, T L, T R) { // [L,R]\r\n    if (n * 2 >= R - L + 1) {\r\n    \
-    \    vector<T> ret(R - L + 1);\r\n        iota(ALL(ret), L);\r\n        shuffle(ALL(ret));\r\
-    \n        ret.resize(n);\r\n        return ret;\r\n    } else {\r\n        unordered_set<T>\
+    \    return os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__,\
+    \ __VA_ARGS__)\r\n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename\
+    \ T> void _show(int i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename\
+    \ T1, typename T2, typename... T3>\r\nvoid _show(int i, const T1 &a, const T2\
+    \ &b, const T3 &...c) {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n \
+    \       cerr << a[i];\r\n    cerr << \":\" << b << \" \";\r\n    _show(i + 1,\
+    \ a, c...);\r\n}\n#line 2 \"Utility/random.hpp\"\n\r\nnamespace Random {\r\nmt19937_64\
+    \ randgen(chrono::steady_clock::now().time_since_epoch().count());\r\nusing u64\
+    \ = unsigned long long;\r\nu64 get() {\r\n    return randgen();\r\n}\r\ntemplate\
+    \ <typename T> T get(T L) { // [0,L]\r\n    return get() % (L + 1);\r\n}\r\ntemplate\
+    \ <typename T> T get(T L, T R) { // [L,R]\r\n    return get(R - L) + L;\r\n}\r\
+    \ndouble uniform() {\r\n    return double(get(1000000000)) / 1000000000;\r\n}\r\
+    \nstring str(int n) {\r\n    string ret;\r\n    rep(i, 0, n) ret += get('a', 'z');\r\
+    \n    return ret;\r\n}\r\ntemplate <typename Iter> void shuffle(Iter first, Iter\
+    \ last) {\r\n    if (first == last)\r\n        return;\r\n    int len = 1;\r\n\
+    \    for (auto it = first + 1; it != last; it++) {\r\n        len++;\r\n     \
+    \   int j = get(0, len - 1);\r\n        if (j != len - 1)\r\n            iter_swap(it,\
+    \ first + j);\r\n    }\r\n}\r\ntemplate <typename T> vector<T> select(int n, T\
+    \ L, T R) { // [L,R]\r\n    if (n * 2 >= R - L + 1) {\r\n        vector<T> ret(R\
+    \ - L + 1);\r\n        iota(ALL(ret), L);\r\n        shuffle(ALL(ret));\r\n  \
+    \      ret.resize(n);\r\n        return ret;\r\n    } else {\r\n        unordered_set<T>\
     \ used;\r\n        vector<T> ret;\r\n        while (SZ(used) < n) {\r\n      \
     \      T x = get(L, R);\r\n            if (!used.count(x)) {\r\n             \
     \   used.insert(x);\r\n                ret.push_back(x);\r\n            }\r\n\
@@ -227,7 +227,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_bipartitematching.test.cpp
   requiredBy: []
-  timestamp: '2024-06-22 00:56:30+09:00'
+  timestamp: '2024-06-23 06:04:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bipartitematching.test.cpp

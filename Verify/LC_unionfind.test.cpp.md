@@ -39,36 +39,37 @@ data:
     \ / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\
     \n}\r\ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63\
     \ - __builtin_clzll(x));\r\n}\r\ntemplate <typename T> int lowbit(T x) {\r\n \
-    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\n#ifdef LOCAL\r\n#define\
-    \ show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define show(...)\
-    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
-    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
-    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
-    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
-    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
-    P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T> ostream &operator<<(ostream &os, const vector<T> &vec) {\r\n  \
-    \  os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os <<\
-    \ vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\"\
-    ;\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
-    \ &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr =\
-    \ map_var.begin(); itr != map_var.end(); itr++) {\r\n        os << \"(\" << itr->first\
-    \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
-    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
-    \ const set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
-    \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
-    \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
-    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"DataStructure/unionfind.hpp\"\
-    \n\r\nstruct UnionFind{\r\n    vector<int> par; int n;\r\n    UnionFind(){}\r\n\
-    \    UnionFind(int _n):par(_n,-1),n(_n){}\r\n    int root(int x){return par[x]<0?x:par[x]=root(par[x]);}\r\
-    \n    bool same(int x,int y){return root(x)==root(y);}\r\n    int size(int x){return\
-    \ -par[root(x)];}\r\n    bool unite(int x,int y){\r\n        x=root(x),y=root(y);\
-    \ if(x==y)return false;\r\n        if(size(x)>size(y))swap(x,y);\r\n        par[y]+=par[x];\
-    \ par[x]=y; n--; return true;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Union Find\r\
-    \n */\n#line 5 \"Verify/LC_unionfind.test.cpp\"\n\r\nint main(){\r\n    int N,Q;\r\
-    \n    cin>>N>>Q;\r\n    vector<int> t(Q),u(Q),v(Q);\r\n    rep(i,0,Q)cin>>t[i]>>u[i]>>v[i];\r\
+    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\ntemplate <class T,\
+    \ class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os\
+    \ << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\
+    \ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T> &vec)\
+    \ {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n    \
+    \    os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os\
+    \ << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream\
+    \ &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n\
+    \    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n     \
+    \   os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n        itr++;\r\
+    \n        if (itr != map_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream\
+    \ &operator<<(ostream &os, const set<T> &set_var) {\r\n    os << \"{\";\r\n  \
+    \  for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {\r\n       \
+    \ os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\n     \
+    \       os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return\
+    \ os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\
+    \n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename T> void _show(int\
+    \ i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename T1, typename T2,\
+    \ typename... T3>\r\nvoid _show(int i, const T1 &a, const T2 &b, const T3 &...c)\
+    \ {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\
+    \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2\
+    \ \"DataStructure/unionfind.hpp\"\n\r\nstruct UnionFind{\r\n    vector<int> par;\
+    \ int n;\r\n    UnionFind(){}\r\n    UnionFind(int _n):par(_n,-1),n(_n){}\r\n\
+    \    int root(int x){return par[x]<0?x:par[x]=root(par[x]);}\r\n    bool same(int\
+    \ x,int y){return root(x)==root(y);}\r\n    int size(int x){return -par[root(x)];}\r\
+    \n    bool unite(int x,int y){\r\n        x=root(x),y=root(y); if(x==y)return\
+    \ false;\r\n        if(size(x)>size(y))swap(x,y);\r\n        par[y]+=par[x]; par[x]=y;\
+    \ n--; return true;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Union Find\r\n */\n\
+    #line 5 \"Verify/LC_unionfind.test.cpp\"\n\r\nint main(){\r\n    int N,Q;\r\n\
+    \    cin>>N>>Q;\r\n    vector<int> t(Q),u(Q),v(Q);\r\n    rep(i,0,Q)cin>>t[i]>>u[i]>>v[i];\r\
     \n    \r\n    UnionFind uni(N);\r\n    rep(i,0,Q){\r\n        if(t[i]==0){\r\n\
     \            uni.unite(u[i],v[i]);\r\n        }\r\n        else{\r\n         \
     \   cout<<uni.same(u[i],v[i])<<'\\n';\r\n        }\r\n    }\r\n    return 0;\r\
@@ -86,7 +87,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-06-22 00:56:30+09:00'
+  timestamp: '2024-06-23 06:04:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_unionfind.test.cpp

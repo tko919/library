@@ -52,44 +52,45 @@ data:
     \ / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\
     \n}\r\ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63\
     \ - __builtin_clzll(x));\r\n}\r\ntemplate <typename T> int lowbit(T x) {\r\n \
-    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\n#ifdef LOCAL\r\n#define\
-    \ show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define show(...)\
-    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
-    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
-    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
-    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
-    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os << \"\
-    P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\ntemplate\
-    \ <typename T> ostream &operator<<(ostream &os, const vector<T> &vec) {\r\n  \
-    \  os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n        os <<\
-    \ vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os << \"}\"\
-    ;\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream\
-    \ &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n    for (auto itr =\
-    \ map_var.begin(); itr != map_var.end(); itr++) {\r\n        os << \"(\" << itr->first\
-    \ << \", \" << itr->second << \")\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\
-    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream &os,\
-    \ const set<T> &set_var) {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin();\
-    \ itr != set_var.end(); itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n\
-    \        if (itr != set_var.end())\r\n            os << \", \";\r\n        itr--;\r\
-    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\n#line 2 \"Math/fastdiv.hpp\"\
-    \n\nstruct FastDiv{\n    using u64=uint64_t;\n    using u128=__uint128_t;\n  \
-    \  constexpr FastDiv():m(),s(),x(){}\n    constexpr FastDiv(int _m)\n        :m(_m),s(__lg(m-1)),x(((u128(1)<<(s+64))+m-1)/m){}\n\
-    \    constexpr int get(){return m;}\n    constexpr friend u64 operator/(u64 n,const\
-    \ FastDiv& d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend\
-    \ int operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n \
-    \   constexpr pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n  \
-    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast\
-    \ Division\n*/\n#line 2 \"Math/miller.hpp\"\n\r\nstruct m64 {\r\n    using i64\
-    \ = int64_t;\r\n    using u64 = uint64_t;\r\n    using u128 = __uint128_t;\r\n\
-    \r\n    static u64 mod;\r\n    static u64 r;\r\n    static u64 n2;\r\n\r\n   \
-    \ static u64 get_r() {\r\n        u64 ret = mod;\r\n        rep(_,0,5) ret *=\
-    \ 2 - mod * ret;\r\n        return ret;\r\n    }\r\n\r\n    static void set_mod(u64\
-    \ m) {\r\n        assert(m < (1LL << 62));\r\n        assert((m & 1) == 1);\r\n\
-    \        mod = m;\r\n        n2 = -u128(m) % m;\r\n        r = get_r();\r\n  \
-    \      assert(r * mod == 1);\r\n    }\r\n    static u64 get_mod() { return mod;\
-    \ }\r\n\r\n    u64 a;\r\n    m64() : a(0) {}\r\n    m64(const int64_t &b) : a(reduce((u128(b)\
+    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\ntemplate <class T,\
+    \ class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os\
+    \ << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\
+    \ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T> &vec)\
+    \ {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n    \
+    \    os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os\
+    \ << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream\
+    \ &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n\
+    \    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n     \
+    \   os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n        itr++;\r\
+    \n        if (itr != map_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream\
+    \ &operator<<(ostream &os, const set<T> &set_var) {\r\n    os << \"{\";\r\n  \
+    \  for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {\r\n       \
+    \ os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\n     \
+    \       os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return\
+    \ os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\
+    \n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename T> void _show(int\
+    \ i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename T1, typename T2,\
+    \ typename... T3>\r\nvoid _show(int i, const T1 &a, const T2 &b, const T3 &...c)\
+    \ {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\
+    \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2\
+    \ \"Math/fastdiv.hpp\"\n\nstruct FastDiv{\n    using u64=uint64_t;\n    using\
+    \ u128=__uint128_t;\n    constexpr FastDiv():m(),s(),x(){}\n    constexpr FastDiv(int\
+    \ _m)\n        :m(_m),s(__lg(m-1)),x(((u128(1)<<(s+64))+m-1)/m){}\n    constexpr\
+    \ int get(){return m;}\n    constexpr friend u64 operator/(u64 n,const FastDiv&\
+    \ d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend int\
+    \ operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n    constexpr\
+    \ pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n        return\
+    \ {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast Division\n\
+    */\n#line 2 \"Math/miller.hpp\"\n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\
+    \n    using u64 = uint64_t;\r\n    using u128 = __uint128_t;\r\n\r\n    static\
+    \ u64 mod;\r\n    static u64 r;\r\n    static u64 n2;\r\n\r\n    static u64 get_r()\
+    \ {\r\n        u64 ret = mod;\r\n        rep(_,0,5) ret *= 2 - mod * ret;\r\n\
+    \        return ret;\r\n    }\r\n\r\n    static void set_mod(u64 m) {\r\n    \
+    \    assert(m < (1LL << 62));\r\n        assert((m & 1) == 1);\r\n        mod\
+    \ = m;\r\n        n2 = -u128(m) % m;\r\n        r = get_r();\r\n        assert(r\
+    \ * mod == 1);\r\n    }\r\n    static u64 get_mod() { return mod; }\r\n\r\n  \
+    \  u64 a;\r\n    m64() : a(0) {}\r\n    m64(const int64_t &b) : a(reduce((u128(b)\
     \ + mod) * n2)){};\r\n\r\n    static u64 reduce(const u128 &b) {\r\n        return\
     \ (b + u128(u64(b) * u64(-r)) * mod) >> 64;\r\n    }\r\n    u64 get() const {\r\
     \n        u64 ret = reduce(a);\r\n        return ret >= mod ? ret - mod : ret;\r\
@@ -236,7 +237,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-06-22 00:56:30+09:00'
+  timestamp: '2024-06-23 06:04:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_discrete_logarithm_mod.test.cpp

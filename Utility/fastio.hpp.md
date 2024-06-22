@@ -63,10 +63,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
     title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
   - icon: ':x:'

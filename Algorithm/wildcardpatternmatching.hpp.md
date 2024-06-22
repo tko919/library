@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: Wildcard Pattern Matching
     links: []
   bundledCode: "#line 2 \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007>\
     \ struct fp {\r\n    unsigned v;\r\n    static constexpr int get_mod() {\r\n \
@@ -176,7 +177,8 @@ data:
     \ a2b2 = ntt.mult(a2, b2);\n    auto a3b = ntt.mult(a3, b);\n\n    vector<int>\
     \ ret;\n    rep(i, m - 1, n) {\n        Fp val = ab3[i] + a3b[i] - a2b2[i] * 2;\n\
     \        if (val == 0)\n            ret.push_back(1);\n        else\n        \
-    \    ret.push_back(0);\n    }\n    return ret;\n}\n"
+    \    ret.push_back(0);\n    }\n    return ret;\n}\n\n/**\n * @brief Wildcard Pattern\
+    \ Matching\n */\n"
   code: "#pragma once\n#include \"Math/modint.hpp\"\n#include \"Convolution/ntt.hpp\"\
     \n\nvector<int> WildcardPatternMatching(string &s, string &t, char wild) {\n \
     \   using Fp = fp<998244353>;\n    NTT<Fp> ntt;\n\n    int n = SZ(s), m = SZ(t);\n\
@@ -190,14 +192,14 @@ data:
     \ b2);\n    auto a3b = ntt.mult(a3, b);\n\n    vector<int> ret;\n    rep(i, m\
     \ - 1, n) {\n        Fp val = ab3[i] + a3b[i] - a2b2[i] * 2;\n        if (val\
     \ == 0)\n            ret.push_back(1);\n        else\n            ret.push_back(0);\n\
-    \    }\n    return ret;\n}"
+    \    }\n    return ret;\n}\n\n/**\n * @brief Wildcard Pattern Matching\n */"
   dependsOn:
   - Math/modint.hpp
   - Convolution/ntt.hpp
   isVerificationFile: false
   path: Algorithm/wildcardpatternmatching.hpp
   requiredBy: []
-  timestamp: '2024-06-14 02:46:58+09:00'
+  timestamp: '2024-06-23 06:04:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Algorithm/wildcardpatternmatching.hpp
@@ -205,5 +207,5 @@ layout: document
 redirect_from:
 - /library/Algorithm/wildcardpatternmatching.hpp
 - /library/Algorithm/wildcardpatternmatching.hpp.html
-title: Algorithm/wildcardpatternmatching.hpp
+title: Wildcard Pattern Matching
 ---

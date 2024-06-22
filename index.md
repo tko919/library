@@ -35,7 +35,7 @@ data:
       title: Rollback Mo
     - icon: ':warning:'
       path: Algorithm/wildcardpatternmatching.hpp
-      title: Algorithm/wildcardpatternmatching.hpp
+      title: Wildcard Pattern Matching
   - name: Convolution
     pages:
     - icon: ':question:'
@@ -298,7 +298,7 @@ data:
     - icon: ':warning:'
       path: Graph/dmdecomp.hpp
       title: DM decomposition
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
     - icon: ':warning:'
@@ -313,7 +313,7 @@ data:
     - icon: ':x:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/linkcut.hpp
       title: Link-Cut Tree
     - icon: ':x:'
@@ -334,6 +334,9 @@ data:
     - icon: ':x:'
       path: Graph/scc.hpp
       title: Strongly Connected Components
+    - icon: ':warning:'
+      path: Graph/statictoptree.hpp
+      title: Static TopTree
     - icon: ':warning:'
       path: Graph/steiner.hpp
       title: Steiner Tree
@@ -437,7 +440,7 @@ data:
     - icon: ':warning:'
       path: String/ahocorasick.hpp
       title: Aho-Corasick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/manacher.hpp
       title: Manacher Algorithm
     - icon: ':warning:'
@@ -549,13 +552,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
       title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_cliques.test.cpp
       title: Verify/LC_enumerate_cliques.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_palindromes.test.cpp
       title: Verify/LC_enumerate_palindromes.test.cpp
     - icon: ':x:'

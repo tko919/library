@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: Algorithm/wildcardpatternmatching.hpp
-    title: Algorithm/wildcardpatternmatching.hpp
+    title: Wildcard Pattern Matching
   - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
@@ -33,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_deque_operate_all_composite.test.cpp
     title: Verify/LC_deque_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
     title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_enumerate_cliques.test.cpp
     title: Verify/LC_enumerate_cliques.test.cpp
   - icon: ':x:'
