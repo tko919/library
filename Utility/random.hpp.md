@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: Algorithm/matroid.hpp
     title: Matroid
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: Graph/dmdecomp.hpp
     title: DM decomposition
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/maxindependentset.hpp
     title: Maximum Independent Set
   - icon: ':x:'
@@ -41,10 +41,10 @@ data:
   - icon: ':warning:'
     path: Math/detaplusbx.hpp
     title: $\det(A+Bx)$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':warning:'
@@ -60,13 +60,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'

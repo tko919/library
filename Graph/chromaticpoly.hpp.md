@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
   _extendedRequiredBy: []

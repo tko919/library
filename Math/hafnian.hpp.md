@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Hafnian of matrix
     links: []
@@ -155,7 +155,7 @@ data:
   path: Math/hafnian.hpp
   requiredBy: []
   timestamp: '2024-06-14 02:46:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_hafnian_of_matrix.test.cpp
 documentation_of: Math/hafnian.hpp

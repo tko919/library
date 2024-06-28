@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Bostan-Mori Algorithm
     links: []
@@ -30,7 +30,7 @@ data:
   path: FPS/nthterm.hpp
   requiredBy: []
   timestamp: '2022-02-02 03:30:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: FPS/nthterm.hpp

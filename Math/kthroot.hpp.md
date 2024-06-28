@@ -6,12 +6,12 @@ data:
     path: Math/countsquarefree.hpp
     title: Count Square-free integers
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_kth_root_integer.test.cpp
     title: Verify/LC_kth_root_integer.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Kth Root(Integer)
     links: []
@@ -42,7 +42,7 @@ data:
   requiredBy:
   - Math/countsquarefree.hpp
   timestamp: '2022-12-27 02:24:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_kth_root_integer.test.cpp
 documentation_of: Math/kthroot.hpp

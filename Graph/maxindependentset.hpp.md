@@ -6,12 +6,12 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Maximum Independent Set
     links: []
@@ -77,7 +77,7 @@ data:
   path: Graph/maxindependentset.hpp
   requiredBy: []
   timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_maximum_independent_set.test.cpp
 documentation_of: Graph/maxindependentset.hpp

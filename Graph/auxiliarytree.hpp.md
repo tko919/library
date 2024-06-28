@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/lca.hpp
     title: Lowest Common Ancestor
   _extendedRequiredBy: []
