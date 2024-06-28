@@ -6,12 +6,12 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_predecessor_problem.test.cpp
     title: Verify/LC_predecessor_problem.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Randomized Binary Search Tree (set)
     links: []
@@ -155,7 +155,7 @@ data:
   path: DataStructure/rbstset.hpp
   requiredBy: []
   timestamp: '2024-04-26 04:30:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_predecessor_problem.test.cpp
 documentation_of: DataStructure/rbstset.hpp

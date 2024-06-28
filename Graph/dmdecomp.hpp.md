@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/bimatching.hpp
     title: Bipartite Matching
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/scc.hpp
     title: Strongly Connected Components
   - icon: ':question:'

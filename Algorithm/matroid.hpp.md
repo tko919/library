@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: Graph/dmdecomp.hpp
     title: DM decomposition
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/scc.hpp
     title: Strongly Connected Components
   - icon: ':question:'
