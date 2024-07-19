@@ -144,6 +144,12 @@ Poly ConvexHull(Poly &a) {
     res.resize(k - 1);
     return res;
 }
+ll Area(const Poly &a) {
+    ll res = 0;
+    int n = a.size();
+    rep(i, 0, n) res += cross(a[i], a[(i + 1) % n]);
+    return res;
+}
 
 /**
  * @brief Geometry(integer Coordinates)

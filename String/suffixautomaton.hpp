@@ -7,6 +7,7 @@ struct SuffixAutomaton {
         Node(int L = 0) : link(-1), len(L) {}
     };
     vector<Node> Nodes;
+    vector<int> ord;
     int last, count;
     SuffixAutomaton() {
         Nodes.push_back(Node());
@@ -53,6 +54,28 @@ struct SuffixAutomaton {
             }
         }
         last = nlast;
+    }
+    void tsort() {
+        int n = SZ(Nodes);
+        vector<int> deg(n);
+        rep(i, 0, n) if (Nodes[i].link >= 0) {
+            deg[Nodes[i].link]++;
+        }
+        queue<int> que;
+        rep(i, 0, n) if (deg[i] == 0) {
+            que.push(i);
+        }
+        while (!que.empty()) {
+            int i = que.front();
+            que.pop();
+            ord.push_back(i);
+            if (Nodes[i].link >= 0) {
+                deg[Nodes[i].link]--;
+                if (deg[Nodes[i].link] == 0) {
+                    que.push(Nodes[i].link);
+                }
+            }
+        }
     }
 };
 
