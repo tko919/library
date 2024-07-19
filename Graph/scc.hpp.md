@@ -8,19 +8,19 @@ data:
   - icon: ':warning:'
     path: Graph/dmdecomp.hpp
     title: DM decomposition
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/twosat.hpp
     title: 2-SAT
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_scc.test.cpp
     title: Verify/LC_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_two_sat.test.cpp
     title: Verify/LC_two_sat.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Strongly Connected Components
     links: []
@@ -58,11 +58,11 @@ data:
   isVerificationFile: false
   path: Graph/scc.hpp
   requiredBy:
-  - Graph/dmdecomp.hpp
   - Algorithm/matroid.hpp
   - Math/twosat.hpp
+  - Graph/dmdecomp.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_scc.test.cpp
   - Verify/LC_two_sat.test.cpp

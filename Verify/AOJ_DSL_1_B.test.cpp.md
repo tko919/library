@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/weightedunionfind.hpp
     title: Weighted Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -154,25 +154,28 @@ data:
     \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
     \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
     \n * @brief Fast IO\r\n */\n#line 2 \"DataStructure/weightedunionfind.hpp\"\n\r\
-    \ntemplate<typename T>struct WeightedUnionFind{\r\n    int n;\r\n    vector<int>\
-    \ par;\r\n    vector<T> pot;\r\n    WeightedUnionFind(int _n=0):n(_n),par(n,-1),pot(n){}\r\
-    \n    int root(int x){\r\n        if(par[x]<0)return x;\r\n        else{\r\n \
-    \           int r=root(par[x]);\r\n            pot[x]+=pot[par[x]];\r\n      \
-    \      return par[x]=r;\r\n        }\r\n    }\r\n    bool same(int x,int y){return\
-    \ root(x)==root(y);}\r\n    int size(int x){return -par[root(x)];}\r\n    T diff(int\
-    \ x,int y){return pot[x]-pot[y];}\r\n    bool unite(int x,int y,T w){\r\n    \
-    \    int rx=root(x),ry=root(y);\r\n        if(rx==ry)return false;\r\n       \
-    \ if(size(x)<size(y))swap(x,y),swap(rx,ry),w=-w;\r\n        par[rx]+=par[ry];\r\
-    \n        par[ry]=rx;\r\n        pot[ry]=diff(x,y)-w;\r\n        n--;\r\n    \
-    \    return true;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Weighted Union Find\r\
-    \n */\n#line 7 \"Verify/AOJ_DSL_1_B.test.cpp\"\n\r\nint main() {\r\n    int n,\
-    \ q;\r\n    read(n, q);\r\n    WeightedUnionFind<int> uni(n);\r\n    while (q--)\
-    \ {\r\n        int t;\r\n        read(t);\r\n        if (t == 0) {\r\n       \
-    \     int x, y, z;\r\n            read(x, y, z);\r\n            uni.unite(x, y,\
-    \ z);\r\n        } else {\r\n            int x, y;\r\n            read(x, y);\r\
-    \n            if (uni.same(x, y))\r\n                print(uni.diff(x, y));\r\n\
-    \            else\r\n                print('?');\r\n        }\r\n    }\r\n   \
-    \ return 0;\r\n}\n"
+    \ntemplate <typename T> struct WeightedUnionFind {\r\n    int n;\r\n    vector<int>\
+    \ par;\r\n    vector<T> pot;\r\n    WeightedUnionFind(int _n = 0) : n(_n), par(n,\
+    \ -1), pot(n) {}\r\n    int root(int x) {\r\n        if (par[x] < 0)\r\n     \
+    \       return x;\r\n        else {\r\n            int r = root(par[x]);\r\n \
+    \           pot[x] = pot[par[x]] + pot[x];\r\n            return par[x] = r;\r\
+    \n        }\r\n    }\r\n    bool same(int x, int y) {\r\n        return root(x)\
+    \ == root(y);\r\n    }\r\n    int size(int x) {\r\n        return -par[root(x)];\r\
+    \n    }\r\n    T diff(int x, int y) {\r\n        root(x);\r\n        root(y);\r\
+    \n        return -pot[y] + pot[x];\r\n    }\r\n    bool unite(int x, int y, T\
+    \ w) {\r\n        int rx = root(x), ry = root(y);\r\n        if (rx == ry)\r\n\
+    \            return false;\r\n        if (par[rx] < par[ry])\r\n            swap(x,\
+    \ y), swap(rx, ry), w = -w;\r\n        par[ry] += par[rx];\r\n        par[rx]\
+    \ = ry;\r\n        pot[rx] = pot[y] + w - pot[x];\r\n        n--;\r\n        return\
+    \ true;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Weighted Union Find\r\n */\n#line\
+    \ 7 \"Verify/AOJ_DSL_1_B.test.cpp\"\n\r\nint main() {\r\n    int n, q;\r\n   \
+    \ read(n, q);\r\n    WeightedUnionFind<int> uni(n);\r\n    while (q--) {\r\n \
+    \       int t;\r\n        read(t);\r\n        if (t == 0) {\r\n            int\
+    \ x, y, z;\r\n            read(x, y, z);\r\n            uni.unite(x, y, z);\r\n\
+    \        } else {\r\n            int x, y;\r\n            read(x, y);\r\n    \
+    \        if (uni.same(x, y))\r\n                print(uni.diff(x, y));\r\n   \
+    \         else\r\n                print('?');\r\n        }\r\n    }\r\n    return\
+    \ 0;\r\n}\n"
   code: "#define PROBLEM                                                         \
     \       \\\r\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
@@ -191,7 +194,7 @@ data:
   isVerificationFile: true
   path: Verify/AOJ_DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
+  timestamp: '2024-07-20 01:49:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/AOJ_DSL_1_B.test.cpp

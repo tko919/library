@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_number_of_substrings.test.cpp
     title: Verify/LC_number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_suffixarray.test.cpp
     title: Verify/LC_suffixarray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/suffixarray.md
     document_title: Suffix Array
@@ -110,10 +110,10 @@ data:
   path: String/suffixarray.hpp
   requiredBy: []
   timestamp: '2022-02-05 01:38:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_number_of_substrings.test.cpp
   - Verify/LC_suffixarray.test.cpp
+  - Verify/LC_number_of_substrings.test.cpp
 documentation_of: String/suffixarray.hpp
 layout: document
 redirect_from:

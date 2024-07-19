@@ -58,7 +58,9 @@ data:
     \    }\n    for (int i = n - 2, t = k + 1; i >= 0; res[k++] = a[i--]) {\n    \
     \    while (k >= t and\n               cross(res[k - 1] - res[k - 2], a[i] - res[k\
     \ - 1]) <= 0)\n            k--;\n    }\n    res.resize(k - 1);\n    return res;\n\
-    }\n\n/**\n * @brief Geometry(integer Coordinates)\n */\n"
+    }\nll Area(const Poly &a) {\n    ll res = 0;\n    int n = a.size();\n    rep(i,\
+    \ 0, n) res += cross(a[i], a[(i + 1) % n]);\n    return res;\n}\n\n/**\n * @brief\
+    \ Geometry(integer Coordinates)\n */\n"
   code: "#pragma once\n\nstruct Point {\n    ll X, Y;\n    Point() : X(0), Y(0) {}\n\
     \    Point(ll _X, ll _Y) : X(_X), Y(_Y) {}\n    int pos() const {\n        if\
     \ (Y < 0)\n            return -1;\n        if (Y == 0 and X >= 0)\n          \
@@ -108,12 +110,14 @@ data:
     \    }\n    for (int i = n - 2, t = k + 1; i >= 0; res[k++] = a[i--]) {\n    \
     \    while (k >= t and\n               cross(res[k - 1] - res[k - 2], a[i] - res[k\
     \ - 1]) <= 0)\n            k--;\n    }\n    res.resize(k - 1);\n    return res;\n\
-    }\n\n/**\n * @brief Geometry(integer Coordinates)\n */\n"
+    }\nll Area(const Poly &a) {\n    ll res = 0;\n    int n = a.size();\n    rep(i,\
+    \ 0, n) res += cross(a[i], a[(i + 1) % n]);\n    return res;\n}\n\n/**\n * @brief\
+    \ Geometry(integer Coordinates)\n */\n"
   dependsOn: []
   isVerificationFile: false
   path: Geometry/intCoord.hpp
   requiredBy: []
-  timestamp: '2024-04-29 14:20:00+09:00'
+  timestamp: '2024-07-20 01:49:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/intCoord.hpp

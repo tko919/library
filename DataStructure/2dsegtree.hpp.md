@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
   _extendedRequiredBy: []
@@ -104,8 +104,8 @@ data:
   timestamp: '2024-04-29 21:46:51+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_rectangle_sum.test.cpp
   - Verify/LC_point_add_rectangle_sum.test.cpp
+  - Verify/LC_rectangle_sum.test.cpp
 documentation_of: DataStructure/2dsegtree.hpp
 layout: document
 redirect_from:

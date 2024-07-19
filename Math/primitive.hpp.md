@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
@@ -261,9 +261,9 @@ data:
   timestamp: '2024-04-26 03:18:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_binomial_coefficient.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
 documentation_of: Math/primitive.hpp
 layout: document
 redirect_from:

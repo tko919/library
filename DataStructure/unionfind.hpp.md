@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_manhattanmst.test.cpp
     title: Verify/LC_manhattanmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_unionfind.test.cpp
     title: Verify/LC_unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Union Find
     links: []
@@ -42,14 +42,14 @@ data:
   isVerificationFile: false
   path: DataStructure/unionfind.hpp
   requiredBy:
-  - Graph/euler.hpp
-  - DataStructure/manhattanmst.hpp
   - DataStructure/rangeparalleluf.hpp
+  - DataStructure/manhattanmst.hpp
+  - Graph/euler.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_manhattanmst.test.cpp
   - Verify/LC_unionfind.test.cpp
+  - Verify/LC_manhattanmst.test.cpp
 documentation_of: DataStructure/unionfind.hpp
 layout: document
 redirect_from:
