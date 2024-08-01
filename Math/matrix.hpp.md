@@ -143,19 +143,19 @@ data:
   path: Math/matrix.hpp
   requiredBy:
   - FPS/p-recursive.hpp
-  - Math/hafnian.hpp
-  - Math/linearequation.hpp
-  - Math/charpoly.hpp
-  - Math/detaplusbx.hpp
-  - Graph/countspanning.hpp
   - Graph/counteuler.hpp
+  - Graph/countspanning.hpp
+  - Math/charpoly.hpp
+  - Math/linearequation.hpp
+  - Math/detaplusbx.hpp
+  - Math/hafnian.hpp
   timestamp: '2024-06-14 02:46:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_matrix_product.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_system_of_linear_equations.test.cpp
-  - Verify/LC_matrix_product.test.cpp
+  - Verify/LC_matrix_det.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document
 redirect_from:

@@ -95,16 +95,16 @@ data:
   isVerificationFile: false
   path: Math/miller.hpp
   requiredBy:
-  - Convolution/multivariatecyclic.hpp
   - Math/pollard.hpp
-  - Math/primitive.hpp
   - Math/binomquery.hpp
+  - Math/primitive.hpp
+  - Convolution/multivariatecyclic.hpp
   timestamp: '2023-06-14 14:20:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_factorize.test.cpp
 documentation_of: Math/miller.hpp
 layout: document
