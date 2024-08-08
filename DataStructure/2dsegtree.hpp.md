@@ -20,49 +20,51 @@ data:
     links: []
   bundledCode: "#line 2 \"DataStructure/segtree.hpp\"\n\r\ntemplate <typename M, typename\
     \ N, M (*f)(M, M), M (*g)(M, N), M (*m1)()>\r\nstruct SegmentTree {\r\n    int\
-    \ n;\r\n    vector<M> data;\r\n    SegmentTree(int _n = 0) {\r\n        n = 1;\r\
-    \n        while (n < _n)\r\n            n <<= 1;\r\n        data.assign(2 * n,\
-    \ m1());\r\n    }\r\n    void run(vector<M> &v) {\r\n        for (int i = 0; i\
-    \ < (int)v.size(); i++)\r\n            data[i + n] = v[i];\r\n        for (int\
-    \ k = n - 1; k > 0; k--)\r\n            data[k] = f(data[2 * k], data[2 * k +\
-    \ 1]);\r\n    }\r\n    void set(int k, const M &x) {\r\n        k += n;\r\n  \
-    \      data[k] = x;\r\n        while (k >>= 1)\r\n            data[k] = f(data[2\
-    \ * k], data[2 * k + 1]);\r\n    }\r\n    void update(int k, const N &x) {\r\n\
-    \        k += n;\r\n        data[k] = g(data[k], x);\r\n        while (k >>= 1)\r\
-    \n            data[k] = f(data[2 * k], data[2 * k + 1]);\r\n    }\r\n    M query(int\
-    \ a, int b) {\r\n        M L = m1(), R = m1();\r\n        for (a += n, b += n;\
-    \ a < b; a >>= 1, b >>= 1) {\r\n            if (a & 1)\r\n                L =\
-    \ f(L, data[a++]);\r\n            if (b & 1)\r\n                R = f(data[--b],\
-    \ R);\r\n        }\r\n        return f(L, R);\r\n    }\r\n    M operator[](const\
-    \ int &k) const {\r\n        return data[k + n];\r\n    }\r\n\r\n    template\
-    \ <class F> int max_right(int L, F ch) const {\r\n        int l = n + L, w = 1;\r\
-    \n        M ansL = m1();\r\n        for (; L + w <= n; l >>= 1, w <<= 1)\r\n \
-    \           if (l & 1) {\r\n                if (not ch(f(ansL, data[l])))\r\n\
-    \                    break;\r\n                ansL = f(ansL, data[l++]);\r\n\
-    \                L += w;\r\n            }\r\n        while (l <<= 1, w >>= 1)\
-    \ {\r\n            if (L + w <= n && ch(f(ansL, data[l]))) {\r\n             \
-    \   ansL = f(ansL, data[l++]);\r\n                L += w;\r\n            }\r\n\
-    \        }\r\n        return L;\r\n    }\r\n\r\n    template <class F> int min_left(int\
-    \ R, F ch) const {\r\n        int r = n + R, w = 1;\r\n        M ansR = m1();\r\
-    \n        for (; R - w >= 0; r >>= 1, w <<= 1)\r\n            if (r & 1) {\r\n\
-    \                if (not ch(f(data[r - 1], ansR)))\r\n                    break;\r\
-    \n                ansR = f(data[--r], ansR);\r\n                R -= w;\r\n  \
-    \          }\r\n        while (r <<= 1, w >>= 1) {\r\n            if (R - w >=\
-    \ 0 && ch(f(data[r - 1], ansR))) {\r\n                ansR = f(data[--r], ansR);\r\
-    \n                R -= w;\r\n            }\r\n        }\r\n        return R;\r\
-    \n    }\r\n};\r\n\r\n/**\r\n * @brief Segment Tree\r\n */\n#line 3 \"DataStructure/2dsegtree.hpp\"\
-    \n\r\ntemplate<typename M,typename N,M (*f)(M,M),M (*g)(M,N),M (*m1)()>struct\
-    \ SegmentTree2D{\r\n    int n;\r\n    vector<SegmentTree<M,N,f,g,m1>> st;\r\n\
-    \    vector<vector<int>> ys;\r\n    SegmentTree2D(){}\r\n    int id(int x,int\
-    \ y){return lower_bound(ALL(ys[x]),y)-ys[x].begin();}\r\n    using P=pair<int,int>;\r\
-    \n    vector<int> xs; vector<P> ps;\r\n    void push(int x,int y){\r\n       \
-    \ ps.push_back({x,y});\r\n    }\r\n    void init(){\r\n        for(auto& [x,y]:ps)xs.push_back(x);\r\
-    \n        sort(ALL(xs));\r\n        xs.erase(unique(ALL(xs)),xs.end());\r\n  \
-    \      n=xs.size();\r\n        ys.resize(n*2);\r\n        for(auto& [x,y]:ps){\r\
-    \n            int i=lower_bound(ALL(xs),x)-xs.begin();\r\n            for(i+=n;i;i>>=1)ys[i].push_back(y);\r\
-    \n        }\r\n        for(int i=0;i<n*2;i++){\r\n            sort(ALL(ys[i]));\r\
-    \n            ys[i].erase(unique(ALL(ys[i])),ys[i].end());\r\n            st.push_back(SegmentTree<M,N,f,g,m1>(ys[i].size()));\r\
-    \n        }\r\n    }\r\n    void update(int x,int y,N w){\r\n        x=(lower_bound(ALL(xs),x)-xs.begin())+n;\r\
+    \ sz, n;\r\n    vector<M> data;\r\n    SegmentTree(int _n = 0) : n(_n) {\r\n \
+    \       sz = 1;\r\n        while (sz < _n)\r\n            sz <<= 1;\r\n      \
+    \  data.assign(2 * sz, m1());\r\n    }\r\n    void run(vector<M> &v) {\r\n   \
+    \     for (int i = 0; i < (int)v.size(); i++)\r\n            data[i + sz] = v[i];\r\
+    \n        for (int k = sz - 1; k > 0; k--)\r\n            data[k] = f(data[2 *\
+    \ k], data[2 * k + 1]);\r\n    }\r\n    void set(int k, const M &x) {\r\n    \
+    \    k += sz;\r\n        data[k] = x;\r\n        while (k >>= 1)\r\n         \
+    \   data[k] = f(data[2 * k], data[2 * k + 1]);\r\n    }\r\n    void update(int\
+    \ k, const N &x) {\r\n        k += sz;\r\n        data[k] = g(data[k], x);\r\n\
+    \        while (k >>= 1)\r\n            data[k] = f(data[2 * k], data[2 * k +\
+    \ 1]);\r\n    }\r\n    M query(int a, int b) {\r\n        M L = m1(), R = m1();\r\
+    \n        for (a += sz, b += sz; a < b; a >>= 1, b >>= 1) {\r\n            if\
+    \ (a & 1)\r\n                L = f(L, data[a++]);\r\n            if (b & 1)\r\n\
+    \                R = f(data[--b], R);\r\n        }\r\n        return f(L, R);\r\
+    \n    }\r\n    M operator[](const int &k) const {\r\n        return data[k + sz];\r\
+    \n    }\r\n    vector<M> get() {\r\n        return {data.begin() + sz, data.begin()\
+    \ + sz + n};\r\n    }\r\n    template <class F> int max_right(int L, F ch) const\
+    \ {\r\n        int l = sz + L, w = 1;\r\n        M ansL = m1();\r\n        for\
+    \ (; L + w <= sz; l >>= 1, w <<= 1)\r\n            if (l & 1) {\r\n          \
+    \      if (not ch(f(ansL, data[l])))\r\n                    break;\r\n       \
+    \         ansL = f(ansL, data[l++]);\r\n                L += w;\r\n          \
+    \  }\r\n        while (l <<= 1, w >>= 1) {\r\n            if (L + w <= sz && ch(f(ansL,\
+    \ data[l]))) {\r\n                ansL = f(ansL, data[l++]);\r\n             \
+    \   L += w;\r\n            }\r\n        }\r\n        return L;\r\n    }\r\n  \
+    \  template <class F> int min_left(int R, F ch) const {\r\n        int r = sz\
+    \ + R, w = 1;\r\n        M ansR = m1();\r\n        for (; R - w >= 0; r >>= 1,\
+    \ w <<= 1)\r\n            if (r & 1) {\r\n                if (not ch(f(data[r\
+    \ - 1], ansR)))\r\n                    break;\r\n                ansR = f(data[--r],\
+    \ ansR);\r\n                R -= w;\r\n            }\r\n        while (r <<= 1,\
+    \ w >>= 1) {\r\n            if (R - w >= 0 && ch(f(data[r - 1], ansR))) {\r\n\
+    \                ansR = f(data[--r], ansR);\r\n                R -= w;\r\n   \
+    \         }\r\n        }\r\n        return R;\r\n    }\r\n};\r\n\r\n/**\r\n *\
+    \ @brief Segment Tree\r\n */\n#line 3 \"DataStructure/2dsegtree.hpp\"\n\r\ntemplate<typename\
+    \ M,typename N,M (*f)(M,M),M (*g)(M,N),M (*m1)()>struct SegmentTree2D{\r\n   \
+    \ int n;\r\n    vector<SegmentTree<M,N,f,g,m1>> st;\r\n    vector<vector<int>>\
+    \ ys;\r\n    SegmentTree2D(){}\r\n    int id(int x,int y){return lower_bound(ALL(ys[x]),y)-ys[x].begin();}\r\
+    \n    using P=pair<int,int>;\r\n    vector<int> xs; vector<P> ps;\r\n    void\
+    \ push(int x,int y){\r\n        ps.push_back({x,y});\r\n    }\r\n    void init(){\r\
+    \n        for(auto& [x,y]:ps)xs.push_back(x);\r\n        sort(ALL(xs));\r\n  \
+    \      xs.erase(unique(ALL(xs)),xs.end());\r\n        n=xs.size();\r\n       \
+    \ ys.resize(n*2);\r\n        for(auto& [x,y]:ps){\r\n            int i=lower_bound(ALL(xs),x)-xs.begin();\r\
+    \n            for(i+=n;i;i>>=1)ys[i].push_back(y);\r\n        }\r\n        for(int\
+    \ i=0;i<n*2;i++){\r\n            sort(ALL(ys[i]));\r\n            ys[i].erase(unique(ALL(ys[i])),ys[i].end());\r\
+    \n            st.push_back(SegmentTree<M,N,f,g,m1>(ys[i].size()));\r\n       \
+    \ }\r\n    }\r\n    void update(int x,int y,N w){\r\n        x=(lower_bound(ALL(xs),x)-xs.begin())+n;\r\
     \n        st[x].update(id(x,y),w);\r\n        M cur=st[x][id(x,y)];\r\n      \
     \  int pos=x;\r\n        while(x>>=1){\r\n            M opp=st[pos^1].query(id(pos^1,y),id(pos^1,y+1));\r\
     \n            cur=f(cur,opp);\r\n            st[x].set(id(x,y),cur);\r\n     \
@@ -101,11 +103,11 @@ data:
   isVerificationFile: false
   path: DataStructure/2dsegtree.hpp
   requiredBy: []
-  timestamp: '2024-04-29 21:46:51+00:00'
+  timestamp: '2024-08-09 08:04:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_rectangle_sum.test.cpp
   - Verify/LC_point_add_rectangle_sum.test.cpp
+  - Verify/LC_rectangle_sum.test.cpp
 documentation_of: DataStructure/2dsegtree.hpp
 layout: document
 redirect_from:

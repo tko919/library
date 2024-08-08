@@ -201,6 +201,9 @@ data:
     - icon: ':warning:'
       path: FPS/halfgcd.hpp
       title: Half GCD
+    - icon: ':warning:'
+      path: FPS/incseqcount.hpp
+      title: Number of Increasing Sequences Between Two Sequences
     - icon: ':heavy_check_mark:'
       path: FPS/interpolate.hpp
       title: interpolate (one point)
@@ -806,3 +809,4 @@ data:
       title: Verify/YUKI_901.test.cpp
 layout: toppage
 ---
+[TOP PAGE](https://tko919.github.io/)

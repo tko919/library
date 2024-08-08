@@ -39,8 +39,8 @@ data:
   timestamp: '2024-01-12 04:16:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: FPS/interpolate.hpp
 layout: document
 redirect_from:
