@@ -301,6 +301,9 @@ data:
     - icon: ':warning:'
       path: Graph/dmdecomp.hpp
       title: DM decomposition
+    - icon: ':warning:'
+      path: Graph/edgecoloring.hpp
+      title: Edge Coloring
     - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques

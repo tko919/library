@@ -4,7 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/unionfind.hpp
     title: Union Find
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Graph/edgecoloring.hpp
+    title: Edge Coloring
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -88,7 +91,8 @@ data:
   - DataStructure/unionfind.hpp
   isVerificationFile: false
   path: Graph/euler.hpp
-  requiredBy: []
+  requiredBy:
+  - Graph/edgecoloring.hpp
   timestamp: '2024-01-17 06:35:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -9,6 +9,9 @@ data:
     path: DataStructure/rangeparalleluf.hpp
     title: Range Parallel UnionFind
   - icon: ':warning:'
+    path: Graph/edgecoloring.hpp
+    title: Edge Coloring
+  - icon: ':warning:'
     path: Graph/euler.hpp
     title: Eulerian Trail
   _extendedVerifiedWith:
@@ -42,14 +45,15 @@ data:
   isVerificationFile: false
   path: DataStructure/unionfind.hpp
   requiredBy:
-  - DataStructure/manhattanmst.hpp
   - DataStructure/rangeparalleluf.hpp
+  - DataStructure/manhattanmst.hpp
+  - Graph/edgecoloring.hpp
   - Graph/euler.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_unionfind.test.cpp
   - Verify/LC_manhattanmst.test.cpp
+  - Verify/LC_unionfind.test.cpp
 documentation_of: DataStructure/unionfind.hpp
 layout: document
 redirect_from:

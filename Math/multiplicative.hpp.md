@@ -33,45 +33,60 @@ data:
     \ }\r\n    }\r\n    isp[2]=isp[3]=true;\r\n\r\n    vector<int> ret;\r\n    for(int\
     \ i=2;i<=N;i++)if(isp[i]){\r\n        ret.push_back(i);\r\n    }\r\n    return\
     \ ret;\r\n}\r\n\r\n/**\r\n * @brief Prime Sieve\r\n */\n#line 3 \"Math/multiplicative.hpp\"\
-    \n\r\ntemplate<typename T,T (*pe)(int,int),T (*psum)(ll)>T MultiplicativeSum(ll\
-    \ N){\r\n    ll SQ=sqrtl(N);\r\n    auto ps=sieve(SQ);\r\n    \r\n    T ret=psum(N)+1;\r\
-    \n    auto dfs=[&](auto& dfs,ll x,int i,int e,T cur,T pre)->void{\r\n        T\
-    \ nxt=pre*pe(ps[i],e+1);\r\n        ret+=cur*(psum(double(N)/x)-psum(ps[i]));\r\
-    \n        ret+=nxt;\r\n        ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
-    \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
-    \   dfs(dfs,x*ps[j],j,1,cur*pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),1);\r\
-    \n    return ret;\r\n}\r\n\r\ntemplate<typename T,T (*pe)(int,int),ll (*pcnt)(ll),T\
-    \ (*psum)(ll)>T AdditiveSum(ll N){\r\n    ll SQ=sqrtl(N);\r\n    auto ps=sieve(SQ);\r\
-    \n    \r\n    T ret=psum(N);\r\n    auto dfs=[&](auto& dfs,ll x,int i,int e,T\
-    \ cur,T pre)->void{\r\n        T nxt=pre+pe(ps[i],e+1);\r\n        ret+=cur*(pcnt(double(N)/x)-pcnt(ps[i]))+(psum(double(N)/x)-psum(ps[i]));\r\
-    \n        ret+=nxt;\r\n        ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
-    \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
-    \   dfs(dfs,x*ps[j],j,1,cur+pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),0);\r\
-    \n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs\
-    \ docs/multiplicative.md\r\n */\n"
-  code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\ntemplate<typename T,T\
-    \ (*pe)(int,int),T (*psum)(ll)>T MultiplicativeSum(ll N){\r\n    ll SQ=sqrtl(N);\r\
-    \n    auto ps=sieve(SQ);\r\n    \r\n    T ret=psum(N)+1;\r\n    auto dfs=[&](auto&\
-    \ dfs,ll x,int i,int e,T cur,T pre)->void{\r\n        T nxt=pre*pe(ps[i],e+1);\r\
-    \n        ret+=cur*(psum(double(N)/x)-psum(ps[i]));\r\n        ret+=nxt;\r\n \
-    \       ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
-    \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
-    \   dfs(dfs,x*ps[j],j,1,cur*pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),1);\r\
-    \n    return ret;\r\n}\r\n\r\ntemplate<typename T,T (*pe)(int,int),ll (*pcnt)(ll),T\
-    \ (*psum)(ll)>T AdditiveSum(ll N){\r\n    ll SQ=sqrtl(N);\r\n    auto ps=sieve(SQ);\r\
-    \n    \r\n    T ret=psum(N);\r\n    auto dfs=[&](auto& dfs,ll x,int i,int e,T\
-    \ cur,T pre)->void{\r\n        T nxt=pre+pe(ps[i],e+1);\r\n        ret+=cur*(pcnt(double(N)/x)-pcnt(ps[i]))+(psum(double(N)/x)-psum(ps[i]));\r\
-    \n        ret+=nxt;\r\n        ll L=sqrtl(double(N)/x);\r\n        if(ps[i]<=L)dfs(dfs,x*ps[i],i,e+1,nxt,pre);\r\
-    \n        rep(j,i+1,ps.size()){\r\n            if(ps[j]>L)break;\r\n         \
-    \   dfs(dfs,x*ps[j],j,1,cur+pe(ps[j],1),cur);\r\n        }\r\n    };\r\n    rep(i,0,ps.size())dfs(dfs,ps[i],i,1,pe(ps[i],1),0);\r\
-    \n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs\
-    \ docs/multiplicative.md\r\n */"
+    \n\r\ntemplate <typename T, T (*pe)(int, int), T (*psum)(ll)>\r\nT MultiplicativeSum(ll\
+    \ N) {\r\n    class Array {\r\n        std::vector<T> data;\r\n        std::vector<int>\
+    \ written;\r\n\r\n      public:\r\n        int n;\r\n        Array(int n) : data(n),\
+    \ n(n) {}\r\n        void add(int i, T val) {\r\n            data[i] += val;\r\
+    \n            written.push_back(i);\r\n        }\r\n        void lazy(vector<T>\
+    \ &base) {\r\n            for (auto i : written) {\r\n                base[i]\
+    \ += data[i];\r\n                data[i] = 0;\r\n            }\r\n           \
+    \ written.clear();\r\n        }\r\n    };\r\n\r\n    ll SQ = sqrtl(N);\r\n   \
+    \ vector<T> lo(SQ + 1), hi(SQ + 1);\r\n    rep(i, 1, SQ + 1) {\r\n        lo[i]\
+    \ = psum(i);\r\n        hi[i] = psum(N / i);\r\n    }\r\n\r\n    auto ps = sieve(SQ);\r\
+    \n    reverse(ALL(ps));\r\n    Array loa(SQ + 1), hia(SQ + 1);\r\n    for (auto\
+    \ &p : ps) {\r\n        if (p * p > N)\r\n            break;\r\n        ll c =\
+    \ 1, pc = p;\r\n        while (N / p >= pc) {\r\n            T x = pe(p, c), y\
+    \ = pe(p, c + 1), z = psum(p);\r\n            rep(i, 1, SQ + 1) {\r\n        \
+    \        ll k = double(N) / (i * pc);\r\n                if (k < p)\r\n      \
+    \              break;\r\n                if (k <= SQ)\r\n                    hia.add(i,\
+    \ x * (lo[k] - z) + y);\r\n                else\r\n                    hia.add(i,\
+    \ x * (hi[i * pc] - z) + y);\r\n            }\r\n            rrep(i, 1, SQ + 1)\
+    \ {\r\n                int k = double(i) / pc;\r\n                if (k < p)\r\
+    \n                    break;\r\n                loa.add(i, x * (lo[k] - z) + y);\r\
+    \n            }\r\n            c++;\r\n            pc *= p;\r\n        }\r\n \
+    \       loa.lazy(lo);\r\n        hia.lazy(hi);\r\n    }\r\n    return hi[1] +\
+    \ 1;\r\n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs docs/multiplicative.md\r\
+    \n */\n"
+  code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\ntemplate <typename T,\
+    \ T (*pe)(int, int), T (*psum)(ll)>\r\nT MultiplicativeSum(ll N) {\r\n    class\
+    \ Array {\r\n        std::vector<T> data;\r\n        std::vector<int> written;\r\
+    \n\r\n      public:\r\n        int n;\r\n        Array(int n) : data(n), n(n)\
+    \ {}\r\n        void add(int i, T val) {\r\n            data[i] += val;\r\n  \
+    \          written.push_back(i);\r\n        }\r\n        void lazy(vector<T> &base)\
+    \ {\r\n            for (auto i : written) {\r\n                base[i] += data[i];\r\
+    \n                data[i] = 0;\r\n            }\r\n            written.clear();\r\
+    \n        }\r\n    };\r\n\r\n    ll SQ = sqrtl(N);\r\n    vector<T> lo(SQ + 1),\
+    \ hi(SQ + 1);\r\n    rep(i, 1, SQ + 1) {\r\n        lo[i] = psum(i);\r\n     \
+    \   hi[i] = psum(N / i);\r\n    }\r\n\r\n    auto ps = sieve(SQ);\r\n    reverse(ALL(ps));\r\
+    \n    Array loa(SQ + 1), hia(SQ + 1);\r\n    for (auto &p : ps) {\r\n        if\
+    \ (p * p > N)\r\n            break;\r\n        ll c = 1, pc = p;\r\n        while\
+    \ (N / p >= pc) {\r\n            T x = pe(p, c), y = pe(p, c + 1), z = psum(p);\r\
+    \n            rep(i, 1, SQ + 1) {\r\n                ll k = double(N) / (i * pc);\r\
+    \n                if (k < p)\r\n                    break;\r\n               \
+    \ if (k <= SQ)\r\n                    hia.add(i, x * (lo[k] - z) + y);\r\n   \
+    \             else\r\n                    hia.add(i, x * (hi[i * pc] - z) + y);\r\
+    \n            }\r\n            rrep(i, 1, SQ + 1) {\r\n                int k =\
+    \ double(i) / pc;\r\n                if (k < p)\r\n                    break;\r\
+    \n                loa.add(i, x * (lo[k] - z) + y);\r\n            }\r\n      \
+    \      c++;\r\n            pc *= p;\r\n        }\r\n        loa.lazy(lo);\r\n\
+    \        hia.lazy(hi);\r\n    }\r\n    return hi[1] + 1;\r\n}\r\n\r\n/**\r\n *\
+    \ @brief Multiplicative Sum\r\n * @docs docs/multiplicative.md\r\n */"
   dependsOn:
   - Math/sieve.hpp
   isVerificationFile: false
   path: Math/multiplicative.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
+  timestamp: '2024-09-10 03:26:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/YUKI_1781.test.cpp

@@ -58,9 +58,9 @@ data:
   isVerificationFile: false
   path: Graph/scc.hpp
   requiredBy:
-  - Math/twosat.hpp
-  - Algorithm/matroid.hpp
   - Graph/dmdecomp.hpp
+  - Algorithm/matroid.hpp
+  - Math/twosat.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

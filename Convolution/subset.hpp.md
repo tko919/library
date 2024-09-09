@@ -146,8 +146,8 @@ data:
   isVerificationFile: false
   path: Convolution/subset.hpp
   requiredBy:
-  - Math/hafnian.hpp
   - Graph/chromaticpoly.hpp
+  - Math/hafnian.hpp
   timestamp: '2024-04-26 03:18:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
