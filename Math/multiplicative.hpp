@@ -34,7 +34,7 @@ T MultiplicativeSum(ll N) {
     reverse(ALL(ps));
     Array loa(SQ + 1), hia(SQ + 1);
     for (auto &p : ps) {
-        if (p * p > N)
+        if (ll(p) * p > N)
             break;
         ll c = 1, pc = p;
         while (N / p >= pc) {
