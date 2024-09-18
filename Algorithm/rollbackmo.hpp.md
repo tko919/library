@@ -10,45 +10,55 @@ data:
     _deprecated_at_docs: docs/rollbackmo.md
     document_title: Rollback Mo
     links: []
-  bundledCode: "#line 2 \"Algorithm/rollbackmo.hpp\"\n\r\nstruct RollbackMo{\r\n \
-    \   using P=array<int,2>;\r\n    int n;\r\n    vector<P> qs;\r\n    RollbackMo(int\
-    \ _n):n(_n){}\r\n    void add(int lb,int rb){qs.push_back({lb,rb});}\r\n    template<typename\
-    \ INIT,typename ADD,typename SNAP,typename ROLL,typename OUT>\r\n    void run(const\
-    \ INIT& init,const ADD& insert,const SNAP& snapshot,const ROLL& rollback,const\
-    \ OUT& out){\r\n        const int q=qs.size();\r\n        const int w=max(1,int(n/sqrt(q+1)));\r\
-    \n        vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int\
-    \ i,int j){\r\n            return P{qs[i][0]/w,qs[i][1]}<P{qs[j][0],qs[j][1]};\r\
-    \n        });\r\n        init();\r\n        snapshot();\r\n        int last=-1,r=0;\r\
-    \n        for(auto& i:ord)if(qs[i][1]-qs[i][0]<w){\r\n            rep(j,qs[i][0],qs[i][1])insert(j);\r\
-    \n            out(i);\r\n            rollback();\r\n        }\r\n        for(auto&\
-    \ i:ord)if(qs[i][1]-qs[i][0]>=w){\r\n            int b=qs[i][0]/w;\r\n       \
-    \     if(last!=b){\r\n                init();\r\n                last=b;\r\n \
-    \               r=(b+1)*w;\r\n            }\r\n            while(r<qs[i][1])insert(r++);\r\
-    \n            snapshot();\r\n            for(int j=(b+1)*w-1;j>=qs[i][0];j--)insert(j);\r\
-    \n            out(i);\r\n            rollback();\r\n        }\r\n    }\r\n};\r\
-    \n\r\n/**\r\n * @brief Rollback Mo\r\n * @docs docs/rollbackmo.md\r\n */\n"
-  code: "#pragma once\r\n\r\nstruct RollbackMo{\r\n    using P=array<int,2>;\r\n \
-    \   int n;\r\n    vector<P> qs;\r\n    RollbackMo(int _n):n(_n){}\r\n    void\
-    \ add(int lb,int rb){qs.push_back({lb,rb});}\r\n    template<typename INIT,typename\
-    \ ADD,typename SNAP,typename ROLL,typename OUT>\r\n    void run(const INIT& init,const\
-    \ ADD& insert,const SNAP& snapshot,const ROLL& rollback,const OUT& out){\r\n \
-    \       const int q=qs.size();\r\n        const int w=max(1,int(n/sqrt(q+1)));\r\
-    \n        vector<int> ord(q);\r\n        iota(ALL(ord),0);\r\n        sort(ALL(ord),[&](int\
-    \ i,int j){\r\n            return P{qs[i][0]/w,qs[i][1]}<P{qs[j][0],qs[j][1]};\r\
-    \n        });\r\n        init();\r\n        snapshot();\r\n        int last=-1,r=0;\r\
-    \n        for(auto& i:ord)if(qs[i][1]-qs[i][0]<w){\r\n            rep(j,qs[i][0],qs[i][1])insert(j);\r\
-    \n            out(i);\r\n            rollback();\r\n        }\r\n        for(auto&\
-    \ i:ord)if(qs[i][1]-qs[i][0]>=w){\r\n            int b=qs[i][0]/w;\r\n       \
-    \     if(last!=b){\r\n                init();\r\n                last=b;\r\n \
-    \               r=(b+1)*w;\r\n            }\r\n            while(r<qs[i][1])insert(r++);\r\
-    \n            snapshot();\r\n            for(int j=(b+1)*w-1;j>=qs[i][0];j--)insert(j);\r\
-    \n            out(i);\r\n            rollback();\r\n        }\r\n    }\r\n};\r\
-    \n\r\n/**\r\n * @brief Rollback Mo\r\n * @docs docs/rollbackmo.md\r\n */"
+  bundledCode: "#line 2 \"Algorithm/rollbackmo.hpp\"\n\r\nstruct RollbackMo {\r\n\
+    \    using P = array<int, 2>;\r\n    int n;\r\n    vector<P> qs;\r\n    RollbackMo(int\
+    \ _n) : n(_n) {}\r\n    void add(int lb, int rb) {\r\n        qs.push_back({lb,\
+    \ rb});\r\n    }\r\n    template <typename INIT, typename ADD, typename SNAP,\
+    \ typename ROLL,\r\n              typename OUT>\r\n    void run(const INIT &init,\
+    \ const ADD &insert, const SNAP &snapshot,\r\n             const ROLL &rollback,\
+    \ const OUT &out) {\r\n        const int q = qs.size();\r\n        const int w\
+    \ = max(1, int(n / sqrt(q + 1)));\r\n        vector<int> ord(q);\r\n        iota(ALL(ord),\
+    \ 0);\r\n        sort(ALL(ord), [&](int i, int j) {\r\n            return P{qs[i][0]\
+    \ / w, qs[i][1]} < P{qs[j][0] / w, qs[j][1]};\r\n        });\r\n        init();\r\
+    \n        snapshot();\r\n        int last = -1, r = 0;\r\n        for (auto &i\
+    \ : ord)\r\n            if (qs[i][1] - qs[i][0] < w) {\r\n                rep(j,\
+    \ qs[i][0], qs[i][1]) insert(j);\r\n                out(i);\r\n              \
+    \  rollback();\r\n            }\r\n        for (auto &i : ord)\r\n           \
+    \ if (qs[i][1] - qs[i][0] >= w) {\r\n                int b = qs[i][0] / w;\r\n\
+    \                if (last != b) {\r\n                    init();\r\n         \
+    \           last = b;\r\n                    r = (b + 1) * w;\r\n            \
+    \    }\r\n                while (r < qs[i][1])\r\n                    insert(r++);\r\
+    \n                snapshot();\r\n                for (int j = (b + 1) * w - 1;\
+    \ j >= qs[i][0]; j--)\r\n                    insert(j);\r\n                out(i);\r\
+    \n                rollback();\r\n            }\r\n    }\r\n};\r\n\r\n/**\r\n *\
+    \ @brief Rollback Mo\r\n * @docs docs/rollbackmo.md\r\n */\n"
+  code: "#pragma once\r\n\r\nstruct RollbackMo {\r\n    using P = array<int, 2>;\r\
+    \n    int n;\r\n    vector<P> qs;\r\n    RollbackMo(int _n) : n(_n) {}\r\n   \
+    \ void add(int lb, int rb) {\r\n        qs.push_back({lb, rb});\r\n    }\r\n \
+    \   template <typename INIT, typename ADD, typename SNAP, typename ROLL,\r\n \
+    \             typename OUT>\r\n    void run(const INIT &init, const ADD &insert,\
+    \ const SNAP &snapshot,\r\n             const ROLL &rollback, const OUT &out)\
+    \ {\r\n        const int q = qs.size();\r\n        const int w = max(1, int(n\
+    \ / sqrt(q + 1)));\r\n        vector<int> ord(q);\r\n        iota(ALL(ord), 0);\r\
+    \n        sort(ALL(ord), [&](int i, int j) {\r\n            return P{qs[i][0]\
+    \ / w, qs[i][1]} < P{qs[j][0] / w, qs[j][1]};\r\n        });\r\n        init();\r\
+    \n        snapshot();\r\n        int last = -1, r = 0;\r\n        for (auto &i\
+    \ : ord)\r\n            if (qs[i][1] - qs[i][0] < w) {\r\n                rep(j,\
+    \ qs[i][0], qs[i][1]) insert(j);\r\n                out(i);\r\n              \
+    \  rollback();\r\n            }\r\n        for (auto &i : ord)\r\n           \
+    \ if (qs[i][1] - qs[i][0] >= w) {\r\n                int b = qs[i][0] / w;\r\n\
+    \                if (last != b) {\r\n                    init();\r\n         \
+    \           last = b;\r\n                    r = (b + 1) * w;\r\n            \
+    \    }\r\n                while (r < qs[i][1])\r\n                    insert(r++);\r\
+    \n                snapshot();\r\n                for (int j = (b + 1) * w - 1;\
+    \ j >= qs[i][0]; j--)\r\n                    insert(j);\r\n                out(i);\r\
+    \n                rollback();\r\n            }\r\n    }\r\n};\r\n\r\n/**\r\n *\
+    \ @brief Rollback Mo\r\n * @docs docs/rollbackmo.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Algorithm/rollbackmo.hpp
   requiredBy: []
-  timestamp: '2022-02-06 21:59:45+09:00'
+  timestamp: '2024-09-19 03:09:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Algorithm/rollbackmo.hpp

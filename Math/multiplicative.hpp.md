@@ -44,18 +44,18 @@ data:
     \ vector<T> lo(SQ + 1), hi(SQ + 1);\r\n    rep(i, 1, SQ + 1) {\r\n        lo[i]\
     \ = psum(i);\r\n        hi[i] = psum(N / i);\r\n    }\r\n\r\n    auto ps = sieve(SQ);\r\
     \n    reverse(ALL(ps));\r\n    Array loa(SQ + 1), hia(SQ + 1);\r\n    for (auto\
-    \ &p : ps) {\r\n        if (p * p > N)\r\n            break;\r\n        ll c =\
-    \ 1, pc = p;\r\n        while (N / p >= pc) {\r\n            T x = pe(p, c), y\
-    \ = pe(p, c + 1), z = psum(p);\r\n            rep(i, 1, SQ + 1) {\r\n        \
-    \        ll k = double(N) / (i * pc);\r\n                if (k < p)\r\n      \
-    \              break;\r\n                if (k <= SQ)\r\n                    hia.add(i,\
-    \ x * (lo[k] - z) + y);\r\n                else\r\n                    hia.add(i,\
-    \ x * (hi[i * pc] - z) + y);\r\n            }\r\n            rrep(i, 1, SQ + 1)\
-    \ {\r\n                int k = double(i) / pc;\r\n                if (k < p)\r\
-    \n                    break;\r\n                loa.add(i, x * (lo[k] - z) + y);\r\
-    \n            }\r\n            c++;\r\n            pc *= p;\r\n        }\r\n \
-    \       loa.lazy(lo);\r\n        hia.lazy(hi);\r\n    }\r\n    return hi[1] +\
-    \ 1;\r\n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs docs/multiplicative.md\r\
+    \ &p : ps) {\r\n        if (ll(p) * p > N)\r\n            break;\r\n        ll\
+    \ c = 1, pc = p;\r\n        while (N / p >= pc) {\r\n            T x = pe(p, c),\
+    \ y = pe(p, c + 1), z = psum(p);\r\n            rep(i, 1, SQ + 1) {\r\n      \
+    \          ll k = double(N) / (i * pc);\r\n                if (k < p)\r\n    \
+    \                break;\r\n                if (k <= SQ)\r\n                  \
+    \  hia.add(i, x * (lo[k] - z) + y);\r\n                else\r\n              \
+    \      hia.add(i, x * (hi[i * pc] - z) + y);\r\n            }\r\n            rrep(i,\
+    \ 1, SQ + 1) {\r\n                int k = double(i) / pc;\r\n                if\
+    \ (k < p)\r\n                    break;\r\n                loa.add(i, x * (lo[k]\
+    \ - z) + y);\r\n            }\r\n            c++;\r\n            pc *= p;\r\n\
+    \        }\r\n        loa.lazy(lo);\r\n        hia.lazy(hi);\r\n    }\r\n    return\
+    \ hi[1] + 1;\r\n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs docs/multiplicative.md\r\
     \n */\n"
   code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\ntemplate <typename T,\
     \ T (*pe)(int, int), T (*psum)(ll)>\r\nT MultiplicativeSum(ll N) {\r\n    class\
@@ -69,24 +69,25 @@ data:
     \ hi(SQ + 1);\r\n    rep(i, 1, SQ + 1) {\r\n        lo[i] = psum(i);\r\n     \
     \   hi[i] = psum(N / i);\r\n    }\r\n\r\n    auto ps = sieve(SQ);\r\n    reverse(ALL(ps));\r\
     \n    Array loa(SQ + 1), hia(SQ + 1);\r\n    for (auto &p : ps) {\r\n        if\
-    \ (p * p > N)\r\n            break;\r\n        ll c = 1, pc = p;\r\n        while\
-    \ (N / p >= pc) {\r\n            T x = pe(p, c), y = pe(p, c + 1), z = psum(p);\r\
-    \n            rep(i, 1, SQ + 1) {\r\n                ll k = double(N) / (i * pc);\r\
-    \n                if (k < p)\r\n                    break;\r\n               \
-    \ if (k <= SQ)\r\n                    hia.add(i, x * (lo[k] - z) + y);\r\n   \
-    \             else\r\n                    hia.add(i, x * (hi[i * pc] - z) + y);\r\
-    \n            }\r\n            rrep(i, 1, SQ + 1) {\r\n                int k =\
-    \ double(i) / pc;\r\n                if (k < p)\r\n                    break;\r\
-    \n                loa.add(i, x * (lo[k] - z) + y);\r\n            }\r\n      \
-    \      c++;\r\n            pc *= p;\r\n        }\r\n        loa.lazy(lo);\r\n\
-    \        hia.lazy(hi);\r\n    }\r\n    return hi[1] + 1;\r\n}\r\n\r\n/**\r\n *\
-    \ @brief Multiplicative Sum\r\n * @docs docs/multiplicative.md\r\n */"
+    \ (ll(p) * p > N)\r\n            break;\r\n        ll c = 1, pc = p;\r\n     \
+    \   while (N / p >= pc) {\r\n            T x = pe(p, c), y = pe(p, c + 1), z =\
+    \ psum(p);\r\n            rep(i, 1, SQ + 1) {\r\n                ll k = double(N)\
+    \ / (i * pc);\r\n                if (k < p)\r\n                    break;\r\n\
+    \                if (k <= SQ)\r\n                    hia.add(i, x * (lo[k] - z)\
+    \ + y);\r\n                else\r\n                    hia.add(i, x * (hi[i *\
+    \ pc] - z) + y);\r\n            }\r\n            rrep(i, 1, SQ + 1) {\r\n    \
+    \            int k = double(i) / pc;\r\n                if (k < p)\r\n       \
+    \             break;\r\n                loa.add(i, x * (lo[k] - z) + y);\r\n \
+    \           }\r\n            c++;\r\n            pc *= p;\r\n        }\r\n   \
+    \     loa.lazy(lo);\r\n        hia.lazy(hi);\r\n    }\r\n    return hi[1] + 1;\r\
+    \n}\r\n\r\n/**\r\n * @brief Multiplicative Sum\r\n * @docs docs/multiplicative.md\r\
+    \n */"
   dependsOn:
   - Math/sieve.hpp
   isVerificationFile: false
   path: Math/multiplicative.hpp
   requiredBy: []
-  timestamp: '2024-09-10 03:26:20+09:00'
+  timestamp: '2024-09-19 03:09:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/YUKI_1781.test.cpp

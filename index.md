@@ -378,6 +378,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
+    - icon: ':warning:'
+      path: Math/enumquotient.hpp
+      title: Enumerate Quotients
     - icon: ':heavy_check_mark:'
       path: Math/fastdiv.hpp
       title: Fast Division
@@ -483,6 +486,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
+    - icon: ':warning:'
+      path: Utility/timer.hpp
+      title: Timer
   verificationCategories:
   - name: Verify
     pages:
