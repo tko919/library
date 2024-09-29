@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/linkcut.hpp
     title: Link-Cut Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -254,9 +254,12 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 9 \"Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp\"\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 9 \"Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp\"\
     \nusing Fp = fp<998244353>;\nusing P = pair<Fp, Fp>;\n\nusing Key = P;\nstruct\
     \ Monoid {\n    P base, inv;\n    Monoid() : base({1, 0}), inv({1, 0}) {}\n  \
     \  void inverse() {\n        swap(base, inv);\n    }\n    void merge(Key val,\
@@ -309,7 +312,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
+  timestamp: '2024-09-30 03:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp

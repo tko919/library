@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/enumcliques.hpp
     title: Enumerate Cliques
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -225,15 +225,18 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 8 \"Verify/LC_enumerate_cliques.test.cpp\"\
-    \nusing Fp=fp<998244353>;\r\n\r\nint main(){\r\n    int n,m;\r\n    read(n,m);\r\
-    \n    vector<int> x(n);\r\n    read(x);\r\n    EnumCliques g(n);\r\n    rep(_,0,m){\r\
-    \n        int u,v;\r\n        read(u,v);\r\n        g.add_edge(u,v);\r\n    }\r\
-    \n    auto cs=g.run();\r\n    Fp res;\r\n    for(auto& clique:cs){\r\n       \
-    \ Fp add=1;\r\n        for(auto& v:clique)add*=x[v];\r\n        res+=add;\r\n\
-    \    }\r\n    print(res.v);\r\n    return 0;\r\n}\n"
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 8 \"Verify/LC_enumerate_cliques.test.cpp\"\nusing Fp=fp<998244353>;\r\
+    \n\r\nint main(){\r\n    int n,m;\r\n    read(n,m);\r\n    vector<int> x(n);\r\
+    \n    read(x);\r\n    EnumCliques g(n);\r\n    rep(_,0,m){\r\n        int u,v;\r\
+    \n        read(u,v);\r\n        g.add_edge(u,v);\r\n    }\r\n    auto cs=g.run();\r\
+    \n    Fp res;\r\n    for(auto& clique:cs){\r\n        Fp add=1;\r\n        for(auto&\
+    \ v:clique)add*=x[v];\r\n        res+=add;\r\n    }\r\n    print(res.v);\r\n \
+    \   return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\r\n\
     \r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\
     \n#include \"Graph/enumcliques.hpp\"\r\n#include \"Math/modint.hpp\"\r\nusing\
@@ -251,7 +254,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
+  timestamp: '2024-09-30 03:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_enumerate_cliques.test.cpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/swag.hpp
     title: Sliding Window Aggregation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -198,10 +198,13 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"DataStructure/swag.hpp\"\n\r\ntemplate<typename\
-    \ M,M (*f)(M,M),M (*m0)()>struct SWAG{\r\n   stack<M> fval,bval; vector<M> fsum,bsum;\r\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 2 \"DataStructure/swag.hpp\"\n\r\ntemplate<typename M,M\
+    \ (*f)(M,M),M (*m0)()>struct SWAG{\r\n   stack<M> fval,bval; vector<M> fsum,bsum;\r\
     \n   SWAG(){}\r\n   M fold(){\r\n      if(fsum.empty()){\r\n         if(bsum.empty())return\
     \ m0();\r\n         return bsum.back();\r\n      }else{\r\n         if(bsum.empty())return\
     \ fsum.back();\r\n         else return f(fsum.back(),bsum.back());\r\n      }\r\
@@ -243,8 +246,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-30 03:29:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_queue_operate_all_composite.test.cpp
 layout: document

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/lazysegtree.hpp
     title: Lazy Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -198,30 +198,33 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"DataStructure/lazysegtree.hpp\"\n\r\
-    \ntemplate <typename M, typename N, M (*f)(M, M), M (*g)(M, N), N (*h)(N, N),\r\
-    \n          M (*m1)(), N (*n1)()>\r\nclass LazySegmentTree {\r\n    int n, sz,\
-    \ height;\r\n    vector<M> data;\r\n    vector<N> lazy;\r\n    void update(int\
-    \ k) {\r\n        data[k] = f(data[k * 2], data[k * 2 + 1]);\r\n    }\r\n    void\
-    \ apply(int k, N x) {\r\n        data[k] = g(data[k], x);\r\n        if (k < sz)\r\
-    \n            lazy[k] = h(lazy[k], x);\r\n    }\r\n    void down(int k) {\r\n\
-    \        apply(k * 2, lazy[k]);\r\n        apply(k * 2 + 1, lazy[k]);\r\n    \
-    \    lazy[k] = n1();\r\n    }\r\n\r\n  public:\r\n    LazySegmentTree(int n =\
-    \ 0) : LazySegmentTree(vector<M>(n, m1())) {}\r\n    LazySegmentTree(const vector<M>\
-    \ &a) : n(SZ(a)) {\r\n        sz = 1, height = 0;\r\n        while (sz < (int)a.size())\r\
-    \n            sz <<= 1, height++;\r\n        data.assign(2 * sz, m1());\r\n  \
-    \      lazy.assign(sz, n1());\r\n        rep(i, 0, a.size()) data[sz + i] = a[i];\r\
-    \n        for (int i = sz - 1; i; i--)\r\n            update(i);\r\n    }\r\n\
-    \    M operator[](int k) const {\r\n        k += sz;\r\n        rrep(i, 1, height\
-    \ + 1) down(k >> i);\r\n        return data[k];\r\n    }\r\n    vector<M> get()\
-    \ {\r\n        rep(k, 1, sz) down(k);\r\n        return {data.begin() + sz, data.begin()\
-    \ + sz + n};\r\n    }\r\n    void set(int k, M x) {\r\n        k += sz;\r\n  \
-    \      for (int i = height; i; i--)\r\n            down(k >> i);\r\n        data[k]\
-    \ = x;\r\n        for (int i = 1; i <= height; i++)\r\n            update(k >>\
-    \ i);\r\n    }\r\n    void update(int L, int R, N x) {\r\n        if (L >= R)\r\
-    \n            return;\r\n        L += sz, R += sz;\r\n        for (int i = height;\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 2 \"DataStructure/lazysegtree.hpp\"\n\r\ntemplate <typename\
+    \ M, typename N, M (*f)(M, M), M (*g)(M, N), N (*h)(N, N),\r\n          M (*m1)(),\
+    \ N (*n1)()>\r\nclass LazySegmentTree {\r\n    int n, sz, height;\r\n    vector<M>\
+    \ data;\r\n    vector<N> lazy;\r\n    void update(int k) {\r\n        data[k]\
+    \ = f(data[k * 2], data[k * 2 + 1]);\r\n    }\r\n    void apply(int k, N x) {\r\
+    \n        data[k] = g(data[k], x);\r\n        if (k < sz)\r\n            lazy[k]\
+    \ = h(lazy[k], x);\r\n    }\r\n    void down(int k) {\r\n        apply(k * 2,\
+    \ lazy[k]);\r\n        apply(k * 2 + 1, lazy[k]);\r\n        lazy[k] = n1();\r\
+    \n    }\r\n\r\n  public:\r\n    LazySegmentTree(int n = 0) : LazySegmentTree(vector<M>(n,\
+    \ m1())) {}\r\n    LazySegmentTree(const vector<M> &a) : n(SZ(a)) {\r\n      \
+    \  sz = 1, height = 0;\r\n        while (sz < (int)a.size())\r\n            sz\
+    \ <<= 1, height++;\r\n        data.assign(2 * sz, m1());\r\n        lazy.assign(sz,\
+    \ n1());\r\n        rep(i, 0, a.size()) data[sz + i] = a[i];\r\n        for (int\
+    \ i = sz - 1; i; i--)\r\n            update(i);\r\n    }\r\n    M operator[](int\
+    \ k) const {\r\n        k += sz;\r\n        rrep(i, 1, height + 1) down(k >> i);\r\
+    \n        return data[k];\r\n    }\r\n    vector<M> get() {\r\n        rep(k,\
+    \ 1, sz) down(k);\r\n        return {data.begin() + sz, data.begin() + sz + n};\r\
+    \n    }\r\n    void set(int k, M x) {\r\n        k += sz;\r\n        for (int\
+    \ i = height; i; i--)\r\n            down(k >> i);\r\n        data[k] = x;\r\n\
+    \        for (int i = 1; i <= height; i++)\r\n            update(k >> i);\r\n\
+    \    }\r\n    void update(int L, int R, N x) {\r\n        if (L >= R)\r\n    \
+    \        return;\r\n        L += sz, R += sz;\r\n        for (int i = height;\
     \ i; i--) {\r\n            if (((L >> i) << i) != L)\r\n                down(L\
     \ >> i);\r\n            if (((R >> i) << i) != R)\r\n                down((R -\
     \ 1) >> i);\r\n        }\r\n        int lb = L, rb = R;\r\n        while (L <\
@@ -290,8 +293,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-08-09 08:04:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-30 03:29:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_range_affine_range_sum.test.cpp
 layout: document

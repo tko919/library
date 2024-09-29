@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -201,17 +201,20 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int\
-    \ L=50101010>vector<int> sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\
-    \n    for(int z=1;z<=5;z+=4){\r\n        for(int y=z;y<=sq;y+=6){\r\n        \
-    \    for(int x=1;x<=sq and (n=4*x*x+y*y)<=N;++x){\r\n                isp[n].flip();\r\
-    \n            }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\
-    \n                isp[n].flip();\r\n            }\r\n        }\r\n    }\r\n  \
-    \  for(int z=2;z<=4;z+=2){\r\n        for(int y=z;y<=sq;y+=6){\r\n           \
-    \ for (int x=1;x<=sq and (n=3*x*x+y*y)<=N;x+=2){\r\n                isp[n].flip();\r\
-    \n            }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=50101010>vector<int>\
+    \ sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int\
+    \ z=1;z<=5;z+=4){\r\n        for(int y=z;y<=sq;y+=6){\r\n            for(int x=1;x<=sq\
+    \ and (n=4*x*x+y*y)<=N;++x){\r\n                isp[n].flip();\r\n           \
+    \ }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\n       \
+    \         isp[n].flip();\r\n            }\r\n        }\r\n    }\r\n    for(int\
+    \ z=2;z<=4;z+=2){\r\n        for(int y=z;y<=sq;y+=6){\r\n            for (int\
+    \ x=1;x<=sq and (n=3*x*x+y*y)<=N;x+=2){\r\n                isp[n].flip();\r\n\
+    \            }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\
     \n                isp[n].flip();\r\n            }\r\n        }\r\n    }\r\n  \
     \  for(int y=3;y<=sq;y+=6){\r\n        for(int z=1;z<=2;++z){\r\n            for(int\
     \ x=z;x<=sq and (n=4*x*x+y*y)<=N;x+=3){\r\n                isp[n].flip();\r\n\
@@ -257,7 +260,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
+  timestamp: '2024-09-30 03:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_gcd_convolution.test.cpp

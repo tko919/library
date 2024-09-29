@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -198,22 +198,25 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"Convolution/subset.hpp\"\n\r\ntemplate\
-    \ <typename T, int LG = 20> struct SubsetConvolution {\r\n    using POL = array<T,\
-    \ LG + 1>;\r\n    vector<int> bpc;\r\n    SubsetConvolution() : bpc(1 << LG) {\r\
-    \n        rep(i, 1, 1 << LG) bpc[i] = bpc[i - (i & -i)] + 1;\r\n    }\r\n    void\
-    \ zeta(vector<POL> &a) {\r\n        int n = topbit(SZ(a));\r\n        rep(d, 0,\
-    \ n) {\r\n            rep(i, 0, 1 << n) if (i >> d & 1) {\r\n                const\
-    \ int pc = bpc[i];\r\n                rep(j, 0, pc) a[i][j] += a[i ^ (1 << d)][j];\r\
-    \n            }\r\n        }\r\n    }\r\n    void mobius(vector<POL> &a) {\r\n\
-    \        int n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n            rep(i,\
-    \ 0, 1 << n) if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\n \
-    \               rep(j, pc, n + 1) a[i][j] -= a[i ^ (1 << d)][j];\r\n         \
-    \   }\r\n        }\r\n    }\r\n    vector<T> mult(vector<T> &a, vector<T> &b)\
-    \ {\r\n        assert(a.size() == b.size());\r\n        int n = SZ(a), m = topbit(n);\r\
-    \n        vector<POL> A(n), B(n);\r\n        rep(i, 0, n) {\r\n            A[i][bpc[i]]\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 2 \"Convolution/subset.hpp\"\n\r\ntemplate <typename T,\
+    \ int LG = 20> struct SubsetConvolution {\r\n    using POL = array<T, LG + 1>;\r\
+    \n    vector<int> bpc;\r\n    SubsetConvolution() : bpc(1 << LG) {\r\n       \
+    \ rep(i, 1, 1 << LG) bpc[i] = bpc[i - (i & -i)] + 1;\r\n    }\r\n    void zeta(vector<POL>\
+    \ &a) {\r\n        int n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n      \
+    \      rep(i, 0, 1 << n) if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\
+    \n                rep(j, 0, pc) a[i][j] += a[i ^ (1 << d)][j];\r\n           \
+    \ }\r\n        }\r\n    }\r\n    void mobius(vector<POL> &a) {\r\n        int\
+    \ n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n            rep(i, 0, 1 << n)\
+    \ if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\n            \
+    \    rep(j, pc, n + 1) a[i][j] -= a[i ^ (1 << d)][j];\r\n            }\r\n   \
+    \     }\r\n    }\r\n    vector<T> mult(vector<T> &a, vector<T> &b) {\r\n     \
+    \   assert(a.size() == b.size());\r\n        int n = SZ(a), m = topbit(n);\r\n\
+    \        vector<POL> A(n), B(n);\r\n        rep(i, 0, n) {\r\n            A[i][bpc[i]]\
     \ = a[i];\r\n            B[i][bpc[i]] = b[i];\r\n        }\r\n        zeta(A);\r\
     \n        zeta(B);\r\n        rep(i, 0, n) {\r\n            POL c = {};\r\n  \
     \          rep(j, 0, m + 1) rep(k, 0, m + 1 - j) c[j + k] += A[i][j] * B[i][k];\r\
@@ -281,8 +284,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-30 03:29:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_subset_convolution.test.cpp
 layout: document

@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/dequeswag.hpp
     title: Sliding Window Aggregation for deque
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -199,14 +199,17 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"DataStructure/dequeswag.hpp\"\n\r\n\
-    template<typename M,M (*f)(M,M),M (*m0)()>struct SWAGdeque{\r\n    stack<M> fval,bval;\r\
-    \n    vector<M> fsum,bsum;\r\n    SWAGdeque():fsum({m0()}),bsum({m0()}){}\r\n\
-    \    M fold(){\r\n        return f(fsum.back(),bsum.back());\r\n    }\r\n    void\
-    \ push_front(M v){\r\n        fval.push(v);\r\n        fsum.push_back(f(v,fsum.back()));\r\
-    \n    }\r\n    void push_back(M v){\r\n        bval.push(v);\r\n        bsum.push_back(f(bsum.back(),v));\r\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 2 \"DataStructure/dequeswag.hpp\"\n\r\ntemplate<typename\
+    \ M,M (*f)(M,M),M (*m0)()>struct SWAGdeque{\r\n    stack<M> fval,bval;\r\n   \
+    \ vector<M> fsum,bsum;\r\n    SWAGdeque():fsum({m0()}),bsum({m0()}){}\r\n    M\
+    \ fold(){\r\n        return f(fsum.back(),bsum.back());\r\n    }\r\n    void push_front(M\
+    \ v){\r\n        fval.push(v);\r\n        fsum.push_back(f(v,fsum.back()));\r\n\
+    \    }\r\n    void push_back(M v){\r\n        bval.push(v);\r\n        bsum.push_back(f(bsum.back(),v));\r\
     \n    }\r\n    void pop_front(){\r\n        if(fval.empty()){\r\n            int\
     \ sz=bval.size();\r\n            stack<M> buf;\r\n            rep(_,0,sz/2){\r\
     \n                buf.push(bval.top());\r\n                bval.pop();\r\n   \
@@ -256,7 +259,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_deque_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
+  timestamp: '2024-09-30 03:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_deque_operate_all_composite.test.cpp

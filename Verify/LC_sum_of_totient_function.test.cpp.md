@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/dirichlet.hpp
     title: Dirichlet series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -199,10 +199,13 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 7 \"Verify/LC_sum_of_totient_function.test.cpp\"\
-    \nusing Fp = fp<998244353>;\r\n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 7 \"Verify/LC_sum_of_totient_function.test.cpp\"\nusing\
+    \ Fp = fp<998244353>;\r\n#line 2 \"Math/dirichlet.hpp\"\n\r\ntemplate<typename\
     \ T,bool multi,unsigned L=1010101010>struct Dirichlet{\r\n    ll N,P,Q;\r\n  \
     \  vector<T> a,rui,A;\r\n    vector<ll> ps;\r\n    bool done=0;\r\n    Dirichlet(ll\
     \ n):N(n),P(min<ll>(L,cbrt(n)*cbrt(n))),Q((n+P-1)/P),\r\n        a(P+1),rui(P+1),A(Q+1),done(0){}\r\
@@ -273,8 +276,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_totient_function.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-30 03:29:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_totient_function.test.cpp
 layout: document

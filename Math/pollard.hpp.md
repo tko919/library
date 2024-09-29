@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
@@ -125,16 +125,16 @@ data:
   isVerificationFile: false
   path: Math/pollard.hpp
   requiredBy:
-  - Convolution/multivariatecyclic.hpp
   - Math/primitive.hpp
   - Math/binomquery.hpp
+  - Convolution/multivariatecyclic.hpp
   timestamp: '2024-04-26 03:18:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_factorize.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document
 redirect_from:

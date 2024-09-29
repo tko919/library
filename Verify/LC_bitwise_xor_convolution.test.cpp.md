@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/bitwise.hpp
     title: Bitwise Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -198,11 +198,14 @@ data:
     \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
     }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
     \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nHr(int\
-    \ n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n\r\
-    \n/**\r\n * @brief Modint\r\n */\n#line 2 \"Convolution/bitwise.hpp\"\n\r\nnamespace\
-    \ Bitwise{\r\n    template<typename T>void zeta(vector<T>& a){\r\n        int\
-    \ n=__lg(a.size());\r\n        rep(k,0,n)rep(mask,0,1<<n){\r\n            if(mask>>k&1)a[mask]+=a[mask^(1<<k)];\r\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
+    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
+    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
+    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
+    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Modint\r\n */\n#line 2 \"Convolution/bitwise.hpp\"\n\r\nnamespace Bitwise{\r\
+    \n    template<typename T>void zeta(vector<T>& a){\r\n        int n=__lg(a.size());\r\
+    \n        rep(k,0,n)rep(mask,0,1<<n){\r\n            if(mask>>k&1)a[mask]+=a[mask^(1<<k)];\r\
     \n        }\r\n    }\r\n    template<typename T>void mobius(vector<T>& a){\r\n\
     \        int n=__lg(a.size());\r\n        rep(k,0,n)rep(mask,0,1<<n){\r\n    \
     \        if(mask>>k&1)a[mask]-=a[mask^(1<<k)];\r\n        }\r\n    }\r\n    template<typename\
@@ -234,7 +237,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
+  timestamp: '2024-09-30 03:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bitwise_xor_convolution.test.cpp
