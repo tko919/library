@@ -116,8 +116,15 @@ template <typename T> T nCr(int n, int r, bool inv = 0) {
         return 0;
     return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);
 }
+// sum = n, r tuples
 template <typename T> T nHr(int n, int r, bool inv = 0) {
     return nCr<T>(n + r - 1, r, inv);
+}
+// sum = n, a nonzero tuples and b tuples
+template <typename T> T choose(int n, int a, int b) {
+    if (n == 0)
+        return !a;
+    return nCr<T>(n + b - 1, a + b - 1);
 }
 
 /**

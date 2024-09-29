@@ -7,7 +7,9 @@ struct RollingHash {
     const ull base;
     vector<ull> hashed, power;
 
-    static constexpr ull mask(ll a) { return (1ULL << a) - 1; }
+    static constexpr ull mask(ll a) {
+        return (1ULL << a) - 1;
+    }
 
     inline ull mul(ull a, ull b) const {
         __uint128_t ans = __uint128_t(a) * b;
@@ -17,10 +19,12 @@ struct RollingHash {
         return ans;
     }
 
-    static inline ull genbase() { return Random::get(ull(0x1fffffffffffffff)); }
+    static inline ull genbase() {
+        return Random::get(ull(0x1fffffffffffffff));
+    }
     RollingHash() = default;
 
-    RollingHash(const string &s, ull base) : base(base) {
+    template <typename STR> RollingHash(const STR &s, ull base) : base(base) {
         ll n = s.size();
         hashed.assign(n + 1, 0);
         power.assign(n + 1, 0);
@@ -47,7 +51,7 @@ struct RollingHash {
         return ret;
     }
 
-    void connect(const string &s) {
+    template <typename STR> void connect(const STR &s) {
         ll n = hashed.size() - 1, m = s.size();
         hashed.resize(n + m + 1);
         power.resize(n + m + 1);
