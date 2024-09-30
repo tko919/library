@@ -1,32 +1,40 @@
 #pragma once
 
-vector<int> hungarian(int n, const vector<vector<ll>> &a) {
-    int p, q;
-    vector<ll> fx(n, inf), fy(n, 0);
-    vector<int> x(n, -1), y(n, -1);
-    for (int i = 0; i < n;) {
-        vector<ll> t(n, -1), s(n + 1, i);
-        for (p = q = 0; p <= q && x[i] < 0; p++) {
-            for (int k = s[p], j = 0; j < n && x[i] < 0; j++) {
-                if (fx[k] + fy[j] == a[k][j] && t[j] < 0) {
-                    s[++q] = y[j], t[j] = k;
-                    if (s[q] < 0)
-                        for (p = j; p >= 0; j = p) {
-                            y[j] = k = t[j], p = x[k], x[k] = j;
-                        }
+template <typename T, T MX> vector<int> Hungarian(int n, vector<vector<T>> &A) {
+    vector<int> u(n + 1), v(n + 1), q(n + 1, n), way(n + 1, n);
+    for (int i = 0; i < n; ++i) {
+        q[n] = i;
+        int j0 = n;
+        vector<T> minv(n + 1, MX);
+        vector<bool> used(n + 1, false);
+        do {
+            used[j0] = true;
+            int i0 = q[j0], j1 = n;
+            T delta = MX;
+            for (int j = 0; j < n; ++j)
+                if (!used[j]) {
+                    T cur = A[i0][j] - u[i0] - v[j];
+                    if (cur < minv[j])
+                        minv[j] = cur, way[j] = j0;
+                    if (minv[j] < delta)
+                        delta = minv[j], j1 = j;
                 }
-            }
-        }
-        if (x[i] < 0) {
-            ll d = INF;
-            rep(k, 0, q + 1) rep(j, 0, n) if (t[j] < 0)
-                chmin(d, fx[s[k]] + fy[j] - a[s[k]][j]);
-            rep(j, 0, n) fy[j] += (t[j] < 0 ? 0 : d);
-            rep(k, 0, q + 1) fx[s[k]] -= d;
-        } else
-            i++;
+            for (int j = 0; j <= n; ++j)
+                if (used[j])
+                    u[q[j]] += delta, v[j] -= delta;
+                else
+                    minv[j] -= delta;
+            j0 = j1;
+        } while (q[j0] != n);
+        do {
+            int j1 = way[j0];
+            q[j0] = q[j1];
+            j0 = j1;
+        } while (j0 != n);
     }
-    return x;
+    vector<int> p(n);
+    rep(i, 0, n) p[q[i]] = i;
+    return p;
 }
 
 /**
