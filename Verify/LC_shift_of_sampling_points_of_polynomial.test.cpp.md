@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
@@ -475,7 +475,7 @@ data:
   path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
   timestamp: '2024-09-30 03:29:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 layout: document

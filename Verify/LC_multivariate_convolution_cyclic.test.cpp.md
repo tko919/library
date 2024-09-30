@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
   - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':heavy_check_mark:'
@@ -34,13 +34,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

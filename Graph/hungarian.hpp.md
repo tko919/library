@@ -9,39 +9,44 @@ data:
   attributes:
     document_title: Hungarian algorithm
     links: []
-  bundledCode: "#line 2 \"Graph/hungarian.hpp\"\n\nvector<int> hungarian(int n, const\
-    \ vector<vector<ll>> &a) {\n    int p, q;\n    vector<ll> fx(n, inf), fy(n, 0);\n\
-    \    vector<int> x(n, -1), y(n, -1);\n    for (int i = 0; i < n;) {\n        vector<ll>\
-    \ t(n, -1), s(n + 1, i);\n        for (p = q = 0; p <= q && x[i] < 0; p++) {\n\
-    \            for (int k = s[p], j = 0; j < n && x[i] < 0; j++) {\n           \
-    \     if (fx[k] + fy[j] == a[k][j] && t[j] < 0) {\n                    s[++q]\
-    \ = y[j], t[j] = k;\n                    if (s[q] < 0)\n                     \
-    \   for (p = j; p >= 0; j = p) {\n                            y[j] = k = t[j],\
-    \ p = x[k], x[k] = j;\n                        }\n                }\n        \
-    \    }\n        }\n        if (x[i] < 0) {\n            ll d = INF;\n        \
-    \    rep(k, 0, q + 1) rep(j, 0, n) if (t[j] < 0)\n                chmin(d, fx[s[k]]\
-    \ + fy[j] - a[s[k]][j]);\n            rep(j, 0, n) fy[j] += (t[j] < 0 ? 0 : d);\n\
-    \            rep(k, 0, q + 1) fx[s[k]] -= d;\n        } else\n            i++;\n\
-    \    }\n    return x;\n}\n\n/**\n * @brief Hungarian algorithm\n */\n"
-  code: "#pragma once\n\nvector<int> hungarian(int n, const vector<vector<ll>> &a)\
-    \ {\n    int p, q;\n    vector<ll> fx(n, inf), fy(n, 0);\n    vector<int> x(n,\
-    \ -1), y(n, -1);\n    for (int i = 0; i < n;) {\n        vector<ll> t(n, -1),\
-    \ s(n + 1, i);\n        for (p = q = 0; p <= q && x[i] < 0; p++) {\n         \
-    \   for (int k = s[p], j = 0; j < n && x[i] < 0; j++) {\n                if (fx[k]\
-    \ + fy[j] == a[k][j] && t[j] < 0) {\n                    s[++q] = y[j], t[j] =\
-    \ k;\n                    if (s[q] < 0)\n                        for (p = j; p\
-    \ >= 0; j = p) {\n                            y[j] = k = t[j], p = x[k], x[k]\
-    \ = j;\n                        }\n                }\n            }\n        }\n\
-    \        if (x[i] < 0) {\n            ll d = INF;\n            rep(k, 0, q + 1)\
-    \ rep(j, 0, n) if (t[j] < 0)\n                chmin(d, fx[s[k]] + fy[j] - a[s[k]][j]);\n\
-    \            rep(j, 0, n) fy[j] += (t[j] < 0 ? 0 : d);\n            rep(k, 0,\
-    \ q + 1) fx[s[k]] -= d;\n        } else\n            i++;\n    }\n    return x;\n\
-    }\n\n/**\n * @brief Hungarian algorithm\n */"
+  bundledCode: "#line 2 \"Graph/hungarian.hpp\"\n\ntemplate <typename T, T MX> vector<int>\
+    \ Hungarian(int n, vector<vector<T>> &A) {\n    vector<int> u(n + 1), v(n + 1),\
+    \ q(n + 1, n), way(n + 1, n);\n    for (int i = 0; i < n; ++i) {\n        q[n]\
+    \ = i;\n        int j0 = n;\n        vector<T> minv(n + 1, MX);\n        vector<bool>\
+    \ used(n + 1, false);\n        do {\n            used[j0] = true;\n          \
+    \  int i0 = q[j0], j1 = n;\n            T delta = MX;\n            for (int j\
+    \ = 0; j < n; ++j)\n                if (!used[j]) {\n                    T cur\
+    \ = A[i0][j] - u[i0] - v[j];\n                    if (cur < minv[j])\n       \
+    \                 minv[j] = cur, way[j] = j0;\n                    if (minv[j]\
+    \ < delta)\n                        delta = minv[j], j1 = j;\n               \
+    \ }\n            for (int j = 0; j <= n; ++j)\n                if (used[j])\n\
+    \                    u[q[j]] += delta, v[j] -= delta;\n                else\n\
+    \                    minv[j] -= delta;\n            j0 = j1;\n        } while\
+    \ (q[j0] != n);\n        do {\n            int j1 = way[j0];\n            q[j0]\
+    \ = q[j1];\n            j0 = j1;\n        } while (j0 != n);\n    }\n    vector<int>\
+    \ p(n);\n    rep(i, 0, n) p[q[i]] = i;\n    return p;\n}\n\n/**\n * @brief Hungarian\
+    \ algorithm\n */\n"
+  code: "#pragma once\n\ntemplate <typename T, T MX> vector<int> Hungarian(int n,\
+    \ vector<vector<T>> &A) {\n    vector<int> u(n + 1), v(n + 1), q(n + 1, n), way(n\
+    \ + 1, n);\n    for (int i = 0; i < n; ++i) {\n        q[n] = i;\n        int\
+    \ j0 = n;\n        vector<T> minv(n + 1, MX);\n        vector<bool> used(n + 1,\
+    \ false);\n        do {\n            used[j0] = true;\n            int i0 = q[j0],\
+    \ j1 = n;\n            T delta = MX;\n            for (int j = 0; j < n; ++j)\n\
+    \                if (!used[j]) {\n                    T cur = A[i0][j] - u[i0]\
+    \ - v[j];\n                    if (cur < minv[j])\n                        minv[j]\
+    \ = cur, way[j] = j0;\n                    if (minv[j] < delta)\n            \
+    \            delta = minv[j], j1 = j;\n                }\n            for (int\
+    \ j = 0; j <= n; ++j)\n                if (used[j])\n                    u[q[j]]\
+    \ += delta, v[j] -= delta;\n                else\n                    minv[j]\
+    \ -= delta;\n            j0 = j1;\n        } while (q[j0] != n);\n        do {\n\
+    \            int j1 = way[j0];\n            q[j0] = q[j1];\n            j0 = j1;\n\
+    \        } while (j0 != n);\n    }\n    vector<int> p(n);\n    rep(i, 0, n) p[q[i]]\
+    \ = i;\n    return p;\n}\n\n/**\n * @brief Hungarian algorithm\n */"
   dependsOn: []
   isVerificationFile: false
   path: Graph/hungarian.hpp
   requiredBy: []
-  timestamp: '2024-09-30 03:29:42+09:00'
+  timestamp: '2024-10-01 02:59:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/hungarian.hpp

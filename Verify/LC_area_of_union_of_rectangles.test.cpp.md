@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/lazysegtree.hpp
     title: Lazy Segment Tree
   - icon: ':heavy_check_mark:'
     path: DataStructure/unionrect.hpp
     title: Area of Union of Rectangles
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []

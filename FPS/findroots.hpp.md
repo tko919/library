@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: FPS/halfgcd.hpp
     title: Half GCD
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/prodofpolys.hpp
     title: Product of Polynomials
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

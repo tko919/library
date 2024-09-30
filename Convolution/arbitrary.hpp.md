@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
   _extendedRequiredBy:
@@ -18,18 +18,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Arbitrary Mod Convolution
     links: []
@@ -243,7 +243,7 @@ data:
   requiredBy:
   - Math/bigint.hpp
   timestamp: '2024-09-30 03:29:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_convolution_mod_1000000007.test.cpp
   - Verify/YUKI_310.test.cpp

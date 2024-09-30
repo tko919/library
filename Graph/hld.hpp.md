@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Heavy Light Decomposition
     links: []
@@ -75,7 +75,7 @@ data:
   requiredBy:
   - Graph/contour.hpp
   timestamp: '2022-12-26 23:10:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   - Verify/LC_lca.test.cpp
