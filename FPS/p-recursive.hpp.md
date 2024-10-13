@@ -86,83 +86,101 @@ data:
     \n   Matrix<T> d(w,h+w);\r\n   rep(i,0,h)rep(j,0,w)d[j][i]=a[i][j];\r\n   rep(i,0,w)d[i][h+i]=1;\r\
     \n   int r=d.gauss(h).size();\r\n   Matrix<T> basis(w-r,w);\r\n   rep(i,r,w)basis[i-r]={d[i].begin()+h,d[i].end()};\r\
     \n   return {res,basis};\r\n}\r\n\r\n/**\r\n * @brief Linear Equation\r\n */\n\
-    #line 5 \"FPS/p-recursive.hpp\"\n\ntemplate<typename T>Matrix<T> PrefixProdOfPolyMatrix(Matrix<Poly<T>>&\
-    \ m,ll K){\n    using Mat=Matrix<T>;\n\n    int n=m.val.size();\n    int deg=1;\n\
-    \    rep(i,0,n)rep(j,0,n)chmax(deg,(int)m[i][j].size()-1);\n    ll SQ=1;\n   \
-    \ while(SQ*SQ*deg<K)SQ<<=1;\n    T iSQ=T(SQ).inv();\n\n    vector<Mat> G(deg+1);\n\
-    \    rep(k,0,deg+1){\n        G[k]=Mat(n,n);\n        rep(i,0,n)rep(j,0,n)G[k][i][j]=m[i][j].eval(SQ*k);\n\
-    \    }\n\n    auto process=[&](vector<Mat>& base,T x)->vector<Mat>{\n        int\
-    \ D=base.size();\n        vector ret(D,Mat(n,n));\n        rep(i,0,n)rep(j,0,n){\n\
-    \            vector<T> val(D);\n            rep(k,0,D)val[k]=base[k][i][j];\n\
-    \            auto add=SamplePointsShift<T>(val,x);\n            rep(k,0,D)ret[k][i][j]=add[k];\n\
-    \        }\n        return ret;\n    };\n    \n    for(ll w=1;w<SQ;w<<=1){\n \
-    \       auto G1=process(G,iSQ*w);\n        auto G2=process(G,w*deg+1);\n     \
-    \   auto G3=process(G,iSQ*w+w*deg+1);\n        rep(i,0,w*deg+1)G1[i]*=G[i],G3[i]*=G2[i];\n\
-    \        G1.insert(G1.end(),ALL(G3));\n        G1.pop_back();\n        swap(G,G1);\n\
-    \    }\n    \n    Mat ret(n,n);\n    rep(i,0,n)ret[i][i]=1;\n    ll k=0;\n   \
-    \ while(k*SQ+SQ<=K)ret=G[k++]*ret;\n    k*=SQ;\n    while(k<K){\n        Mat mul(n,n);\n\
-    \        rep(i,0,n)rep(j,0,n)mul[i][j]=m[i][j].eval(k);\n        ret=mul*ret;\n\
-    \        k++;\n    }\n    return ret;\n}\n\n// a_{n+i}*f_n(i)+...+a_i*f_0(i)=0\n\
-    // {f_r}:dec order!!!\ntemplate<typename T>vector<Poly<T>> FindPRecursive(vector<T>&\
-    \ a,int d){\n    int n=a.size();\n    int k=(n+2)/(d+2)-1;\n    if(k<=0)return\
-    \ {};\n    int m=(d+1)*(k+1);\n    Matrix<T> mat(m-1,m);\n    rep(i,0,m-1)rep(j,0,k+1){\n\
-    \        T base=1;\n        rep(deg,0,d+1){\n            mat[i][(d+1)*j+deg]=a[i+j]*base;\n\
-    \            base*=(i+j);\n        }\n    }\n    auto basis=LinearEquation(mat,vector<T>(m-1)).second;\n\
-    \    if(basis.val.empty())return {};\n    auto c=basis[0];\n    vector<Poly<T>>\
-    \ ret;\n    for(int i=0;i*(d+1)<(int)c.size();i++){\n        Poly<T> add,base({T(i),T(1)});\n\
-    \        for(int j=d;j>=0;j--){\n            add*=base;\n            if(c[i*(d+1)+j]!=0)add+=c[i*(d+1)+j];\n\
-    \        }\n        ret.push_back(add);\n    }\n    while(ret.back().empty())ret.pop_back();\n\
-    \    reverse(ALL(ret));\n    return ret;\n}\n\ntemplate<typename T>T KthtermOfPRecursive(vector<T>&\
-    \ a,vector<Poly<T>>& fs,ll k){\n    int n=fs.size()-1;\n    assert(int(a.size())>=n);\n\
-    \    if(k<int(a.size()))return a[k];\n\n    Matrix<Poly<T>> m(n),den(1);\n   \
-    \ Matrix<T> base(n);\n    rep(i,0,n)m[0][i]=-fs[i+1];\n    rep(i,1,n)m[i][i-1]=fs[0];\n\
-    \    den[0][0]=fs[0];\n    rep(i,0,n)base[i][0]=a[n-1-i];\n    T ret=(PrefixProdOfPolyMatrix(m,k-n+1)*base)[0][0];\n\
-    \    ret/=PrefixProdOfPolyMatrix(den,k-n+1)[0][0];\n    return ret;\n}\n\ntemplate<typename\
-    \ T>T KthtermEsper(vector<T>& a,ll k){\n    if(k<(int)a.size())return a[k];\n\
-    \    int n=a.size()-1;\n    vector<Fp> b=a;\n    b.pop_back();\n\n    for(int\
-    \ d=0;;d++){\n        if((n+2)/(d+2)<=1)break;\n        auto fs=FindPRecursive(b,d);\n\
-    \        if(KthtermOfPRecursive(b,fs,n)==a.back()){\n            return KthtermOfPRecursive(a,fs,k);\n\
-    \        }\n    }\n    cerr<<\"esper Failed\"<<'\\n';\n    assert(0);\n}\n\n/**\n\
-    \ * @brief P-recursive\n*/\n"
+    #line 5 \"FPS/p-recursive.hpp\"\n\ntemplate <typename T>\nMatrix<T> PrefixProdOfPolyMatrix(Matrix<Poly<T>>\
+    \ &m, ll K) {\n    using Mat = Matrix<T>;\n\n    int n = m.val.size();\n    int\
+    \ deg = 1;\n    rep(i, 0, n) rep(j, 0, n) chmax(deg, (int)m[i][j].size() - 1);\n\
+    \    ll SQ = 1;\n    while (SQ * SQ * deg < K)\n        SQ <<= 1;\n    T iSQ =\
+    \ T(SQ).inv();\n\n    vector<Mat> G(deg + 1);\n    rep(k, 0, deg + 1) {\n    \
+    \    G[k] = Mat(n, n);\n        rep(i, 0, n) rep(j, 0, n) G[k][i][j] = m[i][j].eval(SQ\
+    \ * k);\n    }\n\n    auto process = [&](vector<Mat> &base, T x) -> vector<Mat>\
+    \ {\n        int D = base.size();\n        vector ret(D, Mat(n, n));\n       \
+    \ rep(i, 0, n) rep(j, 0, n) {\n            vector<T> val(D);\n            rep(k,\
+    \ 0, D) val[k] = base[k][i][j];\n            auto add = SamplePointsShift<T>(val,\
+    \ x);\n            rep(k, 0, D) ret[k][i][j] = add[k];\n        }\n        return\
+    \ ret;\n    };\n\n    for (ll w = 1; w < SQ; w <<= 1) {\n        auto G1 = process(G,\
+    \ iSQ * w);\n        auto G2 = process(G, w * deg + 1);\n        auto G3 = process(G,\
+    \ iSQ * w + w * deg + 1);\n        rep(i, 0, w * deg + 1) G1[i] *= G[i], G3[i]\
+    \ *= G2[i];\n        G1.insert(G1.end(), ALL(G3));\n        G1.pop_back();\n \
+    \       swap(G, G1);\n    }\n\n    Mat ret(n, n);\n    rep(i, 0, n) ret[i][i]\
+    \ = 1;\n    ll k = 0;\n    while (k * SQ + SQ <= K)\n        ret = G[k++] * ret;\n\
+    \    k *= SQ;\n    while (k < K) {\n        Mat mul(n, n);\n        rep(i, 0,\
+    \ n) rep(j, 0, n) mul[i][j] = m[i][j].eval(k);\n        ret = mul * ret;\n   \
+    \     k++;\n    }\n    return ret;\n}\n\n// a_{n+i}*f_n(i)+...+a_i*f_0(i)=0\n\
+    // {f_r}:dec order!!!\ntemplate <typename T> vector<Poly<T>> FindPRecursive(vector<T>\
+    \ &a, int d) {\n    int n = a.size();\n    int k = (n + 2) / (d + 2) - 1;\n  \
+    \  if (k <= 0)\n        return {};\n    int m = (d + 1) * (k + 1);\n    Matrix<T>\
+    \ mat(m - 1, m);\n    rep(i, 0, m - 1) rep(j, 0, k + 1) {\n        T base = 1;\n\
+    \        rep(deg, 0, d + 1) {\n            mat[i][(d + 1) * j + deg] = a[i + j]\
+    \ * base;\n            base *= (i + j);\n        }\n    }\n    auto basis = LinearEquation(mat,\
+    \ vector<T>(m - 1)).second;\n    if (basis.val.empty())\n        return {};\n\
+    \    auto c = basis[0];\n    vector<Poly<T>> ret;\n    for (int i = 0; i * (d\
+    \ + 1) < (int)c.size(); i++) {\n        Poly<T> add, base({T(i), T(1)});\n   \
+    \     for (int j = d; j >= 0; j--) {\n            add *= base;\n            if\
+    \ (c[i * (d + 1) + j] != 0)\n                add += c[i * (d + 1) + j];\n    \
+    \    }\n        ret.push_back(add);\n    }\n    while (ret.back().empty())\n \
+    \       ret.pop_back();\n    reverse(ALL(ret));\n    return ret;\n}\n\ntemplate\
+    \ <typename T>\nT KthtermOfPRecursive(vector<T> &a, vector<Poly<T>> &fs, ll k)\
+    \ {\n    int n = fs.size() - 1;\n    assert(int(a.size()) >= n);\n    if (k <\
+    \ int(a.size()))\n        return a[k];\n\n    Matrix<Poly<T>> m(n), den(1);\n\
+    \    Matrix<T> base(n);\n    rep(i, 0, n) m[0][i] = -fs[i + 1];\n    rep(i, 1,\
+    \ n) m[i][i - 1] = fs[0];\n    den[0][0] = fs[0];\n    rep(i, 0, n) base[i][0]\
+    \ = a[n - 1 - i];\n    T ret = (PrefixProdOfPolyMatrix(m, k - n + 1) * base)[0][0];\n\
+    \    ret /= PrefixProdOfPolyMatrix(den, k - n + 1)[0][0];\n    return ret;\n}\n\
+    \ntemplate <typename T> T KthtermEsper(vector<T> &a, ll k) {\n    if (k < (int)a.size())\n\
+    \        return a[k];\n    int n = a.size() - 1;\n    vector<Fp> b = a;\n    b.pop_back();\n\
+    \n    for (int d = 0;; d++) {\n        if ((n + 2) / (d + 2) <= 1)\n         \
+    \   break;\n        auto fs = FindPRecursive(b, d);\n        if (KthtermOfPRecursive(b,\
+    \ fs, n) == a.back()) {\n            show(fs);\n            return KthtermOfPRecursive(a,\
+    \ fs, k);\n        }\n    }\n    cerr << \"esper Failed\" << '\\n';\n    assert(0);\n\
+    }\n\n/**\n * @brief P-recursive\n */\n"
   code: "#pragma once\n#include \"FPS/samplepointshift.hpp\"\n#include \"Math/matrix.hpp\"\
-    \n#include \"Math/linearequation.hpp\"\n\ntemplate<typename T>Matrix<T> PrefixProdOfPolyMatrix(Matrix<Poly<T>>&\
-    \ m,ll K){\n    using Mat=Matrix<T>;\n\n    int n=m.val.size();\n    int deg=1;\n\
-    \    rep(i,0,n)rep(j,0,n)chmax(deg,(int)m[i][j].size()-1);\n    ll SQ=1;\n   \
-    \ while(SQ*SQ*deg<K)SQ<<=1;\n    T iSQ=T(SQ).inv();\n\n    vector<Mat> G(deg+1);\n\
-    \    rep(k,0,deg+1){\n        G[k]=Mat(n,n);\n        rep(i,0,n)rep(j,0,n)G[k][i][j]=m[i][j].eval(SQ*k);\n\
-    \    }\n\n    auto process=[&](vector<Mat>& base,T x)->vector<Mat>{\n        int\
-    \ D=base.size();\n        vector ret(D,Mat(n,n));\n        rep(i,0,n)rep(j,0,n){\n\
-    \            vector<T> val(D);\n            rep(k,0,D)val[k]=base[k][i][j];\n\
-    \            auto add=SamplePointsShift<T>(val,x);\n            rep(k,0,D)ret[k][i][j]=add[k];\n\
-    \        }\n        return ret;\n    };\n    \n    for(ll w=1;w<SQ;w<<=1){\n \
-    \       auto G1=process(G,iSQ*w);\n        auto G2=process(G,w*deg+1);\n     \
-    \   auto G3=process(G,iSQ*w+w*deg+1);\n        rep(i,0,w*deg+1)G1[i]*=G[i],G3[i]*=G2[i];\n\
-    \        G1.insert(G1.end(),ALL(G3));\n        G1.pop_back();\n        swap(G,G1);\n\
-    \    }\n    \n    Mat ret(n,n);\n    rep(i,0,n)ret[i][i]=1;\n    ll k=0;\n   \
-    \ while(k*SQ+SQ<=K)ret=G[k++]*ret;\n    k*=SQ;\n    while(k<K){\n        Mat mul(n,n);\n\
-    \        rep(i,0,n)rep(j,0,n)mul[i][j]=m[i][j].eval(k);\n        ret=mul*ret;\n\
-    \        k++;\n    }\n    return ret;\n}\n\n// a_{n+i}*f_n(i)+...+a_i*f_0(i)=0\n\
-    // {f_r}:dec order!!!\ntemplate<typename T>vector<Poly<T>> FindPRecursive(vector<T>&\
-    \ a,int d){\n    int n=a.size();\n    int k=(n+2)/(d+2)-1;\n    if(k<=0)return\
-    \ {};\n    int m=(d+1)*(k+1);\n    Matrix<T> mat(m-1,m);\n    rep(i,0,m-1)rep(j,0,k+1){\n\
-    \        T base=1;\n        rep(deg,0,d+1){\n            mat[i][(d+1)*j+deg]=a[i+j]*base;\n\
-    \            base*=(i+j);\n        }\n    }\n    auto basis=LinearEquation(mat,vector<T>(m-1)).second;\n\
-    \    if(basis.val.empty())return {};\n    auto c=basis[0];\n    vector<Poly<T>>\
-    \ ret;\n    for(int i=0;i*(d+1)<(int)c.size();i++){\n        Poly<T> add,base({T(i),T(1)});\n\
-    \        for(int j=d;j>=0;j--){\n            add*=base;\n            if(c[i*(d+1)+j]!=0)add+=c[i*(d+1)+j];\n\
-    \        }\n        ret.push_back(add);\n    }\n    while(ret.back().empty())ret.pop_back();\n\
-    \    reverse(ALL(ret));\n    return ret;\n}\n\ntemplate<typename T>T KthtermOfPRecursive(vector<T>&\
-    \ a,vector<Poly<T>>& fs,ll k){\n    int n=fs.size()-1;\n    assert(int(a.size())>=n);\n\
-    \    if(k<int(a.size()))return a[k];\n\n    Matrix<Poly<T>> m(n),den(1);\n   \
-    \ Matrix<T> base(n);\n    rep(i,0,n)m[0][i]=-fs[i+1];\n    rep(i,1,n)m[i][i-1]=fs[0];\n\
-    \    den[0][0]=fs[0];\n    rep(i,0,n)base[i][0]=a[n-1-i];\n    T ret=(PrefixProdOfPolyMatrix(m,k-n+1)*base)[0][0];\n\
-    \    ret/=PrefixProdOfPolyMatrix(den,k-n+1)[0][0];\n    return ret;\n}\n\ntemplate<typename\
-    \ T>T KthtermEsper(vector<T>& a,ll k){\n    if(k<(int)a.size())return a[k];\n\
-    \    int n=a.size()-1;\n    vector<Fp> b=a;\n    b.pop_back();\n\n    for(int\
-    \ d=0;;d++){\n        if((n+2)/(d+2)<=1)break;\n        auto fs=FindPRecursive(b,d);\n\
-    \        if(KthtermOfPRecursive(b,fs,n)==a.back()){\n            return KthtermOfPRecursive(a,fs,k);\n\
-    \        }\n    }\n    cerr<<\"esper Failed\"<<'\\n';\n    assert(0);\n}\n\n/**\n\
-    \ * @brief P-recursive\n*/"
+    \n#include \"Math/linearequation.hpp\"\n\ntemplate <typename T>\nMatrix<T> PrefixProdOfPolyMatrix(Matrix<Poly<T>>\
+    \ &m, ll K) {\n    using Mat = Matrix<T>;\n\n    int n = m.val.size();\n    int\
+    \ deg = 1;\n    rep(i, 0, n) rep(j, 0, n) chmax(deg, (int)m[i][j].size() - 1);\n\
+    \    ll SQ = 1;\n    while (SQ * SQ * deg < K)\n        SQ <<= 1;\n    T iSQ =\
+    \ T(SQ).inv();\n\n    vector<Mat> G(deg + 1);\n    rep(k, 0, deg + 1) {\n    \
+    \    G[k] = Mat(n, n);\n        rep(i, 0, n) rep(j, 0, n) G[k][i][j] = m[i][j].eval(SQ\
+    \ * k);\n    }\n\n    auto process = [&](vector<Mat> &base, T x) -> vector<Mat>\
+    \ {\n        int D = base.size();\n        vector ret(D, Mat(n, n));\n       \
+    \ rep(i, 0, n) rep(j, 0, n) {\n            vector<T> val(D);\n            rep(k,\
+    \ 0, D) val[k] = base[k][i][j];\n            auto add = SamplePointsShift<T>(val,\
+    \ x);\n            rep(k, 0, D) ret[k][i][j] = add[k];\n        }\n        return\
+    \ ret;\n    };\n\n    for (ll w = 1; w < SQ; w <<= 1) {\n        auto G1 = process(G,\
+    \ iSQ * w);\n        auto G2 = process(G, w * deg + 1);\n        auto G3 = process(G,\
+    \ iSQ * w + w * deg + 1);\n        rep(i, 0, w * deg + 1) G1[i] *= G[i], G3[i]\
+    \ *= G2[i];\n        G1.insert(G1.end(), ALL(G3));\n        G1.pop_back();\n \
+    \       swap(G, G1);\n    }\n\n    Mat ret(n, n);\n    rep(i, 0, n) ret[i][i]\
+    \ = 1;\n    ll k = 0;\n    while (k * SQ + SQ <= K)\n        ret = G[k++] * ret;\n\
+    \    k *= SQ;\n    while (k < K) {\n        Mat mul(n, n);\n        rep(i, 0,\
+    \ n) rep(j, 0, n) mul[i][j] = m[i][j].eval(k);\n        ret = mul * ret;\n   \
+    \     k++;\n    }\n    return ret;\n}\n\n// a_{n+i}*f_n(i)+...+a_i*f_0(i)=0\n\
+    // {f_r}:dec order!!!\ntemplate <typename T> vector<Poly<T>> FindPRecursive(vector<T>\
+    \ &a, int d) {\n    int n = a.size();\n    int k = (n + 2) / (d + 2) - 1;\n  \
+    \  if (k <= 0)\n        return {};\n    int m = (d + 1) * (k + 1);\n    Matrix<T>\
+    \ mat(m - 1, m);\n    rep(i, 0, m - 1) rep(j, 0, k + 1) {\n        T base = 1;\n\
+    \        rep(deg, 0, d + 1) {\n            mat[i][(d + 1) * j + deg] = a[i + j]\
+    \ * base;\n            base *= (i + j);\n        }\n    }\n    auto basis = LinearEquation(mat,\
+    \ vector<T>(m - 1)).second;\n    if (basis.val.empty())\n        return {};\n\
+    \    auto c = basis[0];\n    vector<Poly<T>> ret;\n    for (int i = 0; i * (d\
+    \ + 1) < (int)c.size(); i++) {\n        Poly<T> add, base({T(i), T(1)});\n   \
+    \     for (int j = d; j >= 0; j--) {\n            add *= base;\n            if\
+    \ (c[i * (d + 1) + j] != 0)\n                add += c[i * (d + 1) + j];\n    \
+    \    }\n        ret.push_back(add);\n    }\n    while (ret.back().empty())\n \
+    \       ret.pop_back();\n    reverse(ALL(ret));\n    return ret;\n}\n\ntemplate\
+    \ <typename T>\nT KthtermOfPRecursive(vector<T> &a, vector<Poly<T>> &fs, ll k)\
+    \ {\n    int n = fs.size() - 1;\n    assert(int(a.size()) >= n);\n    if (k <\
+    \ int(a.size()))\n        return a[k];\n\n    Matrix<Poly<T>> m(n), den(1);\n\
+    \    Matrix<T> base(n);\n    rep(i, 0, n) m[0][i] = -fs[i + 1];\n    rep(i, 1,\
+    \ n) m[i][i - 1] = fs[0];\n    den[0][0] = fs[0];\n    rep(i, 0, n) base[i][0]\
+    \ = a[n - 1 - i];\n    T ret = (PrefixProdOfPolyMatrix(m, k - n + 1) * base)[0][0];\n\
+    \    ret /= PrefixProdOfPolyMatrix(den, k - n + 1)[0][0];\n    return ret;\n}\n\
+    \ntemplate <typename T> T KthtermEsper(vector<T> &a, ll k) {\n    if (k < (int)a.size())\n\
+    \        return a[k];\n    int n = a.size() - 1;\n    vector<Fp> b = a;\n    b.pop_back();\n\
+    \n    for (int d = 0;; d++) {\n        if ((n + 2) / (d + 2) <= 1)\n         \
+    \   break;\n        auto fs = FindPRecursive(b, d);\n        if (KthtermOfPRecursive(b,\
+    \ fs, n) == a.back()) {\n            show(fs);\n            return KthtermOfPRecursive(a,\
+    \ fs, k);\n        }\n    }\n    cerr << \"esper Failed\" << '\\n';\n    assert(0);\n\
+    }\n\n/**\n * @brief P-recursive\n */"
   dependsOn:
   - FPS/samplepointshift.hpp
   - Math/matrix.hpp
@@ -170,7 +188,7 @@ data:
   isVerificationFile: false
   path: FPS/p-recursive.hpp
   requiredBy: []
-  timestamp: '2024-06-14 02:46:58+09:00'
+  timestamp: '2024-10-13 16:49:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/p-recursive.hpp

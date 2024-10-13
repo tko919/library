@@ -135,8 +135,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
   - Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
 documentation_of: Graph/linkcut.hpp
 layout: document
 redirect_from:

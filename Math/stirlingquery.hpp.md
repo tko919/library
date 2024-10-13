@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
   _extendedRequiredBy: []
@@ -78,8 +78,8 @@ data:
   timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 documentation_of: Math/stirlingquery.hpp
 layout: document
 redirect_from:

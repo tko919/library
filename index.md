@@ -38,7 +38,7 @@ data:
       title: Wildcard Pattern Matching
   - name: Convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Convolution/arbitrary.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -56,10 +56,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/multivariate.hpp
       title: Multivariate Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
       title: Weighted Union Find
   - name: FPS
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
     - icon: ':heavy_check_mark:'
@@ -208,12 +208,15 @@ data:
       path: FPS/interpolate.hpp
       title: interpolate (one point)
     - icon: ':warning:'
+      path: FPS/interpolategeom.hpp
+      title: FPS/interpolategeom.hpp
+    - icon: ':warning:'
       path: FPS/mobius.hpp
       title: Mobius Transform
     - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: FPS/multievalgeom.hpp
       title: Multipoint Evaluation on Geometric Sequence
     - icon: ':heavy_check_mark:'
@@ -381,13 +384,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
     - icon: ':warning:'
       path: Math/enumquotient.hpp
       title: Enumerate Quotients
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/fastdiv.hpp
       title: Fast Division
     - icon: ':heavy_check_mark:'
@@ -411,10 +414,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/matrix.hpp
       title: Matrix
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -423,7 +426,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/nimber.hpp
       title: Nimber
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/pollard.hpp
       title: Pollard-Rho
     - icon: ':heavy_check_mark:'
@@ -432,7 +435,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/primesum.hpp
       title: Prime Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/primitive.hpp
       title: Primitive Function
     - icon: ':warning:'
@@ -481,15 +484,15 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/random.hpp
       title: Random
     - icon: ':warning:'
@@ -654,7 +657,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_multivariate_convolution.test.cpp
       title: Verify/LC_multivariate_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_multivariate_convolution_cyclic.test.cpp
       title: Verify/LC_multivariate_convolution_cyclic.test.cpp
     - icon: ':heavy_check_mark:'

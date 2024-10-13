@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -145,9 +145,9 @@ data:
   timestamp: '2024-04-26 03:18:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/YUKI_1112.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/YUKI_310.test.cpp
 documentation_of: Math/bbla.hpp
 layout: document
 redirect_from:
