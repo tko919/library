@@ -4,6 +4,7 @@
 #include "Utility/fastio.hpp"
 
 #include "Math/modint.hpp"
+#include "Math/comb.hpp"
 #include "Convolution/ntt.hpp"
 #include "FPS/fps.hpp"
 using Fp = fp<998244353>;
