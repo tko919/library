@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/comb.hpp"
 
 template<typename T>T Interpolate(vector<T>& ys,ll t){ // f(0),..,f(d) -> f(t)
     int d=ys.size()-1;

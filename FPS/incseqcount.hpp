@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/comb.hpp"
 
 template <typename T>
 T NumberofIncreasingSequencesBetweenTwoSequences(int n, vector<int> a,
@@ -24,34 +25,34 @@ T NumberofIncreasingSequencesBetweenTwoSequences(int n, vector<int> a,
                 {
                     Poly<T> X(offset), Y(R - mid + offset);
                     rep(j, 0, offset) X[j] =
-                        Lret[j] * Fact<Fp>(offset - 1 - j, 1);
-                    rep(k, 0, R - mid + offset) Y[k] = Fact<Fp>(k);
+                        Lret[j] * Fact<T>(offset - 1 - j, 1);
+                    rep(k, 0, R - mid + offset) Y[k] = Fact<T>(k);
                     X *= Y;
                     rep(i, 0, R - mid) Rdp[i] +=
-                        X[i + offset - 1] * Fact<Fp>(i, 1);
+                        X[i + offset - 1] * Fact<T>(i, 1);
                 }
                 {
                     Poly<T> X(offset), Y(offset);
                     rep(j, 0, offset) X[j] = Lret[j];
-                    rep(k, 0, offset) Y[k] = nCr<Fp>(R - mid - 1 + k, k);
+                    rep(k, 0, offset) Y[k] = nCr<T>(R - mid - 1 + k, k);
                     X *= Y;
                     rep(i, 0, offset) ret[i] += X[i];
                 }
                 {
                     Poly<T> X(R - mid), Y(R - mid);
                     rep(j, 0, R - mid) X[j] = dp[j + mid - L];
-                    rep(j, 0, R - mid) Y[j] = nCr<Fp>(j + offset - 1, j);
+                    rep(j, 0, R - mid) Y[j] = nCr<T>(j + offset - 1, j);
                     X *= Y;
                     rep(i, 0, R - mid) Rdp[i] += X[i];
                 }
                 {
                     Poly<T> X(R - mid), Y(offset + R - mid);
                     rep(j, 0, R - mid) X[j] =
-                        dp[j + mid - L] * Fact<Fp>(R - mid - 1 - j, 1);
-                    rep(k, 0, offset + R - mid) Y[k] = Fact<Fp>(k);
+                        dp[j + mid - L] * Fact<T>(R - mid - 1 - j, 1);
+                    rep(k, 0, offset + R - mid) Y[k] = Fact<T>(k);
                     X *= Y;
                     rep(i, 0, offset) ret[i] +=
-                        X[R - mid - 1 + i] * Fact<Fp>(i, 1);
+                        X[R - mid - 1 + i] * Fact<T>(i, 1);
                 }
             }
             rep(j, mid, R) a[j] -= offset;

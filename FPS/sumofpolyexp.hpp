@@ -1,5 +1,6 @@
 #pragma once
 #include "FPS/interpolate.hpp"
+#include "Math/comb.hpp"
 
 template <typename T>
 T LimitSumOfPolyExp(vector<T> &f, T r) { // sum_{k=0}^inf r^k*f(k)

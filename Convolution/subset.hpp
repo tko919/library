@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/comb.hpp"
 
 template <typename T, int LG = 20> struct SubsetConvolution {
     using POL = array<T, LG + 1>;

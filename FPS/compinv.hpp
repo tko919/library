@@ -1,5 +1,6 @@
 #pragma once
 #include "FPS/powenum.hpp"
+#include "Math/comb.hpp"
 
 template <typename T> Poly<T> CompositionInv(Poly<T> &f) {
     assert(SZ(f) >= 2 and f[0] == 0 and f[1] != 0);
