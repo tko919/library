@@ -51,7 +51,6 @@
 "Verify/LC_min_cost_b_flow.test.cpp": "2024-06-23 06:04:45 +0900",
 "Verify/LC_multipoint_evaluation.test.cpp": "2024-09-30 03:29:42 +0900",
 "Verify/LC_multivariate_convolution.test.cpp": "2024-09-30 03:29:42 +0900",
-"Verify/LC_multivariate_convolution_cyclic.test.cpp": "2024-09-30 03:29:42 +0900",
 "Verify/LC_nim_product_64.test.cpp": "2024-06-23 06:04:45 +0900",
 "Verify/LC_number_of_substrings.test.cpp": "2024-06-23 06:04:45 +0900",
 "Verify/LC_partition_function.test.cpp": "2024-09-30 03:29:42 +0900",
