@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':question:'
@@ -13,25 +13,25 @@ data:
   - icon: ':question:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
   - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -227,30 +227,10 @@ data:
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
     \n    static FastDiv bar;\r\n    static int _getmod() {\r\n        return bar.get();\r\
     \n    }\r\n};\r\nFastDiv Fp::bar(998244353);\r\n\r\nvoid rd(Fp &x) {\r\n    fastio::rd(x.v);\r\
-    \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate <typename\
-    \ T> T Inv(ll n) {\r\n    static int md;\r\n    static vector<T> buf({0, 1});\r\
-    \n    if (md != T::get_mod()) {\r\n        md = T::get_mod();\r\n        buf =\
-    \ vector<T>({0, 1});\r\n    }\r\n    assert(n > 0);\r\n    n %= md;\r\n    while\
-    \ (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n     \
-    \   buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\
-    \r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static int md;\r\
-    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    if (md != T::get_mod())\
-    \ {\r\n        md = T::get_mod();\r\n        buf = ibuf = vector<T>({1, 1});\r\
-    \n    }\r\n    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n  \
-    \      buf.push_back(buf.back() * SZ(buf));\r\n        ibuf.push_back(ibuf.back()\
-    \ * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\
-    \r\ntemplate <typename T> T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0\
-    \ || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n\
-    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nCr(int n, int r, bool inv =\
-    \ 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n    return\
-    \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n//\
-    \ sum = n, r tuples\r\ntemplate <typename T> T nHr(int n, int r, bool inv = 0)\
-    \ {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples\
-    \ and b tuples\r\ntemplate <typename T> T choose(int n, int a, int b) {\r\n  \
-    \  if (n == 0)\r\n        return !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\
-    \n}\r\n\r\n/**\r\n * @brief Dynamic Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\
-    \n\r\ntemplate <typename T> struct NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod()\
-    \ - 1);\r\n    std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T,\
+    \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\n * @brief Dynamic\
+    \ Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename T> struct\
+    \ NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod() - 1);\r\
+    \n    std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T,\
     \ rank2 + 1> iroot; // root[i] * iroot[i] == 1\r\n\r\n    std::array<T, std::max(0,\
     \ rank2 - 2 + 1)> rate2;\r\n    std::array<T, std::max(0, rank2 - 2 + 1)> irate2;\r\
     \n\r\n    std::array<T, std::max(0, rank2 - 3 + 1)> rate3;\r\n    std::array<T,\
@@ -382,29 +362,11 @@ data:
     \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
-    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
-    \ <typename T> T Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n   \
-    \ while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n\
-    \        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n\
-    }\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static const\
-    \ int md = T::get_mod();\r\n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n\
-    \    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back()\
-    \ * SZ(buf));\r\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n \
-    \   }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T>\
-    \ T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n\
-    \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
-    }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
-    \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
-    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
-    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
-    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
-    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Modint\r\n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1 = fp<1045430273>;\r\
-    \nusing M2 = fp<1051721729>;\r\nusing M3 = fp<1053818881>;\r\nNTT<M1> N1;\r\n\
-    NTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\n\
-    constexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
+    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
+    \n * @brief Modint\r\n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1\
+    \ = fp<1045430273>;\r\nusing M2 = fp<1051721729>;\r\nusing M3 = fp<1053818881>;\r\
+    \nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\
+    \nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
     \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
     \nconstexpr ll w2 = ll(w1) * M2::get_mod();\r\ntemplate <typename T>\r\nvector<T>\
     \ ArbitraryMult(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
@@ -711,8 +673,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 16:49:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-13 17:09:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp
 layout: document

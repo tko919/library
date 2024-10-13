@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
   - icon: ':question:'
@@ -184,28 +184,10 @@ data:
     \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
-    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
-    \ <typename T> T Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n   \
-    \ while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n\
-    \        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n\
-    }\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static const\
-    \ int md = T::get_mod();\r\n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n\
-    \    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back()\
-    \ * SZ(buf));\r\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n \
-    \   }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T>\
-    \ T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n\
-    \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
-    }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
-    \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
-    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
-    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
-    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
-    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Modint\r\n */\n#line 2 \"FPS/berlekampmassey.hpp\"\n\r\ntemplate<typename T>vector<T>\
-    \ BerlekampMassey(vector<T>& a){\r\n   int n=a.size(); T d=1;\r\n   vector<T>\
-    \ b(1),c(1);\r\n   b[0]=c[0]=1;\r\n   rep(j,1,n+1){\r\n      int l=c.size(),m=b.size();\r\
+    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
+    \n * @brief Modint\r\n */\n#line 2 \"FPS/berlekampmassey.hpp\"\n\r\ntemplate<typename\
+    \ T>vector<T> BerlekampMassey(vector<T>& a){\r\n   int n=a.size(); T d=1;\r\n\
+    \   vector<T> b(1),c(1);\r\n   b[0]=c[0]=1;\r\n   rep(j,1,n+1){\r\n      int l=c.size(),m=b.size();\r\
     \n      T x=0;\r\n      rep(i,0,l)x+=c[i]*a[j-l+i];\r\n      b.push_back(0);\r\
     \n      m++;\r\n      if(x==0)continue;\r\n      T coeff=-x/d;\r\n      if(l<m){\r\
     \n         auto tmp=c;\r\n         c.insert(c.begin(),m-l,0);\r\n         rep(i,0,m)c[m-1-i]+=coeff*b[m-1-i];\r\
@@ -235,7 +217,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2024-09-30 03:29:42+09:00'
+  timestamp: '2024-10-13 17:09:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_find_linear_recurrence.test.cpp

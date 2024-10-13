@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algorithm/mo.hpp
     title: Mo's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
   - icon: ':question:'

@@ -4,12 +4,15 @@ data:
   - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
+  - icon: ':question:'
+    path: Math/comb.hpp
+    title: Combination
   - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
@@ -21,9 +24,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
@@ -192,28 +195,10 @@ data:
     \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
-    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
-    \ <typename T> T Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n   \
-    \ while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n\
-    \        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n\
-    }\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static const\
-    \ int md = T::get_mod();\r\n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n\
-    \    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back()\
-    \ * SZ(buf));\r\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n \
-    \   }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T>\
-    \ T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n\
-    \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
-    }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
-    \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
-    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
-    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
-    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
-    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename T> struct\
-    \ NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod() - 1);\r\
-    \n    std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T,\
+    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
+    \n * @brief Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename\
+    \ T> struct NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod()\
+    \ - 1);\r\n    std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T,\
     \ rank2 + 1> iroot; // root[i] * iroot[i] == 1\r\n\r\n    std::array<T, std::max(0,\
     \ rank2 - 2 + 1)> rate2;\r\n    std::array<T, std::max(0, rank2 - 2 + 1)> irate2;\r\
     \n\r\n    std::array<T, std::max(0, rank2 - 3 + 1)> rate3;\r\n    std::array<T,\
@@ -437,21 +422,43 @@ data:
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 10 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
     \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool\
-    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#line 2 \"FPS/samplepointshift.hpp\"\n\
-    \ntemplate<typename T>Poly<T> SamplePointsShift(vector<T>& ys,T c,int m=-1){\n\
-    \    ll n=ys.size()-1,C=c.v%T::get_mod();\n    if(m==-1)m=n+1;\n    if(C<=n){\n\
-    \        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n        if(int(res.size())>=m){\n\
-    \            res.resize(m);\n            return res;\n        }\n        auto\
-    \ add=SamplePointsShift<T>(ys,n+1,m-res.size());\n        for(int i=0;int(res.size())<m;i++){\n\
+    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#line 2 \"Math/comb.hpp\"\n\ntemplate\
+    \ <typename T> T Inv(ll n) {\n    static int md;\n    static vector<T> buf({0,\
+    \ 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n        buf\
+    \ = vector<T>({0, 1});\n    }\n    assert(n > 0);\n    n %= md;\n    while (SZ(buf)\
+    \ <= n) {\n        int k = SZ(buf), q = (md + k - 1) / k;\n        buf.push_back(buf[k\
+    \ * q - md] * q);\n    }\n    return buf[n];\n}\n\ntemplate <typename T> T Fact(ll\
+    \ n, bool inv = 0) {\n    static int md;\n    static vector<T> buf({1, 1}), ibuf({1,\
+    \ 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n        buf\
+    \ = ibuf = vector<T>({1, 1});\n    }\n    assert(n >= 0 and n < md);\n    while\
+    \ (SZ(buf) <= n) {\n        buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
+    \ * Inv<T>(SZ(ibuf)));\n    }\n    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate\
+    \ <typename T> T nPr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r ||\
+    \ r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^\
+    \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
+    \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
+    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
+    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
+    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/samplepointshift.hpp\"\
+    \n\ntemplate <typename T>\nPoly<T> SamplePointsShift(vector<T> &ys, T c, int m\
+    \ = -1) {\n    ll n = ys.size() - 1, C = c.v % T::get_mod();\n    if (m == -1)\n\
+    \        m = n + 1;\n    if (C <= n) {\n        Poly<T> res;\n        rep(i, C,\
+    \ n + 1) res.push_back(ys[i]);\n        if (int(res.size()) >= m) {\n        \
+    \    res.resize(m);\n            return res;\n        }\n        auto add = SamplePointsShift<T>(ys,\
+    \ n + 1, m - res.size());\n        for (int i = 0; int(res.size()) < m; i++) {\n\
     \            res.push_back(add[i]);\n        }\n        return res;\n    }\n \
-    \   if(C+m>T::get_mod()){\n        auto res=SamplePointsShift<T>(ys,c,T::get_mod()-c.v);\n\
-    \        auto add=SamplePointsShift<T>(ys,0,m-res.size());\n        rep(i,0,add.size())res.push_back(add[i]);\n\
-    \        return res;\n    }\n\n    Poly<T> A(n+1),B(m+n);\n    rep(i,0,n+1){\n\
-    \        A[i]=ys[i]*Fact<T>(i,1)*Fact<T>(n-i,1);\n        if((n-i)&1)A[i]=-A[i];\n\
-    \    }\n    rep(i,0,m+n)B[i]=Fp(1)/(c-n+i);\n    auto AB=A*B;\n    vector<T> res(m);\n\
-    \    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n    rep(i,0,m){\n        res[i]=AB[n+i]*base;\n\
-    \        base*=(c+i+1);\n        base*=B[i];\n    }\n    return res;\n}\n\n/**\n\
-    \ * @brief Shift of Sampling Points of Polynomial\n*/\n#line 17 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \   if (C + m > T::get_mod()) {\n        auto res = SamplePointsShift<T>(ys, c,\
+    \ T::get_mod() - c.v);\n        auto add = SamplePointsShift<T>(ys, 0, m - res.size());\n\
+    \        rep(i, 0, add.size()) res.push_back(add[i]);\n        return res;\n \
+    \   }\n\n    Poly<T> A(n + 1), B(m + n);\n    rep(i, 0, n + 1) {\n        A[i]\
+    \ = ys[i] * Fact<T>(i, 1) * Fact<T>(n - i, 1);\n        if ((n - i) & 1)\n   \
+    \         A[i] = -A[i];\n    }\n    rep(i, 0, m + n) B[i] = Fp(1) / (c - n + i);\n\
+    \    auto AB = A * B;\n    vector<T> res(m);\n    Fp base = 1;\n    rep(x, 0,\
+    \ n + 1) base *= (c - x);\n    rep(i, 0, m) {\n        res[i] = AB[n + i] * base;\n\
+    \        base *= (c + i + 1);\n        base *= B[i];\n    }\n    return res;\n\
+    }\n\n/**\n * @brief Shift of Sampling Points of Polynomial\n */\n#line 17 \"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp\"\
     \n\nint main() {\n    int n, m;\n    Fp c;\n    read(n, m, c.v);\n    vector<Fp>\
     \ a(n);\n    rep(i, 0, n) read(a[i].v);\n\n    auto ret = SamplePointsShift(a,\
     \ c, m);\n    rep(i, 0, m) print(ret[i].v);\n    return 0;\n}\n"
@@ -471,11 +478,12 @@ data:
   - Convolution/ntt.hpp
   - FPS/fps.hpp
   - FPS/samplepointshift.hpp
+  - Math/comb.hpp
   isVerificationFile: true
   path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-09-30 03:29:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-13 17:09:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 layout: document

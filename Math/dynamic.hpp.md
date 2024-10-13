@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Dynamic Modint
     links: []
@@ -54,28 +54,8 @@ data:
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
     \n    static FastDiv bar;\r\n    static int _getmod() {\r\n        return bar.get();\r\
     \n    }\r\n};\r\nFastDiv Fp::bar(998244353);\r\n\r\nvoid rd(Fp &x) {\r\n    fastio::rd(x.v);\r\
-    \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate <typename\
-    \ T> T Inv(ll n) {\r\n    static int md;\r\n    static vector<T> buf({0, 1});\r\
-    \n    if (md != T::get_mod()) {\r\n        md = T::get_mod();\r\n        buf =\
-    \ vector<T>({0, 1});\r\n    }\r\n    assert(n > 0);\r\n    n %= md;\r\n    while\
-    \ (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n     \
-    \   buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\
-    \r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static int md;\r\
-    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    if (md != T::get_mod())\
-    \ {\r\n        md = T::get_mod();\r\n        buf = ibuf = vector<T>({1, 1});\r\
-    \n    }\r\n    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n  \
-    \      buf.push_back(buf.back() * SZ(buf));\r\n        ibuf.push_back(ibuf.back()\
-    \ * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\
-    \r\ntemplate <typename T> T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0\
-    \ || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n\
-    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nCr(int n, int r, bool inv =\
-    \ 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n    return\
-    \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n//\
-    \ sum = n, r tuples\r\ntemplate <typename T> T nHr(int n, int r, bool inv = 0)\
-    \ {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples\
-    \ and b tuples\r\ntemplate <typename T> T choose(int n, int a, int b) {\r\n  \
-    \  if (n == 0)\r\n        return !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\
-    \n}\r\n\r\n/**\r\n * @brief Dynamic Modint\r\n */\n"
+    \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\n * @brief Dynamic\
+    \ Modint\r\n */\n"
   code: "#pragma once\r\n#include \"Math/fastdiv.hpp\"\r\n\r\nstruct Fp {\r\n    using\
     \ u64 = uint64_t;\r\n    uint v;\r\n    static int get_mod() {\r\n        return\
     \ _getmod();\r\n    }\r\n    static void set_mod(int _m) {\r\n        bar = FastDiv(_m);\r\
@@ -107,35 +87,15 @@ data:
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
     \n    static FastDiv bar;\r\n    static int _getmod() {\r\n        return bar.get();\r\
     \n    }\r\n};\r\nFastDiv Fp::bar(998244353);\r\n\r\nvoid rd(Fp &x) {\r\n    fastio::rd(x.v);\r\
-    \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate <typename\
-    \ T> T Inv(ll n) {\r\n    static int md;\r\n    static vector<T> buf({0, 1});\r\
-    \n    if (md != T::get_mod()) {\r\n        md = T::get_mod();\r\n        buf =\
-    \ vector<T>({0, 1});\r\n    }\r\n    assert(n > 0);\r\n    n %= md;\r\n    while\
-    \ (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n     \
-    \   buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n}\r\n\
-    \r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static int md;\r\
-    \n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n    if (md != T::get_mod())\
-    \ {\r\n        md = T::get_mod();\r\n        buf = ibuf = vector<T>({1, 1});\r\
-    \n    }\r\n    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n  \
-    \      buf.push_back(buf.back() * SZ(buf));\r\n        ibuf.push_back(ibuf.back()\
-    \ * Inv<T>(SZ(ibuf)));\r\n    }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\
-    \r\ntemplate <typename T> T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0\
-    \ || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n\
-    \ - r, inv ^ 1);\r\n}\r\ntemplate <typename T> T nCr(int n, int r, bool inv =\
-    \ 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n        return 0;\r\n    return\
-    \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n//\
-    \ sum = n, r tuples\r\ntemplate <typename T> T nHr(int n, int r, bool inv = 0)\
-    \ {\r\n    return nCr<T>(n + r - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples\
-    \ and b tuples\r\ntemplate <typename T> T choose(int n, int a, int b) {\r\n  \
-    \  if (n == 0)\r\n        return !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\
-    \n}\r\n\r\n/**\r\n * @brief Dynamic Modint\r\n */"
+    \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\n * @brief Dynamic\
+    \ Modint\r\n */"
   dependsOn:
   - Math/fastdiv.hpp
   isVerificationFile: false
   path: Math/dynamic.hpp
   requiredBy: []
-  timestamp: '2024-10-13 16:49:34+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-13 17:09:21+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Math/dynamic.hpp

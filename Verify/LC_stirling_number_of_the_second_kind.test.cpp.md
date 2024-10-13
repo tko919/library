@@ -4,12 +4,15 @@ data:
   - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
+  - icon: ':question:'
+    path: Math/comb.hpp
+    title: Combination
   - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
@@ -21,9 +24,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
@@ -192,28 +195,10 @@ data:
     \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
-    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
-    \ <typename T> T Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n   \
-    \ while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n\
-    \        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n\
-    }\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static const\
-    \ int md = T::get_mod();\r\n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n\
-    \    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back()\
-    \ * SZ(buf));\r\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n \
-    \   }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T>\
-    \ T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n\
-    \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
-    }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
-    \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
-    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
-    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
-    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
-    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename T> struct\
-    \ NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod() - 1);\r\
-    \n    std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T,\
+    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
+    \n * @brief Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename\
+    \ T> struct NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod()\
+    \ - 1);\r\n    std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T,\
     \ rank2 + 1> iroot; // root[i] * iroot[i] == 1\r\n\r\n    std::array<T, std::max(0,\
     \ rank2 - 2 + 1)> rate2;\r\n    std::array<T, std::max(0, rank2 - 2 + 1)> irate2;\r\
     \n\r\n    std::array<T, std::max(0, rank2 - 3 + 1)> rate3;\r\n    std::array<T,\
@@ -437,22 +422,47 @@ data:
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 10 \"Verify/LC_stirling_number_of_the_second_kind.test.cpp\"\
     \nusing Fp = fp<998244353>;\nNTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool\
-    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#line 2 \"FPS/famous.hpp\"\n\ntemplate<typename\
-    \ T>vector<T> Bernoulli(int n){\n    Poly<T> f(n+1);\n    rep(i,0,n+1)f[i]=Fact<T>(i+1,1);\n\
-    \    f=f.inv();\n    rep(i,0,n+1)f[i]*=Fact<T>(i);\n    return f;\n}\n\ntemplate<typename\
-    \ T>vector<T> Partition(int n){\n    Poly<T> f(n+1);\n    f[0]=1;\n    rep(k,1,n+1){\n\
-    \        if(1LL*k*(3*k+1)/2<=n)f[1LL*k*(3*k+1)/2]+=(k&1?-1:1);\n        if(1LL*k*(3*k-1)/2<=n)f[1LL*k*(3*k-1)/2]+=(k&1?-1:1);\n\
-    \    }\n    return f.inv();\n}\n\ntemplate<typename T>vector<T> StirlingNumber1st(int\
-    \ n){\n    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f({T(0),T(1)});\n    for(int\
-    \ LG=topbit(n)-1;LG>=0;LG--){\n        int m=n>>LG;\n        f*=f.shift(m>>1);\n\
-    \        if(m&1)f=(f<<1)+f*T(m-1);\n    }\n    rep(i,0,n+1)if((n-i)&1)f[i]=-f[i];\n\
-    \    return f;\n}\n\ntemplate<typename T>vector<T> StirlingNumber2nd(int n){\n\
-    \    if(n==0)return Poly<T>({T(1)});\n    Poly<T> f(n+1),g(n+1);\n    rep(i,0,n+1){\n\
-    \        f[i]=Fp(i).pow(n)*Fact<T>(i,1);\n        g[i]=Fact<T>(i,1);\n       \
-    \ if(i&1)g[i]=-g[i];\n    }\n    f*=g;\n    f.resize(n+1);\n    return f;\n}\n\
-    \ntemplate<typename T>vector<T> Bell(int n){\n    Poly<T> f(n+1);\n    if(n)f[1]=1;\n\
-    \    rep(i,2,n+1)f[i]=f[i-1]/i;\n    f=f.exp();\n    T fac=1;\n    rep(i,2,n+1)fac*=i,f[i]*=fac;\n\
-    \    return f;\n}\n\n/**\n * @brief Famous Sequence\n*/\n#line 17 \"Verify/LC_stirling_number_of_the_second_kind.test.cpp\"\
+    \ inv) {\n    ntt.ntt(*this, inv);\n}\n\n#line 2 \"Math/comb.hpp\"\n\ntemplate\
+    \ <typename T> T Inv(ll n) {\n    static int md;\n    static vector<T> buf({0,\
+    \ 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n        buf\
+    \ = vector<T>({0, 1});\n    }\n    assert(n > 0);\n    n %= md;\n    while (SZ(buf)\
+    \ <= n) {\n        int k = SZ(buf), q = (md + k - 1) / k;\n        buf.push_back(buf[k\
+    \ * q - md] * q);\n    }\n    return buf[n];\n}\n\ntemplate <typename T> T Fact(ll\
+    \ n, bool inv = 0) {\n    static int md;\n    static vector<T> buf({1, 1}), ibuf({1,\
+    \ 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n        buf\
+    \ = ibuf = vector<T>({1, 1});\n    }\n    assert(n >= 0 and n < md);\n    while\
+    \ (SZ(buf) <= n) {\n        buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
+    \ * Inv<T>(SZ(ibuf)));\n    }\n    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate\
+    \ <typename T> T nPr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r ||\
+    \ r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^\
+    \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
+    \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
+    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
+    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
+    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/famous.hpp\"\
+    \n\ntemplate <typename T> vector<T> Bernoulli(int n) {\n    Poly<T> f(n + 1);\n\
+    \    rep(i, 0, n + 1) f[i] = Fact<T>(i + 1, 1);\n    f = f.inv();\n    rep(i,\
+    \ 0, n + 1) f[i] *= Fact<T>(i);\n    return f;\n}\n\ntemplate <typename T> vector<T>\
+    \ Partition(int n) {\n    Poly<T> f(n + 1);\n    f[0] = 1;\n    rep(k, 1, n +\
+    \ 1) {\n        if (1LL * k * (3 * k + 1) / 2 <= n)\n            f[1LL * k * (3\
+    \ * k + 1) / 2] += (k & 1 ? -1 : 1);\n        if (1LL * k * (3 * k - 1) / 2 <=\
+    \ n)\n            f[1LL * k * (3 * k - 1) / 2] += (k & 1 ? -1 : 1);\n    }\n \
+    \   return f.inv();\n}\n\ntemplate <typename T> vector<T> StirlingNumber1st(int\
+    \ n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n    Poly<T> f({T(0),\
+    \ T(1)});\n    for (int LG = topbit(n) - 1; LG >= 0; LG--) {\n        int m =\
+    \ n >> LG;\n        f *= f.shift(m >> 1);\n        if (m & 1)\n            f =\
+    \ (f << 1) + f * T(m - 1);\n    }\n    rep(i, 0, n + 1) if ((n - i) & 1) f[i]\
+    \ = -f[i];\n    return f;\n}\n\ntemplate <typename T> vector<T> StirlingNumber2nd(int\
+    \ n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n    Poly<T> f(n + 1),\
+    \ g(n + 1);\n    rep(i, 0, n + 1) {\n        f[i] = Fp(i).pow(n) * Fact<T>(i,\
+    \ 1);\n        g[i] = Fact<T>(i, 1);\n        if (i & 1)\n            g[i] = -g[i];\n\
+    \    }\n    f *= g;\n    f.resize(n + 1);\n    return f;\n}\n\ntemplate <typename\
+    \ T> vector<T> Bell(int n) {\n    Poly<T> f(n + 1);\n    if (n)\n        f[1]\
+    \ = 1;\n    rep(i, 2, n + 1) f[i] = f[i - 1] / i;\n    f = f.exp();\n    T fac\
+    \ = 1;\n    rep(i, 2, n + 1) fac *= i, f[i] *= fac;\n    return f;\n}\n\n/**\n\
+    \ * @brief Famous Sequence\n */\n#line 17 \"Verify/LC_stirling_number_of_the_second_kind.test.cpp\"\
     \n\nint main() {\n    int n;\n    read(n);\n\n    auto ret = StirlingNumber2nd<Fp>(n);\n\
     \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM                                                         \
@@ -470,11 +480,12 @@ data:
   - Convolution/ntt.hpp
   - FPS/fps.hpp
   - FPS/famous.hpp
+  - Math/comb.hpp
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2024-09-30 03:29:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-13 17:09:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_second_kind.test.cpp
 layout: document

@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: Math/comb.hpp
+    title: Combination
+  - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
@@ -18,23 +21,45 @@ data:
   attributes:
     document_title: P-recursive
     links: []
-  bundledCode: "#line 2 \"FPS/samplepointshift.hpp\"\n\ntemplate<typename T>Poly<T>\
-    \ SamplePointsShift(vector<T>& ys,T c,int m=-1){\n    ll n=ys.size()-1,C=c.v%T::get_mod();\n\
-    \    if(m==-1)m=n+1;\n    if(C<=n){\n        Poly<T> res;\n        rep(i,C,n+1)res.push_back(ys[i]);\n\
-    \        if(int(res.size())>=m){\n            res.resize(m);\n            return\
-    \ res;\n        }\n        auto add=SamplePointsShift<T>(ys,n+1,m-res.size());\n\
-    \        for(int i=0;int(res.size())<m;i++){\n            res.push_back(add[i]);\n\
-    \        }\n        return res;\n    }\n    if(C+m>T::get_mod()){\n        auto\
-    \ res=SamplePointsShift<T>(ys,c,T::get_mod()-c.v);\n        auto add=SamplePointsShift<T>(ys,0,m-res.size());\n\
-    \        rep(i,0,add.size())res.push_back(add[i]);\n        return res;\n    }\n\
-    \n    Poly<T> A(n+1),B(m+n);\n    rep(i,0,n+1){\n        A[i]=ys[i]*Fact<T>(i,1)*Fact<T>(n-i,1);\n\
-    \        if((n-i)&1)A[i]=-A[i];\n    }\n    rep(i,0,m+n)B[i]=Fp(1)/(c-n+i);\n\
-    \    auto AB=A*B;\n    vector<T> res(m);\n    Fp base=1;\n    rep(x,0,n+1)base*=(c-x);\n\
-    \    rep(i,0,m){\n        res[i]=AB[n+i]*base;\n        base*=(c+i+1);\n     \
-    \   base*=B[i];\n    }\n    return res;\n}\n\n/**\n * @brief Shift of Sampling\
-    \ Points of Polynomial\n*/\n#line 2 \"Math/matrix.hpp\"\n\r\ntemplate <class T>\
-    \ struct Matrix {\r\n    int h, w;\r\n    vector<vector<T>> val;\r\n    T det;\r\
-    \n    Matrix() {}\r\n    Matrix(int n) : h(n), w(n), val(vector<vector<T>>(n,\
+  bundledCode: "#line 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n\
+    \    static int md;\n    static vector<T> buf({0, 1});\n    if (md != T::get_mod())\
+    \ {\n        md = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n   \
+    \ assert(n > 0);\n    n %= md;\n    while (SZ(buf) <= n) {\n        int k = SZ(buf),\
+    \ q = (md + k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n\
+    \    return buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n\
+    \    static int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md\
+    \ != T::get_mod()) {\n        md = T::get_mod();\n        buf = ibuf = vector<T>({1,\
+    \ 1});\n    }\n    assert(n >= 0 and n < md);\n    while (SZ(buf) <= n) {\n  \
+    \      buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
+    \ * Inv<T>(SZ(ibuf)));\n    }\n    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate\
+    \ <typename T> T nPr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r ||\
+    \ r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^\
+    \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
+    \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
+    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
+    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
+    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/samplepointshift.hpp\"\
+    \n\ntemplate <typename T>\nPoly<T> SamplePointsShift(vector<T> &ys, T c, int m\
+    \ = -1) {\n    ll n = ys.size() - 1, C = c.v % T::get_mod();\n    if (m == -1)\n\
+    \        m = n + 1;\n    if (C <= n) {\n        Poly<T> res;\n        rep(i, C,\
+    \ n + 1) res.push_back(ys[i]);\n        if (int(res.size()) >= m) {\n        \
+    \    res.resize(m);\n            return res;\n        }\n        auto add = SamplePointsShift<T>(ys,\
+    \ n + 1, m - res.size());\n        for (int i = 0; int(res.size()) < m; i++) {\n\
+    \            res.push_back(add[i]);\n        }\n        return res;\n    }\n \
+    \   if (C + m > T::get_mod()) {\n        auto res = SamplePointsShift<T>(ys, c,\
+    \ T::get_mod() - c.v);\n        auto add = SamplePointsShift<T>(ys, 0, m - res.size());\n\
+    \        rep(i, 0, add.size()) res.push_back(add[i]);\n        return res;\n \
+    \   }\n\n    Poly<T> A(n + 1), B(m + n);\n    rep(i, 0, n + 1) {\n        A[i]\
+    \ = ys[i] * Fact<T>(i, 1) * Fact<T>(n - i, 1);\n        if ((n - i) & 1)\n   \
+    \         A[i] = -A[i];\n    }\n    rep(i, 0, m + n) B[i] = Fp(1) / (c - n + i);\n\
+    \    auto AB = A * B;\n    vector<T> res(m);\n    Fp base = 1;\n    rep(x, 0,\
+    \ n + 1) base *= (c - x);\n    rep(i, 0, m) {\n        res[i] = AB[n + i] * base;\n\
+    \        base *= (c + i + 1);\n        base *= B[i];\n    }\n    return res;\n\
+    }\n\n/**\n * @brief Shift of Sampling Points of Polynomial\n */\n#line 2 \"Math/matrix.hpp\"\
+    \n\r\ntemplate <class T> struct Matrix {\r\n    int h, w;\r\n    vector<vector<T>>\
+    \ val;\r\n    T det;\r\n    Matrix() {}\r\n    Matrix(int n) : h(n), w(n), val(vector<vector<T>>(n,\
     \ vector<T>(n))) {}\r\n    Matrix(int n, int m)\r\n        : h(n), w(m), val(vector<vector<T>>(n,\
     \ vector<T>(m))) {}\r\n    vector<T> &operator[](const int i) {\r\n        return\
     \ val[i];\r\n    }\r\n    Matrix &operator+=(const Matrix &m) {\r\n        assert(h\
@@ -183,12 +208,13 @@ data:
     }\n\n/**\n * @brief P-recursive\n */"
   dependsOn:
   - FPS/samplepointshift.hpp
+  - Math/comb.hpp
   - Math/matrix.hpp
   - Math/linearequation.hpp
   isVerificationFile: false
   path: FPS/p-recursive.hpp
   requiredBy: []
-  timestamp: '2024-10-13 16:49:34+09:00'
+  timestamp: '2024-10-13 17:09:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/p-recursive.hpp

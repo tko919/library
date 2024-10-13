@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/lazysegtree.hpp
     title: Lazy Segment Tree
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -184,34 +184,16 @@ data:
     \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
-    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\ntemplate\
-    \ <typename T> T Inv(ll n) {\r\n    static const int md = T::get_mod();\r\n  \
-    \  static vector<T> buf({0, 1});\r\n    assert(n > 0);\r\n    n %= md;\r\n   \
-    \ while (SZ(buf) <= n) {\r\n        int k = SZ(buf), q = (md + k - 1) / k;\r\n\
-    \        buf.push_back(buf[k * q - md] * q);\r\n    }\r\n    return buf[n];\r\n\
-    }\r\n\r\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\r\n    static const\
-    \ int md = T::get_mod();\r\n    static vector<T> buf({1, 1}), ibuf({1, 1});\r\n\
-    \    assert(n >= 0 and n < md);\r\n    while (SZ(buf) <= n) {\r\n        buf.push_back(buf.back()\
-    \ * SZ(buf));\r\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\r\n \
-    \   }\r\n    return inv ? ibuf[n] : buf[n];\r\n}\r\n\r\ntemplate <typename T>\
-    \ T nPr(int n, int r, bool inv = 0) {\r\n    if (n < 0 || n < r || r < 0)\r\n\
-    \        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\r\n\
-    }\r\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\r\n    if (n <\
-    \ 0 || n < r || r < 0)\r\n        return 0;\r\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\r\n}\r\n// sum = n, r tuples\r\ntemplate\
-    \ <typename T> T nHr(int n, int r, bool inv = 0) {\r\n    return nCr<T>(n + r\
-    \ - 1, r, inv);\r\n}\r\n// sum = n, a nonzero tuples and b tuples\r\ntemplate\
-    \ <typename T> T choose(int n, int a, int b) {\r\n    if (n == 0)\r\n        return\
-    \ !a;\r\n    return nCr<T>(n + b - 1, a + b - 1);\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Modint\r\n */\n#line 2 \"DataStructure/lazysegtree.hpp\"\n\r\ntemplate <typename\
-    \ M, typename N, M (*f)(M, M), M (*g)(M, N), N (*h)(N, N),\r\n          M (*m1)(),\
-    \ N (*n1)()>\r\nclass LazySegmentTree {\r\n    int n, sz, height;\r\n    vector<M>\
-    \ data;\r\n    vector<N> lazy;\r\n    void update(int k) {\r\n        data[k]\
-    \ = f(data[k * 2], data[k * 2 + 1]);\r\n    }\r\n    void apply(int k, N x) {\r\
-    \n        data[k] = g(data[k], x);\r\n        if (k < sz)\r\n            lazy[k]\
-    \ = h(lazy[k], x);\r\n    }\r\n    void down(int k) {\r\n        apply(k * 2,\
-    \ lazy[k]);\r\n        apply(k * 2 + 1, lazy[k]);\r\n        lazy[k] = n1();\r\
-    \n    }\r\n\r\n  public:\r\n    LazySegmentTree(int n = 0) : LazySegmentTree(vector<M>(n,\
+    \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
+    \n * @brief Modint\r\n */\n#line 2 \"DataStructure/lazysegtree.hpp\"\n\r\ntemplate\
+    \ <typename M, typename N, M (*f)(M, M), M (*g)(M, N), N (*h)(N, N),\r\n     \
+    \     M (*m1)(), N (*n1)()>\r\nclass LazySegmentTree {\r\n    int n, sz, height;\r\
+    \n    vector<M> data;\r\n    vector<N> lazy;\r\n    void update(int k) {\r\n \
+    \       data[k] = f(data[k * 2], data[k * 2 + 1]);\r\n    }\r\n    void apply(int\
+    \ k, N x) {\r\n        data[k] = g(data[k], x);\r\n        if (k < sz)\r\n   \
+    \         lazy[k] = h(lazy[k], x);\r\n    }\r\n    void down(int k) {\r\n    \
+    \    apply(k * 2, lazy[k]);\r\n        apply(k * 2 + 1, lazy[k]);\r\n        lazy[k]\
+    \ = n1();\r\n    }\r\n\r\n  public:\r\n    LazySegmentTree(int n = 0) : LazySegmentTree(vector<M>(n,\
     \ m1())) {}\r\n    LazySegmentTree(const vector<M> &a) : n(SZ(a)) {\r\n      \
     \  sz = 1, height = 0;\r\n        while (sz < (int)a.size())\r\n            sz\
     \ <<= 1, height++;\r\n        data.assign(2 * sz, m1());\r\n        lazy.assign(sz,\
@@ -293,8 +275,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-09-30 03:29:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-13 17:09:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_range_affine_range_sum.test.cpp
 layout: document
