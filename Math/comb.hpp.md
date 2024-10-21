@@ -85,8 +85,14 @@ data:
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_1080.test.cpp
+    title: Verify/YUKI_1080.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -109,10 +115,10 @@ data:
     \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
-    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
-    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
-    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n"
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n"
   code: "#pragma once\n\ntemplate <typename T> T Inv(ll n) {\n    static int md;\n\
     \    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n        md\
     \ = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n > 0);\n\
@@ -129,10 +135,10 @@ data:
     \ T nCr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n    \
     \    return 0;\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n -\
     \ r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename T> T nHr(int n, int\
-    \ r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n}\n// sum = n, a\
-    \ nonzero tuples and b tuples\ntemplate <typename T> T choose(int n, int a, int\
-    \ b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n + b - 1, a +\
-    \ b - 1);\n}\n\n/**\n * @brief Combination\n */"
+    \ r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1, inv);\n}\n// sum = n,\
+    \ a nonzero tuples and b tuples\ntemplate <typename T> T choose(int n, int a,\
+    \ int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n + b - 1,\
+    \ a + b - 1);\n}\n\n/**\n * @brief Combination\n */"
   dependsOn: []
   isVerificationFile: false
   path: Math/comb.hpp
@@ -153,7 +159,7 @@ data:
   - Convolution/subset.hpp
   - Convolution/relax.hpp
   - Graph/chromaticpoly.hpp
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_subset_convolution.test.cpp
@@ -166,7 +172,9 @@ data:
   - Verify/LC_bernoulli_number.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/YUKI_1080.test.cpp
   - Verify/LC_many_factorials.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
 documentation_of: Math/comb.hpp
 layout: document

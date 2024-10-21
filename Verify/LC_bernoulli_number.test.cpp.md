@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
@@ -13,13 +13,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/comb.hpp
     title: Combination
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -436,31 +436,31 @@ data:
     \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
-    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
-    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
-    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/famous.hpp\"\
-    \n\ntemplate <typename T> vector<T> Bernoulli(int n) {\n    Poly<T> f(n + 1);\n\
-    \    rep(i, 0, n + 1) f[i] = Fact<T>(i + 1, 1);\n    f = f.inv();\n    rep(i,\
-    \ 0, n + 1) f[i] *= Fact<T>(i);\n    return f;\n}\n\ntemplate <typename T> vector<T>\
-    \ Partition(int n) {\n    Poly<T> f(n + 1);\n    f[0] = 1;\n    rep(k, 1, n +\
-    \ 1) {\n        if (1LL * k * (3 * k + 1) / 2 <= n)\n            f[1LL * k * (3\
-    \ * k + 1) / 2] += (k & 1 ? -1 : 1);\n        if (1LL * k * (3 * k - 1) / 2 <=\
-    \ n)\n            f[1LL * k * (3 * k - 1) / 2] += (k & 1 ? -1 : 1);\n    }\n \
-    \   return f.inv();\n}\n\ntemplate <typename T> vector<T> StirlingNumber1st(int\
-    \ n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n    Poly<T> f({T(0),\
-    \ T(1)});\n    for (int LG = topbit(n) - 1; LG >= 0; LG--) {\n        int m =\
-    \ n >> LG;\n        f *= f.shift(m >> 1);\n        if (m & 1)\n            f =\
-    \ (f << 1) + f * T(m - 1);\n    }\n    rep(i, 0, n + 1) if ((n - i) & 1) f[i]\
-    \ = -f[i];\n    return f;\n}\n\ntemplate <typename T> vector<T> StirlingNumber2nd(int\
-    \ n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n    Poly<T> f(n + 1),\
-    \ g(n + 1);\n    rep(i, 0, n + 1) {\n        f[i] = Fp(i).pow(n) * Fact<T>(i,\
-    \ 1);\n        g[i] = Fact<T>(i, 1);\n        if (i & 1)\n            g[i] = -g[i];\n\
-    \    }\n    f *= g;\n    f.resize(n + 1);\n    return f;\n}\n\ntemplate <typename\
-    \ T> vector<T> Bell(int n) {\n    Poly<T> f(n + 1);\n    if (n)\n        f[1]\
-    \ = 1;\n    rep(i, 2, n + 1) f[i] = f[i - 1] / i;\n    f = f.exp();\n    T fac\
-    \ = 1;\n    rep(i, 2, n + 1) fac *= i, f[i] *= fac;\n    return f;\n}\n\n/**\n\
-    \ * @brief Famous Sequence\n */\n#line 16 \"Verify/LC_bernoulli_number.test.cpp\"\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
+    \ \"FPS/famous.hpp\"\n\ntemplate <typename T> vector<T> Bernoulli(int n) {\n \
+    \   Poly<T> f(n + 1);\n    rep(i, 0, n + 1) f[i] = Fact<T>(i + 1, 1);\n    f =\
+    \ f.inv();\n    rep(i, 0, n + 1) f[i] *= Fact<T>(i);\n    return f;\n}\n\ntemplate\
+    \ <typename T> vector<T> Partition(int n) {\n    Poly<T> f(n + 1);\n    f[0] =\
+    \ 1;\n    rep(k, 1, n + 1) {\n        if (1LL * k * (3 * k + 1) / 2 <= n)\n  \
+    \          f[1LL * k * (3 * k + 1) / 2] += (k & 1 ? -1 : 1);\n        if (1LL\
+    \ * k * (3 * k - 1) / 2 <= n)\n            f[1LL * k * (3 * k - 1) / 2] += (k\
+    \ & 1 ? -1 : 1);\n    }\n    return f.inv();\n}\n\ntemplate <typename T> vector<T>\
+    \ StirlingNumber1st(int n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n\
+    \    Poly<T> f({T(0), T(1)});\n    for (int LG = topbit(n) - 1; LG >= 0; LG--)\
+    \ {\n        int m = n >> LG;\n        f *= f.shift(m >> 1);\n        if (m &\
+    \ 1)\n            f = (f << 1) + f * T(m - 1);\n    }\n    rep(i, 0, n + 1) if\
+    \ ((n - i) & 1) f[i] = -f[i];\n    return f;\n}\n\ntemplate <typename T> vector<T>\
+    \ StirlingNumber2nd(int n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n\
+    \    Poly<T> f(n + 1), g(n + 1);\n    rep(i, 0, n + 1) {\n        f[i] = Fp(i).pow(n)\
+    \ * Fact<T>(i, 1);\n        g[i] = Fact<T>(i, 1);\n        if (i & 1)\n      \
+    \      g[i] = -g[i];\n    }\n    f *= g;\n    f.resize(n + 1);\n    return f;\n\
+    }\n\ntemplate <typename T> vector<T> Bell(int n) {\n    Poly<T> f(n + 1);\n  \
+    \  if (n)\n        f[1] = 1;\n    rep(i, 2, n + 1) f[i] = f[i - 1] / i;\n    f\
+    \ = f.exp();\n    T fac = 1;\n    rep(i, 2, n + 1) fac *= i, f[i] *= fac;\n  \
+    \  return f;\n}\n\n/**\n * @brief Famous Sequence\n */\n#line 16 \"Verify/LC_bernoulli_number.test.cpp\"\
     \n\nint main() {\n    int n;\n    read(n);\n\n    auto ret = Bernoulli<Fp>(n);\n\
     \    rep(i, 0, ret.size()) print(ret[i].v);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
@@ -481,7 +481,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bernoulli_number.test.cpp

@@ -38,16 +38,16 @@ data:
     \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
-    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
-    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
-    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 4 \"FPS/compexp.hpp\"\
-    \n\ntemplate <typename T> Poly<T> CompExp(Poly<T> &f, int m) {\n    int n = f.size();\n\
-    \    vector<pair<Poly<T>, Poly<T>>> fs;\n    rep(i, 0, n) {\n        Poly<T> p({Fp(f[i])});\n\
-    \        Poly<T> q({Fp(1), Fp(-i)});\n        fs.push_back({p, q});\n    }\n \
-    \   auto [p, q] = SumOfRationals(fs);\n    q.resize(m);\n    p *= q.inv();\n \
-    \   p.resize(m);\n    rep(i, 0, m) p[i] *= Fact<T>(i, 1);\n    return p;\n}\n\n\
-    /**\n * @brief $f(\\exp(x))$\n */\n"
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 4\
+    \ \"FPS/compexp.hpp\"\n\ntemplate <typename T> Poly<T> CompExp(Poly<T> &f, int\
+    \ m) {\n    int n = f.size();\n    vector<pair<Poly<T>, Poly<T>>> fs;\n    rep(i,\
+    \ 0, n) {\n        Poly<T> p({Fp(f[i])});\n        Poly<T> q({Fp(1), Fp(-i)});\n\
+    \        fs.push_back({p, q});\n    }\n    auto [p, q] = SumOfRationals(fs);\n\
+    \    q.resize(m);\n    p *= q.inv();\n    p.resize(m);\n    rep(i, 0, m) p[i]\
+    \ *= Fact<T>(i, 1);\n    return p;\n}\n\n/**\n * @brief $f(\\exp(x))$\n */\n"
   code: "#pragma once\n#include \"FPS/sumofRationals.hpp\"\n#include \"Math/comb.hpp\"\
     \n\ntemplate <typename T> Poly<T> CompExp(Poly<T> &f, int m) {\n    int n = f.size();\n\
     \    vector<pair<Poly<T>, Poly<T>>> fs;\n    rep(i, 0, n) {\n        Poly<T> p({Fp(f[i])});\n\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: false
   path: FPS/compexp.hpp
   requiredBy: []
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/compexp.hpp

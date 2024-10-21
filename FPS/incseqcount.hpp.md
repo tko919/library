@@ -28,11 +28,11 @@ data:
     \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
-    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
-    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
-    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/incseqcount.hpp\"\
-    \n\ntemplate <typename T>\nT NumberofIncreasingSequencesBetweenTwoSequences(int\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
+    \ \"FPS/incseqcount.hpp\"\n\ntemplate <typename T>\nT NumberofIncreasingSequencesBetweenTwoSequences(int\
     \ n, vector<int> a,\n                                                 vector<int>\
     \ b) {\n    auto step = [&](int n, vector<int> a, vector<T> &init) -> vector<T>\
     \ {\n        auto rec = [&](auto &self, int L, int R, vector<T> &dp) -> vector<T>\
@@ -143,7 +143,7 @@ data:
   isVerificationFile: false
   path: FPS/incseqcount.hpp
   requiredBy: []
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/incseqcount.hpp

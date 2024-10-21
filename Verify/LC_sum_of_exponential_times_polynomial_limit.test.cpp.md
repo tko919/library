@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/comb.hpp
     title: Combination
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':heavy_check_mark:'
@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
@@ -236,14 +236,14 @@ data:
     \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
-    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
-    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
-    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/interpolate.hpp\"\
-    \n\ntemplate<typename T>T Interpolate(vector<T>& ys,ll t){ // f(0),..,f(d) ->\
-    \ f(t)\n    int d=ys.size()-1;\n    if(t<=d)return ys[t];\n    vector<T> L(d+1,1),R(d+1,1);\n\
-    \    rep(i,0,d)L[i+1]=L[i]*(t-i);\n    for(int i=d;i;i--)R[i-1]=R[i]*(t-i);\n\
-    \    T ret;\n    rep(i,0,d+1){\n        T add=ys[i]*L[i]*R[i]*Fact<T>(i,1)*Fact<T>(d-i,1);\n\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
+    \ \"FPS/interpolate.hpp\"\n\ntemplate<typename T>T Interpolate(vector<T>& ys,ll\
+    \ t){ // f(0),..,f(d) -> f(t)\n    int d=ys.size()-1;\n    if(t<=d)return ys[t];\n\
+    \    vector<T> L(d+1,1),R(d+1,1);\n    rep(i,0,d)L[i+1]=L[i]*(t-i);\n    for(int\
+    \ i=d;i;i--)R[i-1]=R[i]*(t-i);\n    T ret;\n    rep(i,0,d+1){\n        T add=ys[i]*L[i]*R[i]*Fact<T>(i,1)*Fact<T>(d-i,1);\n\
     \        if((d-i)&1)ret-=add;\n        else ret+=add;\n    }\n    return ret;\n\
     }\n\n/**\n * @brief interpolate (one point)\n*/\n#line 4 \"FPS/sumofpolyexp.hpp\"\
     \n\ntemplate <typename T>\nT LimitSumOfPolyExp(vector<T> &f, T r) { // sum_{k=0}^inf\
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp

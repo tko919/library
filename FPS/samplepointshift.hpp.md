@@ -40,27 +40,28 @@ data:
     \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
-    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
-    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
-    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/samplepointshift.hpp\"\
-    \n\ntemplate <typename T>\nPoly<T> SamplePointsShift(vector<T> &ys, T c, int m\
-    \ = -1) {\n    ll n = ys.size() - 1, C = c.v % T::get_mod();\n    if (m == -1)\n\
-    \        m = n + 1;\n    if (C <= n) {\n        Poly<T> res;\n        rep(i, C,\
-    \ n + 1) res.push_back(ys[i]);\n        if (int(res.size()) >= m) {\n        \
-    \    res.resize(m);\n            return res;\n        }\n        auto add = SamplePointsShift<T>(ys,\
-    \ n + 1, m - res.size());\n        for (int i = 0; int(res.size()) < m; i++) {\n\
-    \            res.push_back(add[i]);\n        }\n        return res;\n    }\n \
-    \   if (C + m > T::get_mod()) {\n        auto res = SamplePointsShift<T>(ys, c,\
-    \ T::get_mod() - c.v);\n        auto add = SamplePointsShift<T>(ys, 0, m - res.size());\n\
-    \        rep(i, 0, add.size()) res.push_back(add[i]);\n        return res;\n \
-    \   }\n\n    Poly<T> A(n + 1), B(m + n);\n    rep(i, 0, n + 1) {\n        A[i]\
-    \ = ys[i] * Fact<T>(i, 1) * Fact<T>(n - i, 1);\n        if ((n - i) & 1)\n   \
-    \         A[i] = -A[i];\n    }\n    rep(i, 0, m + n) B[i] = Fp(1) / (c - n + i);\n\
-    \    auto AB = A * B;\n    vector<T> res(m);\n    Fp base = 1;\n    rep(x, 0,\
-    \ n + 1) base *= (c - x);\n    rep(i, 0, m) {\n        res[i] = AB[n + i] * base;\n\
-    \        base *= (c + i + 1);\n        base *= B[i];\n    }\n    return res;\n\
-    }\n\n/**\n * @brief Shift of Sampling Points of Polynomial\n */\n"
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
+    \ \"FPS/samplepointshift.hpp\"\n\ntemplate <typename T>\nPoly<T> SamplePointsShift(vector<T>\
+    \ &ys, T c, int m = -1) {\n    ll n = ys.size() - 1, C = c.v % T::get_mod();\n\
+    \    if (m == -1)\n        m = n + 1;\n    if (C <= n) {\n        Poly<T> res;\n\
+    \        rep(i, C, n + 1) res.push_back(ys[i]);\n        if (int(res.size()) >=\
+    \ m) {\n            res.resize(m);\n            return res;\n        }\n     \
+    \   auto add = SamplePointsShift<T>(ys, n + 1, m - res.size());\n        for (int\
+    \ i = 0; int(res.size()) < m; i++) {\n            res.push_back(add[i]);\n   \
+    \     }\n        return res;\n    }\n    if (C + m > T::get_mod()) {\n       \
+    \ auto res = SamplePointsShift<T>(ys, c, T::get_mod() - c.v);\n        auto add\
+    \ = SamplePointsShift<T>(ys, 0, m - res.size());\n        rep(i, 0, add.size())\
+    \ res.push_back(add[i]);\n        return res;\n    }\n\n    Poly<T> A(n + 1),\
+    \ B(m + n);\n    rep(i, 0, n + 1) {\n        A[i] = ys[i] * Fact<T>(i, 1) * Fact<T>(n\
+    \ - i, 1);\n        if ((n - i) & 1)\n            A[i] = -A[i];\n    }\n    rep(i,\
+    \ 0, m + n) B[i] = Fp(1) / (c - n + i);\n    auto AB = A * B;\n    vector<T> res(m);\n\
+    \    Fp base = 1;\n    rep(x, 0, n + 1) base *= (c - x);\n    rep(i, 0, m) {\n\
+    \        res[i] = AB[n + i] * base;\n        base *= (c + i + 1);\n        base\
+    \ *= B[i];\n    }\n    return res;\n}\n\n/**\n * @brief Shift of Sampling Points\
+    \ of Polynomial\n */\n"
   code: "#pragma once\n#include \"Math/comb.hpp\"\n\ntemplate <typename T>\nPoly<T>\
     \ SamplePointsShift(vector<T> &ys, T c, int m = -1) {\n    ll n = ys.size() -\
     \ 1, C = c.v % T::get_mod();\n    if (m == -1)\n        m = n + 1;\n    if (C\
@@ -86,7 +87,7 @@ data:
   requiredBy:
   - FPS/p-recursive.hpp
   - FPS/factlarge.hpp
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp

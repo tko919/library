@@ -84,14 +84,14 @@ data:
     \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r, inv);\n\
-    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
-    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
-    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"Convolution/subset.hpp\"\
-    \n\r\ntemplate <typename T, int LG = 20> struct SubsetConvolution {\r\n    using\
-    \ POL = array<T, LG + 1>;\r\n    vector<int> bpc;\r\n    SubsetConvolution() :\
-    \ bpc(1 << LG) {\r\n        rep(i, 1, 1 << LG) bpc[i] = bpc[i - (i & -i)] + 1;\r\
-    \n    }\r\n    void zeta(vector<POL> &a) {\r\n        int n = topbit(SZ(a));\r\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
+    \ \"Convolution/subset.hpp\"\n\r\ntemplate <typename T, int LG = 20> struct SubsetConvolution\
+    \ {\r\n    using POL = array<T, LG + 1>;\r\n    vector<int> bpc;\r\n    SubsetConvolution()\
+    \ : bpc(1 << LG) {\r\n        rep(i, 1, 1 << LG) bpc[i] = bpc[i - (i & -i)] +\
+    \ 1;\r\n    }\r\n    void zeta(vector<POL> &a) {\r\n        int n = topbit(SZ(a));\r\
     \n        rep(d, 0, n) {\r\n            rep(i, 0, 1 << n) if (i >> d & 1) {\r\n\
     \                const int pc = bpc[i];\r\n                rep(j, 0, pc) a[i][j]\
     \ += a[i ^ (1 << d)][j];\r\n            }\r\n        }\r\n    }\r\n    void mobius(vector<POL>\
@@ -178,7 +178,7 @@ data:
   isVerificationFile: false
   path: Math/hafnian.hpp
   requiredBy: []
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_hafnian_of_matrix.test.cpp

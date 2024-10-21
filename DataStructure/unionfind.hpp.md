@@ -14,6 +14,9 @@ data:
   - icon: ':warning:'
     path: Graph/euler.hpp
     title: Eulerian Trail
+  - icon: ':warning:'
+    path: Graph/opttoposort.hpp
+    title: Optimal Topological sort
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_manhattanmst.test.cpp
@@ -48,6 +51,7 @@ data:
   - DataStructure/rangeparalleluf.hpp
   - DataStructure/manhattanmst.hpp
   - Graph/edgecoloring.hpp
+  - Graph/opttoposort.hpp
   - Graph/euler.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
