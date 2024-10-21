@@ -43,7 +43,7 @@ template <typename T> T nCr(int n, int r, bool inv = 0) {
 }
 // sum = n, r tuples
 template <typename T> T nHr(int n, int r, bool inv = 0) {
-    return nCr<T>(n + r - 1, r, inv);
+    return nCr<T>(n + r - 1, r - 1, inv);
 }
 // sum = n, a nonzero tuples and b tuples
 template <typename T> T choose(int n, int a, int b) {
