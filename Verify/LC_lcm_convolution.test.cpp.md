@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   - icon: ':heavy_check_mark:'

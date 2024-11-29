@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []
@@ -21,7 +21,8 @@ data:
     links:
     - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
   bundledCode: "#line 1 \"Verify/LC_frequency_table_of_tree_distance.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
+    #define PROBLEM                                                              \
+    \  \\\r\n    \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \r\n\r\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
     \n#define rrep(i, a, b) for (int i = (int)(b)-1; i >= (int)(a); i--)\r\n#define\
@@ -103,50 +104,65 @@ data:
     \ vector<C> f(n);\r\n        for(int i=0;i<as;i++)f[i].x=a[i];\r\n        fft(f,0);\
     \ for(int i=0;i<n;i++)f[i]=f[i]*f[i];\r\n        fft(f,1); for(int i=0;i<cs;i++)c[i]=round(f[i].x/n);\r\
     \n        return c;\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\
-    \n */\n#line 2 \"Graph/centroid.hpp\"\n\r\nclass CentroidDecomposition{\r\n  \
-    \  void get(int v,int p){\r\n        sz[v]=1;\r\n        for(auto& to:g[v])if(to!=p\
-    \ and !used[to]){\r\n            get(to,v);\r\n            sz[v]+=sz[to];\r\n\
-    \        }\r\n    }\r\n    int dfs(int v,int p,int rt){\r\n        for(auto& to:g[v])if(to!=p\
-    \ and !used[to]){\r\n            if(sz[to]>(sz[rt]>>1))return dfs(to,v,rt);\r\n\
-    \        }\r\n        return v;\r\n    }\r\npublic:\r\n    int n;\r\n    vector<vector<int>>\
-    \ g;\r\n    vector<int> sz,used;\r\n    CentroidDecomposition(int n_):n(n_),g(n),sz(n),used(n){}\r\
-    \n    void add_edge(int u,int v){\r\n        g[u].push_back(v);\r\n        g[v].push_back(u);\r\
-    \n    }\r\n    int find(int rt){\r\n        get(rt,-1);\r\n        int res=dfs(rt,-1,rt);\r\
-    \n        used[res]=1;\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n *\
-    \ @brief Centroid Decomposition\r\n */\n#line 6 \"Verify/LC_frequency_table_of_tree_distance.test.cpp\"\
-    \n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\n    CentroidDecomposition cd(n);\r\
-    \n    rep(i,0,n-1){\r\n        int x,y;\r\n        cin>>x>>y;\r\n        cd.add_edge(x,y);\r\
-    \n    }\r\n    vector<ll> ret(n);\r\n\r\n    auto rec=[&](auto& _rec,int rt)->void{\r\
-    \n        int cen=cd.find(rt);\r\n        for(auto& to:cd.g[cen])if(!cd.used[to])_rec(_rec,to);\r\
-    \n        vector<ll> sum,cur;\r\n        auto dfs=[&](auto& f,int v,int p,int\
-    \ d)->void{\r\n            if((int)cur.size()<=d)cur.resize(d+1);\r\n        \
-    \    cur[d]++;\r\n            for(auto& to:cd.g[v])if(to!=p and !cd.used[to])f(f,to,v,d+1);\r\
-    \n        };\r\n        for(auto& to:cd.g[cen])if(!cd.used[to]){\r\n         \
-    \   cur.clear();\r\n            dfs(dfs,to,cen,1);\r\n            auto sub=FFT::square(cur);\r\
-    \n            rep(i,0,min((int)sub.size(),n))ret[i]-=sub[i];\r\n            if(sum.size()<cur.size())sum.resize(cur.size());\r\
-    \n            rep(i,0,cur.size())sum[i]+=cur[i];\r\n        }\r\n        rep(i,0,min((int)sum.size(),n))ret[i]+=sum[i]*2;\r\
-    \n        auto add=FFT::square(sum);\r\n        rep(i,0,min((int)add.size(),n))ret[i]+=add[i];\r\
-    \n        cd.used[cen]=0;\r\n    };\r\n    rec(rec,0);\r\n    rep(i,1,n){\r\n\
-    \        ret[i]>>=1;\r\n        cout<<ret[i]<<'\\n';\r\n    }\r\n    return 0;\r\
-    \n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
+    \n */\n#line 2 \"Graph/centroid.hpp\"\n\r\nclass CentroidDecomposition {\r\n \
+    \   void get(int v, int p) {\r\n        sz[v] = 1;\r\n        for (auto &to :\
+    \ g[v])\r\n            if (to != p and !used[to]) {\r\n                get(to,\
+    \ v);\r\n                sz[v] += sz[to];\r\n            }\r\n    }\r\n    int\
+    \ dfs(int v, int p, int rt) {\r\n        for (auto &to : g[v])\r\n           \
+    \ if (to != p and !used[to]) {\r\n                if (sz[to] > (sz[rt] >> 1))\r\
+    \n                    return dfs(to, v, rt);\r\n            }\r\n        return\
+    \ v;\r\n    }\r\n\r\n  public:\r\n    int n, all;\r\n    vector<vector<int>> g;\r\
+    \n    vector<int> sz, used;\r\n    CentroidDecomposition(int n_) : n(n_), g(n),\
+    \ sz(n), used(n) {}\r\n    void add_edge(int u, int v) {\r\n        g[u].push_back(v);\r\
+    \n        g[v].push_back(u);\r\n    }\r\n    int size(int rt) {\r\n        get(rt,\
+    \ -1);\r\n        return sz[rt];\r\n    }\r\n    int find(int rt) {\r\n      \
+    \  get(rt, -1);\r\n        all = sz[rt];\r\n        int res = dfs(rt, -1, rt);\r\
+    \n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Centroid Decomposition\r\
+    \n */\n#line 7 \"Verify/LC_frequency_table_of_tree_distance.test.cpp\"\n\r\nint\
+    \ main() {\r\n    int n;\r\n    cin >> n;\r\n    CentroidDecomposition cd(n);\r\
+    \n    rep(i, 0, n - 1) {\r\n        int x, y;\r\n        cin >> x >> y;\r\n  \
+    \      cd.add_edge(x, y);\r\n    }\r\n    vector<ll> ret(n);\r\n\r\n    auto rec\
+    \ = [&](auto &_rec, int rt) -> void {\r\n        int cen = cd.find(rt);\r\n  \
+    \      cd.used[cen] = 1;\r\n        for (auto &to : cd.g[cen])\r\n           \
+    \ if (!cd.used[to])\r\n                _rec(_rec, to);\r\n        vector<ll> sum,\
+    \ cur;\r\n        auto dfs = [&](auto &f, int v, int p, int d) -> void {\r\n \
+    \           if ((int)cur.size() <= d)\r\n                cur.resize(d + 1);\r\n\
+    \            cur[d]++;\r\n            for (auto &to : cd.g[v])\r\n           \
+    \     if (to != p and !cd.used[to])\r\n                    f(f, to, v, d + 1);\r\
+    \n        };\r\n        for (auto &to : cd.g[cen])\r\n            if (!cd.used[to])\
+    \ {\r\n                cur.clear();\r\n                dfs(dfs, to, cen, 1);\r\
+    \n                auto sub = FFT::square(cur);\r\n                rep(i, 0, min((int)sub.size(),\
+    \ n)) ret[i] -= sub[i];\r\n                if (sum.size() < cur.size())\r\n  \
+    \                  sum.resize(cur.size());\r\n                rep(i, 0, cur.size())\
+    \ sum[i] += cur[i];\r\n            }\r\n        rep(i, 0, min((int)sum.size(),\
+    \ n)) ret[i] += sum[i] * 2;\r\n        auto add = FFT::square(sum);\r\n      \
+    \  rep(i, 0, min((int)add.size(), n)) ret[i] += add[i];\r\n        cd.used[cen]\
+    \ = 0;\r\n    };\r\n    rec(rec, 0);\r\n    rep(i, 1, n) {\r\n        ret[i] >>=\
+    \ 1;\r\n        cout << ret[i] << '\\n';\r\n    }\r\n    return 0;\r\n}\n"
+  code: "#define PROBLEM                                                         \
+    \       \\\r\n    \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Convolution/fft.hpp\"\
-    \r\n#include \"Graph/centroid.hpp\"\r\n\r\nint main(){\r\n    int n;\r\n    cin>>n;\r\
-    \n    CentroidDecomposition cd(n);\r\n    rep(i,0,n-1){\r\n        int x,y;\r\n\
-    \        cin>>x>>y;\r\n        cd.add_edge(x,y);\r\n    }\r\n    vector<ll> ret(n);\r\
-    \n\r\n    auto rec=[&](auto& _rec,int rt)->void{\r\n        int cen=cd.find(rt);\r\
-    \n        for(auto& to:cd.g[cen])if(!cd.used[to])_rec(_rec,to);\r\n        vector<ll>\
-    \ sum,cur;\r\n        auto dfs=[&](auto& f,int v,int p,int d)->void{\r\n     \
-    \       if((int)cur.size()<=d)cur.resize(d+1);\r\n            cur[d]++;\r\n  \
-    \          for(auto& to:cd.g[v])if(to!=p and !cd.used[to])f(f,to,v,d+1);\r\n \
-    \       };\r\n        for(auto& to:cd.g[cen])if(!cd.used[to]){\r\n           \
-    \ cur.clear();\r\n            dfs(dfs,to,cen,1);\r\n            auto sub=FFT::square(cur);\r\
-    \n            rep(i,0,min((int)sub.size(),n))ret[i]-=sub[i];\r\n            if(sum.size()<cur.size())sum.resize(cur.size());\r\
-    \n            rep(i,0,cur.size())sum[i]+=cur[i];\r\n        }\r\n        rep(i,0,min((int)sum.size(),n))ret[i]+=sum[i]*2;\r\
-    \n        auto add=FFT::square(sum);\r\n        rep(i,0,min((int)add.size(),n))ret[i]+=add[i];\r\
-    \n        cd.used[cen]=0;\r\n    };\r\n    rec(rec,0);\r\n    rep(i,1,n){\r\n\
-    \        ret[i]>>=1;\r\n        cout<<ret[i]<<'\\n';\r\n    }\r\n    return 0;\r\
-    \n}"
+    \r\n#include \"Graph/centroid.hpp\"\r\n\r\nint main() {\r\n    int n;\r\n    cin\
+    \ >> n;\r\n    CentroidDecomposition cd(n);\r\n    rep(i, 0, n - 1) {\r\n    \
+    \    int x, y;\r\n        cin >> x >> y;\r\n        cd.add_edge(x, y);\r\n   \
+    \ }\r\n    vector<ll> ret(n);\r\n\r\n    auto rec = [&](auto &_rec, int rt) ->\
+    \ void {\r\n        int cen = cd.find(rt);\r\n        cd.used[cen] = 1;\r\n  \
+    \      for (auto &to : cd.g[cen])\r\n            if (!cd.used[to])\r\n       \
+    \         _rec(_rec, to);\r\n        vector<ll> sum, cur;\r\n        auto dfs\
+    \ = [&](auto &f, int v, int p, int d) -> void {\r\n            if ((int)cur.size()\
+    \ <= d)\r\n                cur.resize(d + 1);\r\n            cur[d]++;\r\n   \
+    \         for (auto &to : cd.g[v])\r\n                if (to != p and !cd.used[to])\r\
+    \n                    f(f, to, v, d + 1);\r\n        };\r\n        for (auto &to\
+    \ : cd.g[cen])\r\n            if (!cd.used[to]) {\r\n                cur.clear();\r\
+    \n                dfs(dfs, to, cen, 1);\r\n                auto sub = FFT::square(cur);\r\
+    \n                rep(i, 0, min((int)sub.size(), n)) ret[i] -= sub[i];\r\n   \
+    \             if (sum.size() < cur.size())\r\n                    sum.resize(cur.size());\r\
+    \n                rep(i, 0, cur.size()) sum[i] += cur[i];\r\n            }\r\n\
+    \        rep(i, 0, min((int)sum.size(), n)) ret[i] += sum[i] * 2;\r\n        auto\
+    \ add = FFT::square(sum);\r\n        rep(i, 0, min((int)add.size(), n)) ret[i]\
+    \ += add[i];\r\n        cd.used[cen] = 0;\r\n    };\r\n    rec(rec, 0);\r\n  \
+    \  rep(i, 1, n) {\r\n        ret[i] >>= 1;\r\n        cout << ret[i] << '\\n';\r\
+    \n    }\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Convolution/fft.hpp
@@ -154,7 +170,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
+  timestamp: '2024-11-30 06:37:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_frequency_table_of_tree_distance.test.cpp

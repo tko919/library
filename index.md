@@ -100,7 +100,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
     - icon: ':warning:'
@@ -493,7 +493,7 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
@@ -633,7 +633,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_lcm_convolution.test.cpp
       title: Verify/LC_lcm_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_line_add_get_min.test.cpp
       title: Verify/LC_line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
