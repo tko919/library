@@ -7,14 +7,12 @@ template <typename T, T MX> struct CHT {
     vector<Line> ls;
     CHT() {}
     CHT(vector<T> &ps) {
-        if (ps.empty())
-            return;
         xs = ps;
         UNIQUE(xs);
         n = 1;
         while (n < (int)xs.size())
             n <<= 1;
-        xs.resize(n, xs.back());
+        xs.resize(n, inf);
         ls.resize(2 * n - 1, Line(0, MX));
     }
     T eval(Line &f, T x) {
