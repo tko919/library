@@ -7,6 +7,8 @@ template <typename T, T MX> struct CHT {
     vector<Line> ls;
     CHT() {}
     CHT(vector<T> &ps) {
+        if (ps.empty())
+            return;
         xs = ps;
         UNIQUE(xs);
         n = 1;
