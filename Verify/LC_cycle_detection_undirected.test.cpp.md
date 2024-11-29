@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/cycledetect.hpp
     title: Cycle Detection
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   - icon: ':heavy_check_mark:'

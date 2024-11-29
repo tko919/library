@@ -126,7 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_line_add_get_min.test.cpp
     title: Verify/LC_line_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -327,9 +327,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing\
@@ -423,7 +423,7 @@ data:
   path: Template/template.hpp
   requiredBy: []
   timestamp: '2024-06-23 06:04:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_two_edge_connected_components.test.cpp
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp

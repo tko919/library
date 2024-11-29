@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
   - icon: ':heavy_check_mark:'
