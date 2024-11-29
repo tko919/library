@@ -18,7 +18,9 @@ struct ContourQuery {
         root = rec(0);
         depth[0] = 0;
         dfs(0, -1);
-        rep(v, 0, m) if (v != root) { seg[v] = width[v]; }
+        rep(v, 0, m) if (v != root) {
+            seg[v] = width[v];
+        }
         return seg;
     }
     vector<P> point(int v) {
@@ -65,6 +67,7 @@ struct ContourQuery {
     vector<int> depth, base, parent, buf, width, seg;
     int rec(int rt) {
         int cen = cd.find(rt);
+        cd.used[cen] = 1;
         buf[cen] = 1;
         queue<P> que;
         auto cmp = [&](int u, int v) { return buf[u] > buf[v]; };

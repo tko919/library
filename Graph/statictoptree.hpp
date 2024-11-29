@@ -1,77 +1,57 @@
 #pragma once
 
-template <typename Path, typename Point, Path (*vertex)(int),
-          Path (*compress)(Path, Path), Point (*rake)(Point, Point),
-          Point (*add_edge)(Path), Path (*add_vertex)(Point, int)>
 struct StaticTopTree {
-    enum Type { Vertex, Compress, Rake, AddEdge, AddVertex };
-    struct Node {
-        int par, lp, rp;
-        Type t;
-        Node() {}
-        Node(int _p, int _l, int _r, Type _t)
-            : par(_p), lp(_l), rp(_r), t(_t) {}
-    };
+    using T = array<int, 4>;
     vector<vector<int>> g;
-    vector<Node> vs;
-    vector<Path> path;
-    vector<Point> point;
-    int rt;
+    vector<T> tree; // {par,L,R,type 0:rake,1:compress,2:vertex}
+    int n, rt;
     StaticTopTree() {}
-    StaticTopTree(int n) : g(n), vs(n) {}
-    void push(int u, int v) {
+    StaticTopTree(int n) : n(n), g(n), tree(n) {}
+    void add_edge(int u, int v) {
         g[u].push_back(v);
         g[v].push_back(u);
     }
-    void run(int base) {
-        _dfs(base, -1);
-        auto [v, _] = _compress(base);
-        rt = v;
-        path.resize(SZ(vs));
-        point.resize(SZ(vs));
-        _calc(rt);
+    void run(int base = 0) {
+        dfs(base, -1);
+        rt = build(base).first;
     }
-    void update(int v) {
-        while (v != -1) {
-            _update(v);
-            v = vs[v].par;
+    void dump() {
+        rep(v, 0, SZ(tree)) {
+            auto [par, L, R, type] = tree[v];
+            show(v, par, L, R, type);
         }
-    }
-    Path get_root() const {
-        return path[rt];
     }
 
   private:
-    int _make(int k, int L, int R, Type t) {
-        Node add(-1, L, R, t);
-        if (k == -1) {
-            k = SZ(vs);
-            vs.push_back(add);
-        } else
-            vs[k] = add;
-        if (L != -1)
-            vs[L].par = k;
-        if (R != -1)
-            vs[R].par = k;
-        return k;
-    }
-    int _dfs(int v, int p) {
+    int dfs(int v, int p) {
         rep(i, 0, SZ(g[v])) if (g[v][i] == p) {
             g[v].erase(g[v].begin() + i);
             break;
         }
         int sz = 1, best = 0;
         for (auto &to : g[v]) {
-            int add = _dfs(to, v);
+            int add = dfs(to, v);
             sz += add;
             if (chmax(best, add))
                 swap(to, g[v].front());
         }
         return sz;
     }
-
-    using P = pair<int, int>;
-    P _merge(const vector<P> &a, Type t) {
+    using P = pair<int, int>; // {ID,size}
+    int make(int v, int L, int R, int type) {
+        if (v == -1) {
+            v = SZ(tree);
+            tree.push_back({-1, L, R, type});
+        } else {
+            tree[v] = {-1, L, R, type};
+        }
+        if (L != -1)
+            tree[L][0] = v;
+        if (R != -1)
+            tree[R][0] = v;
+        return v;
+    }
+    P merge(vector<P> a, int type) {
         if (SZ(a) == 1)
             return a[0];
         int sum = 0;
@@ -85,53 +65,134 @@ struct StaticTopTree {
                 R.push_back({v, sz});
             sum -= sz * 2;
         }
-        auto [lb, slb] = _merge(L, t);
-        auto [rb, srb] = _merge(R, t);
-        return {_make(-1, lb, rb, t), slb + srb};
+        auto [lb, ls] = merge(L, type);
+        auto [rb, rs] = merge(R, type);
+        return P{make(-1, lb, rb, type), ls + rs};
     }
-    P _compress(int v) {
-        vector<P> cs{_add_vertex(v)};
-        while (!g[v].empty())
-            cs.push_back(_add_vertex(v = g[v].front()));
-        return _merge(cs, Type::Compress);
-    }
-    P _rake(int v) {
-        vector<P> cs;
-        rep(j, 1, SZ(g[v])) cs.push_back(_add_edge(g[v][j]));
-        return cs.empty() ? P{-1, 0} : _merge(cs, Type::Rake);
-    }
-    P _add_edge(int v) {
-        auto [to, sz] = _compress(v);
-        return P{_make(-1, to, -1, Type::AddEdge), sz};
-    }
-    P _add_vertex(int v) {
-        auto [to, sz] = _rake(v);
-        return P{_make(v, to, -1, to == -1 ? Type::Vertex : Type::AddVertex),
-                 sz + 1};
-    }
-    void _update(int v) {
-        if (vs[v].t == StaticTopTree::Type::Vertex) {
-            path[v] = vertex(v);
+    P build(int v) {
+        int cur = v, pre = -1;
+        vector<P> a;
+        for (;;) {
+            // rake
+            vector<P> b;
+            b.push_back({make(cur, -1, -1, 2), 1});
+            if (pre != -1) {
+                assert(g[pre][0] == cur);
+                for (auto &to : g[pre])
+                    if (to != cur) {
+                        b.push_back(build(to));
+                    }
+            }
+            a.push_back(merge(b, 0));
+            if (SZ(g[cur]) == 0)
+                break;
+            pre = cur, cur = g[cur][0];
         }
-        if (vs[v].t == StaticTopTree::Type::Compress) {
-            path[v] = compress(path[vs[v].lp], path[vs[v].rp]);
-        }
-        if (vs[v].t == StaticTopTree::Type::Rake) {
-            point[v] = rake(point[vs[v].lp], point[vs[v].rp]);
-        }
-        if (vs[v].t == StaticTopTree::Type::AddVertex) {
-            path[v] = add_vertex(point[vs[v].lp], v);
-        }
-        if (vs[v].t == StaticTopTree::Type::AddEdge) {
-            point[v] = add_edge(path[vs[v].lp]);
+        return merge(a, 1);
+    }
+};
+
+/**
+ * rake: (a<-b], (a<-c] -> (a<-b].
+ * compress: (a<-b], (b<-c] -> (a<-c].
+ */
+template <typename M, M (*rake)(M, M), M (*compress)(M, M)>
+struct DynamicTreeDP {
+    int n, sz;
+    StaticTopTree stt;
+    vector<M> dat;
+    DynamicTreeDP() {}
+    template <typename F>
+    DynamicTreeDP(int n, StaticTopTree _stt, F vertex)
+        : n(n), sz(SZ(_stt.tree)), stt(_stt), dat(sz) {
+        rep(i, 0, n) dat[i] = vertex(i);
+        rep(i, n, sz) update(i);
+    }
+    void set(int v, M x) {
+        dat[v] = x;
+        for (int p = stt.tree[v][0]; p != -1; p = stt.tree[p][0])
+            update(p);
+    }
+    M get() {
+        return dat.back();
+    }
+
+  private:
+    void update(int v) {
+        auto L = dat[stt.tree[v][1]];
+        auto R = dat[stt.tree[v][2]];
+        if (stt.tree[v][3]) {
+            dat[v] = compress(L, R);
+        } else {
+            dat[v] = rake(L, R);
         }
     }
-    void _calc(int v) {
-        if (vs[v].lp != -1)
-            _calc(vs[v].lp);
-        if (vs[v].rp != -1)
-            _calc(vs[v].rp);
-        _update(v);
+};
+
+/**
+ * rake1: (a<-b], (a<-c] -> (a<-b].
+ * rake2: (a->b], (a<-c] -> (a->b].
+ * compress: (a<-b], (b<-c] -> (a<-c].
+ */
+template <typename M, M (*rake1)(M, M), M (*rake2)(M, M), M (*compress)(M, M),
+          M (*e)()>
+struct DynamicRerootingDP {
+    int n, sz;
+    StaticTopTree stt;
+    using P = pair<M, M>;
+    vector<P> dat; // {ord,rev}
+    DynamicRerootingDP() {}
+    template <typename F>
+    DynamicRerootingDP(int n, StaticTopTree _stt, F vertex)
+        : n(n), sz(SZ(_stt.tree)), stt(_stt), dat(sz) {
+        dat[0] = {e(), e()};
+        rep(i, 1, n) dat[i] = vertex(i);
+        rep(i, n, sz) update(i);
+    }
+    void set(int v, P x) {
+        dat[v] = x;
+        for (int p = stt.tree[v][0]; p != -1; p = stt.tree[p][0])
+            update(p);
+    }
+    M get(int v) {
+        // a: expose cur to v (down)
+        // b: expose from cur (down)
+        // c: expose to cur (up)
+        int cur = v;
+        M a = dat[cur].second, b = e(), c = e();
+        for (;;) {
+            int p = stt.tree[cur][0];
+            if (p == -1)
+                break;
+            int L = stt.tree[p][1], R = stt.tree[p][2];
+            if (stt.tree[p][3]) {
+                if (L == cur)
+                    b = compress(b, dat[R].first);
+                else
+                    a = compress(a, dat[L].second);
+            } else {
+                if (L == cur) {
+                    a = rake2(a, dat[R].first);
+                } else {
+                    c = compress(c, rake1(a, b));
+                    a = e();
+                    b = dat[L].first;
+                }
+            }
+            cur = p;
+        }
+        return compress(c, rake1(a, b));
+    }
+
+  private:
+    void update(int v) {
+        auto [L, Lre] = dat[stt.tree[v][1]];
+        auto [R, Rre] = dat[stt.tree[v][2]];
+        if (stt.tree[v][3]) {
+            dat[v] = P{compress(L, R), compress(Rre, Lre)};
+        } else {
+            dat[v] = P{rake1(L, R), rake2(Lre, R)};
+        }
     }
 };
 
