@@ -97,6 +97,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/hashmap.hpp
       title: Hash Map
+    - icon: ':warning:'
+      path: DataStructure/lazykdtree.hpp
+      title: Kd Tree
     - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
