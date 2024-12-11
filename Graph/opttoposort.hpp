@@ -1,8 +1,8 @@
 #pragma once
 #include "DataStructure/unionfind.hpp"
 
-// root:0, minimize sum_i i*w[q_i]
-ll OptimalToposort(int n, vector<int> &p, vector<ll> &w) {
+// root:0, minimize sum_{i<j} w1[q_i]*w0[q_j]
+ll OptimalToposort(int n, vector<int> &p, vector<ll> &w0, vector<ll> &w1) {
     struct Node {
         ll zero, one, inv;
         Node(ll z = 0, ll o = 0, ll i = 0) : zero(z), one(o), inv(i) {}
@@ -18,7 +18,7 @@ ll OptimalToposort(int n, vector<int> &p, vector<ll> &w) {
     UnionFind uni(n);
     vector<Node> info(n);
     rep(i, 0, n) {
-        info[i] = Node{w[i], 1, 0};
+        info[i] = Node{w0[i], w1[i], 0};
         if (i)
             pq.push({info[i], i});
     }
