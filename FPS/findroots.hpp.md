@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/prodofpolys.hpp
     title: Product of Polynomials
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

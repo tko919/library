@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
@@ -157,15 +157,16 @@ data:
     \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
     \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
     \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp\"\
-    \n\r\n#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv{\n    using u64=uint64_t;\n\
-    \    using u128=__uint128_t;\n    constexpr FastDiv():m(),s(),x(){}\n    constexpr\
-    \ FastDiv(int _m)\n        :m(_m),s(__lg(m-1)),x(((u128(1)<<(s+64))+m-1)/m){}\n\
-    \    constexpr int get(){return m;}\n    constexpr friend u64 operator/(u64 n,const\
-    \ FastDiv& d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend\
-    \ int operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n \
-    \   constexpr pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n  \
-    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast\
-    \ Division\n*/\n#line 3 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\
+    \n\r\n#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv {\n    using u64 = unsigned\
+    \ ll;\n    using u128 = __uint128_t;\n    u128 mod, mh, ml;\n    explicit FastDiv(u64\
+    \ mod = 1) : mod(mod) {\n        u128 m = u128(-1) / mod;\n        if (m * mod\
+    \ + mod == u128(0))\n            ++m;\n        mh = m >> 64;\n        ml = m &\
+    \ u64(-1);\n    }\n    u64 umod() const {\n        return mod;\n    }\n    u64\
+    \ modulo(u128 x) {\n        u128 z = (x & u64(-1)) * ml;\n        z = (x & u64(-1))\
+    \ * mh + (x >> 64) * ml + (z >> 64);\n        z = (x >> 64) * mh + (z >> 64);\n\
+    \        x -= z * mod;\n        return x < mod ? x : x - mod;\n    }\n    u64\
+    \ mul(u64 a, u64 b) {\n        return modulo(u128(a) * b);\n    }\n};\n\n/**\n\
+    \ * @brief Fast Division\n */\n#line 3 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\
     \n    const int p;\r\n    FastDiv ip;\r\n    vector<vector<int>> binom,F,S;\r\n\
     \    ll nCr(ll n,ll k){\r\n        if(n<0 or k<0 or n<k)return 0;\r\n        ll\
     \ res=1;\r\n        while(n){\r\n            res=(res*binom[n%ip][k%ip])%ip;\r\
@@ -204,8 +205,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-24 03:24:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
 layout: document

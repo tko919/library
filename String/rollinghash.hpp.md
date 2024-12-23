@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -46,8 +46,7 @@ data:
     \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
     \ Random\r\n */\n#line 3 \"String/rollinghash.hpp\"\n\nstruct RollingHash {\n\
     \    using ull = unsigned long long;\n    const ull MOD = 0x1fffffffffffffff;\n\
-    \    const ull base;\n    vector<ull> hashed, power;\n\n    static constexpr ull\
-    \ mask(ll a) {\n        return (1ULL << a) - 1;\n    }\n\n    inline ull mul(ull\
+    \    const ull base;\n    vector<ull> hashed, power;\n\n    inline ull mul(ull\
     \ a, ull b) const {\n        __uint128_t ans = __uint128_t(a) * b;\n        ans\
     \ = (ans >> 61) + (ans & MOD);\n        if (ans >= MOD)\n            ans -= MOD;\n\
     \        return ans;\n    }\n\n    static inline ull genbase() {\n        return\
@@ -75,8 +74,7 @@ data:
     \     }\n        return low;\n    }\n};\n\n/**\n * @brief Rolling Hash\n */\n"
   code: "#pragma once\n#include \"Utility/random.hpp\"\n\nstruct RollingHash {\n \
     \   using ull = unsigned long long;\n    const ull MOD = 0x1fffffffffffffff;\n\
-    \    const ull base;\n    vector<ull> hashed, power;\n\n    static constexpr ull\
-    \ mask(ll a) {\n        return (1ULL << a) - 1;\n    }\n\n    inline ull mul(ull\
+    \    const ull base;\n    vector<ull> hashed, power;\n\n    inline ull mul(ull\
     \ a, ull b) const {\n        __uint128_t ans = __uint128_t(a) * b;\n        ans\
     \ = (ans >> 61) + (ans & MOD);\n        if (ans >= MOD)\n            ans -= MOD;\n\
     \        return ans;\n    }\n\n    static inline ull genbase() {\n        return\
@@ -107,7 +105,7 @@ data:
   isVerificationFile: false
   path: String/rollinghash.hpp
   requiredBy: []
-  timestamp: '2024-09-30 03:29:42+09:00'
+  timestamp: '2024-12-24 03:24:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: String/rollinghash.hpp

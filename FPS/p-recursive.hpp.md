@@ -145,20 +145,26 @@ data:
     \ (c[i * (d + 1) + j] != 0)\n                add += c[i * (d + 1) + j];\n    \
     \    }\n        ret.push_back(add);\n    }\n    while (ret.back().empty())\n \
     \       ret.pop_back();\n    reverse(ALL(ret));\n    return ret;\n}\n\ntemplate\
-    \ <typename T>\nT KthtermOfPRecursive(vector<T> &a, vector<Poly<T>> &fs, ll k)\
-    \ {\n    int n = fs.size() - 1;\n    assert(int(a.size()) >= n);\n    if (k <\
-    \ int(a.size()))\n        return a[k];\n\n    Matrix<Poly<T>> m(n), den(1);\n\
-    \    Matrix<T> base(n);\n    rep(i, 0, n) m[0][i] = -fs[i + 1];\n    rep(i, 1,\
-    \ n) m[i][i - 1] = fs[0];\n    den[0][0] = fs[0];\n    rep(i, 0, n) base[i][0]\
-    \ = a[n - 1 - i];\n    T ret = (PrefixProdOfPolyMatrix(m, k - n + 1) * base)[0][0];\n\
-    \    ret /= PrefixProdOfPolyMatrix(den, k - n + 1)[0][0];\n    return ret;\n}\n\
-    \ntemplate <typename T> T KthtermEsper(vector<T> &a, ll k) {\n    if (k < (int)a.size())\n\
-    \        return a[k];\n    int n = a.size() - 1;\n    vector<Fp> b = a;\n    b.pop_back();\n\
-    \n    for (int d = 0;; d++) {\n        if ((n + 2) / (d + 2) <= 1)\n         \
-    \   break;\n        auto fs = FindPRecursive(b, d);\n        if (KthtermOfPRecursive(b,\
-    \ fs, n) == a.back()) {\n            show(fs);\n            return KthtermOfPRecursive(a,\
-    \ fs, k);\n        }\n    }\n    cerr << \"esper Failed\" << '\\n';\n    assert(0);\n\
-    }\n\n/**\n * @brief P-recursive\n */\n"
+    \ <typename T>\nvector<T> EnumPRecursive(vector<T> &a, vector<Poly<T>> fs, int\
+    \ n) {\n    int sz = SZ(fs) - 1;\n    reverse(ALL(fs));\n    vector<T> ret = a;\n\
+    \    ret.resize(n);\n    rep(i, SZ(a), n) {\n        int x = i - sz;\n       \
+    \ Fp sum;\n        rep(j, 0, sz) if (x + j >= 0) {\n            sum -= fs[j].eval(x)\
+    \ * ret[x + j];\n        }\n        ret[i] = sum / fs[sz].eval(x);\n    }\n  \
+    \  return ret;\n}\n\ntemplate <typename T>\nT KthtermOfPRecursive(vector<T> &a,\
+    \ vector<Poly<T>> &fs, ll k) {\n    int n = fs.size() - 1;\n    assert(int(a.size())\
+    \ >= n);\n    if (k < int(a.size()))\n        return a[k];\n\n    Matrix<Poly<T>>\
+    \ m(n), den(1);\n    Matrix<T> base(n);\n    rep(i, 0, n) m[0][i] = -fs[i + 1];\n\
+    \    rep(i, 1, n) m[i][i - 1] = fs[0];\n    den[0][0] = fs[0];\n    rep(i, 0,\
+    \ n) base[i][0] = a[n - 1 - i];\n    T ret = (PrefixProdOfPolyMatrix(m, k - n\
+    \ + 1) * base)[0][0];\n    ret /= PrefixProdOfPolyMatrix(den, k - n + 1)[0][0];\n\
+    \    return ret;\n}\n\ntemplate <typename T> T KthtermEsper(vector<T> &a, ll k)\
+    \ {\n    if (k < (int)a.size())\n        return a[k];\n    int n = a.size() -\
+    \ 1;\n    vector<Fp> b = a;\n    b.pop_back();\n\n    for (int d = 0;; d++) {\n\
+    \        if ((n + 2) / (d + 2) <= 1)\n            break;\n        auto fs = FindPRecursive(b,\
+    \ d);\n        if (KthtermOfPRecursive(b, fs, n) == a.back()) {\n            show(fs,\
+    \ SZ(fs));\n            return KthtermOfPRecursive(a, fs, k);\n        }\n   \
+    \ }\n    cerr << \"esper Failed\" << '\\n';\n    assert(0);\n}\n\n/**\n * @brief\
+    \ P-recursive\n */\n"
   code: "#pragma once\n#include \"FPS/samplepointshift.hpp\"\n#include \"Math/matrix.hpp\"\
     \n#include \"Math/linearequation.hpp\"\n\ntemplate <typename T>\nMatrix<T> PrefixProdOfPolyMatrix(Matrix<Poly<T>>\
     \ &m, ll K) {\n    using Mat = Matrix<T>;\n\n    int n = m.val.size();\n    int\
@@ -193,20 +199,26 @@ data:
     \ (c[i * (d + 1) + j] != 0)\n                add += c[i * (d + 1) + j];\n    \
     \    }\n        ret.push_back(add);\n    }\n    while (ret.back().empty())\n \
     \       ret.pop_back();\n    reverse(ALL(ret));\n    return ret;\n}\n\ntemplate\
-    \ <typename T>\nT KthtermOfPRecursive(vector<T> &a, vector<Poly<T>> &fs, ll k)\
-    \ {\n    int n = fs.size() - 1;\n    assert(int(a.size()) >= n);\n    if (k <\
-    \ int(a.size()))\n        return a[k];\n\n    Matrix<Poly<T>> m(n), den(1);\n\
-    \    Matrix<T> base(n);\n    rep(i, 0, n) m[0][i] = -fs[i + 1];\n    rep(i, 1,\
-    \ n) m[i][i - 1] = fs[0];\n    den[0][0] = fs[0];\n    rep(i, 0, n) base[i][0]\
-    \ = a[n - 1 - i];\n    T ret = (PrefixProdOfPolyMatrix(m, k - n + 1) * base)[0][0];\n\
-    \    ret /= PrefixProdOfPolyMatrix(den, k - n + 1)[0][0];\n    return ret;\n}\n\
-    \ntemplate <typename T> T KthtermEsper(vector<T> &a, ll k) {\n    if (k < (int)a.size())\n\
-    \        return a[k];\n    int n = a.size() - 1;\n    vector<Fp> b = a;\n    b.pop_back();\n\
-    \n    for (int d = 0;; d++) {\n        if ((n + 2) / (d + 2) <= 1)\n         \
-    \   break;\n        auto fs = FindPRecursive(b, d);\n        if (KthtermOfPRecursive(b,\
-    \ fs, n) == a.back()) {\n            show(fs);\n            return KthtermOfPRecursive(a,\
-    \ fs, k);\n        }\n    }\n    cerr << \"esper Failed\" << '\\n';\n    assert(0);\n\
-    }\n\n/**\n * @brief P-recursive\n */"
+    \ <typename T>\nvector<T> EnumPRecursive(vector<T> &a, vector<Poly<T>> fs, int\
+    \ n) {\n    int sz = SZ(fs) - 1;\n    reverse(ALL(fs));\n    vector<T> ret = a;\n\
+    \    ret.resize(n);\n    rep(i, SZ(a), n) {\n        int x = i - sz;\n       \
+    \ Fp sum;\n        rep(j, 0, sz) if (x + j >= 0) {\n            sum -= fs[j].eval(x)\
+    \ * ret[x + j];\n        }\n        ret[i] = sum / fs[sz].eval(x);\n    }\n  \
+    \  return ret;\n}\n\ntemplate <typename T>\nT KthtermOfPRecursive(vector<T> &a,\
+    \ vector<Poly<T>> &fs, ll k) {\n    int n = fs.size() - 1;\n    assert(int(a.size())\
+    \ >= n);\n    if (k < int(a.size()))\n        return a[k];\n\n    Matrix<Poly<T>>\
+    \ m(n), den(1);\n    Matrix<T> base(n);\n    rep(i, 0, n) m[0][i] = -fs[i + 1];\n\
+    \    rep(i, 1, n) m[i][i - 1] = fs[0];\n    den[0][0] = fs[0];\n    rep(i, 0,\
+    \ n) base[i][0] = a[n - 1 - i];\n    T ret = (PrefixProdOfPolyMatrix(m, k - n\
+    \ + 1) * base)[0][0];\n    ret /= PrefixProdOfPolyMatrix(den, k - n + 1)[0][0];\n\
+    \    return ret;\n}\n\ntemplate <typename T> T KthtermEsper(vector<T> &a, ll k)\
+    \ {\n    if (k < (int)a.size())\n        return a[k];\n    int n = a.size() -\
+    \ 1;\n    vector<Fp> b = a;\n    b.pop_back();\n\n    for (int d = 0;; d++) {\n\
+    \        if ((n + 2) / (d + 2) <= 1)\n            break;\n        auto fs = FindPRecursive(b,\
+    \ d);\n        if (KthtermOfPRecursive(b, fs, n) == a.back()) {\n            show(fs,\
+    \ SZ(fs));\n            return KthtermOfPRecursive(a, fs, k);\n        }\n   \
+    \ }\n    cerr << \"esper Failed\" << '\\n';\n    assert(0);\n}\n\n/**\n * @brief\
+    \ P-recursive\n */"
   dependsOn:
   - FPS/samplepointshift.hpp
   - Math/comb.hpp
@@ -215,7 +227,7 @@ data:
   isVerificationFile: false
   path: FPS/p-recursive.hpp
   requiredBy: []
-  timestamp: '2024-10-22 03:59:04+09:00'
+  timestamp: '2024-12-24 03:24:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/p-recursive.hpp

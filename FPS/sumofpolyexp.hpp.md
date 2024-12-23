@@ -93,8 +93,8 @@ data:
   timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: FPS/sumofpolyexp.hpp
 layout: document
 redirect_from:

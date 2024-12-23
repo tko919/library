@@ -1,42 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Stirling Number for query
     links: []
-  bundledCode: "#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv{\n    using u64=uint64_t;\n\
-    \    using u128=__uint128_t;\n    constexpr FastDiv():m(),s(),x(){}\n    constexpr\
-    \ FastDiv(int _m)\n        :m(_m),s(__lg(m-1)),x(((u128(1)<<(s+64))+m-1)/m){}\n\
-    \    constexpr int get(){return m;}\n    constexpr friend u64 operator/(u64 n,const\
-    \ FastDiv& d){\n        return (u128(n)*d.x>>d.s)>>64;\n    }\n    constexpr friend\
-    \ int operator%(u64 n,const FastDiv& d){\n        return n-n/d*d.m;\n    }\n \
-    \   constexpr pair<u64,int> divmod(u64 n)const{\n        u64 q=n/(*this);\n  \
-    \      return {q,n-q*m};\n    }\n    int m,s; u64 x;\n};\n\n/**\n * @brief Fast\
-    \ Division\n*/\n#line 3 \"Math/stirlingquery.hpp\"\n\r\nclass StirlingNumberQuery{\r\
-    \n    const int p;\r\n    FastDiv ip;\r\n    vector<vector<int>> binom,F,S;\r\n\
-    \    ll nCr(ll n,ll k){\r\n        if(n<0 or k<0 or n<k)return 0;\r\n        ll\
-    \ res=1;\r\n        while(n){\r\n            res=(res*binom[n%ip][k%ip])%ip;\r\
-    \n            n/=p; k/=p;\r\n        }\r\n        return res;\r\n    }\r\npublic:\r\
-    \n    StirlingNumberQuery(int _p):p(_p),ip(p){\r\n        binom.resize(p,vector<int>(p));\r\
-    \n        F.resize(p,vector<int>(p));\r\n        S.resize(p,vector<int>(p));\r\
-    \n        binom[0][0]=F[0][0]=S[0][0]=1;\r\n        rep(n,1,p)rep(k,0,n+1){\r\n\
-    \            if(k)binom[n][k]=binom[n-1][k-1];\r\n            binom[n][k]=(binom[n][k]+binom[n-1][k])%ip;\r\
-    \n\r\n            if(k)F[n][k]=F[n-1][k-1];\r\n            F[n][k]=(F[n][k]+ll(p-n+1)*F[n-1][k])%ip;\r\
-    \n            \r\n            if(k)S[n][k]=S[n-1][k-1];\r\n            S[n][k]=(S[n][k]+ll(k)*S[n-1][k])%ip;\r\
+  bundledCode: "#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv {\n    using u64 =\
+    \ unsigned ll;\n    using u128 = __uint128_t;\n    u128 mod, mh, ml;\n    explicit\
+    \ FastDiv(u64 mod = 1) : mod(mod) {\n        u128 m = u128(-1) / mod;\n      \
+    \  if (m * mod + mod == u128(0))\n            ++m;\n        mh = m >> 64;\n  \
+    \      ml = m & u64(-1);\n    }\n    u64 umod() const {\n        return mod;\n\
+    \    }\n    u64 modulo(u128 x) {\n        u128 z = (x & u64(-1)) * ml;\n     \
+    \   z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n        z = (x >> 64)\
+    \ * mh + (z >> 64);\n        x -= z * mod;\n        return x < mod ? x : x - mod;\n\
+    \    }\n    u64 mul(u64 a, u64 b) {\n        return modulo(u128(a) * b);\n   \
+    \ }\n};\n\n/**\n * @brief Fast Division\n */\n#line 3 \"Math/stirlingquery.hpp\"\
+    \n\r\nclass StirlingNumberQuery{\r\n    const int p;\r\n    FastDiv ip;\r\n  \
+    \  vector<vector<int>> binom,F,S;\r\n    ll nCr(ll n,ll k){\r\n        if(n<0\
+    \ or k<0 or n<k)return 0;\r\n        ll res=1;\r\n        while(n){\r\n      \
+    \      res=(res*binom[n%ip][k%ip])%ip;\r\n            n/=p; k/=p;\r\n        }\r\
+    \n        return res;\r\n    }\r\npublic:\r\n    StirlingNumberQuery(int _p):p(_p),ip(p){\r\
+    \n        binom.resize(p,vector<int>(p));\r\n        F.resize(p,vector<int>(p));\r\
+    \n        S.resize(p,vector<int>(p));\r\n        binom[0][0]=F[0][0]=S[0][0]=1;\r\
+    \n        rep(n,1,p)rep(k,0,n+1){\r\n            if(k)binom[n][k]=binom[n-1][k-1];\r\
+    \n            binom[n][k]=(binom[n][k]+binom[n-1][k])%ip;\r\n\r\n            if(k)F[n][k]=F[n-1][k-1];\r\
+    \n            F[n][k]=(F[n][k]+ll(p-n+1)*F[n-1][k])%ip;\r\n            \r\n  \
+    \          if(k)S[n][k]=S[n-1][k-1];\r\n            S[n][k]=(S[n][k]+ll(k)*S[n-1][k])%ip;\r\
     \n        }\r\n    }\r\n    int FirstKind(ll n,ll k){\r\n        if(n<0 or k<0\
     \ or k>n)return 0;\r\n        ll i=n/ip,j=n%ip;\r\n        if(k<i)return 0;\r\n\
     \        ll a=(k-i)/(p-1),b=(k-i)%(p-1);\r\n        if(b==0 and j)b+=p-1,a--;\r\
@@ -75,8 +77,8 @@ data:
   isVerificationFile: false
   path: Math/stirlingquery.hpp
   requiredBy: []
-  timestamp: '2023-01-17 01:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-24 03:24:48+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp

@@ -48,11 +48,11 @@ data:
   isVerificationFile: false
   path: DataStructure/unionfind.hpp
   requiredBy:
+  - Graph/euler.hpp
+  - Graph/opttoposort.hpp
+  - Graph/edgecoloring.hpp
   - DataStructure/rangeparalleluf.hpp
   - DataStructure/manhattanmst.hpp
-  - Graph/edgecoloring.hpp
-  - Graph/opttoposort.hpp
-  - Graph/euler.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

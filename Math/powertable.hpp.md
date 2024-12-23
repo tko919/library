@@ -53,8 +53,8 @@ data:
   timestamp: '2023-01-17 01:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: Math/powertable.hpp
 layout: document
 redirect_from:
