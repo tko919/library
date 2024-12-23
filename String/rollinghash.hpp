@@ -7,10 +7,6 @@ struct RollingHash {
     const ull base;
     vector<ull> hashed, power;
 
-    static constexpr ull mask(ll a) {
-        return (1ULL << a) - 1;
-    }
-
     inline ull mul(ull a, ull b) const {
         __uint128_t ans = __uint128_t(a) * b;
         ans = (ans >> 61) + (ans & MOD);

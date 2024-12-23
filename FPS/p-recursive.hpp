@@ -95,6 +95,23 @@ template <typename T> vector<Poly<T>> FindPRecursive(vector<T> &a, int d) {
 }
 
 template <typename T>
+vector<T> EnumPRecursive(vector<T> &a, vector<Poly<T>> fs, int n) {
+    int sz = SZ(fs) - 1;
+    reverse(ALL(fs));
+    vector<T> ret = a;
+    ret.resize(n);
+    rep(i, SZ(a), n) {
+        int x = i - sz;
+        Fp sum;
+        rep(j, 0, sz) if (x + j >= 0) {
+            sum -= fs[j].eval(x) * ret[x + j];
+        }
+        ret[i] = sum / fs[sz].eval(x);
+    }
+    return ret;
+}
+
+template <typename T>
 T KthtermOfPRecursive(vector<T> &a, vector<Poly<T>> &fs, ll k) {
     int n = fs.size() - 1;
     assert(int(a.size()) >= n);
@@ -124,7 +141,7 @@ template <typename T> T KthtermEsper(vector<T> &a, ll k) {
             break;
         auto fs = FindPRecursive(b, d);
         if (KthtermOfPRecursive(b, fs, n) == a.back()) {
-            show(fs);
+            show(fs, SZ(fs));
             return KthtermOfPRecursive(a, fs, k);
         }
     }
