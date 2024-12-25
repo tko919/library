@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient
@@ -169,24 +169,32 @@ data:
     \ : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true) {\r\n    print(i\
     \ ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n\
     #line 5 \"Verify/LC_binomial_coefficient.test.cpp\"\n\n#line 2 \"Math/fastdiv.hpp\"\
-    \n\nstruct FastDiv {\n    using u64 = unsigned ll;\n    using u128 = __uint128_t;\n\
-    \    u128 mod, mh, ml;\n    explicit FastDiv(u64 mod = 1) : mod(mod) {\n     \
-    \   u128 m = u128(-1) / mod;\n        if (m * mod + mod == u128(0))\n        \
-    \    ++m;\n        mh = m >> 64;\n        ml = m & u64(-1);\n    }\n    u64 umod()\
-    \ const {\n        return mod;\n    }\n    u64 modulo(u128 x) {\n        u128\
-    \ z = (x & u64(-1)) * ml;\n        z = (x & u64(-1)) * mh + (x >> 64) * ml + (z\
-    \ >> 64);\n        z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n  \
-    \      return x < mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n   \
-    \     return modulo(u128(a) * b);\n    }\n};\n\n/**\n * @brief Fast Division\n\
-    \ */\n#line 2 \"Math/miller.hpp\"\n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\
-    \n    using u64 = uint64_t;\r\n    using u128 = __uint128_t;\r\n\r\n    static\
-    \ u64 mod;\r\n    static u64 r;\r\n    static u64 n2;\r\n\r\n    static u64 get_r()\
-    \ {\r\n        u64 ret = mod;\r\n        rep(_,0,5) ret *= 2 - mod * ret;\r\n\
-    \        return ret;\r\n    }\r\n\r\n    static void set_mod(u64 m) {\r\n    \
-    \    assert(m < (1LL << 62));\r\n        assert((m & 1) == 1);\r\n        mod\
-    \ = m;\r\n        n2 = -u128(m) % m;\r\n        r = get_r();\r\n        assert(r\
-    \ * mod == 1);\r\n    }\r\n    static u64 get_mod() { return mod; }\r\n\r\n  \
-    \  u64 a;\r\n    m64() : a(0) {}\r\n    m64(const int64_t &b) : a(reduce((u128(b)\
+    \n\nstruct FastDiv {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n\
+    \    constexpr FastDiv() : m(), s(), x() {}\n    constexpr FastDiv(int _m)\n \
+    \       : m(_m), s(__lg(m - 1)), x(((u128(1) << (s + 64)) + m - 1) / m) {}\n \
+    \   constexpr int get() {\n        return m;\n    }\n    constexpr friend u64\
+    \ operator/(u64 n, const FastDiv &d) {\n        return (u128(n) * d.x >> d.s)\
+    \ >> 64;\n    }\n    constexpr friend int operator%(u64 n, const FastDiv &d) {\n\
+    \        return n - n / d * d.m;\n    }\n    constexpr pair<u64, int> divmod(u64\
+    \ n) const {\n        u64 q = n / (*this);\n        return {q, n - q * m};\n \
+    \   }\n    int m, s;\n    u64 x;\n};\n\nstruct FastDiv64 {\n    using u64 = uint64_t;\n\
+    \    using u128 = __uint128_t;\n    u128 mod, mh, ml;\n    explicit FastDiv64(u64\
+    \ mod = 1) : mod(mod) {\n        u128 m = u128(-1) / mod;\n        if (m * mod\
+    \ + mod == u128(0))\n            ++m;\n        mh = m >> 64;\n        ml = m &\
+    \ u64(-1);\n    }\n    u64 umod() const {\n        return mod;\n    }\n    u64\
+    \ modulo(u128 x) {\n        u128 z = (x & u64(-1)) * ml;\n        z = (x & u64(-1))\
+    \ * mh + (x >> 64) * ml + (z >> 64);\n        z = (x >> 64) * mh + (z >> 64);\n\
+    \        x -= z * mod;\n        return x < mod ? x : x - mod;\n    }\n    u64\
+    \ mul(u64 a, u64 b) {\n        return modulo(u128(a) * b);\n    }\n};\n\n/**\n\
+    \ * @brief Fast Division\n */\n#line 2 \"Math/miller.hpp\"\n\r\nstruct m64 {\r\
+    \n    using i64 = int64_t;\r\n    using u64 = uint64_t;\r\n    using u128 = __uint128_t;\r\
+    \n\r\n    static u64 mod;\r\n    static u64 r;\r\n    static u64 n2;\r\n\r\n \
+    \   static u64 get_r() {\r\n        u64 ret = mod;\r\n        rep(_,0,5) ret *=\
+    \ 2 - mod * ret;\r\n        return ret;\r\n    }\r\n\r\n    static void set_mod(u64\
+    \ m) {\r\n        assert(m < (1LL << 62));\r\n        assert((m & 1) == 1);\r\n\
+    \        mod = m;\r\n        n2 = -u128(m) % m;\r\n        r = get_r();\r\n  \
+    \      assert(r * mod == 1);\r\n    }\r\n    static u64 get_mod() { return mod;\
+    \ }\r\n\r\n    u64 a;\r\n    m64() : a(0) {}\r\n    m64(const int64_t &b) : a(reduce((u128(b)\
     \ + mod) * n2)){};\r\n\r\n    static u64 reduce(const u128 &b) {\r\n        return\
     \ (b + u128(u64(b) * u64(-r)) * mod) >> 64;\r\n    }\r\n    u64 get() const {\r\
     \n        u64 ret = reduce(a);\r\n        return ret >= mod ? ret - mod : ret;\r\
@@ -249,58 +257,59 @@ data:
     \ {\r\n            vector<ll> lb = Pollard(d), rb = Pollard(n / d);\r\n      \
     \      lb.insert(lb.end(), ALL(rb));\r\n            return lb;\r\n        }\r\n\
     \    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n#line 4 \"Math/primitive.hpp\"\
-    \n\r\nll mpow(ll a, i128 t, ll m) {\r\n    ll res = 1;\r\n    FastDiv im(m);\r\
-    \n    while (t) {\r\n        if (t & 1)\r\n            res = im.mul(res, a);\r\
-    \n        a = im.mul(a, a);\r\n        t >>= 1;\r\n    }\r\n    return res;\r\n\
-    }\r\nll minv(ll a, ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\
-    \n        ll t = a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n    \
-    \    u -= t * v;\r\n        swap(u, v);\r\n    }\r\n    u = (u % m + m) % m;\r\
-    \n    return u;\r\n}\r\nll getPrimitiveRoot(ll p) {\r\n    vector<ll> ps = Pollard(p\
-    \ - 1);\r\n    sort(ALL(ps));\r\n    rep(x, 1, inf) {\r\n        for (auto &q\
-    \ : ps) {\r\n            if (mpow(x, (p - 1) / q, p) == 1)\r\n               \
-    \ goto fail;\r\n        }\r\n        return x;\r\n    fail:;\r\n    }\r\n    assert(0);\r\
-    \n}\r\nll extgcd(ll a, ll b, ll &p, ll &q) {\r\n    if (b == 0) {\r\n        p\
-    \ = 1;\r\n        q = 0;\r\n        return a;\r\n    }\r\n    ll d = extgcd(b,\
-    \ a % b, q, p);\r\n    q -= a / b * p;\r\n    return d;\r\n}\r\npair<ll, ll> crt(const\
-    \ vector<ll> &vs, const vector<ll> &ms) {\r\n    ll V = vs[0], M = ms[0];\r\n\
-    \    rep(i, 1, vs.size()) {\r\n        ll p, q, v = vs[i], m = ms[i];\r\n    \
-    \    if (M < m)\r\n            swap(M, m), swap(V, v);\r\n        ll d = extgcd(M,\
-    \ m, p, q);\r\n        if ((v - V) % d != 0)\r\n            return {0, -1};\r\n\
-    \        ll md = m / d, tmp = (v - V) / d % md * p % md;\r\n        V += M * tmp;\r\
-    \n        M *= md;\r\n    }\r\n    V = (V % M + M) % M;\r\n    return {V, M};\r\
-    \n}\r\nll ModLog(ll a, ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t;\
-    \ t >>= 1)\r\n        g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1,\
-    \ c = 0;\r\n    for (; t % g; c++) {\r\n        if (t == b)\r\n            return\
-    \ c;\r\n        t = t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\
-    \n    t /= g, b /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h\
-    \ < n; h++)\r\n        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n \
-    \   for (ll s = 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n  \
-    \  for (ll s = 0, e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n    \
-    \    if (bs.count(e)) {\r\n            return c + s - bs[e];\r\n        }\r\n\
-    \    }\r\n    return -1;\r\n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if\
-    \ (a == 0)\r\n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return\
-    \ a & 1;\r\n    k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m\
-    \ - 1) / g, m) != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m -\
-    \ 1) / g), m);\r\n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll p, int\
-    \ e, ll a) -> ll { // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int\
-    \ s = 0;\r\n        while (q % p == 0) {\r\n            q /= p;\r\n          \
-    \  s++;\r\n        }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\
-    \n           res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c =\
-    \ 1;\r\n        while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n \
-    \       c = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block\
-    \ = sqrt(d * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block\
-    \ % (m - 1), m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = im.mul(v, bs);\r\
-    \n        ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i,\
-    \ 0, d) {\r\n            ll err = im.mul(a, minv(mpow(res, pe, m), m));\r\n  \
-    \          ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j,\
-    \ 0, block + 1) {\r\n                if (mp.count(pos)) {\r\n                \
-    \    res = im.mul(res, mpow(c,\r\n                                           (block\
-    \ * mp[pos] + j) *\r\n                                               mpow(p, i,\
-    \ m - 1) % (m - 1),\r\n                                           m));\r\n   \
-    \                 break;\r\n                }\r\n                pos = im.mul(pos,\
-    \ gs);\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\r\n\
-    \    for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n        \
-    \    int sz = 0;\r\n            while (g % d == 0) {\r\n                g /= d;\r\
+    \n\r\nll mpow(ll a, ll t, ll m) {\r\n    ll res = 1;\r\n    FastDiv64 im(m);\r\
+    \n    while (t) {\r\n        if (t & 1)\r\n            res = im.modulo(__int128_t(res)\
+    \ * a);\r\n        a = im.modulo(__int128_t(a) * a);\r\n        t >>= 1;\r\n \
+    \   }\r\n    return res;\r\n}\r\nll minv(ll a, ll m) {\r\n    ll b = m, u = 1,\
+    \ v = 0;\r\n    while (b) {\r\n        ll t = a / b;\r\n        a -= t * b;\r\n\
+    \        swap(a, b);\r\n        u -= t * v;\r\n        swap(u, v);\r\n    }\r\n\
+    \    u = (u % m + m) % m;\r\n    return u;\r\n}\r\nll getPrimitiveRoot(ll p) {\r\
+    \n    vector<ll> ps = Pollard(p - 1);\r\n    sort(ALL(ps));\r\n    rep(x, 1, inf)\
+    \ {\r\n        for (auto &q : ps) {\r\n            if (mpow(x, (p - 1) / q, p)\
+    \ == 1)\r\n                goto fail;\r\n        }\r\n        return x;\r\n  \
+    \  fail:;\r\n    }\r\n    assert(0);\r\n}\r\nll extgcd(ll a, ll b, ll &p, ll &q)\
+    \ {\r\n    if (b == 0) {\r\n        p = 1;\r\n        q = 0;\r\n        return\
+    \ a;\r\n    }\r\n    ll d = extgcd(b, a % b, q, p);\r\n    q -= a / b * p;\r\n\
+    \    return d;\r\n}\r\npair<ll, ll> crt(const vector<ll> &vs, const vector<ll>\
+    \ &ms) {\r\n    ll V = vs[0], M = ms[0];\r\n    rep(i, 1, vs.size()) {\r\n   \
+    \     ll p, q, v = vs[i], m = ms[i];\r\n        if (M < m)\r\n            swap(M,\
+    \ m), swap(V, v);\r\n        ll d = extgcd(M, m, p, q);\r\n        if ((v - V)\
+    \ % d != 0)\r\n            return {0, -1};\r\n        ll md = m / d, tmp = (v\
+    \ - V) / d % md * p % md;\r\n        V += M * tmp;\r\n        M *= md;\r\n   \
+    \ }\r\n    V = (V % M + M) % M;\r\n    return {V, M};\r\n}\r\nll ModLog(ll a,\
+    \ ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t; t >>= 1)\r\n       \
+    \ g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1, c = 0;\r\n    for (;\
+    \ t % g; c++) {\r\n        if (t == b)\r\n            return c;\r\n        t =\
+    \ t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\n    t /= g, b\
+    \ /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h < n; h++)\r\n\
+    \        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n    for (ll s =\
+    \ 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n    for (ll s = 0,\
+    \ e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n        if (bs.count(e))\
+    \ {\r\n            return c + s - bs[e];\r\n        }\r\n    }\r\n    return -1;\r\
+    \n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\n        return\
+    \ k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n    k %= m - 1;\r\
+    \n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m) != 1)\r\n     \
+    \   return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\n    FastDiv\
+    \ im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod\
+    \ m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n        while (q % p ==\
+    \ 0) {\r\n            q /= p;\r\n            s++;\r\n        }\r\n        int\
+    \ d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n           res = mpow(a, ((pe\
+    \ - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n        while (mpow(c,\
+    \ (m - 1) / p, m) == 1)\r\n            c++;\r\n        c = mpow(c, q, m);\r\n\
+    \        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d * p) + 1,\r\n   \
+    \        bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1), m);\r\n       \
+    \ rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\n        ll gs = minv(mpow(c,\
+    \ mpow(p, s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\n            ll err\
+    \ = a * minv(mpow(res, pe, m), m) % im;\r\n            ll pos = mpow(err, mpow(p,\
+    \ d - 1 - i, m - 1), m);\r\n            rep(j, 0, block + 1) {\r\n           \
+    \     if (mp.count(pos)) {\r\n                    res = res *\r\n            \
+    \              mpow(c,\r\n                               (block * mp[pos] + j)\
+    \ * mpow(p, i, m - 1) %\r\n                                   (m - 1),\r\n   \
+    \                            m) %\r\n                          im;\r\n       \
+    \             break;\r\n                }\r\n                pos = pos * gs %\
+    \ im;\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\r\n \
+    \   for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n         \
+    \   int sz = 0;\r\n            while (g % d == 0) {\r\n                g /= d;\r\
     \n                sz++;\r\n            }\r\n            a = _subroot(d, sz, a);\r\
     \n        }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return\
     \ a;\r\n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or k == 1)\r\
@@ -359,8 +368,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2024-12-24 03:24:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-26 05:48:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_binomial_coefficient.test.cpp
 layout: document

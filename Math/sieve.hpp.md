@@ -5,6 +5,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/divisor.hpp
     title: Divisor Multiple Transform
+  - icon: ':warning:'
+    path: Math/lpftable.hpp
+    title: lpf table
+  - icon: ':warning:'
+    path: Math/mobius.hpp
+    title: Mobius table
   - icon: ':heavy_check_mark:'
     path: Math/multiplicative.hpp
     title: Multiplicative Sum
@@ -80,9 +86,11 @@ data:
   path: Math/sieve.hpp
   requiredBy:
   - Convolution/divisor.hpp
+  - Math/mobius.hpp
   - Math/multiplicative.hpp
   - Math/powertable.hpp
   - Math/primesum.hpp
+  - Math/lpftable.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -2,25 +2,18 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Convolution/divisor.hpp
+    title: Divisor Multiple Transform
+  - icon: ':heavy_check_mark:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Math/mobius.hpp
-    title: Mobius table
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Verify/LC_gcd_convolution.test.cpp
-    title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Verify/LC_lcm_convolution.test.cpp
-    title: Verify/LC_lcm_convolution.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/divisor.md
-    document_title: Divisor Multiple Transform
+    document_title: Mobius table
     links: []
   bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=50101010>vector<int>\
     \ sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int\
@@ -55,43 +48,25 @@ data:
     \           ps=sieve(N);\r\n            n=N;\r\n        }\r\n        for(auto&\
     \ p:ps){\r\n            for(int k=1;k*p<=N;k++)a[k]-=a[k*p];\r\n        }\r\n\
     \    }\r\n};\r\n\r\n/**\r\n * @brief Divisor Multiple Transform\r\n * @docs docs/divisor.md\r\
-    \n */\n"
-  code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\nnamespace DivisorTransform{\r\
-    \n    int n;\r\n    vector<int> ps;\r\n    template<typename T>void zeta(vector<T>&\
-    \ a){\r\n        int N=a.size()-1;\r\n        if(n<N){\r\n            ps=sieve(N);\r\
-    \n            n=N;\r\n        }\r\n        for(auto& p:ps){\r\n            for(int\
-    \ k=1;k*p<=N;k++)a[k*p]+=a[k];\r\n        }\r\n    }\r\n    template<typename\
-    \ T>void mobius(vector<T>& a){\r\n        int N=a.size()-1;\r\n        if(n<N){\r\
-    \n            ps=sieve(N);\r\n            n=N;\r\n        }\r\n        for(auto&\
-    \ p:ps){\r\n            for(int k=N/p;k;k--)a[k*p]-=a[k];\r\n        }\r\n   \
-    \ }\r\n};\r\n\r\nnamespace MultipleTransform{\r\n    int n;\r\n    vector<int>\
-    \ ps;\r\n    template<typename T>void zeta(vector<T>& a){\r\n        int N=a.size()-1;\r\
-    \n        if(n<N){\r\n            ps=sieve(N);\r\n            n=N;\r\n       \
-    \ }\r\n        for(auto& p:ps){\r\n            for(int k=N/p;k;k--)a[k]+=a[k*p];\r\
-    \n        }\r\n    }\r\n    template<typename T>void mobius(vector<T>& a){\r\n\
-    \        int N=a.size()-1;\r\n        if(n<N){\r\n            ps=sieve(N);\r\n\
-    \            n=N;\r\n        }\r\n        for(auto& p:ps){\r\n            for(int\
-    \ k=1;k*p<=N;k++)a[k]-=a[k*p];\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Divisor Multiple Transform\r\n * @docs docs/divisor.md\r\n */"
+    \n */\n#line 3 \"Math/mobius.hpp\"\n\nvector<int> Mobius(ll n) {\n    vector<int>\
+    \ mu(n + 1);\n    mu[1] = 1;\n    DivisorTransform::mobius(mu);\n    return mu;\n\
+    }\n\n/**\n * @brief Mobius table\n */\n"
+  code: "#pragma once\n#include \"Convolution/divisor.hpp\"\n\nvector<int> Mobius(ll\
+    \ n) {\n    vector<int> mu(n + 1);\n    mu[1] = 1;\n    DivisorTransform::mobius(mu);\n\
+    \    return mu;\n}\n\n/**\n * @brief Mobius table\n */"
   dependsOn:
+  - Convolution/divisor.hpp
   - Math/sieve.hpp
   isVerificationFile: false
-  path: Convolution/divisor.hpp
-  requiredBy:
-  - Math/mobius.hpp
-  timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/LC_lcm_convolution.test.cpp
-documentation_of: Convolution/divisor.hpp
+  path: Math/mobius.hpp
+  requiredBy: []
+  timestamp: '2024-12-26 05:48:15+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Math/mobius.hpp
 layout: document
 redirect_from:
-- /library/Convolution/divisor.hpp
-- /library/Convolution/divisor.hpp.html
-title: Divisor Multiple Transform
+- /library/Math/mobius.hpp
+- /library/Math/mobius.hpp.html
+title: Mobius table
 ---
-## 使い方
-
-`void DivisorTransform::zeta(vector<T>& a)`: $a'[n]=\sum_{n \bmod d=0} a[d]$ を計算。 `mobius(vector<T>& a)` は逆変換。  
-`void MultipleTransform::zeta(vector<T>& a)`: $a'[n]=\sum_{k \bmod n=0} a[k]$ を計算。 `mobius(vector<T>& a)` は逆変換。

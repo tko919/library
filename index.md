@@ -38,7 +38,7 @@ data:
       title: Wildcard Pattern Matching
   - name: Convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/arbitrary.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -56,10 +56,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/multivariate.hpp
       title: Multivariate Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
       title: Weighted Union Find
   - name: FPS
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
     - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multievalgeom.hpp
       title: Multipoint Evaluation on Geometric Sequence
     - icon: ':heavy_check_mark:'
@@ -381,7 +381,7 @@ data:
     - icon: ':warning:'
       path: Math/bigint.hpp
       title: Big Integer(Float)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/binomquery.hpp
       title: Binomial Coefficient for query
     - icon: ':warning:'
@@ -399,13 +399,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
     - icon: ':warning:'
       path: Math/enumquotient.hpp
       title: Enumerate Quotients
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/fastdiv.hpp
       title: Fast Division
     - icon: ':heavy_check_mark:'
@@ -426,13 +426,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/linearequation.hpp
       title: Linear Equation
+    - icon: ':warning:'
+      path: Math/lpftable.hpp
+      title: lpf table
     - icon: ':heavy_check_mark:'
       path: Math/matrix.hpp
       title: Matrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
-    - icon: ':question:'
+    - icon: ':warning:'
+      path: Math/mobius.hpp
+      title: Mobius table
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -441,7 +447,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/nimber.hpp
       title: Nimber
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho
     - icon: ':heavy_check_mark:'
@@ -450,7 +456,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/primesum.hpp
       title: Prime Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
     - icon: ':warning:'
@@ -462,7 +468,7 @@ data:
     - icon: ':warning:'
       path: Math/sternbrocot.hpp
       title: Stern-Brocot Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/stirlingquery.hpp
       title: Stirling Number for query
     - icon: ':heavy_check_mark:'
@@ -499,15 +505,15 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/random.hpp
       title: Random
     - icon: ':warning:'
@@ -540,7 +546,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_biconnected_components.test.cpp
       title: Verify/LC_biconnected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_binomial_coefficient.test.cpp
       title: Verify/LC_binomial_coefficient.test.cpp
     - icon: ':heavy_check_mark:'
@@ -672,7 +678,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_multivariate_convolution.test.cpp
       title: Verify/LC_multivariate_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_multivariate_convolution_cyclic.test.cpp
       title: Verify/LC_multivariate_convolution_cyclic.test.cpp
     - icon: ':heavy_check_mark:'
@@ -771,13 +777,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
       title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
       title: Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
       title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
       title: Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     - icon: ':heavy_check_mark:'
