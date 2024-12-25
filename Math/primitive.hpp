@@ -2,13 +2,13 @@
 #include "Math/fastdiv.hpp"
 #include "Math/pollard.hpp"
 
-ll mpow(ll a, i128 t, ll m) {
+ll mpow(ll a, ll t, ll m) {
     ll res = 1;
-    FastDiv im(m);
+    FastDiv64 im(m);
     while (t) {
         if (t & 1)
-            res = im.mul(res, a);
-        a = im.mul(a, a);
+            res = im.modulo(__int128_t(res) * a);
+        a = im.modulo(__int128_t(a) * a);
         t >>= 1;
     }
     return res;
@@ -121,20 +121,22 @@ ll mod_root(ll k, ll a, ll m) {
         map<ll, ll> mp;
         ll v = 1, block = sqrt(d * p) + 1,
            bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1), m);
-        rep(i, 0, block + 1) mp[v] = i, v = im.mul(v, bs);
+        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;
         ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);
         rep(i, 0, d) {
-            ll err = im.mul(a, minv(mpow(res, pe, m), m));
+            ll err = a * minv(mpow(res, pe, m), m) % im;
             ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);
             rep(j, 0, block + 1) {
                 if (mp.count(pos)) {
-                    res = im.mul(res, mpow(c,
-                                           (block * mp[pos] + j) *
-                                               mpow(p, i, m - 1) % (m - 1),
-                                           m));
+                    res = res *
+                          mpow(c,
+                               (block * mp[pos] + j) * mpow(p, i, m - 1) %
+                                   (m - 1),
+                               m) %
+                          im;
                     break;
                 }
-                pos = im.mul(pos, gs);
+                pos = pos * gs % im;
             }
         }
         return res;
