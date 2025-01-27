@@ -115,6 +115,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
+    - icon: ':warning:'
+      path: DataStructure/persistentlazysegtree.hpp
+      title: Persistent Lazy Segment Tree
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentrbstset.hpp
       title: Persistent Randomized Binary Search Tree (set)
@@ -308,6 +311,9 @@ data:
       path: Graph/cycledetect.hpp
       title: Cycle Detection
     - icon: ':warning:'
+      path: Graph/diameter.hpp
+      title: Diameter
+    - icon: ':warning:'
       path: Graph/dmdecomp.hpp
       title: DM decomposition
     - icon: ':warning:'
@@ -361,6 +367,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/scc.hpp
       title: Strongly Connected Components
+    - icon: ':warning:'
+      path: Graph/shortestpathremedge.hpp
+      title: Undirected Shortest Path (remove one Edge)
     - icon: ':warning:'
       path: Graph/statictoptree.hpp
       title: Static TopTree
@@ -447,6 +456,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/nimber.hpp
       title: Nimber
+    - icon: ':warning:'
+      path: Math/partizangame.hpp
+      title: Math/partizangame.hpp
     - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho

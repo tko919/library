@@ -121,38 +121,44 @@ data:
     \ 0, bs) c[i] = b[i];\r\n            ntt(c);\r\n            rep(i, 0, m) res[i]\
     \ *= c[i];\r\n        }\r\n        ntt(res, 1);\r\n        res.resize(n);\r\n\
     \        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
-    \n */\n#line 3 \"Convolution/multivariate.hpp\"\n\r\ntemplate<typename T,void\
-    \ (*ntt)(vector<T>&,bool)>vector<T> MultivariateConvolution\r\n    (const vector<T>&\
-    \ f,const vector<T>& g,vector<int>& a){\r\n    int n=f.size(),k=a.size(),m=1<<__lg(4*n-1);\r\
-    \n    if(k==0)return vector<T>({f[0]*g[0]});\r\n    \r\n    vector<int> chi(n);\r\
-    \n    rep(x,0,n){\r\n        int t=x;\r\n        rep(i,0,k-1){\r\n           \
-    \ t/=a[i];\r\n            chi[x]+=t;\r\n        }\r\n        chi[x]%=k;\r\n  \
-    \  }\r\n\r\n    vector F(k,vector<T>(m)),G(k,vector<T>(m));\r\n    rep(i,0,n){\r\
-    \n        F[chi[i]][i]=f[i];\r\n        G[chi[i]][i]=g[i];\r\n    }\r\n\r\n  \
-    \  for(auto& v:F)ntt(v,0);\r\n    for(auto& v:G)ntt(v,0);\r\n    rep(x,0,m){\r\
-    \n        vector<T> tmp(k);\r\n        rep(i,0,k)rep(j,0,k){\r\n            tmp[(i+j)%k]+=F[i][x]*G[j][x];\r\
-    \n        }\r\n        rep(i,0,k)F[i][x]=tmp[i];\r\n    }\r\n    for(auto& v:F)ntt(v,1);\r\
-    \n    vector<T> res(n);\r\n    rep(i,0,n)res[i]=F[chi[i]][i];\r\n    return res;\r\
-    \n}\r\n\r\n/**\r\n * @brief Multivariate Convolution\r\n */\n"
-  code: "#pragma once\r\n#include \"Convolution/ntt.hpp\"\r\n\r\ntemplate<typename\
-    \ T,void (*ntt)(vector<T>&,bool)>vector<T> MultivariateConvolution\r\n    (const\
-    \ vector<T>& f,const vector<T>& g,vector<int>& a){\r\n    int n=f.size(),k=a.size(),m=1<<__lg(4*n-1);\r\
-    \n    if(k==0)return vector<T>({f[0]*g[0]});\r\n    \r\n    vector<int> chi(n);\r\
-    \n    rep(x,0,n){\r\n        int t=x;\r\n        rep(i,0,k-1){\r\n           \
-    \ t/=a[i];\r\n            chi[x]+=t;\r\n        }\r\n        chi[x]%=k;\r\n  \
-    \  }\r\n\r\n    vector F(k,vector<T>(m)),G(k,vector<T>(m));\r\n    rep(i,0,n){\r\
-    \n        F[chi[i]][i]=f[i];\r\n        G[chi[i]][i]=g[i];\r\n    }\r\n\r\n  \
-    \  for(auto& v:F)ntt(v,0);\r\n    for(auto& v:G)ntt(v,0);\r\n    rep(x,0,m){\r\
-    \n        vector<T> tmp(k);\r\n        rep(i,0,k)rep(j,0,k){\r\n            tmp[(i+j)%k]+=F[i][x]*G[j][x];\r\
-    \n        }\r\n        rep(i,0,k)F[i][x]=tmp[i];\r\n    }\r\n    for(auto& v:F)ntt(v,1);\r\
-    \n    vector<T> res(n);\r\n    rep(i,0,n)res[i]=F[chi[i]][i];\r\n    return res;\r\
-    \n}\r\n\r\n/**\r\n * @brief Multivariate Convolution\r\n */"
+    \n */\n#line 3 \"Convolution/multivariate.hpp\"\n\r\ntemplate <typename T, void\
+    \ (*ntt)(vector<T> &, bool)>\r\nvector<T> MultivariateConvolution(const vector<T>\
+    \ &f, const vector<T> &g,\r\n                                  vector<int> &a)\
+    \ {\r\n    int n = f.size(), k = a.size(), m = 1 << __lg(4 * n - 1);\r\n    if\
+    \ (k == 0)\r\n        return vector<T>({f[0] * g[0]});\r\n\r\n    vector<int>\
+    \ chi(n);\r\n    rep(x, 0, n) {\r\n        int t = x;\r\n        rep(i, 0, k -\
+    \ 1) {\r\n            t /= a[i];\r\n            chi[x] += t;\r\n        }\r\n\
+    \        chi[x] %= k;\r\n    }\r\n\r\n    vector F(k, vector<T>(m)), G(k, vector<T>(m));\r\
+    \n    rep(i, 0, n) {\r\n        F[chi[i]][i] = f[i];\r\n        G[chi[i]][i] =\
+    \ g[i];\r\n    }\r\n\r\n    for (auto &v : F)\r\n        ntt(v, 0);\r\n    for\
+    \ (auto &v : G)\r\n        ntt(v, 0);\r\n    vector<T> tmp(k * 2);\r\n    rep(x,\
+    \ 0, m) {\r\n        fill(ALL(tmp), 0);\r\n        rep(i, 0, k) rep(j, 0, k) {\r\
+    \n            tmp[i + j] += F[i][x] * G[j][x];\r\n        }\r\n        rep(i,\
+    \ 0, k) F[i][x] = tmp[i] + tmp[i + k];\r\n    }\r\n    for (auto &v : F)\r\n \
+    \       ntt(v, 1);\r\n    vector<T> res(n);\r\n    rep(i, 0, n) res[i] = F[chi[i]][i];\r\
+    \n    return res;\r\n}\r\n\r\n/**\r\n * @brief Multivariate Convolution\r\n */\n"
+  code: "#pragma once\r\n#include \"Convolution/ntt.hpp\"\r\n\r\ntemplate <typename\
+    \ T, void (*ntt)(vector<T> &, bool)>\r\nvector<T> MultivariateConvolution(const\
+    \ vector<T> &f, const vector<T> &g,\r\n                                  vector<int>\
+    \ &a) {\r\n    int n = f.size(), k = a.size(), m = 1 << __lg(4 * n - 1);\r\n \
+    \   if (k == 0)\r\n        return vector<T>({f[0] * g[0]});\r\n\r\n    vector<int>\
+    \ chi(n);\r\n    rep(x, 0, n) {\r\n        int t = x;\r\n        rep(i, 0, k -\
+    \ 1) {\r\n            t /= a[i];\r\n            chi[x] += t;\r\n        }\r\n\
+    \        chi[x] %= k;\r\n    }\r\n\r\n    vector F(k, vector<T>(m)), G(k, vector<T>(m));\r\
+    \n    rep(i, 0, n) {\r\n        F[chi[i]][i] = f[i];\r\n        G[chi[i]][i] =\
+    \ g[i];\r\n    }\r\n\r\n    for (auto &v : F)\r\n        ntt(v, 0);\r\n    for\
+    \ (auto &v : G)\r\n        ntt(v, 0);\r\n    vector<T> tmp(k * 2);\r\n    rep(x,\
+    \ 0, m) {\r\n        fill(ALL(tmp), 0);\r\n        rep(i, 0, k) rep(j, 0, k) {\r\
+    \n            tmp[i + j] += F[i][x] * G[j][x];\r\n        }\r\n        rep(i,\
+    \ 0, k) F[i][x] = tmp[i] + tmp[i + k];\r\n    }\r\n    for (auto &v : F)\r\n \
+    \       ntt(v, 1);\r\n    vector<T> res(n);\r\n    rep(i, 0, n) res[i] = F[chi[i]][i];\r\
+    \n    return res;\r\n}\r\n\r\n/**\r\n * @brief Multivariate Convolution\r\n */"
   dependsOn:
   - Convolution/ntt.hpp
   isVerificationFile: false
   path: Convolution/multivariate.hpp
   requiredBy: []
-  timestamp: '2024-01-12 04:16:01+09:00'
+  timestamp: '2025-01-28 06:32:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution.test.cpp

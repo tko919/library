@@ -294,26 +294,30 @@ data:
     \ 0, bs) c[i] = b[i];\r\n            ntt(c);\r\n            rep(i, 0, m) res[i]\
     \ *= c[i];\r\n        }\r\n        ntt(res, 1);\r\n        res.resize(n);\r\n\
     \        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
-    \n */\n#line 3 \"Convolution/multivariate.hpp\"\n\r\ntemplate<typename T,void\
-    \ (*ntt)(vector<T>&,bool)>vector<T> MultivariateConvolution\r\n    (const vector<T>&\
-    \ f,const vector<T>& g,vector<int>& a){\r\n    int n=f.size(),k=a.size(),m=1<<__lg(4*n-1);\r\
-    \n    if(k==0)return vector<T>({f[0]*g[0]});\r\n    \r\n    vector<int> chi(n);\r\
-    \n    rep(x,0,n){\r\n        int t=x;\r\n        rep(i,0,k-1){\r\n           \
-    \ t/=a[i];\r\n            chi[x]+=t;\r\n        }\r\n        chi[x]%=k;\r\n  \
-    \  }\r\n\r\n    vector F(k,vector<T>(m)),G(k,vector<T>(m));\r\n    rep(i,0,n){\r\
-    \n        F[chi[i]][i]=f[i];\r\n        G[chi[i]][i]=g[i];\r\n    }\r\n\r\n  \
-    \  for(auto& v:F)ntt(v,0);\r\n    for(auto& v:G)ntt(v,0);\r\n    rep(x,0,m){\r\
-    \n        vector<T> tmp(k);\r\n        rep(i,0,k)rep(j,0,k){\r\n            tmp[(i+j)%k]+=F[i][x]*G[j][x];\r\
-    \n        }\r\n        rep(i,0,k)F[i][x]=tmp[i];\r\n    }\r\n    for(auto& v:F)ntt(v,1);\r\
-    \n    vector<T> res(n);\r\n    rep(i,0,n)res[i]=F[chi[i]][i];\r\n    return res;\r\
-    \n}\r\n\r\n/**\r\n * @brief Multivariate Convolution\r\n */\n#line 8 \"Verify/LC_multivariate_convolution.test.cpp\"\
-    \n\r\nusing Fp = fp<998244353>;\r\nNTT<Fp> ntt;\r\nvoid F(vector<Fp> &a, bool\
-    \ f) {\r\n    ntt.ntt(a, f);\r\n}\r\n\r\nint main() {\r\n    int k, n = 1;\r\n\
-    \    cin >> k;\r\n    vector<int> a(k);\r\n    rep(i, 0, k) {\r\n        cin >>\
-    \ a[i];\r\n        n *= a[i];\r\n    }\r\n    vector<Fp> f(n), g(n);\r\n    rep(i,\
-    \ 0, n) cin >> f[i];\r\n    rep(i, 0, n) cin >> g[i];\r\n\r\n    auto res = MultivariateConvolution<Fp,\
-    \ F>(f, g, a);\r\n    for (auto &x : res)\r\n        cout << x << '\\n';\r\n \
-    \   return 0;\r\n}\n"
+    \n */\n#line 3 \"Convolution/multivariate.hpp\"\n\r\ntemplate <typename T, void\
+    \ (*ntt)(vector<T> &, bool)>\r\nvector<T> MultivariateConvolution(const vector<T>\
+    \ &f, const vector<T> &g,\r\n                                  vector<int> &a)\
+    \ {\r\n    int n = f.size(), k = a.size(), m = 1 << __lg(4 * n - 1);\r\n    if\
+    \ (k == 0)\r\n        return vector<T>({f[0] * g[0]});\r\n\r\n    vector<int>\
+    \ chi(n);\r\n    rep(x, 0, n) {\r\n        int t = x;\r\n        rep(i, 0, k -\
+    \ 1) {\r\n            t /= a[i];\r\n            chi[x] += t;\r\n        }\r\n\
+    \        chi[x] %= k;\r\n    }\r\n\r\n    vector F(k, vector<T>(m)), G(k, vector<T>(m));\r\
+    \n    rep(i, 0, n) {\r\n        F[chi[i]][i] = f[i];\r\n        G[chi[i]][i] =\
+    \ g[i];\r\n    }\r\n\r\n    for (auto &v : F)\r\n        ntt(v, 0);\r\n    for\
+    \ (auto &v : G)\r\n        ntt(v, 0);\r\n    vector<T> tmp(k * 2);\r\n    rep(x,\
+    \ 0, m) {\r\n        fill(ALL(tmp), 0);\r\n        rep(i, 0, k) rep(j, 0, k) {\r\
+    \n            tmp[i + j] += F[i][x] * G[j][x];\r\n        }\r\n        rep(i,\
+    \ 0, k) F[i][x] = tmp[i] + tmp[i + k];\r\n    }\r\n    for (auto &v : F)\r\n \
+    \       ntt(v, 1);\r\n    vector<T> res(n);\r\n    rep(i, 0, n) res[i] = F[chi[i]][i];\r\
+    \n    return res;\r\n}\r\n\r\n/**\r\n * @brief Multivariate Convolution\r\n */\n\
+    #line 8 \"Verify/LC_multivariate_convolution.test.cpp\"\n\r\nusing Fp = fp<998244353>;\r\
+    \nNTT<Fp> ntt;\r\nvoid F(vector<Fp> &a, bool f) {\r\n    ntt.ntt(a, f);\r\n}\r\
+    \n\r\nint main() {\r\n    int k, n = 1;\r\n    cin >> k;\r\n    vector<int> a(k);\r\
+    \n    rep(i, 0, k) {\r\n        cin >> a[i];\r\n        n *= a[i];\r\n    }\r\n\
+    \    vector<Fp> f(n), g(n);\r\n    rep(i, 0, n) cin >> f[i];\r\n    rep(i, 0,\
+    \ n) cin >> g[i];\r\n\r\n    auto res = MultivariateConvolution<Fp, F>(f, g, a);\r\
+    \n    for (auto &x : res)\r\n        cout << x << '\\n';\r\n    return 0;\r\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"Math/modint.hpp\"\r\n#include \"Convolution/ntt.hpp\"\r\n#include\
@@ -333,7 +337,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2025-01-28 06:32:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution.test.cpp

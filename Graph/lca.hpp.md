@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
+  - icon: ':warning:'
+    path: Graph/shortestpathremedge.hpp
+    title: Undirected Shortest Path (remove one Edge)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lca_2.test.cpp
@@ -57,11 +60,12 @@ data:
   path: Graph/lca.hpp
   requiredBy:
   - Graph/auxiliarytree.hpp
+  - Graph/shortestpathremedge.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/YUKI_901.test.cpp
   - Verify/LC_lca_2.test.cpp
+  - Verify/YUKI_901.test.cpp
 documentation_of: Graph/lca.hpp
 layout: document
 redirect_from:

@@ -85,13 +85,13 @@ data:
   isVerificationFile: false
   path: FPS/samplepointshift.hpp
   requiredBy:
-  - FPS/p-recursive.hpp
   - FPS/factlarge.hpp
+  - FPS/p-recursive.hpp
   timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: FPS/samplepointshift.hpp
 layout: document
 redirect_from:

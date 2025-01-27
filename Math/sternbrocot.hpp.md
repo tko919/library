@@ -15,7 +15,7 @@ data:
   bundledCode: "#line 2 \"Math/fraction.hpp\"\n\r\ntemplate <typename T> struct Frac\
     \ {\r\n    T a, b;\r\n    Frac(T _a = 0) {\r\n        init(_a, 1);\r\n    }\r\n\
     \    Frac(T _a, T _b) {\r\n        init(_a, _b);\r\n    }\r\n    Frac &init(T\
-    \ _a, T _b) {\r\n        T g = GCD(_a, _b);\r\n        a = _a / g, b = _b / g;\r\
+    \ _a, T _b) {\r\n        T g = gcd(_a, _b);\r\n        a = _a / g, b = _b / g;\r\
     \n        if (b < 0)\r\n            a = -a, b = -b;\r\n        return *this;\r\
     \n    }\r\n    Frac inv() const {\r\n        return Frac(b, a);\r\n    }\r\n \
     \   Frac operator-() const {\r\n        return Frac(-a, b);\r\n    }\r\n    Frac\
@@ -34,16 +34,14 @@ data:
     \ Frac &x) const {\r\n        return !(*this < x);\r\n    }\r\n    bool operator==(const\
     \ Frac &x) const {\r\n        return (*this <= x and x <= *this);\r\n    }\r\n\
     \    bool operator!=(const Frac &x) const {\r\n        return !(*this == x);\r\
-    \n    }\r\n    T GCD(T a, T b) {\r\n        if (b == 0)\r\n            return\
-    \ a;\r\n        else\r\n            return GCD(b, a % b);\r\n    }\r\n\r\n   \
-    \ friend istream &operator>>(istream &is, Frac &x) {\r\n        return is >> x.a\
-    \ >> x.b;\r\n    }\r\n    friend ostream &operator<<(ostream &os, const Frac &x)\
-    \ {\r\n        return os << x.a << '/' << x.b;\r\n    }\r\n};\r\ntemplate <typename\
-    \ T> Frac<T> between(const Frac<T> &x, const Frac<T> &y) {\r\n    if (x.a < x.b\
-    \ and y.b < y.a)\r\n        return Frac(1);\r\n    else if (x.b <= x.a) {\r\n\
-    \        T add = floor(x.a / x.b);\r\n        return between(x - add, y - add)\
-    \ + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\n\
-    }\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
+    \n    }\r\n\r\n    friend istream &operator>>(istream &is, Frac &x) {\r\n    \
+    \    return is >> x.a >> x.b;\r\n    }\r\n    friend ostream &operator<<(ostream\
+    \ &os, const Frac &x) {\r\n        return os << x.a << '/' << x.b;\r\n    }\r\n\
+    };\r\ntemplate <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y)\
+    \ {\r\n    if (x.a < x.b and y.b < y.a)\r\n        return Frac(1);\r\n    else\
+    \ if (x.b <= x.a) {\r\n        T add = floor(x.a / x.b);\r\n        return between(x\
+    \ - add, y - add) + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\
+    \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
     \ 3 \"Math/sternbrocot.hpp\"\n\nnamespace SternBrocotTree {\n// R start\nstatic\
     \ vector<int> encode(Frac x) {\n    return get(x).first;\n}\nstatic Frac decode(vector<int>\
     \ &v) {\n    Frac L(0, 1), R(1, 0);\n    rep(i, 0, v.size()) {\n        if (i\
@@ -103,7 +101,7 @@ data:
   isVerificationFile: false
   path: Math/sternbrocot.hpp
   requiredBy: []
-  timestamp: '2024-06-14 02:46:58+09:00'
+  timestamp: '2025-01-28 06:32:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/sternbrocot.hpp
