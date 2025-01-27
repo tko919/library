@@ -9,7 +9,7 @@ template <typename T> struct Frac {
         init(_a, _b);
     }
     Frac &init(T _a, T _b) {
-        T g = GCD(_a, _b);
+        T g = gcd(_a, _b);
         a = _a / g, b = _b / g;
         if (b < 0)
             a = -a, b = -b;
@@ -62,12 +62,6 @@ template <typename T> struct Frac {
     }
     bool operator!=(const Frac &x) const {
         return !(*this == x);
-    }
-    T GCD(T a, T b) {
-        if (b == 0)
-            return a;
-        else
-            return GCD(b, a % b);
     }
 
     friend istream &operator>>(istream &is, Frac &x) {
