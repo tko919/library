@@ -176,5 +176,5 @@ map<State, NumStar> SolvePartizanGame(const vector<State> &states, F option) {
 }
 
 /**
- * @ Partizan Game Solver
+ * @brief Partizan Game Solver
  */
