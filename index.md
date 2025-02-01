@@ -425,7 +425,7 @@ data:
       title: Fraction
     - icon: ':warning:'
       path: Math/gaussian.hpp
-      title: Gaussian Integer
+      title: Gaussaussian Integer
     - icon: ':heavy_check_mark:'
       path: Math/hafnian.hpp
       title: Hafnian of matrix
@@ -458,7 +458,7 @@ data:
       title: Nimber
     - icon: ':warning:'
       path: Math/partizangame.hpp
-      title: Math/partizangame.hpp
+      title: Partizan Game Solver
     - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho
@@ -486,6 +486,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/twosat.hpp
       title: 2-SAT
+    - icon: ':warning:'
+      path: Math/twosquare.hpp
+      title: Represent A Number As Two Square Sum
   - name: String
     pages:
     - icon: ':warning:'

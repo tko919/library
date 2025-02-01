@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
+  - icon: ':warning:'
+    path: Math/twosquare.hpp
+    title: Represent A Number As Two Square Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
@@ -125,6 +128,7 @@ data:
   isVerificationFile: false
   path: Math/pollard.hpp
   requiredBy:
+  - Math/twosquare.hpp
   - Math/binomquery.hpp
   - Math/primitive.hpp
   - Convolution/multivariatecyclic.hpp

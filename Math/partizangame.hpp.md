@@ -10,6 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: Partizan Game Solver
     links: []
   bundledCode: "#line 2 \"Math/partizangame.hpp\"\n\n#line 2 \"Math/fraction.hpp\"\
     \n\r\ntemplate <typename T> struct Frac {\r\n    T a, b;\r\n    Frac(T _a = 0)\
@@ -108,7 +109,7 @@ data:
     \            return {false, NumStar()};\n        return {true, ret[current] =\
     \ val};\n    };\n    for (auto &s : states) {\n        if (!dfs(dfs, s).first)\n\
     \            return map<State, NumStar>();\n    }\n    return ret;\n}\n\n/**\n\
-    \ * @ Partizan Game Solver\n */\n"
+    \ * @brief Partizan Game Solver\n */\n"
   code: "#pragma once\n\n#include \"Math/fraction.hpp\"\ntemplate <typename T> struct\
     \ Surreal {\n    static constexpr int LG = std::numeric_limits<T>::digits - 2;\n\
     \    Frac<T> a;\n    Surreal(T a = 0) : a(a, 1) {}\n    Surreal(T a, T b) : a(a,\
@@ -175,13 +176,13 @@ data:
     \            return {false, NumStar()};\n        return {true, ret[current] =\
     \ val};\n    };\n    for (auto &s : states) {\n        if (!dfs(dfs, s).first)\n\
     \            return map<State, NumStar>();\n    }\n    return ret;\n}\n\n/**\n\
-    \ * @ Partizan Game Solver\n */"
+    \ * @brief Partizan Game Solver\n */"
   dependsOn:
   - Math/fraction.hpp
   isVerificationFile: false
   path: Math/partizangame.hpp
   requiredBy: []
-  timestamp: '2025-01-28 06:32:12+09:00'
+  timestamp: '2025-02-02 04:09:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/partizangame.hpp
@@ -189,5 +190,5 @@ layout: document
 redirect_from:
 - /library/Math/partizangame.hpp
 - /library/Math/partizangame.hpp.html
-title: Math/partizangame.hpp
+title: Partizan Game Solver
 ---

@@ -39,6 +39,9 @@ data:
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':warning:'
+    path: Math/twosquare.hpp
+    title: Represent A Number As Two Square Sum
+  - icon: ':warning:'
     path: String/rollinghash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
@@ -149,6 +152,7 @@ data:
   requiredBy:
   - Math/detaplusbx.hpp
   - Math/pollard.hpp
+  - Math/twosquare.hpp
   - Math/binomquery.hpp
   - Math/primitive.hpp
   - Math/bbla.hpp

@@ -7,7 +7,7 @@ data:
     title: Geometry(Fraction Coordinates)
   - icon: ':warning:'
     path: Math/partizangame.hpp
-    title: Math/partizangame.hpp
+    title: Partizan Game Solver
   - icon: ':warning:'
     path: Math/sternbrocot.hpp
     title: Stern-Brocot Tree

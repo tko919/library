@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/stirlingquery.hpp
     title: Stirling Number for query
+  - icon: ':warning:'
+    path: Math/twosquare.hpp
+    title: Represent A Number As Two Square Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
@@ -80,6 +83,7 @@ data:
   path: Math/fastdiv.hpp
   requiredBy:
   - Math/stirlingquery.hpp
+  - Math/twosquare.hpp
   - Math/binomquery.hpp
   - Math/dynamic.hpp
   - Math/primitive.hpp

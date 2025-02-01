@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
+  - icon: ':warning:'
+    path: Math/gaussian.hpp
+    title: Gaussaussian Integer
   - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
@@ -11,33 +14,18 @@ data:
     path: Math/pollard.hpp
     title: Pollard-Rho
   - icon: ':heavy_check_mark:'
+    path: Math/primitive.hpp
+    title: Primitive Function
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Convolution/multivariatecyclic.hpp
-    title: Multivarate Convolution Cyclic
-  - icon: ':heavy_check_mark:'
-    path: Math/binomquery.hpp
-    title: Binomial Coefficient for query
-  - icon: ':warning:'
-    path: Math/twosquare.hpp
-    title: Represent A Number As Two Square Sum
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Verify/LC_binomial_coefficient.test.cpp
-    title: Verify/LC_binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Verify/LC_discrete_logarithm_mod.test.cpp
-    title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Verify/LC_multivariate_convolution_cyclic.test.cpp
-    title: Verify/LC_multivariate_convolution_cyclic.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: Primitive Function
+    document_title: Represent A Number As Two Square Sum
     links: []
   bundledCode: "#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv {\n    using u64 =\
     \ uint64_t;\n    using u128 = __uint128_t;\n    constexpr FastDiv() : m(), s(),\
@@ -192,95 +180,101 @@ data:
     \n            mul(x, x);\r\n            t >>= 1;\r\n        }\r\n        return\
     \ y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k),\
     \ 0)));\r\n    while (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\
-    \n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n"
-  code: "#pragma once\r\n#include \"Math/fastdiv.hpp\"\r\n#include \"Math/pollard.hpp\"\
-    \r\n\r\nll mpow(ll a, ll t, ll m) {\r\n    ll res = 1;\r\n    FastDiv64 im(m);\r\
-    \n    while (t) {\r\n        if (t & 1)\r\n            res = im.modulo(__int128_t(res)\
-    \ * a);\r\n        a = im.modulo(__int128_t(a) * a);\r\n        t >>= 1;\r\n \
-    \   }\r\n    return res;\r\n}\r\nll minv(ll a, ll m) {\r\n    ll b = m, u = 1,\
-    \ v = 0;\r\n    while (b) {\r\n        ll t = a / b;\r\n        a -= t * b;\r\n\
-    \        swap(a, b);\r\n        u -= t * v;\r\n        swap(u, v);\r\n    }\r\n\
-    \    u = (u % m + m) % m;\r\n    return u;\r\n}\r\nll getPrimitiveRoot(ll p) {\r\
-    \n    vector<ll> ps = Pollard(p - 1);\r\n    sort(ALL(ps));\r\n    rep(x, 1, inf)\
-    \ {\r\n        for (auto &q : ps) {\r\n            if (mpow(x, (p - 1) / q, p)\
-    \ == 1)\r\n                goto fail;\r\n        }\r\n        return x;\r\n  \
-    \  fail:;\r\n    }\r\n    assert(0);\r\n}\r\nll extgcd(ll a, ll b, ll &p, ll &q)\
-    \ {\r\n    if (b == 0) {\r\n        p = 1;\r\n        q = 0;\r\n        return\
-    \ a;\r\n    }\r\n    ll d = extgcd(b, a % b, q, p);\r\n    q -= a / b * p;\r\n\
-    \    return d;\r\n}\r\npair<ll, ll> crt(const vector<ll> &vs, const vector<ll>\
-    \ &ms) {\r\n    ll V = vs[0], M = ms[0];\r\n    rep(i, 1, vs.size()) {\r\n   \
-    \     ll p, q, v = vs[i], m = ms[i];\r\n        if (M < m)\r\n            swap(M,\
-    \ m), swap(V, v);\r\n        ll d = extgcd(M, m, p, q);\r\n        if ((v - V)\
-    \ % d != 0)\r\n            return {0, -1};\r\n        ll md = m / d, tmp = (v\
-    \ - V) / d % md * p % md;\r\n        V += M * tmp;\r\n        M *= md;\r\n   \
-    \ }\r\n    V = (V % M + M) % M;\r\n    return {V, M};\r\n}\r\nll ModLog(ll a,\
-    \ ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t; t >>= 1)\r\n       \
-    \ g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1, c = 0;\r\n    for (;\
-    \ t % g; c++) {\r\n        if (t == b)\r\n            return c;\r\n        t =\
-    \ t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\n    t /= g, b\
-    \ /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h < n; h++)\r\n\
-    \        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n    for (ll s =\
-    \ 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n    for (ll s = 0,\
-    \ e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n        if (bs.count(e))\
-    \ {\r\n            return c + s - bs[e];\r\n        }\r\n    }\r\n    return -1;\r\
-    \n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\n        return\
-    \ k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n    k %= m - 1;\r\
-    \n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m) != 1)\r\n     \
-    \   return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\n    FastDiv\
-    \ im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod\
-    \ m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n        while (q % p ==\
-    \ 0) {\r\n            q /= p;\r\n            s++;\r\n        }\r\n        int\
-    \ d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n           res = mpow(a, ((pe\
-    \ - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n        while (mpow(c,\
-    \ (m - 1) / p, m) == 1)\r\n            c++;\r\n        c = mpow(c, q, m);\r\n\
-    \        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d * p) + 1,\r\n   \
-    \        bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1), m);\r\n       \
-    \ rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\n        ll gs = minv(mpow(c,\
-    \ mpow(p, s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\n            ll err\
-    \ = a * minv(mpow(res, pe, m), m) % im;\r\n            ll pos = mpow(err, mpow(p,\
-    \ d - 1 - i, m - 1), m);\r\n            rep(j, 0, block + 1) {\r\n           \
-    \     if (mp.count(pos)) {\r\n                    res = res *\r\n            \
-    \              mpow(c,\r\n                               (block * mp[pos] + j)\
-    \ * mpow(p, i, m - 1) %\r\n                                   (m - 1),\r\n   \
-    \                            m) %\r\n                          im;\r\n       \
-    \             break;\r\n                }\r\n                pos = pos * gs %\
-    \ im;\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\r\n \
-    \   for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n         \
-    \   int sz = 0;\r\n            while (g % d == 0) {\r\n                g /= d;\r\
-    \n                sz++;\r\n            }\r\n            a = _subroot(d, sz, a);\r\
-    \n        }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return\
-    \ a;\r\n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or k == 1)\r\
-    \n        return a;\r\n    if (k >= 64)\r\n        return 1;\r\n    if (k == 2)\r\
-    \n        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\
-    \n        a--;\r\n    auto mul = [&](ull &x, const ull &y) {\r\n        if (x\
-    \ <= LIM / y)\r\n            x *= y;\r\n        else\r\n            x = LIM;\r\
-    \n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n\
-    \        while (t) {\r\n            if (t & 1)\r\n                mul(y, x);\r\
-    \n            mul(x, x);\r\n            t >>= 1;\r\n        }\r\n        return\
-    \ y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k),\
-    \ 0)));\r\n    while (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\
-    \n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */"
+    \n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n#line 2 \"Math/gaussian.hpp\"\
+    \n\ntemplate <typename T> struct Gauss {\n    T x, y;\n    Gauss() {}\n    Gauss(T\
+    \ _x, T _y) : x(_x), y(_y) {}\n    T norm() const {\n        return x * x + y\
+    \ * y;\n    }\n    Gauss conj() const {\n        return Gauss(x, -y);\n    }\n\
+    \    Gauss operator-() const {\n        return Gauss(-x, -y);\n    }\n    Gauss\
+    \ pow(ll n) const {\n        assert(n >= 0);\n        Gauss ret(1), mul(*this);\n\
+    \        while (n) {\n            if (n & 1)\n                ret *= mul;\n  \
+    \          mul *= mul;\n            n >>= 1;\n        }\n        return ret;\n\
+    \    }\n    Gauss &operator+=(const Gauss &a) {\n        x += a.x, y += a.y;\n\
+    \        return *this;\n    }\n    Gauss &operator-=(const Gauss &a) {\n     \
+    \   x -= a.x, y -= a.y;\n        return *this;\n    }\n    Gauss &operator*=(const\
+    \ Gauss &a) {\n        T nx = x * a.x - y * a.y, ny = x * a.y + y * a.x;\n   \
+    \     x = nx, y = ny;\n        return *this;\n    }\n    Gauss &operator/=(const\
+    \ Gauss &a) {\n        (*this) *= a.conj();\n        T n = a.norm();\n       \
+    \ x = floor(x + n / 2, n), y = floor(y + n / 2, n);\n        return *this;\n \
+    \   }\n    Gauss &operator%=(const Gauss &a) {\n        (*this) -= (Gauss(*this)\
+    \ / a) * a;\n        return *this;\n    }\n    Gauss operator+(const Gauss &a)\
+    \ const {\n        return Gauss(*this) += a;\n    }\n    Gauss operator-(const\
+    \ Gauss &a) const {\n        return Gauss(*this) -= a;\n    }\n    Gauss operator*(const\
+    \ Gauss &a) const {\n        return Gauss(*this) *= a;\n    }\n    Gauss operator/(const\
+    \ Gauss &a) const {\n        return Gauss(*this) /= a;\n    }\n    Gauss operator%(const\
+    \ Gauss &a) const {\n        return Gauss(*this) %= a;\n    }\n    bool operator==(const\
+    \ Gauss &a) {\n        return (x == a.x and y == a.y);\n    }\n    bool operator!=(const\
+    \ Gauss &a) {\n        return (x != a.x or y != a.y);\n    }\n};\n\ntemplate <typename\
+    \ T> Gauss<T> gcd(Gauss<T> a, Gauss<T> b) {\n    while (b != Gauss<T>(0, 0)) {\n\
+    \        a %= b;\n        swap(a, b);\n    }\n    return a;\n}\n\n/**\n * @brief\
+    \ Gaussaussian Integer\n */\n#line 5 \"Math/twosquare.hpp\"\n\nvector<pair<ll,\
+    \ ll>> RepresentTwoSquare(ll n) {\n    auto find = [&](ll p) -> Gauss<ll> {\n\
+    \        assert(p % 4 == 1);\n        ll g = 1, x = -1;\n        for (;;) {\n\
+    \            g++;\n            x = mpow(g, (p - 1) / 4, p);\n            if ((__int128_t(x)\
+    \ * x) % p == p - 1)\n                break;\n        }\n        Gauss<ll> a(p,\
+    \ 0), b(x, 1);\n        a = gcd(a, b);\n        assert(a.norm() == p);\n     \
+    \   return a;\n    };\n    auto subtask = [&](ll p, int e) -> vector<Gauss<ll>>\
+    \ {\n        if (p == 2) {\n            Gauss<ll> ret(1, 0), b(1, 1);\n      \
+    \      rep(_, 0, e) ret *= b;\n            return {ret};\n        } else if (p\
+    \ % 4 == 1) {\n            auto base = find(p);\n            vector<Gauss<ll>>\
+    \ pws(e + 1), ret(e + 1);\n            pws[0] = Gauss<ll>(1, 0);\n           \
+    \ rep(i, 0, e) pws[i + 1] = pws[i] * base;\n            rep(i, 0, e + 1) ret[i]\
+    \ = pws[i] * pws[e - i].conj();\n            return ret;\n        } else {\n \
+    \           if (e & 1)\n                return {};\n            ll q = 1;\n  \
+    \          rep(_, 0, e / 2) q *= p;\n            return {Gauss<ll>(q, 0)};\n \
+    \       }\n    };\n\n    if (n == 0) {\n        return {{0, 0}};\n    }\n    auto\
+    \ ps = Pollard(n);\n    map<ll, int> pe;\n    for (auto &p : ps)\n        pe[p]++;\n\
+    \    vector<Gauss<ll>> ret;\n    ret.push_back(Gauss<ll>(1, 0));\n    for (auto\
+    \ &[p, e] : pe) {\n        auto add = subtask(p, e);\n        vector<Gauss<ll>>\
+    \ nxt;\n        for (auto &x : ret) {\n            for (auto &y : add) {\n   \
+    \             nxt.push_back(x * y);\n            }\n        }\n        swap(ret,\
+    \ nxt);\n    }\n    vector<pair<ll, ll>> out;\n    for (auto x : ret) {\n    \
+    \    rep(_, 0, 4) {\n            swap(x.x, x.y);\n            x.x *= -1;\n   \
+    \         if (x.x >= 0 and x.y >= 0) {\n                out.push_back({x.x, x.y});\n\
+    \            }\n        }\n    }\n    return out;\n}\n\n/**\n * @brief Represent\
+    \ A Number As Two Square Sum\n */\n"
+  code: "#pragma once\n#include \"Math/primitive.hpp\"\n#include \"Math/gaussian.hpp\"\
+    \n#include \"Math/pollard.hpp\"\n\nvector<pair<ll, ll>> RepresentTwoSquare(ll\
+    \ n) {\n    auto find = [&](ll p) -> Gauss<ll> {\n        assert(p % 4 == 1);\n\
+    \        ll g = 1, x = -1;\n        for (;;) {\n            g++;\n           \
+    \ x = mpow(g, (p - 1) / 4, p);\n            if ((__int128_t(x) * x) % p == p -\
+    \ 1)\n                break;\n        }\n        Gauss<ll> a(p, 0), b(x, 1);\n\
+    \        a = gcd(a, b);\n        assert(a.norm() == p);\n        return a;\n \
+    \   };\n    auto subtask = [&](ll p, int e) -> vector<Gauss<ll>> {\n        if\
+    \ (p == 2) {\n            Gauss<ll> ret(1, 0), b(1, 1);\n            rep(_, 0,\
+    \ e) ret *= b;\n            return {ret};\n        } else if (p % 4 == 1) {\n\
+    \            auto base = find(p);\n            vector<Gauss<ll>> pws(e + 1), ret(e\
+    \ + 1);\n            pws[0] = Gauss<ll>(1, 0);\n            rep(i, 0, e) pws[i\
+    \ + 1] = pws[i] * base;\n            rep(i, 0, e + 1) ret[i] = pws[i] * pws[e\
+    \ - i].conj();\n            return ret;\n        } else {\n            if (e &\
+    \ 1)\n                return {};\n            ll q = 1;\n            rep(_, 0,\
+    \ e / 2) q *= p;\n            return {Gauss<ll>(q, 0)};\n        }\n    };\n\n\
+    \    if (n == 0) {\n        return {{0, 0}};\n    }\n    auto ps = Pollard(n);\n\
+    \    map<ll, int> pe;\n    for (auto &p : ps)\n        pe[p]++;\n    vector<Gauss<ll>>\
+    \ ret;\n    ret.push_back(Gauss<ll>(1, 0));\n    for (auto &[p, e] : pe) {\n \
+    \       auto add = subtask(p, e);\n        vector<Gauss<ll>> nxt;\n        for\
+    \ (auto &x : ret) {\n            for (auto &y : add) {\n                nxt.push_back(x\
+    \ * y);\n            }\n        }\n        swap(ret, nxt);\n    }\n    vector<pair<ll,\
+    \ ll>> out;\n    for (auto x : ret) {\n        rep(_, 0, 4) {\n            swap(x.x,\
+    \ x.y);\n            x.x *= -1;\n            if (x.x >= 0 and x.y >= 0) {\n  \
+    \              out.push_back({x.x, x.y});\n            }\n        }\n    }\n \
+    \   return out;\n}\n\n/**\n * @brief Represent A Number As Two Square Sum\n */"
   dependsOn:
+  - Math/primitive.hpp
   - Math/fastdiv.hpp
   - Math/pollard.hpp
   - Math/miller.hpp
   - Utility/random.hpp
+  - Math/gaussian.hpp
   isVerificationFile: false
-  path: Math/primitive.hpp
-  requiredBy:
-  - Math/twosquare.hpp
-  - Math/binomquery.hpp
-  - Convolution/multivariatecyclic.hpp
-  timestamp: '2024-12-26 05:48:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
-documentation_of: Math/primitive.hpp
+  path: Math/twosquare.hpp
+  requiredBy: []
+  timestamp: '2025-02-02 04:09:10+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Math/twosquare.hpp
 layout: document
 redirect_from:
-- /library/Math/primitive.hpp
-- /library/Math/primitive.hpp.html
-title: Primitive Function
+- /library/Math/twosquare.hpp
+- /library/Math/twosquare.hpp.html
+title: Represent A Number As Two Square Sum
 ---
