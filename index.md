@@ -76,7 +76,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':warning:'
@@ -91,6 +91,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/dualsegtree.hpp
       title: Dual Segment Tree
+    - icon: ':warning:'
+      path: DataStructure/dynamicrectsum.hpp
+      title: Dynamic Point Add Rectangle Sum
     - icon: ':warning:'
       path: DataStructure/fastset.hpp
       title: Fast Set
@@ -154,10 +157,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/staticrectaddrectsum.hpp
       title: Static Rectangle Add Rectangle Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/staticrectsum.hpp
       title: Static Rectangle Sum
     - icon: ':heavy_check_mark:'
@@ -447,7 +450,7 @@ data:
     - icon: ':warning:'
       path: Math/mobius.hpp
       title: Mobius table
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -520,12 +523,12 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -780,7 +783,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_sum.test.cpp
       title: Verify/LC_static_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
       title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'

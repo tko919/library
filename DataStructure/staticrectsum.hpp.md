@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: DataStructure/dynamicrectsum.hpp
+    title: Dynamic Point Add Rectangle Sum
+  - icon: ':x:'
     path: DataStructure/staticrectaddrectsum.hpp
     title: Static Rectangle Add Rectangle Sum
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Static Rectangle Sum
     links: []
@@ -29,52 +32,58 @@ data:
     \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
     \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
     \n * @brief Binary Indexed Tree\r\n */\n#line 3 \"DataStructure/staticrectsum.hpp\"\
-    \n\ntemplate<class T>struct StaticRectangleSum{\n    struct P{\n        ll x,y;\
-    \ T w;\n    };\n    struct Rect{\n        ll l,d,r,u;\n    };\n    struct Q{\n\
-    \        ll x,d,u,id,inv;\n    };\n    vector<P> plus;\n    vector<Rect> que;\n\
-    \    StaticRectangleSum(){}\n    void add(ll x,ll y,T w){\n        plus.push_back({x,y,w});\n\
-    \    }\n    void query(ll l,ll d,ll r,ll u){\n        que.push_back({l,d,r,u});\n\
-    \    }\n    vector<T> run(){\n        ll n=plus.size(),q=que.size();\n       \
-    \ sort(ALL(plus),[](P& p,P& q){return p.y<q.y;});\n        vector<ll> ys;\n  \
-    \      rep(i,0,n)ys.push_back(plus[i].y);\n        ys.erase(unique(ALL(ys)),ys.end());\n\
-    \        rep(i,0,n)plus[i].y=lower_bound(ALL(ys),plus[i].y)-ys.begin();\n    \
-    \    vector<Q> qs;\n        rep(i,0,q){\n            auto& [l,d,r,u]=que[i];\n\
-    \            d=lower_bound(ALL(ys),d)-ys.begin();\n            u=lower_bound(ALL(ys),u)-ys.begin();\n\
-    \            qs.push_back({l,d,u,i,1});\n            qs.push_back({r,d,u,i,-1});\n\
-    \        }\n        sort(ALL(plus),[](P& p,P& q){return p.x<q.x;});\n        sort(ALL(qs),[](Q&\
-    \ p,Q& q){return p.x<q.x;});\n        vector<T> res(q);\n        ll k=0;\n   \
-    \     BIT<T> bit(ys.size());\n        for(auto& q:qs){\n            while(k<n\
-    \ and plus[k].x<q.x){\n                bit.add(plus[k].y,plus[k].w);\n       \
-    \         k++;\n            }\n            res[q.id]+=bit.sum(q.u,q.d)*q.inv;\n\
-    \        }\n        return res;\n    }\n};\n\n/**\n * @brief Static Rectangle\
-    \ Sum\n*/\n"
-  code: "#pragma once\n#include \"DataStructure/bit.hpp\"\n\ntemplate<class T>struct\
-    \ StaticRectangleSum{\n    struct P{\n        ll x,y; T w;\n    };\n    struct\
-    \ Rect{\n        ll l,d,r,u;\n    };\n    struct Q{\n        ll x,d,u,id,inv;\n\
-    \    };\n    vector<P> plus;\n    vector<Rect> que;\n    StaticRectangleSum(){}\n\
-    \    void add(ll x,ll y,T w){\n        plus.push_back({x,y,w});\n    }\n    void\
-    \ query(ll l,ll d,ll r,ll u){\n        que.push_back({l,d,r,u});\n    }\n    vector<T>\
-    \ run(){\n        ll n=plus.size(),q=que.size();\n        sort(ALL(plus),[](P&\
-    \ p,P& q){return p.y<q.y;});\n        vector<ll> ys;\n        rep(i,0,n)ys.push_back(plus[i].y);\n\
-    \        ys.erase(unique(ALL(ys)),ys.end());\n        rep(i,0,n)plus[i].y=lower_bound(ALL(ys),plus[i].y)-ys.begin();\n\
-    \        vector<Q> qs;\n        rep(i,0,q){\n            auto& [l,d,r,u]=que[i];\n\
-    \            d=lower_bound(ALL(ys),d)-ys.begin();\n            u=lower_bound(ALL(ys),u)-ys.begin();\n\
-    \            qs.push_back({l,d,u,i,1});\n            qs.push_back({r,d,u,i,-1});\n\
-    \        }\n        sort(ALL(plus),[](P& p,P& q){return p.x<q.x;});\n        sort(ALL(qs),[](Q&\
-    \ p,Q& q){return p.x<q.x;});\n        vector<T> res(q);\n        ll k=0;\n   \
-    \     BIT<T> bit(ys.size());\n        for(auto& q:qs){\n            while(k<n\
-    \ and plus[k].x<q.x){\n                bit.add(plus[k].y,plus[k].w);\n       \
-    \         k++;\n            }\n            res[q.id]+=bit.sum(q.u,q.d)*q.inv;\n\
-    \        }\n        return res;\n    }\n};\n\n/**\n * @brief Static Rectangle\
-    \ Sum\n*/"
+    \n\ntemplate <typename XY, typename T> struct StaticRectangleSum {\n    struct\
+    \ P {\n        XY x, y;\n        T w;\n    };\n    struct Rect {\n        XY l,\
+    \ d, r, u;\n    };\n    struct Q {\n        XY x, d, u;\n        int id, inv;\n\
+    \    };\n    vector<P> plus;\n    vector<Rect> que;\n    StaticRectangleSum()\
+    \ {}\n    void add(XY x, XY y, T w) {\n        plus.push_back({x, y, w});\n  \
+    \  }\n    void query(XY l, XY d, XY r, XY u) {\n        que.push_back({l, d, r,\
+    \ u});\n    }\n    vector<T> run() {\n        ll n = plus.size(), q = que.size();\n\
+    \        sort(ALL(plus), [](P &p, P &q) { return p.y < q.y; });\n        vector<XY>\
+    \ ys;\n        rep(i, 0, n) ys.push_back(plus[i].y);\n        ys.erase(unique(ALL(ys)),\
+    \ ys.end());\n        rep(i, 0, n) plus[i].y = lower_bound(ALL(ys), plus[i].y)\
+    \ - ys.begin();\n        vector<Q> qs;\n        rep(i, 0, q) {\n            auto\
+    \ &[l, d, r, u] = que[i];\n            d = lower_bound(ALL(ys), d) - ys.begin();\n\
+    \            u = lower_bound(ALL(ys), u) - ys.begin();\n            qs.push_back({l,\
+    \ d, u, i, 1});\n            qs.push_back({r, d, u, i, -1});\n        }\n    \
+    \    sort(ALL(plus), [](P &p, P &q) { return p.x < q.x; });\n        sort(ALL(qs),\
+    \ [](Q &p, Q &q) { return p.x < q.x; });\n        vector<T> res(q);\n        int\
+    \ k = 0;\n        BIT<T> bit(ys.size());\n        for (auto &q : qs) {\n     \
+    \       while (k < n and plus[k].x < q.x) {\n                bit.add(plus[k].y,\
+    \ plus[k].w);\n                k++;\n            }\n            res[q.id] += bit.sum(q.u,\
+    \ q.d) * q.inv;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Static\
+    \ Rectangle Sum\n */\n"
+  code: "#pragma once\n#include \"DataStructure/bit.hpp\"\n\ntemplate <typename XY,\
+    \ typename T> struct StaticRectangleSum {\n    struct P {\n        XY x, y;\n\
+    \        T w;\n    };\n    struct Rect {\n        XY l, d, r, u;\n    };\n   \
+    \ struct Q {\n        XY x, d, u;\n        int id, inv;\n    };\n    vector<P>\
+    \ plus;\n    vector<Rect> que;\n    StaticRectangleSum() {}\n    void add(XY x,\
+    \ XY y, T w) {\n        plus.push_back({x, y, w});\n    }\n    void query(XY l,\
+    \ XY d, XY r, XY u) {\n        que.push_back({l, d, r, u});\n    }\n    vector<T>\
+    \ run() {\n        ll n = plus.size(), q = que.size();\n        sort(ALL(plus),\
+    \ [](P &p, P &q) { return p.y < q.y; });\n        vector<XY> ys;\n        rep(i,\
+    \ 0, n) ys.push_back(plus[i].y);\n        ys.erase(unique(ALL(ys)), ys.end());\n\
+    \        rep(i, 0, n) plus[i].y = lower_bound(ALL(ys), plus[i].y) - ys.begin();\n\
+    \        vector<Q> qs;\n        rep(i, 0, q) {\n            auto &[l, d, r, u]\
+    \ = que[i];\n            d = lower_bound(ALL(ys), d) - ys.begin();\n         \
+    \   u = lower_bound(ALL(ys), u) - ys.begin();\n            qs.push_back({l, d,\
+    \ u, i, 1});\n            qs.push_back({r, d, u, i, -1});\n        }\n       \
+    \ sort(ALL(plus), [](P &p, P &q) { return p.x < q.x; });\n        sort(ALL(qs),\
+    \ [](Q &p, Q &q) { return p.x < q.x; });\n        vector<T> res(q);\n        int\
+    \ k = 0;\n        BIT<T> bit(ys.size());\n        for (auto &q : qs) {\n     \
+    \       while (k < n and plus[k].x < q.x) {\n                bit.add(plus[k].y,\
+    \ plus[k].w);\n                k++;\n            }\n            res[q.id] += bit.sum(q.u,\
+    \ q.d) * q.inv;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Static\
+    \ Rectangle Sum\n */"
   dependsOn:
   - DataStructure/bit.hpp
   isVerificationFile: false
   path: DataStructure/staticrectsum.hpp
   requiredBy:
+  - DataStructure/dynamicrectsum.hpp
   - DataStructure/staticrectaddrectsum.hpp
-  timestamp: '2023-01-17 01:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-02-04 02:11:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: DataStructure/staticrectsum.hpp
