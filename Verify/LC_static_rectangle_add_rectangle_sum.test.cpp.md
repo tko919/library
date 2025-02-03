@@ -1,36 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/staticrectaddrectsum.hpp
     title: Static Rectangle Add Rectangle Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/staticrectsum.hpp
     title: Static Rectangle Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
     links:
     - https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
   bundledCode: "#line 1 \"Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
+    #define PROBLEM                                                              \
+    \  \\\n    \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
     \n\n#line 1 \"Template/template.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n#define rep(i, a, b) for (int i = (int)(a); i < (int)(b); i++)\r\
     \n#define rrep(i, a, b) for (int i = (int)(b)-1; i >= (int)(a); i--)\r\n#define\
@@ -162,7 +163,7 @@ data:
     \  print(i ? \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\
     \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
     \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\
+    \n * @brief Fast IO\r\n */\n#line 6 \"Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\
     \n\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007> struct\
     \ fp {\r\n    unsigned v;\r\n    static constexpr int get_mod() {\r\n        return\
     \ mod;\r\n    }\r\n    constexpr unsigned inv() const {\r\n        assert(v !=\
@@ -192,8 +193,8 @@ data:
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
-    \n * @brief Modint\r\n */\n#line 7 \"Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\
-    \nusing Fp=fp<998244353>;\n\n#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename\
+    \n * @brief Modint\r\n */\n#line 8 \"Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\
+    \nusing Fp = fp<998244353>;\n\n#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename\
     \ T>struct BIT{\r\n    int n; T all=0; vector<T> val;\r\n    BIT(int _n=0):n(_n),val(_n+10){}\r\
     \n    void clear(){val.assign(n+10,0); all=T();}\r\n    void add(int i,T x){\r\
     \n        for(i++;i<=n;i+=(i&-i))val[i]=val[i]+x;\r\n        all+=x;\r\n    }\r\
@@ -249,21 +250,23 @@ data:
     \ -= Const[4 * i + 2];\n\n            res[i] += both[4 * i + 3] * r * u;\n   \
     \         res[i] += X[4 * i + 3] * r;\n            res[i] += Y[4 * i + 3] * u;\n\
     \            res[i] += Const[4 * i + 3];\n        }\n        return res;\n   \
-    \ }\n};\n\n/**\n * @brief Static Rectangle Add Rectangle Sum\n */\n#line 10 \"\
-    Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\n\nint main(){\n    int\
-    \ n,q;\n    read(n,q);\n\n    StaticRectangleAddRectangleSum<Fp> buf;\n    rep(i,0,n){\n\
-    \        int L,D,R,U,w;\n        read(L,D,R,U,w);\n        buf.add(L,D,R,U,w);\n\
-    \    }\n    rep(i,0,q){\n        int L,D,R,U;\n        read(L,D,R,U);\n      \
-    \  buf.query(L,D,R,U);\n    }\n    auto ret=buf.run();\n    rep(i,0,q)print(ret[i].v);\n\
-    \    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
+    \ }\n};\n\n/**\n * @brief Static Rectangle Add Rectangle Sum\n */\n#line 11 \"\
+    Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\n\nint main() {\n    int\
+    \ n, q;\n    read(n, q);\n\n    StaticRectangleAddRectangleSum<int, Fp> buf;\n\
+    \    rep(i, 0, n) {\n        int L, D, R, U, w;\n        read(L, D, R, U, w);\n\
+    \        buf.add(L, D, R, U, w);\n    }\n    rep(i, 0, q) {\n        int L, D,\
+    \ R, U;\n        read(L, D, R, U);\n        buf.query(L, D, R, U);\n    }\n  \
+    \  auto ret = buf.run();\n    rep(i, 0, q) print(ret[i].v);\n    return 0;\n}\n"
+  code: "#define PROBLEM                                                         \
+    \       \\\n    \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
     \n\n#include \"Template/template.hpp\"\n#include \"Utility/fastio.hpp\"\n\n#include\
-    \ \"Math/modint.hpp\"\nusing Fp=fp<998244353>;\n\n#include \"DataStructure/staticrectaddrectsum.hpp\"\
-    \n\nint main(){\n    int n,q;\n    read(n,q);\n\n    StaticRectangleAddRectangleSum<Fp>\
-    \ buf;\n    rep(i,0,n){\n        int L,D,R,U,w;\n        read(L,D,R,U,w);\n  \
-    \      buf.add(L,D,R,U,w);\n    }\n    rep(i,0,q){\n        int L,D,R,U;\n   \
-    \     read(L,D,R,U);\n        buf.query(L,D,R,U);\n    }\n    auto ret=buf.run();\n\
-    \    rep(i,0,q)print(ret[i].v);\n    return 0;\n}"
+    \ \"Math/modint.hpp\"\nusing Fp = fp<998244353>;\n\n#include \"DataStructure/staticrectaddrectsum.hpp\"\
+    \n\nint main() {\n    int n, q;\n    read(n, q);\n\n    StaticRectangleAddRectangleSum<int,\
+    \ Fp> buf;\n    rep(i, 0, n) {\n        int L, D, R, U, w;\n        read(L, D,\
+    \ R, U, w);\n        buf.add(L, D, R, U, w);\n    }\n    rep(i, 0, q) {\n    \
+    \    int L, D, R, U;\n        read(L, D, R, U);\n        buf.query(L, D, R, U);\n\
+    \    }\n    auto ret = buf.run();\n    rep(i, 0, q) print(ret[i].v);\n    return\
+    \ 0;\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -274,8 +277,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-02-04 02:11:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-04 02:14:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
 layout: document
