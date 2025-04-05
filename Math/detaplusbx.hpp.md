@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: Math/charpoly.hpp
     title: Characteristic Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -97,20 +97,20 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple> vector<pair<int,\
-    \ int>> genGraph(int n) {\r\n    vector<pair<int, int>> cand, es;\r\n    rep(u,\
-    \ 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n            continue;\r\
-    \n        if (!directed and u > v)\r\n            continue;\r\n        cand.push_back({u,\
-    \ v});\r\n    }\r\n    int m = get(SZ(cand));\r\n    vector<int> ord;\r\n    if\
-    \ (simple)\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n    \
-    \    rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n    }\r\n    for (auto\
-    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
-    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
-    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
-    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
-    \ Random\r\n */\n#line 5 \"Math/detaplusbx.hpp\"\n\ntemplate<typename T>vector<T>\
-    \ detApBx(Matrix<T> a,Matrix<T> b){\n    Random gen;\n    int n=a.h;\n    vector<T>\
-    \ f(n+1);\n    T ran=gen.get();\n    rep(i,0,n)rep(j,0,n)a[i][j]-=b[i][j]*ran;\n\
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
+    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
+    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
+    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
+    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
+    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
+    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
+    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
+    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
+    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
+    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
+    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 5 \"Math/detaplusbx.hpp\"\
+    \n\ntemplate<typename T>vector<T> detApBx(Matrix<T> a,Matrix<T> b){\n    Random\
+    \ gen;\n    int n=a.h;\n    vector<T> f(n+1);\n    T ran=gen.get();\n    rep(i,0,n)rep(j,0,n)a[i][j]-=b[i][j]*ran;\n\
     \    auto ainv=a.inv();\n    if(a.det==0)return f;\n    b*=ainv;\n    rep(i,0,n)rep(j,0,n)b[i][j]=-b[i][j];\n\
     \    f=CharPoly(b);\n    reverse(ALL(f));\n    for(auto& x:f)x*=a.det;\n    vector\
     \ C(n+1,vector<T>(n+1));\n    vector<T> pw(n+1,1);\n    rep(i,0,n+1){\n      \
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: Math/detaplusbx.hpp
   requiredBy: []
-  timestamp: '2024-06-14 02:46:58+09:00'
+  timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/detaplusbx.hpp

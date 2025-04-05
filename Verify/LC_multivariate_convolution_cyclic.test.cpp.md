@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -66,54 +66,59 @@ data:
     \n\r\nusing uint = unsigned int;\r\nusing ll = long long int;\r\nusing ull = unsigned\
     \ long long;\r\nusing i128 = __int128_t;\r\nusing u128 = __uint128_t;\r\nconst\
     \ int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate\
-    \ <typename T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a\
-    \ = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename\
-    \ T> inline bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a = b;\r\n\
-    \        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename T, typename\
-    \ U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x\
-    \ = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate\
-    \ <typename T, typename U> T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if\
-    \ (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1)\
-    \ / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\
-    \n}\r\ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63\
-    \ - __builtin_clzll(x));\r\n}\r\ntemplate <typename T> int lowbit(T x) {\r\n \
-    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\ntemplate <class T,\
-    \ class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os\
-    \ << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\
-    \ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T> &vec)\
-    \ {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n    \
-    \    os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os\
-    \ << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream\
-    \ &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n\
-    \    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n     \
-    \   os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n        itr++;\r\
-    \n        if (itr != map_var.end())\r\n            os << \", \";\r\n        itr--;\r\
-    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream\
-    \ &operator<<(ostream &os, const set<T> &set_var) {\r\n    os << \"{\";\r\n  \
-    \  for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {\r\n       \
-    \ os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\n     \
-    \       os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return\
-    \ os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)\r\
-    \n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename T> void _show(int\
-    \ i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename T1, typename T2,\
-    \ typename... T3>\r\nvoid _show(int i, const T1 &a, const T2 &b, const T3 &...c)\
-    \ {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\
-    \n    cerr << \":\" << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2\
-    \ \"Utility/fastio.hpp\"\n#include <unistd.h>\r\nnamespace fastio {\r\nstatic\
-    \ constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar\
-    \ out[100];\r\n// pointer of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\nstruct Pre {\r\n    char num[10000][4];\r\n    constexpr Pre() :\
-    \ num() {\r\n        for (int i = 0; i < 10000; i++) {\r\n            int n =\
-    \ i;\r\n            for (int j = 3; j >= 0; j--) {\r\n                num[i][j]\
-    \ = n % 10 | '0';\r\n                n /= 10;\r\n            }\r\n        }\r\n\
-    \    }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n    memmove(ibuf, ibuf\
-    \ + pil, pir - pil);\r\n    pir = pir - pil + fread(ibuf + pir - pil, 1, SZ -\
-    \ pir + pil, stdin);\r\n    pil = 0;\r\n    if (pir < SZ)\r\n        ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n    fwrite(obuf, 1, por, stdout);\r\
-    \n    por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n    do {\r\n        if (pil +\
-    \ 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\
-    \n}\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\n    char c;\r\n    do {\r\
-    \n        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
+    \ <typename T, typename S = T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a),\
+    \ S(0));\r\n}\r\ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n \
+    \   S ret = 1, base = a;\r\n    while (b) {\r\n        if (b & 1)\r\n        \
+    \    ret *= base;\r\n        base *= base;\r\n        b >>= 1;\r\n    }\r\n  \
+    \  return ret;\r\n}\r\ntemplate <typename T> inline bool chmax(T &a, T b) {\r\n\
+    \    if (a < b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\n    return\
+    \ 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a, T b) {\r\n    if (a\
+    \ > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n\
+    }\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\
+    \n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1)\
+    \ / y : x / y);\r\n}\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\
+    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
+    \ (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T\
+    \ x) {\r\n    return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int\
+    \ topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\n\
+    template <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
+    \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
+    \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
+    )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const vector<T> &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i <\
+    \ vec.size(); i++) {\r\n        os << vec[i] << (i + 1 == vec.size() ? \"\" :\
+    \ \", \");\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename\
+    \ T, typename U>\r\nostream &operator<<(ostream &os, const map<T, U> &map_var)\
+    \ {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin(); itr != map_var.end();\
+    \ itr++) {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \"\
+    )\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\n            os\
+    \ << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\
+    \n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, const set<T> &set_var)\
+    \ {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
+    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
+    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
+    \    return os;\r\n}\r\n#ifdef LOCAL\r\n#define debug 1\r\n#define show(...) _show(0,\
+    \ #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define debug 0\r\n#define show(...)\
+    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
+    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
+    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
+    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
+    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Utility/fastio.hpp\"\
+    \n#include <unistd.h>\r\nnamespace fastio {\r\nstatic constexpr uint32_t SZ =\
+    \ 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar out[100];\r\n// pointer\
+    \ of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\
+    \n    char num[10000][4];\r\n    constexpr Pre() : num() {\r\n        for (int\
+    \ i = 0; i < 10000; i++) {\r\n            int n = i;\r\n            for (int j\
+    \ = 3; j >= 0; j--) {\r\n                num[i][j] = n % 10 | '0';\r\n       \
+    \         n /= 10;\r\n            }\r\n        }\r\n    }\r\n} constexpr pre;\r\
+    \n\r\ninline void load() {\r\n    memmove(ibuf, ibuf + pil, pir - pil);\r\n  \
+    \  pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);\r\n  \
+    \  pil = 0;\r\n    if (pir < SZ)\r\n        ibuf[pir++] = '\\n';\r\n}\r\n\r\n\
+    inline void flush() {\r\n    fwrite(obuf, 1, por, stdout);\r\n    por = 0;\r\n\
+    }\r\n\r\nvoid rd(char &c) {\r\n    do {\r\n        if (pil + 1 > pir)\r\n    \
+    \        load();\r\n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\n\
+    }\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\n    char c;\r\n    do {\r\n\
+    \        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
     \n    } while (isspace(c));\r\n    do {\r\n        x += c;\r\n        if (pil\
     \ == pir)\r\n            load();\r\n        c = ibuf[pil++];\r\n    } while (!isspace(c));\r\
     \n}\r\n\r\ntemplate <typename T> void rd_real(T &x) {\r\n    string s;\r\n   \
@@ -206,7 +211,7 @@ data:
     \  z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n        return x <\
     \ mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n        return modulo(u128(a)\
     \ * b);\n    }\n};\n\n/**\n * @brief Fast Division\n */\n#line 3 \"Math/dynamic.hpp\"\
-    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    uint v;\r\n    static int\
+    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    int v;\r\n    static int\
     \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(int\
     \ _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n   \
     \     int tmp, a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n\
@@ -535,99 +540,99 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple> vector<pair<int,\
-    \ int>> genGraph(int n) {\r\n    vector<pair<int, int>> cand, es;\r\n    rep(u,\
-    \ 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n            continue;\r\
-    \n        if (!directed and u > v)\r\n            continue;\r\n        cand.push_back({u,\
-    \ v});\r\n    }\r\n    int m = get(SZ(cand));\r\n    vector<int> ord;\r\n    if\
-    \ (simple)\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n    \
-    \    rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n    }\r\n    for (auto\
-    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
-    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
-    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
-    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
-    \ Random\r\n */\n#line 4 \"Math/pollard.hpp\"\n\r\nvector<ll> Pollard(ll n) {\r\
-    \n    if (n <= 1)\r\n        return {};\r\n    if (Miller(n))\r\n        return\
-    \ {n};\r\n    if ((n & 1) == 0) {\r\n        vector<ll> v = Pollard(n >> 1);\r\
-    \n        v.push_back(2);\r\n        return v;\r\n    }\r\n    for (ll x = 2,\
-    \ y = 2, d;;) {\r\n        ll c = Random::get(2LL, n - 1);\r\n        do {\r\n\
-    \            x = (__int128_t(x) * x + c) % n;\r\n            y = (__int128_t(y)\
-    \ * y + c) % n;\r\n            y = (__int128_t(y) * y + c) % n;\r\n          \
-    \  d = __gcd(x - y + n, n);\r\n        } while (d == 1);\r\n        if (d < n)\
-    \ {\r\n            vector<ll> lb = Pollard(d), rb = Pollard(n / d);\r\n      \
-    \      lb.insert(lb.end(), ALL(rb));\r\n            return lb;\r\n        }\r\n\
-    \    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n#line 4 \"Math/primitive.hpp\"\
-    \n\r\nll mpow(ll a, ll t, ll m) {\r\n    ll res = 1;\r\n    FastDiv64 im(m);\r\
-    \n    while (t) {\r\n        if (t & 1)\r\n            res = im.modulo(__int128_t(res)\
-    \ * a);\r\n        a = im.modulo(__int128_t(a) * a);\r\n        t >>= 1;\r\n \
-    \   }\r\n    return res;\r\n}\r\nll minv(ll a, ll m) {\r\n    ll b = m, u = 1,\
-    \ v = 0;\r\n    while (b) {\r\n        ll t = a / b;\r\n        a -= t * b;\r\n\
-    \        swap(a, b);\r\n        u -= t * v;\r\n        swap(u, v);\r\n    }\r\n\
-    \    u = (u % m + m) % m;\r\n    return u;\r\n}\r\nll getPrimitiveRoot(ll p) {\r\
-    \n    vector<ll> ps = Pollard(p - 1);\r\n    sort(ALL(ps));\r\n    rep(x, 1, inf)\
-    \ {\r\n        for (auto &q : ps) {\r\n            if (mpow(x, (p - 1) / q, p)\
-    \ == 1)\r\n                goto fail;\r\n        }\r\n        return x;\r\n  \
-    \  fail:;\r\n    }\r\n    assert(0);\r\n}\r\nll extgcd(ll a, ll b, ll &p, ll &q)\
-    \ {\r\n    if (b == 0) {\r\n        p = 1;\r\n        q = 0;\r\n        return\
-    \ a;\r\n    }\r\n    ll d = extgcd(b, a % b, q, p);\r\n    q -= a / b * p;\r\n\
-    \    return d;\r\n}\r\npair<ll, ll> crt(const vector<ll> &vs, const vector<ll>\
-    \ &ms) {\r\n    ll V = vs[0], M = ms[0];\r\n    rep(i, 1, vs.size()) {\r\n   \
-    \     ll p, q, v = vs[i], m = ms[i];\r\n        if (M < m)\r\n            swap(M,\
-    \ m), swap(V, v);\r\n        ll d = extgcd(M, m, p, q);\r\n        if ((v - V)\
-    \ % d != 0)\r\n            return {0, -1};\r\n        ll md = m / d, tmp = (v\
-    \ - V) / d % md * p % md;\r\n        V += M * tmp;\r\n        M *= md;\r\n   \
-    \ }\r\n    V = (V % M + M) % M;\r\n    return {V, M};\r\n}\r\nll ModLog(ll a,\
-    \ ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t; t >>= 1)\r\n       \
-    \ g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1, c = 0;\r\n    for (;\
-    \ t % g; c++) {\r\n        if (t == b)\r\n            return c;\r\n        t =\
-    \ t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\n    t /= g, b\
-    \ /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h < n; h++)\r\n\
-    \        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n    for (ll s =\
-    \ 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n    for (ll s = 0,\
-    \ e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n        if (bs.count(e))\
-    \ {\r\n            return c + s - bs[e];\r\n        }\r\n    }\r\n    return -1;\r\
-    \n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\n        return\
-    \ k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n    k %= m - 1;\r\
-    \n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m) != 1)\r\n     \
-    \   return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\n    FastDiv\
-    \ im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod\
-    \ m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n        while (q % p ==\
-    \ 0) {\r\n            q /= p;\r\n            s++;\r\n        }\r\n        int\
-    \ d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n           res = mpow(a, ((pe\
-    \ - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n        while (mpow(c,\
-    \ (m - 1) / p, m) == 1)\r\n            c++;\r\n        c = mpow(c, q, m);\r\n\
-    \        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d * p) + 1,\r\n   \
-    \        bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1), m);\r\n       \
-    \ rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\n        ll gs = minv(mpow(c,\
-    \ mpow(p, s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\n            ll err\
-    \ = a * minv(mpow(res, pe, m), m) % im;\r\n            ll pos = mpow(err, mpow(p,\
-    \ d - 1 - i, m - 1), m);\r\n            rep(j, 0, block + 1) {\r\n           \
-    \     if (mp.count(pos)) {\r\n                    res = res *\r\n            \
-    \              mpow(c,\r\n                               (block * mp[pos] + j)\
-    \ * mpow(p, i, m - 1) %\r\n                                   (m - 1),\r\n   \
-    \                            m) %\r\n                          im;\r\n       \
-    \             break;\r\n                }\r\n                pos = pos * gs %\
-    \ im;\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\r\n \
-    \   for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n         \
-    \   int sz = 0;\r\n            while (g % d == 0) {\r\n                g /= d;\r\
-    \n                sz++;\r\n            }\r\n            a = _subroot(d, sz, a);\r\
-    \n        }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return\
-    \ a;\r\n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or k == 1)\r\
-    \n        return a;\r\n    if (k >= 64)\r\n        return 1;\r\n    if (k == 2)\r\
-    \n        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\
-    \n        a--;\r\n    auto mul = [&](ull &x, const ull &y) {\r\n        if (x\
-    \ <= LIM / y)\r\n            x *= y;\r\n        else\r\n            x = LIM;\r\
-    \n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n\
-    \        while (t) {\r\n            if (t & 1)\r\n                mul(y, x);\r\
-    \n            mul(x, x);\r\n            t >>= 1;\r\n        }\r\n        return\
-    \ y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k),\
-    \ 0)));\r\n    while (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\
-    \n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n#line 2 \"FPS/multievalgeom.hpp\"\
-    \n\ntemplate<typename T>vector<T> MultievalGeomSeq(vector<T>& f,T a,T w,int m){\n\
-    \    int n=f.size();\n    vector<T> ret(m);\n    if(w==0){\n        T base=1;\n\
-    \        rep(i,0,n)ret[0]+=base*f[i],base*=a;\n        rep(i,1,m)ret[i]=f[0];\n\
-    \        return ret;\n    }\n    vector<T> tri(n+m-1),itri(n+m-1);\n    tri[0]=itri[0]=1;\n\
-    \    T iw=w.inv(),pww=1,pwiw=1;\n    for(int i=1;i<n+m-1;i++,pww*=w,pwiw*=iw){\n\
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
+    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
+    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
+    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
+    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
+    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
+    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
+    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
+    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
+    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
+    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
+    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 4 \"Math/pollard.hpp\"\n\
+    \r\nvector<ll> Pollard(ll n) {\r\n    if (n <= 1)\r\n        return {};\r\n  \
+    \  if (Miller(n))\r\n        return {n};\r\n    if ((n & 1) == 0) {\r\n      \
+    \  vector<ll> v = Pollard(n >> 1);\r\n        v.push_back(2);\r\n        return\
+    \ v;\r\n    }\r\n    for (ll x = 2, y = 2, d;;) {\r\n        ll c = Random::get(2LL,\
+    \ n - 1);\r\n        do {\r\n            x = (__int128_t(x) * x + c) % n;\r\n\
+    \            y = (__int128_t(y) * y + c) % n;\r\n            y = (__int128_t(y)\
+    \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
+    \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
+    \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\
+    \n */\n#line 4 \"Math/primitive.hpp\"\n\r\nll mpow(ll a, ll t, ll m) {\r\n   \
+    \ ll res = 1;\r\n    FastDiv64 im(m);\r\n    while (t) {\r\n        if (t & 1)\r\
+    \n            res = im.modulo(__int128_t(res) * a);\r\n        a = im.modulo(__int128_t(a)\
+    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res;\r\n}\r\nll minv(ll a,\
+    \ ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t =\
+    \ a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
+    \n        swap(u, v);\r\n    }\r\n    u = (u % m + m) % m;\r\n    return u;\r\n\
+    }\r\nll getPrimitiveRoot(ll p) {\r\n    vector<ll> ps = Pollard(p - 1);\r\n  \
+    \  sort(ALL(ps));\r\n    rep(x, 1, inf) {\r\n        for (auto &q : ps) {\r\n\
+    \            if (mpow(x, (p - 1) / q, p) == 1)\r\n                goto fail;\r\
+    \n        }\r\n        return x;\r\n    fail:;\r\n    }\r\n    assert(0);\r\n\
+    }\r\nll extgcd(ll a, ll b, ll &p, ll &q) {\r\n    if (b == 0) {\r\n        p =\
+    \ 1;\r\n        q = 0;\r\n        return a;\r\n    }\r\n    ll d = extgcd(b, a\
+    \ % b, q, p);\r\n    q -= a / b * p;\r\n    return d;\r\n}\r\npair<ll, ll> crt(const\
+    \ vector<ll> &vs, const vector<ll> &ms) {\r\n    ll V = vs[0], M = ms[0];\r\n\
+    \    rep(i, 1, vs.size()) {\r\n        ll p, q, v = vs[i], m = ms[i];\r\n    \
+    \    if (M < m)\r\n            swap(M, m), swap(V, v);\r\n        ll d = extgcd(M,\
+    \ m, p, q);\r\n        if ((v - V) % d != 0)\r\n            return {0, -1};\r\n\
+    \        ll md = m / d, tmp = (v - V) / d % md * p % md;\r\n        V += M * tmp;\r\
+    \n        M *= md;\r\n    }\r\n    V = (V % M + M) % M;\r\n    return {V, M};\r\
+    \n}\r\nll ModLog(ll a, ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t;\
+    \ t >>= 1)\r\n        g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1,\
+    \ c = 0;\r\n    for (; t % g; c++) {\r\n        if (t == b)\r\n            return\
+    \ c;\r\n        t = t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\
+    \n    t /= g, b /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h\
+    \ < n; h++)\r\n        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n \
+    \   for (ll s = 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n  \
+    \  for (ll s = 0, e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n    \
+    \    if (bs.count(e)) {\r\n            return c + s - bs[e];\r\n        }\r\n\
+    \    }\r\n    return -1;\r\n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if\
+    \ (a == 0)\r\n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return\
+    \ a & 1;\r\n    k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m\
+    \ - 1) / g, m) != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m -\
+    \ 1) / g), m);\r\n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll p, int\
+    \ e, ll a) -> ll { // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int\
+    \ s = 0;\r\n        while (q % p == 0) {\r\n            q /= p;\r\n          \
+    \  s++;\r\n        }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\
+    \n           res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c =\
+    \ 1;\r\n        while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n \
+    \       c = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block\
+    \ = sqrt(d * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block\
+    \ % (m - 1), m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\
+    \n        ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i,\
+    \ 0, d) {\r\n            ll err = a * minv(mpow(res, pe, m), m) % im;\r\n    \
+    \        ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j,\
+    \ 0, block + 1) {\r\n                if (mp.count(pos)) {\r\n                \
+    \    res = res *\r\n                          mpow(c,\r\n                    \
+    \           (block * mp[pos] + j) * mpow(p, i, m - 1) %\r\n                  \
+    \                 (m - 1),\r\n                               m) %\r\n        \
+    \                  im;\r\n                    break;\r\n                }\r\n\
+    \                pos = pos * gs % im;\r\n            }\r\n        }\r\n      \
+    \  return res;\r\n    };\r\n\r\n    for (ll d = 2; d * d <= g; d++)\r\n      \
+    \  if (g % d == 0) {\r\n            int sz = 0;\r\n            while (g % d ==\
+    \ 0) {\r\n                g /= d;\r\n                sz++;\r\n            }\r\n\
+    \            a = _subroot(d, sz, a);\r\n        }\r\n    if (g > 1)\r\n      \
+    \  a = _subroot(g, 1, a);\r\n    return a;\r\n}\r\n\r\null floor_root(ull a, ull\
+    \ k) {\r\n    if (a <= 1 or k == 1)\r\n        return a;\r\n    if (k >= 64)\r\
+    \n        return 1;\r\n    if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr\
+    \ ull LIM = -1;\r\n    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull\
+    \ &x, const ull &y) {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n\
+    \        else\r\n            x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull\
+    \ t) -> ull {\r\n        ull y = 1;\r\n        while (t) {\r\n            if (t\
+    \ & 1)\r\n                mul(y, x);\r\n            mul(x, x);\r\n           \
+    \ t >>= 1;\r\n        }\r\n        return y;\r\n    };\r\n    ull ret = (k ==\
+    \ 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret\
+    \ + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Primitive Function\r\n */\n#line 2 \"FPS/multievalgeom.hpp\"\n\ntemplate<typename\
+    \ T>vector<T> MultievalGeomSeq(vector<T>& f,T a,T w,int m){\n    int n=f.size();\n\
+    \    vector<T> ret(m);\n    if(w==0){\n        T base=1;\n        rep(i,0,n)ret[0]+=base*f[i],base*=a;\n\
+    \        rep(i,1,m)ret[i]=f[0];\n        return ret;\n    }\n    vector<T> tri(n+m-1),itri(n+m-1);\n\
+    \    tri[0]=itri[0]=1;\n    T iw=w.inv(),pww=1,pwiw=1;\n    for(int i=1;i<n+m-1;i++,pww*=w,pwiw*=iw){\n\
     \        tri[i]=tri[i-1]*pww;\n        itri[i]=itri[i-1]*pwiw;\n    }\n\n    Poly<T>\
     \ y(n),v(n+m-1);\n    T pwa=1;\n    for(int i=0;i<n;i++,pwa*=a){\n        y[i]=f[i]*itri[i]*pwa;\n\
     \    }\n    rep(i,0,n+m-1)v[i]=tri[i];\n    reverse(ALL(y));\n    y*=v;\n    rep(i,0,m)ret[i]=y[n-1+i]*itri[i];\n\
@@ -683,8 +688,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 05:48:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-06 06:46:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp
 layout: document

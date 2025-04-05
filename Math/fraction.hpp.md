@@ -21,7 +21,8 @@ data:
     links: []
   bundledCode: "#line 2 \"Math/fraction.hpp\"\n\r\ntemplate <typename T> struct Frac\
     \ {\r\n    T a, b;\r\n    Frac(T _a = 0) {\r\n        init(_a, 1);\r\n    }\r\n\
-    \    Frac(T _a, T _b) {\r\n        init(_a, _b);\r\n    }\r\n    Frac &init(T\
+    \    Frac(T _a, T _b) {\r\n        init(_a, _b);\r\n    }\r\n    template <typename\
+    \ V> V get() const {\r\n        return V(a) / b;\r\n    }\r\n    Frac &init(T\
     \ _a, T _b) {\r\n        T g = gcd(_a, _b);\r\n        a = _a / g, b = _b / g;\r\
     \n        if (b < 0)\r\n            a = -a, b = -b;\r\n        return *this;\r\
     \n    }\r\n    Frac inv() const {\r\n        return Frac(b, a);\r\n    }\r\n \
@@ -51,10 +52,11 @@ data:
     \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate <typename T> struct Frac {\r\n    T a, b;\r\n\
     \    Frac(T _a = 0) {\r\n        init(_a, 1);\r\n    }\r\n    Frac(T _a, T _b)\
-    \ {\r\n        init(_a, _b);\r\n    }\r\n    Frac &init(T _a, T _b) {\r\n    \
-    \    T g = gcd(_a, _b);\r\n        a = _a / g, b = _b / g;\r\n        if (b <\
-    \ 0)\r\n            a = -a, b = -b;\r\n        return *this;\r\n    }\r\n    Frac\
-    \ inv() const {\r\n        return Frac(b, a);\r\n    }\r\n    Frac operator-()\
+    \ {\r\n        init(_a, _b);\r\n    }\r\n    template <typename V> V get() const\
+    \ {\r\n        return V(a) / b;\r\n    }\r\n    Frac &init(T _a, T _b) {\r\n \
+    \       T g = gcd(_a, _b);\r\n        a = _a / g, b = _b / g;\r\n        if (b\
+    \ < 0)\r\n            a = -a, b = -b;\r\n        return *this;\r\n    }\r\n  \
+    \  Frac inv() const {\r\n        return Frac(b, a);\r\n    }\r\n    Frac operator-()\
     \ const {\r\n        return Frac(-a, b);\r\n    }\r\n    Frac &operator+=(const\
     \ Frac &x) {\r\n        return init(a * x.b + x.a * b, b * x.b);\r\n    }\r\n\
     \    Frac &operator-=(const Frac &x) {\r\n        return init(a * x.b - x.a *\
@@ -86,7 +88,7 @@ data:
   - Math/partizangame.hpp
   - Math/sternbrocot.hpp
   - Geometry/FracCoord.hpp
-  timestamp: '2025-01-28 06:32:12+09:00'
+  timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/fraction.hpp

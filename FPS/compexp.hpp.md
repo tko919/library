@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: FPS/sumofRationals.hpp
     title: Sum of Rationals
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy: []

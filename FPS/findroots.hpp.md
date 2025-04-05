@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: FPS/halfgcd.hpp
     title: Half GCD
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/prodofpolys.hpp
     title: Product of Polynomials
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -39,20 +39,21 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple> vector<pair<int,\
-    \ int>> genGraph(int n) {\r\n    vector<pair<int, int>> cand, es;\r\n    rep(u,\
-    \ 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n            continue;\r\
-    \n        if (!directed and u > v)\r\n            continue;\r\n        cand.push_back({u,\
-    \ v});\r\n    }\r\n    int m = get(SZ(cand));\r\n    vector<int> ord;\r\n    if\
-    \ (simple)\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n    \
-    \    rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n    }\r\n    for (auto\
-    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
-    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
-    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
-    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
-    \ Random\r\n */\n#line 2 \"FPS/halfgcd.hpp\"\n\nnamespace HalfGCD{\n    template<typename\
-    \ T>using P=array<T,2>;\n    template<typename T>using Mat=array<T,4>;\n    template<typename\
-    \ T>P<T> operator*(const Mat<T>& a,const P<T>& b){\n        P<T> ret={a[0]*b[0]+a[1]*b[1],a[2]*b[0]+a[3]*b[1]};\n\
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
+    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
+    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
+    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
+    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
+    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
+    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
+    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
+    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
+    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
+    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
+    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 2 \"FPS/halfgcd.hpp\"\n\n\
+    namespace HalfGCD{\n    template<typename T>using P=array<T,2>;\n    template<typename\
+    \ T>using Mat=array<T,4>;\n    template<typename T>P<T> operator*(const Mat<T>&\
+    \ a,const P<T>& b){\n        P<T> ret={a[0]*b[0]+a[1]*b[1],a[2]*b[0]+a[3]*b[1]};\n\
     \        rep(i,0,2)ret[i].shrink();\n        return ret;\n    }\n    template<typename\
     \ T>Mat<T> operator*(const Mat<T>& a,const Mat<T>& b){\n        Mat<T> ret={a[0]*b[0]+a[1]*b[2],a[0]*b[1]+a[1]*b[3],\n\
     \            a[2]*b[0]+a[3]*b[2],a[2]*b[1]+a[3]*b[3]};\n        rep(i,0,4)ret[i].shrink();\n\
@@ -137,7 +138,7 @@ data:
   isVerificationFile: false
   path: FPS/findroots.hpp
   requiredBy: []
-  timestamp: '2024-04-26 03:18:17+09:00'
+  timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/findroots.hpp

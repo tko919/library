@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':warning:'
@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Pollard-Rho
     links: []
@@ -88,28 +88,29 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple> vector<pair<int,\
-    \ int>> genGraph(int n) {\r\n    vector<pair<int, int>> cand, es;\r\n    rep(u,\
-    \ 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n            continue;\r\
-    \n        if (!directed and u > v)\r\n            continue;\r\n        cand.push_back({u,\
-    \ v});\r\n    }\r\n    int m = get(SZ(cand));\r\n    vector<int> ord;\r\n    if\
-    \ (simple)\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n    \
-    \    rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n    }\r\n    for (auto\
-    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
-    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
-    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
-    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
-    \ Random\r\n */\n#line 4 \"Math/pollard.hpp\"\n\r\nvector<ll> Pollard(ll n) {\r\
-    \n    if (n <= 1)\r\n        return {};\r\n    if (Miller(n))\r\n        return\
-    \ {n};\r\n    if ((n & 1) == 0) {\r\n        vector<ll> v = Pollard(n >> 1);\r\
-    \n        v.push_back(2);\r\n        return v;\r\n    }\r\n    for (ll x = 2,\
-    \ y = 2, d;;) {\r\n        ll c = Random::get(2LL, n - 1);\r\n        do {\r\n\
-    \            x = (__int128_t(x) * x + c) % n;\r\n            y = (__int128_t(y)\
-    \ * y + c) % n;\r\n            y = (__int128_t(y) * y + c) % n;\r\n          \
-    \  d = __gcd(x - y + n, n);\r\n        } while (d == 1);\r\n        if (d < n)\
-    \ {\r\n            vector<ll> lb = Pollard(d), rb = Pollard(n / d);\r\n      \
-    \      lb.insert(lb.end(), ALL(rb));\r\n            return lb;\r\n        }\r\n\
-    \    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n"
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
+    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
+    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
+    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
+    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
+    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
+    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
+    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
+    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
+    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
+    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
+    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 4 \"Math/pollard.hpp\"\n\
+    \r\nvector<ll> Pollard(ll n) {\r\n    if (n <= 1)\r\n        return {};\r\n  \
+    \  if (Miller(n))\r\n        return {n};\r\n    if ((n & 1) == 0) {\r\n      \
+    \  vector<ll> v = Pollard(n >> 1);\r\n        v.push_back(2);\r\n        return\
+    \ v;\r\n    }\r\n    for (ll x = 2, y = 2, d;;) {\r\n        ll c = Random::get(2LL,\
+    \ n - 1);\r\n        do {\r\n            x = (__int128_t(x) * x + c) % n;\r\n\
+    \            y = (__int128_t(y) * y + c) % n;\r\n            y = (__int128_t(y)\
+    \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
+    \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
+    \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\
+    \n */\n"
   code: "#pragma once\r\n#include \"Math/miller.hpp\"\r\n#include \"Utility/random.hpp\"\
     \r\n\r\nvector<ll> Pollard(ll n) {\r\n    if (n <= 1)\r\n        return {};\r\n\
     \    if (Miller(n))\r\n        return {n};\r\n    if ((n & 1) == 0) {\r\n    \
@@ -132,13 +133,13 @@ data:
   - Math/binomquery.hpp
   - Math/primitive.hpp
   - Convolution/multivariatecyclic.hpp
-  timestamp: '2024-04-26 03:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-06 06:46:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_factorize.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document
 redirect_from:

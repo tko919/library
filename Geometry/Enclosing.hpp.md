@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: Geometry/geometry.hpp
     title: Geometry
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -24,13 +24,13 @@ data:
     \ != sub(b))\r\n        return sub(a) < sub(b);\r\n    return a.Y * b.X < a.X\
     \ * b.Y;\r\n}\r\nstruct Line {\r\n    Point a, b, dir;\r\n    Line() {}\r\n  \
     \  Line(Point _a, Point _b) : a(_a), b(_b), dir(b - a) {}\r\n    Line(T A, T B,\
-    \ T C) {\r\n        if (eq(A, .0)) {\r\n            a = Point(0, C / B), b = Point(1\
-    \ / C / B);\r\n        } else if (eq(B, .0)) {\r\n            a = Point(C / A,\
-    \ 0), b = Point(C / A, 1);\r\n        } else {\r\n            a = Point(0, C /\
-    \ B), b = Point(C / A, 0);\r\n        }\r\n    }\r\n};\r\nstruct Segment : Line\
-    \ {\r\n    Segment() {}\r\n    Segment(Point _a, Point _b) : Line(_a, _b) {}\r\
-    \n};\r\nstruct Circle {\r\n    Point p;\r\n    T r;\r\n    Circle() {}\r\n   \
-    \ Circle(Point _p, T _r) : p(_p), r(_r) {}\r\n};\r\n\r\nistream &operator>>(istream\
+    \ T C) {\r\n        if (eq(A, .0)) {\r\n            a = Point(0, -C / B), b =\
+    \ Point(1, -C / B);\r\n        } else if (eq(B, .0)) {\r\n            a = Point(-C\
+    \ / A, 0), b = Point(-C / A, 1);\r\n        } else {\r\n            a = Point(0,\
+    \ -C / B), b = Point(-C / A, 0);\r\n        }\r\n    }\r\n};\r\nstruct Segment\
+    \ : Line {\r\n    Segment() {}\r\n    Segment(Point _a, Point _b) : Line(_a, _b)\
+    \ {}\r\n};\r\nstruct Circle {\r\n    Point p;\r\n    T r;\r\n    Circle() {}\r\
+    \n    Circle(Point _p, T _r) : p(_p), r(_r) {}\r\n};\r\n\r\nistream &operator>>(istream\
     \ &is, Point &p) {\r\n    T x, y;\r\n    is >> x >> y;\r\n    p = Point(x, y);\r\
     \n    return is;\r\n}\r\nostream &operator<<(ostream &os, Point &p) {\r\n    os\
     \ << fixed << setprecision(12) << p.X << ' ' << p.Y;\r\n    return os;\r\n}\r\n\
@@ -219,28 +219,29 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple> vector<pair<int,\
-    \ int>> genGraph(int n) {\r\n    vector<pair<int, int>> cand, es;\r\n    rep(u,\
-    \ 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n            continue;\r\
-    \n        if (!directed and u > v)\r\n            continue;\r\n        cand.push_back({u,\
-    \ v});\r\n    }\r\n    int m = get(SZ(cand));\r\n    vector<int> ord;\r\n    if\
-    \ (simple)\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n    \
-    \    rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n    }\r\n    for (auto\
-    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
-    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
-    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
-    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
-    \ Random\r\n */\n#line 4 \"Geometry/Enclosing.hpp\"\n\nCircle Enclosing(vector<Point>\
-    \ ps) {\n    Random::shuffle(ALL(ps));\n    auto make2 = [&](Point p, Point q)\
-    \ {\n        return Circle((p + q) * .5, abs(p - q) * .5);\n    };\n    Circle\
-    \ ret = make2(ps[0], ps[1]);\n    rep(i, 2, SZ(ps)) {\n        if (abs(ret.p -\
-    \ ps[i]) > ret.r + eps) {\n            ret = make2(ps[0], ps[i]);\n          \
-    \  rep(j, 1, i) {\n                if (abs(ret.p - ps[j]) > ret.r + eps) {\n \
-    \                   ret = make2(ps[i], ps[j]);\n                    rep(k, 0,\
-    \ j) {\n                        if (abs(ret.p - ps[k]) > ret.r + eps) {\n    \
-    \                        ret = Circumcircle(ps[i], ps[j], ps[k]);\n          \
-    \              }\n                    }\n                }\n            }\n  \
-    \      }\n    }\n    return ret;\n}\n\n/**\n * @brief Enclosing Circle\n */\n"
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
+    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
+    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
+    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
+    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
+    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
+    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
+    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
+    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
+    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
+    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
+    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 4 \"Geometry/Enclosing.hpp\"\
+    \n\nCircle Enclosing(vector<Point> ps) {\n    Random::shuffle(ALL(ps));\n    auto\
+    \ make2 = [&](Point p, Point q) {\n        return Circle((p + q) * .5, abs(p -\
+    \ q) * .5);\n    };\n    Circle ret = make2(ps[0], ps[1]);\n    rep(i, 2, SZ(ps))\
+    \ {\n        if (abs(ret.p - ps[i]) > ret.r + eps) {\n            ret = make2(ps[0],\
+    \ ps[i]);\n            rep(j, 1, i) {\n                if (abs(ret.p - ps[j])\
+    \ > ret.r + eps) {\n                    ret = make2(ps[i], ps[j]);\n         \
+    \           rep(k, 0, j) {\n                        if (abs(ret.p - ps[k]) > ret.r\
+    \ + eps) {\n                            ret = Circumcircle(ps[i], ps[j], ps[k]);\n\
+    \                        }\n                    }\n                }\n       \
+    \     }\n        }\n    }\n    return ret;\n}\n\n/**\n * @brief Enclosing Circle\n\
+    \ */\n"
   code: "#pragma once\n#include \"Geometry/geometry.hpp\"\n#include \"Utility/random.hpp\"\
     \n\nCircle Enclosing(vector<Point> ps) {\n    Random::shuffle(ALL(ps));\n    auto\
     \ make2 = [&](Point p, Point q) {\n        return Circle((p + q) * .5, abs(p -\
@@ -259,7 +260,7 @@ data:
   isVerificationFile: false
   path: Geometry/Enclosing.hpp
   requiredBy: []
-  timestamp: '2024-04-29 14:20:00+09:00'
+  timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/Enclosing.hpp

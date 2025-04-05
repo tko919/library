@@ -17,28 +17,31 @@ data:
   - icon: ':warning:'
     path: Math/detaplusbx.hpp
     title: $\det(A+Bx)$
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/linearequation.hpp
     title: Linear Equation
+  - icon: ':warning:'
+    path: Math/pfaffian.hpp
+    title: Pfaffian
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_matrix_product.test.cpp
     title: Verify/LC_matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Matrix
     links: []
@@ -142,19 +145,20 @@ data:
   isVerificationFile: false
   path: Math/matrix.hpp
   requiredBy:
-  - Math/linearequation.hpp
-  - Math/detaplusbx.hpp
-  - Math/charpoly.hpp
-  - Math/hafnian.hpp
-  - FPS/p-recursive.hpp
   - Graph/counteuler.hpp
   - Graph/countspanning.hpp
+  - Math/linearequation.hpp
+  - Math/hafnian.hpp
+  - Math/charpoly.hpp
+  - Math/pfaffian.hpp
+  - Math/detaplusbx.hpp
+  - FPS/p-recursive.hpp
   timestamp: '2024-06-14 02:46:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_matrix_product.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_matrix_product.test.cpp
   - Verify/LC_system_of_linear_equations.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document

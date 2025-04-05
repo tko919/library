@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: Graph/dmdecomp.hpp
     title: DM decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/scc.hpp
     title: Strongly Connected Components
   _extendedRequiredBy: []

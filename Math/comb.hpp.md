@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/relax.hpp
     title: Relaxed Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/subset.hpp
     title: Subset Convolution
   - icon: ':warning:'
@@ -14,16 +14,16 @@ data:
   - icon: ':warning:'
     path: FPS/compinv.hpp
     title: Compositional Inverse
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
   - icon: ':warning:'
     path: FPS/incseqcount.hpp
     title: Number of Increasing Sequences Between Two Sequences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
   - icon: ':warning:'
@@ -38,16 +38,16 @@ data:
   - icon: ':warning:'
     path: FPS/prefixsumofpowers.hpp
     title: Enumerate $\sum_{k=0}^{N-1} k^i$
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
   - icon: ':warning:'
     path: Graph/chromaticpoly.hpp
     title: Chromatic Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
   _extendedVerifiedWith:
@@ -57,45 +57,45 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Combination
     links: []
@@ -143,39 +143,39 @@ data:
   isVerificationFile: false
   path: Math/comb.hpp
   requiredBy:
-  - Math/hafnian.hpp
-  - FPS/incseqcount.hpp
-  - FPS/compinv.hpp
-  - FPS/mobius.hpp
-  - FPS/factlarge.hpp
-  - FPS/prefixsumofpowers.hpp
-  - FPS/compexp.hpp
-  - FPS/prefixsumofpoly.hpp
-  - FPS/samplepointshift.hpp
-  - FPS/p-recursive.hpp
-  - FPS/famous.hpp
-  - FPS/interpolate.hpp
-  - FPS/sumofpolyexp.hpp
   - Graph/chromaticpoly.hpp
+  - Math/hafnian.hpp
   - Convolution/subset.hpp
   - Convolution/relax.hpp
+  - FPS/sumofpolyexp.hpp
+  - FPS/factlarge.hpp
+  - FPS/incseqcount.hpp
+  - FPS/samplepointshift.hpp
+  - FPS/mobius.hpp
+  - FPS/p-recursive.hpp
+  - FPS/prefixsumofpoly.hpp
+  - FPS/prefixsumofpowers.hpp
+  - FPS/compinv.hpp
+  - FPS/compexp.hpp
+  - FPS/interpolate.hpp
+  - FPS/famous.hpp
   timestamp: '2024-10-22 03:59:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_subset_convolution.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
-  - Verify/LC_partition_function.test.cpp
   - Verify/YUKI_1080.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_subset_convolution.test.cpp
+  - Verify/LC_partition_function.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
 documentation_of: Math/comb.hpp
 layout: document
 redirect_from:

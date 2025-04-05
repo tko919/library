@@ -21,13 +21,13 @@ data:
     \ != sub(b))\r\n        return sub(a) < sub(b);\r\n    return a.Y * b.X < a.X\
     \ * b.Y;\r\n}\r\nstruct Line {\r\n    Point a, b, dir;\r\n    Line() {}\r\n  \
     \  Line(Point _a, Point _b) : a(_a), b(_b), dir(b - a) {}\r\n    Line(T A, T B,\
-    \ T C) {\r\n        if (eq(A, .0)) {\r\n            a = Point(0, C / B), b = Point(1\
-    \ / C / B);\r\n        } else if (eq(B, .0)) {\r\n            a = Point(C / A,\
-    \ 0), b = Point(C / A, 1);\r\n        } else {\r\n            a = Point(0, C /\
-    \ B), b = Point(C / A, 0);\r\n        }\r\n    }\r\n};\r\nstruct Segment : Line\
-    \ {\r\n    Segment() {}\r\n    Segment(Point _a, Point _b) : Line(_a, _b) {}\r\
-    \n};\r\nstruct Circle {\r\n    Point p;\r\n    T r;\r\n    Circle() {}\r\n   \
-    \ Circle(Point _p, T _r) : p(_p), r(_r) {}\r\n};\r\n\r\nistream &operator>>(istream\
+    \ T C) {\r\n        if (eq(A, .0)) {\r\n            a = Point(0, -C / B), b =\
+    \ Point(1, -C / B);\r\n        } else if (eq(B, .0)) {\r\n            a = Point(-C\
+    \ / A, 0), b = Point(-C / A, 1);\r\n        } else {\r\n            a = Point(0,\
+    \ -C / B), b = Point(-C / A, 0);\r\n        }\r\n    }\r\n};\r\nstruct Segment\
+    \ : Line {\r\n    Segment() {}\r\n    Segment(Point _a, Point _b) : Line(_a, _b)\
+    \ {}\r\n};\r\nstruct Circle {\r\n    Point p;\r\n    T r;\r\n    Circle() {}\r\
+    \n    Circle(Point _p, T _r) : p(_p), r(_r) {}\r\n};\r\n\r\nistream &operator>>(istream\
     \ &is, Point &p) {\r\n    T x, y;\r\n    is >> x >> y;\r\n    p = Point(x, y);\r\
     \n    return is;\r\n}\r\nostream &operator<<(ostream &os, Point &p) {\r\n    os\
     \ << fixed << setprecision(12) << p.X << ' ' << p.Y;\r\n    return os;\r\n}\r\n\
@@ -205,11 +205,11 @@ data:
     \ sub(a) < sub(b);\r\n    return a.Y * b.X < a.X * b.Y;\r\n}\r\nstruct Line {\r\
     \n    Point a, b, dir;\r\n    Line() {}\r\n    Line(Point _a, Point _b) : a(_a),\
     \ b(_b), dir(b - a) {}\r\n    Line(T A, T B, T C) {\r\n        if (eq(A, .0))\
-    \ {\r\n            a = Point(0, C / B), b = Point(1 / C / B);\r\n        } else\
-    \ if (eq(B, .0)) {\r\n            a = Point(C / A, 0), b = Point(C / A, 1);\r\n\
-    \        } else {\r\n            a = Point(0, C / B), b = Point(C / A, 0);\r\n\
-    \        }\r\n    }\r\n};\r\nstruct Segment : Line {\r\n    Segment() {}\r\n \
-    \   Segment(Point _a, Point _b) : Line(_a, _b) {}\r\n};\r\nstruct Circle {\r\n\
+    \ {\r\n            a = Point(0, -C / B), b = Point(1, -C / B);\r\n        } else\
+    \ if (eq(B, .0)) {\r\n            a = Point(-C / A, 0), b = Point(-C / A, 1);\r\
+    \n        } else {\r\n            a = Point(0, -C / B), b = Point(-C / A, 0);\r\
+    \n        }\r\n    }\r\n};\r\nstruct Segment : Line {\r\n    Segment() {}\r\n\
+    \    Segment(Point _a, Point _b) : Line(_a, _b) {}\r\n};\r\nstruct Circle {\r\n\
     \    Point p;\r\n    T r;\r\n    Circle() {}\r\n    Circle(Point _p, T _r) : p(_p),\
     \ r(_r) {}\r\n};\r\n\r\nistream &operator>>(istream &is, Point &p) {\r\n    T\
     \ x, y;\r\n    is >> x >> y;\r\n    p = Point(x, y);\r\n    return is;\r\n}\r\n\
@@ -385,7 +385,7 @@ data:
   path: Geometry/geometry.hpp
   requiredBy:
   - Geometry/Enclosing.hpp
-  timestamp: '2024-04-29 14:20:00+09:00'
+  timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/geometry.hpp

@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
   - icon: ':warning:'
     path: Graph/shortestpathremedge.hpp
     title: Undirected Shortest Path (remove one Edge)
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_lca_2.test.cpp
     title: Verify/LC_lca_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_901.test.cpp
     title: Verify/YUKI_901.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Lowest Common Ancestor
     links: []
@@ -59,13 +59,13 @@ data:
   isVerificationFile: false
   path: Graph/lca.hpp
   requiredBy:
-  - Graph/auxiliarytree.hpp
   - Graph/shortestpathremedge.hpp
+  - Graph/auxiliarytree.hpp
   timestamp: '2022-10-16 23:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_lca_2.test.cpp
   - Verify/YUKI_901.test.cpp
+  - Verify/LC_lca_2.test.cpp
 documentation_of: Graph/lca.hpp
 layout: document
 redirect_from:

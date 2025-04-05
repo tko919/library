@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/maxflow.hpp
     title: Maximum Flow
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/mincostflow.hpp
     title: Minimum Cost b-flow
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -34,18 +34,23 @@ data:
     \n#define UB(v, x) int(upper_bound(ALL(v), (x)) - (v).begin())\r\n\r\nusing uint\
     \ = unsigned int;\r\nusing ll = long long int;\r\nusing ull = unsigned long long;\r\
     \nusing i128 = __int128_t;\r\nusing u128 = __uint128_t;\r\nconst int inf = 0x3fffffff;\r\
-    \nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate <typename T> inline bool\
-    \ chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n        return 1;\r\
-    \n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a,\
-    \ T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\
-    \n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\
-    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
-    \ (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T, typename U>\
-    \ T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x =\
-    \ -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate\
-    \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
-    \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
-    \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
+    \nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate <typename T, typename S =\
+    \ T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a), S(0));\r\n}\r\
+    \ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n    S ret = 1, base\
+    \ = a;\r\n    while (b) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
+    \        base *= base;\r\n        b >>= 1;\r\n    }\r\n    return ret;\r\n}\r\n\
+    template <typename T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n \
+    \       a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate\
+    \ <typename T> inline bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a\
+    \ = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename\
+    \ T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\
+    \n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n\
+    }\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\n    assert(y !=\
+    \ 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? x /\
+    \ y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n  \
+    \  return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int topbit(T\
+    \ x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\ntemplate\
+    \ <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
     \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
     \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
     )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
@@ -61,24 +66,24 @@ data:
     \ {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
     \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
     \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\r\n#ifdef LOCAL\r\n#define show(...) _show(0, #__VA_ARGS__,\
-    \ __VA_ARGS__)\r\n#else\r\n#define show(...) true\r\n#endif\r\ntemplate <typename\
-    \ T> void _show(int i, T name) {\r\n    cerr << '\\n';\r\n}\r\ntemplate <typename\
-    \ T1, typename T2, typename... T3>\r\nvoid _show(int i, const T1 &a, const T2\
-    \ &b, const T3 &...c) {\r\n    for (; a[i] != ',' && a[i] != '\\0'; i++)\r\n \
-    \       cerr << a[i];\r\n    cerr << \":\" << b << \" \";\r\n    _show(i + 1,\
-    \ a, c...);\r\n}\n#line 2 \"Graph/maxflow.hpp\"\n\r\nstruct MaxFlow {\r\n    struct\
-    \ Edge {\r\n        int to, rev;\r\n        ll cap;\r\n    };\r\n    int V;\r\n\
-    \    vector<vector<Edge>> G;\r\n    vector<int> itr, level;\r\n    using P = pair<int,\
-    \ int>;\r\n    vector<P> es;\r\n\r\n  public:\r\n    MaxFlow() {}\r\n    MaxFlow(int\
-    \ V) : V(V) {\r\n        G.assign(V, vector<Edge>());\r\n    }\r\n    int add_vertex()\
-    \ {\r\n        G.push_back(vector<Edge>());\r\n        return V++;\r\n    }\r\n\
-    \    void add_edge(int from, int to, ll cap) {\r\n        int fid = SZ(G[from]),\
-    \ tid = SZ(G[to]);\r\n        if (from == to)\r\n            tid++;\r\n      \
-    \  es.push_back({from, fid});\r\n        G[from].push_back({to, tid, cap});\r\n\
-    \        G[to].push_back({from, fid, 0});\r\n    }\r\n    struct Type {\r\n  \
-    \      int from, to;\r\n        ll cap, recap;\r\n    };\r\n    Type get_edge(int\
-    \ i) {\r\n        auto [from, pos] = es[i];\r\n        auto e = G[from][pos];\r\
+    \    return os;\r\n}\r\n#ifdef LOCAL\r\n#define debug 1\r\n#define show(...) _show(0,\
+    \ #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define debug 0\r\n#define show(...)\
+    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
+    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
+    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
+    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
+    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Graph/maxflow.hpp\"\
+    \n\r\nstruct MaxFlow {\r\n    struct Edge {\r\n        int to, rev;\r\n      \
+    \  ll cap;\r\n    };\r\n    int V;\r\n    vector<vector<Edge>> G;\r\n    vector<int>\
+    \ itr, level;\r\n    using P = pair<int, int>;\r\n    vector<P> es;\r\n\r\n  public:\r\
+    \n    MaxFlow() {}\r\n    MaxFlow(int V) : V(V) {\r\n        G.assign(V, vector<Edge>());\r\
+    \n    }\r\n    int add_vertex() {\r\n        G.push_back(vector<Edge>());\r\n\
+    \        return V++;\r\n    }\r\n    void add_edge(int from, int to, ll cap) {\r\
+    \n        int fid = SZ(G[from]), tid = SZ(G[to]);\r\n        if (from == to)\r\
+    \n            tid++;\r\n        es.push_back({from, fid});\r\n        G[from].push_back({to,\
+    \ tid, cap});\r\n        G[to].push_back({from, fid, 0});\r\n    }\r\n    struct\
+    \ Type {\r\n        int from, to;\r\n        ll cap, recap;\r\n    };\r\n    Type\
+    \ get_edge(int i) {\r\n        auto [from, pos] = es[i];\r\n        auto e = G[from][pos];\r\
     \n        auto re = G[e.to][e.rev];\r\n        return Type{from, e.to, e.cap,\
     \ re.cap};\r\n    }\r\n    void bfs(int s) {\r\n        level.assign(V, -1);\r\
     \n        queue<int> q;\r\n        level[s] = 0;\r\n        q.push(s);\r\n   \
@@ -290,8 +295,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_min_cost_b_flow.test.cpp
   requiredBy: []
-  timestamp: '2024-06-23 06:04:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-06 06:46:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_min_cost_b_flow.test.cpp
 layout: document

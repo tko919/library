@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
   _extendedRequiredBy: []
@@ -9,32 +9,36 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/primesum.md
     document_title: Prime Sum
     links: []
-  bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate<int L=50101010>vector<int>\
-    \ sieve(int N){\r\n    bitset<L> isp;\r\n    int n,sq=ceil(sqrt(N));\r\n    for(int\
-    \ z=1;z<=5;z+=4){\r\n        for(int y=z;y<=sq;y+=6){\r\n            for(int x=1;x<=sq\
-    \ and (n=4*x*x+y*y)<=N;++x){\r\n                isp[n].flip();\r\n           \
-    \ }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\n       \
-    \         isp[n].flip();\r\n            }\r\n        }\r\n    }\r\n    for(int\
-    \ z=2;z<=4;z+=2){\r\n        for(int y=z;y<=sq;y+=6){\r\n            for (int\
-    \ x=1;x<=sq and (n=3*x*x+y*y)<=N;x+=2){\r\n                isp[n].flip();\r\n\
-    \            }\r\n            for(int x=y+1;x<=sq and (n=3*x*x-y*y)<=N;x+=2){\r\
-    \n                isp[n].flip();\r\n            }\r\n        }\r\n    }\r\n  \
-    \  for(int y=3;y<=sq;y+=6){\r\n        for(int z=1;z<=2;++z){\r\n            for(int\
-    \ x=z;x<=sq and (n=4*x*x+y*y)<=N;x+=3){\r\n                isp[n].flip();\r\n\
-    \            }\r\n        }\r\n    }\r\n    for(int n=5;n<=sq;++n)if(isp[n]){\r\
-    \n        for(int k=n*n;k<=N;k+=n*n){\r\n            isp[k]=false;\r\n       \
-    \ }\r\n    }\r\n    isp[2]=isp[3]=true;\r\n\r\n    vector<int> ret;\r\n    for(int\
-    \ i=2;i<=N;i++)if(isp[i]){\r\n        ret.push_back(i);\r\n    }\r\n    return\
+  bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate <int L = 101010101> vector<int>\
+    \ sieve(int N) {\r\n    bitset<L> isp;\r\n    int n, sq = ceil(sqrt(N));\r\n \
+    \   for (int z = 1; z <= 5; z += 4) {\r\n        for (int y = z; y <= sq; y +=\
+    \ 6) {\r\n            for (int x = 1; x <= sq and (n = 4 * x * x + y * y) <= N;\
+    \ ++x) {\r\n                isp[n].flip();\r\n            }\r\n            for\
+    \ (int x = y + 1; x <= sq and (n = 3 * x * x - y * y) <= N;\r\n              \
+    \   x += 2) {\r\n                isp[n].flip();\r\n            }\r\n        }\r\
+    \n    }\r\n    for (int z = 2; z <= 4; z += 2) {\r\n        for (int y = z; y\
+    \ <= sq; y += 6) {\r\n            for (int x = 1; x <= sq and (n = 3 * x * x +\
+    \ y * y) <= N; x += 2) {\r\n                isp[n].flip();\r\n            }\r\n\
+    \            for (int x = y + 1; x <= sq and (n = 3 * x * x - y * y) <= N;\r\n\
+    \                 x += 2) {\r\n                isp[n].flip();\r\n            }\r\
+    \n        }\r\n    }\r\n    for (int y = 3; y <= sq; y += 6) {\r\n        for\
+    \ (int z = 1; z <= 2; ++z) {\r\n            for (int x = z; x <= sq and (n = 4\
+    \ * x * x + y * y) <= N; x += 3) {\r\n                isp[n].flip();\r\n     \
+    \       }\r\n        }\r\n    }\r\n    for (int n = 5; n <= sq; ++n)\r\n     \
+    \   if (isp[n]) {\r\n            for (int k = n * n; k <= N; k += n * n) {\r\n\
+    \                isp[k] = false;\r\n            }\r\n        }\r\n    isp[2] =\
+    \ isp[3] = true;\r\n\r\n    vector<int> ret;\r\n    for (int i = 2; i <= N; i++)\r\
+    \n        if (isp[i]) {\r\n            ret.push_back(i);\r\n        }\r\n    return\
     \ ret;\r\n}\r\n\r\n/**\r\n * @brief Prime Sieve\r\n */\n#line 3 \"Math/primesum.hpp\"\
     \n\r\ntemplate<typename T,T (*F)(ll)>struct PrimeSum{\r\n    ll N,SQ;\r\n    vector<T>\
     \ lo,hi;\r\n    PrimeSum(ll n=0):N(n),SQ(sqrtl(N)),lo(SQ+1),hi(SQ+1){\r\n    \
@@ -64,11 +68,11 @@ data:
   isVerificationFile: false
   path: Math/primesum.hpp
   requiredBy: []
-  timestamp: '2023-01-16 20:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-06 06:46:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_1781.test.cpp
   - Verify/LC_counting_primes.test.cpp
+  - Verify/YUKI_1781.test.cpp
 documentation_of: Math/primesum.hpp
 layout: document
 redirect_from:

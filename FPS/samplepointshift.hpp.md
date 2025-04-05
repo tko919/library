@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
   - icon: ':warning:'
     path: FPS/p-recursive.hpp
     title: P-recursive
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Shift of Sampling Points of Polynomial
     links: []
@@ -88,10 +88,10 @@ data:
   - FPS/factlarge.hpp
   - FPS/p-recursive.hpp
   timestamp: '2024-10-22 03:59:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_many_factorials.test.cpp
 documentation_of: FPS/samplepointshift.hpp
 layout: document
 redirect_from:

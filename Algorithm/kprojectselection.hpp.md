@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: Algorithm/projectselection.hpp
     title: Project Selection
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/maxflow.hpp
     title: Maximum Flow
   _extendedRequiredBy: []

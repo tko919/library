@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Dynamic Modint
     links: []
@@ -33,7 +33,7 @@ data:
     \  z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n        return x <\
     \ mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n        return modulo(u128(a)\
     \ * b);\n    }\n};\n\n/**\n * @brief Fast Division\n */\n#line 3 \"Math/dynamic.hpp\"\
-    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    uint v;\r\n    static int\
+    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    int v;\r\n    static int\
     \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(int\
     \ _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n   \
     \     int tmp, a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n\
@@ -66,7 +66,7 @@ data:
     \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\n * @brief Dynamic\
     \ Modint\r\n */\n"
   code: "#pragma once\r\n#include \"Math/fastdiv.hpp\"\r\n\r\nstruct Fp {\r\n    using\
-    \ u64 = uint64_t;\r\n    uint v;\r\n    static int get_mod() {\r\n        return\
+    \ u64 = uint64_t;\r\n    int v;\r\n    static int get_mod() {\r\n        return\
     \ _getmod();\r\n    }\r\n    static void set_mod(int _m) {\r\n        bar = FastDiv(_m);\r\
     \n    }\r\n    Fp inv() const {\r\n        int tmp, a = v, b = get_mod(), x =\
     \ 1, y = 0;\r\n        while (b) {\r\n            tmp = a / b, a -= tmp * b;\r\
@@ -103,8 +103,8 @@ data:
   isVerificationFile: false
   path: Math/dynamic.hpp
   requiredBy: []
-  timestamp: '2024-12-26 05:48:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-06 06:46:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Math/dynamic.hpp

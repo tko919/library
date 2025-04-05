@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy:
@@ -9,12 +9,12 @@ data:
     path: FPS/p-recursive.hpp
     title: P-recursive
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Linear Equation
     links: []
@@ -86,7 +86,7 @@ data:
   requiredBy:
   - FPS/p-recursive.hpp
   timestamp: '2024-06-14 02:46:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_system_of_linear_equations.test.cpp
 documentation_of: Math/linearequation.hpp

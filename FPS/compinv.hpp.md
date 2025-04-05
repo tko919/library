@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: FPS/powenum.hpp
     title: Pow Enumerate
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy: []

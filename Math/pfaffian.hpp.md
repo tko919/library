@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
-    path: Graph/countspanning.hpp
-    title: Counting Spanning Tree
   - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
@@ -13,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: Counting Eulerian Circuits
+    document_title: Pfaffian
     links: []
   bundledCode: "#line 2 \"Math/matrix.hpp\"\n\r\ntemplate <class T> struct Matrix\
     \ {\r\n    int h, w;\r\n    vector<vector<T>> val;\r\n    T det;\r\n    Matrix()\
@@ -62,54 +59,42 @@ data:
     \  rep(i, 0, m.h) {\r\n            rep(j, 0, m.w) os << m[i][j]\r\n          \
     \                    << (j == m.w - 1 and i != m.h - 1 ? '\\n' : ' ');\r\n   \
     \     }\r\n        return os;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Matrix\r\n\
-    \ */\n#line 3 \"Graph/countspanning.hpp\"\n\ntemplate <typename T, typename U>\n\
-    T UndirectedCountSpanningTree(vector<vector<pair<int, U>>> &g) {\n    int n =\
-    \ SZ(g);\n    Matrix<T> mat(n - 1, n - 1);\n    rep(u, 0, n) for (auto &[v, mul]\
-    \ : g[u]) {\n        if (u != n - 1)\n            mat[u][u] += mul;\n        if\
-    \ (v != n - 1)\n            mat[v][v] += mul;\n        if (u != n - 1 and v !=\
-    \ n - 1) {\n            mat[u][v] -= mul;\n            mat[v][u] -= mul;\n   \
-    \     }\n    }\n    mat.gauss();\n    return mat.det;\n}\n\ntemplate <typename\
-    \ T, typename U>\nT DirectedCountSpanningTree(vector<vector<pair<int, U>>> &g,\
-    \ int r) {\n    int n = SZ(g);\n    Matrix<T> mat(n - 1, n - 1);\n    rep(u, 0,\
-    \ n) for (auto &[v, mul] : g[u]) {\n        if (v == r)\n            continue;\n\
-    \        if (v > r)\n            v--;\n        mat[v][v] += mul;\n        if (u\
-    \ == r)\n            continue;\n        if (u > r)\n            u--;\n       \
-    \ mat[u][v] -= mul;\n    }\n    mat.gauss();\n    return mat.det;\n}\n\n/**\n\
-    \ * @brief Counting Spanning Tree\n */\n#line 3 \"Graph/counteuler.hpp\"\n\ntemplate\
-    \ <typename T, typename U>\nT CountEulerianCircuits(vector<vector<pair<int, U>>>\
-    \ &g) {\n    int n = SZ(g);\n    vector<int> vs;\n    rep(u, 0, n) for (auto &[v,\
-    \ _] : g[u]) {\n        vs.push_back(u);\n        vs.push_back(v);\n    }\n  \
-    \  UNIQUE(vs);\n    vector<vector<pair<int, U>>> G(SZ(vs));\n    rep(u, 0, n)\
-    \ for (auto &[v, mul] : g[u]) {\n        G[LB(vs, u)].push_back({LB(vs, v), mul});\n\
-    \    }\n    n = SZ(vs);\n    vector<U> in(n), out(n);\n    rep(u, 0, n) for (auto\
-    \ &[v, mul] : G[u]) {\n        in[u] += mul;\n        out[v] += mul;\n    }\n\
-    \    rep(v, 0, n) if (in[v] != out[v]) {\n        return 0;\n    }\n    T ret\
-    \ = DirectedCountSpanningTree<T>(G, n - 1);\n    rep(v, 0, n) ret *= Fact<T>(out[v]\
-    \ - 1);\n    return ret;\n}\n\n/**\n * @brief Counting Eulerian Circuits\n */\n"
-  code: "#pragma once\n#include \"Graph/countspanning.hpp\"\n\ntemplate <typename\
-    \ T, typename U>\nT CountEulerianCircuits(vector<vector<pair<int, U>>> &g) {\n\
-    \    int n = SZ(g);\n    vector<int> vs;\n    rep(u, 0, n) for (auto &[v, _] :\
-    \ g[u]) {\n        vs.push_back(u);\n        vs.push_back(v);\n    }\n    UNIQUE(vs);\n\
-    \    vector<vector<pair<int, U>>> G(SZ(vs));\n    rep(u, 0, n) for (auto &[v,\
-    \ mul] : g[u]) {\n        G[LB(vs, u)].push_back({LB(vs, v), mul});\n    }\n \
-    \   n = SZ(vs);\n    vector<U> in(n), out(n);\n    rep(u, 0, n) for (auto &[v,\
-    \ mul] : G[u]) {\n        in[u] += mul;\n        out[v] += mul;\n    }\n    rep(v,\
-    \ 0, n) if (in[v] != out[v]) {\n        return 0;\n    }\n    T ret = DirectedCountSpanningTree<T>(G,\
-    \ n - 1);\n    rep(v, 0, n) ret *= Fact<T>(out[v] - 1);\n    return ret;\n}\n\n\
-    /**\n * @brief Counting Eulerian Circuits\n */"
+    \ */\n#line 3 \"Math/pfaffian.hpp\"\n\ntemplate <typename T> T Pfaffian(Matrix<T>\
+    \ &a) {\n    int n = a.h;\n    assert(n == a.w and n % 2 == 0);\n    T ret = 1;\n\
+    \    for (int i = 1; i < n; i += 2) {\n        rep(j, i, n) if (a[j][i - 1] !=\
+    \ 0) {\n            swap(a[j], a[i]);\n            for (auto &v : a.val)\n   \
+    \             swap(v[j], v[i]);\n            if (i != j)\n                ret\
+    \ = -ret;\n            break;\n        }\n        if (a[i][i - 1] == 0)\n    \
+    \        return 0;\n        ret *= -a[i][i - 1];\n        T inv = T(1) / a[i][i\
+    \ - 1];\n        rep(j, i + 1, n) {\n            T z = a[j][i - 1] * inv;\n  \
+    \          rep(k, 0, n) a[j][k] -= z * a[i][k];\n        }\n        inv = T(1)\
+    \ / a[i - 1][i];\n        rep(j, i + 1, n) {\n            T z = a[i - 1][j] *\
+    \ inv;\n            rep(k, 0, n) a[k][j] -= z * a[k][i];\n        }\n    }\n \
+    \   return ret;\n}\n\n/**\n * @brief Pfaffian\n */\n"
+  code: "#pragma once\n#include \"Math/matrix.hpp\"\n\ntemplate <typename T> T Pfaffian(Matrix<T>\
+    \ &a) {\n    int n = a.h;\n    assert(n == a.w and n % 2 == 0);\n    T ret = 1;\n\
+    \    for (int i = 1; i < n; i += 2) {\n        rep(j, i, n) if (a[j][i - 1] !=\
+    \ 0) {\n            swap(a[j], a[i]);\n            for (auto &v : a.val)\n   \
+    \             swap(v[j], v[i]);\n            if (i != j)\n                ret\
+    \ = -ret;\n            break;\n        }\n        if (a[i][i - 1] == 0)\n    \
+    \        return 0;\n        ret *= -a[i][i - 1];\n        T inv = T(1) / a[i][i\
+    \ - 1];\n        rep(j, i + 1, n) {\n            T z = a[j][i - 1] * inv;\n  \
+    \          rep(k, 0, n) a[j][k] -= z * a[i][k];\n        }\n        inv = T(1)\
+    \ / a[i - 1][i];\n        rep(j, i + 1, n) {\n            T z = a[i - 1][j] *\
+    \ inv;\n            rep(k, 0, n) a[k][j] -= z * a[k][i];\n        }\n    }\n \
+    \   return ret;\n}\n\n/**\n * @brief Pfaffian\n */"
   dependsOn:
-  - Graph/countspanning.hpp
   - Math/matrix.hpp
   isVerificationFile: false
-  path: Graph/counteuler.hpp
+  path: Math/pfaffian.hpp
   requiredBy: []
-  timestamp: '2024-06-14 02:46:58+09:00'
+  timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Graph/counteuler.hpp
+documentation_of: Math/pfaffian.hpp
 layout: document
 redirect_from:
-- /library/Graph/counteuler.hpp
-- /library/Graph/counteuler.hpp.html
-title: Counting Eulerian Circuits
+- /library/Math/pfaffian.hpp
+- /library/Math/pfaffian.hpp.html
+title: Pfaffian
 ---

@@ -8,40 +8,40 @@ data:
   - icon: ':warning:'
     path: DataStructure/dynamicrectsum.hpp
     title: Dynamic Point Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/staticrectaddrectsum.hpp
     title: Static Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/staticrectsum.hpp
     title: Static Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: String/prefixsubstrlcs.hpp
     title: Prefix Substring LCS
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_add_range_sum.test.cpp
     title: Verify/LC_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_prefix_substring_lcs.test.cpp
     title: Verify/LC_prefix_substring_lcs.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_inversions_query.test.cpp
     title: Verify/LC_static_range_inversions_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_range_sum.test.cpp
     title: Verify/LC_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_path_sum.test.cpp
     title: Verify/LC_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Binary Indexed Tree
     links: []
@@ -71,20 +71,20 @@ data:
   path: DataStructure/bit.hpp
   requiredBy:
   - String/prefixsubstrlcs.hpp
-  - DataStructure/2dbit.hpp
   - DataStructure/dynamicrectsum.hpp
-  - DataStructure/staticrectaddrectsum.hpp
   - DataStructure/staticrectsum.hpp
+  - DataStructure/staticrectaddrectsum.hpp
+  - DataStructure/2dbit.hpp
   timestamp: '2022-10-24 03:26:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_static_range_sum.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - Verify/LC_point_add_range_sum.test.cpp
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
+  - Verify/LC_static_range_inversions_query.test.cpp
   - Verify/LC_prefix_substring_lcs.test.cpp
   - Verify/LC_vertex_add_path_sum.test.cpp
-  - Verify/LC_static_range_inversions_query.test.cpp
-  - Verify/LC_point_add_range_sum.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - Verify/LC_static_range_sum.test.cpp
 documentation_of: DataStructure/bit.hpp
 layout: document
 redirect_from:
