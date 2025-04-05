@@ -69,13 +69,12 @@ template <typename T> class RBSTset {
         else
             return size(x->lp) + 1 + upper_bound(x->rp, v);
     }
-    void _dump(Node *cur, int depth) {
+    void _dump(Node *cur, vector<T> &a) {
         if (!cur)
             return;
-        _dump(cur->lp, depth + 1);
-        rep(_, 0, depth) cerr << ' ';
-        cerr << cur->key << '\n';
-        _dump(cur->rp, depth + 1);
+        _dump(cur->lp, a);
+        a.push_back(cur->key);
+        _dump(cur->rp, a);
     }
 
   public:
@@ -106,21 +105,24 @@ template <typename T> class RBSTset {
         }
         return false;
     }
-    void insert(T x) {
-        int k = lower_bound(root, x);
+    void insert(T x, int k = -1) {
+        if (k == -1)
+            k = lower_bound(root, x);
         auto [L, R] = split(root, k);
         root = merge(merge(L, new Node(x)), R);
     }
-    void erase(T x) {
-        assert(find(x));
-        int k = lower_bound(root, x);
+    void erase(T x, int k = -1) {
+        if (k == -1) {
+            assert(find(x));
+            k = lower_bound(root, x);
+        }
         auto [L, t] = split(root, k);
         auto [tmp, R] = split(t, 1);
         root = merge(L, R);
     }
     T kth_element(int k) {
         if (k >= size(root) or k < 0)
-            return -1;
+            return T();
         auto [L, R] = split(root, k);
         Node *cur = R;
         while (cur->lp)
@@ -134,8 +136,10 @@ template <typename T> class RBSTset {
     int upper_bound(T v) {
         return upper_bound(root, v);
     }
-    void dump() {
-        _dump(root, 1);
+    vector<T> dump() {
+        vector<T> ret;
+        _dump(root, ret);
+        return ret;
     }
 };
 

@@ -3,7 +3,7 @@
 
 struct Fp {
     using u64 = uint64_t;
-    uint v;
+    int v;
     static int get_mod() {
         return _getmod();
     }

@@ -60,7 +60,8 @@ void relabel(int n, vector<pair<int, int>> &es) {
     for (auto &[u, v] : es)
         u = ord[u], v = ord[v];
 }
-template <bool directed, bool simple> vector<pair<int, int>> genGraph(int n) {
+template <bool directed, bool simple>
+vector<pair<int, int>> genGraph(int n, int m) {
     vector<pair<int, int>> cand, es;
     rep(u, 0, n) rep(v, 0, n) {
         if (simple and u == v)
@@ -69,7 +70,9 @@ template <bool directed, bool simple> vector<pair<int, int>> genGraph(int n) {
             continue;
         cand.push_back({u, v});
     }
-    int m = get(SZ(cand));
+    if (m == -1)
+        m = get(SZ(cand));
+    chmin(m, SZ(cand));
     vector<int> ord;
     if (simple)
         ord = select(m, 0, SZ(cand) - 1);

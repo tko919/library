@@ -19,6 +19,19 @@ using u128 = __uint128_t;
 const int inf = 0x3fffffff;
 const ll INF = 0x1fffffffffffffff;
 
+template <typename T, typename S = T> S SUM(const vector<T> &a) {
+    return accumulate(ALL(a), S(0));
+}
+template <typename S, typename T = S> S POW(S a, T b) {
+    S ret = 1, base = a;
+    while (b) {
+        if (b & 1)
+            ret *= base;
+        base *= base;
+        b >>= 1;
+    }
+    return ret;
+}
 template <typename T> inline bool chmax(T &a, T b) {
     if (a < b) {
         a = b;
@@ -94,8 +107,10 @@ template <typename T> ostream &operator<<(ostream &os, const set<T> &set_var) {
     return os;
 }
 #ifdef LOCAL
+#define debug 1
 #define show(...) _show(0, #__VA_ARGS__, __VA_ARGS__)
 #else
+#define debug 0
 #define show(...) true
 #endif
 template <typename T> void _show(int i, T name) {

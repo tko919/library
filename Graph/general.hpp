@@ -1,39 +1,89 @@
 #pragma once
 
-vector<pair<int, int>> GeneralMatch(int n, vector<pair<int, int>> &es) {
-    mt19937 rnd;
-    vector<vector<int>> g(n + 1);
-    for (auto &[u, v] : es) {
-        g[u + 1].push_back(v + 1);
-        g[v + 1].push_back(u + 1);
-    }
-    vector<int> used(n + 1), mate(n + 1);
-    int T;
-    auto dfs = [&](auto &dfs, int v) -> bool {
-        used[v] = T;
-        shuffle(ALL(g[v]), rnd);
-        for (auto &u : g[v]) {
-            int w = mate[u];
-            if (used[w] < T) {
-                mate[v] = u, mate[u] = v, mate[w] = 0;
-                if (!w or dfs(dfs, w))
-                    return 1;
-                mate[u] = w, mate[w] = u, mate[v] = 0;
-            }
-        }
-        return 0;
+struct GeneralMatch {
+    struct edge {
+        int u, v;
     };
-    rep(_, 0, 10) {
-        used.assign(n + 1, 0);
-        rep(v, 1, n + 1) if (!mate[v]) {
-            T++;
-            dfs(dfs, v);
+    int n, res;
+    const vector<vector<int>> &g;
+    vector<int> mate, idx, p;
+    vector<edge> es;
+    void rematch(int u, int v) {
+        int w = mate[u];
+        mate[u] = v;
+        if (w == -1 or mate[w] != u)
+            return;
+        if (es[u].v == -1) {
+            mate[w] = es[u].u;
+            rematch(es[u].u, w);
+        } else {
+            rematch(es[u].u, es[u].v);
+            rematch(es[u].v, es[u].u);
         }
     }
-    vector<pair<int, int>> ret;
-    rep(v, 1, n + 1) if (v < mate[v]) ret.push_back({v - 1, mate[v] - 1});
-    return ret;
-}
+    bool check(int rt) {
+        function<int(int)> f = [&](int x) {
+            return (idx[x] != res or p[x] == -1) ? x : (p[x] = f(p[x]));
+        };
+        queue<int> que;
+        que.push(rt);
+        p[rt] = -1;
+        idx[rt] = res;
+        es[rt] = {-1, -1};
+        while (!que.empty()) {
+            int x = que.front();
+            que.pop();
+            for (int y : g[x])
+                if (y != rt) {
+                    if (mate[y] == -1) {
+                        mate[y] = x;
+                        rematch(x, y);
+                        return true;
+                    } else if (idx[y] == res) {
+                        int u = f(x), v = f(y), w = rt;
+                        if (u == v)
+                            continue;
+                        while (u != rt or v != rt) {
+                            if (v != rt)
+                                swap(u, v);
+                            if (es[u].u == x and es[u].v == y) {
+                                w = u;
+                                break;
+                            }
+                            es[u] = {x, y};
+                            u = f(es[mate[u]].u);
+                        }
+                        int t = f(x);
+                        while (t != w) {
+                            idx[t] = res;
+                            p[t] = w;
+                            que.push(t);
+                            t = f(es[mate[t]].u);
+                        }
+                        t = f(y);
+                        while (t != w) {
+                            idx[t] = res;
+                            p[t] = w;
+                            que.push(t);
+                            t = f(es[mate[t]].u);
+                        }
+                    } else if (idx[mate[y]] != res) {
+                        es[y] = {-1, -1};
+                        idx[mate[y]] = res;
+                        p[mate[y]] = y;
+                        es[mate[y]] = {x, -1};
+                        que.push(mate[y]);
+                    }
+                }
+        }
+        return false;
+    }
+    GeneralMatch(const vector<vector<int>> &h)
+        : g(h), n(h.size()), res(0), mate(h.size(), -1), idx(h.size(), -1),
+          p(h.size()), es(h.size()) {
+        rep(i, 0, n) if (mate[i] == -1) res += check(i);
+    }
+};
 
 /**
  * @brief General Matching

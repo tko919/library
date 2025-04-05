@@ -8,6 +8,9 @@ template <typename T> struct Frac {
     Frac(T _a, T _b) {
         init(_a, _b);
     }
+    template <typename V> V get() const {
+        return V(a) / b;
+    }
     Frac &init(T _a, T _b) {
         T g = gcd(_a, _b);
         a = _a / g, b = _b / g;

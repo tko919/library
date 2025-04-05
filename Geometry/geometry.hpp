@@ -23,11 +23,11 @@ struct Line {
     Line(Point _a, Point _b) : a(_a), b(_b), dir(b - a) {}
     Line(T A, T B, T C) {
         if (eq(A, .0)) {
-            a = Point(0, C / B), b = Point(1 / C / B);
+            a = Point(0, -C / B), b = Point(1, -C / B);
         } else if (eq(B, .0)) {
-            a = Point(C / A, 0), b = Point(C / A, 1);
+            a = Point(-C / A, 0), b = Point(-C / A, 1);
         } else {
-            a = Point(0, C / B), b = Point(C / A, 0);
+            a = Point(0, -C / B), b = Point(-C / A, 0);
         }
     }
 };

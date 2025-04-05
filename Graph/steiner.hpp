@@ -1,41 +1,66 @@
 #pragma once
 
-struct SteinerTree{
-    using P=pair<ll,ll>;
-    int n;
-    vector<vector<P>> g;
-    SteinerTree(int _n):n(_n),g(n){}
-    void add_edge(int u,int v,ll c){
-        g[u].push_back({v,c});
-        g[v].push_back({u,c});
+template <typename T>
+pair<T, vector<int>> MinimumSteinerTree(int n, vector<tuple<int, int, T>> &es,
+                                        vector<int> &terminal) {
+    vector g(n, vector<tuple<int, T, int>>());
+    rep(i, 0, SZ(es)) {
+        auto [x, y, w] = es[i];
+        g[x].push_back({y, w, i});
+        g[y].push_back({x, w, i});
     }
-    ll run(vector<int>& term){
-        int k=term.size();
-        if(k<=1)return 0;
-        vector dp(1<<k,vector<ll>(n,INF));
-        rep(i,0,k)dp[1<<i][term[i]]=0;
-        using P=pair<ll,int>;
-        rep(mask,1,1<<k){
-            for(ll sub=mask;;sub=(sub-1)&mask){
-                rep(v,0,n)chmin(dp[mask][v],dp[sub][v]+dp[mask^sub][v]);
-                if(sub==0)break;
-            }
-            priority_queue<P,vector<P>,greater<P>> pq;
-            rep(v,0,n)pq.push({dp[mask][v],v});
-            while(!pq.empty()){
-                auto [d,v]=pq.top();
-                pq.pop();
-                if(dp[mask][v]<d)continue;
-                for(auto& [nxt,c]:g[v])if(chmin(dp[mask][nxt],d+c)){
-                    pq.push({dp[mask][nxt],nxt});
-                }
+    int t = SZ(terminal);
+    using P = pair<ll, int>;
+    vector dp(1 << t, vector<T>(n, numeric_limits<T>::max() / 10));
+    vector pre(1 << t, vector<P>(n, {-1, -1})); // {subset,-1} or {from,eid}
+    rep(i, 0, t) {
+        dp[1 << i][terminal[i]] = 0;
+    }
+    rep(mask, 1, 1 << t) {
+        rep(v, 0, n) {
+            for (int sub = mask; sub; sub = (sub - 1) & mask) {
+                if (chmin(dp[mask][v], dp[sub][v] + dp[mask ^ sub][v]))
+                    pre[mask][v] = {sub, -1};
             }
         }
-        ll ret=INF;
-        rep(j,0,n)chmin(ret,dp[(1<<k)-1][j]);
-        return ret;
+        if (mask == ((1 << t) - 1))
+            break;
+        priority_queue<P, vector<P>, greater<P>> pq;
+        rep(v, 0, n) pq.push({dp[mask][v], v});
+        while (!pq.empty()) {
+            auto [d, v] = pq.top();
+            pq.pop();
+            if (dp[mask][v] != d)
+                continue;
+            for (auto &[to, cost, id] : g[v])
+                if (chmin(dp[mask][to], dp[mask][v] + cost)) {
+                    pq.push({dp[mask][to], to});
+                    pre[mask][to] = {v, id};
+                }
+        }
     }
-};
+    ll cost = dp[(1 << t) - 1][terminal[0]];
+    vector<int> ret;
+    {
+        queue<P> que;
+        que.push({(1 << t) - 1, terminal[0]});
+        while (!que.empty()) {
+            auto [mask, v] = que.front();
+            que.pop();
+            auto [a, b] = pre[mask][v];
+            if (a == -1)
+                continue;
+            else if (b == -1) {
+                que.push({a, v});
+                que.push({mask ^ a, v});
+            } else {
+                que.push({mask, a});
+                ret.push_back(b);
+            }
+        }
+    }
+    return {cost, ret};
+}
 
 /**
  * @brief Steiner Tree
