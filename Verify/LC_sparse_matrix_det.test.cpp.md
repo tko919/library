@@ -49,20 +49,20 @@ data:
     \nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate <typename T, typename S =\
     \ T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a), S(0));\r\n}\r\
     \ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n    S ret = 1, base\
-    \ = a;\r\n    while (b) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
-    \        base *= base;\r\n        b >>= 1;\r\n    }\r\n    return ret;\r\n}\r\n\
-    template <typename T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n \
-    \       a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate\
-    \ <typename T> inline bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a\
-    \ = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename\
-    \ T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\
-    \n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n\
-    }\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\n    assert(y !=\
-    \ 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? x /\
-    \ y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n  \
-    \  return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int topbit(T\
-    \ x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\ntemplate\
-    \ <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
+    \ = a;\r\n    for (;;) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
+    \        b >>= 1;\r\n        if (b == 0)\r\n            break;\r\n        base\
+    \ *= base;\r\n    }\r\n    return ret;\r\n}\r\ntemplate <typename T> inline bool\
+    \ chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n        return 1;\r\
+    \n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a,\
+    \ T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\
+    \n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\
+    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
+    \ (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T, typename U>\
+    \ T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x =\
+    \ -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate\
+    \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
+    \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
+    \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
     \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
     \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
     )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
@@ -428,14 +428,17 @@ data:
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 2 \"Math/bbla.hpp\"\n\r\n#line 2 \"FPS/berlekampmassey.hpp\"\
-    \n\r\ntemplate<typename T>vector<T> BerlekampMassey(vector<T>& a){\r\n   int n=a.size();\
-    \ T d=1;\r\n   vector<T> b(1),c(1);\r\n   b[0]=c[0]=1;\r\n   rep(j,1,n+1){\r\n\
-    \      int l=c.size(),m=b.size();\r\n      T x=0;\r\n      rep(i,0,l)x+=c[i]*a[j-l+i];\r\
-    \n      b.push_back(0);\r\n      m++;\r\n      if(x==0)continue;\r\n      T coeff=-x/d;\r\
-    \n      if(l<m){\r\n         auto tmp=c;\r\n         c.insert(c.begin(),m-l,0);\r\
-    \n         rep(i,0,m)c[m-1-i]+=coeff*b[m-1-i];\r\n         b=tmp; d=x;\r\n   \
-    \   }\r\n      else rep(i,0,m)c[l-1-i]+=coeff*b[m-1-i];\r\n   }\r\n   return c;\r\
-    \n}\r\n\r\n/**\r\n * @brief Berlekamp Massey Algorithm\r\n */\n#line 2 \"Utility/random.hpp\"\
+    \n\r\ntemplate <typename T> vector<T> BerlekampMassey(vector<T> &a) {\r\n    int\
+    \ n = a.size();\r\n    T d = 1;\r\n    vector<T> b(1), c(1);\r\n    b[0] = c[0]\
+    \ = 1;\r\n    rep(j, 1, n + 1) {\r\n        int l = c.size(), m = b.size();\r\n\
+    \        T x = 0;\r\n        rep(i, 0, l) x += c[i] * a[j - l + i];\r\n      \
+    \  b.push_back(0);\r\n        m++;\r\n        if (x == 0)\r\n            continue;\r\
+    \n        T coeff = -x / d;\r\n        if (l < m) {\r\n            auto tmp =\
+    \ c;\r\n            c.insert(c.begin(), m - l, 0);\r\n            rep(i, 0, m)\
+    \ c[m - 1 - i] += coeff * b[m - 1 - i];\r\n            b = tmp;\r\n          \
+    \  d = x;\r\n        } else\r\n            rep(i, 0, m) c[l - 1 - i] += coeff\
+    \ * b[m - 1 - i];\r\n    }\r\n    reverse(ALL(c));\r\n    return c;\r\n}\r\n\r\
+    \n/**\r\n * @brief Berlekamp Massey Algorithm\r\n */\n#line 2 \"Utility/random.hpp\"\
     \n\r\nnamespace Random {\r\nmt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
     \nusing u64 = unsigned long long;\r\nu64 get() {\r\n    return randgen();\r\n\
     }\r\ntemplate <typename T> T get(T L) { // [0,L]\r\n    return get() % (L + 1);\r\
@@ -529,7 +532,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sparse_matrix_det.test.cpp

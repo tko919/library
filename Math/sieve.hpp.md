@@ -20,6 +20,9 @@ data:
   - icon: ':question:'
     path: Math/primesum.hpp
     title: Prime Sum
+  - icon: ':warning:'
+    path: Math/totient.hpp
+    title: lpf table
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
@@ -96,6 +99,7 @@ data:
   requiredBy:
   - Math/mobius.hpp
   - Math/primesum.hpp
+  - Math/totient.hpp
   - Math/lpftable.hpp
   - Math/multiplicative.hpp
   - Math/powertable.hpp

@@ -68,164 +68,165 @@ data:
     \ int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate\
     \ <typename T, typename S = T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a),\
     \ S(0));\r\n}\r\ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n \
-    \   S ret = 1, base = a;\r\n    while (b) {\r\n        if (b & 1)\r\n        \
-    \    ret *= base;\r\n        base *= base;\r\n        b >>= 1;\r\n    }\r\n  \
-    \  return ret;\r\n}\r\ntemplate <typename T> inline bool chmax(T &a, T b) {\r\n\
-    \    if (a < b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\n    return\
-    \ 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a, T b) {\r\n    if (a\
-    \ > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n\
-    }\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\
-    \n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1)\
-    \ / y : x / y);\r\n}\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\
-    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
-    \ (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T\
-    \ x) {\r\n    return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int\
-    \ topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\n\
-    template <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
-    \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
-    \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
-    )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
-    \ &os, const vector<T> &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i <\
-    \ vec.size(); i++) {\r\n        os << vec[i] << (i + 1 == vec.size() ? \"\" :\
-    \ \", \");\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename\
-    \ T, typename U>\r\nostream &operator<<(ostream &os, const map<T, U> &map_var)\
-    \ {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin(); itr != map_var.end();\
-    \ itr++) {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \"\
-    )\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\n            os\
-    \ << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\
-    \n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, const set<T> &set_var)\
-    \ {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
-    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
-    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\r\n#ifdef LOCAL\r\n#define debug 1\r\n#define show(...) _show(0,\
-    \ #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define debug 0\r\n#define show(...)\
-    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
-    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
-    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
-    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
-    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Utility/fastio.hpp\"\
-    \n#include <unistd.h>\r\nnamespace fastio {\r\nstatic constexpr uint32_t SZ =\
-    \ 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar out[100];\r\n// pointer\
-    \ of ibuf, obuf\r\n\r\nuint32_t pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\
-    \n    char num[10000][4];\r\n    constexpr Pre() : num() {\r\n        for (int\
-    \ i = 0; i < 10000; i++) {\r\n            int n = i;\r\n            for (int j\
-    \ = 3; j >= 0; j--) {\r\n                num[i][j] = n % 10 | '0';\r\n       \
-    \         n /= 10;\r\n            }\r\n        }\r\n    }\r\n} constexpr pre;\r\
-    \n\r\ninline void load() {\r\n    memmove(ibuf, ibuf + pil, pir - pil);\r\n  \
-    \  pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);\r\n  \
-    \  pil = 0;\r\n    if (pir < SZ)\r\n        ibuf[pir++] = '\\n';\r\n}\r\n\r\n\
-    inline void flush() {\r\n    fwrite(obuf, 1, por, stdout);\r\n    por = 0;\r\n\
-    }\r\n\r\nvoid rd(char &c) {\r\n    do {\r\n        if (pil + 1 > pir)\r\n    \
-    \        load();\r\n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\n\
-    }\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\n    char c;\r\n    do {\r\n\
-    \        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
-    \n    } while (isspace(c));\r\n    do {\r\n        x += c;\r\n        if (pil\
-    \ == pir)\r\n            load();\r\n        c = ibuf[pil++];\r\n    } while (!isspace(c));\r\
-    \n}\r\n\r\ntemplate <typename T> void rd_real(T &x) {\r\n    string s;\r\n   \
-    \ rd(s);\r\n    x = stod(s);\r\n}\r\n\r\ntemplate <typename T> void rd_integer(T\
-    \ &x) {\r\n    if (pil + 100 > pir)\r\n        load();\r\n    char c;\r\n    do\r\
-    \n        c = ibuf[pil++];\r\n    while (c < '-');\r\n    bool minus = 0;\r\n\
-    \    if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n        if\
-    \ (c == '-') {\r\n            minus = 1, c = ibuf[pil++];\r\n        }\r\n   \
-    \ }\r\n    x = 0;\r\n    while ('0' <= c) {\r\n        x = x * 10 + (c & 15),\
-    \ c = ibuf[pil++];\r\n    }\r\n    if constexpr (is_signed<T>::value || is_same_v<T,\
-    \ i128>) {\r\n        if (minus)\r\n            x = -x;\r\n    }\r\n}\r\n\r\n\
-    void rd(int &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(ll &x) {\r\n    rd_integer(x);\r\
-    \n}\r\nvoid rd(i128 &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(uint &x) {\r\n\
-    \    rd_integer(x);\r\n}\r\nvoid rd(ull &x) {\r\n    rd_integer(x);\r\n}\r\nvoid\
-    \ rd(u128 &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(double &x) {\r\n    rd_real(x);\r\
-    \n}\r\nvoid rd(long double &x) {\r\n    rd_real(x);\r\n}\r\n\r\ntemplate <class\
-    \ T, class U> void rd(pair<T, U> &p) {\r\n    return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T> void rd_tuple(T &t) {\r\n    if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n        auto &x = std::get<N>(t);\r\n \
-    \       rd(x);\r\n        rd_tuple<N + 1>(t);\r\n    }\r\n}\r\ntemplate <class...\
-    \ T> void rd(tuple<T...> &tpl) {\r\n    rd_tuple(tpl);\r\n}\r\n\r\ntemplate <size_t\
-    \ N = 0, typename T> void rd(array<T, N> &x) {\r\n    for (auto &d : x)\r\n  \
-    \      rd(d);\r\n}\r\ntemplate <class T> void rd(vector<T> &x) {\r\n    for (auto\
-    \ &d : x)\r\n        rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T> void read(H &h, T &...t) {\r\n    rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n    if (por == SZ)\r\n        flush();\r\n    obuf[por++] = c;\r\
-    \n}\r\nvoid wt(const string s) {\r\n    for (char c : s)\r\n        wt(c);\r\n\
-    }\r\nvoid wt(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t\
-    \ i = 0; i < len; i++)\r\n        wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\
-    \ void wt_integer(T x) {\r\n    if (por > SZ - 100)\r\n        flush();\r\n  \
-    \  if (x < 0) {\r\n        obuf[por++] = '-', x = -x;\r\n    }\r\n    int outi;\r\
-    \n    for (outi = 96; x >= 10000; outi -= 4) {\r\n        memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n        x /= 10000;\r\n    }\r\n    if (x >= 1000) {\r\n  \
-    \      memcpy(obuf + por, pre.num[x], 4);\r\n        por += 4;\r\n    } else if\
-    \ (x >= 100) {\r\n        memcpy(obuf + por, pre.num[x] + 1, 3);\r\n        por\
-    \ += 3;\r\n    } else if (x >= 10) {\r\n        int q = (x * 103) >> 10;\r\n \
-    \       obuf[por] = q | '0';\r\n        obuf[por + 1] = (x - q * 10) | '0';\r\n\
-    \        por += 2;\r\n    } else\r\n        obuf[por++] = x | '0';\r\n    memcpy(obuf\
-    \ + por, out + outi + 4, 96 - outi);\r\n    por += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T> void wt_real(T x) {\r\n    ostringstream oss;\r\n    oss << fixed\
-    \ << setprecision(15) << double(x);\r\n    string s = oss.str();\r\n    wt(s);\r\
-    \n}\r\n\r\nvoid wt(int x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(ll x) {\r\n\
-    \    wt_integer(x);\r\n}\r\nvoid wt(i128 x) {\r\n    wt_integer(x);\r\n}\r\nvoid\
-    \ wt(uint x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(ull x) {\r\n    wt_integer(x);\r\
-    \n}\r\nvoid wt(u128 x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(double x) {\r\n\
-    \    wt_real(x);\r\n}\r\nvoid wt(long double x) {\r\n    wt_real(x);\r\n}\r\n\r\
-    \ntemplate <class T, class U> void wt(const pair<T, U> val) {\r\n    wt(val.first);\r\
-    \n    wt(' ');\r\n    wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename\
-    \ T> void wt_tuple(const T t) {\r\n    if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n        if constexpr (N > 0) {\r\n            wt(' ');\r\n        }\r\n\
-    \        const auto x = std::get<N>(t);\r\n        wt(x);\r\n        wt_tuple<N\
-    \ + 1>(t);\r\n    }\r\n}\r\ntemplate <class... T> void wt(tuple<T...> tpl) {\r\
-    \n    wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S> void wt(const array<T,\
-    \ S> val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n        if (i)\r\n            wt(' ');\r\n        wt(val[i]);\r\n    }\r\
-    \n}\r\ntemplate <class T> void wt(const vector<T> val) {\r\n    auto n = val.size();\r\
-    \n    for (size_t i = 0; i < n; i++) {\r\n        if (i)\r\n            wt(' ');\r\
-    \n        wt(val[i]);\r\n    }\r\n}\r\n\r\nvoid print() {\r\n    wt('\\n');\r\n\
-    }\r\ntemplate <class Head, class... Tail> void print(Head &&head, Tail &&...tail)\
-    \ {\r\n    wt(head);\r\n    if (sizeof...(Tail))\r\n        wt(' ');\r\n    print(forward<Tail>(tail)...);\r\
-    \n}\r\nvoid __attribute__((destructor)) _d() {\r\n    flush();\r\n}\r\n} // namespace\
-    \ fastio\r\n\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
-    \n\r\ninline void first(bool i = true) {\r\n    print(i ? \"first\" : \"second\"\
-    );\r\n}\r\ninline void Alice(bool i = true) {\r\n    print(i ? \"Alice\" : \"\
-    Bob\");\r\n}\r\ninline void Takahashi(bool i = true) {\r\n    print(i ? \"Takahashi\"\
-    \ : \"Aoki\");\r\n}\r\ninline void yes(bool i = true) {\r\n    print(i ? \"yes\"\
-    \ : \"no\");\r\n}\r\ninline void Yes(bool i = true) {\r\n    print(i ? \"Yes\"\
-    \ : \"No\");\r\n}\r\ninline void No() {\r\n    print(\"No\");\r\n}\r\ninline void\
-    \ YES(bool i = true) {\r\n    print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void\
-    \ NO() {\r\n    print(\"NO\");\r\n}\r\ninline void Yay(bool i = true) {\r\n  \
-    \  print(i ? \"Yay!\" : \":(\");\r\n}\r\ninline void Possible(bool i = true) {\r\
-    \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
-    \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
-    \n * @brief Fast IO\r\n */\n#line 6 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\
-    \n\n#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv {\n    using u64 = uint64_t;\n\
-    \    using u128 = __uint128_t;\n    constexpr FastDiv() : m(), s(), x() {}\n \
-    \   constexpr FastDiv(int _m)\n        : m(_m), s(__lg(m - 1)), x(((u128(1) <<\
-    \ (s + 64)) + m - 1) / m) {}\n    constexpr int get() {\n        return m;\n \
-    \   }\n    constexpr friend u64 operator/(u64 n, const FastDiv &d) {\n       \
-    \ return (u128(n) * d.x >> d.s) >> 64;\n    }\n    constexpr friend int operator%(u64\
-    \ n, const FastDiv &d) {\n        return n - n / d * d.m;\n    }\n    constexpr\
-    \ pair<u64, int> divmod(u64 n) const {\n        u64 q = n / (*this);\n       \
-    \ return {q, n - q * m};\n    }\n    int m, s;\n    u64 x;\n};\n\nstruct FastDiv64\
-    \ {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n    u128 mod, mh,\
-    \ ml;\n    explicit FastDiv64(u64 mod = 1) : mod(mod) {\n        u128 m = u128(-1)\
-    \ / mod;\n        if (m * mod + mod == u128(0))\n            ++m;\n        mh\
-    \ = m >> 64;\n        ml = m & u64(-1);\n    }\n    u64 umod() const {\n     \
-    \   return mod;\n    }\n    u64 modulo(u128 x) {\n        u128 z = (x & u64(-1))\
-    \ * ml;\n        z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n      \
-    \  z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n        return x <\
-    \ mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n        return modulo(u128(a)\
-    \ * b);\n    }\n};\n\n/**\n * @brief Fast Division\n */\n#line 3 \"Math/dynamic.hpp\"\
-    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    int v;\r\n    static int\
-    \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(int\
-    \ _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n   \
-    \     int tmp, a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n\
-    \            tmp = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n       \
-    \     x -= tmp * y;\r\n            swap(x, y);\r\n        }\r\n        if (x <\
-    \ 0) {\r\n            x += get_mod();\r\n        }\r\n        return x;\r\n  \
-    \  }\r\n    Fp() : v(0) {}\r\n    Fp(ll x) {\r\n        v = x % get_mod();\r\n\
-    \        if (v < 0)\r\n            v += get_mod();\r\n    }\r\n    Fp operator-()\
-    \ const {\r\n        return Fp() - *this;\r\n    }\r\n    Fp pow(ll t) {\r\n \
-    \       assert(t >= 0);\r\n        Fp res = 1, b = *this;\r\n        while (t)\
-    \ {\r\n            if (t & 1)\r\n                res *= b;\r\n            b *=\
-    \ b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n\
-    \    Fp &operator+=(const Fp &x) {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\
-    \n            v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator-=(const\
+    \   S ret = 1, base = a;\r\n    for (;;) {\r\n        if (b & 1)\r\n         \
+    \   ret *= base;\r\n        b >>= 1;\r\n        if (b == 0)\r\n            break;\r\
+    \n        base *= base;\r\n    }\r\n    return ret;\r\n}\r\ntemplate <typename\
+    \ T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n\
+    \        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline\
+    \ bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return\
+    \ 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T\
+    \ x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\
+    \n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T,\
+    \ typename U> T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n\
+    \        x = -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n\
+    }\r\ntemplate <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\
+    \n}\r\ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63\
+    \ - __builtin_clzll(x));\r\n}\r\ntemplate <typename T> int lowbit(T x) {\r\n \
+    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\ntemplate <class T,\
+    \ class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os\
+    \ << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\
+    \ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T> &vec)\
+    \ {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n    \
+    \    os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os\
+    \ << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream\
+    \ &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n\
+    \    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n     \
+    \   os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n        itr++;\r\
+    \n        if (itr != map_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream\
+    \ &operator<<(ostream &os, const set<T> &set_var) {\r\n    os << \"{\";\r\n  \
+    \  for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {\r\n       \
+    \ os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\n     \
+    \       os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return\
+    \ os;\r\n}\r\n#ifdef LOCAL\r\n#define debug 1\r\n#define show(...) _show(0, #__VA_ARGS__,\
+    \ __VA_ARGS__)\r\n#else\r\n#define debug 0\r\n#define show(...) true\r\n#endif\r\
+    \ntemplate <typename T> void _show(int i, T name) {\r\n    cerr << '\\n';\r\n\
+    }\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid _show(int i,\
+    \ const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i] != ',' && a[i]\
+    \ != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\" << b << \" \";\r\
+    \n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Utility/fastio.hpp\"\n#include <unistd.h>\r\
+    \nnamespace fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\
+    \nchar obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\n\r\nuint32_t\
+    \ pil = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\n    char num[10000][4];\r\n\
+    \    constexpr Pre() : num() {\r\n        for (int i = 0; i < 10000; i++) {\r\n\
+    \            int n = i;\r\n            for (int j = 3; j >= 0; j--) {\r\n    \
+    \            num[i][j] = n % 10 | '0';\r\n                n /= 10;\r\n       \
+    \     }\r\n        }\r\n    }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\
+    \n    memmove(ibuf, ibuf + pil, pir - pil);\r\n    pir = pir - pil + fread(ibuf\
+    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n    pil = 0;\r\n    if (pir < SZ)\r\
+    \n        ibuf[pir++] = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n    fwrite(obuf,\
+    \ 1, por, stdout);\r\n    por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n    do {\r\
+    \n        if (pil + 1 > pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
+    \n    } while (isspace(c));\r\n}\r\n\r\nvoid rd(string &x) {\r\n    x.clear();\r\
+    \n    char c;\r\n    do {\r\n        if (pil + 1 > pir)\r\n            load();\r\
+    \n        c = ibuf[pil++];\r\n    } while (isspace(c));\r\n    do {\r\n      \
+    \  x += c;\r\n        if (pil == pir)\r\n            load();\r\n        c = ibuf[pil++];\r\
+    \n    } while (!isspace(c));\r\n}\r\n\r\ntemplate <typename T> void rd_real(T\
+    \ &x) {\r\n    string s;\r\n    rd(s);\r\n    x = stod(s);\r\n}\r\n\r\ntemplate\
+    \ <typename T> void rd_integer(T &x) {\r\n    if (pil + 100 > pir)\r\n       \
+    \ load();\r\n    char c;\r\n    do\r\n        c = ibuf[pil++];\r\n    while (c\
+    \ < '-');\r\n    bool minus = 0;\r\n    if constexpr (is_signed<T>::value || is_same_v<T,\
+    \ i128>) {\r\n        if (c == '-') {\r\n            minus = 1, c = ibuf[pil++];\r\
+    \n        }\r\n    }\r\n    x = 0;\r\n    while ('0' <= c) {\r\n        x = x\
+    \ * 10 + (c & 15), c = ibuf[pil++];\r\n    }\r\n    if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n        if (minus)\r\n            x = -x;\r\n  \
+    \  }\r\n}\r\n\r\nvoid rd(int &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(ll &x)\
+    \ {\r\n    rd_integer(x);\r\n}\r\nvoid rd(i128 &x) {\r\n    rd_integer(x);\r\n\
+    }\r\nvoid rd(uint &x) {\r\n    rd_integer(x);\r\n}\r\nvoid rd(ull &x) {\r\n  \
+    \  rd_integer(x);\r\n}\r\nvoid rd(u128 &x) {\r\n    rd_integer(x);\r\n}\r\nvoid\
+    \ rd(double &x) {\r\n    rd_real(x);\r\n}\r\nvoid rd(long double &x) {\r\n   \
+    \ rd_real(x);\r\n}\r\n\r\ntemplate <class T, class U> void rd(pair<T, U> &p) {\r\
+    \n    return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename\
+    \ T> void rd_tuple(T &t) {\r\n    if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n        auto &x = std::get<N>(t);\r\n        rd(x);\r\n        rd_tuple<N\
+    \ + 1>(t);\r\n    }\r\n}\r\ntemplate <class... T> void rd(tuple<T...> &tpl) {\r\
+    \n    rd_tuple(tpl);\r\n}\r\n\r\ntemplate <size_t N = 0, typename T> void rd(array<T,\
+    \ N> &x) {\r\n    for (auto &d : x)\r\n        rd(d);\r\n}\r\ntemplate <class\
+    \ T> void rd(vector<T> &x) {\r\n    for (auto &d : x)\r\n        rd(d);\r\n}\r\
+    \n\r\nvoid read() {}\r\ntemplate <class H, class... T> void read(H &h, T &...t)\
+    \ {\r\n    rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n    if (por\
+    \ == SZ)\r\n        flush();\r\n    obuf[por++] = c;\r\n}\r\nvoid wt(const string\
+    \ s) {\r\n    for (char c : s)\r\n        wt(c);\r\n}\r\nvoid wt(const char *s)\
+    \ {\r\n    size_t len = strlen(s);\r\n    for (size_t i = 0; i < len; i++)\r\n\
+    \        wt(s[i]);\r\n}\r\n\r\ntemplate <typename T> void wt_integer(T x) {\r\n\
+    \    if (por > SZ - 100)\r\n        flush();\r\n    if (x < 0) {\r\n        obuf[por++]\
+    \ = '-', x = -x;\r\n    }\r\n    int outi;\r\n    for (outi = 96; x >= 10000;\
+    \ outi -= 4) {\r\n        memcpy(out + outi, pre.num[x % 10000], 4);\r\n     \
+    \   x /= 10000;\r\n    }\r\n    if (x >= 1000) {\r\n        memcpy(obuf + por,\
+    \ pre.num[x], 4);\r\n        por += 4;\r\n    } else if (x >= 100) {\r\n     \
+    \   memcpy(obuf + por, pre.num[x] + 1, 3);\r\n        por += 3;\r\n    } else\
+    \ if (x >= 10) {\r\n        int q = (x * 103) >> 10;\r\n        obuf[por] = q\
+    \ | '0';\r\n        obuf[por + 1] = (x - q * 10) | '0';\r\n        por += 2;\r\
+    \n    } else\r\n        obuf[por++] = x | '0';\r\n    memcpy(obuf + por, out +\
+    \ outi + 4, 96 - outi);\r\n    por += 96 - outi;\r\n}\r\n\r\ntemplate <typename\
+    \ T> void wt_real(T x) {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15)\
+    \ << double(x);\r\n    string s = oss.str();\r\n    wt(s);\r\n}\r\n\r\nvoid wt(int\
+    \ x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(ll x) {\r\n    wt_integer(x);\r\n\
+    }\r\nvoid wt(i128 x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(uint x) {\r\n   \
+    \ wt_integer(x);\r\n}\r\nvoid wt(ull x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(u128\
+    \ x) {\r\n    wt_integer(x);\r\n}\r\nvoid wt(double x) {\r\n    wt_real(x);\r\n\
+    }\r\nvoid wt(long double x) {\r\n    wt_real(x);\r\n}\r\n\r\ntemplate <class T,\
+    \ class U> void wt(const pair<T, U> val) {\r\n    wt(val.first);\r\n    wt(' ');\r\
+    \n    wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T> void wt_tuple(const\
+    \ T t) {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n        if constexpr\
+    \ (N > 0) {\r\n            wt(' ');\r\n        }\r\n        const auto x = std::get<N>(t);\r\
+    \n        wt(x);\r\n        wt_tuple<N + 1>(t);\r\n    }\r\n}\r\ntemplate <class...\
+    \ T> void wt(tuple<T...> tpl) {\r\n    wt_tuple(tpl);\r\n}\r\ntemplate <class\
+    \ T, size_t S> void wt(const array<T, S> val) {\r\n    auto n = val.size();\r\n\
+    \    for (size_t i = 0; i < n; i++) {\r\n        if (i)\r\n            wt(' ');\r\
+    \n        wt(val[i]);\r\n    }\r\n}\r\ntemplate <class T> void wt(const vector<T>\
+    \ val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\
+    \n        if (i)\r\n            wt(' ');\r\n        wt(val[i]);\r\n    }\r\n}\r\
+    \n\r\nvoid print() {\r\n    wt('\\n');\r\n}\r\ntemplate <class Head, class...\
+    \ Tail> void print(Head &&head, Tail &&...tail) {\r\n    wt(head);\r\n    if (sizeof...(Tail))\r\
+    \n        wt(' ');\r\n    print(forward<Tail>(tail)...);\r\n}\r\nvoid __attribute__((destructor))\
+    \ _d() {\r\n    flush();\r\n}\r\n} // namespace fastio\r\n\r\nusing fastio::flush;\r\
+    \nusing fastio::print;\r\nusing fastio::read;\r\n\r\ninline void first(bool i\
+    \ = true) {\r\n    print(i ? \"first\" : \"second\");\r\n}\r\ninline void Alice(bool\
+    \ i = true) {\r\n    print(i ? \"Alice\" : \"Bob\");\r\n}\r\ninline void Takahashi(bool\
+    \ i = true) {\r\n    print(i ? \"Takahashi\" : \"Aoki\");\r\n}\r\ninline void\
+    \ yes(bool i = true) {\r\n    print(i ? \"yes\" : \"no\");\r\n}\r\ninline void\
+    \ Yes(bool i = true) {\r\n    print(i ? \"Yes\" : \"No\");\r\n}\r\ninline void\
+    \ No() {\r\n    print(\"No\");\r\n}\r\ninline void YES(bool i = true) {\r\n  \
+    \  print(i ? \"YES\" : \"NO\");\r\n}\r\ninline void NO() {\r\n    print(\"NO\"\
+    );\r\n}\r\ninline void Yay(bool i = true) {\r\n    print(i ? \"Yay!\" : \":(\"\
+    );\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i ? \"Possible\"\
+    \ : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true) {\r\n    print(i\
+    \ ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n\
+    #line 6 \"Verify/LC_multivariate_convolution_cyclic.test.cpp\"\n\n#line 2 \"Math/fastdiv.hpp\"\
+    \n\nstruct FastDiv {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n\
+    \    constexpr FastDiv() : m(), s(), x() {}\n    constexpr FastDiv(int _m)\n \
+    \       : m(_m), s(__lg(m - 1)), x(((u128(1) << (s + 64)) + m - 1) / m) {}\n \
+    \   constexpr int get() {\n        return m;\n    }\n    constexpr friend u64\
+    \ operator/(u64 n, const FastDiv &d) {\n        return (u128(n) * d.x >> d.s)\
+    \ >> 64;\n    }\n    constexpr friend int operator%(u64 n, const FastDiv &d) {\n\
+    \        return n - n / d * d.m;\n    }\n    constexpr pair<u64, int> divmod(u64\
+    \ n) const {\n        u64 q = n / (*this);\n        return {q, n - q * m};\n \
+    \   }\n    int m, s;\n    u64 x;\n};\n\nstruct FastDiv64 {\n    using u64 = uint64_t;\n\
+    \    using u128 = __uint128_t;\n    u128 mod, mh, ml;\n    explicit FastDiv64(u64\
+    \ mod = 1) : mod(mod) {\n        u128 m = u128(-1) / mod;\n        if (m * mod\
+    \ + mod == u128(0))\n            ++m;\n        mh = m >> 64;\n        ml = m &\
+    \ u64(-1);\n    }\n    u64 umod() const {\n        return mod;\n    }\n    u64\
+    \ modulo(u128 x) {\n        u128 z = (x & u64(-1)) * ml;\n        z = (x & u64(-1))\
+    \ * mh + (x >> 64) * ml + (z >> 64);\n        z = (x >> 64) * mh + (z >> 64);\n\
+    \        x -= z * mod;\n        return x < mod ? x : x - mod;\n    }\n    u64\
+    \ mul(u64 a, u64 b) {\n        return modulo(u128(a) * b);\n    }\n};\n\n/**\n\
+    \ * @brief Fast Division\n */\n#line 3 \"Math/dynamic.hpp\"\n\r\nstruct Fp {\r\
+    \n    using u64 = uint64_t;\r\n    int v;\r\n    static int get_mod() {\r\n  \
+    \      return _getmod();\r\n    }\r\n    static void set_mod(int _m) {\r\n   \
+    \     bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n        int tmp,\
+    \ a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n            tmp\
+    \ = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n            x -= tmp *\
+    \ y;\r\n            swap(x, y);\r\n        }\r\n        if (x < 0) {\r\n     \
+    \       x += get_mod();\r\n        }\r\n        return x;\r\n    }\r\n    Fp()\
+    \ : v(0) {}\r\n    Fp(ll x) {\r\n        v = x % get_mod();\r\n        if (v <\
+    \ 0)\r\n            v += get_mod();\r\n    }\r\n    Fp operator-() const {\r\n\
+    \        return Fp() - *this;\r\n    }\r\n    Fp pow(ll t) {\r\n        assert(t\
+    \ >= 0);\r\n        Fp res = 1, b = *this;\r\n        while (t) {\r\n        \
+    \    if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\n      \
+    \      t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    Fp &operator+=(const\
+    \ Fp &x) {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\n           \
+    \ v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator-=(const\
     \ Fp &x) {\r\n        v += get_mod() - x.v;\r\n        if (v >= get_mod())\r\n\
     \            v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator*=(const\
     \ Fp &x) {\r\n        v = (u64(v) * x.v) % bar;\r\n        return *this;\r\n \
@@ -561,74 +562,83 @@ data:
     \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
     \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
     \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
-    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\
-    \n */\n#line 4 \"Math/primitive.hpp\"\n\r\nll mpow(ll a, ll t, ll m) {\r\n   \
-    \ ll res = 1;\r\n    FastDiv64 im(m);\r\n    while (t) {\r\n        if (t & 1)\r\
-    \n            res = im.modulo(__int128_t(res) * a);\r\n        a = im.modulo(__int128_t(a)\
-    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res;\r\n}\r\nll minv(ll a,\
-    \ ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t =\
-    \ a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
-    \n        swap(u, v);\r\n    }\r\n    u = (u % m + m) % m;\r\n    return u;\r\n\
-    }\r\nll getPrimitiveRoot(ll p) {\r\n    vector<ll> ps = Pollard(p - 1);\r\n  \
-    \  sort(ALL(ps));\r\n    rep(x, 1, inf) {\r\n        for (auto &q : ps) {\r\n\
-    \            if (mpow(x, (p - 1) / q, p) == 1)\r\n                goto fail;\r\
-    \n        }\r\n        return x;\r\n    fail:;\r\n    }\r\n    assert(0);\r\n\
-    }\r\nll extgcd(ll a, ll b, ll &p, ll &q) {\r\n    if (b == 0) {\r\n        p =\
-    \ 1;\r\n        q = 0;\r\n        return a;\r\n    }\r\n    ll d = extgcd(b, a\
-    \ % b, q, p);\r\n    q -= a / b * p;\r\n    return d;\r\n}\r\npair<ll, ll> crt(const\
-    \ vector<ll> &vs, const vector<ll> &ms) {\r\n    ll V = vs[0], M = ms[0];\r\n\
-    \    rep(i, 1, vs.size()) {\r\n        ll p, q, v = vs[i], m = ms[i];\r\n    \
-    \    if (M < m)\r\n            swap(M, m), swap(V, v);\r\n        ll d = extgcd(M,\
-    \ m, p, q);\r\n        if ((v - V) % d != 0)\r\n            return {0, -1};\r\n\
-    \        ll md = m / d, tmp = (v - V) / d % md * p % md;\r\n        V += M * tmp;\r\
-    \n        M *= md;\r\n    }\r\n    V = (V % M + M) % M;\r\n    return {V, M};\r\
-    \n}\r\nll ModLog(ll a, ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t;\
-    \ t >>= 1)\r\n        g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1,\
-    \ c = 0;\r\n    for (; t % g; c++) {\r\n        if (t == b)\r\n            return\
-    \ c;\r\n        t = t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\
-    \n    t /= g, b /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h\
-    \ < n; h++)\r\n        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n \
-    \   for (ll s = 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n  \
-    \  for (ll s = 0, e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n    \
-    \    if (bs.count(e)) {\r\n            return c + s - bs[e];\r\n        }\r\n\
-    \    }\r\n    return -1;\r\n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if\
-    \ (a == 0)\r\n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return\
-    \ a & 1;\r\n    k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m\
-    \ - 1) / g, m) != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m -\
-    \ 1) / g), m);\r\n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll p, int\
-    \ e, ll a) -> ll { // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int\
-    \ s = 0;\r\n        while (q % p == 0) {\r\n            q /= p;\r\n          \
-    \  s++;\r\n        }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\
-    \n           res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c =\
-    \ 1;\r\n        while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n \
-    \       c = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block\
-    \ = sqrt(d * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block\
-    \ % (m - 1), m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\
-    \n        ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i,\
-    \ 0, d) {\r\n            ll err = a * minv(mpow(res, pe, m), m) % im;\r\n    \
-    \        ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j,\
-    \ 0, block + 1) {\r\n                if (mp.count(pos)) {\r\n                \
-    \    res = res *\r\n                          mpow(c,\r\n                    \
-    \           (block * mp[pos] + j) * mpow(p, i, m - 1) %\r\n                  \
-    \                 (m - 1),\r\n                               m) %\r\n        \
-    \                  im;\r\n                    break;\r\n                }\r\n\
-    \                pos = pos * gs % im;\r\n            }\r\n        }\r\n      \
-    \  return res;\r\n    };\r\n\r\n    for (ll d = 2; d * d <= g; d++)\r\n      \
-    \  if (g % d == 0) {\r\n            int sz = 0;\r\n            while (g % d ==\
-    \ 0) {\r\n                g /= d;\r\n                sz++;\r\n            }\r\n\
-    \            a = _subroot(d, sz, a);\r\n        }\r\n    if (g > 1)\r\n      \
-    \  a = _subroot(g, 1, a);\r\n    return a;\r\n}\r\n\r\null floor_root(ull a, ull\
-    \ k) {\r\n    if (a <= 1 or k == 1)\r\n        return a;\r\n    if (k >= 64)\r\
-    \n        return 1;\r\n    if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr\
-    \ ull LIM = -1;\r\n    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull\
-    \ &x, const ull &y) {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n\
-    \        else\r\n            x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull\
-    \ t) -> ull {\r\n        ull y = 1;\r\n        while (t) {\r\n            if (t\
-    \ & 1)\r\n                mul(y, x);\r\n            mul(x, x);\r\n           \
-    \ t >>= 1;\r\n        }\r\n        return y;\r\n    };\r\n    ull ret = (k ==\
-    \ 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret\
-    \ + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief\
-    \ Primitive Function\r\n */\n#line 2 \"FPS/multievalgeom.hpp\"\n\ntemplate<typename\
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n)\
+    \ {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
+    \ int>;\r\n    vector<P> pes;\r\n    for (auto &p : ps) {\r\n        if (pes.empty()\
+    \ or pes.back().first != p) {\r\n            pes.push_back({p, 1});\r\n      \
+    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    vector<ll>\
+    \ ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\n        if\
+    \ (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n            return;\r\n\
+    \        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
+    \ {\r\n            d *= pes[id].first;\r\n            rec(rec, id + 1, d);\r\n\
+    \        }\r\n    };\r\n    rec(rec, 0, 1);\r\n    sort(ALL(ret));\r\n    return\
+    \ ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n#line 4 \"Math/primitive.hpp\"\
+    \n\r\nll mpow(ll a, ll t, ll m) {\r\n    ll res = 1;\r\n    FastDiv64 im(m);\r\
+    \n    while (t) {\r\n        if (t & 1)\r\n            res = im.modulo(__int128_t(res)\
+    \ * a);\r\n        a = im.modulo(__int128_t(a) * a);\r\n        t >>= 1;\r\n \
+    \   }\r\n    return res;\r\n}\r\nll minv(ll a, ll m) {\r\n    ll b = m, u = 1,\
+    \ v = 0;\r\n    while (b) {\r\n        ll t = a / b;\r\n        a -= t * b;\r\n\
+    \        swap(a, b);\r\n        u -= t * v;\r\n        swap(u, v);\r\n    }\r\n\
+    \    u = (u % m + m) % m;\r\n    return u;\r\n}\r\nll getPrimitiveRoot(ll p) {\r\
+    \n    vector<ll> ps = Pollard(p - 1);\r\n    sort(ALL(ps));\r\n    rep(x, 1, inf)\
+    \ {\r\n        for (auto &q : ps) {\r\n            if (mpow(x, (p - 1) / q, p)\
+    \ == 1)\r\n                goto fail;\r\n        }\r\n        return x;\r\n  \
+    \  fail:;\r\n    }\r\n    assert(0);\r\n}\r\nll extgcd(ll a, ll b, ll &p, ll &q)\
+    \ {\r\n    if (b == 0) {\r\n        p = 1;\r\n        q = 0;\r\n        return\
+    \ a;\r\n    }\r\n    ll d = extgcd(b, a % b, q, p);\r\n    q -= a / b * p;\r\n\
+    \    return d;\r\n}\r\npair<ll, ll> crt(vector<ll> vs, vector<ll> ms) {\r\n  \
+    \  ll V = vs[0], M = ms[0];\r\n    rep(i, 1, vs.size()) {\r\n        ll p, q,\
+    \ v = vs[i], m = ms[i];\r\n        if (M < m)\r\n            swap(M, m), swap(V,\
+    \ v);\r\n        ll d = extgcd(M, m, p, q);\r\n        if ((v - V) % d != 0)\r\
+    \n            return {0, -1};\r\n        ll md = m / d, tmp = (v - V) / d % md\
+    \ * p % md;\r\n        V += M * tmp;\r\n        M *= md;\r\n    }\r\n    V = (V\
+    \ % M + M) % M;\r\n    return {V, M};\r\n}\r\nll ModLog(ll a, ll b, ll p) {\r\n\
+    \    ll g = 1;\r\n    for (ll t = p; t; t >>= 1)\r\n        g = g * a % p;\r\n\
+    \    g = __gcd(g, p);\r\n    ll t = 1, c = 0;\r\n    for (; t % g; c++) {\r\n\
+    \        if (t == b)\r\n            return c;\r\n        t = t * a % p;\r\n  \
+    \  }\r\n    if (b % g)\r\n        return -1;\r\n    t /= g, b /= g;\r\n    ll\
+    \ n = p / g, h = 0, gs = 1;\r\n    for (; h * h < n; h++)\r\n        gs = gs *\
+    \ a % n;\r\n    unordered_map<ll, ll> bs;\r\n    for (ll s = 0, e = b; s < h;\
+    \ bs[e] = ++s)\r\n        e = e * a % n;\r\n    for (ll s = 0, e = t; s < n;)\
+    \ {\r\n        e = e * gs % n, s += h;\r\n        if (bs.count(e)) {\r\n     \
+    \       return c + s - bs[e];\r\n        }\r\n    }\r\n    return -1;\r\n}\r\n\
+    \r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\n        return k ? 0\
+    \ : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n    k %= m - 1;\r\n   \
+    \ ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m) != 1)\r\n        return\
+    \ -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\n    FastDiv im(m);\r\
+    \n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod m)\r\
+    \n        ll q = m - 1;\r\n        int s = 0;\r\n        while (q % p == 0) {\r\
+    \n            q /= p;\r\n            s++;\r\n        }\r\n        int d = s -\
+    \ e;\r\n        ll pe = mpow(p, e, m),\r\n           res = mpow(a, ((pe - 1) *\
+    \ minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n        while (mpow(c, (m - 1)\
+    \ / p, m) == 1)\r\n            c++;\r\n        c = mpow(c, q, m);\r\n        map<ll,\
+    \ ll> mp;\r\n        ll v = 1, block = sqrt(d * p) + 1,\r\n           bs = mpow(c,\
+    \ mpow(p, s - 1, m - 1) * block % (m - 1), m);\r\n        rep(i, 0, block + 1)\
+    \ mp[v] = i, v = v * bs % im;\r\n        ll gs = minv(mpow(c, mpow(p, s - 1, m\
+    \ - 1), m), m);\r\n        rep(i, 0, d) {\r\n            ll err = a * minv(mpow(res,\
+    \ pe, m), m) % im;\r\n            ll pos = mpow(err, mpow(p, d - 1 - i, m - 1),\
+    \ m);\r\n            rep(j, 0, block + 1) {\r\n                if (mp.count(pos))\
+    \ {\r\n                    res = res *\r\n                          mpow(c,\r\n\
+    \                               (block * mp[pos] + j) * mpow(p, i, m - 1) %\r\n\
+    \                                   (m - 1),\r\n                             \
+    \  m) %\r\n                          im;\r\n                    break;\r\n   \
+    \             }\r\n                pos = pos * gs % im;\r\n            }\r\n \
+    \       }\r\n        return res;\r\n    };\r\n\r\n    for (ll d = 2; d * d <=\
+    \ g; d++)\r\n        if (g % d == 0) {\r\n            int sz = 0;\r\n        \
+    \    while (g % d == 0) {\r\n                g /= d;\r\n                sz++;\r\
+    \n            }\r\n            a = _subroot(d, sz, a);\r\n        }\r\n    if\
+    \ (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return a;\r\n}\r\n\r\null floor_root(ull\
+    \ a, ull k) {\r\n    if (a <= 1 or k == 1)\r\n        return a;\r\n    if (k >=\
+    \ 64)\r\n        return 1;\r\n    if (k == 2)\r\n        return sqrtl(a);\r\n\
+    \    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\n        a--;\r\n    auto\
+    \ mul = [&](ull &x, const ull &y) {\r\n        if (x <= LIM / y)\r\n         \
+    \   x *= y;\r\n        else\r\n            x = LIM;\r\n    };\r\n    auto pw =\
+    \ [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n        while (t) {\r\n\
+    \            if (t & 1)\r\n                mul(y, x);\r\n            mul(x, x);\r\
+    \n            t >>= 1;\r\n        }\r\n        return y;\r\n    };\r\n    ull\
+    \ ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while\
+    \ (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\
+    \n * @brief Primitive Function\r\n */\n#line 2 \"FPS/multievalgeom.hpp\"\n\ntemplate<typename\
     \ T>vector<T> MultievalGeomSeq(vector<T>& f,T a,T w,int m){\n    int n=f.size();\n\
     \    vector<T> ret(m);\n    if(w==0){\n        T base=1;\n        rep(i,0,n)ret[0]+=base*f[i],base*=a;\n\
     \        rep(i,1,m)ret[i]=f[0];\n        return ret;\n    }\n    vector<T> tri(n+m-1),itri(n+m-1);\n\
@@ -688,7 +698,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp

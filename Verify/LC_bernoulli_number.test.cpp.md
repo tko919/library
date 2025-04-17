@@ -46,20 +46,20 @@ data:
     \nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate <typename T, typename S =\
     \ T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a), S(0));\r\n}\r\
     \ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n    S ret = 1, base\
-    \ = a;\r\n    while (b) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
-    \        base *= base;\r\n        b >>= 1;\r\n    }\r\n    return ret;\r\n}\r\n\
-    template <typename T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n \
-    \       a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate\
-    \ <typename T> inline bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a\
-    \ = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename\
-    \ T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\
-    \n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n\
-    }\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\n    assert(y !=\
-    \ 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? x /\
-    \ y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n  \
-    \  return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int topbit(T\
-    \ x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\ntemplate\
-    \ <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
+    \ = a;\r\n    for (;;) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
+    \        b >>= 1;\r\n        if (b == 0)\r\n            break;\r\n        base\
+    \ *= base;\r\n    }\r\n    return ret;\r\n}\r\ntemplate <typename T> inline bool\
+    \ chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n        return 1;\r\
+    \n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a,\
+    \ T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\
+    \n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\
+    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
+    \ (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T, typename U>\
+    \ T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x =\
+    \ -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate\
+    \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
+    \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
+    \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
     \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
     \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
     )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
@@ -487,7 +487,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_bernoulli_number.test.cpp

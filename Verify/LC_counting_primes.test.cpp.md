@@ -34,20 +34,20 @@ data:
     \nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate <typename T, typename S =\
     \ T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a), S(0));\r\n}\r\
     \ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n    S ret = 1, base\
-    \ = a;\r\n    while (b) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
-    \        base *= base;\r\n        b >>= 1;\r\n    }\r\n    return ret;\r\n}\r\n\
-    template <typename T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n \
-    \       a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate\
-    \ <typename T> inline bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a\
-    \ = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename\
-    \ T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\
-    \n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n\
-    }\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\n    assert(y !=\
-    \ 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? x /\
-    \ y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n  \
-    \  return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int topbit(T\
-    \ x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\ntemplate\
-    \ <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
+    \ = a;\r\n    for (;;) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
+    \        b >>= 1;\r\n        if (b == 0)\r\n            break;\r\n        base\
+    \ *= base;\r\n    }\r\n    return ret;\r\n}\r\ntemplate <typename T> inline bool\
+    \ chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n        return 1;\r\
+    \n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a,\
+    \ T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\
+    \n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\
+    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
+    \ (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T, typename U>\
+    \ T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x =\
+    \ -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate\
+    \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
+    \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
+    \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
     \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
     \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
     )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
@@ -90,19 +90,21 @@ data:
     \ = isp[3] = true;\r\n\r\n    vector<int> ret;\r\n    for (int i = 2; i <= N;\
     \ i++)\r\n        if (isp[i]) {\r\n            ret.push_back(i);\r\n        }\r\
     \n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Prime Sieve\r\n */\n#line 3 \"\
-    Math/primesum.hpp\"\n\r\ntemplate<typename T,T (*F)(ll)>struct PrimeSum{\r\n \
-    \   ll N,SQ;\r\n    vector<T> lo,hi;\r\n    PrimeSum(ll n=0):N(n),SQ(sqrtl(N)),lo(SQ+1),hi(SQ+1){\r\
-    \n        rep(i,1,SQ+1){\r\n            lo[i]=F(i)-1;\r\n            hi[i]=F(N/i)-1;\r\
-    \n        }\r\n        auto ps=sieve(SQ);\r\n        for(auto& p:ps){\r\n    \
-    \        ll q=ll(p)*p;\r\n            if(q>N)break;\r\n            T sub=lo[p-1],fp=lo[p]-lo[p-1];\r\
-    \n            ll L=min(SQ,N/q),M=SQ/p;\r\n            rep(i,1,M+1)hi[i]-=fp*(hi[i*p]-sub);\r\
-    \n            rep(i,M+1,L+1)hi[i]-=fp*(lo[double(N)/(i*p)]-sub);\r\n         \
-    \   for(int i=SQ;i>=q;i--)lo[i]-=fp*(lo[double(i)/p]-sub);\r\n        }\r\n  \
-    \  }\r\n    T operator[](ll x) {\r\n        return (x<=SQ?lo[x]:hi[N/x]);\r\n\
-    \    }\r\n};\r\n\r\n/**\r\n * @brief Prime Sum\r\n * @docs docs/primesum.md\r\n\
-    \ */\n#line 5 \"Verify/LC_counting_primes.test.cpp\"\n\r\nll F(ll x){return x;}\r\
-    \n\r\nint main(){\r\n    ll n;\r\n    cin>>n;\r\n    PrimeSum<ll,F> pc(n);\r\n\
-    \    cout<<pc[n]<<'\\n';\r\n    return 0;\r\n}\n"
+    Math/primesum.hpp\"\n\r\ntemplate <typename T, T (*F)(ll)> struct PrimeSum {\r\
+    \n    ll N, SQ;\r\n    vector<T> lo, hi;\r\n    PrimeSum(ll n = 0) : N(n), SQ(sqrtl(N)),\
+    \ lo(SQ + 1), hi(SQ + 1) {\r\n        rep(i, 1, SQ + 1) {\r\n            lo[i]\
+    \ = F(i) - 1;\r\n            hi[i] = F(N / i) - 1;\r\n        }\r\n        auto\
+    \ ps = sieve(SQ);\r\n        for (auto &p : ps) {\r\n            ll q = ll(p)\
+    \ * p;\r\n            if (q > N)\r\n                break;\r\n            T sub\
+    \ = lo[p - 1], fp = lo[p] - lo[p - 1];\r\n            ll L = min(SQ, N / q), M\
+    \ = SQ / p;\r\n            rep(i, 1, M + 1) hi[i] -= fp * (hi[i * p] - sub);\r\
+    \n            rep(i, M + 1, L + 1) hi[i] -= fp * (lo[double(N) / i / p] - sub);\r\
+    \n            for (int i = SQ; i >= q; i--)\r\n                lo[i] -= fp * (lo[double(i)\
+    \ / p] - sub);\r\n        }\r\n    }\r\n    T operator[](ll x) {\r\n        return\
+    \ (x <= SQ ? lo[x] : hi[N / x]);\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Prime\
+    \ Sum\r\n * @docs docs/primesum.md\r\n */\n#line 5 \"Verify/LC_counting_primes.test.cpp\"\
+    \n\r\nll F(ll x){return x;}\r\n\r\nint main(){\r\n    ll n;\r\n    cin>>n;\r\n\
+    \    PrimeSum<ll,F> pc(n);\r\n    cout<<pc[n]<<'\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Math/primesum.hpp\"\r\n\r\n\
     ll F(ll x){return x;}\r\n\r\nint main(){\r\n    ll n;\r\n    cin>>n;\r\n    PrimeSum<ll,F>\
@@ -114,7 +116,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_counting_primes.test.cpp

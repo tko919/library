@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: Polynomial Interpolation on Geometric Sequence
     links: []
   bundledCode: "#line 2 \"FPS/interpolategeom.hpp\"\n\ntemplate <typename T>\nvector<T>\
     \ InterpolateGeomSeq(int n, T a, T w, vector<T> &y) {\n    if (n == 0)\n     \
@@ -27,8 +28,8 @@ data:
     \       f[k] = -f[k];\n    }\n\n    // sum W_i/(1-w^i x)\n    Poly<T> g = MultievalGeomSeq(W,\
     \ T(1), w, n);\n\n    f *= g;\n    f.resize(n);\n    reverse(ALL(f));\n    T ia\
     \ = a.inv(), c = 1;\n    rep(i, 0, n) {\n        f[i] *= c;\n        c *= ia;\n\
-    \    }\n    return f;\n}\n\n/**\n * Polynomial Interpolation on Geometric Sequence\n\
-    \ */\n"
+    \    }\n    return f;\n}\n\n/**\n * @brief Polynomial Interpolation on Geometric\
+    \ Sequence\n */\n"
   code: "#pragma once\n\ntemplate <typename T>\nvector<T> InterpolateGeomSeq(int n,\
     \ T a, T w, vector<T> &y) {\n    if (n == 0)\n        return {};\n    auto listinv\
     \ = [&](vector<T> a) -> vector<T> {\n        int N = a.size();\n        vector<T>\
@@ -48,12 +49,12 @@ data:
     \n    // sum W_i/(1-w^i x)\n    Poly<T> g = MultievalGeomSeq(W, T(1), w, n);\n\
     \n    f *= g;\n    f.resize(n);\n    reverse(ALL(f));\n    T ia = a.inv(), c =\
     \ 1;\n    rep(i, 0, n) {\n        f[i] *= c;\n        c *= ia;\n    }\n    return\
-    \ f;\n}\n\n/**\n * Polynomial Interpolation on Geometric Sequence\n */"
+    \ f;\n}\n\n/**\n * @brief Polynomial Interpolation on Geometric Sequence\n */"
   dependsOn: []
   isVerificationFile: false
   path: FPS/interpolategeom.hpp
   requiredBy: []
-  timestamp: '2024-10-13 16:49:34+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/interpolategeom.hpp
@@ -61,5 +62,5 @@ layout: document
 redirect_from:
 - /library/FPS/interpolategeom.hpp
 - /library/FPS/interpolategeom.hpp.html
-title: FPS/interpolategeom.hpp
+title: Polynomial Interpolation on Geometric Sequence
 ---

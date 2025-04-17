@@ -1,29 +1,19 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: Convolution/divisor.hpp
+    title: Divisor Multiple Transform
   - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Math/mobius.hpp
-    title: Mobius table
-  - icon: ':warning:'
-    path: Math/totient.hpp
-    title: lpf table
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Verify/LC_gcd_convolution.test.cpp
-    title: Verify/LC_gcd_convolution.test.cpp
-  - icon: ':x:'
-    path: Verify/LC_lcm_convolution.test.cpp
-    title: Verify/LC_lcm_convolution.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/divisor.md
-    document_title: Divisor Multiple Transform
+    document_title: lpf table
     links: []
   bundledCode: "#line 2 \"Math/sieve.hpp\"\n\r\ntemplate <int L = 101010101> vector<int>\
     \ sieve(int N) {\r\n    bitset<L> isp;\r\n    int n, sq = ceil(sqrt(N));\r\n \
@@ -62,44 +52,25 @@ data:
     \           ps=sieve(N);\r\n            n=N;\r\n        }\r\n        for(auto&\
     \ p:ps){\r\n            for(int k=1;k*p<=N;k++)a[k]-=a[k*p];\r\n        }\r\n\
     \    }\r\n};\r\n\r\n/**\r\n * @brief Divisor Multiple Transform\r\n * @docs docs/divisor.md\r\
-    \n */\n"
-  code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\nnamespace DivisorTransform{\r\
-    \n    int n;\r\n    vector<int> ps;\r\n    template<typename T>void zeta(vector<T>&\
-    \ a){\r\n        int N=a.size()-1;\r\n        if(n<N){\r\n            ps=sieve(N);\r\
-    \n            n=N;\r\n        }\r\n        for(auto& p:ps){\r\n            for(int\
-    \ k=1;k*p<=N;k++)a[k*p]+=a[k];\r\n        }\r\n    }\r\n    template<typename\
-    \ T>void mobius(vector<T>& a){\r\n        int N=a.size()-1;\r\n        if(n<N){\r\
-    \n            ps=sieve(N);\r\n            n=N;\r\n        }\r\n        for(auto&\
-    \ p:ps){\r\n            for(int k=N/p;k;k--)a[k*p]-=a[k];\r\n        }\r\n   \
-    \ }\r\n};\r\n\r\nnamespace MultipleTransform{\r\n    int n;\r\n    vector<int>\
-    \ ps;\r\n    template<typename T>void zeta(vector<T>& a){\r\n        int N=a.size()-1;\r\
-    \n        if(n<N){\r\n            ps=sieve(N);\r\n            n=N;\r\n       \
-    \ }\r\n        for(auto& p:ps){\r\n            for(int k=N/p;k;k--)a[k]+=a[k*p];\r\
-    \n        }\r\n    }\r\n    template<typename T>void mobius(vector<T>& a){\r\n\
-    \        int N=a.size()-1;\r\n        if(n<N){\r\n            ps=sieve(N);\r\n\
-    \            n=N;\r\n        }\r\n        for(auto& p:ps){\r\n            for(int\
-    \ k=1;k*p<=N;k++)a[k]-=a[k*p];\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
-    \ Divisor Multiple Transform\r\n * @docs docs/divisor.md\r\n */"
+    \n */\n#line 3 \"Math/totient.hpp\"\n\nvector<int> phitable(int n) {\n    vector<int>\
+    \ ret(n + 1);\n    iota(ALL(ret), 0);\n    DivisorTransform::mobius(ret);\n  \
+    \  return ret;\n}\n\n/**\n * @brief lpf table\n */\n"
+  code: "#pragma once\n#include \"Convolution/divisor.hpp\"\n\nvector<int> phitable(int\
+    \ n) {\n    vector<int> ret(n + 1);\n    iota(ALL(ret), 0);\n    DivisorTransform::mobius(ret);\n\
+    \    return ret;\n}\n\n/**\n * @brief lpf table\n */"
   dependsOn:
+  - Convolution/divisor.hpp
   - Math/sieve.hpp
   isVerificationFile: false
-  path: Convolution/divisor.hpp
-  requiredBy:
-  - Math/mobius.hpp
-  - Math/totient.hpp
-  timestamp: '2025-04-06 06:46:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/LC_lcm_convolution.test.cpp
-documentation_of: Convolution/divisor.hpp
+  path: Math/totient.hpp
+  requiredBy: []
+  timestamp: '2025-04-17 22:07:07+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Math/totient.hpp
 layout: document
 redirect_from:
-- /library/Convolution/divisor.hpp
-- /library/Convolution/divisor.hpp.html
-title: Divisor Multiple Transform
+- /library/Math/totient.hpp
+- /library/Math/totient.hpp.html
+title: lpf table
 ---
-## 使い方
-
-`void DivisorTransform::zeta(vector<T>& a)`: $a'[n]=\sum_{n \bmod d=0} a[d]$ を計算。 `mobius(vector<T>& a)` は逆変換。  
-`void MultipleTransform::zeta(vector<T>& a)`: $a'[n]=\sum_{k \bmod n=0} a[k]$ を計算。 `mobius(vector<T>& a)` は逆変換。

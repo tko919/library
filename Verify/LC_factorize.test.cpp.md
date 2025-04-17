@@ -36,49 +36,50 @@ data:
     \ int inf = 0x3fffffff;\r\nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate\
     \ <typename T, typename S = T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a),\
     \ S(0));\r\n}\r\ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n \
-    \   S ret = 1, base = a;\r\n    while (b) {\r\n        if (b & 1)\r\n        \
-    \    ret *= base;\r\n        base *= base;\r\n        b >>= 1;\r\n    }\r\n  \
-    \  return ret;\r\n}\r\ntemplate <typename T> inline bool chmax(T &a, T b) {\r\n\
-    \    if (a < b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\n    return\
-    \ 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a, T b) {\r\n    if (a\
-    \ > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n\
-    }\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\
-    \n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1)\
-    \ / y : x / y);\r\n}\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\
-    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
-    \ (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T\
-    \ x) {\r\n    return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int\
-    \ topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\n\
-    template <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
-    \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
-    \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
-    )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
-    \ &os, const vector<T> &vec) {\r\n    os << \"{\";\r\n    for (int i = 0; i <\
-    \ vec.size(); i++) {\r\n        os << vec[i] << (i + 1 == vec.size() ? \"\" :\
-    \ \", \");\r\n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename\
-    \ T, typename U>\r\nostream &operator<<(ostream &os, const map<T, U> &map_var)\
-    \ {\r\n    os << \"{\";\r\n    for (auto itr = map_var.begin(); itr != map_var.end();\
-    \ itr++) {\r\n        os << \"(\" << itr->first << \", \" << itr->second << \"\
-    )\";\r\n        itr++;\r\n        if (itr != map_var.end())\r\n            os\
-    \ << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return os;\r\
-    \n}\r\ntemplate <typename T> ostream &operator<<(ostream &os, const set<T> &set_var)\
-    \ {\r\n    os << \"{\";\r\n    for (auto itr = set_var.begin(); itr != set_var.end();\
-    \ itr++) {\r\n        os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\
-    \n            os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n\
-    \    return os;\r\n}\r\n#ifdef LOCAL\r\n#define debug 1\r\n#define show(...) _show(0,\
-    \ #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define debug 0\r\n#define show(...)\
-    \ true\r\n#endif\r\ntemplate <typename T> void _show(int i, T name) {\r\n    cerr\
-    \ << '\\n';\r\n}\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid\
-    \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
-    \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
-    \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Math/miller.hpp\"\
-    \n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\n    using u64 = uint64_t;\r\n\
-    \    using u128 = __uint128_t;\r\n\r\n    static u64 mod;\r\n    static u64 r;\r\
-    \n    static u64 n2;\r\n\r\n    static u64 get_r() {\r\n        u64 ret = mod;\r\
-    \n        rep(_,0,5) ret *= 2 - mod * ret;\r\n        return ret;\r\n    }\r\n\
-    \r\n    static void set_mod(u64 m) {\r\n        assert(m < (1LL << 62));\r\n \
-    \       assert((m & 1) == 1);\r\n        mod = m;\r\n        n2 = -u128(m) % m;\r\
-    \n        r = get_r();\r\n        assert(r * mod == 1);\r\n    }\r\n    static\
+    \   S ret = 1, base = a;\r\n    for (;;) {\r\n        if (b & 1)\r\n         \
+    \   ret *= base;\r\n        b >>= 1;\r\n        if (b == 0)\r\n            break;\r\
+    \n        base *= base;\r\n    }\r\n    return ret;\r\n}\r\ntemplate <typename\
+    \ T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n\
+    \        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline\
+    \ bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return\
+    \ 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T\
+    \ x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\
+    \n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T,\
+    \ typename U> T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n\
+    \        x = -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n\
+    }\r\ntemplate <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\
+    \n}\r\ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63\
+    \ - __builtin_clzll(x));\r\n}\r\ntemplate <typename T> int lowbit(T x) {\r\n \
+    \   return (x == 0 ? -1 : __builtin_ctzll(x));\r\n}\r\n\r\ntemplate <class T,\
+    \ class U>\r\nostream &operator<<(ostream &os, const pair<T, U> &p) {\r\n    os\
+    \ << \"P(\" << p.first << \", \" << p.second << \")\";\r\n    return os;\r\n}\r\
+    \ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T> &vec)\
+    \ {\r\n    os << \"{\";\r\n    for (int i = 0; i < vec.size(); i++) {\r\n    \
+    \    os << vec[i] << (i + 1 == vec.size() ? \"\" : \", \");\r\n    }\r\n    os\
+    \ << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T, typename U>\r\nostream\
+    \ &operator<<(ostream &os, const map<T, U> &map_var) {\r\n    os << \"{\";\r\n\
+    \    for (auto itr = map_var.begin(); itr != map_var.end(); itr++) {\r\n     \
+    \   os << \"(\" << itr->first << \", \" << itr->second << \")\";\r\n        itr++;\r\
+    \n        if (itr != map_var.end())\r\n            os << \", \";\r\n        itr--;\r\
+    \n    }\r\n    os << \"}\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream\
+    \ &operator<<(ostream &os, const set<T> &set_var) {\r\n    os << \"{\";\r\n  \
+    \  for (auto itr = set_var.begin(); itr != set_var.end(); itr++) {\r\n       \
+    \ os << *itr;\r\n        ++itr;\r\n        if (itr != set_var.end())\r\n     \
+    \       os << \", \";\r\n        itr--;\r\n    }\r\n    os << \"}\";\r\n    return\
+    \ os;\r\n}\r\n#ifdef LOCAL\r\n#define debug 1\r\n#define show(...) _show(0, #__VA_ARGS__,\
+    \ __VA_ARGS__)\r\n#else\r\n#define debug 0\r\n#define show(...) true\r\n#endif\r\
+    \ntemplate <typename T> void _show(int i, T name) {\r\n    cerr << '\\n';\r\n\
+    }\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid _show(int i,\
+    \ const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i] != ',' && a[i]\
+    \ != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\" << b << \" \";\r\
+    \n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Math/miller.hpp\"\n\r\nstruct m64\
+    \ {\r\n    using i64 = int64_t;\r\n    using u64 = uint64_t;\r\n    using u128\
+    \ = __uint128_t;\r\n\r\n    static u64 mod;\r\n    static u64 r;\r\n    static\
+    \ u64 n2;\r\n\r\n    static u64 get_r() {\r\n        u64 ret = mod;\r\n      \
+    \  rep(_,0,5) ret *= 2 - mod * ret;\r\n        return ret;\r\n    }\r\n\r\n  \
+    \  static void set_mod(u64 m) {\r\n        assert(m < (1LL << 62));\r\n      \
+    \  assert((m & 1) == 1);\r\n        mod = m;\r\n        n2 = -u128(m) % m;\r\n\
+    \        r = get_r();\r\n        assert(r * mod == 1);\r\n    }\r\n    static\
     \ u64 get_mod() { return mod; }\r\n\r\n    u64 a;\r\n    m64() : a(0) {}\r\n \
     \   m64(const int64_t &b) : a(reduce((u128(b) + mod) * n2)){};\r\n\r\n    static\
     \ u64 reduce(const u128 &b) {\r\n        return (b + u128(u64(b) * u64(-r)) *\
@@ -141,11 +142,21 @@ data:
     \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
     \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
     \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
-    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\
-    \n */\n#line 5 \"Verify/LC_factorize.test.cpp\"\n\r\nint main(){\r\n    int q;\r\
-    \n    cin>>q;\r\n    while(q--){\r\n        ll n;\r\n        cin>>n;\r\n     \
-    \   auto ps=Pollard(n);\r\n        cout<<ps.size()<<'\\n';\r\n        sort(ALL(ps));\r\
-    \n        for(auto& p:ps)cout<<p<<'\\n';\r\n    }\r\n    return 0;\r\n}\n"
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n)\
+    \ {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
+    \ int>;\r\n    vector<P> pes;\r\n    for (auto &p : ps) {\r\n        if (pes.empty()\
+    \ or pes.back().first != p) {\r\n            pes.push_back({p, 1});\r\n      \
+    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    vector<ll>\
+    \ ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\n        if\
+    \ (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n            return;\r\n\
+    \        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
+    \ {\r\n            d *= pes[id].first;\r\n            rec(rec, id + 1, d);\r\n\
+    \        }\r\n    };\r\n    rec(rec, 0, 1);\r\n    sort(ALL(ret));\r\n    return\
+    \ ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n#line 5 \"Verify/LC_factorize.test.cpp\"\
+    \n\r\nint main(){\r\n    int q;\r\n    cin>>q;\r\n    while(q--){\r\n        ll\
+    \ n;\r\n        cin>>n;\r\n        auto ps=Pollard(n);\r\n        cout<<ps.size()<<'\\\
+    n';\r\n        sort(ALL(ps));\r\n        for(auto& p:ps)cout<<p<<'\\n';\r\n  \
+    \  }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\r\n\r\n#include\
     \ \"Template/template.hpp\"\r\n#include \"Math/pollard.hpp\"\r\n\r\nint main(){\r\
     \n    int q;\r\n    cin>>q;\r\n    while(q--){\r\n        ll n;\r\n        cin>>n;\r\
@@ -159,7 +170,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_factorize.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_factorize.test.cpp

@@ -45,27 +45,36 @@ data:
   attributes:
     document_title: Binary Indexed Tree
     links: []
-  bundledCode: "#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate<typename T>struct\
-    \ BIT{\r\n    int n; T all=0; vector<T> val;\r\n    BIT(int _n=0):n(_n),val(_n+10){}\r\
-    \n    void clear(){val.assign(n+10,0); all=T();}\r\n    void add(int i,T x){\r\
-    \n        for(i++;i<=n;i+=(i&-i))val[i]=val[i]+x;\r\n        all+=x;\r\n    }\r\
-    \n    T sum(int i){\r\n        T res=0;\r\n        for(;i;i-=(i&-i))res+=val[i];\r\
-    \n        return res;\r\n    }\r\n    T sum(int L,int R){return sum(R)-sum(L);}\
-    \ // [L,R)\r\n    int lower_bound(T x){\r\n        int ret=0,len=1;\r\n      \
-    \  while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\n            if(ret+len<=n\
-    \ and val[ret+len]<x){\r\n                ret+=len;\r\n                x-=val[ret];\r\
+  bundledCode: "#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate <typename T> struct\
+    \ BIT {\r\n    int n;\r\n    T all = 0;\r\n    vector<T> val;\r\n    BIT(int _n\
+    \ = 0) : n(_n), val(_n + 10) {}\r\n    void clear() {\r\n        val.assign(n\
+    \ + 10, 0);\r\n        all = T();\r\n    }\r\n    void add(int i, T x) {\r\n \
+    \       for (i++; i <= n; i += (i & -i))\r\n            val[i] = val[i] + x;\r\
+    \n        all += x;\r\n    }\r\n    T sum(int i) {\r\n        i = clamp(i, 0,\
+    \ n);\r\n        T res = 0;\r\n        for (; i; i -= (i & -i))\r\n          \
+    \  res += val[i];\r\n        return res;\r\n    }\r\n    // [L,R)\r\n    T sum(int\
+    \ L, int R) {\r\n        if (L > R)\r\n            return T(0);\r\n        return\
+    \ sum(R) - sum(L);\r\n    }\r\n    int lower_bound(T x) {\r\n        int ret =\
+    \ 0, len = 1;\r\n        while (2 * len <= n)\r\n            len <<= 1;\r\n  \
+    \      for (; len >= 1; len >>= 1) {\r\n            if (ret + len <= n and val[ret\
+    \ + len] < x) {\r\n                ret += len;\r\n                x -= val[ret];\r\
     \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
     \n * @brief Binary Indexed Tree\r\n */\n"
-  code: "#pragma once\r\n\r\ntemplate<typename T>struct BIT{\r\n    int n; T all=0;\
-    \ vector<T> val;\r\n    BIT(int _n=0):n(_n),val(_n+10){}\r\n    void clear(){val.assign(n+10,0);\
-    \ all=T();}\r\n    void add(int i,T x){\r\n        for(i++;i<=n;i+=(i&-i))val[i]=val[i]+x;\r\
-    \n        all+=x;\r\n    }\r\n    T sum(int i){\r\n        T res=0;\r\n      \
-    \  for(;i;i-=(i&-i))res+=val[i];\r\n        return res;\r\n    }\r\n    T sum(int\
-    \ L,int R){return sum(R)-sum(L);} // [L,R)\r\n    int lower_bound(T x){\r\n  \
-    \      int ret=0,len=1;\r\n        while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\
-    \n            if(ret+len<=n and val[ret+len]<x){\r\n                ret+=len;\r\
-    \n                x-=val[ret];\r\n            }\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n */"
+  code: "#pragma once\r\n\r\ntemplate <typename T> struct BIT {\r\n    int n;\r\n\
+    \    T all = 0;\r\n    vector<T> val;\r\n    BIT(int _n = 0) : n(_n), val(_n +\
+    \ 10) {}\r\n    void clear() {\r\n        val.assign(n + 10, 0);\r\n        all\
+    \ = T();\r\n    }\r\n    void add(int i, T x) {\r\n        for (i++; i <= n; i\
+    \ += (i & -i))\r\n            val[i] = val[i] + x;\r\n        all += x;\r\n  \
+    \  }\r\n    T sum(int i) {\r\n        i = clamp(i, 0, n);\r\n        T res = 0;\r\
+    \n        for (; i; i -= (i & -i))\r\n            res += val[i];\r\n        return\
+    \ res;\r\n    }\r\n    // [L,R)\r\n    T sum(int L, int R) {\r\n        if (L\
+    \ > R)\r\n            return T(0);\r\n        return sum(R) - sum(L);\r\n    }\r\
+    \n    int lower_bound(T x) {\r\n        int ret = 0, len = 1;\r\n        while\
+    \ (2 * len <= n)\r\n            len <<= 1;\r\n        for (; len >= 1; len >>=\
+    \ 1) {\r\n            if (ret + len <= n and val[ret + len] < x) {\r\n       \
+    \         ret += len;\r\n                x -= val[ret];\r\n            }\r\n \
+    \       }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary\
+    \ Indexed Tree\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/bit.hpp
@@ -75,7 +84,7 @@ data:
   - DataStructure/staticrectsum.hpp
   - DataStructure/staticrectaddrectsum.hpp
   - DataStructure/2dbit.hpp
-  timestamp: '2022-10-24 03:26:33+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp

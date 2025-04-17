@@ -37,20 +37,20 @@ data:
     \nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate <typename T, typename S =\
     \ T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a), S(0));\r\n}\r\
     \ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n    S ret = 1, base\
-    \ = a;\r\n    while (b) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
-    \        base *= base;\r\n        b >>= 1;\r\n    }\r\n    return ret;\r\n}\r\n\
-    template <typename T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n \
-    \       a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate\
-    \ <typename T> inline bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a\
-    \ = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename\
-    \ T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\
-    \n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n\
-    }\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\n    assert(y !=\
-    \ 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? x /\
-    \ y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n  \
-    \  return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int topbit(T\
-    \ x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\ntemplate\
-    \ <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
+    \ = a;\r\n    for (;;) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
+    \        b >>= 1;\r\n        if (b == 0)\r\n            break;\r\n        base\
+    \ *= base;\r\n    }\r\n    return ret;\r\n}\r\ntemplate <typename T> inline bool\
+    \ chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n        return 1;\r\
+    \n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a,\
+    \ T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\
+    \n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\
+    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
+    \ (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T, typename U>\
+    \ T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x =\
+    \ -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate\
+    \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
+    \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
+    \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
     \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
     \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
     )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
@@ -194,12 +194,13 @@ data:
     \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
     \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
     \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 4 \"DataStructure/rbstset.hpp\"\
-    \n\r\ntemplate <typename T> class RBSTset {\r\n    struct Node {\r\n        Node\
-    \ *lp = nullptr, *rp = nullptr;\r\n        int size = 1;\r\n        T key;\r\n\
-    \        Node(T _k = 0) : key(_k) {}\r\n        void apply() {\r\n           \
-    \ size = 1;\r\n            if (lp)\r\n                size += lp->size;\r\n  \
-    \          if (rp)\r\n                size += rp->size;\r\n        }\r\n    };\r\
-    \n    int size(Node *x) {\r\n        return x ? x->size : 0;\r\n    }\r\n    Node\
+    \n\r\ntemplate <typename T, int LIM = 1000000> class RBSTset {\r\n    struct Node\
+    \ {\r\n        Node *lp = nullptr, *rp = nullptr;\r\n        int size = 1;\r\n\
+    \        T key;\r\n        Node() = default;\r\n        Node(T _k) : key(_k),\
+    \ lp(nullptr), rp(nullptr) {}\r\n        void apply() {\r\n            size =\
+    \ 1;\r\n            if (lp)\r\n                size += lp->size;\r\n         \
+    \   if (rp)\r\n                size += rp->size;\r\n        }\r\n    };\r\n  \
+    \  int size(Node *x) {\r\n        return x ? x->size : 0;\r\n    }\r\n    Node\
     \ *merge(Node *L, Node *R) {\r\n        if (!L)\r\n            return R;\r\n \
     \       if (!R)\r\n            return L;\r\n        if ((int)Random::get(size(L)\
     \ + size(R) - 1) < size(L)) {\r\n            L->rp = merge(L->rp, R);\r\n    \
@@ -221,30 +222,32 @@ data:
     \ v);\r\n        else\r\n            return size(x->lp) + 1 + upper_bound(x->rp,\
     \ v);\r\n    }\r\n    void _dump(Node *cur, vector<T> &a) {\r\n        if (!cur)\r\
     \n            return;\r\n        _dump(cur->lp, a);\r\n        a.push_back(cur->key);\r\
-    \n        _dump(cur->rp, a);\r\n    }\r\n\r\n  public:\r\n    Node *root;\r\n\
-    \    RBSTset(Node *_r = nullptr) : root(_r) {}\r\n    int size() {\r\n       \
-    \ return size(root);\r\n    }\r\n    void merge(RBSTset &a) {\r\n        root\
-    \ = merge(root, a.root);\r\n    }\r\n    RBSTset split(int k) {\r\n        auto\
-    \ [L, R] = split(root, k);\r\n        root = L;\r\n        return RBSTset(R);\r\
-    \n    }\r\n    bool find(T x) {\r\n        Node *cur = root;\r\n        for (;;)\
-    \ {\r\n            if (!cur)\r\n                break;\r\n            if (cur->key\
-    \ == x)\r\n                return true;\r\n            else if (x < cur->key)\r\
-    \n                cur = cur->lp;\r\n            else\r\n                cur =\
-    \ cur->rp;\r\n        }\r\n        return false;\r\n    }\r\n    void insert(T\
-    \ x, int k = -1) {\r\n        if (k == -1)\r\n            k = lower_bound(root,\
-    \ x);\r\n        auto [L, R] = split(root, k);\r\n        root = merge(merge(L,\
-    \ new Node(x)), R);\r\n    }\r\n    void erase(T x, int k = -1) {\r\n        if\
-    \ (k == -1) {\r\n            assert(find(x));\r\n            k = lower_bound(root,\
-    \ x);\r\n        }\r\n        auto [L, t] = split(root, k);\r\n        auto [tmp,\
-    \ R] = split(t, 1);\r\n        root = merge(L, R);\r\n    }\r\n    T kth_element(int\
-    \ k) {\r\n        if (k >= size(root) or k < 0)\r\n            return T();\r\n\
-    \        auto [L, R] = split(root, k);\r\n        Node *cur = R;\r\n        while\
-    \ (cur->lp)\r\n            cur = cur->lp;\r\n        root = merge(L, R);\r\n \
-    \       return cur->key;\r\n    }\r\n    int lower_bound(T v) {\r\n        return\
-    \ lower_bound(root, v);\r\n    }\r\n    int upper_bound(T v) {\r\n        return\
-    \ upper_bound(root, v);\r\n    }\r\n    vector<T> dump() {\r\n        vector<T>\
-    \ ret;\r\n        _dump(root, ret);\r\n        return ret;\r\n    }\r\n};\r\n\r\
-    \n/**\r\n * @brief Randomized Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_predecessor_problem.test.cpp\"\
+    \n        _dump(cur->rp, a);\r\n    }\r\n\r\n  public:\r\n    array<Node, LIM>\
+    \ pool;\r\n    int ptr;\r\n    Node *root;\r\n    RBSTset(Node *_r = nullptr)\
+    \ : root(_r), ptr(0) {}\r\n    int size() {\r\n        return size(root);\r\n\
+    \    }\r\n    inline Node *alloc(const T &key) {\r\n        return &(pool[ptr++]\
+    \ = Node(key));\r\n    }\r\n    void merge(RBSTset &a) {\r\n        root = merge(root,\
+    \ a.root);\r\n    }\r\n    RBSTset split(int k) {\r\n        auto [L, R] = split(root,\
+    \ k);\r\n        root = L;\r\n        return RBSTset(R);\r\n    }\r\n    bool\
+    \ find(T x) {\r\n        Node *cur = root;\r\n        for (;;) {\r\n         \
+    \   if (!cur)\r\n                break;\r\n            if (cur->key == x)\r\n\
+    \                return true;\r\n            else if (x < cur->key)\r\n      \
+    \          cur = cur->lp;\r\n            else\r\n                cur = cur->rp;\r\
+    \n        }\r\n        return false;\r\n    }\r\n    void insert(T x, int k =\
+    \ -1) {\r\n        if (k == -1)\r\n            k = lower_bound(root, x);\r\n \
+    \       auto [L, R] = split(root, k);\r\n        root = merge(merge(L, alloc(x)),\
+    \ R);\r\n    }\r\n    void erase(T x, int k = -1) {\r\n        if (k == -1) {\r\
+    \n            assert(find(x));\r\n            k = lower_bound(root, x);\r\n  \
+    \      }\r\n        auto [L, t] = split(root, k);\r\n        auto [tmp, R] = split(t,\
+    \ 1);\r\n        root = merge(L, R);\r\n    }\r\n    T kth_element(int k) {\r\n\
+    \        if (k >= size(root) or k < 0)\r\n            return T();\r\n        auto\
+    \ [L, R] = split(root, k);\r\n        Node *cur = R;\r\n        while (cur->lp)\r\
+    \n            cur = cur->lp;\r\n        root = merge(L, R);\r\n        return\
+    \ cur->key;\r\n    }\r\n    int lower_bound(T v) {\r\n        return lower_bound(root,\
+    \ v);\r\n    }\r\n    int upper_bound(T v) {\r\n        return upper_bound(root,\
+    \ v);\r\n    }\r\n    vector<T> dump() {\r\n        vector<T> ret;\r\n       \
+    \ _dump(root, ret);\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief\
+    \ Randomized Binary Search Tree (set)\r\n */\n#line 6 \"Verify/LC_predecessor_problem.test.cpp\"\
     \n\r\nint main(){\r\n    int n,q;\r\n    string s;\r\n    read(n,q,s);\r\n   \
     \ RBSTset<int> tree;\r\n    rep(i,0,n)if(s[i]=='1'){\r\n        tree.insert(i);\r\
     \n    }\r\n    while(q--){\r\n        //tree.dump();\r\n        int t,x;\r\n \
@@ -273,7 +276,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_predecessor_problem.test.cpp

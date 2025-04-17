@@ -31,20 +31,20 @@ data:
     \nconst ll INF = 0x1fffffffffffffff;\r\n\r\ntemplate <typename T, typename S =\
     \ T> S SUM(const vector<T> &a) {\r\n    return accumulate(ALL(a), S(0));\r\n}\r\
     \ntemplate <typename S, typename T = S> S POW(S a, T b) {\r\n    S ret = 1, base\
-    \ = a;\r\n    while (b) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
-    \        base *= base;\r\n        b >>= 1;\r\n    }\r\n    return ret;\r\n}\r\n\
-    template <typename T> inline bool chmax(T &a, T b) {\r\n    if (a < b) {\r\n \
-    \       a = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate\
-    \ <typename T> inline bool chmin(T &a, T b) {\r\n    if (a > b) {\r\n        a\
-    \ = b;\r\n        return 1;\r\n    }\r\n    return 0;\r\n}\r\ntemplate <typename\
-    \ T, typename U> T ceil(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\
-    \n        x = -x, y = -y;\r\n    return (x > 0 ? (x + y - 1) / y : x / y);\r\n\
-    }\r\ntemplate <typename T, typename U> T floor(T x, U y) {\r\n    assert(y !=\
-    \ 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return (x > 0 ? x /\
-    \ y : (x - y + 1) / y);\r\n}\r\ntemplate <typename T> int popcnt(T x) {\r\n  \
-    \  return __builtin_popcountll(x);\r\n}\r\ntemplate <typename T> int topbit(T\
-    \ x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\n}\r\ntemplate\
-    \ <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
+    \ = a;\r\n    for (;;) {\r\n        if (b & 1)\r\n            ret *= base;\r\n\
+    \        b >>= 1;\r\n        if (b == 0)\r\n            break;\r\n        base\
+    \ *= base;\r\n    }\r\n    return ret;\r\n}\r\ntemplate <typename T> inline bool\
+    \ chmax(T &a, T b) {\r\n    if (a < b) {\r\n        a = b;\r\n        return 1;\r\
+    \n    }\r\n    return 0;\r\n}\r\ntemplate <typename T> inline bool chmin(T &a,\
+    \ T b) {\r\n    if (a > b) {\r\n        a = b;\r\n        return 1;\r\n    }\r\
+    \n    return 0;\r\n}\r\ntemplate <typename T, typename U> T ceil(T x, U y) {\r\
+    \n    assert(y != 0);\r\n    if (y < 0)\r\n        x = -x, y = -y;\r\n    return\
+    \ (x > 0 ? (x + y - 1) / y : x / y);\r\n}\r\ntemplate <typename T, typename U>\
+    \ T floor(T x, U y) {\r\n    assert(y != 0);\r\n    if (y < 0)\r\n        x =\
+    \ -x, y = -y;\r\n    return (x > 0 ? x / y : (x - y + 1) / y);\r\n}\r\ntemplate\
+    \ <typename T> int popcnt(T x) {\r\n    return __builtin_popcountll(x);\r\n}\r\
+    \ntemplate <typename T> int topbit(T x) {\r\n    return (x == 0 ? -1 : 63 - __builtin_clzll(x));\r\
+    \n}\r\ntemplate <typename T> int lowbit(T x) {\r\n    return (x == 0 ? -1 : __builtin_ctzll(x));\r\
     \n}\r\n\r\ntemplate <class T, class U>\r\nostream &operator<<(ostream &os, const\
     \ pair<T, U> &p) {\r\n    os << \"P(\" << p.first << \", \" << p.second << \"\
     )\";\r\n    return os;\r\n}\r\ntemplate <typename T> ostream &operator<<(ostream\
@@ -67,20 +67,24 @@ data:
     \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
     \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
     \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2 \"DataStructure/bit.hpp\"\
-    \n\r\ntemplate<typename T>struct BIT{\r\n    int n; T all=0; vector<T> val;\r\n\
-    \    BIT(int _n=0):n(_n),val(_n+10){}\r\n    void clear(){val.assign(n+10,0);\
-    \ all=T();}\r\n    void add(int i,T x){\r\n        for(i++;i<=n;i+=(i&-i))val[i]=val[i]+x;\r\
-    \n        all+=x;\r\n    }\r\n    T sum(int i){\r\n        T res=0;\r\n      \
-    \  for(;i;i-=(i&-i))res+=val[i];\r\n        return res;\r\n    }\r\n    T sum(int\
-    \ L,int R){return sum(R)-sum(L);} // [L,R)\r\n    int lower_bound(T x){\r\n  \
-    \      int ret=0,len=1;\r\n        while(2*len<=n)len<<=1;\r\n        for(;len>=1;len>>=1){\r\
-    \n            if(ret+len<=n and val[ret+len]<x){\r\n                ret+=len;\r\
-    \n                x-=val[ret];\r\n            }\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n */\n#line\
-    \ 5 \"Verify/LC_point_add_range_sum.test.cpp\"\n\r\nint main(){\r\n    int N,Q;\r\
-    \n    cin>>N>>Q;\r\n    vector<int> a(N);\r\n    rep(i,0,N)cin>>a[i];\r\n\r\n\
-    \    BIT<ll> bit(N);\r\n    rep(i,0,N)bit.add(i,a[i]);\r\n    while(Q--){\r\n\
-    \        int t;\r\n        cin>>t;\r\n        if(t==0){\r\n            int p,x;\r\
+    \n\r\ntemplate <typename T> struct BIT {\r\n    int n;\r\n    T all = 0;\r\n \
+    \   vector<T> val;\r\n    BIT(int _n = 0) : n(_n), val(_n + 10) {}\r\n    void\
+    \ clear() {\r\n        val.assign(n + 10, 0);\r\n        all = T();\r\n    }\r\
+    \n    void add(int i, T x) {\r\n        for (i++; i <= n; i += (i & -i))\r\n \
+    \           val[i] = val[i] + x;\r\n        all += x;\r\n    }\r\n    T sum(int\
+    \ i) {\r\n        i = clamp(i, 0, n);\r\n        T res = 0;\r\n        for (;\
+    \ i; i -= (i & -i))\r\n            res += val[i];\r\n        return res;\r\n \
+    \   }\r\n    // [L,R)\r\n    T sum(int L, int R) {\r\n        if (L > R)\r\n \
+    \           return T(0);\r\n        return sum(R) - sum(L);\r\n    }\r\n    int\
+    \ lower_bound(T x) {\r\n        int ret = 0, len = 1;\r\n        while (2 * len\
+    \ <= n)\r\n            len <<= 1;\r\n        for (; len >= 1; len >>= 1) {\r\n\
+    \            if (ret + len <= n and val[ret + len] < x) {\r\n                ret\
+    \ += len;\r\n                x -= val[ret];\r\n            }\r\n        }\r\n\
+    \        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\
+    \n */\n#line 5 \"Verify/LC_point_add_range_sum.test.cpp\"\n\r\nint main(){\r\n\
+    \    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N);\r\n    rep(i,0,N)cin>>a[i];\r\
+    \n\r\n    BIT<ll> bit(N);\r\n    rep(i,0,N)bit.add(i,a[i]);\r\n    while(Q--){\r\
+    \n        int t;\r\n        cin>>t;\r\n        if(t==0){\r\n            int p,x;\r\
     \n            cin>>p>>x;\r\n            bit.add(p,x);\r\n        }\r\n       \
     \ else{\r\n            int L,R;\r\n            cin>>L>>R;\r\n            cout<<bit.sum(L,R)<<'\\\
     n';\r\n        }\r\n    }\r\n    return 0;\r\n}\n"
@@ -99,7 +103,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_point_add_range_sum.test.cpp

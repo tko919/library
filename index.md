@@ -221,7 +221,7 @@ data:
       title: interpolate (one point)
     - icon: ':warning:'
       path: FPS/interpolategeom.hpp
-      title: FPS/interpolategeom.hpp
+      title: Polynomial Interpolation on Geometric Sequence
     - icon: ':warning:'
       path: FPS/mobius.hpp
       title: Mobius Transform
@@ -346,7 +346,7 @@ data:
     - icon: ':x:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':question:'
+    - icon: ':x:'
       path: Graph/linkcut.hpp
       title: Link-Cut Tree
     - icon: ':x:'
@@ -432,6 +432,9 @@ data:
     - icon: ':x:'
       path: Math/hafnian.hpp
       title: Hafnian of matrix
+    - icon: ':warning:'
+      path: Math/hash.hpp
+      title: Hash
     - icon: ':x:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
@@ -489,6 +492,9 @@ data:
     - icon: ':x:'
       path: Math/stirlingquery.hpp
       title: Stirling Number for query
+    - icon: ':warning:'
+      path: Math/totient.hpp
+      title: lpf table
     - icon: ':x:'
       path: Math/twosat.hpp
       title: 2-SAT
@@ -612,10 +618,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_discrete_logarithm_mod.test.cpp
       title: Verify/LC_discrete_logarithm_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
       title: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
     - icon: ':x:'
