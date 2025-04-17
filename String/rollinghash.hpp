@@ -1,50 +1,34 @@
 #pragma once
 #include "Utility/random.hpp"
+#include "Math/hash.hpp"
 
 struct RollingHash {
     using ull = unsigned long long;
-    const ull MOD = 0x1fffffffffffffff;
-    const ull base;
-    vector<ull> hashed, power;
-
-    inline ull mul(ull a, ull b) const {
-        __uint128_t ans = __uint128_t(a) * b;
-        ans = (ans >> 61) + (ans & MOD);
-        if (ans >= MOD)
-            ans -= MOD;
-        return ans;
-    }
+    const Hash base;
+    vector<Hash> hashed, power;
 
     static inline ull genbase() {
         return Random::get(ull(0x1fffffffffffffff));
     }
-    RollingHash() = default;
+    RollingHash(Hash base) : base(base) {}
 
-    template <typename STR> RollingHash(const STR &s, ull base) : base(base) {
-        ll n = s.size();
+    template <typename STR> void build(const STR &s) {
+        int n = s.size();
         hashed.assign(n + 1, 0);
         power.assign(n + 1, 0);
         power[0] = 1;
         for (ll i = 0; i < n; i++) {
-            power[i + 1] = mul(power[i], base);
-            hashed[i + 1] = mul(hashed[i], base) + s[i];
-            if (hashed[i + 1] >= MOD)
-                hashed[i + 1] -= MOD;
+            power[i + 1] = power[i] * base;
+            hashed[i + 1] = hashed[i] * base + s[i];
         }
     }
 
-    ull get(ll l, ll r) const {
-        ull ret = hashed[r] + MOD - mul(hashed[l], power[r - l]);
-        if (ret >= MOD)
-            ret -= MOD;
-        return ret;
+    Hash get(ll l, ll r) const {
+        return hashed[r] - hashed[l] * power[r - l];
     }
 
-    ull connect(ull h1, ull h2, ll h2len) const {
-        ull ret = mul(h1, power[h2len]) + h2;
-        if (ret >= MOD)
-            ret -= MOD;
-        return ret;
+    Hash connect(Hash h1, Hash h2, ll h2len) const {
+        return h1 * power[h2len] + h2;
     }
 
     template <typename STR> void connect(const STR &s) {
@@ -52,10 +36,8 @@ struct RollingHash {
         hashed.resize(n + m + 1);
         power.resize(n + m + 1);
         for (ll i = n; i < n + m; i++) {
-            power[i + 1] = mul(power[i], base);
-            hashed[i + 1] = mul(hashed[i], base) + s[i - n];
-            if (hashed[i + 1] >= MOD)
-                hashed[i + 1] -= MOD;
+            power[i + 1] = power[i] * base;
+            hashed[i + 1] = hashed[i] * base + s[i - n];
         }
     }
 

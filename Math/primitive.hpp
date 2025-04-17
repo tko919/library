@@ -48,7 +48,7 @@ ll extgcd(ll a, ll b, ll &p, ll &q) {
     q -= a / b * p;
     return d;
 }
-pair<ll, ll> crt(const vector<ll> &vs, const vector<ll> &ms) {
+pair<ll, ll> crt(vector<ll> vs, vector<ll> ms) {
     ll V = vs[0], M = ms[0];
     rep(i, 1, vs.size()) {
         ll p, q, v = vs[i], m = ms[i];

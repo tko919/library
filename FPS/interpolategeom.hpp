@@ -58,5 +58,5 @@ vector<T> InterpolateGeomSeq(int n, T a, T w, vector<T> &y) {
 }
 
 /**
- * Polynomial Interpolation on Geometric Sequence
+ * @brief Polynomial Interpolation on Geometric Sequence
  */

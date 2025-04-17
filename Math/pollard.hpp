@@ -28,6 +28,35 @@ vector<ll> Pollard(ll n) {
     }
 }
 
+vector<ll> EnumDivisors(ll n) {
+    auto ps = Pollard(n);
+    sort(ALL(ps));
+    using P = pair<ll, int>;
+    vector<P> pes;
+    for (auto &p : ps) {
+        if (pes.empty() or pes.back().first != p) {
+            pes.push_back({p, 1});
+        } else {
+            pes.back().second++;
+        }
+    }
+    vector<ll> ret;
+    auto rec = [&](auto &rec, int id, ll d) -> void {
+        if (id == SZ(pes)) {
+            ret.push_back(d);
+            return;
+        }
+        rec(rec, id + 1, d);
+        rep(e, 0, pes[id].second) {
+            d *= pes[id].first;
+            rec(rec, id + 1, d);
+        }
+    };
+    rec(rec, 0, 1);
+    sort(ALL(ret));
+    return ret;
+}
+
 /**
  * @brief Pollard-Rho
  */

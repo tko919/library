@@ -2,12 +2,13 @@
 
 #include "Utility/random.hpp"
 
-template <typename T> class RBSTset {
+template <typename T, int LIM = 1000000> class RBSTset {
     struct Node {
         Node *lp = nullptr, *rp = nullptr;
         int size = 1;
         T key;
-        Node(T _k = 0) : key(_k) {}
+        Node() = default;
+        Node(T _k) : key(_k), lp(nullptr), rp(nullptr) {}
         void apply() {
             size = 1;
             if (lp)
@@ -78,10 +79,15 @@ template <typename T> class RBSTset {
     }
 
   public:
+    array<Node, LIM> pool;
+    int ptr;
     Node *root;
-    RBSTset(Node *_r = nullptr) : root(_r) {}
+    RBSTset(Node *_r = nullptr) : root(_r), ptr(0) {}
     int size() {
         return size(root);
+    }
+    inline Node *alloc(const T &key) {
+        return &(pool[ptr++] = Node(key));
     }
     void merge(RBSTset &a) {
         root = merge(root, a.root);
@@ -109,7 +115,7 @@ template <typename T> class RBSTset {
         if (k == -1)
             k = lower_bound(root, x);
         auto [L, R] = split(root, k);
-        root = merge(merge(L, new Node(x)), R);
+        root = merge(merge(L, alloc(x)), R);
     }
     void erase(T x, int k = -1) {
         if (k == -1) {

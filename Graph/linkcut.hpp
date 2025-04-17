@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename M, typename N, N (*f)(N, N)> struct LCT {
+template <typename M, typename N, N (*f)(N, N), int LIM = 301010> struct LCT {
     struct Node {
         Node *lp = nullptr, *rp = nullptr, *par = nullptr;
         N val;
@@ -96,7 +96,9 @@ template <typename M, typename N, N (*f)(N, N)> struct LCT {
             }
         }
     };
-    LCT() {}
+    array<Node, LIM> pool;
+    int ptr;
+    LCT() : ptr(0) {}
     Node *make(int idx, N val) {
         return new Node(idx, val);
     }

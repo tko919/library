@@ -24,11 +24,13 @@ template <typename T, typename S = T> S SUM(const vector<T> &a) {
 }
 template <typename S, typename T = S> S POW(S a, T b) {
     S ret = 1, base = a;
-    while (b) {
+    for (;;) {
         if (b & 1)
             ret *= base;
-        base *= base;
         b >>= 1;
+        if (b == 0)
+            break;
+        base *= base;
     }
     return ret;
 }

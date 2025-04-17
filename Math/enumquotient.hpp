@@ -1,14 +1,12 @@
 #pragma once
 
-template <typename T> vector<pair<T, T>> EnumQuotients(T n) {
+template <typename T, typename F> void EnumQuotients(T n, F f) {
     T SQ = sqrtl(n);
     while (SQ * SQ + SQ <= n)
         SQ++;
     T m = n / SQ;
-    vector<pair<T, T>> ret;
-    rep(i, 1, m + 1) ret.emplace_back(n / (i + 1) + 1, n / i + 1);
-    rrep(i, 1, SQ) ret.emplace_back(i, i + 1);
-    return ret;
+    rep(i, 1, m + 1) f(n / (i + 1) + 1, n / i + 1);
+    rrep(i, 1, SQ) f(i, i + 1);
 }
 
 /**
