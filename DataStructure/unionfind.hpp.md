@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/manhattanmst.hpp
     title: Manhattan MST
   - icon: ':warning:'
@@ -18,7 +18,7 @@ data:
     path: Graph/opttoposort.hpp
     title: Optimal Topological sort
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_manhattanmst.test.cpp
     title: Verify/LC_manhattanmst.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: Verify/LC_unionfind.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Union Find
     links: []
@@ -54,7 +54,7 @@ data:
   - DataStructure/rangeparalleluf.hpp
   - DataStructure/manhattanmst.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_unionfind.test.cpp
   - Verify/LC_manhattanmst.test.cpp

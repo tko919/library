@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: Geometry/Enclosing.hpp
     title: Enclosing Circle
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/maxindependentset.hpp
     title: Maximum Independent Set
   - icon: ':x:'
@@ -51,10 +51,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
   - icon: ':x:'

@@ -47,10 +47,10 @@ data:
     - icon: ':warning:'
       path: Convolution/convexminplus.hpp
       title: Convex Min Plus Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/divisor.hpp
       title: Divisor Multiple Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/relax.hpp
       title: Relaxed Convolution
-    - icon: ':x:'
+    - icon: ':question:'
       path: Convolution/subset.hpp
       title: Subset Convolution
   - name: DataStructure
@@ -106,13 +106,13 @@ data:
     - icon: ':question:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
     - icon: ':warning:'
       path: DataStructure/linkedlist.hpp
       title: Linked List
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/manhattanmst.hpp
       title: Manhattan MST
     - icon: ':x:'
@@ -166,7 +166,7 @@ data:
     - icon: ':x:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/unionfind.hpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -195,7 +195,7 @@ data:
     - icon: ':warning:'
       path: FPS/composition.hpp
       title: Composition of Formal Power Series
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/factlarge.hpp
       title: Factorial (Large)
     - icon: ':warning:'
@@ -231,7 +231,7 @@ data:
     - icon: ':x:'
       path: FPS/multievalgeom.hpp
       title: Multipoint Evaluation on Geometric Sequence
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/nthterm.hpp
       title: Bostan-Mori Algorithm
     - icon: ':warning:'
@@ -252,7 +252,7 @@ data:
     - icon: ':x:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
     - icon: ':warning:'
@@ -292,7 +292,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/blockcut.hpp
       title: Block Cut Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
@@ -322,7 +322,7 @@ data:
     - icon: ':warning:'
       path: Graph/edgecoloring.hpp
       title: Edge Coloring
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/enumcliques.hpp
       title: Enumerate Cliques
     - icon: ':warning:'
@@ -334,19 +334,19 @@ data:
     - icon: ':warning:'
       path: Graph/general.hpp
       title: General Matching
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/generalweightedmatching.hpp
       title: General Weighted Matching
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/hld.hpp
       title: Heavy Light Decomposition
     - icon: ':warning:'
       path: Graph/hungarian.hpp
       title: Hungarian algorithm
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/linkcut.hpp
       title: Link-Cut Tree
     - icon: ':x:'
@@ -355,7 +355,7 @@ data:
     - icon: ':question:'
       path: Graph/maxflow.hpp
       title: Maximum Flow
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/maxindependentset.hpp
       title: Maximum Independent Set
     - icon: ':x:'
@@ -429,13 +429,13 @@ data:
     - icon: ':warning:'
       path: Math/gaussian.hpp
       title: Gaussaussian Integer
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/hafnian.hpp
       title: Hafnian of matrix
     - icon: ':warning:'
       path: Math/hash.hpp
       title: Hash
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
     - icon: ':x:'
@@ -444,7 +444,7 @@ data:
     - icon: ':warning:'
       path: Math/lpftable.hpp
       title: lpf table
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':question:'
@@ -506,7 +506,7 @@ data:
     - icon: ':warning:'
       path: String/ahocorasick.hpp
       title: Aho-Corasick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/manacher.hpp
       title: Manacher Algorithm
     - icon: ':warning:'
@@ -618,85 +618,85 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_discrete_logarithm_mod.test.cpp
       title: Verify/LC_discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
       title: Verify/LC_dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: Verify/LC_dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
       title: Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_cliques.test.cpp
       title: Verify/LC_enumerate_cliques.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_palindromes.test.cpp
       title: Verify/LC_enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_enumerate_primes.test.cpp
       title: Verify/LC_enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_exp_of_formal_power_series.test.cpp
       title: Verify/LC_exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_factorize.test.cpp
       title: Verify/LC_factorize.test.cpp
     - icon: ':x:'
       path: Verify/LC_find_linear_recurrence.test.cpp
       title: Verify/LC_find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_frequency_table_of_tree_distance.test.cpp
       title: Verify/LC_frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_gcd_convolution.test.cpp
       title: Verify/LC_gcd_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_general_weighted_matching.test.cpp
       title: Verify/LC_general_weighted_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_hafnian_of_matrix.test.cpp
       title: Verify/LC_hafnian_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_inv_of_formal_power_series.test.cpp
       title: Verify/LC_inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_root_integer.test.cpp
       title: Verify/LC_kth_root_integer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
       title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_lca.test.cpp
       title: Verify/LC_lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_lca_2.test.cpp
       title: Verify/LC_lca_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_lcm_convolution.test.cpp
       title: Verify/LC_lcm_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_line_add_get_min.test.cpp
       title: Verify/LC_line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_log_of_formal_power_series.test.cpp
       title: Verify/LC_log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_manhattanmst.test.cpp
       title: Verify/LC_manhattanmst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_many_aplusb.test.cpp
       title: Verify/LC_many_aplusb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_many_factorials.test.cpp
       title: Verify/LC_many_factorials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_matrix_det.test.cpp
       title: Verify/LC_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_matrix_product.test.cpp
       title: Verify/LC_matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_maximum_independent_set.test.cpp
       title: Verify/LC_maximum_independent_set.test.cpp
     - icon: ':x:'

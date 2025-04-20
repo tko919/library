@@ -6,7 +6,7 @@ data:
     path: Graph/contour.hpp
     title: Contour Sum Query
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_frequency_table_of_tree_distance.test.cpp
     title: Verify/LC_frequency_table_of_tree_distance.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Centroid Decomposition
     links: []
@@ -53,7 +53,7 @@ data:
   requiredBy:
   - Graph/contour.hpp
   timestamp: '2024-11-30 06:30:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_frequency_table_of_tree_distance.test.cpp
   - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp

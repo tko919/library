@@ -80,10 +80,7 @@ data:
     \ v >= x.v;\n    }\n    friend istream &operator>>(istream &is, Hash &x) {\n \
     \       return is >> x.v;\n    }\n    friend ostream &operator<<(ostream &os,\
     \ const Hash &x) {\n        return os << x.v;\n    }\n};\n\nvoid rd(Hash &x) {\n\
-    \    fastio::rd(x.v);\n}\n\ntemplate <typename T> Hash hashvec(vector<T> &v) {\n\
-    \    static vector<Hash> base;\n    while (SZ(base) <= SZ(v))\n        base.push_back(Random::get(Hash::get_mod()));\n\
-    \    Hash ret = base[SZ(v)];\n    rep(i, 0, SZ(v)) ret += base[i] * v[i];\n  \
-    \  return ret;\n}\n\n/**\n * @brief Hash\n */\n#line 4 \"String/rollinghash.hpp\"\
+    \    fastio::rd(x.v);\n}\n\n/**\n * @brief Hash\n */\n#line 4 \"String/rollinghash.hpp\"\
     \n\nstruct RollingHash {\n    using ull = unsigned long long;\n    const Hash\
     \ base;\n    vector<Hash> hashed, power;\n\n    static inline ull genbase() {\n\
     \        return Random::get(ull(0x1fffffffffffffff));\n    }\n    RollingHash(Hash\
@@ -133,7 +130,7 @@ data:
   isVerificationFile: false
   path: String/rollinghash.hpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-04-21 04:39:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: String/rollinghash.hpp

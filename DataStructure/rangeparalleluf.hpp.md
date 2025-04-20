@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/unionfind.hpp
     title: Union Find
   _extendedRequiredBy: []

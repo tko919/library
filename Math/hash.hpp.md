@@ -44,11 +44,7 @@ data:
     \ Hash &x) const {\n        return v >= x.v;\n    }\n    friend istream &operator>>(istream\
     \ &is, Hash &x) {\n        return is >> x.v;\n    }\n    friend ostream &operator<<(ostream\
     \ &os, const Hash &x) {\n        return os << x.v;\n    }\n};\n\nvoid rd(Hash\
-    \ &x) {\n    fastio::rd(x.v);\n}\n\ntemplate <typename T> Hash hashvec(vector<T>\
-    \ &v) {\n    static vector<Hash> base;\n    while (SZ(base) <= SZ(v))\n      \
-    \  base.push_back(Random::get(Hash::get_mod()));\n    Hash ret = base[SZ(v)];\n\
-    \    rep(i, 0, SZ(v)) ret += base[i] * v[i];\n    return ret;\n}\n\n/**\n * @brief\
-    \ Hash\n */\n"
+    \ &x) {\n    fastio::rd(x.v);\n}\n\n/**\n * @brief Hash\n */\n"
   code: "#pragma once\n\nstruct Hash {\n    static constexpr ull mod = 0x1fffffffffffffff;\n\
     \    ull v;\n    static constexpr ull get_mod() {\n        return mod;\n    }\n\
     \    constexpr ull inv() const {\n        assert(v != 0);\n        ull x = v,\
@@ -81,16 +77,13 @@ data:
     \ v >= x.v;\n    }\n    friend istream &operator>>(istream &is, Hash &x) {\n \
     \       return is >> x.v;\n    }\n    friend ostream &operator<<(ostream &os,\
     \ const Hash &x) {\n        return os << x.v;\n    }\n};\n\nvoid rd(Hash &x) {\n\
-    \    fastio::rd(x.v);\n}\n\ntemplate <typename T> Hash hashvec(vector<T> &v) {\n\
-    \    static vector<Hash> base;\n    while (SZ(base) <= SZ(v))\n        base.push_back(Random::get(Hash::get_mod()));\n\
-    \    Hash ret = base[SZ(v)];\n    rep(i, 0, SZ(v)) ret += base[i] * v[i];\n  \
-    \  return ret;\n}\n\n/**\n * @brief Hash\n */"
+    \    fastio::rd(x.v);\n}\n\n/**\n * @brief Hash\n */"
   dependsOn: []
   isVerificationFile: false
   path: Math/hash.hpp
   requiredBy:
   - String/rollinghash.hpp
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-04-21 04:39:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/hash.hpp

@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: Math/detaplusbx.hpp
     title: $\det(A+Bx)$
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
   - icon: ':x:'
@@ -27,13 +27,13 @@ data:
     path: Math/pfaffian.hpp
     title: Pfaffian
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_det.test.cpp
     title: Verify/LC_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_matrix_product.test.cpp
     title: Verify/LC_matrix_product.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: Verify/LC_system_of_linear_equations.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Matrix
     links: []
@@ -154,7 +154,7 @@ data:
   - Math/detaplusbx.hpp
   - FPS/p-recursive.hpp
   timestamp: '2024-06-14 02:46:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_matrix_det.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp

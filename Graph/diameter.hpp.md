@@ -15,7 +15,7 @@ data:
     \   int v = que.front();\n        que.pop();\n        for (auto &[to, c] : g[v])\n\
     \            if (dist[to] == INF) {\n                dist[to] = dist[v] + c;\n\
     \                que.push(to);\n            }\n    }\n    int v1 = -1;\n    {\n\
-    \        ll INF = -INF;\n        rep(v, 0, n) if (chmax(INF, dist[v])) v1 = v;\n\
+    \        ll mx = -INF;\n        rep(v, 0, n) if (chmax(mx, dist[v])) v1 = v;\n\
     \    }\n    dist.assign(n, INF);\n    dist[v1] = 0;\n    que.push(v1);\n    vector<int>\
     \ par(n);\n    par[v1] = -1;\n    while (!que.empty()) {\n        int v = que.front();\n\
     \        que.pop();\n        for (auto &[to, c] : g[v])\n            if (dist[to]\
@@ -31,7 +31,7 @@ data:
     \ = que.front();\n        que.pop();\n        for (auto &[to, c] : g[v])\n   \
     \         if (dist[to] == INF) {\n                dist[to] = dist[v] + c;\n  \
     \              que.push(to);\n            }\n    }\n    int v1 = -1;\n    {\n\
-    \        ll INF = -INF;\n        rep(v, 0, n) if (chmax(INF, dist[v])) v1 = v;\n\
+    \        ll mx = -INF;\n        rep(v, 0, n) if (chmax(mx, dist[v])) v1 = v;\n\
     \    }\n    dist.assign(n, INF);\n    dist[v1] = 0;\n    que.push(v1);\n    vector<int>\
     \ par(n);\n    par[v1] = -1;\n    while (!que.empty()) {\n        int v = que.front();\n\
     \        que.pop();\n        for (auto &[to, c] : g[v])\n            if (dist[to]\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: Graph/diameter.hpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-04-21 04:39:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/diameter.hpp

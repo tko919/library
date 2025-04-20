@@ -5,14 +5,14 @@ data:
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
   - icon: ':warning:'
     path: FPS/p-recursive.hpp
     title: P-recursive
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Shift of Sampling Points of Polynomial
     links: []
@@ -88,7 +88,7 @@ data:
   - FPS/factlarge.hpp
   - FPS/p-recursive.hpp
   timestamp: '2024-10-22 03:59:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_many_factorials.test.cpp

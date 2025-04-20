@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/relax.hpp
     title: Relaxed Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
   - icon: ':warning:'
@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: FPS/compinv.hpp
     title: Compositional Inverse
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
   - icon: ':question:'
@@ -38,7 +38,7 @@ data:
   - icon: ':warning:'
     path: FPS/prefixsumofpowers.hpp
     title: Enumerate $\sum_{k=0}^{N-1} k^i$
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
   - icon: ':warning:'
     path: Graph/chromaticpoly.hpp
     title: Chromatic Number
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
   _extendedVerifiedWith:
@@ -57,10 +57,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_2.test.cpp
     title: Verify/LC_convolution_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
   - icon: ':x:'
