@@ -98,15 +98,6 @@ void rd(Hash &x) {
     fastio::rd(x.v);
 }
 
-template <typename T> Hash hashvec(vector<T> &v) {
-    static vector<Hash> base;
-    while (SZ(base) <= SZ(v))
-        base.push_back(Random::get(Hash::get_mod()));
-    Hash ret = base[SZ(v)];
-    rep(i, 0, SZ(v)) ret += base[i] * v[i];
-    return ret;
-}
-
 /**
  * @brief Hash
  */

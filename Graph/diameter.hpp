@@ -17,8 +17,8 @@ pair<ll, vector<int>> Diameter(vector<vector<pair<int, ll>>> &g) {
     }
     int v1 = -1;
     {
-        ll INF = -INF;
-        rep(v, 0, n) if (chmax(INF, dist[v])) v1 = v;
+        ll mx = -INF;
+        rep(v, 0, n) if (chmax(mx, dist[v])) v1 = v;
     }
     dist.assign(n, INF);
     dist[v1] = 0;
