@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
@@ -227,10 +227,10 @@ data:
   timestamp: '2024-10-13 17:09:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_1080.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/YUKI_1112.test.cpp
   - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/YUKI_1112.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Convolution/arbitrary.hpp
 layout: document

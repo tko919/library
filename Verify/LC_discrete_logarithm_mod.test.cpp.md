@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':question:'
@@ -207,46 +207,56 @@ data:
     \ bs[e] = ++s)\r\n        e = e * a % n;\r\n    for (ll s = 0, e = t; s < n;)\
     \ {\r\n        e = e * gs % n, s += h;\r\n        if (bs.count(e)) {\r\n     \
     \       return c + s - bs[e];\r\n        }\r\n    }\r\n    return -1;\r\n}\r\n\
-    \r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\n        return k ? 0\
-    \ : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n    k %= m - 1;\r\n   \
-    \ ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m) != 1)\r\n        return\
-    \ -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\n    FastDiv im(m);\r\
-    \n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod m)\r\
-    \n        ll q = m - 1;\r\n        int s = 0;\r\n        while (q % p == 0) {\r\
-    \n            q /= p;\r\n            s++;\r\n        }\r\n        int d = s -\
-    \ e;\r\n        ll pe = mpow(p, e, m),\r\n           res = mpow(a, ((pe - 1) *\
-    \ minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n        while (mpow(c, (m - 1)\
-    \ / p, m) == 1)\r\n            c++;\r\n        c = mpow(c, q, m);\r\n        map<ll,\
-    \ ll> mp;\r\n        ll v = 1, block = sqrt(d * p) + 1,\r\n           bs = mpow(c,\
-    \ mpow(p, s - 1, m - 1) * block % (m - 1), m);\r\n        rep(i, 0, block + 1)\
-    \ mp[v] = i, v = v * bs % im;\r\n        ll gs = minv(mpow(c, mpow(p, s - 1, m\
-    \ - 1), m), m);\r\n        rep(i, 0, d) {\r\n            ll err = a * minv(mpow(res,\
-    \ pe, m), m) % im;\r\n            ll pos = mpow(err, mpow(p, d - 1 - i, m - 1),\
-    \ m);\r\n            rep(j, 0, block + 1) {\r\n                if (mp.count(pos))\
-    \ {\r\n                    res = res *\r\n                          mpow(c,\r\n\
-    \                               (block * mp[pos] + j) * mpow(p, i, m - 1) %\r\n\
-    \                                   (m - 1),\r\n                             \
-    \  m) %\r\n                          im;\r\n                    break;\r\n   \
-    \             }\r\n                pos = pos * gs % im;\r\n            }\r\n \
-    \       }\r\n        return res;\r\n    };\r\n\r\n    for (ll d = 2; d * d <=\
-    \ g; d++)\r\n        if (g % d == 0) {\r\n            int sz = 0;\r\n        \
-    \    while (g % d == 0) {\r\n                g /= d;\r\n                sz++;\r\
-    \n            }\r\n            a = _subroot(d, sz, a);\r\n        }\r\n    if\
-    \ (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return a;\r\n}\r\n\r\null floor_root(ull\
-    \ a, ull k) {\r\n    if (a <= 1 or k == 1)\r\n        return a;\r\n    if (k >=\
-    \ 64)\r\n        return 1;\r\n    if (k == 2)\r\n        return sqrtl(a);\r\n\
-    \    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\n        a--;\r\n    auto\
-    \ mul = [&](ull &x, const ull &y) {\r\n        if (x <= LIM / y)\r\n         \
-    \   x *= y;\r\n        else\r\n            x = LIM;\r\n    };\r\n    auto pw =\
-    \ [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n        while (t) {\r\n\
-    \            if (t & 1)\r\n                mul(y, x);\r\n            mul(x, x);\r\
-    \n            t >>= 1;\r\n        }\r\n        return y;\r\n    };\r\n    ull\
-    \ ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while\
-    \ (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\
-    \n * @brief Primitive Function\r\n */\n#line 5 \"Verify/LC_discrete_logarithm_mod.test.cpp\"\
-    \n\r\nint main(){\r\n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int\
-    \ a,b,m;\r\n        cin>>a>>b>>m;\r\n        cout<<ModLog(a,b,m)<<'\\n';\r\n \
-    \   }\r\n    return 0;\r\n}\n"
+    \r\nll TonelliShanks(ll a, ll p) {\r\n    a %= p;\r\n    if (a == 0)\r\n     \
+    \   return 0;\r\n    if (p == 2)\r\n        return a;\r\n    if (mpow(a, (p -\
+    \ 1) >> 1, p) != 1)\r\n        return -1;\r\n    ll b = 1;\r\n    while (mpow(b,\
+    \ (p - 1) >> 1, p) == 1)\r\n        b = Random::get(1LL, p - 1);\r\n\r\n    ll\
+    \ q = p - 1, k = 0;\r\n    while (q % 2 == 0) {\r\n        q >>= 1;\r\n      \
+    \  k++;\r\n    }\r\n    ll x = mpow(a, (q + 1) >> 1, p);\r\n    b = mpow(b, q,\
+    \ p);\r\n    k -= 2;\r\n    while (mpow(x, 2, p) != a) {\r\n        ll err = minv(a,\
+    \ p) * mpow(x, 2, p) % p;\r\n        if (mpow(err, 1 << k, p) != 1)\r\n      \
+    \      x = x * b % p;\r\n        b = mpow(b, 2, p);\r\n        k--;\r\n    }\r\
+    \n    return x;\r\n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\
+    \n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n \
+    \   k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m)\
+    \ != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\
+    \n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll {\
+    \ // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n    \
+    \    while (q % p == 0) {\r\n            q /= p;\r\n            s++;\r\n     \
+    \   }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n        \
+    \   res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n \
+    \       while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n        c\
+    \ = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d\
+    \ * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1),\
+    \ m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\n        ll\
+    \ gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\
+    \n            ll err = a * minv(mpow(res, pe, m), m) % im;\r\n            ll pos\
+    \ = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j, 0, block +\
+    \ 1) {\r\n                if (mp.count(pos)) {\r\n                    res = res\
+    \ *\r\n                          mpow(c,\r\n                               (block\
+    \ * mp[pos] + j) * mpow(p, i, m - 1) %\r\n                                   (m\
+    \ - 1),\r\n                               m) %\r\n                          im;\r\
+    \n                    break;\r\n                }\r\n                pos = pos\
+    \ * gs % im;\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\
+    \r\n    for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n     \
+    \       int sz = 0;\r\n            while (g % d == 0) {\r\n                g /=\
+    \ d;\r\n                sz++;\r\n            }\r\n            a = _subroot(d,\
+    \ sz, a);\r\n        }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n\
+    \    return a;\r\n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or\
+    \ k == 1)\r\n        return a;\r\n    if (k >= 64)\r\n        return 1;\r\n  \
+    \  if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n\
+    \    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull &x, const ull &y)\
+    \ {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n        else\r\n  \
+    \          x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n\
+    \        ull y = 1;\r\n        while (t) {\r\n            if (t & 1)\r\n     \
+    \           mul(y, x);\r\n            mul(x, x);\r\n            t >>= 1;\r\n \
+    \       }\r\n        return y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) -\
+    \ 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret + 1, k) <= a)\r\
+    \n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Primitive Function\r\
+    \n */\n#line 5 \"Verify/LC_discrete_logarithm_mod.test.cpp\"\n\r\nint main(){\r\
+    \n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int a,b,m;\r\n     \
+    \   cin>>a>>b>>m;\r\n        cout<<ModLog(a,b,m)<<'\\n';\r\n    }\r\n    return\
+    \ 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Math/primitive.hpp\"\r\
     \n\r\nint main(){\r\n    int t;\r\n    cin>>t;\r\n    while(t--){\r\n        int\
@@ -262,7 +272,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-04-27 22:54:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_discrete_logarithm_mod.test.cpp

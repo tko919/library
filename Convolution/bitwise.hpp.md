@@ -45,8 +45,8 @@ data:
   timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_bitwise_xor_convolution.test.cpp
   - Verify/LC_bitwise_and_convolution.test.cpp
+  - Verify/LC_bitwise_xor_convolution.test.cpp
 documentation_of: Convolution/bitwise.hpp
 layout: document
 redirect_from:

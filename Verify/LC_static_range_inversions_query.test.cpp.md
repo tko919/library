@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: Algorithm/mo.hpp
     title: Mo's Algorithm
-  - icon: ':x:'
+  - icon: ':question:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
   - icon: ':question:'

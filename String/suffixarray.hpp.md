@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_number_of_substrings.test.cpp
     title: Verify/LC_number_of_substrings.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: Verify/LC_suffixarray.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/suffixarray.md
     document_title: Suffix Array
@@ -110,7 +110,7 @@ data:
   path: String/suffixarray.hpp
   requiredBy: []
   timestamp: '2022-02-05 01:38:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_number_of_substrings.test.cpp
   - Verify/LC_suffixarray.test.cpp

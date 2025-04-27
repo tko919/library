@@ -57,8 +57,8 @@ data:
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
 documentation_of: Math/powertable.hpp
 layout: document
 redirect_from:

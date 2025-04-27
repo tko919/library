@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
   - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':warning:'
@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Pollard-Rho
     links: []
@@ -147,17 +147,17 @@ data:
   isVerificationFile: false
   path: Math/pollard.hpp
   requiredBy:
-  - Math/twosquare.hpp
+  - Convolution/multivariatecyclic.hpp
   - Math/binomquery.hpp
   - Math/primitive.hpp
-  - Convolution/multivariatecyclic.hpp
+  - Math/twosquare.hpp
   timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_factorize.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document
 redirect_from:

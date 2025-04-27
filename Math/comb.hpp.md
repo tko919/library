@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
   - icon: ':x:'
@@ -143,39 +143,39 @@ data:
   isVerificationFile: false
   path: Math/comb.hpp
   requiredBy:
-  - Graph/chromaticpoly.hpp
-  - Math/hafnian.hpp
   - Convolution/subset.hpp
   - Convolution/relax.hpp
-  - FPS/sumofpolyexp.hpp
+  - Graph/chromaticpoly.hpp
+  - FPS/mobius.hpp
+  - FPS/samplepointshift.hpp
+  - FPS/p-recursive.hpp
+  - FPS/compinv.hpp
+  - FPS/prefixsumofpoly.hpp
+  - FPS/famous.hpp
   - FPS/factlarge.hpp
   - FPS/incseqcount.hpp
-  - FPS/samplepointshift.hpp
-  - FPS/mobius.hpp
-  - FPS/p-recursive.hpp
-  - FPS/prefixsumofpoly.hpp
-  - FPS/prefixsumofpowers.hpp
-  - FPS/compinv.hpp
+  - FPS/sumofpolyexp.hpp
   - FPS/compexp.hpp
   - FPS/interpolate.hpp
-  - FPS/famous.hpp
+  - FPS/prefixsumofpowers.hpp
+  - Math/hafnian.hpp
   timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/YUKI_1080.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_subset_convolution.test.cpp
   - Verify/LC_partition_function.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
-  - Verify/LC_many_factorials.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/YUKI_1080.test.cpp
 documentation_of: Math/comb.hpp
 layout: document
 redirect_from:

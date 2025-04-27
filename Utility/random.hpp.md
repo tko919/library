@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':x:'
@@ -32,10 +32,10 @@ data:
   - icon: ':warning:'
     path: Math/detaplusbx.hpp
     title: $\det(A+Bx)$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':warning:'
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_maximum_independent_set.test.cpp
     title: Verify/LC_maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
@@ -150,33 +150,33 @@ data:
   isVerificationFile: false
   path: Utility/random.hpp
   requiredBy:
-  - Graph/maxindependentset.hpp
   - String/rollinghash.hpp
-  - Math/twosquare.hpp
-  - Math/pollard.hpp
+  - Convolution/multivariatecyclic.hpp
+  - Geometry/Enclosing.hpp
+  - Graph/maxindependentset.hpp
+  - FPS/factorize.hpp
+  - FPS/findroots.hpp
+  - DataStructure/persistentrbstset.hpp
+  - DataStructure/rbstset.hpp
   - Math/binomquery.hpp
   - Math/primitive.hpp
   - Math/bbla.hpp
+  - Math/pollard.hpp
+  - Math/twosquare.hpp
   - Math/detaplusbx.hpp
-  - Convolution/multivariatecyclic.hpp
-  - Geometry/Enclosing.hpp
-  - FPS/findroots.hpp
-  - FPS/factorize.hpp
-  - DataStructure/rbstset.hpp
-  - DataStructure/persistentrbstset.hpp
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_factorize.test.cpp
   - Verify/YUKI_310.test.cpp
-  - Verify/LC_predecessor_problem.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_maximum_independent_set.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/YUKI_1112.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_predecessor_problem.test.cpp
 documentation_of: Utility/random.hpp
 layout: document
 redirect_from:

@@ -53,10 +53,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/multivariate.hpp
       title: Multivariate Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/multivariatecyclic.hpp
       title: Multivarate Convolution Cyclic
     - icon: ':question:'
@@ -73,10 +73,10 @@ data:
     - icon: ':warning:'
       path: DataStructure/2dbit.hpp
       title: 2D Binary Indexed Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/bit.hpp
       title: Binary Indexed Tree
     - icon: ':warning:'
@@ -92,8 +92,14 @@ data:
       path: DataStructure/dualsegtree.hpp
       title: Dual Segment Tree
     - icon: ':warning:'
+      path: DataStructure/dynamiclazysegtree.hpp
+      title: Dynamic Lazy Segment Tree
+    - icon: ':warning:'
       path: DataStructure/dynamicrectsum.hpp
       title: Dynamic Point Add Rectangle Sum
+    - icon: ':warning:'
+      path: DataStructure/dynamicsegtree.hpp
+      title: Dynamic Segment Tree
     - icon: ':warning:'
       path: DataStructure/fastset.hpp
       title: Fast Set
@@ -115,7 +121,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/manhattanmst.hpp
       title: Manhattan MST
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/persistentarray.hpp
       title: Persistent Array
     - icon: ':warning:'
@@ -124,7 +130,7 @@ data:
     - icon: ':x:'
       path: DataStructure/persistentrbstset.hpp
       title: Persistent Randomized Binary Search Tree (set)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/persistentunionfind.hpp
       title: Persistent Union Find
     - icon: ':warning:'
@@ -145,7 +151,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/rollbackunionfind.hpp
       title: Rollback Union Find
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
     - icon: ':x:'
@@ -154,7 +160,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
     - icon: ':x:'
@@ -180,7 +186,7 @@ data:
       title: Weighted Union Find
   - name: FPS
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
     - icon: ':x:'
@@ -225,10 +231,10 @@ data:
     - icon: ':warning:'
       path: FPS/mobius.hpp
       title: Mobius Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multievalgeom.hpp
       title: Multipoint Evaluation on Geometric Sequence
     - icon: ':heavy_check_mark:'
@@ -352,13 +358,13 @@ data:
     - icon: ':x:'
       path: Graph/lowlink.hpp
       title: Lowlink
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/maxflow.hpp
       title: Maximum Flow
     - icon: ':heavy_check_mark:'
       path: Graph/maxindependentset.hpp
       title: Maximum Independent Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/mincostflow.hpp
       title: Minimum Cost b-flow
     - icon: ':warning:'
@@ -411,7 +417,7 @@ data:
     - icon: ':x:'
       path: Math/dirichlet.hpp
       title: Dirichlet series
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/dynamic.hpp
       title: Dynamic Modint
     - icon: ':warning:'
@@ -447,7 +453,7 @@ data:
     - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/miller.hpp
       title: Miller-Rabin
     - icon: ':warning:'
@@ -459,7 +465,7 @@ data:
     - icon: ':x:'
       path: Math/multiplicative.hpp
       title: Multiplicative Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/nimber.hpp
       title: Nimber
     - icon: ':warning:'
@@ -468,7 +474,7 @@ data:
     - icon: ':warning:'
       path: Math/pfaffian.hpp
       title: Pfaffian
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho
     - icon: ':x:'
@@ -477,7 +483,7 @@ data:
     - icon: ':question:'
       path: Math/primesum.hpp
       title: Prime Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
     - icon: ':warning:'
@@ -518,7 +524,7 @@ data:
     - icon: ':warning:'
       path: String/rollinghash.hpp
       title: Rolling Hash
-    - icon: ':x:'
+    - icon: ':question:'
       path: String/suffixarray.hpp
       title: Suffix Array
     - icon: ':warning:'
@@ -699,49 +705,49 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_maximum_independent_set.test.cpp
       title: Verify/LC_maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_min_cost_b_flow.test.cpp
       title: Verify/LC_min_cost_b_flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_multipoint_evaluation.test.cpp
       title: Verify/LC_multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_multivariate_convolution.test.cpp
       title: Verify/LC_multivariate_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_multivariate_convolution_cyclic.test.cpp
       title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_nim_product_64.test.cpp
       title: Verify/LC_nim_product_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_number_of_substrings.test.cpp
       title: Verify/LC_number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_partition_function.test.cpp
       title: Verify/LC_partition_function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_persistent_unionfind.test.cpp
       title: Verify/LC_persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_range_sum.test.cpp
       title: Verify/LC_point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_rectangle_sum.test.cpp
       title: Verify/LC_point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_composite.test.cpp
       title: Verify/LC_point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_sort_range_composite.test.cpp
       title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_interpolation.test.cpp
       title: Verify/LC_polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_taylor_shift.test.cpp
       title: Verify/LC_polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
     - icon: ':x:'

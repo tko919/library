@@ -48,9 +48,9 @@ data:
   isVerificationFile: false
   path: DataStructure/unionfind.hpp
   requiredBy:
+  - Graph/euler.hpp
   - Graph/edgecoloring.hpp
   - Graph/opttoposort.hpp
-  - Graph/euler.hpp
   - DataStructure/rangeparalleluf.hpp
   - DataStructure/manhattanmst.hpp
   timestamp: '2022-01-05 16:50:26+09:00'

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
   - icon: ':x:'

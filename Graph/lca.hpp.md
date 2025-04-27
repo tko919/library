@@ -64,8 +64,8 @@ data:
   timestamp: '2022-10-16 23:53:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_901.test.cpp
   - Verify/LC_lca_2.test.cpp
+  - Verify/YUKI_901.test.cpp
 documentation_of: Graph/lca.hpp
 layout: document
 redirect_from:
