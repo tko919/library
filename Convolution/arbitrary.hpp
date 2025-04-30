@@ -2,9 +2,9 @@
 #include "Convolution/ntt.hpp"
 #include "Math/modint.hpp"
 
-using M1 = fp<1045430273>;
-using M2 = fp<1051721729>;
-using M3 = fp<1053818881>;
+using M1 = fp<167772161>;
+using M2 = fp<469762049>;
+using M3 = fp<754974721>;
 NTT<M1> N1;
 NTT<M2> N2;
 NTT<M3> N3;
@@ -15,7 +15,7 @@ constexpr int r_1323 = M3(ll(r_13) * r_23).v;
 constexpr ll w1 = M1::get_mod();
 constexpr ll w2 = ll(w1) * M2::get_mod();
 template <typename T>
-vector<T> ArbitraryMult(const vector<int> &a, const vector<int> &b) {
+vector<T> ArbitraryMultint(const vector<int> &a, const vector<int> &b) {
     if (a.empty() or b.empty())
         return vector<T>();
     int n = a.size() + b.size() - 1;
@@ -52,7 +52,7 @@ vector<T> ArbitraryMult(const vector<T> &a, const vector<T> &b) {
         A.push_back(x.v);
     for (auto &x : b)
         B.push_back(x.v);
-    return ArbitraryMult<T>(A, B);
+    return ArbitraryMultint<T>(A, B);
 }
 
 /**

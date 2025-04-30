@@ -64,6 +64,24 @@ pair<ll, ll> crt(vector<ll> vs, vector<ll> ms) {
     V = (V % M + M) % M;
     return {V, M};
 }
+ll garner(vector<ll> vs, vector<ll> p, int mod) {
+    int sz = SZ(vs);
+    vector<ll> kp(sz + 1), rmul(sz + 1, 1);
+    p.push_back(mod);
+    rep(i, 0, sz) {
+        ll x = (vs[i] - kp[i]) * minv(rmul[i], p[i]) % p[i];
+        if (x < 0)
+            x += p[i];
+        rep(j, i + 1, sz + 1) {
+            kp[j] += rmul[j] * x;
+            kp[j] %= p[j];
+            rmul[j] *= p[i];
+            rmul[j] %= p[j];
+        }
+    }
+    return kp.back();
+}
+
 ll ModLog(ll a, ll b, ll p) {
     ll g = 1;
     for (ll t = p; t; t >>= 1)

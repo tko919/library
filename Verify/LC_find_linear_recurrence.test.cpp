@@ -15,7 +15,6 @@ int main() {
 
     auto ret = BerlekampMassey(a);
     ret.pop_back();
-    reverse(ALL(ret));
     for (auto &x : ret)
         x = -x;
 
