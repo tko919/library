@@ -12,7 +12,7 @@ data:
     path: Math/bigint.hpp
     title: Big Integer(Float)
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
   - icon: ':heavy_check_mark:'
@@ -169,12 +169,12 @@ data:
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1\
-    \ = fp<1045430273>;\r\nusing M2 = fp<1051721729>;\r\nusing M3 = fp<1053818881>;\r\
+    \ = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<754974721>;\r\
     \nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\
     \nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
     \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
     \nconstexpr ll w2 = ll(w1) * M2::get_mod();\r\ntemplate <typename T>\r\nvector<T>\
-    \ ArbitraryMult(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
+    \ ArbitraryMultint(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
     \ or b.empty())\r\n        return vector<T>();\r\n    int n = a.size() + b.size()\
     \ - 1;\r\n    vector<T> res(n);\r\n    if (min(a.size(), b.size()) <= 60) {\r\n\
     \        rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\
@@ -190,33 +190,32 @@ data:
     \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
     template <typename T>\r\nvector<T> ArbitraryMult(const vector<T> &a, const vector<T>\
     \ &b) {\r\n    vector<int> A, B;\r\n    for (auto &x : a)\r\n        A.push_back(x.v);\r\
-    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMult<T>(A,\
+    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMultint<T>(A,\
     \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n"
   code: "#pragma once\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"Math/modint.hpp\"\
-    \r\n\r\nusing M1 = fp<1045430273>;\r\nusing M2 = fp<1051721729>;\r\nusing M3 =\
-    \ fp<1053818881>;\r\nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int\
-    \ r_12 = M2(M1::get_mod()).inv();\r\nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\
-    \nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\nconstexpr int r_1323 = M3(ll(r_13)\
-    \ * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\nconstexpr ll w2 = ll(w1) *\
-    \ M2::get_mod();\r\ntemplate <typename T>\r\nvector<T> ArbitraryMult(const vector<int>\
-    \ &a, const vector<int> &b) {\r\n    if (a.empty() or b.empty())\r\n        return\
-    \ vector<T>();\r\n    int n = a.size() + b.size() - 1;\r\n    vector<T> res(n);\r\
-    \n    if (min(a.size(), b.size()) <= 60) {\r\n        rep(i, 0, a.size()) rep(j,\
-    \ 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\n        return res;\r\n    }\r\
-    \n    vector<int> vals[3];\r\n    vector<M1> a1(ALL(a)), b1(ALL(b)), c1 = N1.mult(a1,\
-    \ b1);\r\n    vector<M2> a2(ALL(a)), b2(ALL(b)), c2 = N2.mult(a2, b2);\r\n   \
-    \ vector<M3> a3(ALL(a)), b3(ALL(b)), c3 = N3.mult(a3, b3);\r\n    for (M1 x :\
-    \ c1)\r\n        vals[0].push_back(x.v);\r\n    for (M2 x : c2)\r\n        vals[1].push_back(x.v);\r\
-    \n    for (M3 x : c3)\r\n        vals[2].push_back(x.v);\r\n    rep(i, 0, n) {\r\
-    \n        ll p = vals[0][i];\r\n        ll q = (vals[1][i] + M2::get_mod() - p)\
-    \ * r_12 % M2::get_mod();\r\n        ll r = ((vals[2][i] + M3::get_mod() - p)\
-    \ * r_1323 +\r\n                (M3::get_mod() - q) * r_23) %\r\n            \
-    \   M3::get_mod();\r\n        res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n\
-    \    return res;\r\n}\r\n\r\ntemplate <typename T>\r\nvector<T> ArbitraryMult(const\
-    \ vector<T> &a, const vector<T> &b) {\r\n    vector<int> A, B;\r\n    for (auto\
-    \ &x : a)\r\n        A.push_back(x.v);\r\n    for (auto &x : b)\r\n        B.push_back(x.v);\r\
-    \n    return ArbitraryMult<T>(A, B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod\
-    \ Convolution\r\n */"
+    \r\n\r\nusing M1 = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<754974721>;\r\
+    \nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\
+    \nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
+    \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
+    \nconstexpr ll w2 = ll(w1) * M2::get_mod();\r\ntemplate <typename T>\r\nvector<T>\
+    \ ArbitraryMultint(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
+    \ or b.empty())\r\n        return vector<T>();\r\n    int n = a.size() + b.size()\
+    \ - 1;\r\n    vector<T> res(n);\r\n    if (min(a.size(), b.size()) <= 60) {\r\n\
+    \        rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\
+    \n        return res;\r\n    }\r\n    vector<int> vals[3];\r\n    vector<M1> a1(ALL(a)),\
+    \ b1(ALL(b)), c1 = N1.mult(a1, b1);\r\n    vector<M2> a2(ALL(a)), b2(ALL(b)),\
+    \ c2 = N2.mult(a2, b2);\r\n    vector<M3> a3(ALL(a)), b3(ALL(b)), c3 = N3.mult(a3,\
+    \ b3);\r\n    for (M1 x : c1)\r\n        vals[0].push_back(x.v);\r\n    for (M2\
+    \ x : c2)\r\n        vals[1].push_back(x.v);\r\n    for (M3 x : c3)\r\n      \
+    \  vals[2].push_back(x.v);\r\n    rep(i, 0, n) {\r\n        ll p = vals[0][i];\r\
+    \n        ll q = (vals[1][i] + M2::get_mod() - p) * r_12 % M2::get_mod();\r\n\
+    \        ll r = ((vals[2][i] + M3::get_mod() - p) * r_1323 +\r\n             \
+    \   (M3::get_mod() - q) * r_23) %\r\n               M3::get_mod();\r\n       \
+    \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
+    template <typename T>\r\nvector<T> ArbitraryMult(const vector<T> &a, const vector<T>\
+    \ &b) {\r\n    vector<int> A, B;\r\n    for (auto &x : a)\r\n        A.push_back(x.v);\r\
+    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMultint<T>(A,\
+    \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */"
   dependsOn:
   - Convolution/ntt.hpp
   - Math/modint.hpp
@@ -224,7 +223,7 @@ data:
   path: Convolution/arbitrary.hpp
   requiredBy:
   - Math/bigint.hpp
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2025-05-01 08:29:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_convolution_mod_1000000007.test.cpp

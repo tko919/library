@@ -154,12 +154,12 @@ data:
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1\
-    \ = fp<1045430273>;\r\nusing M2 = fp<1051721729>;\r\nusing M3 = fp<1053818881>;\r\
+    \ = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<754974721>;\r\
     \nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\
     \nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
     \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
     \nconstexpr ll w2 = ll(w1) * M2::get_mod();\r\ntemplate <typename T>\r\nvector<T>\
-    \ ArbitraryMult(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
+    \ ArbitraryMultint(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
     \ or b.empty())\r\n        return vector<T>();\r\n    int n = a.size() + b.size()\
     \ - 1;\r\n    vector<T> res(n);\r\n    if (min(a.size(), b.size()) <= 60) {\r\n\
     \        rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\
@@ -175,7 +175,7 @@ data:
     \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
     template <typename T>\r\nvector<T> ArbitraryMult(const vector<T> &a, const vector<T>\
     \ &b) {\r\n    vector<int> A, B;\r\n    for (auto &x : a)\r\n        A.push_back(x.v);\r\
-    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMult<T>(A,\
+    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMultint<T>(A,\
     \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 3 \"\
     Math/bigint.hpp\"\n\r\ntemplate <int D> struct bigint {\r\n    using u128 = __uint128_t;\r\
     \n    static const int B = pow(10, D);\r\n    int sign = 0;\r\n    vector<int>\
@@ -523,7 +523,7 @@ data:
   isVerificationFile: false
   path: Math/bigint.hpp
   requiredBy: []
-  timestamp: '2024-10-13 17:09:21+09:00'
+  timestamp: '2025-05-01 08:29:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/bigint.hpp

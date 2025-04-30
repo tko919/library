@@ -291,65 +291,71 @@ data:
     \ v);\r\n        ll d = extgcd(M, m, p, q);\r\n        if ((v - V) % d != 0)\r\
     \n            return {0, -1};\r\n        ll md = m / d, tmp = (v - V) / d % md\
     \ * p % md;\r\n        V += M * tmp;\r\n        M *= md;\r\n    }\r\n    V = (V\
-    \ % M + M) % M;\r\n    return {V, M};\r\n}\r\nll ModLog(ll a, ll b, ll p) {\r\n\
-    \    ll g = 1;\r\n    for (ll t = p; t; t >>= 1)\r\n        g = g * a % p;\r\n\
-    \    g = __gcd(g, p);\r\n    ll t = 1, c = 0;\r\n    for (; t % g; c++) {\r\n\
-    \        if (t == b)\r\n            return c;\r\n        t = t * a % p;\r\n  \
-    \  }\r\n    if (b % g)\r\n        return -1;\r\n    t /= g, b /= g;\r\n    ll\
-    \ n = p / g, h = 0, gs = 1;\r\n    for (; h * h < n; h++)\r\n        gs = gs *\
-    \ a % n;\r\n    unordered_map<ll, ll> bs;\r\n    for (ll s = 0, e = b; s < h;\
-    \ bs[e] = ++s)\r\n        e = e * a % n;\r\n    for (ll s = 0, e = t; s < n;)\
-    \ {\r\n        e = e * gs % n, s += h;\r\n        if (bs.count(e)) {\r\n     \
-    \       return c + s - bs[e];\r\n        }\r\n    }\r\n    return -1;\r\n}\r\n\
-    \r\nll TonelliShanks(ll a, ll p) {\r\n    a %= p;\r\n    if (a == 0)\r\n     \
-    \   return 0;\r\n    if (p == 2)\r\n        return a;\r\n    if (mpow(a, (p -\
-    \ 1) >> 1, p) != 1)\r\n        return -1;\r\n    ll b = 1;\r\n    while (mpow(b,\
-    \ (p - 1) >> 1, p) == 1)\r\n        b = Random::get(1LL, p - 1);\r\n\r\n    ll\
-    \ q = p - 1, k = 0;\r\n    while (q % 2 == 0) {\r\n        q >>= 1;\r\n      \
-    \  k++;\r\n    }\r\n    ll x = mpow(a, (q + 1) >> 1, p);\r\n    b = mpow(b, q,\
-    \ p);\r\n    k -= 2;\r\n    while (mpow(x, 2, p) != a) {\r\n        ll err = minv(a,\
-    \ p) * mpow(x, 2, p) % p;\r\n        if (mpow(err, 1 << k, p) != 1)\r\n      \
-    \      x = x * b % p;\r\n        b = mpow(b, 2, p);\r\n        k--;\r\n    }\r\
-    \n    return x;\r\n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\
-    \n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n \
-    \   k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m)\
-    \ != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\
-    \n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll {\
-    \ // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n    \
-    \    while (q % p == 0) {\r\n            q /= p;\r\n            s++;\r\n     \
-    \   }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n        \
-    \   res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n \
-    \       while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n        c\
-    \ = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d\
-    \ * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1),\
-    \ m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\n        ll\
-    \ gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\
-    \n            ll err = a * minv(mpow(res, pe, m), m) % im;\r\n            ll pos\
-    \ = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j, 0, block +\
-    \ 1) {\r\n                if (mp.count(pos)) {\r\n                    res = res\
-    \ *\r\n                          mpow(c,\r\n                               (block\
-    \ * mp[pos] + j) * mpow(p, i, m - 1) %\r\n                                   (m\
-    \ - 1),\r\n                               m) %\r\n                          im;\r\
-    \n                    break;\r\n                }\r\n                pos = pos\
-    \ * gs % im;\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\
-    \r\n    for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n     \
-    \       int sz = 0;\r\n            while (g % d == 0) {\r\n                g /=\
-    \ d;\r\n                sz++;\r\n            }\r\n            a = _subroot(d,\
-    \ sz, a);\r\n        }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n\
-    \    return a;\r\n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or\
-    \ k == 1)\r\n        return a;\r\n    if (k >= 64)\r\n        return 1;\r\n  \
-    \  if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n\
-    \    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull &x, const ull &y)\
-    \ {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n        else\r\n  \
-    \          x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n\
-    \        ull y = 1;\r\n        while (t) {\r\n            if (t & 1)\r\n     \
-    \           mul(y, x);\r\n            mul(x, x);\r\n            t >>= 1;\r\n \
-    \       }\r\n        return y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) -\
-    \ 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret + 1, k) <= a)\r\
-    \n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Primitive Function\r\
-    \n */\n#line 4 \"Math/binomquery.hpp\"\n\nstruct BinomialQuery{\n    struct X{\
-    \ // for m=p^q\n        int p,q,m,delta;\n        vector<int> fact,ifac;\n   \
-    \     FastDiv im,ip;\n        X(){}\n        X(int _p,int _q):p(_p),q(_q),ip(p){\n\
+    \ % M + M) % M;\r\n    return {V, M};\r\n}\r\nll garner(vector<ll> vs, vector<ll>\
+    \ p, int mod) {\r\n    int sz = SZ(vs);\r\n    vector<ll> kp(sz + 1), rmul(sz\
+    \ + 1, 1);\r\n    p.push_back(mod);\r\n    rep(i, 0, sz) {\r\n        ll x = (vs[i]\
+    \ - kp[i]) * minv(rmul[i], p[i]) % p[i];\r\n        if (x < 0)\r\n           \
+    \ x += p[i];\r\n        rep(j, i + 1, sz + 1) {\r\n            kp[j] += rmul[j]\
+    \ * x;\r\n            kp[j] %= p[j];\r\n            rmul[j] *= p[i];\r\n     \
+    \       rmul[j] %= p[j];\r\n        }\r\n    }\r\n    return kp.back();\r\n}\r\
+    \n\r\nll ModLog(ll a, ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t;\
+    \ t >>= 1)\r\n        g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1,\
+    \ c = 0;\r\n    for (; t % g; c++) {\r\n        if (t == b)\r\n            return\
+    \ c;\r\n        t = t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\
+    \n    t /= g, b /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h\
+    \ < n; h++)\r\n        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n \
+    \   for (ll s = 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n  \
+    \  for (ll s = 0, e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n    \
+    \    if (bs.count(e)) {\r\n            return c + s - bs[e];\r\n        }\r\n\
+    \    }\r\n    return -1;\r\n}\r\n\r\nll TonelliShanks(ll a, ll p) {\r\n    a %=\
+    \ p;\r\n    if (a == 0)\r\n        return 0;\r\n    if (p == 2)\r\n        return\
+    \ a;\r\n    if (mpow(a, (p - 1) >> 1, p) != 1)\r\n        return -1;\r\n    ll\
+    \ b = 1;\r\n    while (mpow(b, (p - 1) >> 1, p) == 1)\r\n        b = Random::get(1LL,\
+    \ p - 1);\r\n\r\n    ll q = p - 1, k = 0;\r\n    while (q % 2 == 0) {\r\n    \
+    \    q >>= 1;\r\n        k++;\r\n    }\r\n    ll x = mpow(a, (q + 1) >> 1, p);\r\
+    \n    b = mpow(b, q, p);\r\n    k -= 2;\r\n    while (mpow(x, 2, p) != a) {\r\n\
+    \        ll err = minv(a, p) * mpow(x, 2, p) % p;\r\n        if (mpow(err, 1 <<\
+    \ k, p) != 1)\r\n            x = x * b % p;\r\n        b = mpow(b, 2, p);\r\n\
+    \        k--;\r\n    }\r\n    return x;\r\n}\r\n\r\nll mod_root(ll k, ll a, ll\
+    \ m) {\r\n    if (a == 0)\r\n        return k ? 0 : -1;\r\n    if (m == 2)\r\n\
+    \        return a & 1;\r\n    k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n   \
+    \ if (mpow(a, (m - 1) / g, m) != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k\
+    \ / g, (m - 1) / g), m);\r\n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll\
+    \ p, int e, ll a) -> ll { // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n  \
+    \      int s = 0;\r\n        while (q % p == 0) {\r\n            q /= p;\r\n \
+    \           s++;\r\n        }\r\n        int d = s - e;\r\n        ll pe = mpow(p,\
+    \ e, m),\r\n           res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe,\
+    \ m), c = 1;\r\n        while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\
+    \n        c = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block\
+    \ = sqrt(d * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block\
+    \ % (m - 1), m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\
+    \n        ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i,\
+    \ 0, d) {\r\n            ll err = a * minv(mpow(res, pe, m), m) % im;\r\n    \
+    \        ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j,\
+    \ 0, block + 1) {\r\n                if (mp.count(pos)) {\r\n                \
+    \    res = res *\r\n                          mpow(c,\r\n                    \
+    \           (block * mp[pos] + j) * mpow(p, i, m - 1) %\r\n                  \
+    \                 (m - 1),\r\n                               m) %\r\n        \
+    \                  im;\r\n                    break;\r\n                }\r\n\
+    \                pos = pos * gs % im;\r\n            }\r\n        }\r\n      \
+    \  return res;\r\n    };\r\n\r\n    for (ll d = 2; d * d <= g; d++)\r\n      \
+    \  if (g % d == 0) {\r\n            int sz = 0;\r\n            while (g % d ==\
+    \ 0) {\r\n                g /= d;\r\n                sz++;\r\n            }\r\n\
+    \            a = _subroot(d, sz, a);\r\n        }\r\n    if (g > 1)\r\n      \
+    \  a = _subroot(g, 1, a);\r\n    return a;\r\n}\r\n\r\null floor_root(ull a, ull\
+    \ k) {\r\n    if (a <= 1 or k == 1)\r\n        return a;\r\n    if (k >= 64)\r\
+    \n        return 1;\r\n    if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr\
+    \ ull LIM = -1;\r\n    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull\
+    \ &x, const ull &y) {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n\
+    \        else\r\n            x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull\
+    \ t) -> ull {\r\n        ull y = 1;\r\n        while (t) {\r\n            if (t\
+    \ & 1)\r\n                mul(y, x);\r\n            mul(x, x);\r\n           \
+    \ t >>= 1;\r\n        }\r\n        return y;\r\n    };\r\n    ull ret = (k ==\
+    \ 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret\
+    \ + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Primitive Function\r\n */\n#line 4 \"Math/binomquery.hpp\"\n\nstruct BinomialQuery{\n\
+    \    struct X{ // for m=p^q\n        int p,q,m,delta;\n        vector<int> fact,ifac;\n\
+    \        FastDiv im,ip;\n        X(){}\n        X(int _p,int _q):p(_p),q(_q),ip(p){\n\
     \            m=1;\n            while(_q--)m*=p;\n            im=FastDiv(m);\n\
     \            fact.resize(m);\n            ifac.resize(m);\n            fact[0]=fact[1]=ifac[0]=ifac[1]=1;\n\
     \            rep(i,2,m){\n                if(i%ip==0)fact[i]=fact[i-1];\n    \
@@ -392,7 +398,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2025-04-27 22:54:33+09:00'
+  timestamp: '2025-05-01 08:29:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_binomial_coefficient.test.cpp

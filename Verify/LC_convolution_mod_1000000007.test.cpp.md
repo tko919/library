@@ -18,9 +18,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
@@ -301,12 +301,12 @@ data:
     \           rep(i, 0, m) res[i] *= c[i];\r\n        }\r\n        ntt(res, 1);\r\
     \n        res.resize(n);\r\n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n\
     \ * @brief Number Theoretic Transform\r\n */\n#line 4 \"Convolution/arbitrary.hpp\"\
-    \n\r\nusing M1 = fp<1045430273>;\r\nusing M2 = fp<1051721729>;\r\nusing M3 = fp<1053818881>;\r\
+    \n\r\nusing M1 = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<754974721>;\r\
     \nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\
     \nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
     \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
     \nconstexpr ll w2 = ll(w1) * M2::get_mod();\r\ntemplate <typename T>\r\nvector<T>\
-    \ ArbitraryMult(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
+    \ ArbitraryMultint(const vector<int> &a, const vector<int> &b) {\r\n    if (a.empty()\
     \ or b.empty())\r\n        return vector<T>();\r\n    int n = a.size() + b.size()\
     \ - 1;\r\n    vector<T> res(n);\r\n    if (min(a.size(), b.size()) <= 60) {\r\n\
     \        rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\
@@ -322,7 +322,7 @@ data:
     \ res[i] = (T(r) * w2 + q * w1 + p);\r\n    }\r\n    return res;\r\n}\r\n\r\n\
     template <typename T>\r\nvector<T> ArbitraryMult(const vector<T> &a, const vector<T>\
     \ &b) {\r\n    vector<int> A, B;\r\n    for (auto &x : a)\r\n        A.push_back(x.v);\r\
-    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMult<T>(A,\
+    \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMultint<T>(A,\
     \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 8 \"\
     Verify/LC_convolution_mod_1000000007.test.cpp\"\n\r\nusing Fp = fp<>;\r\n\r\n\
     int main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    vector<int> a(n), b(m);\r\
@@ -346,8 +346,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-05-01 08:29:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_1000000007.test.cpp
 layout: document
