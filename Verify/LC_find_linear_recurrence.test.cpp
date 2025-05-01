@@ -14,9 +14,9 @@ int main() {
     rep(i, 0, n) cin >> a[i];
 
     auto ret = BerlekampMassey(a);
-    ret.pop_back();
     for (auto &x : ret)
         x = -x;
+    ret.erase(ret.begin());
 
     int m = ret.size();
     cout << m << '\n';

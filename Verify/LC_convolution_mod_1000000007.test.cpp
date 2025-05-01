@@ -11,7 +11,7 @@ using Fp = fp<>;
 int main() {
     int n, m;
     cin >> n >> m;
-    vector<int> a(n), b(m);
+    vector<Fp> a(n), b(m);
     for (auto &x : a)
         cin >> x;
     for (auto &x : b)
