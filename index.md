@@ -189,7 +189,7 @@ data:
     - icon: ':question:'
       path: FPS/arbitraryfps.hpp
       title: Formal Power Series (Arbitrary mod)
-    - icon: ':x:'
+    - icon: ':question:'
       path: FPS/berlekampmassey.hpp
       title: Berlekamp Massey Algorithm
     - icon: ':warning:'
@@ -603,7 +603,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod.test.cpp
       title: Verify/LC_convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod_1000000007.test.cpp
       title: Verify/LC_convolution_mod_1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -648,7 +648,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_factorize.test.cpp
       title: Verify/LC_factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_find_linear_recurrence.test.cpp
       title: Verify/LC_find_linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'

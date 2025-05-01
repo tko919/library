@@ -6,7 +6,7 @@ data:
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Berlekamp Massey Algorithm
     links: []
@@ -52,7 +52,7 @@ data:
   requiredBy:
   - Math/bbla.hpp
   timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_find_linear_recurrence.test.cpp
   - Verify/YUKI_310.test.cpp

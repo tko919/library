@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/find_linear_recurrence
@@ -205,19 +205,18 @@ data:
     \ Berlekamp Massey Algorithm\r\n */\n#line 7 \"Verify/LC_find_linear_recurrence.test.cpp\"\
     \n\r\nusing Fp = fp<998244353>;\r\n\r\nint main() {\r\n    int n;\r\n    cin >>\
     \ n;\r\n    vector<Fp> a(n);\r\n    rep(i, 0, n) cin >> a[i];\r\n\r\n    auto\
-    \ ret = BerlekampMassey(a);\r\n    ret.pop_back();\r\n    for (auto &x : ret)\r\
-    \n        x = -x;\r\n\r\n    int m = ret.size();\r\n    cout << m << '\\n';\r\n\
-    \    rep(i, 0, m) cout << ret[i] << (i == m - 1 ? '\\n' : ' ');\r\n    return\
-    \ 0;\r\n}\n"
+    \ ret = BerlekampMassey(a);\r\n    for (auto &x : ret)\r\n        x = -x;\r\n\
+    \    ret.erase(ret.begin());\r\n\r\n    int m = ret.size();\r\n    cout << m <<\
+    \ '\\n';\r\n    rep(i, 0, m) cout << ret[i] << (i == m - 1 ? '\\n' : ' ');\r\n\
+    \    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/find_linear_recurrence\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"Math/modint.hpp\"\r\n#include \"FPS/berlekampmassey.hpp\"\r\n\r\n\
     using Fp = fp<998244353>;\r\n\r\nint main() {\r\n    int n;\r\n    cin >> n;\r\
     \n    vector<Fp> a(n);\r\n    rep(i, 0, n) cin >> a[i];\r\n\r\n    auto ret =\
-    \ BerlekampMassey(a);\r\n    ret.pop_back();\r\n    for (auto &x : ret)\r\n  \
-    \      x = -x;\r\n\r\n    int m = ret.size();\r\n    cout << m << '\\n';\r\n \
-    \   rep(i, 0, m) cout << ret[i] << (i == m - 1 ? '\\n' : ' ');\r\n    return 0;\r\
-    \n}"
+    \ BerlekampMassey(a);\r\n    for (auto &x : ret)\r\n        x = -x;\r\n    ret.erase(ret.begin());\r\
+    \n\r\n    int m = ret.size();\r\n    cout << m << '\\n';\r\n    rep(i, 0, m) cout\
+    \ << ret[i] << (i == m - 1 ? '\\n' : ' ');\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Utility/fastio.hpp
@@ -226,8 +225,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2025-05-01 08:29:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-05-01 21:52:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_find_linear_recurrence.test.cpp
 layout: document

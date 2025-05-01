@@ -18,9 +18,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
@@ -325,7 +325,7 @@ data:
     \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMultint<T>(A,\
     \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n#line 8 \"\
     Verify/LC_convolution_mod_1000000007.test.cpp\"\n\r\nusing Fp = fp<>;\r\n\r\n\
-    int main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    vector<int> a(n), b(m);\r\
+    int main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    vector<Fp> a(n), b(m);\r\
     \n    for (auto &x : a)\r\n        cin >> x;\r\n    for (auto &x : b)\r\n    \
     \    cin >> x;\r\n    auto ret = ArbitraryMult<Fp>(a, b);\r\n    for (auto &x\
     \ : ret)\r\n        cout << x << '\\n';\r\n    return 0;\r\n}\n"
@@ -333,7 +333,7 @@ data:
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\
     \n#include \"Math/modint.hpp\"\r\n\r\n#include \"Convolution/arbitrary.hpp\"\r\
     \n\r\nusing Fp = fp<>;\r\n\r\nint main() {\r\n    int n, m;\r\n    cin >> n >>\
-    \ m;\r\n    vector<int> a(n), b(m);\r\n    for (auto &x : a)\r\n        cin >>\
+    \ m;\r\n    vector<Fp> a(n), b(m);\r\n    for (auto &x : a)\r\n        cin >>\
     \ x;\r\n    for (auto &x : b)\r\n        cin >> x;\r\n    auto ret = ArbitraryMult<Fp>(a,\
     \ b);\r\n    for (auto &x : ret)\r\n        cout << x << '\\n';\r\n    return\
     \ 0;\r\n}"
@@ -346,8 +346,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2025-05-01 08:29:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-05-01 21:52:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_convolution_mod_1000000007.test.cpp
 layout: document
