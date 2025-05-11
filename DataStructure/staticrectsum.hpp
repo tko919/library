@@ -34,8 +34,8 @@ template <typename XY, typename T> struct StaticRectangleSum {
             auto &[l, d, r, u] = que[i];
             d = lower_bound(ALL(ys), d) - ys.begin();
             u = lower_bound(ALL(ys), u) - ys.begin();
-            qs.push_back({l, d, u, i, 1});
-            qs.push_back({r, d, u, i, -1});
+            qs.push_back({l, d, u, i, -1});
+            qs.push_back({r, d, u, i, 1});
         }
         sort(ALL(plus), [](P &p, P &q) { return p.x < q.x; });
         sort(ALL(qs), [](Q &p, Q &q) { return p.x < q.x; });
@@ -47,7 +47,7 @@ template <typename XY, typename T> struct StaticRectangleSum {
                 bit.add(plus[k].y, plus[k].w);
                 k++;
             }
-            res[q.id] += bit.sum(q.u, q.d) * q.inv;
+            res[q.id] += bit.sum(q.d, q.u) * q.inv;
         }
         return res;
     }

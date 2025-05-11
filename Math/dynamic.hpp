@@ -3,11 +3,11 @@
 
 struct Fp {
     using u64 = uint64_t;
-    int v;
-    static int get_mod() {
+    uint v;
+    static uint get_mod() {
         return _getmod();
     }
-    static void set_mod(int _m) {
+    static void set_mod(uint _m) {
         bar = FastDiv(_m);
     }
     Fp inv() const {
@@ -90,7 +90,7 @@ struct Fp {
 
   private:
     static FastDiv bar;
-    static int _getmod() {
+    static uint _getmod() {
         return bar.get();
     }
 };

@@ -28,7 +28,7 @@ vector<ll> Pollard(ll n) {
     }
 }
 
-vector<ll> EnumDivisors(ll n) {
+vector<pair<ll, int>> Pollard2(ll n) {
     auto ps = Pollard(n);
     sort(ALL(ps));
     using P = pair<ll, int>;
@@ -40,6 +40,11 @@ vector<ll> EnumDivisors(ll n) {
             pes.back().second++;
         }
     }
+    return pes;
+}
+
+vector<ll> EnumDivisors(ll n) {
+    auto pes = Pollard2(n);
     vector<ll> ret;
     auto rec = [&](auto &rec, int id, ll d) -> void {
         if (id == SZ(pes)) {
