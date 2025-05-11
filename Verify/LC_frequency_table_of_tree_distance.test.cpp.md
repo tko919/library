@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/fft.hpp
     title: Fast Fourier Transform
-  - icon: ':question:'
+  - icon: ':x:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -72,55 +72,64 @@ data:
     \ const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i] != ',' && a[i]\
     \ != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\" << b << \" \";\r\
     \n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Convolution/fft.hpp\"\n\r\nnamespace\
-    \ FFT{\r\n    struct C{\r\n        double x,y;\r\n        C(double _x=0,double\
-    \ _y=0):x(_x),y(_y){}\r\n        C operator~()const{return C(x,-y);}\r\n     \
-    \   C operator*(const C& c)const{return C(x*c.x-y*c.y,x*c.y+y*c.x);}\r\n     \
-    \   C operator+(const C& c)const{return C(x+c.x,y+c.y);}\r\n        C operator-(const\
-    \ C& c)const{return C(x-c.x,y-c.y);}\r\n    };\r\n    vector<vector<C>> w(1,vector<C>(1,1));\r\
-    \n    void init(int lg){\r\n        for(int d=1,m=1;d<=lg;d++,m<<=1)if(d>=(int)w.size()){\r\
-    \n             w.emplace_back(m);\r\n             const double th=M_PI/m;\r\n\
-    \             for(int i=0;i<m;i++)w[d][i]=(i&1?C(cos(th*i),sin(th*i)):w[d-1][i>>1]);\r\
-    \n        }\r\n    }\r\n    void fft(vector<C>& f,bool inv){\r\n        const\
-    \ int n=f.size(); const int lg=__lg(n);\r\n        if(lg>=(int)w.size())init(lg);\r\
-    \n        if(inv){\r\n            for(int k=1;k<=lg;k++){\r\n                const\
-    \ int d=1<<(k-1);\r\n                for(int s=0;s<n;s+=2*d){\r\n            \
-    \        for(int i=s;i<s+d;i++){\r\n                        C x=f[i],y=~w[k][i-s]*f[d+i];\r\
-    \n                        f[i]=x+y; f[d+i]=x-y;\r\n                    }\r\n \
-    \               }\r\n            }\r\n         }\r\n         else{\r\n       \
-    \      for(int k=lg;k;k--){\r\n                 const int d=1<<(k-1);\r\n    \
-    \             for(int s=0;s<n;s+=2*d){\r\n                     for(int i=s;i<s+d;i++){\r\
-    \n                         C x=f[i],y=f[d+i];\r\n                         f[i]=x+y;\
-    \ f[d+i]=w[k][i-s]*(x-y);\r\n                     }\r\n                 }\r\n\
-    \             }\r\n         }\r\n    }\r\n    template<typename T>vector<T> mult(const\
-    \ vector<T>& a,const vector<T>& b){\r\n        const int as=a.size(); const int\
-    \ bs=b.size(); \r\n        if(!as or !bs)return {};\r\n        const int cs=as+bs-1;\
-    \ vector<T> c(cs);\r\n        if(max(as,bs)<16){\r\n            for(int i=0;i<as;i++)for(int\
-    \ j=0;j<bs;j++){\r\n                c[i+j]+=(int)a[i]*b[j];\r\n            }\r\
-    \n            return c;\r\n        }\r\n        const int n=1<<__lg(2*cs-1); vector<C>\
-    \ f(n);\r\n        for(int i=0;i<as;i++)f[i].x=a[i];\r\n        for(int i=0;i<bs;i++)f[i].y=b[i];\r\
-    \n        fft(f,0); static const C rad(0,-.25);\r\n        for(int i=0;i<n;i++){\r\
-    \n            int j=i?i^((1<<__lg(i))-1):0;\r\n            if(i>j)continue;\r\n\
-    \            C x=f[i]+~f[j],y=f[i]-~f[j];\r\n            f[i]=x*y*rad; f[j]=~f[i];\r\
-    \n        }\r\n        fft(f,1); for(int i=0;i<cs;i++)c[i]=round(f[i].x/n);\r\n\
-    \        return c;\r\n    }\r\n    template<typename T>vector<T> square(const\
-    \ vector<T>& a){\r\n        const int as=a.size(); if(!as)return {};\r\n     \
-    \   const int cs=as*2-1; vector<T> c(cs);\r\n        if(as<16){\r\n          \
-    \  for(int i=0;i<as;i++)for(int j=0;j<as;j++){\r\n                c[i+j]+=(int)a[i]*a[j];\r\
-    \n            }\r\n            return c;\r\n        }\r\n        const int n=1<<__lg(cs*2-1);\
-    \ vector<C> f(n);\r\n        for(int i=0;i<as;i++)f[i].x=a[i];\r\n        fft(f,0);\
-    \ for(int i=0;i<n;i++)f[i]=f[i]*f[i];\r\n        fft(f,1); for(int i=0;i<cs;i++)c[i]=round(f[i].x/n);\r\
-    \n        return c;\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\
-    \n */\n#line 2 \"Graph/centroid.hpp\"\n\r\nclass CentroidDecomposition {\r\n \
-    \   void get(int v, int p) {\r\n        sz[v] = 1;\r\n        for (auto &to :\
-    \ g[v])\r\n            if (to != p and !used[to]) {\r\n                get(to,\
-    \ v);\r\n                sz[v] += sz[to];\r\n            }\r\n    }\r\n    int\
-    \ dfs(int v, int p, int rt) {\r\n        for (auto &to : g[v])\r\n           \
-    \ if (to != p and !used[to]) {\r\n                if (sz[to] > (sz[rt] >> 1))\r\
-    \n                    return dfs(to, v, rt);\r\n            }\r\n        return\
-    \ v;\r\n    }\r\n\r\n  public:\r\n    int n, all;\r\n    vector<vector<int>> g;\r\
-    \n    vector<int> sz, used;\r\n    CentroidDecomposition(int n_) : n(n_), g(n),\
-    \ sz(n), used(n) {}\r\n    void add_edge(int u, int v) {\r\n        g[u].push_back(v);\r\
-    \n        g[v].push_back(u);\r\n    }\r\n    int size(int rt) {\r\n        get(rt,\
+    \ FFT {\r\nstruct C {\r\n    double x, y;\r\n    C(double _x = 0, double _y =\
+    \ 0) : x(_x), y(_y) {}\r\n    C operator~() const {\r\n        return C(x, -y);\r\
+    \n    }\r\n    C operator*(const C &c) const {\r\n        return C(x * c.x - y\
+    \ * c.y, x * c.y + y * c.x);\r\n    }\r\n    C operator+(const C &c) const {\r\
+    \n        return C(x + c.x, y + c.y);\r\n    }\r\n    C operator-(const C &c)\
+    \ const {\r\n        return C(x - c.x, y - c.y);\r\n    }\r\n};\r\nvector<vector<C>>\
+    \ w(1, vector<C>(1, 1));\r\nvoid init(int lg) {\r\n    for (int d = 1, m = 1;\
+    \ d <= lg; d++, m <<= 1)\r\n        if (d >= (int)w.size()) {\r\n            w.emplace_back(m);\r\
+    \n            const double th = M_PI / m;\r\n            for (int i = 0; i < m;\
+    \ i++)\r\n                w[d][i] =\r\n                    (i & 1 ? C(cos(th *\
+    \ i), sin(th * i)) : w[d - 1][i >> 1]);\r\n        }\r\n}\r\nvoid fft(vector<C>\
+    \ &f, bool inv) {\r\n    const int n = f.size();\r\n    const int lg = __lg(n);\r\
+    \n    if (lg >= (int)w.size())\r\n        init(lg);\r\n    if (inv) {\r\n    \
+    \    for (int k = 1; k <= lg; k++) {\r\n            const int d = 1 << (k - 1);\r\
+    \n            for (int s = 0; s < n; s += 2 * d) {\r\n                for (int\
+    \ i = s; i < s + d; i++) {\r\n                    C x = f[i], y = ~w[k][i - s]\
+    \ * f[d + i];\r\n                    f[i] = x + y;\r\n                    f[d\
+    \ + i] = x - y;\r\n                }\r\n            }\r\n        }\r\n    } else\
+    \ {\r\n        for (int k = lg; k; k--) {\r\n            const int d = 1 << (k\
+    \ - 1);\r\n            for (int s = 0; s < n; s += 2 * d) {\r\n              \
+    \  for (int i = s; i < s + d; i++) {\r\n                    C x = f[i], y = f[d\
+    \ + i];\r\n                    f[i] = x + y;\r\n                    f[d + i] =\
+    \ w[k][i - s] * (x - y);\r\n                }\r\n            }\r\n        }\r\n\
+    \    }\r\n}\r\ntemplate <typename T> vector<T> mult(const vector<T> &a, const\
+    \ vector<T> &b) {\r\n    const int as = a.size();\r\n    const int bs = b.size();\r\
+    \n    if (!as or !bs)\r\n        return {};\r\n    const int cs = as + bs - 1;\r\
+    \n    vector<T> c(cs);\r\n    if (max(as, bs) < 16) {\r\n        for (int i =\
+    \ 0; i < as; i++)\r\n            for (int j = 0; j < bs; j++) {\r\n          \
+    \      c[i + j] += T(a[i]) * b[j];\r\n            }\r\n        return c;\r\n \
+    \   }\r\n    const int n = 1 << __lg(2 * cs - 1);\r\n    vector<C> f(n);\r\n \
+    \   for (int i = 0; i < as; i++)\r\n        f[i].x = a[i];\r\n    for (int i =\
+    \ 0; i < bs; i++)\r\n        f[i].y = b[i];\r\n    fft(f, 0);\r\n    static const\
+    \ C rad(0, -.25);\r\n    for (int i = 0; i < n; i++) {\r\n        int j = i ?\
+    \ i ^ ((1 << __lg(i)) - 1) : 0;\r\n        if (i > j)\r\n            continue;\r\
+    \n        C x = f[i] + ~f[j], y = f[i] - ~f[j];\r\n        f[i] = x * y * rad;\r\
+    \n        f[j] = ~f[i];\r\n    }\r\n    fft(f, 1);\r\n    for (int i = 0; i <\
+    \ cs; i++)\r\n        c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\ntemplate\
+    \ <typename T> vector<T> square(const vector<T> &a) {\r\n    const int as = a.size();\r\
+    \n    if (!as)\r\n        return {};\r\n    const int cs = as * 2 - 1;\r\n   \
+    \ vector<T> c(cs);\r\n    if (as < 16) {\r\n        for (int i = 0; i < as; i++)\r\
+    \n            for (int j = 0; j < as; j++) {\r\n                c[i + j] += (int)a[i]\
+    \ * a[j];\r\n            }\r\n        return c;\r\n    }\r\n    const int n =\
+    \ 1 << __lg(cs * 2 - 1);\r\n    vector<C> f(n);\r\n    for (int i = 0; i < as;\
+    \ i++)\r\n        f[i].x = a[i];\r\n    fft(f, 0);\r\n    for (int i = 0; i <\
+    \ n; i++)\r\n        f[i] = f[i] * f[i];\r\n    fft(f, 1);\r\n    for (int i =\
+    \ 0; i < cs; i++)\r\n        c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\n}\
+    \ // namespace FFT\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\n */\n#line\
+    \ 2 \"Graph/centroid.hpp\"\n\r\nclass CentroidDecomposition {\r\n    void get(int\
+    \ v, int p) {\r\n        sz[v] = 1;\r\n        for (auto &to : g[v])\r\n     \
+    \       if (to != p and !used[to]) {\r\n                get(to, v);\r\n      \
+    \          sz[v] += sz[to];\r\n            }\r\n    }\r\n    int dfs(int v, int\
+    \ p, int rt) {\r\n        for (auto &to : g[v])\r\n            if (to != p and\
+    \ !used[to]) {\r\n                if (sz[to] > (sz[rt] >> 1))\r\n            \
+    \        return dfs(to, v, rt);\r\n            }\r\n        return v;\r\n    }\r\
+    \n\r\n  public:\r\n    int n, all;\r\n    vector<vector<int>> g;\r\n    vector<int>\
+    \ sz, used;\r\n    CentroidDecomposition(int n_) : n(n_), g(n), sz(n), used(n)\
+    \ {}\r\n    void add_edge(int u, int v) {\r\n        g[u].push_back(v);\r\n  \
+    \      g[v].push_back(u);\r\n    }\r\n    int size(int rt) {\r\n        get(rt,\
     \ -1);\r\n        return sz[rt];\r\n    }\r\n    int find(int rt) {\r\n      \
     \  get(rt, -1);\r\n        all = sz[rt];\r\n        int res = dfs(rt, -1, rt);\r\
     \n        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Centroid Decomposition\r\
@@ -176,8 +185,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-05-11 13:37:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_frequency_table_of_tree_distance.test.cpp
 layout: document

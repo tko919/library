@@ -85,8 +85,8 @@ data:
   isVerificationFile: false
   path: Convolution/divisor.hpp
   requiredBy:
-  - Math/mobius.hpp
   - Math/totient.hpp
+  - Math/mobius.hpp
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

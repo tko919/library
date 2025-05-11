@@ -26,6 +26,9 @@ data:
   - icon: ':warning:'
     path: Math/pfaffian.hpp
     title: Pfaffian
+  - icon: ':warning:'
+    path: Math/pisano.hpp
+    title: Pisano Period
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
@@ -145,21 +148,22 @@ data:
   isVerificationFile: false
   path: Math/matrix.hpp
   requiredBy:
-  - Graph/counteuler.hpp
   - Graph/countspanning.hpp
-  - FPS/p-recursive.hpp
-  - Math/linearequation.hpp
-  - Math/pfaffian.hpp
+  - Graph/counteuler.hpp
   - Math/charpoly.hpp
-  - Math/hafnian.hpp
+  - Math/pfaffian.hpp
   - Math/detaplusbx.hpp
+  - Math/pisano.hpp
+  - Math/hafnian.hpp
+  - Math/linearequation.hpp
+  - FPS/p-recursive.hpp
   timestamp: '2024-06-14 02:46:58+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Verify/LC_matrix_product.test.cpp
   - Verify/LC_matrix_det.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_system_of_linear_equations.test.cpp
-  - Verify/LC_matrix_product.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document
 redirect_from:

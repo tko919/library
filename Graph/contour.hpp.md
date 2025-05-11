@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
   - icon: ':question:'

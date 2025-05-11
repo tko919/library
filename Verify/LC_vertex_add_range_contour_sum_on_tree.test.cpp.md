@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
-  - icon: ':question:'
+  - icon: ':x:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
   - icon: ':x:'

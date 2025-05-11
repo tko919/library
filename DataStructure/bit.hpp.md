@@ -79,21 +79,21 @@ data:
   isVerificationFile: false
   path: DataStructure/bit.hpp
   requiredBy:
-  - String/prefixsubstrlcs.hpp
+  - DataStructure/staticrectaddrectsum.hpp
   - DataStructure/staticrectsum.hpp
   - DataStructure/dynamicrectsum.hpp
   - DataStructure/2dbit.hpp
-  - DataStructure/staticrectaddrectsum.hpp
+  - String/prefixsubstrlcs.hpp
   timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_prefix_substring_lcs.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - Verify/LC_point_add_range_sum.test.cpp
-  - Verify/LC_static_range_sum.test.cpp
   - Verify/LC_static_range_inversions_query.test.cpp
-  - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
+  - Verify/LC_prefix_substring_lcs.test.cpp
+  - Verify/LC_point_add_range_sum.test.cpp
   - Verify/LC_vertex_add_path_sum.test.cpp
+  - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
+  - Verify/LC_static_range_sum.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: DataStructure/bit.hpp
 layout: document
 redirect_from:

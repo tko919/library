@@ -41,26 +41,29 @@ data:
     \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
     \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
     \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
-    \ \"FPS/interpolate.hpp\"\n\ntemplate<typename T>T Interpolate(vector<T>& ys,ll\
-    \ t){ // f(0),..,f(d) -> f(t)\n    int d=ys.size()-1;\n    if(t<=d)return ys[t];\n\
-    \    vector<T> L(d+1,1),R(d+1,1);\n    rep(i,0,d)L[i+1]=L[i]*(t-i);\n    for(int\
-    \ i=d;i;i--)R[i-1]=R[i]*(t-i);\n    T ret;\n    rep(i,0,d+1){\n        T add=ys[i]*L[i]*R[i]*Fact<T>(i,1)*Fact<T>(d-i,1);\n\
-    \        if((d-i)&1)ret-=add;\n        else ret+=add;\n    }\n    return ret;\n\
-    }\n\n/**\n * @brief interpolate (one point)\n*/\n"
-  code: "#pragma once\n#include \"Math/comb.hpp\"\n\ntemplate<typename T>T Interpolate(vector<T>&\
-    \ ys,ll t){ // f(0),..,f(d) -> f(t)\n    int d=ys.size()-1;\n    if(t<=d)return\
-    \ ys[t];\n    vector<T> L(d+1,1),R(d+1,1);\n    rep(i,0,d)L[i+1]=L[i]*(t-i);\n\
-    \    for(int i=d;i;i--)R[i-1]=R[i]*(t-i);\n    T ret;\n    rep(i,0,d+1){\n   \
-    \     T add=ys[i]*L[i]*R[i]*Fact<T>(i,1)*Fact<T>(d-i,1);\n        if((d-i)&1)ret-=add;\n\
-    \        else ret+=add;\n    }\n    return ret;\n}\n\n/**\n * @brief interpolate\
-    \ (one point)\n*/"
+    \ \"FPS/interpolate.hpp\"\n\n// f(0),..,f(d) -> f(t)\ntemplate <typename T> T\
+    \ Interpolate(vector<T> &ys, ll t) {\n    int d = ys.size() - 1;\n    if (t <=\
+    \ d)\n        return ys[t];\n    vector<T> L(d + 1, 1), R(d + 1, 1);\n    rep(i,\
+    \ 0, d) L[i + 1] = L[i] * (t - i);\n    for (int i = d; i; i--)\n        R[i -\
+    \ 1] = R[i] * (t - i);\n    T ret;\n    rep(i, 0, d + 1) {\n        T add = ys[i]\
+    \ * L[i] * R[i] * Fact<T>(i, 1) * Fact<T>(d - i, 1);\n        if ((d - i) & 1)\n\
+    \            ret -= add;\n        else\n            ret += add;\n    }\n    return\
+    \ ret;\n}\n\n/**\n * @brief interpolate (one point)\n */\n"
+  code: "#pragma once\n#include \"Math/comb.hpp\"\n\n// f(0),..,f(d) -> f(t)\ntemplate\
+    \ <typename T> T Interpolate(vector<T> &ys, ll t) {\n    int d = ys.size() - 1;\n\
+    \    if (t <= d)\n        return ys[t];\n    vector<T> L(d + 1, 1), R(d + 1, 1);\n\
+    \    rep(i, 0, d) L[i + 1] = L[i] * (t - i);\n    for (int i = d; i; i--)\n  \
+    \      R[i - 1] = R[i] * (t - i);\n    T ret;\n    rep(i, 0, d + 1) {\n      \
+    \  T add = ys[i] * L[i] * R[i] * Fact<T>(i, 1) * Fact<T>(d - i, 1);\n        if\
+    \ ((d - i) & 1)\n            ret -= add;\n        else\n            ret += add;\n\
+    \    }\n    return ret;\n}\n\n/**\n * @brief interpolate (one point)\n */"
   dependsOn:
   - Math/comb.hpp
   isVerificationFile: false
   path: FPS/interpolate.hpp
   requiredBy:
   - FPS/sumofpolyexp.hpp
-  timestamp: '2024-10-22 03:59:04+09:00'
+  timestamp: '2025-05-11 13:37:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp

@@ -212,9 +212,9 @@ data:
     \        x -= z * mod;\n        return x < mod ? x : x - mod;\n    }\n    u64\
     \ mul(u64 a, u64 b) {\n        return modulo(u128(a) * b);\n    }\n};\n\n/**\n\
     \ * @brief Fast Division\n */\n#line 3 \"Math/dynamic.hpp\"\n\r\nstruct Fp {\r\
-    \n    using u64 = uint64_t;\r\n    int v;\r\n    static int get_mod() {\r\n  \
-    \      return _getmod();\r\n    }\r\n    static void set_mod(int _m) {\r\n   \
-    \     bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n        int tmp,\
+    \n    using u64 = uint64_t;\r\n    uint v;\r\n    static uint get_mod() {\r\n\
+    \        return _getmod();\r\n    }\r\n    static void set_mod(uint _m) {\r\n\
+    \        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n        int tmp,\
     \ a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n            tmp\
     \ = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n            x -= tmp *\
     \ y;\r\n            swap(x, y);\r\n        }\r\n        if (x < 0) {\r\n     \
@@ -240,7 +240,7 @@ data:
     \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
     \ &is, Fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
-    \n    static FastDiv bar;\r\n    static int _getmod() {\r\n        return bar.get();\r\
+    \n    static FastDiv bar;\r\n    static uint _getmod() {\r\n        return bar.get();\r\
     \n    }\r\n};\r\nFastDiv Fp::bar(998244353);\r\n\r\nvoid rd(Fp &x) {\r\n    fastio::rd(x.v);\r\
     \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\n * @brief Dynamic\
     \ Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename T> struct\
@@ -562,14 +562,15 @@ data:
     \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
     \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
     \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
-    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n)\
-    \ {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<pair<ll, int>> Pollard2(ll\
+    \ n) {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
     \ int>;\r\n    vector<P> pes;\r\n    for (auto &p : ps) {\r\n        if (pes.empty()\
     \ or pes.back().first != p) {\r\n            pes.push_back({p, 1});\r\n      \
-    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    vector<ll>\
-    \ ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\n        if\
-    \ (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n            return;\r\n\
-    \        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
+    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    return\
+    \ pes;\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n) {\r\n    auto pes = Pollard2(n);\r\
+    \n    vector<ll> ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\
+    \n        if (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n          \
+    \  return;\r\n        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
     \ {\r\n            d *= pes[id].first;\r\n            rec(rec, id + 1, d);\r\n\
     \        }\r\n    };\r\n    rec(rec, 0, 1);\r\n    sort(ALL(ret));\r\n    return\
     \ ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n#line 4 \"Math/primitive.hpp\"\
@@ -714,7 +715,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2025-05-01 21:52:23+09:00'
+  timestamp: '2025-05-11 13:37:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_multivariate_convolution_cyclic.test.cpp

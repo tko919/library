@@ -50,7 +50,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/divisor.hpp
       title: Divisor Multiple Transform
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':heavy_check_mark:'
@@ -258,6 +258,9 @@ data:
     - icon: ':x:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
+    - icon: ':warning:'
+      path: FPS/resultant.hpp
+      title: Resultant
     - icon: ':question:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
@@ -298,7 +301,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/blockcut.hpp
       title: Block Cut Tree
-    - icon: ':question:'
+    - icon: ':x:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
@@ -474,6 +477,9 @@ data:
     - icon: ':warning:'
       path: Math/pfaffian.hpp
       title: Pfaffian
+    - icon: ':warning:'
+      path: Math/pisano.hpp
+      title: Pisano Period
     - icon: ':heavy_check_mark:'
       path: Math/pollard.hpp
       title: Pollard-Rho
@@ -651,7 +657,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_find_linear_recurrence.test.cpp
       title: Verify/LC_find_linear_recurrence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_frequency_table_of_tree_distance.test.cpp
       title: Verify/LC_frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'

@@ -34,8 +34,8 @@ data:
   isVerificationFile: false
   path: FPS/prodofpolys.hpp
   requiredBy:
-  - FPS/sumofpowers.hpp
   - FPS/findroots.hpp
+  - FPS/sumofpowers.hpp
   timestamp: '2023-01-16 20:41:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

@@ -228,13 +228,13 @@ data:
     \ - ys.begin();\n        vector<Q> qs;\n        rep(i, 0, q) {\n            auto\
     \ &[l, d, r, u] = que[i];\n            d = lower_bound(ALL(ys), d) - ys.begin();\n\
     \            u = lower_bound(ALL(ys), u) - ys.begin();\n            qs.push_back({l,\
-    \ d, u, i, 1});\n            qs.push_back({r, d, u, i, -1});\n        }\n    \
+    \ d, u, i, -1});\n            qs.push_back({r, d, u, i, 1});\n        }\n    \
     \    sort(ALL(plus), [](P &p, P &q) { return p.x < q.x; });\n        sort(ALL(qs),\
     \ [](Q &p, Q &q) { return p.x < q.x; });\n        vector<T> res(q);\n        int\
     \ k = 0;\n        BIT<T> bit(ys.size());\n        for (auto &q : qs) {\n     \
     \       while (k < n and plus[k].x < q.x) {\n                bit.add(plus[k].y,\
-    \ plus[k].w);\n                k++;\n            }\n            res[q.id] += bit.sum(q.u,\
-    \ q.d) * q.inv;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Static\
+    \ plus[k].w);\n                k++;\n            }\n            res[q.id] += bit.sum(q.d,\
+    \ q.u) * q.inv;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Static\
     \ Rectangle Sum\n */\n#line 3 \"DataStructure/staticrectaddrectsum.hpp\"\n\ntemplate\
     \ <typename XY, typename T> struct StaticRectangleAddRectangleSum {\n    StaticRectangleSum<XY,\
     \ T> bit[4]; // XY,X,Y,Const\n    struct Rect {\n        XY l, d, r, u;\n    };\n\
@@ -287,7 +287,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-05-11 13:37:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp

@@ -77,10 +77,10 @@ data:
   timestamp: '2022-12-26 23:10:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_vertex_set_path_composite.test.cpp
-  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
-  - Verify/LC_vertex_add_path_sum.test.cpp
   - Verify/LC_lca.test.cpp
+  - Verify/LC_vertex_add_path_sum.test.cpp
+  - Verify/LC_vertex_add_range_contour_sum_on_tree.test.cpp
+  - Verify/LC_vertex_set_path_composite.test.cpp
 documentation_of: Graph/hld.hpp
 layout: document
 redirect_from:

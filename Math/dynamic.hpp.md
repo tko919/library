@@ -4,7 +4,10 @@ data:
   - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/pisano.hpp
+    title: Pisano Period
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
@@ -33,8 +36,8 @@ data:
     \  z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n        return x <\
     \ mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n        return modulo(u128(a)\
     \ * b);\n    }\n};\n\n/**\n * @brief Fast Division\n */\n#line 3 \"Math/dynamic.hpp\"\
-    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    int v;\r\n    static int\
-    \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(int\
+    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    uint v;\r\n    static uint\
+    \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(uint\
     \ _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n   \
     \     int tmp, a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n\
     \            tmp = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n       \
@@ -61,13 +64,13 @@ data:
     \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
     \ &is, Fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
-    \n    static FastDiv bar;\r\n    static int _getmod() {\r\n        return bar.get();\r\
+    \n    static FastDiv bar;\r\n    static uint _getmod() {\r\n        return bar.get();\r\
     \n    }\r\n};\r\nFastDiv Fp::bar(998244353);\r\n\r\nvoid rd(Fp &x) {\r\n    fastio::rd(x.v);\r\
     \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\n * @brief Dynamic\
     \ Modint\r\n */\n"
   code: "#pragma once\r\n#include \"Math/fastdiv.hpp\"\r\n\r\nstruct Fp {\r\n    using\
-    \ u64 = uint64_t;\r\n    int v;\r\n    static int get_mod() {\r\n        return\
-    \ _getmod();\r\n    }\r\n    static void set_mod(int _m) {\r\n        bar = FastDiv(_m);\r\
+    \ u64 = uint64_t;\r\n    uint v;\r\n    static uint get_mod() {\r\n        return\
+    \ _getmod();\r\n    }\r\n    static void set_mod(uint _m) {\r\n        bar = FastDiv(_m);\r\
     \n    }\r\n    Fp inv() const {\r\n        int tmp, a = v, b = get_mod(), x =\
     \ 1, y = 0;\r\n        while (b) {\r\n            tmp = a / b, a -= tmp * b;\r\
     \n            swap(a, b);\r\n            x -= tmp * y;\r\n            swap(x,\
@@ -94,7 +97,7 @@ data:
     \ v != x.v;\r\n    }\r\n    friend istream &operator>>(istream &is, Fp &x) {\r\
     \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
-    \n    static FastDiv bar;\r\n    static int _getmod() {\r\n        return bar.get();\r\
+    \n    static FastDiv bar;\r\n    static uint _getmod() {\r\n        return bar.get();\r\
     \n    }\r\n};\r\nFastDiv Fp::bar(998244353);\r\n\r\nvoid rd(Fp &x) {\r\n    fastio::rd(x.v);\r\
     \n}\r\nvoid wt(Fp x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\n * @brief Dynamic\
     \ Modint\r\n */"
@@ -102,8 +105,9 @@ data:
   - Math/fastdiv.hpp
   isVerificationFile: false
   path: Math/dynamic.hpp
-  requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  requiredBy:
+  - Math/pisano.hpp
+  timestamp: '2025-05-11 13:37:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp

@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
+  - icon: ':warning:'
+    path: Math/pisano.hpp
+    title: Pisano Period
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
@@ -109,14 +112,15 @@ data:
     \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
     \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
     \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
-    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n)\
-    \ {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<pair<ll, int>> Pollard2(ll\
+    \ n) {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
     \ int>;\r\n    vector<P> pes;\r\n    for (auto &p : ps) {\r\n        if (pes.empty()\
     \ or pes.back().first != p) {\r\n            pes.push_back({p, 1});\r\n      \
-    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    vector<ll>\
-    \ ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\n        if\
-    \ (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n            return;\r\n\
-    \        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
+    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    return\
+    \ pes;\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n) {\r\n    auto pes = Pollard2(n);\r\
+    \n    vector<ll> ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\
+    \n        if (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n          \
+    \  return;\r\n        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
     \ {\r\n            d *= pes[id].first;\r\n            rec(rec, id + 1, d);\r\n\
     \        }\r\n    };\r\n    rec(rec, 0, 1);\r\n    sort(ALL(ret));\r\n    return\
     \ ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n"
@@ -130,14 +134,15 @@ data:
     \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
     \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
     \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
-    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n)\
-    \ {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
+    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<pair<ll, int>> Pollard2(ll\
+    \ n) {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
     \ int>;\r\n    vector<P> pes;\r\n    for (auto &p : ps) {\r\n        if (pes.empty()\
     \ or pes.back().first != p) {\r\n            pes.push_back({p, 1});\r\n      \
-    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    vector<ll>\
-    \ ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\n        if\
-    \ (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n            return;\r\n\
-    \        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
+    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    return\
+    \ pes;\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n) {\r\n    auto pes = Pollard2(n);\r\
+    \n    vector<ll> ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\
+    \n        if (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n          \
+    \  return;\r\n        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
     \ {\r\n            d *= pes[id].first;\r\n            rec(rec, id + 1, d);\r\n\
     \        }\r\n    };\r\n    rec(rec, 0, 1);\r\n    sort(ALL(ret));\r\n    return\
     \ ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */"
@@ -147,17 +152,18 @@ data:
   isVerificationFile: false
   path: Math/pollard.hpp
   requiredBy:
-  - Convolution/multivariatecyclic.hpp
   - Math/binomquery.hpp
-  - Math/primitive.hpp
+  - Math/pisano.hpp
   - Math/twosquare.hpp
-  timestamp: '2025-04-17 22:07:07+09:00'
+  - Math/primitive.hpp
+  - Convolution/multivariatecyclic.hpp
+  timestamp: '2025-05-11 13:37:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_factorize.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document
 redirect_from:

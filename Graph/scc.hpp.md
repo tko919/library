@@ -59,8 +59,8 @@ data:
   path: Graph/scc.hpp
   requiredBy:
   - Graph/dmdecomp.hpp
-  - Algorithm/matroid.hpp
   - Math/twosat.hpp
+  - Algorithm/matroid.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
