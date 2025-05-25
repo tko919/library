@@ -48,6 +48,13 @@ pair<ll, vector<int>> Diameter(vector<vector<pair<int, ll>>> &g) {
     return {diam, path};
 }
 
+pair<ll, vector<int>> Diameter(vector<vector<int>> &g) {
+    int n = SZ(g);
+    vector<vector<pair<int, ll>>> g2(n);
+    rep(v, 0, n) for (auto &u : g[v]) g2[v].push_back({u, 1});
+    return Diameter(g2);
+}
+
 /**
  * @brief Diameter
  */

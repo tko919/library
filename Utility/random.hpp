@@ -60,11 +60,11 @@ void relabel(int n, vector<pair<int, int>> &es) {
     for (auto &[u, v] : es)
         u = ord[u], v = ord[v];
 }
-template <bool directed, bool simple>
+template <bool directed, bool multi, bool self>
 vector<pair<int, int>> genGraph(int n, int m) {
     vector<pair<int, int>> cand, es;
     rep(u, 0, n) rep(v, 0, n) {
-        if (simple and u == v)
+        if (!self and u == v)
             continue;
         if (!directed and u > v)
             continue;
@@ -72,12 +72,12 @@ vector<pair<int, int>> genGraph(int n, int m) {
     }
     if (m == -1)
         m = get(SZ(cand));
-    chmin(m, SZ(cand));
+    // chmin(m, SZ(cand));
     vector<int> ord;
-    if (simple)
-        ord = select(m, 0, SZ(cand) - 1);
-    else {
+    if (multi)
         rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));
+    else {
+        ord = select(m, 0, SZ(cand) - 1);
     }
     for (auto &i : ord)
         es.push_back(cand[i]);
