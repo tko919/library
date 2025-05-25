@@ -459,32 +459,33 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
-    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
-    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
-    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
-    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
-    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
-    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
-    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
-    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
-    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
-    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
-    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 5 \"Math/bbla.hpp\"\n\r\n\
-    template <typename T> Poly<T> RandPoly(int n) {\r\n    Poly<T> ret(n);\r\n   \
-    \ for (auto &x : ret)\r\n        x = Random::get(1, T::get_mod() - 1);\r\n   \
-    \ return ret;\r\n}\r\ntemplate <typename T> struct SparseMatrix {\r\n    vector<T>\
-    \ base;\r\n    vector<map<int, T>> extra;\r\n    SparseMatrix(int n, T v = 0)\
-    \ : base(n, v), extra(n) {}\r\n    int size() const { return base.size(); }\r\n\
-    \    inline void add(int i, int j, T x) { extra[i][j] += x; }\r\n    friend Poly<T>\
-    \ operator*(const SparseMatrix<T> &A, const Poly<T> &b) {\r\n        int n = A.size();\r\
-    \n        Poly<T> ret(n);\r\n        T sum;\r\n        for (auto &v : b)\r\n \
-    \           sum += v;\r\n        rep(i, 0, n) {\r\n            T add = sum;\r\n\
-    \            for (auto &[j, v] : A.extra[i]) {\r\n                ret[i] += v\
-    \ * b[j];\r\n                add -= b[j];\r\n            }\r\n            ret[i]\
-    \ += add * A.base[i];\r\n        }\r\n        return ret;\r\n    }\r\n    void\
-    \ mul(int i, T x) {\r\n        base[i] *= x;\r\n        for (auto &[_, v] : extra[i])\r\
-    \n            v *= x;\r\n    }\r\n};\r\n\r\ntemplate <typename T> Poly<T> MinPolyforVector(const\
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool multi, bool self>\r\
+    \nvector<pair<int, int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>>\
+    \ cand, es;\r\n    rep(u, 0, n) rep(v, 0, n) {\r\n        if (!self and u == v)\r\
+    \n            continue;\r\n        if (!directed and u > v)\r\n            continue;\r\
+    \n        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m =\
+    \ get(SZ(cand));\r\n    // chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n   \
+    \ if (multi)\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n   \
+    \ else {\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    }\r\n    for (auto\
+    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
+    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
+    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
+    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
+    \ Random\r\n */\n#line 5 \"Math/bbla.hpp\"\n\r\ntemplate <typename T> Poly<T>\
+    \ RandPoly(int n) {\r\n    Poly<T> ret(n);\r\n    for (auto &x : ret)\r\n    \
+    \    x = Random::get(1, T::get_mod() - 1);\r\n    return ret;\r\n}\r\ntemplate\
+    \ <typename T> struct SparseMatrix {\r\n    vector<T> base;\r\n    vector<map<int,\
+    \ T>> extra;\r\n    SparseMatrix(int n, T v = 0) : base(n, v), extra(n) {}\r\n\
+    \    int size() const { return base.size(); }\r\n    inline void add(int i, int\
+    \ j, T x) { extra[i][j] += x; }\r\n    friend Poly<T> operator*(const SparseMatrix<T>\
+    \ &A, const Poly<T> &b) {\r\n        int n = A.size();\r\n        Poly<T> ret(n);\r\
+    \n        T sum;\r\n        for (auto &v : b)\r\n            sum += v;\r\n   \
+    \     rep(i, 0, n) {\r\n            T add = sum;\r\n            for (auto &[j,\
+    \ v] : A.extra[i]) {\r\n                ret[i] += v * b[j];\r\n              \
+    \  add -= b[j];\r\n            }\r\n            ret[i] += add * A.base[i];\r\n\
+    \        }\r\n        return ret;\r\n    }\r\n    void mul(int i, T x) {\r\n \
+    \       base[i] *= x;\r\n        for (auto &[_, v] : extra[i])\r\n           \
+    \ v *= x;\r\n    }\r\n};\r\n\r\ntemplate <typename T> Poly<T> MinPolyforVector(const\
     \ vector<Poly<T>> &b) {\r\n    int n = b.size(), m = b[0].size();\r\n    Poly<T>\
     \ base = RandPoly<T>(m), a(n);\r\n    rep(i, 0, n) rep(j, 0, m) a[i] += base[j]\
     \ * b[i][j];\r\n    return Poly<T>(BerlekampMassey(a)).rev();\r\n}\r\ntemplate\
@@ -532,7 +533,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sparse_matrix_det.test.cpp

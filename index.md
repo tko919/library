@@ -373,6 +373,9 @@ data:
     - icon: ':warning:'
       path: Graph/opttoposort.hpp
       title: Optimal Topological sort
+    - icon: ':warning:'
+      path: Graph/prufer.hpp
+      title: Prufer Code
     - icon: ':heavy_check_mark:'
       path: Graph/rerooting.hpp
       title: Rerooting

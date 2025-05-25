@@ -91,35 +91,36 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
-    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
-    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
-    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
-    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
-    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
-    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
-    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
-    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
-    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
-    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
-    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 3 \"Graph/maxindependentset.hpp\"\
-    \n\r\nstruct MaxIndependentSet {\r\n    const int n;\r\n    vector<ll> es;\r\n\
-    \    MaxIndependentSet(int _n) : n(_n), es(n) {}\r\n    void add_edge(int u, int\
-    \ v) {\r\n        es[u] |= 1LL << v;\r\n        es[v] |= 1LL << u;\r\n    }\r\n\
-    \    pair<ll, ll> run(vector<ll> &cost, int _rot = 1e6) {\r\n        vector<int>\
-    \ ord(n);\r\n        iota(ALL(ord), 0);\r\n        ll ret = 0;\r\n        ll cur\
-    \ = 0;\r\n        rep(_, 0, _rot) {\r\n            Random::shuffle(ALL(ord));\r\
-    \n            ll add = 0;\r\n            ll used = 0;\r\n            for (auto\
-    \ &v : ord)\r\n                if (!(used & es[v])) {\r\n                    used\
-    \ |= (1LL << v);\r\n                    add += cost[v];\r\n                }\r\
-    \n            if (chmax(ret, add))\r\n                cur = used;\r\n        }\r\
-    \n        return {ret, cur};\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Independent\
-    \ Set\r\n */\n#line 5 \"Verify/LC_maximum_independent_set.test.cpp\"\n\r\nint\
-    \ main(){\r\n    int n,m;\r\n    cin>>n>>m;\r\n    MaxIndependentSet g(n);\r\n\
-    \    rep(i,0,m){\r\n        int x,y;\r\n        cin>>x>>y;\r\n        g.add_edge(x,y);\r\
-    \n    }\r\n    vector<ll> cost(n,1);\r\n    auto [ret,mask]=g.run(cost);\r\n \
-    \   cout<<__builtin_popcountll(mask)<<'\\n';\r\n    rep(i,0,n)if(mask>>i&1)cout<<i<<'\
-    \ ';\r\n    cout<<'\\n';\r\n    return 0;\r\n}\n"
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool multi, bool self>\r\
+    \nvector<pair<int, int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>>\
+    \ cand, es;\r\n    rep(u, 0, n) rep(v, 0, n) {\r\n        if (!self and u == v)\r\
+    \n            continue;\r\n        if (!directed and u > v)\r\n            continue;\r\
+    \n        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m =\
+    \ get(SZ(cand));\r\n    // chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n   \
+    \ if (multi)\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n   \
+    \ else {\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    }\r\n    for (auto\
+    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
+    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
+    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
+    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
+    \ Random\r\n */\n#line 3 \"Graph/maxindependentset.hpp\"\n\r\nstruct MaxIndependentSet\
+    \ {\r\n    const int n;\r\n    vector<ll> es;\r\n    MaxIndependentSet(int _n)\
+    \ : n(_n), es(n) {}\r\n    void add_edge(int u, int v) {\r\n        es[u] |= 1LL\
+    \ << v;\r\n        es[v] |= 1LL << u;\r\n    }\r\n    pair<ll, ll> run(vector<ll>\
+    \ &cost, int _rot = 1e6) {\r\n        vector<int> ord(n);\r\n        iota(ALL(ord),\
+    \ 0);\r\n        ll ret = 0;\r\n        ll cur = 0;\r\n        rep(_, 0, _rot)\
+    \ {\r\n            Random::shuffle(ALL(ord));\r\n            ll add = 0;\r\n \
+    \           ll used = 0;\r\n            for (auto &v : ord)\r\n              \
+    \  if (!(used & es[v])) {\r\n                    used |= (1LL << v);\r\n     \
+    \               add += cost[v];\r\n                }\r\n            if (chmax(ret,\
+    \ add))\r\n                cur = used;\r\n        }\r\n        return {ret, cur};\r\
+    \n    }\r\n};\r\n\r\n/**\r\n * @brief Maximum Independent Set\r\n */\n#line 5\
+    \ \"Verify/LC_maximum_independent_set.test.cpp\"\n\r\nint main(){\r\n    int n,m;\r\
+    \n    cin>>n>>m;\r\n    MaxIndependentSet g(n);\r\n    rep(i,0,m){\r\n       \
+    \ int x,y;\r\n        cin>>x>>y;\r\n        g.add_edge(x,y);\r\n    }\r\n    vector<ll>\
+    \ cost(n,1);\r\n    auto [ret,mask]=g.run(cost);\r\n    cout<<__builtin_popcountll(mask)<<'\\\
+    n';\r\n    rep(i,0,n)if(mask>>i&1)cout<<i<<' ';\r\n    cout<<'\\n';\r\n    return\
+    \ 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/maximum_independent_set\"\
     \r\n\r\n#include \"Template/template.hpp\"\r\n#include \"Graph/maxindependentset.hpp\"\
     \r\n\r\nint main(){\r\n    int n,m;\r\n    cin>>n>>m;\r\n    MaxIndependentSet\
@@ -134,7 +135,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_maximum_independent_set.test.cpp

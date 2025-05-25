@@ -24,7 +24,10 @@ data:
     \    ll diam = -INF;\n    rep(v, 0, n) if (chmax(diam, dist[v])) v2 = v;\n   \
     \ vector<int> path;\n    int cur = v2;\n    path.push_back(cur);\n    while (cur\
     \ != v1) {\n        cur = par[cur];\n        path.push_back(cur);\n    }\n   \
-    \ return {diam, path};\n}\n\n/**\n * @brief Diameter\n */\n"
+    \ return {diam, path};\n}\n\npair<ll, vector<int>> Diameter(vector<vector<int>>\
+    \ &g) {\n    int n = SZ(g);\n    vector<vector<pair<int, ll>>> g2(n);\n    rep(v,\
+    \ 0, n) for (auto &u : g[v]) g2[v].push_back({u, 1});\n    return Diameter(g2);\n\
+    }\n\n/**\n * @brief Diameter\n */\n"
   code: "#pragma once\n\npair<ll, vector<int>> Diameter(vector<vector<pair<int, ll>>>\
     \ &g) {\n    int n = SZ(g);\n    vector<ll> dist(n, INF);\n    queue<int> que;\n\
     \    dist[0] = 0;\n    que.push(0);\n    while (!que.empty()) {\n        int v\
@@ -40,12 +43,15 @@ data:
     \    ll diam = -INF;\n    rep(v, 0, n) if (chmax(diam, dist[v])) v2 = v;\n   \
     \ vector<int> path;\n    int cur = v2;\n    path.push_back(cur);\n    while (cur\
     \ != v1) {\n        cur = par[cur];\n        path.push_back(cur);\n    }\n   \
-    \ return {diam, path};\n}\n\n/**\n * @brief Diameter\n */"
+    \ return {diam, path};\n}\n\npair<ll, vector<int>> Diameter(vector<vector<int>>\
+    \ &g) {\n    int n = SZ(g);\n    vector<vector<pair<int, ll>>> g2(n);\n    rep(v,\
+    \ 0, n) for (auto &u : g[v]) g2[v].push_back({u, 1});\n    return Diameter(g2);\n\
+    }\n\n/**\n * @brief Diameter\n */"
   dependsOn: []
   isVerificationFile: false
   path: Graph/diameter.hpp
   requiredBy: []
-  timestamp: '2025-04-21 04:39:26+09:00'
+  timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/diameter.hpp

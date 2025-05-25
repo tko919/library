@@ -85,9 +85,9 @@ data:
   isVerificationFile: false
   path: Math/fraction.hpp
   requiredBy:
+  - Geometry/FracCoord.hpp
   - Math/sternbrocot.hpp
   - Math/partizangame.hpp
-  - Geometry/FracCoord.hpp
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

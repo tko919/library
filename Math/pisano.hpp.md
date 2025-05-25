@@ -172,47 +172,48 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
-    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
-    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
-    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
-    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
-    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
-    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
-    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
-    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
-    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
-    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
-    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 4 \"Math/pollard.hpp\"\n\
-    \r\nvector<ll> Pollard(ll n) {\r\n    if (n <= 1)\r\n        return {};\r\n  \
-    \  if (Miller(n))\r\n        return {n};\r\n    if ((n & 1) == 0) {\r\n      \
-    \  vector<ll> v = Pollard(n >> 1);\r\n        v.push_back(2);\r\n        return\
-    \ v;\r\n    }\r\n    for (ll x = 2, y = 2, d;;) {\r\n        ll c = Random::get(2LL,\
-    \ n - 1);\r\n        do {\r\n            x = (__int128_t(x) * x + c) % n;\r\n\
-    \            y = (__int128_t(y) * y + c) % n;\r\n            y = (__int128_t(y)\
-    \ * y + c) % n;\r\n            d = __gcd(x - y + n, n);\r\n        } while (d\
-    \ == 1);\r\n        if (d < n) {\r\n            vector<ll> lb = Pollard(d), rb\
-    \ = Pollard(n / d);\r\n            lb.insert(lb.end(), ALL(rb));\r\n         \
-    \   return lb;\r\n        }\r\n    }\r\n}\r\n\r\nvector<pair<ll, int>> Pollard2(ll\
-    \ n) {\r\n    auto ps = Pollard(n);\r\n    sort(ALL(ps));\r\n    using P = pair<ll,\
-    \ int>;\r\n    vector<P> pes;\r\n    for (auto &p : ps) {\r\n        if (pes.empty()\
-    \ or pes.back().first != p) {\r\n            pes.push_back({p, 1});\r\n      \
-    \  } else {\r\n            pes.back().second++;\r\n        }\r\n    }\r\n    return\
-    \ pes;\r\n}\r\n\r\nvector<ll> EnumDivisors(ll n) {\r\n    auto pes = Pollard2(n);\r\
-    \n    vector<ll> ret;\r\n    auto rec = [&](auto &rec, int id, ll d) -> void {\r\
-    \n        if (id == SZ(pes)) {\r\n            ret.push_back(d);\r\n          \
-    \  return;\r\n        }\r\n        rec(rec, id + 1, d);\r\n        rep(e, 0, pes[id].second)\
-    \ {\r\n            d *= pes[id].first;\r\n            rec(rec, id + 1, d);\r\n\
-    \        }\r\n    };\r\n    rec(rec, 0, 1);\r\n    sort(ALL(ret));\r\n    return\
-    \ ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\n */\n#line 5 \"Math/pisano.hpp\"\
-    \n\nint Pisano(int p) {\n    if (p == 2)\n        return 3;\n    if (p == 5)\n\
-    \        return 20;\n    vector<ll> cand;\n    if (p % 5 == 1 or p % 5 == 4)\n\
-    \        cand = EnumDivisors(p - 1);\n    else\n        cand = EnumDivisors(p\
-    \ * 2 + 2);\n    auto check = [&](int d, int p) -> bool {\n        Fp::set_mod(p);\n\
-    \        Matrix<Fp> mat(2, 2);\n        mat[0][1] = mat[1][0] = mat[1][1] = 1;\n\
-    \        mat = mat.pow(d);\n        return mat[0][1] == 0 and mat[1][1] == 1;\n\
-    \    };\n    for (auto &d : cand)\n        if (check(d, p)) {\n            return\
-    \ d;\n        }\n    assert(0);\n}\n\n/**\n * @brief Pisano Period\n */\n"
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool multi, bool self>\r\
+    \nvector<pair<int, int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>>\
+    \ cand, es;\r\n    rep(u, 0, n) rep(v, 0, n) {\r\n        if (!self and u == v)\r\
+    \n            continue;\r\n        if (!directed and u > v)\r\n            continue;\r\
+    \n        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m =\
+    \ get(SZ(cand));\r\n    // chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n   \
+    \ if (multi)\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n   \
+    \ else {\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    }\r\n    for (auto\
+    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
+    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
+    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
+    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
+    \ Random\r\n */\n#line 4 \"Math/pollard.hpp\"\n\r\nvector<ll> Pollard(ll n) {\r\
+    \n    if (n <= 1)\r\n        return {};\r\n    if (Miller(n))\r\n        return\
+    \ {n};\r\n    if ((n & 1) == 0) {\r\n        vector<ll> v = Pollard(n >> 1);\r\
+    \n        v.push_back(2);\r\n        return v;\r\n    }\r\n    for (ll x = 2,\
+    \ y = 2, d;;) {\r\n        ll c = Random::get(2LL, n - 1);\r\n        do {\r\n\
+    \            x = (__int128_t(x) * x + c) % n;\r\n            y = (__int128_t(y)\
+    \ * y + c) % n;\r\n            y = (__int128_t(y) * y + c) % n;\r\n          \
+    \  d = __gcd(x - y + n, n);\r\n        } while (d == 1);\r\n        if (d < n)\
+    \ {\r\n            vector<ll> lb = Pollard(d), rb = Pollard(n / d);\r\n      \
+    \      lb.insert(lb.end(), ALL(rb));\r\n            return lb;\r\n        }\r\n\
+    \    }\r\n}\r\n\r\nvector<pair<ll, int>> Pollard2(ll n) {\r\n    auto ps = Pollard(n);\r\
+    \n    sort(ALL(ps));\r\n    using P = pair<ll, int>;\r\n    vector<P> pes;\r\n\
+    \    for (auto &p : ps) {\r\n        if (pes.empty() or pes.back().first != p)\
+    \ {\r\n            pes.push_back({p, 1});\r\n        } else {\r\n            pes.back().second++;\r\
+    \n        }\r\n    }\r\n    return pes;\r\n}\r\n\r\nvector<ll> EnumDivisors(ll\
+    \ n) {\r\n    auto pes = Pollard2(n);\r\n    vector<ll> ret;\r\n    auto rec =\
+    \ [&](auto &rec, int id, ll d) -> void {\r\n        if (id == SZ(pes)) {\r\n \
+    \           ret.push_back(d);\r\n            return;\r\n        }\r\n        rec(rec,\
+    \ id + 1, d);\r\n        rep(e, 0, pes[id].second) {\r\n            d *= pes[id].first;\r\
+    \n            rec(rec, id + 1, d);\r\n        }\r\n    };\r\n    rec(rec, 0, 1);\r\
+    \n    sort(ALL(ret));\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\
+    \n */\n#line 5 \"Math/pisano.hpp\"\n\nint Pisano(int p) {\n    if (p == 2)\n \
+    \       return 3;\n    if (p == 5)\n        return 20;\n    vector<ll> cand;\n\
+    \    if (p % 5 == 1 or p % 5 == 4)\n        cand = EnumDivisors(p - 1);\n    else\n\
+    \        cand = EnumDivisors(p * 2 + 2);\n    auto check = [&](int d, int p) ->\
+    \ bool {\n        Fp::set_mod(p);\n        Matrix<Fp> mat(2, 2);\n        mat[0][1]\
+    \ = mat[1][0] = mat[1][1] = 1;\n        mat = mat.pow(d);\n        return mat[0][1]\
+    \ == 0 and mat[1][1] == 1;\n    };\n    for (auto &d : cand)\n        if (check(d,\
+    \ p)) {\n            return d;\n        }\n    assert(0);\n}\n\n/**\n * @brief\
+    \ Pisano Period\n */\n"
   code: "#pragma once\n#include \"Math/dynamic.hpp\"\n#include \"Math/matrix.hpp\"\
     \n#include \"Math/pollard.hpp\"\n\nint Pisano(int p) {\n    if (p == 2)\n    \
     \    return 3;\n    if (p == 5)\n        return 20;\n    vector<ll> cand;\n  \
@@ -233,7 +234,7 @@ data:
   isVerificationFile: false
   path: Math/pisano.hpp
   requiredBy: []
-  timestamp: '2025-05-11 13:37:16+09:00'
+  timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/pisano.hpp

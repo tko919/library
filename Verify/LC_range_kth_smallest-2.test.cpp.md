@@ -182,34 +182,35 @@ data:
     \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
     \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
     \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
-    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool simple>\r\nvector<pair<int,\
-    \ int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>> cand, es;\r\n \
-    \   rep(u, 0, n) rep(v, 0, n) {\r\n        if (simple and u == v)\r\n        \
-    \    continue;\r\n        if (!directed and u > v)\r\n            continue;\r\n\
-    \        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m = get(SZ(cand));\r\
-    \n    chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n    if (simple)\r\n     \
-    \   ord = select(m, 0, SZ(cand) - 1);\r\n    else {\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand)\
-    \ - 1));\r\n    }\r\n    for (auto &i : ord)\r\n        es.push_back(cand[i]);\r\
-    \n    relabel(n, es);\r\n    return es;\r\n}\r\nvector<pair<int, int>> genTree(int\
-    \ n) {\r\n    vector<pair<int, int>> es;\r\n    rep(i, 1, n) es.push_back({get(i\
-    \ - 1), i});\r\n    relabel(n, es);\r\n    return es;\r\n}\r\n}; // namespace\
-    \ Random\r\n\r\n/**\r\n * @brief Random\r\n */\n#line 3 \"DataStructure/persistentrbstset.hpp\"\
-    \n\r\ntemplate <typename T, int LIM = 10101010> struct PRBSTset {\r\n    struct\
-    \ Node {\r\n        Node *lp = nullptr, *rp = nullptr;\r\n        int sz = 1;\r\
-    \n        T val;\r\n        Node() {}\r\n        void apply() {\r\n          \
-    \  sz = 1;\r\n            if (lp)\r\n                sz += lp->sz;\r\n       \
-    \     if (rp)\r\n                sz += rp->sz;\r\n        }\r\n    };\r\n    using\
-    \ np = Node *;\r\n    Node buf[LIM];\r\n    int pos = 0;\r\n    int sz(np root)\
-    \ { return root ? root->sz : 0; }\r\n    np merge(np L, np R) {\r\n        if\
-    \ (!L)\r\n            return R;\r\n        if (!R)\r\n            return L;\r\n\
-    \        if (Random::uniform() * (sz(L) + sz(R)) < sz(L)) {\r\n            auto\
-    \ rb = merge(L->rp, R);\r\n            np ret = make(L->val, L->lp, rb);\r\n \
-    \           return ret;\r\n        } else {\r\n            auto lb = merge(L,\
-    \ R->lp);\r\n            np ret = make(R->val, lb, R->rp);\r\n            return\
-    \ ret;\r\n        }\r\n    }\r\n    array<np, 2> split(np root, int k) {\r\n \
-    \       if (k <= 0)\r\n            return {nullptr, root};\r\n        if (k >=\
-    \ sz(root))\r\n            return {root, nullptr};\r\n        if (k <= sz(root->lp))\
-    \ {\r\n            auto [L, lb] = split(root->lp, k);\r\n            np R = make(root->val,\
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool multi, bool self>\r\
+    \nvector<pair<int, int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>>\
+    \ cand, es;\r\n    rep(u, 0, n) rep(v, 0, n) {\r\n        if (!self and u == v)\r\
+    \n            continue;\r\n        if (!directed and u > v)\r\n            continue;\r\
+    \n        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m =\
+    \ get(SZ(cand));\r\n    // chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n   \
+    \ if (multi)\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n   \
+    \ else {\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    }\r\n    for (auto\
+    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
+    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
+    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
+    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
+    \ Random\r\n */\n#line 3 \"DataStructure/persistentrbstset.hpp\"\n\r\ntemplate\
+    \ <typename T, int LIM = 10101010> struct PRBSTset {\r\n    struct Node {\r\n\
+    \        Node *lp = nullptr, *rp = nullptr;\r\n        int sz = 1;\r\n       \
+    \ T val;\r\n        Node() {}\r\n        void apply() {\r\n            sz = 1;\r\
+    \n            if (lp)\r\n                sz += lp->sz;\r\n            if (rp)\r\
+    \n                sz += rp->sz;\r\n        }\r\n    };\r\n    using np = Node\
+    \ *;\r\n    Node buf[LIM];\r\n    int pos = 0;\r\n    int sz(np root) { return\
+    \ root ? root->sz : 0; }\r\n    np merge(np L, np R) {\r\n        if (!L)\r\n\
+    \            return R;\r\n        if (!R)\r\n            return L;\r\n       \
+    \ if (Random::uniform() * (sz(L) + sz(R)) < sz(L)) {\r\n            auto rb =\
+    \ merge(L->rp, R);\r\n            np ret = make(L->val, L->lp, rb);\r\n      \
+    \      return ret;\r\n        } else {\r\n            auto lb = merge(L, R->lp);\r\
+    \n            np ret = make(R->val, lb, R->rp);\r\n            return ret;\r\n\
+    \        }\r\n    }\r\n    array<np, 2> split(np root, int k) {\r\n        if\
+    \ (k <= 0)\r\n            return {nullptr, root};\r\n        if (k >= sz(root))\r\
+    \n            return {root, nullptr};\r\n        if (k <= sz(root->lp)) {\r\n\
+    \            auto [L, lb] = split(root->lp, k);\r\n            np R = make(root->val,\
     \ lb, root->rp);\r\n            return {L, R};\r\n        } else {\r\n       \
     \     auto [rb, R] = split(root->rp, k - 1 - sz(root->lp));\r\n            np\
     \ L = make(root->val, root->lp, rb);\r\n            return {L, R};\r\n       \
@@ -277,7 +278,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_range_kth_smallest-2.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_range_kth_smallest-2.test.cpp

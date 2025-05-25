@@ -159,27 +159,33 @@ data:
     \ : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true) {\r\n    print(i\
     \ ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n\
     #line 5 \"Verify/LC_lca_2.test.cpp\"\n\r\n#line 2 \"Graph/lca.hpp\"\n\r\nstruct\
-    \ LCA{\r\n    LCA(int _n=0):n(_n),g(_n),depth(_n+1,inf),start(_n){}\r\n    void\
-    \ add_edge(int u,int v){\r\n        g[u].push_back(v);\r\n        g[v].push_back(u);\r\
-    \n    }\r\n    void run(int root=0){\r\n        depth[root]=0;\r\n        dfs(root,-1);\r\
-    \n        N=1;\r\n        while(N<int(euler.size()))N<<=1;\r\n        tree.resize(N*2,n);\r\
-    \n        rep(i,0,euler.size())tree[N+i]=euler[i];\r\n        for(int i=N-1;i>0;i--)tree[i]=op(tree[i*2],tree[i*2+1]);\r\
-    \n    }\r\n    int lca(int u,int v){\r\n        int a=start[u],b=start[v];\r\n\
-    \        if(a>b)swap(a,b);\r\n        b++;\r\n        int res=n;\r\n        for(int\
-    \ T=b-a;T>=1;T=b-a){\r\n            int x=a|((1U<<31)>>__builtin_clz(T));\r\n\
-    \            int y=x&-x,k=__builtin_ctz(x);\r\n            res=op(res,tree[(N|a)>>k]);\r\
-    \n            a+=y;\r\n        }\r\n        return res;\r\n    }\r\nprivate:\r\
-    \n    int n,N;\r\n    vector<vector<int>> g;\r\n    vector<int> depth,start,euler,tree;\r\
-    \n    void dfs(int v,int p){\r\n        start[v]=euler.size();\r\n        euler.push_back(v);\r\
-    \n        for(auto& to:g[v])if(to!=p){\r\n            depth[to]=depth[v]+1;\r\n\
-    \            dfs(to,v);\r\n            euler.push_back(v);\r\n        }\r\n  \
-    \  }\r\n    int op(int u,int v){\r\n        if(depth[u]<depth[v])return u;\r\n\
-    \        else return v;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Lowest Common Ancestor\r\
-    \n */\n#line 7 \"Verify/LC_lca_2.test.cpp\"\n\r\nint main(){\r\n    int n,q;\r\
-    \n    read(n,q);\r\n    LCA lca(n);\r\n    rep(i,1,n){\r\n        int p;\r\n \
-    \       read(p);\r\n        lca.add_edge(p,i);\r\n    }\r\n    lca.run();\r\n\
-    \    while(q--){\r\n        int u,v;\r\n        read(u,v);\r\n        print(lca.lca(u,v));\r\
-    \n    }\r\n    return 0;\r\n}\n"
+    \ LCA {\r\n    LCA(int _n = 0) : n(_n), g(_n), depth(_n + 1, inf), start(_n) {}\r\
+    \n    void add_edge(int u, int v) {\r\n        g[u].push_back(v);\r\n        g[v].push_back(u);\r\
+    \n    }\r\n    void run(int root = 0) {\r\n        depth[root] = 0;\r\n      \
+    \  dfs(root, -1);\r\n        N = 1;\r\n        while (N < int(euler.size()))\r\
+    \n            N <<= 1;\r\n        tree.resize(N * 2, n);\r\n        rep(i, 0,\
+    \ euler.size()) tree[N + i] = euler[i];\r\n        for (int i = N - 1; i > 0;\
+    \ i--)\r\n            tree[i] = op(tree[i * 2], tree[i * 2 + 1]);\r\n    }\r\n\
+    \    int lca(int u, int v) {\r\n        int a = start[u], b = start[v];\r\n  \
+    \      if (a > b)\r\n            swap(a, b);\r\n        b++;\r\n        int res\
+    \ = n;\r\n        for (int T = b - a; T >= 1; T = b - a) {\r\n            int\
+    \ x = a | ((1U << 31) >> __builtin_clz(T));\r\n            int y = x & -x, k =\
+    \ __builtin_ctz(x);\r\n            res = op(res, tree[(N | a) >> k]);\r\n    \
+    \        a += y;\r\n        }\r\n        return res;\r\n    }\r\n    int dist(int\
+    \ u, int v) {\r\n        return depth[u] + depth[v] - depth[lca(u, v)] * 2;\r\n\
+    \    }\r\n\r\n  private:\r\n    int n, N;\r\n    vector<vector<int>> g;\r\n  \
+    \  vector<int> depth, start, euler, tree;\r\n    void dfs(int v, int p) {\r\n\
+    \        start[v] = euler.size();\r\n        euler.push_back(v);\r\n        for\
+    \ (auto &to : g[v])\r\n            if (to != p) {\r\n                depth[to]\
+    \ = depth[v] + 1;\r\n                dfs(to, v);\r\n                euler.push_back(v);\r\
+    \n            }\r\n    }\r\n    int op(int u, int v) {\r\n        if (depth[u]\
+    \ < depth[v])\r\n            return u;\r\n        else\r\n            return v;\r\
+    \n    }\r\n};\r\n\r\n/**\r\n * @brief Lowest Common Ancestor\r\n */\n#line 7 \"\
+    Verify/LC_lca_2.test.cpp\"\n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\
+    \n    LCA lca(n);\r\n    rep(i,1,n){\r\n        int p;\r\n        read(p);\r\n\
+    \        lca.add_edge(p,i);\r\n    }\r\n    lca.run();\r\n    while(q--){\r\n\
+    \        int u,v;\r\n        read(u,v);\r\n        print(lca.lca(u,v));\r\n  \
+    \  }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\r\n\r\n#include \"\
     Template/template.hpp\"\r\n#include \"Utility/fastio.hpp\"\r\n\r\n#include \"\
     Graph/lca.hpp\"\r\n\r\nint main(){\r\n    int n,q;\r\n    read(n,q);\r\n    LCA\
@@ -194,7 +200,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_lca_2.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_lca_2.test.cpp

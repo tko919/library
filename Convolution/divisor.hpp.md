@@ -90,8 +90,8 @@ data:
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_lcm_convolution.test.cpp
   - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
 documentation_of: Convolution/divisor.hpp
 layout: document
 redirect_from:

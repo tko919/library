@@ -111,12 +111,12 @@ data:
   timestamp: '2024-08-09 08:04:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_rectangle_sum.test.cpp
-  - Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - Verify/LC_point_set_range_composite.test.cpp
   - Verify/LC_staticrmq.test.cpp
   - Verify/LC_point_add_rectangle_sum.test.cpp
+  - Verify/LC_rectangle_sum.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
+  - Verify/LC_point_set_range_composite.test.cpp
+  - Verify/LC_point_set_range_sort_range_composite.test.cpp
 documentation_of: DataStructure/segtree.hpp
 layout: document
 redirect_from:
