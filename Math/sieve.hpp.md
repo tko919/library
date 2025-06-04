@@ -98,22 +98,22 @@ data:
   path: Math/sieve.hpp
   requiredBy:
   - Convolution/divisor.hpp
-  - Math/totient.hpp
-  - Math/lpftable.hpp
   - Math/powertable.hpp
-  - Math/mobius.hpp
+  - Math/totient.hpp
   - Math/multiplicative.hpp
+  - Math/mobius.hpp
   - Math/primesum.hpp
+  - Math/lpftable.hpp
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/YUKI_1781.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_gcd_convolution.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
   - Verify/LC_counting_primes.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/YUKI_1781.test.cpp
 documentation_of: Math/sieve.hpp
 layout: document
 redirect_from:

@@ -180,31 +180,32 @@ data:
     \ : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true) {\r\n    print(i\
     \ ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n\
     #line 5 \"Verify/YUKI_310.test.cpp\"\n\r\n#line 2 \"Math/modint.hpp\"\n\r\ntemplate\
-    \ <unsigned mod = 1000000007> struct fp {\r\n    unsigned v;\r\n    static constexpr\
-    \ int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr unsigned inv()\
-    \ const {\r\n        assert(v != 0);\r\n        int x = v, y = mod, p = 1, q =\
-    \ 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n\
-    \            x -= t * y, p -= t * q;\r\n            tmp = x, x = y, y = tmp;\r\
-    \n            tmp = p, p = q, q = tmp;\r\n        }\r\n        if (p < 0)\r\n\
-    \            p += mod;\r\n        return p;\r\n    }\r\n    constexpr fp(ll x\
-    \ = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
-    \ const {\r\n        return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n\
-    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
-    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
-    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
-    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
-    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
-    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
-    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ull(v) * x.v % mod;\r\
-    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
-    \    v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
-    \ fp &x) const {\r\n        return fp(*this) += x;\r\n    }\r\n    fp operator-(const\
-    \ fp &x) const {\r\n        return fp(*this) -= x;\r\n    }\r\n    fp operator*(const\
-    \ fp &x) const {\r\n        return fp(*this) *= x;\r\n    }\r\n    fp operator/(const\
-    \ fp &x) const {\r\n        return fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
-    \ fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
-    \ fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
-    \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
+    \ <unsigned mod = 1000000007> struct fp {\r\n    static_assert(mod < uint(1) <<\
+    \ 31);\r\n    unsigned v;\r\n    static constexpr int get_mod() {\r\n        return\
+    \ mod;\r\n    }\r\n    constexpr unsigned inv() const {\r\n        assert(v !=\
+    \ 0);\r\n        int x = v, y = mod, p = 1, q = 0, t = 0, tmp = 0;\r\n       \
+    \ while (y > 0) {\r\n            t = x / y;\r\n            x -= t * y, p -= t\
+    \ * q;\r\n            tmp = x, x = y, y = tmp;\r\n            tmp = p, p = q,\
+    \ q = tmp;\r\n        }\r\n        if (p < 0)\r\n            p += mod;\r\n   \
+    \     return p;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod :\
+    \ (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\r\n        return\
+    \ fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n        fp res = 1, b = *this;\r\
+    \n        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\
+    \n            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
+    \n    }\r\n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\
+    \n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
+    \   v = ull(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
+    \ fp &x) {\r\n        v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n\
+    \    }\r\n    fp operator+(const fp &x) const {\r\n        return fp(*this) +=\
+    \ x;\r\n    }\r\n    fp operator-(const fp &x) const {\r\n        return fp(*this)\
+    \ -= x;\r\n    }\r\n    fp operator*(const fp &x) const {\r\n        return fp(*this)\
+    \ *= x;\r\n    }\r\n    fp operator/(const fp &x) const {\r\n        return fp(*this)\
+    \ /= x;\r\n    }\r\n    bool operator==(const fp &x) const {\r\n        return\
+    \ v == x.v;\r\n    }\r\n    bool operator!=(const fp &x) const {\r\n        return\
+    \ v != x.v;\r\n    }\r\n    friend istream &operator>>(istream &is, fp &x) {\r\
+    \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
@@ -586,7 +587,7 @@ data:
   isVerificationFile: true
   path: Verify/YUKI_310.test.cpp
   requiredBy: []
-  timestamp: '2025-05-25 16:11:40+09:00'
+  timestamp: '2025-06-05 05:40:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/YUKI_310.test.cpp

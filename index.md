@@ -50,7 +50,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/divisor.hpp
       title: Divisor Multiple Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':heavy_check_mark:'
@@ -160,7 +160,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
     - icon: ':x:'
@@ -231,7 +231,7 @@ data:
     - icon: ':warning:'
       path: FPS/mobius.hpp
       title: Mobius Transform
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -301,7 +301,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/blockcut.hpp
       title: Block Cut Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/centroid.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
@@ -498,6 +498,9 @@ data:
     - icon: ':warning:'
       path: Math/qbinom.hpp
       title: $q$-binomial
+    - icon: ':warning:'
+      path: Math/scarysum.hpp
+      title: Scary Sum
     - icon: ':question:'
       path: Math/sieve.hpp
       title: Prime Sieve
@@ -660,7 +663,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_find_linear_recurrence.test.cpp
       title: Verify/LC_find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_frequency_table_of_tree_distance.test.cpp
       title: Verify/LC_frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
@@ -732,7 +735,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_number_of_substrings.test.cpp
       title: Verify/LC_number_of_substrings.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_partition_function.test.cpp
       title: Verify/LC_partition_function.test.cpp
     - icon: ':heavy_check_mark:'
@@ -744,19 +747,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_rectangle_sum.test.cpp
       title: Verify/LC_point_add_rectangle_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_point_set_range_composite.test.cpp
       title: Verify/LC_point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_point_set_range_sort_range_composite.test.cpp
       title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_polynomial_interpolation.test.cpp
       title: Verify/LC_polynomial_interpolation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_polynomial_taylor_shift.test.cpp
       title: Verify/LC_polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
     - icon: ':x:'

@@ -39,11 +39,7 @@ data:
     \n    }\r\n\r\n    friend istream &operator>>(istream &is, Frac &x) {\r\n    \
     \    return is >> x.a >> x.b;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Frac &x) {\r\n        return os << x.a << '/' << x.b;\r\n    }\r\n\
-    };\r\ntemplate <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y)\
-    \ {\r\n    if (x.a < x.b and y.b < y.a)\r\n        return Frac(1);\r\n    else\
-    \ if (x.b <= x.a) {\r\n        T add = floor(x.a / x.b);\r\n        return between(x\
-    \ - add, y - add) + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\
-    \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
+    };\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
     \ 4 \"Math/partizangame.hpp\"\ntemplate <typename T> struct Surreal {\n    static\
     \ constexpr int LG = std::numeric_limits<T>::digits - 2;\n    Frac<T> a;\n   \
     \ Surreal(T a = 0) : a(a, 1) {}\n    Surreal(T a, T b) : a(a, b) {}\n    Surreal(Frac<T>\
@@ -183,7 +179,7 @@ data:
   isVerificationFile: false
   path: Math/partizangame.hpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-06-05 05:40:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/partizangame.hpp

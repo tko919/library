@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/fft.hpp
     title: Fast Fourier Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: Graph/centroid.hpp
     title: Centroid Decomposition
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -108,17 +108,21 @@ data:
     \ i ^ ((1 << __lg(i)) - 1) : 0;\r\n        if (i > j)\r\n            continue;\r\
     \n        C x = f[i] + ~f[j], y = f[i] - ~f[j];\r\n        f[i] = x * y * rad;\r\
     \n        f[j] = ~f[i];\r\n    }\r\n    fft(f, 1);\r\n    for (int i = 0; i <\
-    \ cs; i++)\r\n        c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\ntemplate\
-    \ <typename T> vector<T> square(const vector<T> &a) {\r\n    const int as = a.size();\r\
-    \n    if (!as)\r\n        return {};\r\n    const int cs = as * 2 - 1;\r\n   \
-    \ vector<T> c(cs);\r\n    if (as < 16) {\r\n        for (int i = 0; i < as; i++)\r\
-    \n            for (int j = 0; j < as; j++) {\r\n                c[i + j] += (int)a[i]\
+    \ cs; i++) {\r\n        if constexpr (is_same_v<T, int> or is_same_v<T, ll>) {\r\
+    \n            c[i] = T(f[i].x / n + .5);\r\n        } else {\r\n            c[i]\
+    \ = T(f[i].x / n);\r\n        }\r\n    }\r\n    return c;\r\n}\r\ntemplate <typename\
+    \ T> vector<T> square(const vector<T> &a) {\r\n    const int as = a.size();\r\n\
+    \    if (!as)\r\n        return {};\r\n    const int cs = as * 2 - 1;\r\n    vector<T>\
+    \ c(cs);\r\n    if (as < 16) {\r\n        for (int i = 0; i < as; i++)\r\n   \
+    \         for (int j = 0; j < as; j++) {\r\n                c[i + j] += (int)a[i]\
     \ * a[j];\r\n            }\r\n        return c;\r\n    }\r\n    const int n =\
     \ 1 << __lg(cs * 2 - 1);\r\n    vector<C> f(n);\r\n    for (int i = 0; i < as;\
     \ i++)\r\n        f[i].x = a[i];\r\n    fft(f, 0);\r\n    for (int i = 0; i <\
     \ n; i++)\r\n        f[i] = f[i] * f[i];\r\n    fft(f, 1);\r\n    for (int i =\
-    \ 0; i < cs; i++)\r\n        c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\n}\
-    \ // namespace FFT\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\n */\n#line\
+    \ 0; i < cs; i++) {\r\n        if constexpr (is_same_v<T, int> or is_same_v<T,\
+    \ ll>) {\r\n            c[i] = T(f[i].x / n + .5);\r\n        } else {\r\n   \
+    \         c[i] = T(f[i].x / n);\r\n        }\r\n    }\r\n    return c;\r\n}\r\n\
+    } // namespace FFT\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\n */\n#line\
     \ 2 \"Graph/centroid.hpp\"\n\r\nclass CentroidDecomposition {\r\n    void get(int\
     \ v, int p) {\r\n        sz[v] = 1;\r\n        for (auto &to : g[v])\r\n     \
     \       if (to != p and !used[to]) {\r\n                get(to, v);\r\n      \
@@ -185,8 +189,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2025-05-11 13:37:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-05 05:40:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_frequency_table_of_tree_distance.test.cpp
 layout: document

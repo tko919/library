@@ -84,8 +84,8 @@ data:
   isVerificationFile: false
   path: DataStructure/staticrectsum.hpp
   requiredBy:
-  - DataStructure/dynamicrectsum.hpp
   - DataStructure/staticrectaddrectsum.hpp
+  - DataStructure/dynamicrectsum.hpp
   timestamp: '2025-05-11 13:37:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

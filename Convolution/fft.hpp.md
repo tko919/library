@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_frequency_table_of_tree_distance.test.cpp
     title: Verify/LC_frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Fast Fourier Transform
     links: []
@@ -49,17 +49,21 @@ data:
     \ i ^ ((1 << __lg(i)) - 1) : 0;\r\n        if (i > j)\r\n            continue;\r\
     \n        C x = f[i] + ~f[j], y = f[i] - ~f[j];\r\n        f[i] = x * y * rad;\r\
     \n        f[j] = ~f[i];\r\n    }\r\n    fft(f, 1);\r\n    for (int i = 0; i <\
-    \ cs; i++)\r\n        c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\ntemplate\
-    \ <typename T> vector<T> square(const vector<T> &a) {\r\n    const int as = a.size();\r\
-    \n    if (!as)\r\n        return {};\r\n    const int cs = as * 2 - 1;\r\n   \
-    \ vector<T> c(cs);\r\n    if (as < 16) {\r\n        for (int i = 0; i < as; i++)\r\
-    \n            for (int j = 0; j < as; j++) {\r\n                c[i + j] += (int)a[i]\
+    \ cs; i++) {\r\n        if constexpr (is_same_v<T, int> or is_same_v<T, ll>) {\r\
+    \n            c[i] = T(f[i].x / n + .5);\r\n        } else {\r\n            c[i]\
+    \ = T(f[i].x / n);\r\n        }\r\n    }\r\n    return c;\r\n}\r\ntemplate <typename\
+    \ T> vector<T> square(const vector<T> &a) {\r\n    const int as = a.size();\r\n\
+    \    if (!as)\r\n        return {};\r\n    const int cs = as * 2 - 1;\r\n    vector<T>\
+    \ c(cs);\r\n    if (as < 16) {\r\n        for (int i = 0; i < as; i++)\r\n   \
+    \         for (int j = 0; j < as; j++) {\r\n                c[i + j] += (int)a[i]\
     \ * a[j];\r\n            }\r\n        return c;\r\n    }\r\n    const int n =\
     \ 1 << __lg(cs * 2 - 1);\r\n    vector<C> f(n);\r\n    for (int i = 0; i < as;\
     \ i++)\r\n        f[i].x = a[i];\r\n    fft(f, 0);\r\n    for (int i = 0; i <\
     \ n; i++)\r\n        f[i] = f[i] * f[i];\r\n    fft(f, 1);\r\n    for (int i =\
-    \ 0; i < cs; i++)\r\n        c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\n}\
-    \ // namespace FFT\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\n */\n"
+    \ 0; i < cs; i++) {\r\n        if constexpr (is_same_v<T, int> or is_same_v<T,\
+    \ ll>) {\r\n            c[i] = T(f[i].x / n + .5);\r\n        } else {\r\n   \
+    \         c[i] = T(f[i].x / n);\r\n        }\r\n    }\r\n    return c;\r\n}\r\n\
+    } // namespace FFT\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\n */\n"
   code: "#pragma once\r\n\r\nnamespace FFT {\r\nstruct C {\r\n    double x, y;\r\n\
     \    C(double _x = 0, double _y = 0) : x(_x), y(_y) {}\r\n    C operator~() const\
     \ {\r\n        return C(x, -y);\r\n    }\r\n    C operator*(const C &c) const\
@@ -96,8 +100,10 @@ data:
     \   for (int i = 0; i < n; i++) {\r\n        int j = i ? i ^ ((1 << __lg(i)) -\
     \ 1) : 0;\r\n        if (i > j)\r\n            continue;\r\n        C x = f[i]\
     \ + ~f[j], y = f[i] - ~f[j];\r\n        f[i] = x * y * rad;\r\n        f[j] =\
-    \ ~f[i];\r\n    }\r\n    fft(f, 1);\r\n    for (int i = 0; i < cs; i++)\r\n  \
-    \      c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\ntemplate <typename T> vector<T>\
+    \ ~f[i];\r\n    }\r\n    fft(f, 1);\r\n    for (int i = 0; i < cs; i++) {\r\n\
+    \        if constexpr (is_same_v<T, int> or is_same_v<T, ll>) {\r\n          \
+    \  c[i] = T(f[i].x / n + .5);\r\n        } else {\r\n            c[i] = T(f[i].x\
+    \ / n);\r\n        }\r\n    }\r\n    return c;\r\n}\r\ntemplate <typename T> vector<T>\
     \ square(const vector<T> &a) {\r\n    const int as = a.size();\r\n    if (!as)\r\
     \n        return {};\r\n    const int cs = as * 2 - 1;\r\n    vector<T> c(cs);\r\
     \n    if (as < 16) {\r\n        for (int i = 0; i < as; i++)\r\n            for\
@@ -106,14 +112,16 @@ data:
     \ * 2 - 1);\r\n    vector<C> f(n);\r\n    for (int i = 0; i < as; i++)\r\n   \
     \     f[i].x = a[i];\r\n    fft(f, 0);\r\n    for (int i = 0; i < n; i++)\r\n\
     \        f[i] = f[i] * f[i];\r\n    fft(f, 1);\r\n    for (int i = 0; i < cs;\
-    \ i++)\r\n        c[i] = T(f[i].x / n);\r\n    return c;\r\n}\r\n} // namespace\
+    \ i++) {\r\n        if constexpr (is_same_v<T, int> or is_same_v<T, ll>) {\r\n\
+    \            c[i] = T(f[i].x / n + .5);\r\n        } else {\r\n            c[i]\
+    \ = T(f[i].x / n);\r\n        }\r\n    }\r\n    return c;\r\n}\r\n} // namespace\
     \ FFT\r\n\r\n/**\r\n * @brief Fast Fourier Transform\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Convolution/fft.hpp
   requiredBy: []
-  timestamp: '2025-05-11 13:37:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-05 05:40:21+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_frequency_table_of_tree_distance.test.cpp
 documentation_of: Convolution/fft.hpp

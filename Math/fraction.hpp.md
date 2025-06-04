@@ -45,11 +45,7 @@ data:
     \n    }\r\n\r\n    friend istream &operator>>(istream &is, Frac &x) {\r\n    \
     \    return is >> x.a >> x.b;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Frac &x) {\r\n        return os << x.a << '/' << x.b;\r\n    }\r\n\
-    };\r\ntemplate <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y)\
-    \ {\r\n    if (x.a < x.b and y.b < y.a)\r\n        return Frac(1);\r\n    else\
-    \ if (x.b <= x.a) {\r\n        T add = floor(x.a / x.b);\r\n        return between(x\
-    \ - add, y - add) + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\
-    \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n"
+    };\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n"
   code: "#pragma once\r\n\r\ntemplate <typename T> struct Frac {\r\n    T a, b;\r\n\
     \    Frac(T _a = 0) {\r\n        init(_a, 1);\r\n    }\r\n    Frac(T _a, T _b)\
     \ {\r\n        init(_a, _b);\r\n    }\r\n    template <typename V> V get() const\
@@ -76,19 +72,15 @@ data:
     \n    }\r\n\r\n    friend istream &operator>>(istream &is, Frac &x) {\r\n    \
     \    return is >> x.a >> x.b;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Frac &x) {\r\n        return os << x.a << '/' << x.b;\r\n    }\r\n\
-    };\r\ntemplate <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y)\
-    \ {\r\n    if (x.a < x.b and y.b < y.a)\r\n        return Frac(1);\r\n    else\
-    \ if (x.b <= x.a) {\r\n        T add = floor(x.a / x.b);\r\n        return between(x\
-    \ - add, y - add) + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\
-    \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */"
+    };\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: Math/fraction.hpp
   requiredBy:
   - Geometry/FracCoord.hpp
-  - Math/sternbrocot.hpp
   - Math/partizangame.hpp
-  timestamp: '2025-04-06 06:46:04+09:00'
+  - Math/sternbrocot.hpp
+  timestamp: '2025-06-05 05:40:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/fraction.hpp

@@ -50,8 +50,8 @@ data:
   requiredBy:
   - DataStructure/manhattanmst.hpp
   - DataStructure/rangeparalleluf.hpp
-  - Graph/opttoposort.hpp
   - Graph/euler.hpp
+  - Graph/opttoposort.hpp
   - Graph/edgecoloring.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_SOME_WA

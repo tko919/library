@@ -38,11 +38,7 @@ data:
     \n    }\r\n\r\n    friend istream &operator>>(istream &is, Frac &x) {\r\n    \
     \    return is >> x.a >> x.b;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Frac &x) {\r\n        return os << x.a << '/' << x.b;\r\n    }\r\n\
-    };\r\ntemplate <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y)\
-    \ {\r\n    if (x.a < x.b and y.b < y.a)\r\n        return Frac(1);\r\n    else\
-    \ if (x.b <= x.a) {\r\n        T add = floor(x.a / x.b);\r\n        return between(x\
-    \ - add, y - add) + add;\r\n    } else\r\n        return between(y.inv(), x.inv()).inv();\r\
-    \n}\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
+    };\r\n\r\n/**\r\n * @brief Fraction\r\n * @docs docs/fraction.md\r\n */\n#line\
     \ 3 \"Geometry/FracCoord.hpp\"\n \nstruct Point{\n    Frac X,Y;\n    Point():X(0),Y(0){}\n\
     \    Point(Frac _X,Frac _Y):X(_X),Y(_Y){}\n    int pos()const{\n        if(Y<0)return\
     \ -1;\n        if(Y==0 and X>=0)return 0;\n        return 1;\n    }\n    Point&\
@@ -151,7 +147,7 @@ data:
   isVerificationFile: false
   path: Geometry/FracCoord.hpp
   requiredBy: []
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-06-05 05:40:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/FracCoord.hpp

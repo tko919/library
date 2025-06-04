@@ -318,9 +318,9 @@ data:
   timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Math/primitive.hpp
 layout: document
 redirect_from:
