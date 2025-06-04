@@ -88,8 +88,13 @@ template <typename T> vector<T> mult(const vector<T> &a, const vector<T> &b) {
         f[j] = ~f[i];
     }
     fft(f, 1);
-    for (int i = 0; i < cs; i++)
-        c[i] = T(f[i].x / n);
+    for (int i = 0; i < cs; i++) {
+        if constexpr (is_same_v<T, int> or is_same_v<T, ll>) {
+            c[i] = T(f[i].x / n + .5);
+        } else {
+            c[i] = T(f[i].x / n);
+        }
+    }
     return c;
 }
 template <typename T> vector<T> square(const vector<T> &a) {
@@ -113,8 +118,13 @@ template <typename T> vector<T> square(const vector<T> &a) {
     for (int i = 0; i < n; i++)
         f[i] = f[i] * f[i];
     fft(f, 1);
-    for (int i = 0; i < cs; i++)
-        c[i] = T(f[i].x / n);
+    for (int i = 0; i < cs; i++) {
+        if constexpr (is_same_v<T, int> or is_same_v<T, ll>) {
+            c[i] = T(f[i].x / n + .5);
+        } else {
+            c[i] = T(f[i].x / n);
+        }
+    }
     return c;
 }
 } // namespace FFT

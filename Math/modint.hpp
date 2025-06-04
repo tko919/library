@@ -1,6 +1,7 @@
 #pragma once
 
 template <unsigned mod = 1000000007> struct fp {
+    static_assert(mod < uint(1) << 31);
     unsigned v;
     static constexpr int get_mod() {
         return mod;

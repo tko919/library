@@ -74,15 +74,6 @@ template <typename T> struct Frac {
         return os << x.a << '/' << x.b;
     }
 };
-template <typename T> Frac<T> between(const Frac<T> &x, const Frac<T> &y) {
-    if (x.a < x.b and y.b < y.a)
-        return Frac(1);
-    else if (x.b <= x.a) {
-        T add = floor(x.a / x.b);
-        return between(x - add, y - add) + add;
-    } else
-        return between(y.inv(), x.inv()).inv();
-}
 
 /**
  * @brief Fraction
