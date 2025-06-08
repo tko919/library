@@ -125,17 +125,50 @@ data:
     \n        sub.push_back(p2);\r\n        rep(i, 0, sub.size() - 1) res += self(self,\
     \ c, sub[i], sub[i + 1]);\r\n        return res;\r\n    };\r\n    T res = .0;\r\
     \n    rep(i, 0, n) res += rec(rec, b, a[i], a[(i + 1) % n]);\r\n    return fabs(res\
-    \ / 2.);\r\n}\r\nT Area(const Circle &a, const Circle &b) {\r\n    T d = abs(a.p\
-    \ - b.p);\r\n    if (d >= a.r + b.r - eps)\r\n        return .0;\r\n    if (d\
-    \ <= abs(a.r - b.r) + eps) {\r\n        T r = min(a.r, b.r);\r\n        return\
-    \ M_PI * r * r;\r\n    }\r\n    T ath = acos((a.r * a.r + d * d - b.r * b.r) /\
-    \ d / a.r / 2.);\r\n    T res = a.r * a.r * (ath - sin(ath * 2) / 2.);\r\n   \
-    \ T bth = acos((b.r * b.r + d * d - a.r * a.r) / d / b.r / 2.);\r\n    res +=\
-    \ b.r * b.r * (bth - sin(bth * 2) / 2.);\r\n    return fabs(res);\r\n}\r\nbool\
-    \ isConvex(const Poly &a) {\r\n    int n = a.size();\r\n    int cur, pre, nxt;\r\
-    \n    rep(i, 0, n) {\r\n        pre = (i - 1 + n) % n;\r\n        nxt = (i + 1)\
-    \ % n;\r\n        cur = i;\r\n        if (ccw(a[pre], a[cur], a[nxt]) == -1)\r\
-    \n            return 0;\r\n    }\r\n    return 1;\r\n}\r\nint isContained(const\
+    \ / 2.);\r\n}\r\nT InterArea(const Circle &a, const Circle &b) {\r\n    T d =\
+    \ abs(a.p - b.p);\r\n    if (d >= a.r + b.r - eps)\r\n        return .0;\r\n \
+    \   if (d <= abs(a.r - b.r) + eps) {\r\n        T r = min(a.r, b.r);\r\n     \
+    \   return M_PI * r * r;\r\n    }\r\n    T ath = acos((a.r * a.r + d * d - b.r\
+    \ * b.r) / d / a.r / 2.);\r\n    T res = a.r * a.r * (ath - sin(ath * 2) / 2.);\r\
+    \n    T bth = acos((b.r * b.r + d * d - a.r * a.r) / d / b.r / 2.);\r\n    res\
+    \ += b.r * b.r * (bth - sin(bth * 2) / 2.);\r\n    return fabs(res);\r\n}\r\n\
+    T UnionArea(vector<Circle> &cs) {\r\n    int n = SZ(cs);\r\n    double ret = 0;\r\
+    \n    rep(i, 0, n) {\r\n        vector<Point> pts;\r\n        bool inside = 0;\r\
+    \n        rep(j, 0, n) if (i != j) {\r\n            if (eq(abs(cs[i].p - cs[j].p),\
+    \ 0.) and\r\n                eq(abs(cs[i].r - cs[j].r), 0.)) {\r\n           \
+    \     if (i > j) {\r\n                    inside = 1;\r\n                    break;\r\
+    \n                }\r\n            } else {\r\n                double D = abs(cs[i].p\
+    \ - cs[j].p);\r\n                if (cs[j].r + eps >= D + cs[i].r) {\r\n     \
+    \               inside = 1;\r\n                    break;\r\n                }\r\
+    \n            }\r\n            auto is = Intersection(cs[i], cs[j]);\r\n     \
+    \       if (SZ(is) >= 2) {\r\n                if (cross(is[0] - cs[i].p, cs[j].p\
+    \ - cs[i].p) < 0)\r\n                    swap(is[0], is[1]);\r\n             \
+    \   pts.push_back(is[0]);\r\n                pts.push_back(is[1]);\r\n       \
+    \     }\r\n        }\r\n        if (inside)\r\n            continue;\r\n     \
+    \   if (SZ(pts) == 0) {\r\n            ret += pow(cs[i].r, 2) * M_PI;\r\n    \
+    \        continue;\r\n        }\r\n        vector<int> ord(SZ(pts));\r\n     \
+    \   iota(ALL(ord), 0);\r\n        sort(ALL(ord), [&](int x, int y) {\r\n     \
+    \       return cmp(pts[x] - cs[i].p, pts[y] - cs[i].p);\r\n        });\r\n   \
+    \     vector<int> rev(SZ(pts));\r\n        rep(x, 0, SZ(pts)) rev[ord[x]] = x;\r\
+    \n        vector<int> rui(SZ(pts) + 1);\r\n        rep(x, 0, SZ(pts) / 2) {\r\n\
+    \            int st = rev[x * 2], en = rev[x * 2 + 1];\r\n            if (st <\
+    \ en) {\r\n                rui[st]++;\r\n                rui[en]--;\r\n      \
+    \      } else {\r\n                rui[0]++;\r\n                rui[en]--;\r\n\
+    \                rui[st]++;\r\n            }\r\n        }\r\n        show(SZ(pts));\r\
+    \n        rep(x, 0, SZ(pts)) rui[x + 1] += rui[x];\r\n        rep(x, 0, SZ(pts))\
+    \ {\r\n            double theta = arg(pts[ord[x]] - cs[i].p);\r\n        }\r\n\
+    \        rep(x, 0, SZ(pts)) if (rui[x] == 0) {\r\n            double theta1 =\
+    \ arg(pts[ord[(x + 1) % SZ(pts)]] - cs[i].p);\r\n            double theta2 = arg(pts[ord[x]]\
+    \ - cs[i].p);\r\n            if (theta1 < theta2)\r\n                theta1 +=\
+    \ M_PI * 2;\r\n            double add =\r\n                cs[i].r * cs[i].p.X\
+    \ * sin(theta1) +\r\n                pow(cs[i].r, 2) * (theta1 + sin(theta1) *\
+    \ cos(theta1)) / 2;\r\n            add -= cs[i].r * cs[i].p.X * sin(theta2) +\r\
+    \n                   pow(cs[i].r, 2) * (theta2 + sin(theta2) * cos(theta2)) /\
+    \ 2;\r\n            ret += add;\r\n        }\r\n    }\r\n    return ret;\r\n}\r\
+    \nbool isConvex(const Poly &a) {\r\n    int n = a.size();\r\n    int cur, pre,\
+    \ nxt;\r\n    rep(i, 0, n) {\r\n        pre = (i - 1 + n) % n;\r\n        nxt\
+    \ = (i + 1) % n;\r\n        cur = i;\r\n        if (ccw(a[pre], a[cur], a[nxt])\
+    \ == -1)\r\n            return 0;\r\n    }\r\n    return 1;\r\n}\r\nint isContained(const\
     \ Poly &a,\r\n                const Point &b) { // 0:not contain,1:on edge,2:contain\r\
     \n    bool res = 0;\r\n    int n = a.size();\r\n    rep(i, 0, n) {\r\n       \
     \ Point p = a[i] - b, q = a[(i + 1) % n] - b;\r\n        if (p.Y > q.Y)\r\n  \
@@ -309,17 +342,50 @@ data:
     \n        sub.push_back(p2);\r\n        rep(i, 0, sub.size() - 1) res += self(self,\
     \ c, sub[i], sub[i + 1]);\r\n        return res;\r\n    };\r\n    T res = .0;\r\
     \n    rep(i, 0, n) res += rec(rec, b, a[i], a[(i + 1) % n]);\r\n    return fabs(res\
-    \ / 2.);\r\n}\r\nT Area(const Circle &a, const Circle &b) {\r\n    T d = abs(a.p\
-    \ - b.p);\r\n    if (d >= a.r + b.r - eps)\r\n        return .0;\r\n    if (d\
-    \ <= abs(a.r - b.r) + eps) {\r\n        T r = min(a.r, b.r);\r\n        return\
-    \ M_PI * r * r;\r\n    }\r\n    T ath = acos((a.r * a.r + d * d - b.r * b.r) /\
-    \ d / a.r / 2.);\r\n    T res = a.r * a.r * (ath - sin(ath * 2) / 2.);\r\n   \
-    \ T bth = acos((b.r * b.r + d * d - a.r * a.r) / d / b.r / 2.);\r\n    res +=\
-    \ b.r * b.r * (bth - sin(bth * 2) / 2.);\r\n    return fabs(res);\r\n}\r\nbool\
-    \ isConvex(const Poly &a) {\r\n    int n = a.size();\r\n    int cur, pre, nxt;\r\
-    \n    rep(i, 0, n) {\r\n        pre = (i - 1 + n) % n;\r\n        nxt = (i + 1)\
-    \ % n;\r\n        cur = i;\r\n        if (ccw(a[pre], a[cur], a[nxt]) == -1)\r\
-    \n            return 0;\r\n    }\r\n    return 1;\r\n}\r\nint isContained(const\
+    \ / 2.);\r\n}\r\nT InterArea(const Circle &a, const Circle &b) {\r\n    T d =\
+    \ abs(a.p - b.p);\r\n    if (d >= a.r + b.r - eps)\r\n        return .0;\r\n \
+    \   if (d <= abs(a.r - b.r) + eps) {\r\n        T r = min(a.r, b.r);\r\n     \
+    \   return M_PI * r * r;\r\n    }\r\n    T ath = acos((a.r * a.r + d * d - b.r\
+    \ * b.r) / d / a.r / 2.);\r\n    T res = a.r * a.r * (ath - sin(ath * 2) / 2.);\r\
+    \n    T bth = acos((b.r * b.r + d * d - a.r * a.r) / d / b.r / 2.);\r\n    res\
+    \ += b.r * b.r * (bth - sin(bth * 2) / 2.);\r\n    return fabs(res);\r\n}\r\n\
+    T UnionArea(vector<Circle> &cs) {\r\n    int n = SZ(cs);\r\n    double ret = 0;\r\
+    \n    rep(i, 0, n) {\r\n        vector<Point> pts;\r\n        bool inside = 0;\r\
+    \n        rep(j, 0, n) if (i != j) {\r\n            if (eq(abs(cs[i].p - cs[j].p),\
+    \ 0.) and\r\n                eq(abs(cs[i].r - cs[j].r), 0.)) {\r\n           \
+    \     if (i > j) {\r\n                    inside = 1;\r\n                    break;\r\
+    \n                }\r\n            } else {\r\n                double D = abs(cs[i].p\
+    \ - cs[j].p);\r\n                if (cs[j].r + eps >= D + cs[i].r) {\r\n     \
+    \               inside = 1;\r\n                    break;\r\n                }\r\
+    \n            }\r\n            auto is = Intersection(cs[i], cs[j]);\r\n     \
+    \       if (SZ(is) >= 2) {\r\n                if (cross(is[0] - cs[i].p, cs[j].p\
+    \ - cs[i].p) < 0)\r\n                    swap(is[0], is[1]);\r\n             \
+    \   pts.push_back(is[0]);\r\n                pts.push_back(is[1]);\r\n       \
+    \     }\r\n        }\r\n        if (inside)\r\n            continue;\r\n     \
+    \   if (SZ(pts) == 0) {\r\n            ret += pow(cs[i].r, 2) * M_PI;\r\n    \
+    \        continue;\r\n        }\r\n        vector<int> ord(SZ(pts));\r\n     \
+    \   iota(ALL(ord), 0);\r\n        sort(ALL(ord), [&](int x, int y) {\r\n     \
+    \       return cmp(pts[x] - cs[i].p, pts[y] - cs[i].p);\r\n        });\r\n   \
+    \     vector<int> rev(SZ(pts));\r\n        rep(x, 0, SZ(pts)) rev[ord[x]] = x;\r\
+    \n        vector<int> rui(SZ(pts) + 1);\r\n        rep(x, 0, SZ(pts) / 2) {\r\n\
+    \            int st = rev[x * 2], en = rev[x * 2 + 1];\r\n            if (st <\
+    \ en) {\r\n                rui[st]++;\r\n                rui[en]--;\r\n      \
+    \      } else {\r\n                rui[0]++;\r\n                rui[en]--;\r\n\
+    \                rui[st]++;\r\n            }\r\n        }\r\n        show(SZ(pts));\r\
+    \n        rep(x, 0, SZ(pts)) rui[x + 1] += rui[x];\r\n        rep(x, 0, SZ(pts))\
+    \ {\r\n            double theta = arg(pts[ord[x]] - cs[i].p);\r\n        }\r\n\
+    \        rep(x, 0, SZ(pts)) if (rui[x] == 0) {\r\n            double theta1 =\
+    \ arg(pts[ord[(x + 1) % SZ(pts)]] - cs[i].p);\r\n            double theta2 = arg(pts[ord[x]]\
+    \ - cs[i].p);\r\n            if (theta1 < theta2)\r\n                theta1 +=\
+    \ M_PI * 2;\r\n            double add =\r\n                cs[i].r * cs[i].p.X\
+    \ * sin(theta1) +\r\n                pow(cs[i].r, 2) * (theta1 + sin(theta1) *\
+    \ cos(theta1)) / 2;\r\n            add -= cs[i].r * cs[i].p.X * sin(theta2) +\r\
+    \n                   pow(cs[i].r, 2) * (theta2 + sin(theta2) * cos(theta2)) /\
+    \ 2;\r\n            ret += add;\r\n        }\r\n    }\r\n    return ret;\r\n}\r\
+    \nbool isConvex(const Poly &a) {\r\n    int n = a.size();\r\n    int cur, pre,\
+    \ nxt;\r\n    rep(i, 0, n) {\r\n        pre = (i - 1 + n) % n;\r\n        nxt\
+    \ = (i + 1) % n;\r\n        cur = i;\r\n        if (ccw(a[pre], a[cur], a[nxt])\
+    \ == -1)\r\n            return 0;\r\n    }\r\n    return 1;\r\n}\r\nint isContained(const\
     \ Poly &a,\r\n                const Point &b) { // 0:not contain,1:on edge,2:contain\r\
     \n    bool res = 0;\r\n    int n = a.size();\r\n    rep(i, 0, n) {\r\n       \
     \ Point p = a[i] - b, q = a[(i + 1) % n] - b;\r\n        if (p.Y > q.Y)\r\n  \
@@ -385,7 +451,7 @@ data:
   path: Geometry/geometry.hpp
   requiredBy:
   - Geometry/Enclosing.hpp
-  timestamp: '2025-04-06 06:46:04+09:00'
+  timestamp: '2025-06-08 13:20:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/geometry.hpp

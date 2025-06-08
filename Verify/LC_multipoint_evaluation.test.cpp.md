@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/multieval.hpp
     title: Multipoint Evaluation
   - icon: ':question:'
