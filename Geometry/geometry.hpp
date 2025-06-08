@@ -283,7 +283,7 @@ T Area(const Poly &a, const Circle &b) {
     rep(i, 0, n) res += rec(rec, b, a[i], a[(i + 1) % n]);
     return fabs(res / 2.);
 }
-T Area(const Circle &a, const Circle &b) {
+T InterArea(const Circle &a, const Circle &b) {
     T d = abs(a.p - b.p);
     if (d >= a.r + b.r - eps)
         return .0;
@@ -296,6 +296,79 @@ T Area(const Circle &a, const Circle &b) {
     T bth = acos((b.r * b.r + d * d - a.r * a.r) / d / b.r / 2.);
     res += b.r * b.r * (bth - sin(bth * 2) / 2.);
     return fabs(res);
+}
+T UnionArea(vector<Circle> &cs) {
+    int n = SZ(cs);
+    double ret = 0;
+    rep(i, 0, n) {
+        vector<Point> pts;
+        bool inside = 0;
+        rep(j, 0, n) if (i != j) {
+            if (eq(abs(cs[i].p - cs[j].p), 0.) and
+                eq(abs(cs[i].r - cs[j].r), 0.)) {
+                if (i > j) {
+                    inside = 1;
+                    break;
+                }
+            } else {
+                double D = abs(cs[i].p - cs[j].p);
+                if (cs[j].r + eps >= D + cs[i].r) {
+                    inside = 1;
+                    break;
+                }
+            }
+            auto is = Intersection(cs[i], cs[j]);
+            if (SZ(is) >= 2) {
+                if (cross(is[0] - cs[i].p, cs[j].p - cs[i].p) < 0)
+                    swap(is[0], is[1]);
+                pts.push_back(is[0]);
+                pts.push_back(is[1]);
+            }
+        }
+        if (inside)
+            continue;
+        if (SZ(pts) == 0) {
+            ret += pow(cs[i].r, 2) * M_PI;
+            continue;
+        }
+        vector<int> ord(SZ(pts));
+        iota(ALL(ord), 0);
+        sort(ALL(ord), [&](int x, int y) {
+            return cmp(pts[x] - cs[i].p, pts[y] - cs[i].p);
+        });
+        vector<int> rev(SZ(pts));
+        rep(x, 0, SZ(pts)) rev[ord[x]] = x;
+        vector<int> rui(SZ(pts) + 1);
+        rep(x, 0, SZ(pts) / 2) {
+            int st = rev[x * 2], en = rev[x * 2 + 1];
+            if (st < en) {
+                rui[st]++;
+                rui[en]--;
+            } else {
+                rui[0]++;
+                rui[en]--;
+                rui[st]++;
+            }
+        }
+        show(SZ(pts));
+        rep(x, 0, SZ(pts)) rui[x + 1] += rui[x];
+        rep(x, 0, SZ(pts)) {
+            double theta = arg(pts[ord[x]] - cs[i].p);
+        }
+        rep(x, 0, SZ(pts)) if (rui[x] == 0) {
+            double theta1 = arg(pts[ord[(x + 1) % SZ(pts)]] - cs[i].p);
+            double theta2 = arg(pts[ord[x]] - cs[i].p);
+            if (theta1 < theta2)
+                theta1 += M_PI * 2;
+            double add =
+                cs[i].r * cs[i].p.X * sin(theta1) +
+                pow(cs[i].r, 2) * (theta1 + sin(theta1) * cos(theta1)) / 2;
+            add -= cs[i].r * cs[i].p.X * sin(theta2) +
+                   pow(cs[i].r, 2) * (theta2 + sin(theta2) * cos(theta2)) / 2;
+            ret += add;
+        }
+    }
+    return ret;
 }
 bool isConvex(const Poly &a) {
     int n = a.size();
