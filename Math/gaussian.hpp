@@ -79,5 +79,5 @@ template <typename T> Gauss<T> gcd(Gauss<T> a, Gauss<T> b) {
 }
 
 /**
- * @brief Gaussaussian Integer
+ * @brief Gaussian Integer
  */
