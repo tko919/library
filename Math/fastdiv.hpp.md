@@ -87,19 +87,19 @@ data:
   requiredBy:
   - Convolution/multivariatecyclic.hpp
   - Math/stirlingquery.hpp
-  - Math/pisano.hpp
+  - Math/primitive.hpp
   - Math/binomquery.hpp
   - Math/twosquare.hpp
-  - Math/primitive.hpp
+  - Math/pisano.hpp
   - Math/dynamic.hpp
   timestamp: '2024-12-26 05:48:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - Verify/LC_stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
 documentation_of: Math/fastdiv.hpp
 layout: document
 redirect_from:

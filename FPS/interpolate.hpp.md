@@ -66,8 +66,8 @@ data:
   timestamp: '2025-05-11 13:37:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
 documentation_of: FPS/interpolate.hpp
 layout: document
 redirect_from:

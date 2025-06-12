@@ -71,13 +71,13 @@ data:
   isVerificationFile: false
   path: Graph/lca.hpp
   requiredBy:
-  - Graph/auxiliarytree.hpp
   - Graph/shortestpathremedge.hpp
+  - Graph/auxiliarytree.hpp
   timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_901.test.cpp
   - Verify/LC_lca_2.test.cpp
+  - Verify/YUKI_901.test.cpp
 documentation_of: Graph/lca.hpp
 layout: document
 redirect_from:

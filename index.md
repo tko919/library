@@ -109,7 +109,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/lazykdtree.hpp
       title: Kd Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
     - icon: ':question:'
@@ -154,7 +154,7 @@ data:
     - icon: ':question:'
       path: DataStructure/segtree.hpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/segtreebeats.hpp
       title: Segment Tree Beats
     - icon: ':warning:'
@@ -169,7 +169,7 @@ data:
     - icon: ':x:'
       path: DataStructure/staticrectsum.hpp
       title: Static Rectangle Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
     - icon: ':question:'
@@ -255,7 +255,7 @@ data:
     - icon: ':x:'
       path: FPS/prodoffrkx.hpp
       title: $\Pi_{k=0}^{m-1} f(r^kx)$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
     - icon: ':warning:'
@@ -440,13 +440,16 @@ data:
       title: Fraction
     - icon: ':warning:'
       path: Math/gaussian.hpp
-      title: Gaussaussian Integer
+      title: Gaussian Integer
     - icon: ':heavy_check_mark:'
       path: Math/hafnian.hpp
       title: Hafnian of matrix
     - icon: ':warning:'
       path: Math/hash.hpp
       title: Hash
+    - icon: ':warning:'
+      path: Math/invsum.hpp
+      title: Inverse Sum
     - icon: ':heavy_check_mark:'
       path: Math/kthroot.hpp
       title: Kth Root(Integer)
@@ -530,7 +533,7 @@ data:
     - icon: ':warning:'
       path: String/palindromictree.hpp
       title: Palindromic Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/prefixsubstrlcs.hpp
       title: Prefix Substring LCS
     - icon: ':warning:'
@@ -765,19 +768,19 @@ data:
     - icon: ':x:'
       path: Verify/LC_predecessor_problem.test.cpp
       title: Verify/LC_predecessor_problem.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_prefix_substring_lcs.test.cpp
       title: Verify/LC_prefix_substring_lcs.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_product_of_polynomial_sequence.test.cpp
       title: Verify/LC_product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_queue_operate_all_composite.test.cpp
       title: Verify/LC_queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_affine_range_sum.test.cpp
       title: Verify/LC_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
       title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':x:'

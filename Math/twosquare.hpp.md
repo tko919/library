@@ -6,7 +6,7 @@ data:
     title: Fast Division
   - icon: ':warning:'
     path: Math/gaussian.hpp
-    title: Gaussaussian Integer
+    title: Gaussian Integer
   - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
@@ -233,7 +233,7 @@ data:
     \ and y == a.y);\n    }\n    bool operator!=(const Gauss &a) {\n        return\
     \ (x != a.x or y != a.y);\n    }\n};\n\ntemplate <typename T> Gauss<T> gcd(Gauss<T>\
     \ a, Gauss<T> b) {\n    while (b != Gauss<T>(0, 0)) {\n        a %= b;\n     \
-    \   swap(a, b);\n    }\n    return a;\n}\n\n/**\n * @brief Gaussaussian Integer\n\
+    \   swap(a, b);\n    }\n    return a;\n}\n\n/**\n * @brief Gaussian Integer\n\
     \ */\n#line 5 \"Math/twosquare.hpp\"\n\nvector<pair<ll, ll>> RepresentTwoSquare(ll\
     \ n) {\n    auto find = [&](ll p) -> Gauss<ll> {\n        assert(p % 4 == 1);\n\
     \        ll g = 1, x = -1;\n        for (;;) {\n            g++;\n           \
@@ -295,7 +295,7 @@ data:
   isVerificationFile: false
   path: Math/twosquare.hpp
   requiredBy: []
-  timestamp: '2025-05-25 16:11:40+09:00'
+  timestamp: '2025-06-13 01:50:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/twosquare.hpp

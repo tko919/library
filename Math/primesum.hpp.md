@@ -75,8 +75,8 @@ data:
   timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_counting_primes.test.cpp
   - Verify/YUKI_1781.test.cpp
+  - Verify/LC_counting_primes.test.cpp
 documentation_of: Math/primesum.hpp
 layout: document
 redirect_from:

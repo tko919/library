@@ -150,8 +150,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/YUKI_310.test.cpp
   - Verify/YUKI_1112.test.cpp
+  - Verify/YUKI_310.test.cpp
 documentation_of: Math/bbla.hpp
 layout: document
 redirect_from:

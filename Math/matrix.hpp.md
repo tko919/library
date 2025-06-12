@@ -148,22 +148,22 @@ data:
   isVerificationFile: false
   path: Math/matrix.hpp
   requiredBy:
-  - Graph/countspanning.hpp
-  - Graph/counteuler.hpp
   - FPS/p-recursive.hpp
-  - Math/hafnian.hpp
+  - Graph/counteuler.hpp
+  - Graph/countspanning.hpp
+  - Math/charpoly.hpp
   - Math/linearequation.hpp
   - Math/detaplusbx.hpp
   - Math/pisano.hpp
+  - Math/hafnian.hpp
   - Math/pfaffian.hpp
-  - Math/charpoly.hpp
   timestamp: '2024-06-14 02:46:58+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_matrix_product.test.cpp
   - Verify/LC_matrix_det.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document
 redirect_from:
