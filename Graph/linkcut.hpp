@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename M, typename N, N (*f)(N, N), int LIM = 301010> struct LCT {
+template <typename M, typename N, N (*f)(N, N)> struct LCT {
     struct Node {
         Node *lp = nullptr, *rp = nullptr, *par = nullptr;
         N val;
@@ -96,11 +96,19 @@ template <typename M, typename N, N (*f)(N, N), int LIM = 301010> struct LCT {
             }
         }
     };
-    array<Node, LIM> pool;
-    int ptr;
-    LCT() : ptr(0) {}
+    std::vector<Node *> all_nodes;
+    LCT() {}
+    ~LCT() {
+        // デストラクタで全 Node を delete
+        for (Node *p : all_nodes) {
+            delete p;
+        }
+        all_nodes.clear();
+    }
     Node *make(int idx, N val) {
-        return new Node(idx, val);
+        Node *p = new Node(idx, val);
+        all_nodes.push_back(p);
+        return p;
     }
     Node *expose(Node *v) {
         Node *pre = nullptr;
@@ -145,6 +153,9 @@ template <typename M, typename N, N (*f)(N, N), int LIM = 301010> struct LCT {
         while (v->lp)
             v->eval(), v = v->lp;
         return v;
+    }
+    bool same(Node *u, Node *v) {
+        return root(u) == root(v);
     }
     void update(Node *v, N x) {
         expose(v);
