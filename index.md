@@ -73,7 +73,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/2dbit.hpp
       title: 2D Binary Indexed Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/2dsegtree.hpp
       title: 2D Segment Tree
     - icon: ':question:'
@@ -112,7 +112,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/lichaotree.hpp
       title: Convex Hull Trick (Li Chao Tree)
     - icon: ':warning:'
@@ -127,12 +127,15 @@ data:
     - icon: ':warning:'
       path: DataStructure/persistentlazysegtree.hpp
       title: Persistent Lazy Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/persistentrbstset.hpp
       title: Persistent Randomized Binary Search Tree (set)
     - icon: ':heavy_check_mark:'
       path: DataStructure/persistentunionfind.hpp
       title: Persistent Union Find
+    - icon: ':warning:'
+      path: DataStructure/pointsetrangefreq.hpp
+      title: Point Set Range Frequency
     - icon: ':warning:'
       path: DataStructure/rangelinearaddrangemin.hpp
       title: Range Linear Add Range Min
@@ -178,7 +181,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/unionrect.hpp
       title: Area of Union of Rectangles
-    - icon: ':x:'
+    - icon: ':question:'
       path: DataStructure/wavelet.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -261,7 +264,7 @@ data:
     - icon: ':warning:'
       path: FPS/resultant.hpp
       title: Resultant
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
     - icon: ':warning:'
@@ -379,7 +382,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/rerooting.hpp
       title: Rerooting
-    - icon: ':x:'
+    - icon: ':question:'
       path: Graph/scc.hpp
       title: Strongly Connected Components
     - icon: ':warning:'
@@ -783,22 +786,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
       title: Verify/LC_range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest-2.test.cpp
       title: Verify/LC_range_kth_smallest-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_kth_smallest.test.cpp
       title: Verify/LC_range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_rectangle_sum.test.cpp
       title: Verify/LC_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_scc.test.cpp
       title: Verify/LC_scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
       title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     - icon: ':x:'

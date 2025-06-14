@@ -5,12 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/persistentrbstset.hpp
     title: Persistent Randomized Binary Search Tree (set)
-  - icon: ':x:'
-    path: DataStructure/rbstset.hpp
-    title: Randomized Binary Search Tree (set)
   - icon: ':warning:'
     path: FPS/factorize.hpp
     title: Factorize Polynomial
@@ -63,10 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
-    path: Verify/LC_predecessor_problem.test.cpp
-    title: Verify/LC_predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
   - icon: ':x:'
@@ -161,7 +155,6 @@ data:
   - FPS/factorize.hpp
   - Graph/maxindependentset.hpp
   - String/rollinghash.hpp
-  - DataStructure/rbstset.hpp
   - DataStructure/persistentrbstset.hpp
   - Math/bbla.hpp
   - Math/primitive.hpp
@@ -173,7 +166,6 @@ data:
   timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
