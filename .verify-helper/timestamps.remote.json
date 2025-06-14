@@ -67,5 +67,11 @@
 "Verify/LC_product_of_polynomial_sequence.test.cpp": "2025-06-05 05:40:21 +0900",
 "Verify/LC_queue_operate_all_composite.test.cpp": "2025-06-05 05:40:21 +0900",
 "Verify/LC_range_affine_range_sum.test.cpp": "2025-06-05 05:40:21 +0900",
-"Verify/LC_range_chmin_chmax_add_range_sum.test.cpp": "2025-04-17 22:07:07 +0900"
+"Verify/LC_range_chmin_chmax_add_range_sum.test.cpp": "2025-04-17 22:07:07 +0900",
+"Verify/LC_range_kth_smallest-2.test.cpp": "2025-05-25 16:11:40 +0900",
+"Verify/LC_range_kth_smallest.test.cpp": "2025-04-17 22:07:07 +0900",
+"Verify/LC_rectangle_sum.test.cpp": "2025-04-17 22:07:07 +0900",
+"Verify/LC_scc.test.cpp": "2025-04-17 22:07:07 +0900",
+"Verify/LC_segment_add_get_min.test.cpp": "2025-04-17 22:07:07 +0900",
+"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp": "2025-06-05 05:40:21 +0900"
 }
