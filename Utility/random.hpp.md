@@ -61,6 +61,9 @@ data:
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_predecessor_problem.test.cpp
+    title: Verify/LC_predecessor_problem.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
   - icon: ':x:'
@@ -166,6 +169,7 @@ data:
   timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Verify/LC_predecessor_problem.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
