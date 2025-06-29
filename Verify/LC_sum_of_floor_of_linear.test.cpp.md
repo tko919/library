@@ -67,13 +67,17 @@ data:
     }\r\ntemplate <typename T1, typename T2, typename... T3>\r\nvoid _show(int i,\
     \ const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i] != ',' && a[i]\
     \ != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\" << b << \" \";\r\
-    \n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Math/floorsum.hpp\"\n\r\ntemplate<typename\
-    \ T=ll>T FloorSum(ll n,ll a,ll b,ll m){\r\n   //sum_{k=0}^{n-1} [(a*k+b)/m]\r\n\
-    \   T res=0;\r\n   if(a>=m)res+=T(a/m)*n*(n-1)/2,a-=a/m*m;\r\n   else if(a<0)res-=T((-a+m-1)/m)*n*(n-1)/2,a+=((-a+m-1)/m)*m;\r\
-    \n   if(b>=m)res+=(b/m)*n,b-=b/m*m;\r\n   else if(b<0)res-=((-b+m-1)/m)*n,b+=((-b+m-1)/m)*m;\r\
-    \n   \r\n   while(1){\r\n      ll y_max=a*n+b;\r\n      if(y_max<m)break;\r\n\
-    \      n=y_max/m;\r\n      b=y_max%m;\r\n      res+=(n*(n-1)/2)*(m/a)+n*(b/a);\r\
-    \n      swap(m,a);\r\n      a=a%m;\r\n      b=b%m;\r\n   }\r\n   return res;\r\
+    \n    _show(i + 1, a, c...);\r\n}\n#line 2 \"Math/floorsum.hpp\"\n\r\n// sum_{k=0}^{n-1}\
+    \ [(a*k+b)/m]\r\ntemplate <typename T = ll> T FloorSum(ll n, ll a, ll b, ll m)\
+    \ {\r\n    T res = 0;\r\n    if (a >= m)\r\n        res += T(a / m) * n * (n -\
+    \ 1) / 2, a -= a / m * m;\r\n    else if (a < 0)\r\n        res -= T((-a + m -\
+    \ 1) / m) * n * (n - 1) / 2,\r\n            a += ((-a + m - 1) / m) * m;\r\n \
+    \   if (b >= m)\r\n        res += (b / m) * n, b -= b / m * m;\r\n    else if\
+    \ (b < 0)\r\n        res -= ((-b + m - 1) / m) * n, b += ((-b + m - 1) / m) *\
+    \ m;\r\n\r\n    while (1) {\r\n        ll y_max = a * n + b;\r\n        if (y_max\
+    \ < m)\r\n            break;\r\n        n = y_max / m;\r\n        b = y_max %\
+    \ m;\r\n        res += (n * (n - 1) / 2) * (m / a) + n * (b / a);\r\n        swap(m,\
+    \ a);\r\n        a = a % m;\r\n        b = b % m;\r\n    }\r\n    return res;\r\
     \n}\r\n\r\n/**\r\n * @brief Floor Sum\r\n * @docs docs/floorsum.md\r\n */\n#line\
     \ 5 \"Verify/LC_sum_of_floor_of_linear.test.cpp\"\n\r\nint main(){\r\n    int\
     \ t;\r\n    cin>>t;\r\n    while(t--){\r\n        int n,m,a,b;\r\n        cin>>n>>m>>a>>b;\r\
@@ -89,7 +93,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_sum_of_floor_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-06-29 11:23:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_floor_of_linear.test.cpp

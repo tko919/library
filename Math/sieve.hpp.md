@@ -8,6 +8,9 @@ data:
   - icon: ':warning:'
     path: Math/lpftable.hpp
     title: lpf table
+  - icon: ':question:'
+    path: Math/lucydp.hpp
+    title: Prime Sum
   - icon: ':warning:'
     path: Math/mobius.hpp
     title: Mobius table
@@ -17,9 +20,6 @@ data:
   - icon: ':x:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
-  - icon: ':question:'
-    path: Math/primesum.hpp
-    title: Prime Sum
   - icon: ':warning:'
     path: Math/totient.hpp
     title: lpf table
@@ -98,12 +98,12 @@ data:
   path: Math/sieve.hpp
   requiredBy:
   - Convolution/divisor.hpp
+  - Math/lucydp.hpp
   - Math/multiplicative.hpp
   - Math/lpftable.hpp
   - Math/mobius.hpp
   - Math/powertable.hpp
   - Math/totient.hpp
-  - Math/primesum.hpp
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

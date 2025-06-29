@@ -463,6 +463,9 @@ data:
       path: Math/lpftable.hpp
       title: lpf table
     - icon: ':question:'
+      path: Math/lucydp.hpp
+      title: Prime Sum
+    - icon: ':question:'
       path: Math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -495,9 +498,6 @@ data:
     - icon: ':x:'
       path: Math/powertable.hpp
       title: Enumrate $n^k$
-    - icon: ':question:'
-      path: Math/primesum.hpp
-      title: Prime Sum
     - icon: ':heavy_check_mark:'
       path: Math/primitive.hpp
       title: Primitive Function
@@ -807,7 +807,7 @@ data:
     - icon: ':x:'
       path: Verify/LC_sparse_matrix_det.test.cpp
       title: Verify/LC_sparse_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_static_range_frequency.test.cpp
       title: Verify/LC_static_range_frequency.test.cpp
     - icon: ':x:'

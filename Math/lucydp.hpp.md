@@ -39,49 +39,50 @@ data:
     \                isp[k] = false;\r\n            }\r\n        }\r\n    isp[2] =\
     \ isp[3] = true;\r\n\r\n    vector<int> ret;\r\n    for (int i = 2; i <= N; i++)\r\
     \n        if (isp[i]) {\r\n            ret.push_back(i);\r\n        }\r\n    return\
-    \ ret;\r\n}\r\n\r\n/**\r\n * @brief Prime Sieve\r\n */\n#line 3 \"Math/primesum.hpp\"\
-    \n\r\ntemplate <typename T, T (*F)(ll)> struct PrimeSum {\r\n    ll N, SQ;\r\n\
-    \    vector<T> lo, hi;\r\n    PrimeSum(ll n = 0) : N(n), SQ(sqrtl(N)), lo(SQ +\
-    \ 1), hi(SQ + 1) {\r\n        rep(i, 1, SQ + 1) {\r\n            lo[i] = F(i)\
-    \ - 1;\r\n            hi[i] = F(N / i) - 1;\r\n        }\r\n        auto ps =\
-    \ sieve(SQ);\r\n        for (auto &p : ps) {\r\n            ll q = ll(p) * p;\r\
-    \n            if (q > N)\r\n                break;\r\n            T sub = lo[p\
-    \ - 1], fp = lo[p] - lo[p - 1];\r\n            ll L = min(SQ, N / q), M = SQ /\
-    \ p;\r\n            rep(i, 1, M + 1) hi[i] -= fp * (hi[i * p] - sub);\r\n    \
-    \        rep(i, M + 1, L + 1) hi[i] -= fp * (lo[double(N) / i / p] - sub);\r\n\
-    \            for (int i = SQ; i >= q; i--)\r\n                lo[i] -= fp * (lo[double(i)\
-    \ / p] - sub);\r\n        }\r\n    }\r\n    T operator[](ll x) {\r\n        return\
-    \ (x <= SQ ? lo[x] : hi[N / x]);\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Prime\
-    \ Sum\r\n * @docs docs/primesum.md\r\n */\n"
+    \ ret;\r\n}\r\n\r\n/**\r\n * @brief Prime Sieve\r\n */\n#line 3 \"Math/lucydp.hpp\"\
+    \n\r\ntemplate <typename T, T (*F)(ll)> struct LucyDP {\r\n    ll N, SQ, sz;\r\
+    \n    vector<ll> quo;\r\n    vector<T> dat;\r\n    LucyDP(ll n = 0)\r\n      \
+    \  : N(n), SQ(sqrtl(N)), sz(SQ + n / (SQ + 1)), quo(sz), dat(sz) {\r\n       \
+    \ iota(ALL(quo), 1);\r\n        for (ll i = SQ, x = N / (SQ + 1); x; x--, i++)\r\
+    \n            quo[i] = n / x;\r\n        rep(i, 0, sz) dat[i] = F(quo[i]) - 1;\r\
+    \n        auto ps = sieve(SQ);\r\n        for (auto &p : ps) {\r\n           \
+    \ T coe = dat[p - 1] - dat[p - 2];\r\n            for (int i = sz - 1;; i--) {\r\
+    \n                if (quo[i] < ll(p) * p)\r\n                    break;\r\n  \
+    \              dat[i] -= (dat[idx(quo[i] / p)] - dat[p - 2]) * coe;\r\n      \
+    \      }\r\n        }\r\n    }\r\n    T operator[](ll x) {\r\n        return dat[idx(x)];\r\
+    \n    }\r\n\r\n  private:\r\n    int idx(ll x) const {\r\n        if (x <= SQ)\r\
+    \n            return x - 1;\r\n        else\r\n            return sz - N / x;\r\
+    \n    }\r\n};\r\n\r\n/**\r\n * @brief Prime Sum\r\n * @docs docs/primesum.md\r\
+    \n */\n"
   code: "#pragma once\r\n#include \"Math/sieve.hpp\"\r\n\r\ntemplate <typename T,\
-    \ T (*F)(ll)> struct PrimeSum {\r\n    ll N, SQ;\r\n    vector<T> lo, hi;\r\n\
-    \    PrimeSum(ll n = 0) : N(n), SQ(sqrtl(N)), lo(SQ + 1), hi(SQ + 1) {\r\n   \
-    \     rep(i, 1, SQ + 1) {\r\n            lo[i] = F(i) - 1;\r\n            hi[i]\
-    \ = F(N / i) - 1;\r\n        }\r\n        auto ps = sieve(SQ);\r\n        for\
-    \ (auto &p : ps) {\r\n            ll q = ll(p) * p;\r\n            if (q > N)\r\
-    \n                break;\r\n            T sub = lo[p - 1], fp = lo[p] - lo[p -\
-    \ 1];\r\n            ll L = min(SQ, N / q), M = SQ / p;\r\n            rep(i,\
-    \ 1, M + 1) hi[i] -= fp * (hi[i * p] - sub);\r\n            rep(i, M + 1, L +\
-    \ 1) hi[i] -= fp * (lo[double(N) / i / p] - sub);\r\n            for (int i =\
-    \ SQ; i >= q; i--)\r\n                lo[i] -= fp * (lo[double(i) / p] - sub);\r\
-    \n        }\r\n    }\r\n    T operator[](ll x) {\r\n        return (x <= SQ ?\
-    \ lo[x] : hi[N / x]);\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Prime Sum\r\n * @docs\
-    \ docs/primesum.md\r\n */"
+    \ T (*F)(ll)> struct LucyDP {\r\n    ll N, SQ, sz;\r\n    vector<ll> quo;\r\n\
+    \    vector<T> dat;\r\n    LucyDP(ll n = 0)\r\n        : N(n), SQ(sqrtl(N)), sz(SQ\
+    \ + n / (SQ + 1)), quo(sz), dat(sz) {\r\n        iota(ALL(quo), 1);\r\n      \
+    \  for (ll i = SQ, x = N / (SQ + 1); x; x--, i++)\r\n            quo[i] = n /\
+    \ x;\r\n        rep(i, 0, sz) dat[i] = F(quo[i]) - 1;\r\n        auto ps = sieve(SQ);\r\
+    \n        for (auto &p : ps) {\r\n            T coe = dat[p - 1] - dat[p - 2];\r\
+    \n            for (int i = sz - 1;; i--) {\r\n                if (quo[i] < ll(p)\
+    \ * p)\r\n                    break;\r\n                dat[i] -= (dat[idx(quo[i]\
+    \ / p)] - dat[p - 2]) * coe;\r\n            }\r\n        }\r\n    }\r\n    T operator[](ll\
+    \ x) {\r\n        return dat[idx(x)];\r\n    }\r\n\r\n  private:\r\n    int idx(ll\
+    \ x) const {\r\n        if (x <= SQ)\r\n            return x - 1;\r\n        else\r\
+    \n            return sz - N / x;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Prime\
+    \ Sum\r\n * @docs docs/primesum.md\r\n */"
   dependsOn:
   - Math/sieve.hpp
   isVerificationFile: false
-  path: Math/primesum.hpp
+  path: Math/lucydp.hpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
+  timestamp: '2025-06-29 11:23:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/YUKI_1781.test.cpp
   - Verify/LC_counting_primes.test.cpp
-documentation_of: Math/primesum.hpp
+documentation_of: Math/lucydp.hpp
 layout: document
 redirect_from:
-- /library/Math/primesum.hpp
-- /library/Math/primesum.hpp.html
+- /library/Math/lucydp.hpp
+- /library/Math/lucydp.hpp.html
 title: Prime Sum
 ---
 ## 使い方

@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest.test.cpp
     title: Verify/LC_range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
   - icon: ':x:'

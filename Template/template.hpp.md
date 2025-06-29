@@ -234,7 +234,7 @@ data:
   - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_static_range_frequency.test.cpp
     title: Verify/LC_static_range_frequency.test.cpp
   - icon: ':x:'
