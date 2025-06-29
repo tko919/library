@@ -2,66 +2,52 @@
 #include "Math/sieve.hpp"
 
 template <typename T, T (*pe)(int, int), T (*psum)(ll)>
-T MultiplicativeSum(ll N) {
-    class Array {
-        std::vector<T> data;
-        std::vector<int> written;
+struct MultiplicativeSum {
+    ll N, SQ, sz;
+    vector<ll> quo;
+    vector<T> dat, add, rui;
+    MultiplicativeSum(ll n = 0)
+        : N(n), SQ(sqrtl(N)), sz(SQ + n / (SQ + 1)), quo(sz), dat(sz), add(sz),
+          rui(sz) {
+        iota(ALL(quo), 1);
+        for (ll i = SQ, x = N / (SQ + 1); x; x--, i++)
+            quo[i] = n / x;
+        rep(i, 0, sz) rui[i] = dat[i] = psum(quo[i]);
 
-      public:
-        int n;
-        Array(int n) : data(n), n(n) {}
-        void add(int i, T val) {
-            data[i] += val;
-            written.push_back(i);
-        }
-        void lazy(vector<T> &base) {
-            for (auto i : written) {
-                base[i] += data[i];
-                data[i] = 0;
+        auto ps = sieve(SQ);
+        reverse(ALL(ps));
+        for (auto &p : ps) {
+            T pc = pe(p, 1);
+            for (ll pw = p, c = 1; N / p >= pw; pw *= p, c++) {
+                T nxt = pe(p, c + 1);
+                rrep(j, 0, sz) {
+                    if (quo[j] < pw * p)
+                        break;
+                    add[j] += pc * (dat[idx(quo[j] / pw)] - rui[p - 1]) + nxt;
+                }
+                pc = nxt;
             }
-            written.clear();
+            rrep(j, 0, sz) {
+                if (quo[j] < ll(p) * p)
+                    break;
+                dat[j] += add[j];
+                add[j] = 0;
+            }
         }
-    };
-
-    ll SQ = sqrtl(N);
-    vector<T> lo(SQ + 1), hi(SQ + 1);
-    rep(i, 1, SQ + 1) {
-        lo[i] = psum(i);
-        hi[i] = psum(N / i);
+        rep(i, 0, sz) dat[i] += 1;
+    }
+    T operator[](ll x) {
+        return dat[idx(x)];
     }
 
-    auto ps = sieve(SQ);
-    reverse(ALL(ps));
-    Array loa(SQ + 1), hia(SQ + 1);
-    for (auto &p : ps) {
-        if (ll(p) * p > N)
-            break;
-        ll c = 1, pc = p;
-        while (N / p >= pc) {
-            T x = pe(p, c), y = pe(p, c + 1), z = psum(p);
-            rep(i, 1, SQ + 1) {
-                ll k = double(N) / (i * pc);
-                if (k < p)
-                    break;
-                if (k <= SQ)
-                    hia.add(i, x * (lo[k] - z) + y);
-                else
-                    hia.add(i, x * (hi[i * pc] - z) + y);
-            }
-            rrep(i, 1, SQ + 1) {
-                int k = double(i) / pc;
-                if (k < p)
-                    break;
-                loa.add(i, x * (lo[k] - z) + y);
-            }
-            c++;
-            pc *= p;
-        }
-        loa.lazy(lo);
-        hia.lazy(hi);
+  private:
+    int idx(ll x) const {
+        if (x <= SQ)
+            return x - 1;
+        else
+            return sz - N / x;
     }
-    return hi[1] + 1;
-}
+};
 
 /**
  * @brief Multiplicative Sum
