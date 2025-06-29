@@ -1,5 +1,6 @@
 #pragma once
 #include "Math/fastdiv.hpp"
+#include "Math/comb.hpp"
 
 struct Fp {
     using u64 = uint64_t;

@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/comb.hpp"
 
 template <unsigned mod = 1000000007> struct fp {
     static_assert(mod < uint(1) << 31);
@@ -48,6 +49,9 @@ template <unsigned mod = 1000000007> struct fp {
         return *this;
     }
     fp &operator/=(const fp &x) {
+        if (x.v < 15000000) {
+            return *this *= Inv<fp>(x.v);
+        }
         v = ull(v) * x.inv() % mod;
         return *this;
     }

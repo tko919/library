@@ -1,38 +1,33 @@
 #pragma once
-#include "Math/sieve.hpp"
 
 template <typename T, T (*pe)(int, int), T (*psum)(ll)>
 struct MultiplicativeSum {
     ll N, SQ, sz;
     vector<ll> quo;
-    vector<T> dat, add, rui;
-    MultiplicativeSum(ll n = 0)
-        : N(n), SQ(sqrtl(N)), sz(SQ + n / (SQ + 1)), quo(sz), dat(sz), add(sz),
-          rui(sz) {
-        iota(ALL(quo), 1);
-        for (ll i = SQ, x = N / (SQ + 1); x; x--, i++)
-            quo[i] = n / x;
-        rep(i, 0, sz) rui[i] = dat[i] = psum(quo[i]);
+    vector<T> dat;
+    MultiplicativeSum() {}
+    MultiplicativeSum(ll n, vector<ll> &_quo, vector<int> &ps)
+        : N(n), SQ(sqrtl(N)), sz(SQ + n / (SQ + 1)), quo(_quo), dat(sz) {
+        rep(i, 0, sz) dat[i] = psum(quo[i]);
 
-        auto ps = sieve(SQ);
         reverse(ALL(ps));
+        vector<T> ndat = dat;
         for (auto &p : ps) {
             T pc = pe(p, 1);
+            T rui = psum(p);
+            int L = sz;
             for (ll pw = p, c = 1; N / p >= pw; pw *= p, c++) {
                 T nxt = pe(p, c + 1);
                 rrep(j, 0, sz) {
-                    if (quo[j] < pw * p)
+                    if (quo[j] < pw * p) {
+                        chmin(L, j + 1);
                         break;
-                    add[j] += pc * (dat[idx(quo[j] / pw)] - rui[p - 1]) + nxt;
+                    }
+                    ndat[j] += pc * (dat[idx(quo[j] / pw)] - rui) + nxt;
                 }
                 pc = nxt;
             }
-            rrep(j, 0, sz) {
-                if (quo[j] < ll(p) * p)
-                    break;
-                dat[j] += add[j];
-                add[j] = 0;
-            }
+            copy(ndat.begin() + L, ndat.end(), dat.begin() + L);
         }
         rep(i, 0, sz) dat[i] += 1;
     }
