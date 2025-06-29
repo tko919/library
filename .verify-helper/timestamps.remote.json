@@ -16,7 +16,7 @@
 "Verify/LC_convolution_mod.test.cpp": "2025-06-05 05:40:21 +0900",
 "Verify/LC_convolution_mod_1000000007.test.cpp": "2025-06-05 05:40:21 +0900",
 "Verify/LC_convolution_mod_2.test.cpp": "2025-06-05 05:40:21 +0900",
-"Verify/LC_counting_primes.test.cpp": "2025-04-17 22:07:07 +0900",
+"Verify/LC_counting_primes.test.cpp": "2025-06-29 11:23:55 +0900",
 "Verify/LC_cycle_detection.test.cpp": "2025-04-17 22:07:07 +0900",
 "Verify/LC_cycle_detection_undirected.test.cpp": "2025-04-17 22:07:07 +0900",
 "Verify/LC_deque_operate_all_composite.test.cpp": "2025-06-05 05:40:21 +0900",
@@ -74,5 +74,6 @@
 "Verify/LC_rectangle_sum.test.cpp": "2025-04-17 22:07:07 +0900",
 "Verify/LC_scc.test.cpp": "2025-04-17 22:07:07 +0900",
 "Verify/LC_segment_add_get_min.test.cpp": "2025-04-17 22:07:07 +0900",
-"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp": "2025-06-05 05:40:21 +0900"
+"Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp": "2025-06-05 05:40:21 +0900",
+"Verify/LC_static_range_frequency.test.cpp": "2025-04-17 22:07:07 +0900"
 }
