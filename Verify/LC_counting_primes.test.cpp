@@ -10,7 +10,8 @@ ll F(ll x) {
 int main() {
     ll n;
     cin >> n;
-    LucyDP<ll, F> pc(n);
+    auto [quo, ps] = LucyDP<ll, F>::gen(n);
+    LucyDP<ll, F> pc(n, quo, ps);
     cout << pc[n] << '\n';
     return 0;
 }
