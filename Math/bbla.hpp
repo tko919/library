@@ -13,8 +13,12 @@ template <typename T> struct SparseMatrix {
     vector<T> base;
     vector<map<int, T>> extra;
     SparseMatrix(int n, T v = 0) : base(n, v), extra(n) {}
-    int size() const { return base.size(); }
-    inline void add(int i, int j, T x) { extra[i][j] += x; }
+    int size() const {
+        return base.size();
+    }
+    inline void add(int i, int j, T x) {
+        extra[i][j] += x;
+    }
     friend Poly<T> operator*(const SparseMatrix<T> &A, const Poly<T> &b) {
         int n = A.size();
         Poly<T> ret(n);
@@ -42,7 +46,7 @@ template <typename T> Poly<T> MinPolyforVector(const vector<Poly<T>> &b) {
     int n = b.size(), m = b[0].size();
     Poly<T> base = RandPoly<T>(m), a(n);
     rep(i, 0, n) rep(j, 0, m) a[i] += base[j] * b[i][j];
-    return Poly<T>(BerlekampMassey(a)).rev();
+    return Poly<T>(BerlekampMassey(a));
 }
 template <typename T> Poly<T> MinPolyforMatrix(const SparseMatrix<T> &A) {
     int n = A.size();
