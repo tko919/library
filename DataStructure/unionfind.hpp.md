@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_manhattanmst.test.cpp
     title: Verify/LC_manhattanmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_unionfind.test.cpp
     title: Verify/LC_unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Union Find
     links: []
@@ -54,7 +54,7 @@ data:
   - DataStructure/manhattanmst.hpp
   - DataStructure/rangeparalleluf.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_unionfind.test.cpp
   - Verify/LC_manhattanmst.test.cpp

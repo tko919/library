@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/arbitraryfps.hpp
     title: Formal Power Series (Arbitrary mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: FPS/berlekampmassey.hpp
     title: Berlekamp Massey Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   - icon: ':question:'
@@ -28,14 +28,14 @@ data:
   - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/310
@@ -497,23 +497,23 @@ data:
     \    x = Random::get(1, T::get_mod() - 1);\r\n    return ret;\r\n}\r\ntemplate\
     \ <typename T> struct SparseMatrix {\r\n    vector<T> base;\r\n    vector<map<int,\
     \ T>> extra;\r\n    SparseMatrix(int n, T v = 0) : base(n, v), extra(n) {}\r\n\
-    \    int size() const { return base.size(); }\r\n    inline void add(int i, int\
-    \ j, T x) { extra[i][j] += x; }\r\n    friend Poly<T> operator*(const SparseMatrix<T>\
-    \ &A, const Poly<T> &b) {\r\n        int n = A.size();\r\n        Poly<T> ret(n);\r\
-    \n        T sum;\r\n        for (auto &v : b)\r\n            sum += v;\r\n   \
-    \     rep(i, 0, n) {\r\n            T add = sum;\r\n            for (auto &[j,\
-    \ v] : A.extra[i]) {\r\n                ret[i] += v * b[j];\r\n              \
-    \  add -= b[j];\r\n            }\r\n            ret[i] += add * A.base[i];\r\n\
-    \        }\r\n        return ret;\r\n    }\r\n    void mul(int i, T x) {\r\n \
-    \       base[i] *= x;\r\n        for (auto &[_, v] : extra[i])\r\n           \
-    \ v *= x;\r\n    }\r\n};\r\n\r\ntemplate <typename T> Poly<T> MinPolyforVector(const\
-    \ vector<Poly<T>> &b) {\r\n    int n = b.size(), m = b[0].size();\r\n    Poly<T>\
-    \ base = RandPoly<T>(m), a(n);\r\n    rep(i, 0, n) rep(j, 0, m) a[i] += base[j]\
-    \ * b[i][j];\r\n    return Poly<T>(BerlekampMassey(a)).rev();\r\n}\r\ntemplate\
-    \ <typename T> Poly<T> MinPolyforMatrix(const SparseMatrix<T> &A) {\r\n    int\
-    \ n = A.size();\r\n    Poly<T> base = RandPoly<T>(n);\r\n    vector<Poly<T>> b(n\
-    \ * 2 + 1);\r\n    rep(i, 0, n * 2 + 1) b[i] = base, base = A * base;\r\n    return\
-    \ MinPolyforVector(b);\r\n}\r\ntemplate <typename T>\r\nPoly<T> FastPow(const\
+    \    int size() const {\r\n        return base.size();\r\n    }\r\n    inline\
+    \ void add(int i, int j, T x) {\r\n        extra[i][j] += x;\r\n    }\r\n    friend\
+    \ Poly<T> operator*(const SparseMatrix<T> &A, const Poly<T> &b) {\r\n        int\
+    \ n = A.size();\r\n        Poly<T> ret(n);\r\n        T sum;\r\n        for (auto\
+    \ &v : b)\r\n            sum += v;\r\n        rep(i, 0, n) {\r\n            T\
+    \ add = sum;\r\n            for (auto &[j, v] : A.extra[i]) {\r\n            \
+    \    ret[i] += v * b[j];\r\n                add -= b[j];\r\n            }\r\n\
+    \            ret[i] += add * A.base[i];\r\n        }\r\n        return ret;\r\n\
+    \    }\r\n    void mul(int i, T x) {\r\n        base[i] *= x;\r\n        for (auto\
+    \ &[_, v] : extra[i])\r\n            v *= x;\r\n    }\r\n};\r\n\r\ntemplate <typename\
+    \ T> Poly<T> MinPolyforVector(const vector<Poly<T>> &b) {\r\n    int n = b.size(),\
+    \ m = b[0].size();\r\n    Poly<T> base = RandPoly<T>(m), a(n);\r\n    rep(i, 0,\
+    \ n) rep(j, 0, m) a[i] += base[j] * b[i][j];\r\n    return Poly<T>(BerlekampMassey(a));\r\
+    \n}\r\ntemplate <typename T> Poly<T> MinPolyforMatrix(const SparseMatrix<T> &A)\
+    \ {\r\n    int n = A.size();\r\n    Poly<T> base = RandPoly<T>(n);\r\n    vector<Poly<T>>\
+    \ b(n * 2 + 1);\r\n    rep(i, 0, n * 2 + 1) b[i] = base, base = A * base;\r\n\
+    \    return MinPolyforVector(b);\r\n}\r\ntemplate <typename T>\r\nPoly<T> FastPow(const\
     \ SparseMatrix<T> &A, Poly<T> b, ll t) {\r\n    int n = A.size();\r\n    auto\
     \ mp = MinPolyforMatrix(A).rev();\r\n    Poly<T> cs({T(1)}), base({T(0), T(1)});\r\
     \n    while (t) {\r\n        if (t & 1) {\r\n            cs *= base;\r\n     \
@@ -589,8 +589,8 @@ data:
   isVerificationFile: true
   path: Verify/YUKI_310.test.cpp
   requiredBy: []
-  timestamp: '2025-06-29 02:34:27+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-07-02 00:02:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/YUKI_310.test.cpp
 layout: document

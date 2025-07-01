@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/fastdiv.hpp
     title: Fast Division
   _extendedRequiredBy:

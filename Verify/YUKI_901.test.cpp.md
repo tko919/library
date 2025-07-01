@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/auxiliarytree.hpp
     title: Auxiliary Tree(Virtual Tree)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/lca.hpp
     title: Lowest Common Ancestor
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/901
@@ -252,7 +252,7 @@ data:
   path: Verify/YUKI_901.test.cpp
   requiredBy: []
   timestamp: '2025-05-25 16:11:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/YUKI_901.test.cpp
 layout: document
