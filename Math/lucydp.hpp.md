@@ -6,7 +6,7 @@ data:
     title: Prime Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: Verify/YUKI_1781.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/primesum.md
     document_title: Prime Sum
@@ -80,7 +80,7 @@ data:
   path: Math/lucydp.hpp
   requiredBy: []
   timestamp: '2025-06-29 02:34:27+00:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/YUKI_1781.test.cpp
   - Verify/LC_counting_primes.test.cpp

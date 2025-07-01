@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Shift of Sampling Points of Polynomial
     links: []
@@ -88,7 +88,7 @@ data:
   - FPS/factlarge.hpp
   - FPS/p-recursive.hpp
   timestamp: '2024-10-22 03:59:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_many_factorials.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp

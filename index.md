@@ -109,7 +109,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/lazykdtree.hpp
       title: Kd Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/lazysegtree.hpp
       title: Lazy Segment Tree
     - icon: ':heavy_check_mark:'
@@ -163,7 +163,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/slopetrick.hpp
       title: Slope Trick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/sortablesegtree.hpp
       title: Sortable Segment Tree
     - icon: ':x:'
@@ -172,7 +172,7 @@ data:
     - icon: ':x:'
       path: DataStructure/staticrectsum.hpp
       title: Static Rectangle Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/swag.hpp
       title: Sliding Window Aggregation
     - icon: ':question:'
@@ -234,7 +234,7 @@ data:
     - icon: ':warning:'
       path: FPS/mobius.hpp
       title: Mobius Transform
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/multieval.hpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -258,13 +258,13 @@ data:
     - icon: ':x:'
       path: FPS/prodoffrkx.hpp
       title: $\Pi_{k=0}^{m-1} f(r^kx)$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: FPS/prodofpolys.hpp
       title: Product of Polynomials
     - icon: ':warning:'
       path: FPS/resultant.hpp
       title: Resultant
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: FPS/samplepointshift.hpp
       title: Shift of Sampling Points of Polynomial
     - icon: ':warning:'
@@ -462,7 +462,7 @@ data:
     - icon: ':warning:'
       path: Math/lpftable.hpp
       title: lpf table
-    - icon: ':x:'
+    - icon: ':question:'
       path: Math/lucydp.hpp
       title: Prime Sum
     - icon: ':question:'
@@ -561,6 +561,9 @@ data:
       title: Template/template.hpp
   - name: Utility
     pages:
+    - icon: ':warning:'
+      path: Utility/expander.py
+      title: Utility/expander.py
     - icon: ':question:'
       path: Utility/fastio.hpp
       title: Fast IO
@@ -627,7 +630,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_convolution_mod_2.test.cpp
       title: Verify/LC_convolution_mod_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_counting_primes.test.cpp
       title: Verify/LC_counting_primes.test.cpp
     - icon: ':heavy_check_mark:'
@@ -741,7 +744,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_number_of_substrings.test.cpp
       title: Verify/LC_number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_partition_function.test.cpp
       title: Verify/LC_partition_function.test.cpp
     - icon: ':heavy_check_mark:'
@@ -753,19 +756,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_point_add_rectangle_sum.test.cpp
       title: Verify/LC_point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_composite.test.cpp
       title: Verify/LC_point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_point_set_range_sort_range_composite.test.cpp
       title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_interpolation.test.cpp
       title: Verify/LC_polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_polynomial_taylor_shift.test.cpp
       title: Verify/LC_polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_pow_of_formal_power_series.test.cpp
       title: Verify/LC_pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -774,13 +777,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_prefix_substring_lcs.test.cpp
       title: Verify/LC_prefix_substring_lcs.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_product_of_polynomial_sequence.test.cpp
       title: Verify/LC_product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_queue_operate_all_composite.test.cpp
       title: Verify/LC_queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_range_affine_range_sum.test.cpp
       title: Verify/LC_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -801,7 +804,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/LC_segment_add_get_min.test.cpp
       title: Verify/LC_segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
       title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     - icon: ':x:'

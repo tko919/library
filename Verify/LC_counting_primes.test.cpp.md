@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/lucydp.hpp
     title: Prime Sum
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_primes
@@ -108,13 +108,13 @@ data:
     \           return sz - N / x;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Prime Sum\r\
     \n * @docs docs/primesum.md\r\n */\n#line 5 \"Verify/LC_counting_primes.test.cpp\"\
     \n\r\nll F(ll x) {\r\n    return x;\r\n}\r\n\r\nint main() {\r\n    ll n;\r\n\
-    \    cin >> n;\r\n    LucyDP<ll, F> pc(n);\r\n    cout << pc[n] << '\\n';\r\n\
-    \    return 0;\r\n}\n"
+    \    cin >> n;\r\n    auto [quo, ps] = LucyDP<ll, F>::gen(n);\r\n    LucyDP<ll,\
+    \ F> pc(n, quo, ps);\r\n    cout << pc[n] << '\\n';\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"Math/lucydp.hpp\"\r\n\r\nll\
     \ F(ll x) {\r\n    return x;\r\n}\r\n\r\nint main() {\r\n    ll n;\r\n    cin\
-    \ >> n;\r\n    LucyDP<ll, F> pc(n);\r\n    cout << pc[n] << '\\n';\r\n    return\
-    \ 0;\r\n}"
+    \ >> n;\r\n    auto [quo, ps] = LucyDP<ll, F>::gen(n);\r\n    LucyDP<ll, F> pc(n,\
+    \ quo, ps);\r\n    cout << pc[n] << '\\n';\r\n    return 0;\r\n}"
   dependsOn:
   - Template/template.hpp
   - Math/lucydp.hpp
@@ -122,8 +122,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2025-06-29 02:34:27+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-07-01 23:28:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_counting_primes.test.cpp
 layout: document

@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: Math/lpftable.hpp
     title: lpf table
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/lucydp.hpp
     title: Prime Sum
   - icon: ':warning:'
@@ -21,7 +21,7 @@ data:
     path: Math/totient.hpp
     title: lpf table
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
