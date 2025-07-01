@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: FPS/fps.hpp
     title: Formal Power Series (NTT-friendly mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':question:'
@@ -174,15 +174,35 @@ data:
     \n    print(i ? \"Possible\" : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool\
     \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
     \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_many_factorials.test.cpp\"\n\n\
-    #line 2 \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007> struct fp\
-    \ {\r\n    static_assert(mod < uint(1) << 31);\r\n    unsigned v;\r\n    static\
-    \ constexpr int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr unsigned\
-    \ inv() const {\r\n        assert(v != 0);\r\n        int x = v, y = mod, p =\
-    \ 1, q = 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n            t = x /\
-    \ y;\r\n            x -= t * y, p -= t * q;\r\n            tmp = x, x = y, y =\
-    \ tmp;\r\n            tmp = p, p = q, q = tmp;\r\n        }\r\n        if (p <\
-    \ 0)\r\n            p += mod;\r\n        return p;\r\n    }\r\n    constexpr fp(ll\
-    \ x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
+    #line 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n    static int\
+    \ md;\n    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n    \
+    \    md = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n\
+    \ > 0);\n    n %= md;\n    while (SZ(buf) <= n) {\n        int k = SZ(buf), q\
+    \ = (md + k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n  \
+    \  return buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n \
+    \   static int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md\
+    \ != T::get_mod()) {\n        md = T::get_mod();\n        buf = ibuf = vector<T>({1,\
+    \ 1});\n    }\n    assert(n >= 0 and n < md);\n    while (SZ(buf) <= n) {\n  \
+    \      buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
+    \ * Inv<T>(SZ(ibuf)));\n    }\n    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate\
+    \ <typename T> T nPr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r ||\
+    \ r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^\
+    \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
+    \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
+    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
+    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
+    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
+    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
+    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
+    \ \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n\
+    \    static_assert(mod < uint(1) << 31);\r\n    unsigned v;\r\n    static constexpr\
+    \ int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr unsigned inv()\
+    \ const {\r\n        assert(v != 0);\r\n        int x = v, y = mod, p = 1, q =\
+    \ 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n\
+    \            x -= t * y, p -= t * q;\r\n            tmp = x, x = y, y = tmp;\r\
+    \n            tmp = p, p = q, q = tmp;\r\n        }\r\n        if (p < 0)\r\n\
+    \            p += mod;\r\n        return p;\r\n    }\r\n    constexpr fp(ll x\
+    \ = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
     \ const {\r\n        return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n\
     \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
     \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
@@ -192,14 +212,16 @@ data:
     \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
     \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ull(v) * x.v % mod;\r\
     \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
-    \    v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
-    \ fp &x) const {\r\n        return fp(*this) += x;\r\n    }\r\n    fp operator-(const\
-    \ fp &x) const {\r\n        return fp(*this) -= x;\r\n    }\r\n    fp operator*(const\
-    \ fp &x) const {\r\n        return fp(*this) *= x;\r\n    }\r\n    fp operator/(const\
-    \ fp &x) const {\r\n        return fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
-    \ fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
-    \ fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
-    \ &is, fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
+    \    if (x.v < 15000000) {\r\n            return *this *= Inv<fp>(x.v);\r\n  \
+    \      }\r\n        v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n \
+    \   }\r\n    fp operator+(const fp &x) const {\r\n        return fp(*this) +=\
+    \ x;\r\n    }\r\n    fp operator-(const fp &x) const {\r\n        return fp(*this)\
+    \ -= x;\r\n    }\r\n    fp operator*(const fp &x) const {\r\n        return fp(*this)\
+    \ *= x;\r\n    }\r\n    fp operator/(const fp &x) const {\r\n        return fp(*this)\
+    \ /= x;\r\n    }\r\n    bool operator==(const fp &x) const {\r\n        return\
+    \ v == x.v;\r\n    }\r\n    bool operator!=(const fp &x) const {\r\n        return\
+    \ v != x.v;\r\n    }\r\n    friend istream &operator>>(istream &is, fp &x) {\r\
+    \n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
@@ -429,27 +451,7 @@ data:
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
     \ mod)\r\n */\n#line 9 \"Verify/LC_many_factorials.test.cpp\"\nusing Fp = fp<998244353>;\n\
     NTT<Fp> ntt;\ntemplate <> void Poly<Fp>::NTT(bool inv) {\n    ntt.ntt(*this, inv);\n\
-    }\n#line 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n    static\
-    \ int md;\n    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n\
-    \        md = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n\
-    \ > 0);\n    n %= md;\n    while (SZ(buf) <= n) {\n        int k = SZ(buf), q\
-    \ = (md + k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n  \
-    \  return buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n \
-    \   static int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md\
-    \ != T::get_mod()) {\n        md = T::get_mod();\n        buf = ibuf = vector<T>({1,\
-    \ 1});\n    }\n    assert(n >= 0 and n < md);\n    while (SZ(buf) <= n) {\n  \
-    \      buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
-    \ * Inv<T>(SZ(ibuf)));\n    }\n    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate\
-    \ <typename T> T nPr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r ||\
-    \ r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^\
-    \ 1);\n}\ntemplate <typename T> T nCr(int n, int r, bool inv = 0) {\n    if (n\
-    \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
-    \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
-    \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
-    \ \"FPS/samplepointshift.hpp\"\n\ntemplate <typename T>\nPoly<T> SamplePointsShift(vector<T>\
+    }\n#line 3 \"FPS/samplepointshift.hpp\"\n\ntemplate <typename T>\nPoly<T> SamplePointsShift(vector<T>\
     \ &ys, T c, int m = -1) {\n    ll n = ys.size() - 1, C = c.v % T::get_mod();\n\
     \    if (m == -1)\n        m = n + 1;\n    if (C <= n) {\n        Poly<T> res;\n\
     \        rep(i, C, n + 1) res.push_back(ys[i]);\n        if (int(res.size()) >=\
@@ -506,15 +508,15 @@ data:
   - Template/template.hpp
   - Utility/fastio.hpp
   - Math/modint.hpp
+  - Math/comb.hpp
   - Convolution/ntt.hpp
   - FPS/fps.hpp
   - FPS/factlarge.hpp
   - FPS/samplepointshift.hpp
-  - Math/comb.hpp
   isVerificationFile: true
   path: Verify/LC_many_factorials.test.cpp
   requiredBy: []
-  timestamp: '2025-06-05 05:40:21+09:00'
+  timestamp: '2025-06-29 02:34:27+00:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_many_factorials.test.cpp

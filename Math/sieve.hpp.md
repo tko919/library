@@ -8,15 +8,12 @@ data:
   - icon: ':warning:'
     path: Math/lpftable.hpp
     title: lpf table
-  - icon: ':question:'
+  - icon: ':x:'
     path: Math/lucydp.hpp
     title: Prime Sum
   - icon: ':warning:'
     path: Math/mobius.hpp
     title: Mobius table
-  - icon: ':x:'
-    path: Math/multiplicative.hpp
-    title: Multiplicative Sum
   - icon: ':x:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
@@ -24,7 +21,7 @@ data:
     path: Math/totient.hpp
     title: lpf table
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_counting_primes.test.cpp
     title: Verify/LC_counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,7 +96,6 @@ data:
   requiredBy:
   - Convolution/divisor.hpp
   - Math/lucydp.hpp
-  - Math/multiplicative.hpp
   - Math/lpftable.hpp
   - Math/mobius.hpp
   - Math/powertable.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: FPS/halfgcd.hpp
     title: Half GCD
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/prodofpolys.hpp
     title: Product of Polynomials
   - icon: ':question:'

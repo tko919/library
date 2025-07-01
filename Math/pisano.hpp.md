@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: Math/comb.hpp
+    title: Combination
   - icon: ':heavy_check_mark:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
@@ -44,22 +47,42 @@ data:
     \ * ml;\n        z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n      \
     \  z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n        return x <\
     \ mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n        return modulo(u128(a)\
-    \ * b);\n    }\n};\n\n/**\n * @brief Fast Division\n */\n#line 3 \"Math/dynamic.hpp\"\
-    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    uint v;\r\n    static uint\
-    \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(uint\
-    \ _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n   \
-    \     int tmp, a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n\
-    \            tmp = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n       \
-    \     x -= tmp * y;\r\n            swap(x, y);\r\n        }\r\n        if (x <\
-    \ 0) {\r\n            x += get_mod();\r\n        }\r\n        return x;\r\n  \
-    \  }\r\n    Fp() : v(0) {}\r\n    Fp(ll x) {\r\n        v = x % get_mod();\r\n\
-    \        if (v < 0)\r\n            v += get_mod();\r\n    }\r\n    Fp operator-()\
-    \ const {\r\n        return Fp() - *this;\r\n    }\r\n    Fp pow(ll t) {\r\n \
-    \       assert(t >= 0);\r\n        Fp res = 1, b = *this;\r\n        while (t)\
-    \ {\r\n            if (t & 1)\r\n                res *= b;\r\n            b *=\
-    \ b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n\
-    \    Fp &operator+=(const Fp &x) {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\
-    \n            v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator-=(const\
+    \ * b);\n    }\n};\n\n/**\n * @brief Fast Division\n */\n#line 2 \"Math/comb.hpp\"\
+    \n\ntemplate <typename T> T Inv(ll n) {\n    static int md;\n    static vector<T>\
+    \ buf({0, 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n  \
+    \      buf = vector<T>({0, 1});\n    }\n    assert(n > 0);\n    n %= md;\n   \
+    \ while (SZ(buf) <= n) {\n        int k = SZ(buf), q = (md + k - 1) / k;\n   \
+    \     buf.push_back(buf[k * q - md] * q);\n    }\n    return buf[n];\n}\n\ntemplate\
+    \ <typename T> T Fact(ll n, bool inv = 0) {\n    static int md;\n    static vector<T>\
+    \ buf({1, 1}), ibuf({1, 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n\
+    \        buf = ibuf = vector<T>({1, 1});\n    }\n    assert(n >= 0 and n < md);\n\
+    \    while (SZ(buf) <= n) {\n        buf.push_back(buf.back() * SZ(buf));\n  \
+    \      ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\n    }\n    return inv\
+    \ ? ibuf[n] : buf[n];\n}\n\ntemplate <typename T> T nPr(int n, int r, bool inv\
+    \ = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n,\
+    \ inv) * Fact<T>(n - r, inv ^ 1);\n}\ntemplate <typename T> T nCr(int n, int r,\
+    \ bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n    return\
+    \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum\
+    \ = n, r tuples\ntemplate <typename T> T nHr(int n, int r, bool inv = 0) {\n \
+    \   return nCr<T>(n + r - 1, r - 1, inv);\n}\n// sum = n, a nonzero tuples and\
+    \ b tuples\ntemplate <typename T> T choose(int n, int a, int b) {\n    if (n ==\
+    \ 0)\n        return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n\
+    \ * @brief Combination\n */\n#line 4 \"Math/dynamic.hpp\"\n\r\nstruct Fp {\r\n\
+    \    using u64 = uint64_t;\r\n    uint v;\r\n    static uint get_mod() {\r\n \
+    \       return _getmod();\r\n    }\r\n    static void set_mod(uint _m) {\r\n \
+    \       bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n        int tmp,\
+    \ a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n            tmp\
+    \ = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n            x -= tmp *\
+    \ y;\r\n            swap(x, y);\r\n        }\r\n        if (x < 0) {\r\n     \
+    \       x += get_mod();\r\n        }\r\n        return x;\r\n    }\r\n    Fp()\
+    \ : v(0) {}\r\n    Fp(ll x) {\r\n        v = x % get_mod();\r\n        if (v <\
+    \ 0)\r\n            v += get_mod();\r\n    }\r\n    Fp operator-() const {\r\n\
+    \        return Fp() - *this;\r\n    }\r\n    Fp pow(ll t) {\r\n        assert(t\
+    \ >= 0);\r\n        Fp res = 1, b = *this;\r\n        while (t) {\r\n        \
+    \    if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\n      \
+    \      t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    Fp &operator+=(const\
+    \ Fp &x) {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\n           \
+    \ v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator-=(const\
     \ Fp &x) {\r\n        v += get_mod() - x.v;\r\n        if (v >= get_mod())\r\n\
     \            v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator*=(const\
     \ Fp &x) {\r\n        v = (u64(v) * x.v) % bar;\r\n        return *this;\r\n \
@@ -227,6 +250,7 @@ data:
   dependsOn:
   - Math/dynamic.hpp
   - Math/fastdiv.hpp
+  - Math/comb.hpp
   - Math/matrix.hpp
   - Math/pollard.hpp
   - Math/miller.hpp
@@ -234,7 +258,7 @@ data:
   isVerificationFile: false
   path: Math/pisano.hpp
   requiredBy: []
-  timestamp: '2025-05-25 16:11:40+09:00'
+  timestamp: '2025-06-29 02:34:27+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/pisano.hpp

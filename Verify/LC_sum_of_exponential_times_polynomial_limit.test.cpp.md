@@ -175,25 +175,46 @@ data:
     \ : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true) {\r\n    print(i\
     \ ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n\
     #line 5 \"Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp\"\n\n#line\
-    \ 2 \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\
-    \n    static_assert(mod < uint(1) << 31);\r\n    unsigned v;\r\n    static constexpr\
-    \ int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr unsigned inv()\
-    \ const {\r\n        assert(v != 0);\r\n        int x = v, y = mod, p = 1, q =\
-    \ 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n\
-    \            x -= t * y, p -= t * q;\r\n            tmp = x, x = y, y = tmp;\r\
-    \n            tmp = p, p = q, q = tmp;\r\n        }\r\n        if (p < 0)\r\n\
-    \            p += mod;\r\n        return p;\r\n    }\r\n    constexpr fp(ll x\
-    \ = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
-    \ const {\r\n        return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n\
-    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
-    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
-    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
-    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
-    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
-    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
-    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ull(v) * x.v % mod;\r\
-    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
-    \    v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
+    \ 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n    static int md;\n\
+    \    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n        md\
+    \ = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n > 0);\n\
+    \    n %= md;\n    while (SZ(buf) <= n) {\n        int k = SZ(buf), q = (md +\
+    \ k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n    return\
+    \ buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n    static\
+    \ int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md != T::get_mod())\
+    \ {\n        md = T::get_mod();\n        buf = ibuf = vector<T>({1, 1});\n   \
+    \ }\n    assert(n >= 0 and n < md);\n    while (SZ(buf) <= n) {\n        buf.push_back(buf.back()\
+    \ * SZ(buf));\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\n    }\n\
+    \    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate <typename T> T nPr(int n, int\
+    \ r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n  \
+    \  return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\n}\ntemplate <typename T>\
+    \ T nCr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n    \
+    \    return 0;\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n -\
+    \ r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename T> T nHr(int n, int\
+    \ r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1, inv);\n}\n// sum = n,\
+    \ a nonzero tuples and b tuples\ntemplate <typename T> T choose(int n, int a,\
+    \ int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n + b - 1,\
+    \ a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"Math/modint.hpp\"\
+    \n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n    static_assert(mod\
+    \ < uint(1) << 31);\r\n    unsigned v;\r\n    static constexpr int get_mod() {\r\
+    \n        return mod;\r\n    }\r\n    constexpr unsigned inv() const {\r\n   \
+    \     assert(v != 0);\r\n        int x = v, y = mod, p = 1, q = 0, t = 0, tmp\
+    \ = 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n            x -=\
+    \ t * y, p -= t * q;\r\n            tmp = x, x = y, y = tmp;\r\n            tmp\
+    \ = p, p = q, q = tmp;\r\n        }\r\n        if (p < 0)\r\n            p +=\
+    \ mod;\r\n        return p;\r\n    }\r\n    constexpr fp(ll x = 0) : v(x >= 0\
+    \ ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-() const {\r\n \
+    \       return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n        fp res\
+    \ = 1, b = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n       \
+    \         res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n       \
+    \ }\r\n        return res;\r\n    }\r\n    fp &operator+=(const fp &x) {\r\n \
+    \       if ((v += x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
+    \n    }\r\n    fp &operator-=(const fp &x) {\r\n        if ((v += mod - x.v) >=\
+    \ mod)\r\n            v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator*=(const\
+    \ fp &x) {\r\n        v = ull(v) * x.v % mod;\r\n        return *this;\r\n   \
+    \ }\r\n    fp &operator/=(const fp &x) {\r\n        if (x.v < 15000000) {\r\n\
+    \            return *this *= Inv<fp>(x.v);\r\n        }\r\n        v = ull(v)\
+    \ * x.inv() % mod;\r\n        return *this;\r\n    }\r\n    fp operator+(const\
     \ fp &x) const {\r\n        return fp(*this) += x;\r\n    }\r\n    fp operator-(const\
     \ fp &x) const {\r\n        return fp(*this) -= x;\r\n    }\r\n    fp operator*(const\
     \ fp &x) const {\r\n        return fp(*this) *= x;\r\n    }\r\n    fp operator/(const\
@@ -231,41 +252,21 @@ data:
     \ f(n+1,1);\n    if(k)f[0]=0;\n    for(auto& p:ps){\n        T pk=T(p).pow(k);\n\
     \        for(ll q=p;q<=n;q*=p){\n            for(ll i=q;i<=n;i+=q)f[i]*=pk;\n\
     \        }\n    }\n    return f;\n}\n\n/**\n * @brief Enumrate $n^k$\n*/\n#line\
-    \ 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n    static int md;\n\
-    \    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n        md\
-    \ = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n > 0);\n\
-    \    n %= md;\n    while (SZ(buf) <= n) {\n        int k = SZ(buf), q = (md +\
-    \ k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n    return\
-    \ buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n    static\
-    \ int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md != T::get_mod())\
-    \ {\n        md = T::get_mod();\n        buf = ibuf = vector<T>({1, 1});\n   \
-    \ }\n    assert(n >= 0 and n < md);\n    while (SZ(buf) <= n) {\n        buf.push_back(buf.back()\
-    \ * SZ(buf));\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\n    }\n\
-    \    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate <typename T> T nPr(int n, int\
-    \ r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n  \
-    \  return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\n}\ntemplate <typename T>\
-    \ T nCr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n    \
-    \    return 0;\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n -\
-    \ r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename T> T nHr(int n, int\
-    \ r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1, inv);\n}\n// sum = n,\
-    \ a nonzero tuples and b tuples\ntemplate <typename T> T choose(int n, int a,\
-    \ int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n + b - 1,\
-    \ a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3 \"FPS/interpolate.hpp\"\
-    \n\n// f(0),..,f(d) -> f(t)\ntemplate <typename T> T Interpolate(vector<T> &ys,\
-    \ ll t) {\n    int d = ys.size() - 1;\n    if (t <= d)\n        return ys[t];\n\
-    \    vector<T> L(d + 1, 1), R(d + 1, 1);\n    rep(i, 0, d) L[i + 1] = L[i] * (t\
-    \ - i);\n    for (int i = d; i; i--)\n        R[i - 1] = R[i] * (t - i);\n   \
-    \ T ret;\n    rep(i, 0, d + 1) {\n        T add = ys[i] * L[i] * R[i] * Fact<T>(i,\
-    \ 1) * Fact<T>(d - i, 1);\n        if ((d - i) & 1)\n            ret -= add;\n\
-    \        else\n            ret += add;\n    }\n    return ret;\n}\n\n/**\n * @brief\
-    \ interpolate (one point)\n */\n#line 4 \"FPS/sumofpolyexp.hpp\"\n\ntemplate <typename\
-    \ T>\nT LimitSumOfPolyExp(vector<T> &f, T r) { // sum_{k=0}^inf r^k*f(k)\n   \
-    \ assert(r != 1);\n    int d = f.size() - 1;\n    vector<T> rs(d + 1);\n    rs[0]\
-    \ = 1;\n    rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    T c, add;\n    rep(i, 0,\
-    \ d + 1) {\n        add += rs[i] * f[i];\n        if ((d - i) & 1)\n         \
-    \   c -= nCr<T>(d + 1, i + 1) * rs[d - i] * add;\n        else\n            c\
-    \ += nCr<T>(d + 1, i + 1) * rs[d - i] * add;\n    }\n    c /= (-r + 1).pow(d +\
-    \ 1);\n    return c;\n}\n\ntemplate <typename T>\nT SumOfPolyExp(vector<T> &f,\
+    \ 3 \"FPS/interpolate.hpp\"\n\n// f(0),..,f(d) -> f(t)\ntemplate <typename T>\
+    \ T Interpolate(vector<T> &ys, ll t) {\n    int d = ys.size() - 1;\n    if (t\
+    \ <= d)\n        return ys[t];\n    vector<T> L(d + 1, 1), R(d + 1, 1);\n    rep(i,\
+    \ 0, d) L[i + 1] = L[i] * (t - i);\n    for (int i = d; i; i--)\n        R[i -\
+    \ 1] = R[i] * (t - i);\n    T ret;\n    rep(i, 0, d + 1) {\n        T add = ys[i]\
+    \ * L[i] * R[i] * Fact<T>(i, 1) * Fact<T>(d - i, 1);\n        if ((d - i) & 1)\n\
+    \            ret -= add;\n        else\n            ret += add;\n    }\n    return\
+    \ ret;\n}\n\n/**\n * @brief interpolate (one point)\n */\n#line 4 \"FPS/sumofpolyexp.hpp\"\
+    \n\ntemplate <typename T>\nT LimitSumOfPolyExp(vector<T> &f, T r) { // sum_{k=0}^inf\
+    \ r^k*f(k)\n    assert(r != 1);\n    int d = f.size() - 1;\n    vector<T> rs(d\
+    \ + 1);\n    rs[0] = 1;\n    rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    T c, add;\n\
+    \    rep(i, 0, d + 1) {\n        add += rs[i] * f[i];\n        if ((d - i) & 1)\n\
+    \            c -= nCr<T>(d + 1, i + 1) * rs[d - i] * add;\n        else\n    \
+    \        c += nCr<T>(d + 1, i + 1) * rs[d - i] * add;\n    }\n    c /= (-r + 1).pow(d\
+    \ + 1);\n    return c;\n}\n\ntemplate <typename T>\nT SumOfPolyExp(vector<T> &f,\
     \ T r, ll n) { // sum_{k=0}^{n-1} r^k*f(k)\n    n--;\n    if (n < 0)\n       \
     \ return 0;\n    int d = f.size() - 1;\n    vector<T> rs(d + 1), rui(d + 1);\n\
     \    rs[0] = 1;\n    rep(i, 0, d) rs[i + 1] = rs[i] * r;\n    rep(i, 0, d + 1)\
@@ -289,15 +290,15 @@ data:
   - Template/template.hpp
   - Utility/fastio.hpp
   - Math/modint.hpp
+  - Math/comb.hpp
   - Math/powertable.hpp
   - Math/sieve.hpp
   - FPS/sumofpolyexp.hpp
   - FPS/interpolate.hpp
-  - Math/comb.hpp
   isVerificationFile: true
   path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   requiredBy: []
-  timestamp: '2025-06-05 05:40:21+09:00'
+  timestamp: '2025-06-29 02:34:27+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
