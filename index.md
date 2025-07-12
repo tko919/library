@@ -414,7 +414,7 @@ data:
     - icon: ':warning:'
       path: Math/charpoly.hpp
       title: Characteristic Polynomial
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/comb.hpp
       title: Combination
     - icon: ':warning:'
@@ -462,7 +462,7 @@ data:
     - icon: ':warning:'
       path: Math/lpftable.hpp
       title: lpf table
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/lucydp.hpp
       title: Prime Sum
     - icon: ':heavy_check_mark:'
@@ -474,12 +474,15 @@ data:
     - icon: ':warning:'
       path: Math/mobius.hpp
       title: Mobius table
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/modint.hpp
       title: Modint
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Math/multiplicative.hpp
       title: Multiplicative Sum
+    - icon: ':warning:'
+      path: Math/multiplicative2.hpp
+      title: Multiplicative Sum $O(n^{2/3}(\log n)^{-1})$
     - icon: ':heavy_check_mark:'
       path: Math/nimber.hpp
       title: Nimber
@@ -507,7 +510,7 @@ data:
     - icon: ':warning:'
       path: Math/scarysum.hpp
       title: Scary Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/sieve.hpp
       title: Prime Sieve
     - icon: ':warning:'
@@ -556,7 +559,7 @@ data:
       title: Z-Algorithm
   - name: Template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Template/template.hpp
       title: Template/template.hpp
   - name: Utility
@@ -564,7 +567,7 @@ data:
     - icon: ':warning:'
       path: Utility/expander.py
       title: Utility/expander.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Utility/fastio.hpp
       title: Fast IO
     - icon: ':heavy_check_mark:'
@@ -891,7 +894,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1112.test.cpp
       title: Verify/YUKI_1112.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/YUKI_1781.test.cpp
       title: Verify/YUKI_1781.test.cpp
     - icon: ':heavy_check_mark:'

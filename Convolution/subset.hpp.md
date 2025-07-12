@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy:
@@ -170,8 +170,8 @@ data:
   isVerificationFile: false
   path: Convolution/subset.hpp
   requiredBy:
-  - Graph/chromaticpoly.hpp
   - Math/hafnian.hpp
+  - Graph/chromaticpoly.hpp
   timestamp: '2024-10-22 03:59:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

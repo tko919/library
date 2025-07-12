@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy: []

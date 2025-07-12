@@ -102,8 +102,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_range_kth_smallest.test.cpp
-  - Verify/LC_static_range_lis_query.test.cpp
   - Verify/LC_static_range_frequency.test.cpp
+  - Verify/LC_static_range_lis_query.test.cpp
 documentation_of: DataStructure/wavelet.hpp
 layout: document
 redirect_from:

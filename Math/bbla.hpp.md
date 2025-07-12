@@ -150,8 +150,8 @@ data:
   timestamp: '2025-07-02 00:02:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/YUKI_1112.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/YUKI_310.test.cpp
 documentation_of: Math/bbla.hpp
 layout: document

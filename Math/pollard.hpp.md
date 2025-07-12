@@ -153,18 +153,18 @@ data:
   isVerificationFile: false
   path: Math/pollard.hpp
   requiredBy:
-  - Convolution/multivariatecyclic.hpp
   - Math/primitive.hpp
-  - Math/binomquery.hpp
   - Math/twosquare.hpp
+  - Math/binomquery.hpp
   - Math/pisano.hpp
+  - Convolution/multivariatecyclic.hpp
   timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
   - Verify/LC_factorize.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document
 redirect_from:

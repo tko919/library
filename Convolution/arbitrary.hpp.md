@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/comb.hpp
     title: Combination
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Math/modint.hpp
     title: Modint
   _extendedRequiredBy:
@@ -194,7 +194,7 @@ data:
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 4 \"Convolution/arbitrary.hpp\"\n\r\nusing M1\
-    \ = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<754974721>;\r\
+    \ = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<1107296257>;\r\
     \nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\
     \nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
     \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
@@ -203,7 +203,7 @@ data:
     \ or b.empty())\r\n        return vector<T>();\r\n    int n = a.size() + b.size()\
     \ - 1;\r\n    vector<T> res(n);\r\n    if (min(a.size(), b.size()) <= 60) {\r\n\
     \        rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\
-    \n        return res;\r\n    }\r\n    vector<int> vals[3];\r\n    vector<M1> a1(ALL(a)),\
+    \n        return res;\r\n    }\r\n    vector<ll> vals[3];\r\n    vector<M1> a1(ALL(a)),\
     \ b1(ALL(b)), c1 = N1.mult(a1, b1);\r\n    vector<M2> a2(ALL(a)), b2(ALL(b)),\
     \ c2 = N2.mult(a2, b2);\r\n    vector<M3> a3(ALL(a)), b3(ALL(b)), c3 = N3.mult(a3,\
     \ b3);\r\n    for (M1 x : c1)\r\n        vals[0].push_back(x.v);\r\n    for (M2\
@@ -218,7 +218,7 @@ data:
     \n    for (auto &x : b)\r\n        B.push_back(x.v);\r\n    return ArbitraryMultint<T>(A,\
     \ B);\r\n}\r\n\r\n/**\r\n * @brief Arbitrary Mod Convolution\r\n */\n"
   code: "#pragma once\r\n#include \"Convolution/ntt.hpp\"\r\n#include \"Math/modint.hpp\"\
-    \r\n\r\nusing M1 = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<754974721>;\r\
+    \r\n\r\nusing M1 = fp<167772161>;\r\nusing M2 = fp<469762049>;\r\nusing M3 = fp<1107296257>;\r\
     \nNTT<M1> N1;\r\nNTT<M2> N2;\r\nNTT<M3> N3;\r\nconstexpr int r_12 = M2(M1::get_mod()).inv();\r\
     \nconstexpr int r_13 = M3(M1::get_mod()).inv();\r\nconstexpr int r_23 = M3(M2::get_mod()).inv();\r\
     \nconstexpr int r_1323 = M3(ll(r_13) * r_23).v;\r\nconstexpr ll w1 = M1::get_mod();\r\
@@ -227,7 +227,7 @@ data:
     \ or b.empty())\r\n        return vector<T>();\r\n    int n = a.size() + b.size()\
     \ - 1;\r\n    vector<T> res(n);\r\n    if (min(a.size(), b.size()) <= 60) {\r\n\
     \        rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];\r\
-    \n        return res;\r\n    }\r\n    vector<int> vals[3];\r\n    vector<M1> a1(ALL(a)),\
+    \n        return res;\r\n    }\r\n    vector<ll> vals[3];\r\n    vector<M1> a1(ALL(a)),\
     \ b1(ALL(b)), c1 = N1.mult(a1, b1);\r\n    vector<M2> a2(ALL(a)), b2(ALL(b)),\
     \ c2 = N2.mult(a2, b2);\r\n    vector<M3> a3(ALL(a)), b3(ALL(b)), c3 = N3.mult(a3,\
     \ b3);\r\n    for (M1 x : c1)\r\n        vals[0].push_back(x.v);\r\n    for (M2\
@@ -249,14 +249,14 @@ data:
   path: Convolution/arbitrary.hpp
   requiredBy:
   - Math/bigint.hpp
-  timestamp: '2025-06-29 02:34:27+00:00'
+  timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/YUKI_1080.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/YUKI_1112.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/YUKI_1080.test.cpp
 documentation_of: Convolution/arbitrary.hpp
 layout: document
 redirect_from:

@@ -71,8 +71,8 @@ data:
   isVerificationFile: false
   path: Graph/lca.hpp
   requiredBy:
-  - Graph/shortestpathremedge.hpp
   - Graph/auxiliarytree.hpp
+  - Graph/shortestpathremedge.hpp
   timestamp: '2025-05-25 16:11:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
