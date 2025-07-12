@@ -2,21 +2,22 @@
 #include "Math/fraction.hpp"
 
 namespace SternBrocotTree {
+static pair<vector<int>, pair<Frac<ll>, Frac<ll>>> getinfo(Frac<ll> &x);
 // R start
-static vector<int> encode(Frac x) {
-    return get(x).first;
+static vector<int> encode(Frac<ll> x) {
+    return getinfo(x).first;
 }
-static Frac decode(vector<int> &v) {
-    Frac L(0, 1), R(1, 0);
+static Frac<ll> decode(vector<int> &v) {
+    Frac<ll> L(0, 1), R(1, 0);
     rep(i, 0, v.size()) {
         if (i & 1)
-            R = Frac(L.a * v[i] + R.a, L.b * v[i] + R.b);
+            R = Frac<ll>(L.a * v[i] + R.a, L.b * v[i] + R.b);
         else
-            L = Frac(R.a * v[i] + L.a, R.b * v[i] + L.b);
+            L = Frac<ll>(R.a * v[i] + L.a, R.b * v[i] + L.b);
     }
-    return Frac(L.a + R.a, L.b + R.b);
+    return Frac<ll>(L.a + R.a, L.b + R.b);
 }
-static Frac lca(Frac x, Frac y) {
+static Frac<ll> lca(Frac<ll> x, Frac<ll> y) {
     auto px = encode(x), py = encode(y);
     vector<int> q;
     rep(i, 0, min(px.size(), py.size())) {
@@ -26,16 +27,19 @@ static Frac lca(Frac x, Frac y) {
     }
     return decode(q);
 }
-static pair<Frac, Frac> child(Frac x) {
+static pair<Frac<ll>, Frac<ll>> subtree(Frac<ll> x) {
+    return getinfo(x).second;
+}
+static pair<Frac<ll>, Frac<ll>> child(Frac<ll> x) {
     auto [L, R] = subtree(x);
-    Frac lb(L.a + x.a, L.b + x.b), rb(R.a + x.a, R.b + x.b);
+    Frac<ll> lb(L.a + x.a, L.b + x.b), rb(R.a + x.a, R.b + x.b);
     return {lb, rb};
 }
-static Frac la(Frac x, ll k) {
+static Frac<ll> la(Frac<ll> x, ll k) {
     auto path = encode(x);
     for (;;) {
         if (path.empty())
-            return Frac(-1, 1);
+            return Frac<ll>(-1, 1);
         if (k <= path.back()) {
             path.back() -= k;
             break;
@@ -46,29 +50,21 @@ static Frac la(Frac x, ll k) {
     }
     return decode(path);
 }
-static pair<Frac, Frac> subtree(Frac x) {
-    return get(x).second;
-}
-
-private:
-static ll ceil(ll a, ll b) {
-    return (a + b - 1) / b;
-}
-static pair<vector<int>, pair<Frac, Frac>> get(Frac &x) {
-    Frac L(0, 1), R(1, 0), mid(1, 1);
+static pair<vector<int>, pair<Frac<ll>, Frac<ll>>> getinfo(Frac<ll> &x) {
+    Frac<ll> L(0, 1), R(1, 0), mid(1, 1);
     vector<int> path;
     for (;;) {
         if (mid == x)
             break;
-        ll k = ceil(x.a * L.b - x.b * L.a, x.b * R.a - x.a * R.b) - 1;
-        L = Frac(L.a + k * R.a, L.b + k * R.b);
-        mid = Frac(L.a + R.a, L.b + R.b);
+        ll k = ceil<ll>(x.a * L.b - x.b * L.a, x.b * R.a - x.a * R.b) - 1;
+        L = Frac<ll>(L.a + k * R.a, L.b + k * R.b);
+        mid = Frac<ll>(L.a + R.a, L.b + R.b);
         path.push_back(k);
         if (mid == x)
             break;
-        k = ceil(x.b * R.a - x.a * R.b, x.a * L.b - x.b * L.a) - 1;
-        R = Frac(R.a + k * L.a, R.b + k * L.b);
-        mid = Frac(L.a + R.a, L.b + R.b);
+        k = ceil<ll>(x.b * R.a - x.a * R.b, x.a * L.b - x.b * L.a) - 1;
+        R = Frac<ll>(R.a + k * L.a, R.b + k * L.b);
+        mid = Frac<ll>(L.a + R.a, L.b + R.b);
         path.push_back(k);
     }
     return {path, {L, R}};

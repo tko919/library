@@ -6,7 +6,7 @@ struct MultiplicativeSum {
     vector<ll> quo;
     vector<T> dat;
     MultiplicativeSum() {}
-    MultiplicativeSum(ll n, vector<ll> &_quo, vector<int> &ps)
+    MultiplicativeSum(ll n, vector<ll> &_quo, vector<int> ps)
         : N(n), SQ(sqrtl(N)), sz(SQ + n / (SQ + 1)), quo(_quo), dat(sz) {
         rep(i, 0, sz) dat[i] = psum(quo[i]);
 

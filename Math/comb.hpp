@@ -45,6 +45,12 @@ template <typename T> T nCr(int n, int r, bool inv = 0) {
 template <typename T> T nHr(int n, int r, bool inv = 0) {
     return nCr<T>(n + r - 1, r - 1, inv);
 }
+// [x^n]C(x)^k
+template <typename T> T Catalan(int n, int k) {
+    if (k == 0)
+        return (n == 0 ? 1 : 0);
+    return T(k) * Inv<T>(n * 2 + k) * nCr<T>(n * 2 + k, n);
+}
 // sum = n, a nonzero tuples and b tuples
 template <typename T> T choose(int n, int a, int b) {
     if (n == 0)

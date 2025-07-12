@@ -10,18 +10,8 @@ struct RollingHash {
     static inline ull genbase() {
         return Random::get(ull(0x1fffffffffffffff));
     }
-    RollingHash(Hash base) : base(base) {}
-
-    template <typename STR> void build(const STR &s) {
-        int n = s.size();
-        hashed.assign(n + 1, 0);
-        power.assign(n + 1, 0);
-        power[0] = 1;
-        for (ll i = 0; i < n; i++) {
-            power[i + 1] = power[i] * base;
-            hashed[i + 1] = hashed[i] * base + s[i];
-        }
-    }
+    RollingHash() {}
+    RollingHash(Hash base) : base(base), hashed({0}), power({1}) {}
 
     Hash get(ll l, ll r) const {
         return hashed[r] - hashed[l] * power[r - l];

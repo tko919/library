@@ -1,130 +1,125 @@
 #pragma once
 
-template<typename T,bool multi,unsigned L=1010101010>struct Dirichlet{
-    ll N,P,Q;
-    vector<T> a,rui,A;
-    vector<ll> ps;
-    bool done=0;
-    Dirichlet(ll n):N(n),P(min<ll>(L,cbrt(n)*cbrt(n))),Q((n+P-1)/P),
-        a(P+1),rui(P+1),A(Q+1),done(0){}
-    const Dirichlet ident(){
-        Dirichlet res(N);
-        res.a.assign(P+1,0);
-        res.a[1]=1;
-        res.rui.assign(P+1,1);
-        res.A.assign(Q+1,1);
-        res.done=1;
-        return res;
+template <typename T> struct Dir {
+    ll n;
+    int SQ, sz;
+    vector<T> dat;
+    Dir() {}
+    Dir(ll n) : n(n), SQ(sqrtl(n)), sz(SQ + n / (SQ + 1) + 1), dat(sz) {}
+    T &operator[](int i) {
+        return dat[i];
     }
-    void sieve(){
-        if(!ps.empty())return;
-        static bitset<L> isp;
-        rep(p,2,P+1)isp[p]=1;
-        for(ll p=2;p*p<=P;p++)if(isp[p]){
-            for(ll q=p*p;q<=P;q+=p)isp[q]=0;
-        }
-        rep(p,2,P+1)if(isp[p])ps.push_back(p);
+    void pref() {
+        rep(i, 0, sz - 1) dat[i + 1] += dat[i];
     }
-    void reset(){
-        a.assign(P+1,0);
-        rui.assign(P+1,0);
-        A.assign(Q+1,0);
-        done=0;
+    void diff() {
+        rrep(i, 0, sz - 1) dat[i + 1] -= dat[i];
     }
-    void ruith(){
-        rui.assign(P+1,0);
-        rep(i,1,P+1)rui[i]=rui[i-1]+a[i];
-        done=1;
+    int idx(ll x) const {
+        return (x <= SQ ? x : sz - n / x);
     }
-    Dirichlet operator*(const Dirichlet& x){
-        assert(done and x.done);
-        Dirichlet res(N);
-        if(multi){
-            sieve();
-            res.a=a;
-            for(auto& p:ps){
-                for(ll i=P/p;i>0;i--){
-                    ll n=p*i,q=p,m=i;
-                    for(;;){
-                        res.a[n]+=x.a[q]*res.a[m];
-                        if(m%p)break;
-                        q*=p,m/=p;
-                    }
-                }
-            }
-        }
-        else{
-            rep(i,1,P+1)rep(j,1,P/i+1){
-                res.a[i*j]+=a[i]*x.a[j];
-            }
-        }
-        res.ruith();
-        rep(i,1,Q+1){
-            ll n=N/i,M=int(sqrt(n));
-            rep(j,1,M+1){
-                if(n/j<=P)res.A[i]+=a[j]*x.rui[n/j]+x.a[j]*rui[n/j];
-                else res.A[i]+=a[j]*x.A[i*j]+x.a[j]*A[i*j];
-                if(M<=P)res.A[i]-=x.a[j]*rui[M];
-                else res.A[i]-=x.a[j]*A[N/M];
-            }
-        }
-        return res;
-    }
-    Dirichlet operator/(const Dirichlet& x){
-        assert(done and x.done);
-        Dirichlet res=*this;
-        if(multi){
-            sieve();
-            for(auto& p:ps){
-                rep(i,1,P/p+1){
-                    int n=p*i,q=p,m=i;
-                    for(;;){
-                        res.a[n]-=x.a[q]*res.a[m];
-                        if(m%p)break;
-                        q*=p,m/=p;
-                    }
-                }
-            }
-        }
-        else{
-            rep(i,1,P)rep(j,2,P/i+1){
-                res.a[i*j]-=res.a[i]*x.a[j];
-            }
-        }
-        res.ruith();
-        for(int i=Q;i>0;i--){
-            ll n=N/i,M=int(sqrt(n));
-            rep(j,1,M+1){
-                if(n/j<=P){
-                    if(j!=1)res.A[i]-=x.a[j]*res.rui[n/j];
-                    res.A[i]-=res.a[j]*x.rui[n/j];
-                }
-                else{
-                    if(j!=1)res.A[i]-=x.a[j]*res.A[i*j];
-                    res.A[i]-=res.a[j]*x.A[i*j];
-                }
-                if(M<=P)res.A[i]+=res.a[j]*x.rui[M];
-                else res.A[i]+=res.a[j]*x.A[N/M];
-            }
-        }
-        return res;
-    }
-    Dirichlet pow(ll t){
-        assert(done);
-        Dirichlet res=ident(),b=*this;
-        while(t){
-           if(t&1)res=res*b;
-           b=b*b;
-           t>>=1;
-        }
-        return res;
-    }
-    const T& operator[](ll x){
-        assert(done);
-        if(x<=P)return rui[x];
-        else return A[N/x];
+    ll val(int id) const {
+        return (id <= SQ ? id : n / (sz - id));
     }
 };
+
+template <typename T> Dir<T> mult(ll n, Dir<T> &a, Dir<T> &b) {
+    int SQ = sqrtl(n);
+    Dir<T> c(n);
+    int thre = a.idx(max<int>(1, pow(n, 2. / 3)));
+    auto get = [&](Dir<T> &A, Dir<T> &B) -> vector<pair<int, T>> {
+        vector<pair<int, T>> ret;
+        rep(i, 1, SQ + 1) if (A[i - 1] != A[i]) {
+            T x = A[i] - A[i - 1];
+            ret.push_back({i, x});
+            rrep(j, thre + 1, c.sz) {
+                ll k = c.val(j);
+                int to = B.idx(k / i);
+                if (to < i)
+                    break;
+                c[j] += x * B[to];
+            }
+        }
+        rep(i, SQ + 1, thre + 1) {
+            if (A[i - 1] != A[i]) {
+                T x = A[i] - A[i - 1];
+                ret.push_back({A.val(i), x});
+            }
+        }
+        return ret;
+    };
+    auto posA = get(a, b);
+    auto posB = get(b, a);
+    for (auto &[v, x] : posA) {
+        for (auto &[w, y] : posB) {
+            int to = c.idx(ll(v) * w);
+            if (to > thre)
+                break;
+            c[c.idx(v * w)] += x * y;
+        }
+    }
+    rep(i, 1, thre + 1) {
+        c[i] += c[i - 1];
+    }
+
+    rrep(i, thre + 1, c.sz) {
+        ll x = c.val(i);
+        int j = sqrtl(x);
+        c[i] -= a[j] * b[j];
+    }
+
+    return c;
+}
+
+template <typename T> Dir<T> div(ll n, Dir<T> c, Dir<T> a) {
+    T coe = T(1) / a[1];
+    for (auto &x : a.dat)
+        x *= coe;
+
+    int SQ = sqrtl(n);
+    int thre = a.idx(max<int>(1, pow(n, 2. / 3)));
+    Dir<T> dc = c, da = a, db(n), b(n);
+    dc.diff();
+    da.diff();
+
+    db[1] = c[1];
+    rep(i, 2, thre + 1) {
+        db[i] = dc[i] - da[i] * db[1];
+        ll x = a.val(i);
+        {
+            int j = a.idx(x * x);
+            if (j <= thre)
+                dc[j] -= da[i] * db[i];
+        }
+        rep(j, 2, i) {
+            int k = a.idx(x * a.val(j));
+            if (k > thre)
+                break;
+            dc[k] -= da[i] * db[j] + da[j] * db[i];
+        }
+    }
+    rep(i, 1, thre + 1) {
+        b[i] = db[i] + b[i - 1];
+    }
+    rep(i, thre + 1, a.sz) {
+        b[i] = c[i] - a[i] * b[1];
+        ll x = a.val(i);
+        {
+            int j = a.idx(sqrtl(x));
+            b[i] += a[j] * b[j];
+        }
+        rep(j, 2, i + 1) {
+            int k = a.idx(x / j);
+            if (j > k)
+                break;
+            b[i] -= da[j] * b[k] + a[k] * db[j];
+        }
+    }
+
+    for (auto &x : b.dat)
+        x *= coe;
+    return b;
+}
 
 /**
  * @brief Dirichlet series

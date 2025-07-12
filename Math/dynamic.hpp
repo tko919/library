@@ -26,9 +26,7 @@ struct Fp {
     }
     Fp() : v(0) {}
     Fp(ll x) {
-        v = x % get_mod();
-        if (v < 0)
-            v += get_mod();
+        v = (x % get_mod() + get_mod()) % get_mod();
     }
     Fp operator-() const {
         return Fp() - *this;

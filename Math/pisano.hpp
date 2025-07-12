@@ -27,6 +27,16 @@ int Pisano(int p) {
     assert(0);
 }
 
+ll PisanoComposite(ll m) {
+    auto pes = Pollard2(m);
+    ll ret = 1;
+    for (auto &[p, e] : pes) {
+        ll base = Pisano(p) * POW<ll>(p, e - 1);
+        ret = i128(ret) * base / gcd(ret, base);
+    }
+    return ret;
+}
+
 /**
  * @brief Pisano Period
  */
