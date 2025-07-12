@@ -26,9 +26,10 @@ int main() {
     read(n, m);
 
     rep(e, 0, 45) memo[e] = Fp(e + 1).pow(n);
-    buf = LucyDP<ll, F>(m);
+    auto [quo, ps] = LucyDP<ll, F>::gen(m);
+    buf = LucyDP<ll, F>(m, quo, ps);
 
-    auto ret = MultiplicativeSum<Fp, pe, psum>(m);
+    auto ret = MultiplicativeSum<Fp, pe, psum>(m, quo, ps);
     print(ret[m].v);
     return 0;
 }

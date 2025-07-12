@@ -4,7 +4,7 @@
 
 using M1 = fp<167772161>;
 using M2 = fp<469762049>;
-using M3 = fp<754974721>;
+using M3 = fp<1107296257>;
 NTT<M1> N1;
 NTT<M2> N2;
 NTT<M3> N3;
@@ -24,7 +24,7 @@ vector<T> ArbitraryMultint(const vector<int> &a, const vector<int> &b) {
         rep(i, 0, a.size()) rep(j, 0, b.size()) res[i + j] += T(a[i]) * b[j];
         return res;
     }
-    vector<int> vals[3];
+    vector<ll> vals[3];
     vector<M1> a1(ALL(a)), b1(ALL(b)), c1 = N1.mult(a1, b1);
     vector<M2> a2(ALL(a)), b2(ALL(b)), c2 = N2.mult(a2, b2);
     vector<M3> a3(ALL(a)), b3(ALL(b)), c3 = N3.mult(a3, b3);
