@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algorithm/cartesian.hpp
     title: Cartesian Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []

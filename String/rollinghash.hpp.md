@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: Math/hash.hpp
     title: Hash
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -83,54 +83,46 @@ data:
     \ &x) {\n    fastio::rd(x.v);\n}\n\n/**\n * @brief Hash\n */\n#line 4 \"String/rollinghash.hpp\"\
     \n\nstruct RollingHash {\n    using ull = unsigned long long;\n    const Hash\
     \ base;\n    vector<Hash> hashed, power;\n\n    static inline ull genbase() {\n\
-    \        return Random::get(ull(0x1fffffffffffffff));\n    }\n    RollingHash(Hash\
-    \ base) : base(base) {}\n\n    template <typename STR> void build(const STR &s)\
-    \ {\n        int n = s.size();\n        hashed.assign(n + 1, 0);\n        power.assign(n\
-    \ + 1, 0);\n        power[0] = 1;\n        for (ll i = 0; i < n; i++) {\n    \
-    \        power[i + 1] = power[i] * base;\n            hashed[i + 1] = hashed[i]\
-    \ * base + s[i];\n        }\n    }\n\n    Hash get(ll l, ll r) const {\n     \
-    \   return hashed[r] - hashed[l] * power[r - l];\n    }\n\n    Hash connect(Hash\
-    \ h1, Hash h2, ll h2len) const {\n        return h1 * power[h2len] + h2;\n   \
-    \ }\n\n    template <typename STR> void connect(const STR &s) {\n        ll n\
-    \ = hashed.size() - 1, m = s.size();\n        hashed.resize(n + m + 1);\n    \
-    \    power.resize(n + m + 1);\n        for (ll i = n; i < n + m; i++) {\n    \
-    \        power[i + 1] = power[i] * base;\n            hashed[i + 1] = hashed[i]\
-    \ * base + s[i - n];\n        }\n    }\n\n    ll LCP(const RollingHash &b, ll\
-    \ l1, ll r1, ll l2, ll r2) {\n        ll len = min(r1 - l1, r2 - l2);\n      \
-    \  ll low = -1, high = len + 1;\n        while (high - low > 1) {\n          \
-    \  ll mid = (low + high) / 2;\n            if (get(l1, l1 + mid) == b.get(l2,\
-    \ l2 + mid))\n                low = mid;\n            else\n                high\
-    \ = mid;\n        }\n        return low;\n    }\n};\n\n/**\n * @brief Rolling\
-    \ Hash\n */\n"
+    \        return Random::get(ull(0x1fffffffffffffff));\n    }\n    RollingHash()\
+    \ {}\n    RollingHash(Hash base) : base(base), hashed({0}), power({1}) {}\n\n\
+    \    Hash get(ll l, ll r) const {\n        return hashed[r] - hashed[l] * power[r\
+    \ - l];\n    }\n\n    Hash connect(Hash h1, Hash h2, ll h2len) const {\n     \
+    \   return h1 * power[h2len] + h2;\n    }\n\n    template <typename STR> void\
+    \ connect(const STR &s) {\n        ll n = hashed.size() - 1, m = s.size();\n \
+    \       hashed.resize(n + m + 1);\n        power.resize(n + m + 1);\n        for\
+    \ (ll i = n; i < n + m; i++) {\n            power[i + 1] = power[i] * base;\n\
+    \            hashed[i + 1] = hashed[i] * base + s[i - n];\n        }\n    }\n\n\
+    \    ll LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll len\
+    \ = min(r1 - l1, r2 - l2);\n        ll low = -1, high = len + 1;\n        while\
+    \ (high - low > 1) {\n            ll mid = (low + high) / 2;\n            if (get(l1,\
+    \ l1 + mid) == b.get(l2, l2 + mid))\n                low = mid;\n            else\n\
+    \                high = mid;\n        }\n        return low;\n    }\n};\n\n/**\n\
+    \ * @brief Rolling Hash\n */\n"
   code: "#pragma once\n#include \"Utility/random.hpp\"\n#include \"Math/hash.hpp\"\
     \n\nstruct RollingHash {\n    using ull = unsigned long long;\n    const Hash\
     \ base;\n    vector<Hash> hashed, power;\n\n    static inline ull genbase() {\n\
-    \        return Random::get(ull(0x1fffffffffffffff));\n    }\n    RollingHash(Hash\
-    \ base) : base(base) {}\n\n    template <typename STR> void build(const STR &s)\
-    \ {\n        int n = s.size();\n        hashed.assign(n + 1, 0);\n        power.assign(n\
-    \ + 1, 0);\n        power[0] = 1;\n        for (ll i = 0; i < n; i++) {\n    \
-    \        power[i + 1] = power[i] * base;\n            hashed[i + 1] = hashed[i]\
-    \ * base + s[i];\n        }\n    }\n\n    Hash get(ll l, ll r) const {\n     \
-    \   return hashed[r] - hashed[l] * power[r - l];\n    }\n\n    Hash connect(Hash\
-    \ h1, Hash h2, ll h2len) const {\n        return h1 * power[h2len] + h2;\n   \
-    \ }\n\n    template <typename STR> void connect(const STR &s) {\n        ll n\
-    \ = hashed.size() - 1, m = s.size();\n        hashed.resize(n + m + 1);\n    \
-    \    power.resize(n + m + 1);\n        for (ll i = n; i < n + m; i++) {\n    \
-    \        power[i + 1] = power[i] * base;\n            hashed[i + 1] = hashed[i]\
-    \ * base + s[i - n];\n        }\n    }\n\n    ll LCP(const RollingHash &b, ll\
-    \ l1, ll r1, ll l2, ll r2) {\n        ll len = min(r1 - l1, r2 - l2);\n      \
-    \  ll low = -1, high = len + 1;\n        while (high - low > 1) {\n          \
-    \  ll mid = (low + high) / 2;\n            if (get(l1, l1 + mid) == b.get(l2,\
-    \ l2 + mid))\n                low = mid;\n            else\n                high\
-    \ = mid;\n        }\n        return low;\n    }\n};\n\n/**\n * @brief Rolling\
-    \ Hash\n */"
+    \        return Random::get(ull(0x1fffffffffffffff));\n    }\n    RollingHash()\
+    \ {}\n    RollingHash(Hash base) : base(base), hashed({0}), power({1}) {}\n\n\
+    \    Hash get(ll l, ll r) const {\n        return hashed[r] - hashed[l] * power[r\
+    \ - l];\n    }\n\n    Hash connect(Hash h1, Hash h2, ll h2len) const {\n     \
+    \   return h1 * power[h2len] + h2;\n    }\n\n    template <typename STR> void\
+    \ connect(const STR &s) {\n        ll n = hashed.size() - 1, m = s.size();\n \
+    \       hashed.resize(n + m + 1);\n        power.resize(n + m + 1);\n        for\
+    \ (ll i = n; i < n + m; i++) {\n            power[i + 1] = power[i] * base;\n\
+    \            hashed[i + 1] = hashed[i] * base + s[i - n];\n        }\n    }\n\n\
+    \    ll LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll len\
+    \ = min(r1 - l1, r2 - l2);\n        ll low = -1, high = len + 1;\n        while\
+    \ (high - low > 1) {\n            ll mid = (low + high) / 2;\n            if (get(l1,\
+    \ l1 + mid) == b.get(l2, l2 + mid))\n                low = mid;\n            else\n\
+    \                high = mid;\n        }\n        return low;\n    }\n};\n\n/**\n\
+    \ * @brief Rolling Hash\n */"
   dependsOn:
   - Utility/random.hpp
   - Math/hash.hpp
   isVerificationFile: false
   path: String/rollinghash.hpp
   requiredBy: []
-  timestamp: '2025-05-25 16:11:40+09:00'
+  timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: String/rollinghash.hpp

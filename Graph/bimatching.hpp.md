@@ -54,8 +54,8 @@ data:
   isVerificationFile: false
   path: Graph/bimatching.hpp
   requiredBy:
-  - Algorithm/matroid.hpp
   - Graph/dmdecomp.hpp
+  - Algorithm/matroid.hpp
   timestamp: '2024-09-30 03:29:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

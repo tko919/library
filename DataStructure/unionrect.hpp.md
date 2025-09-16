@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: DataStructure/lazysegtree.hpp
     title: Lazy Segment Tree
   _extendedRequiredBy: []

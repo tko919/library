@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: String/zalgo.hpp
     title: Z-Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   _extendedRequiredBy: []

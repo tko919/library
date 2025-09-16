@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/relax.hpp
     title: Relaxed Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/subset.hpp
     title: Subset Convolution
   - icon: ':warning:'
@@ -23,13 +23,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/factlarge.hpp
     title: Factorial (Large)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
   - icon: ':warning:'
     path: FPS/incseqcount.hpp
     title: Number of Increasing Sequences Between Two Sequences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/interpolate.hpp
     title: interpolate (one point)
   - icon: ':warning:'
@@ -44,10 +44,10 @@ data:
   - icon: ':warning:'
     path: FPS/prefixsumofpowers.hpp
     title: Enumerate $\sum_{k=0}^{N-1} k^i$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/samplepointshift.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
   - icon: ':warning:'
@@ -62,9 +62,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/hafnian.hpp
     title: Hafnian of matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
+  - icon: ':x:'
+    path: Math/multiplicative2.hpp
+    title: Multiplicative Sum $O(n^{2/3}(\log n)^{-1})$
   - icon: ':warning:'
     path: Math/pisano.hpp
     title: Pisano Period
@@ -150,52 +153,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_affine_range_sum.test.cpp
     title: Verify/LC_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: Verify/LC_sum_of_multiplicative_function.test.cpp
+    title: Verify/LC_sum_of_multiplicative_function.test.cpp
+  - icon: ':x:'
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -207,15 +213,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Combination
     links: []
@@ -236,9 +242,12 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n"
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n"
   code: "#pragma once\n\ntemplate <typename T> T Inv(ll n) {\n    static int md;\n\
     \    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n        md\
     \ = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n > 0);\n\
@@ -255,87 +264,91 @@ data:
     \ T nCr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n    \
     \    return 0;\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n -\
     \ r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename T> T nHr(int n, int\
-    \ r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1, inv);\n}\n// sum = n,\
-    \ a nonzero tuples and b tuples\ntemplate <typename T> T choose(int n, int a,\
-    \ int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n + b - 1,\
-    \ a + b - 1);\n}\n\n/**\n * @brief Combination\n */"
+    \ r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1, inv);\n}\n// [x^n]C(x)^k\n\
+    template <typename T> T Catalan(int n, int k) {\n    if (k == 0)\n        return\
+    \ (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n * 2 + k) * nCr<T>(n * 2 + k, n);\n\
+    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
+    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
+    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */"
   dependsOn: []
   isVerificationFile: false
   path: Math/comb.hpp
   requiredBy:
-  - Algorithm/wildcardpatternmatching.hpp
-  - Math/modint.hpp
-  - Math/dynamic.hpp
-  - Math/hafnian.hpp
-  - Math/bigint.hpp
-  - Math/pisano.hpp
-  - Graph/chromaticpoly.hpp
-  - Convolution/arbitrary.hpp
   - Convolution/subset.hpp
   - Convolution/relax.hpp
-  - FPS/compinv.hpp
-  - FPS/famous.hpp
-  - FPS/p-recursive.hpp
-  - FPS/sumofpolyexp.hpp
-  - FPS/interpolate.hpp
-  - FPS/prefixsumofpowers.hpp
-  - FPS/samplepointshift.hpp
+  - Convolution/arbitrary.hpp
   - FPS/prefixsumofpoly.hpp
-  - FPS/factlarge.hpp
-  - FPS/compexp.hpp
+  - FPS/famous.hpp
   - FPS/incseqcount.hpp
+  - FPS/factlarge.hpp
+  - FPS/prefixsumofpowers.hpp
+  - FPS/compexp.hpp
+  - FPS/sumofpolyexp.hpp
+  - FPS/compinv.hpp
+  - FPS/interpolate.hpp
+  - FPS/samplepointshift.hpp
   - FPS/mobius.hpp
-  timestamp: '2024-10-22 03:59:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - FPS/p-recursive.hpp
+  - Graph/chromaticpoly.hpp
+  - Algorithm/wildcardpatternmatching.hpp
+  - Math/pisano.hpp
+  - Math/bigint.hpp
+  - Math/modint.hpp
+  - Math/hafnian.hpp
+  - Math/dynamic.hpp
+  - Math/multiplicative2.hpp
+  timestamp: '2025-07-13 05:51:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_queue_operate_all_composite.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/LC_matrix_product.test.cpp
+  - Verify/LC_point_set_range_sort_range_composite.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_deque_operate_all_composite.test.cpp
+  - Verify/YUKI_1781.test.cpp
   - Verify/YUKI_1112.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_subset_convolution.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
-  - Verify/LC_bitwise_xor_convolution.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_enumerate_cliques.test.cpp
-  - Verify/LC_range_affine_range_sum.test.cpp
-  - Verify/LC_sum_of_totient_function.test.cpp
   - Verify/LC_bitwise_and_convolution.test.cpp
   - Verify/YUKI_310.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - Verify/LC_many_factorials.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
-  - Verify/LC_vertex_set_path_composite.test.cpp
-  - Verify/LC_find_linear_recurrence.test.cpp
-  - Verify/LC_matrix_det.test.cpp
-  - Verify/LC_convolution_mod_1000000007.test.cpp
-  - Verify/LC_queue_operate_all_composite.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
-  - Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_matrix_product.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - Verify/YUKI_1781.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
-  - Verify/LC_point_set_range_composite.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/LC_convolution_mod.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_lcm_convolution.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_subset_convolution.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_sum_of_totient_function.test.cpp
+  - Verify/LC_vertex_set_path_composite.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_find_linear_recurrence.test.cpp
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - Verify/LC_deque_operate_all_composite.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_bitwise_xor_convolution.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_enumerate_cliques.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_point_set_range_composite.test.cpp
+  - Verify/LC_range_affine_range_sum.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_partition_function.test.cpp
   - Verify/YUKI_1080.test.cpp
+  - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_sum_of_multiplicative_function.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
 documentation_of: Math/comb.hpp
 layout: document
 redirect_from:

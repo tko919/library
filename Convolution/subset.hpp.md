@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_hafnian_of_matrix.test.cpp
     title: Verify/LC_hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Subset Convolution
     links: []
@@ -41,20 +41,23 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
-    \ \"Convolution/subset.hpp\"\n\r\ntemplate <typename T, int LG = 20> struct SubsetConvolution\
-    \ {\r\n    using POL = array<T, LG + 1>;\r\n    vector<int> bpc;\r\n    SubsetConvolution()\
-    \ : bpc(1 << LG) {\r\n        rep(i, 1, 1 << LG) bpc[i] = bpc[i - (i & -i)] +\
-    \ 1;\r\n    }\r\n    void zeta(vector<POL> &a) {\r\n        int n = topbit(SZ(a));\r\
-    \n        rep(d, 0, n) {\r\n            rep(i, 0, 1 << n) if (i >> d & 1) {\r\n\
-    \                const int pc = bpc[i];\r\n                rep(j, 0, pc) a[i][j]\
-    \ += a[i ^ (1 << d)][j];\r\n            }\r\n        }\r\n    }\r\n    void mobius(vector<POL>\
-    \ &a) {\r\n        int n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n      \
-    \      rep(i, 0, 1 << n) if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\
-    \n                rep(j, pc, n + 1) a[i][j] -= a[i ^ (1 << d)][j];\r\n       \
-    \     }\r\n        }\r\n    }\r\n    vector<T> mult(vector<T> &a, vector<T> &b)\
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n#line 3 \"Convolution/subset.hpp\"\n\r\ntemplate <typename\
+    \ T, int LG = 20> struct SubsetConvolution {\r\n    using POL = array<T, LG +\
+    \ 1>;\r\n    vector<int> bpc;\r\n    SubsetConvolution() : bpc(1 << LG) {\r\n\
+    \        rep(i, 1, 1 << LG) bpc[i] = bpc[i - (i & -i)] + 1;\r\n    }\r\n    void\
+    \ zeta(vector<POL> &a) {\r\n        int n = topbit(SZ(a));\r\n        rep(d, 0,\
+    \ n) {\r\n            rep(i, 0, 1 << n) if (i >> d & 1) {\r\n                const\
+    \ int pc = bpc[i];\r\n                rep(j, 0, pc) a[i][j] += a[i ^ (1 << d)][j];\r\
+    \n            }\r\n        }\r\n    }\r\n    void mobius(vector<POL> &a) {\r\n\
+    \        int n = topbit(SZ(a));\r\n        rep(d, 0, n) {\r\n            rep(i,\
+    \ 0, 1 << n) if (i >> d & 1) {\r\n                const int pc = bpc[i];\r\n \
+    \               rep(j, pc, n + 1) a[i][j] -= a[i ^ (1 << d)][j];\r\n         \
+    \   }\r\n        }\r\n    }\r\n    vector<T> mult(vector<T> &a, vector<T> &b)\
     \ {\r\n        assert(a.size() == b.size());\r\n        int n = SZ(a), m = topbit(n);\r\
     \n        vector<POL> A(n), B(n);\r\n        rep(i, 0, n) {\r\n            A[i][bpc[i]]\
     \ = a[i];\r\n            B[i][bpc[i]] = b[i];\r\n        }\r\n        zeta(A);\r\
@@ -170,10 +173,10 @@ data:
   isVerificationFile: false
   path: Convolution/subset.hpp
   requiredBy:
-  - Math/hafnian.hpp
   - Graph/chromaticpoly.hpp
-  timestamp: '2024-10-22 03:59:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - Math/hafnian.hpp
+  timestamp: '2025-07-13 05:51:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/LC_subset_convolution.test.cpp
   - Verify/LC_hafnian_of_matrix.test.cpp

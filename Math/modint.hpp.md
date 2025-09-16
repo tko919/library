@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy:
@@ -96,52 +96,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_pow_of_formal_power_series.test.cpp
     title: Verify/LC_pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_product_of_polynomial_sequence.test.cpp
     title: Verify/LC_product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_queue_operate_all_composite.test.cpp
     title: Verify/LC_queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_range_affine_range_sum.test.cpp
     title: Verify/LC_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
     title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
     title: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
     title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_subset_convolution.test.cpp
     title: Verify/LC_subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: Verify/LC_sum_of_multiplicative_function.test.cpp
+    title: Verify/LC_sum_of_multiplicative_function.test.cpp
+  - icon: ':x:'
     path: Verify/LC_sum_of_totient_function.test.cpp
     title: Verify/LC_sum_of_totient_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_system_of_linear_equations.test.cpp
     title: Verify/LC_system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,15 +156,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Modint
     links: []
@@ -182,30 +185,32 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
-    \ \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod = 1000000007> struct fp {\r\n\
-    \    static_assert(mod < uint(1) << 31);\r\n    unsigned v;\r\n    static constexpr\
-    \ int get_mod() {\r\n        return mod;\r\n    }\r\n    constexpr unsigned inv()\
-    \ const {\r\n        assert(v != 0);\r\n        int x = v, y = mod, p = 1, q =\
-    \ 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n            t = x / y;\r\n\
-    \            x -= t * y, p -= t * q;\r\n            tmp = x, x = y, y = tmp;\r\
-    \n            tmp = p, p = q, q = tmp;\r\n        }\r\n        if (p < 0)\r\n\
-    \            p += mod;\r\n        return p;\r\n    }\r\n    constexpr fp(ll x\
-    \ = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod) {}\r\n    fp operator-()\
-    \ const {\r\n        return fp() - *this;\r\n    }\r\n    fp pow(ull t) {\r\n\
-    \        fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t &\
-    \ 1)\r\n                res *= b;\r\n            b *= b;\r\n            t >>=\
-    \ 1;\r\n        }\r\n        return res;\r\n    }\r\n    fp &operator+=(const\
-    \ fp &x) {\r\n        if ((v += x.v) >= mod)\r\n            v -= mod;\r\n    \
-    \    return *this;\r\n    }\r\n    fp &operator-=(const fp &x) {\r\n        if\
-    \ ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n        return *this;\r\
-    \n    }\r\n    fp &operator*=(const fp &x) {\r\n        v = ull(v) * x.v % mod;\r\
-    \n        return *this;\r\n    }\r\n    fp &operator/=(const fp &x) {\r\n    \
-    \    if (x.v < 15000000) {\r\n            return *this *= Inv<fp>(x.v);\r\n  \
-    \      }\r\n        v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n \
-    \   }\r\n    fp operator+(const fp &x) const {\r\n        return fp(*this) +=\
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n#line 3 \"Math/modint.hpp\"\n\r\ntemplate <unsigned mod =\
+    \ 1000000007> struct fp {\r\n    static_assert(mod < uint(1) << 31);\r\n    unsigned\
+    \ v;\r\n    static constexpr int get_mod() {\r\n        return mod;\r\n    }\r\
+    \n    constexpr unsigned inv() const {\r\n        assert(v != 0);\r\n        int\
+    \ x = v, y = mod, p = 1, q = 0, t = 0, tmp = 0;\r\n        while (y > 0) {\r\n\
+    \            t = x / y;\r\n            x -= t * y, p -= t * q;\r\n           \
+    \ tmp = x, x = y, y = tmp;\r\n            tmp = p, p = q, q = tmp;\r\n       \
+    \ }\r\n        if (p < 0)\r\n            p += mod;\r\n        return p;\r\n  \
+    \  }\r\n    constexpr fp(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) %\
+    \ mod) {}\r\n    fp operator-() const {\r\n        return fp() - *this;\r\n  \
+    \  }\r\n    fp pow(ull t) {\r\n        fp res = 1, b = *this;\r\n        while\
+    \ (t) {\r\n            if (t & 1)\r\n                res *= b;\r\n           \
+    \ b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\
+    \n    fp &operator+=(const fp &x) {\r\n        if ((v += x.v) >= mod)\r\n    \
+    \        v -= mod;\r\n        return *this;\r\n    }\r\n    fp &operator-=(const\
+    \ fp &x) {\r\n        if ((v += mod - x.v) >= mod)\r\n            v -= mod;\r\n\
+    \        return *this;\r\n    }\r\n    fp &operator*=(const fp &x) {\r\n     \
+    \   v = ull(v) * x.v % mod;\r\n        return *this;\r\n    }\r\n    fp &operator/=(const\
+    \ fp &x) {\r\n        if (x.v < 15000000) {\r\n            return *this *= Inv<fp>(x.v);\r\
+    \n        }\r\n        v = ull(v) * x.inv() % mod;\r\n        return *this;\r\n\
+    \    }\r\n    fp operator+(const fp &x) const {\r\n        return fp(*this) +=\
     \ x;\r\n    }\r\n    fp operator-(const fp &x) const {\r\n        return fp(*this)\
     \ -= x;\r\n    }\r\n    fp operator*(const fp &x) const {\r\n        return fp(*this)\
     \ *= x;\r\n    }\r\n    fp operator/(const fp &x) const {\r\n        return fp(*this)\
@@ -254,60 +259,61 @@ data:
   isVerificationFile: false
   path: Math/modint.hpp
   requiredBy:
+  - Convolution/arbitrary.hpp
   - Algorithm/wildcardpatternmatching.hpp
   - Math/bigint.hpp
-  - Convolution/arbitrary.hpp
-  timestamp: '2025-06-29 02:34:27+00:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-07-13 05:51:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_queue_operate_all_composite.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/LC_matrix_product.test.cpp
+  - Verify/LC_point_set_range_sort_range_composite.test.cpp
+  - Verify/YUKI_2097.test.cpp
   - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_deque_operate_all_composite.test.cpp
+  - Verify/YUKI_1781.test.cpp
   - Verify/YUKI_1112.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_subset_convolution.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
-  - Verify/LC_bitwise_xor_convolution.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_enumerate_cliques.test.cpp
-  - Verify/LC_range_affine_range_sum.test.cpp
-  - Verify/LC_sum_of_totient_function.test.cpp
   - Verify/LC_bitwise_and_convolution.test.cpp
   - Verify/YUKI_310.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - Verify/LC_many_factorials.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
-  - Verify/LC_vertex_set_path_composite.test.cpp
-  - Verify/LC_find_linear_recurrence.test.cpp
-  - Verify/LC_matrix_det.test.cpp
-  - Verify/LC_convolution_mod_1000000007.test.cpp
-  - Verify/LC_queue_operate_all_composite.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
-  - Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_matrix_product.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - Verify/YUKI_1781.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
-  - Verify/LC_point_set_range_composite.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/LC_convolution_mod.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_lcm_convolution.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
   - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_subset_convolution.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_sum_of_totient_function.test.cpp
+  - Verify/LC_vertex_set_path_composite.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_find_linear_recurrence.test.cpp
   - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - Verify/LC_deque_operate_all_composite.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_bitwise_xor_convolution.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_enumerate_cliques.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_point_set_range_composite.test.cpp
+  - Verify/LC_range_affine_range_sum.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
   - Verify/LC_partition_function.test.cpp
   - Verify/YUKI_1080.test.cpp
+  - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_sum_of_multiplicative_function.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
 documentation_of: Math/modint.hpp
 layout: document
 redirect_from:

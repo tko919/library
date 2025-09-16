@@ -207,9 +207,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/YUKI_1112.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/YUKI_1080.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: FPS/arbitraryfps.hpp
 layout: document
 redirect_from:

@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []

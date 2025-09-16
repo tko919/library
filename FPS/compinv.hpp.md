@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: FPS/powenum.hpp
     title: Pow Enumerate
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy: []
@@ -47,15 +47,17 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 4\
-    \ \"FPS/compinv.hpp\"\n\ntemplate <typename T> Poly<T> CompositionInv(Poly<T>\
-    \ &f) {\n    assert(SZ(f) >= 2 and f[0] == 0 and f[1] != 0);\n    const int n\
-    \ = f.deg();\n    const T c = f[1];\n    const T invc = c.inv();\n    for (auto\
-    \ &x : f)\n        x *= invc;\n    Poly<T> g(n + 1);\n    g[n] = 1;\n    auto\
-    \ ret = Poly<Fp>{PowEnumerate(f, g, n)};\n    rep(i, 1, n + 1) ret[i] *= T(n)\
-    \ * Inv<T>(i);\n    reverse(ALL(ret));\n    ret[0] = 1;\n    ret = ret.log();\n\
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n#line 4 \"FPS/compinv.hpp\"\n\ntemplate <typename T> Poly<T>\
+    \ CompositionInv(Poly<T> &f) {\n    assert(SZ(f) >= 2 and f[0] == 0 and f[1] !=\
+    \ 0);\n    const int n = f.deg();\n    const T c = f[1];\n    const T invc = c.inv();\n\
+    \    for (auto &x : f)\n        x *= invc;\n    Poly<T> g(n + 1);\n    g[n] =\
+    \ 1;\n    auto ret = Poly<Fp>{PowEnumerate(f, g, n)};\n    rep(i, 1, n + 1) ret[i]\
+    \ *= T(n) * Inv<T>(i);\n    reverse(ALL(ret));\n    ret[0] = 1;\n    ret = ret.log();\n\
     \    const T invn = T(1) / -n;\n    for (auto &x : ret)\n        x *= invn;\n\
     \    ret = (ret.exp()) << 1;\n    ret.resize(n + 1);\n    T buf = 1;\n    for\
     \ (auto &x : ret) {\n        x *= buf;\n        buf *= invc;\n    }\n    return\
@@ -77,7 +79,7 @@ data:
   isVerificationFile: false
   path: FPS/compinv.hpp
   requiredBy: []
-  timestamp: '2024-10-22 03:59:04+09:00'
+  timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/compinv.hpp

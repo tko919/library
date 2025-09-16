@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/maxindependentset.hpp
     title: Maximum Independent Set
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   - icon: ':heavy_check_mark:'
@@ -66,18 +66,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_range_kth_smallest-2.test.cpp
     title: Verify/LC_range_kth_smallest-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_sum_of_multiplicative_function.test.cpp
+    title: Verify/LC_sum_of_multiplicative_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Random
     links: []
@@ -152,33 +155,34 @@ data:
   isVerificationFile: false
   path: Utility/random.hpp
   requiredBy:
-  - Geometry/Enclosing.hpp
+  - Convolution/multivariatecyclic.hpp
+  - FPS/findroots.hpp
+  - FPS/factorize.hpp
+  - Graph/maxindependentset.hpp
   - String/rollinghash.hpp
-  - Math/primitive.hpp
-  - Math/detaplusbx.hpp
-  - Math/twosquare.hpp
-  - Math/binomquery.hpp
-  - Math/pollard.hpp
+  - Geometry/Enclosing.hpp
+  - DataStructure/persistentrbstset.hpp
   - Math/bbla.hpp
   - Math/pisano.hpp
-  - Graph/maxindependentset.hpp
-  - DataStructure/persistentrbstset.hpp
-  - Convolution/multivariatecyclic.hpp
-  - FPS/factorize.hpp
-  - FPS/findroots.hpp
+  - Math/twosquare.hpp
+  - Math/primitive.hpp
+  - Math/binomquery.hpp
+  - Math/pollard.hpp
+  - Math/detaplusbx.hpp
   timestamp: '2025-05-25 16:11:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/YUKI_310.test.cpp
   - Verify/LC_predecessor_problem.test.cpp
-  - Verify/LC_maximum_independent_set.test.cpp
   - Verify/LC_discrete_logarithm_mod.test.cpp
   - Verify/LC_range_kth_smallest-2.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/LC_factorize.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_sum_of_multiplicative_function.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_maximum_independent_set.test.cpp
 documentation_of: Utility/random.hpp
 layout: document
 redirect_from:

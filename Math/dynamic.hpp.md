@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   - icon: ':heavy_check_mark:'
@@ -55,35 +55,37 @@ data:
     \ bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n    return\
     \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum\
     \ = n, r tuples\ntemplate <typename T> T nHr(int n, int r, bool inv = 0) {\n \
-    \   return nCr<T>(n + r - 1, r - 1, inv);\n}\n// sum = n, a nonzero tuples and\
-    \ b tuples\ntemplate <typename T> T choose(int n, int a, int b) {\n    if (n ==\
-    \ 0)\n        return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n\
-    \ * @brief Combination\n */\n#line 4 \"Math/dynamic.hpp\"\n\r\nstruct Fp {\r\n\
-    \    using u64 = uint64_t;\r\n    uint v;\r\n    static uint get_mod() {\r\n \
-    \       return _getmod();\r\n    }\r\n    static void set_mod(uint _m) {\r\n \
-    \       bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n        int tmp,\
-    \ a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n            tmp\
-    \ = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n            x -= tmp *\
-    \ y;\r\n            swap(x, y);\r\n        }\r\n        if (x < 0) {\r\n     \
-    \       x += get_mod();\r\n        }\r\n        return x;\r\n    }\r\n    Fp()\
-    \ : v(0) {}\r\n    Fp(ll x) {\r\n        v = x % get_mod();\r\n        if (v <\
-    \ 0)\r\n            v += get_mod();\r\n    }\r\n    Fp operator-() const {\r\n\
-    \        return Fp() - *this;\r\n    }\r\n    Fp pow(ll t) {\r\n        assert(t\
-    \ >= 0);\r\n        Fp res = 1, b = *this;\r\n        while (t) {\r\n        \
-    \    if (t & 1)\r\n                res *= b;\r\n            b *= b;\r\n      \
-    \      t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n    Fp &operator+=(const\
-    \ Fp &x) {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\n           \
-    \ v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator-=(const\
-    \ Fp &x) {\r\n        v += get_mod() - x.v;\r\n        if (v >= get_mod())\r\n\
-    \            v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator*=(const\
-    \ Fp &x) {\r\n        v = (u64(v) * x.v) % bar;\r\n        return *this;\r\n \
-    \   }\r\n    Fp &operator/=(const Fp &x) {\r\n        (*this) *= x.inv();\r\n\
-    \        return *this;\r\n    }\r\n    Fp operator+(const Fp &x) const {\r\n \
-    \       return Fp(*this) += x;\r\n    }\r\n    Fp operator-(const Fp &x) const\
-    \ {\r\n        return Fp(*this) -= x;\r\n    }\r\n    Fp operator*(const Fp &x)\
-    \ const {\r\n        return Fp(*this) *= x;\r\n    }\r\n    Fp operator/(const\
-    \ Fp &x) const {\r\n        return Fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
-    \ Fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
+    \   return nCr<T>(n + r - 1, r - 1, inv);\n}\n// [x^n]C(x)^k\ntemplate <typename\
+    \ T> T Catalan(int n, int k) {\n    if (k == 0)\n        return (n == 0 ? 1 :\
+    \ 0);\n    return T(k) * Inv<T>(n * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum\
+    \ = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int n, int\
+    \ a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n + b -\
+    \ 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 4 \"Math/dynamic.hpp\"\
+    \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    uint v;\r\n    static uint\
+    \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(uint\
+    \ _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n   \
+    \     int tmp, a = v, b = get_mod(), x = 1, y = 0;\r\n        while (b) {\r\n\
+    \            tmp = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n       \
+    \     x -= tmp * y;\r\n            swap(x, y);\r\n        }\r\n        if (x <\
+    \ 0) {\r\n            x += get_mod();\r\n        }\r\n        return x;\r\n  \
+    \  }\r\n    Fp() : v(0) {}\r\n    Fp(ll x) {\r\n        v = (x % get_mod() + get_mod())\
+    \ % get_mod();\r\n    }\r\n    Fp operator-() const {\r\n        return Fp() -\
+    \ *this;\r\n    }\r\n    Fp pow(ll t) {\r\n        assert(t >= 0);\r\n       \
+    \ Fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n\
+    \                res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n\
+    \        }\r\n        return res;\r\n    }\r\n    Fp &operator+=(const Fp &x)\
+    \ {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\n            v -= get_mod();\r\
+    \n        return *this;\r\n    }\r\n    Fp &operator-=(const Fp &x) {\r\n    \
+    \    v += get_mod() - x.v;\r\n        if (v >= get_mod())\r\n            v -=\
+    \ get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator*=(const Fp\
+    \ &x) {\r\n        v = (u64(v) * x.v) % bar;\r\n        return *this;\r\n    }\r\
+    \n    Fp &operator/=(const Fp &x) {\r\n        (*this) *= x.inv();\r\n       \
+    \ return *this;\r\n    }\r\n    Fp operator+(const Fp &x) const {\r\n        return\
+    \ Fp(*this) += x;\r\n    }\r\n    Fp operator-(const Fp &x) const {\r\n      \
+    \  return Fp(*this) -= x;\r\n    }\r\n    Fp operator*(const Fp &x) const {\r\n\
+    \        return Fp(*this) *= x;\r\n    }\r\n    Fp operator/(const Fp &x) const\
+    \ {\r\n        return Fp(*this) /= x;\r\n    }\r\n    bool operator==(const Fp\
+    \ &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
     \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
     \ &is, Fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
@@ -99,24 +101,24 @@ data:
     \            tmp = a / b, a -= tmp * b;\r\n            swap(a, b);\r\n       \
     \     x -= tmp * y;\r\n            swap(x, y);\r\n        }\r\n        if (x <\
     \ 0) {\r\n            x += get_mod();\r\n        }\r\n        return x;\r\n  \
-    \  }\r\n    Fp() : v(0) {}\r\n    Fp(ll x) {\r\n        v = x % get_mod();\r\n\
-    \        if (v < 0)\r\n            v += get_mod();\r\n    }\r\n    Fp operator-()\
-    \ const {\r\n        return Fp() - *this;\r\n    }\r\n    Fp pow(ll t) {\r\n \
-    \       assert(t >= 0);\r\n        Fp res = 1, b = *this;\r\n        while (t)\
-    \ {\r\n            if (t & 1)\r\n                res *= b;\r\n            b *=\
-    \ b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\n    }\r\n\
-    \    Fp &operator+=(const Fp &x) {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\
-    \n            v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator-=(const\
-    \ Fp &x) {\r\n        v += get_mod() - x.v;\r\n        if (v >= get_mod())\r\n\
-    \            v -= get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator*=(const\
-    \ Fp &x) {\r\n        v = (u64(v) * x.v) % bar;\r\n        return *this;\r\n \
-    \   }\r\n    Fp &operator/=(const Fp &x) {\r\n        (*this) *= x.inv();\r\n\
-    \        return *this;\r\n    }\r\n    Fp operator+(const Fp &x) const {\r\n \
-    \       return Fp(*this) += x;\r\n    }\r\n    Fp operator-(const Fp &x) const\
-    \ {\r\n        return Fp(*this) -= x;\r\n    }\r\n    Fp operator*(const Fp &x)\
-    \ const {\r\n        return Fp(*this) *= x;\r\n    }\r\n    Fp operator/(const\
-    \ Fp &x) const {\r\n        return Fp(*this) /= x;\r\n    }\r\n    bool operator==(const\
-    \ Fp &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
+    \  }\r\n    Fp() : v(0) {}\r\n    Fp(ll x) {\r\n        v = (x % get_mod() + get_mod())\
+    \ % get_mod();\r\n    }\r\n    Fp operator-() const {\r\n        return Fp() -\
+    \ *this;\r\n    }\r\n    Fp pow(ll t) {\r\n        assert(t >= 0);\r\n       \
+    \ Fp res = 1, b = *this;\r\n        while (t) {\r\n            if (t & 1)\r\n\
+    \                res *= b;\r\n            b *= b;\r\n            t >>= 1;\r\n\
+    \        }\r\n        return res;\r\n    }\r\n    Fp &operator+=(const Fp &x)\
+    \ {\r\n        v += x.v;\r\n        if (v >= get_mod())\r\n            v -= get_mod();\r\
+    \n        return *this;\r\n    }\r\n    Fp &operator-=(const Fp &x) {\r\n    \
+    \    v += get_mod() - x.v;\r\n        if (v >= get_mod())\r\n            v -=\
+    \ get_mod();\r\n        return *this;\r\n    }\r\n    Fp &operator*=(const Fp\
+    \ &x) {\r\n        v = (u64(v) * x.v) % bar;\r\n        return *this;\r\n    }\r\
+    \n    Fp &operator/=(const Fp &x) {\r\n        (*this) *= x.inv();\r\n       \
+    \ return *this;\r\n    }\r\n    Fp operator+(const Fp &x) const {\r\n        return\
+    \ Fp(*this) += x;\r\n    }\r\n    Fp operator-(const Fp &x) const {\r\n      \
+    \  return Fp(*this) -= x;\r\n    }\r\n    Fp operator*(const Fp &x) const {\r\n\
+    \        return Fp(*this) *= x;\r\n    }\r\n    Fp operator/(const Fp &x) const\
+    \ {\r\n        return Fp(*this) /= x;\r\n    }\r\n    bool operator==(const Fp\
+    \ &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
     \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
     \ &is, Fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
@@ -131,7 +133,7 @@ data:
   path: Math/dynamic.hpp
   requiredBy:
   - Math/pisano.hpp
-  timestamp: '2025-06-29 02:34:27+00:00'
+  timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp

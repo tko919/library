@@ -16,7 +16,7 @@ data:
   bundledCode: "#line 2 \"Math/multiplicative.hpp\"\n\r\ntemplate <typename T, T (*pe)(int,\
     \ int), T (*psum)(ll)>\r\nstruct MultiplicativeSum {\r\n    ll N, SQ, sz;\r\n\
     \    vector<ll> quo;\r\n    vector<T> dat;\r\n    MultiplicativeSum() {}\r\n \
-    \   MultiplicativeSum(ll n, vector<ll> &_quo, vector<int> &ps)\r\n        : N(n),\
+    \   MultiplicativeSum(ll n, vector<ll> &_quo, vector<int> ps)\r\n        : N(n),\
     \ SQ(sqrtl(N)), sz(SQ + n / (SQ + 1)), quo(_quo), dat(sz) {\r\n        rep(i,\
     \ 0, sz) dat[i] = psum(quo[i]);\r\n\r\n        reverse(ALL(ps));\r\n        vector<T>\
     \ ndat = dat;\r\n        for (auto &p : ps) {\r\n            T pc = pe(p, 1);\r\
@@ -36,8 +36,8 @@ data:
   code: "#pragma once\r\n\r\ntemplate <typename T, T (*pe)(int, int), T (*psum)(ll)>\r\
     \nstruct MultiplicativeSum {\r\n    ll N, SQ, sz;\r\n    vector<ll> quo;\r\n \
     \   vector<T> dat;\r\n    MultiplicativeSum() {}\r\n    MultiplicativeSum(ll n,\
-    \ vector<ll> &_quo, vector<int> &ps)\r\n        : N(n), SQ(sqrtl(N)), sz(SQ +\
-    \ n / (SQ + 1)), quo(_quo), dat(sz) {\r\n        rep(i, 0, sz) dat[i] = psum(quo[i]);\r\
+    \ vector<ll> &_quo, vector<int> ps)\r\n        : N(n), SQ(sqrtl(N)), sz(SQ + n\
+    \ / (SQ + 1)), quo(_quo), dat(sz) {\r\n        rep(i, 0, sz) dat[i] = psum(quo[i]);\r\
     \n\r\n        reverse(ALL(ps));\r\n        vector<T> ndat = dat;\r\n        for\
     \ (auto &p : ps) {\r\n            T pc = pe(p, 1);\r\n            T rui = psum(p);\r\
     \n            int L = sz;\r\n            for (ll pw = p, c = 1; N / p >= pw; pw\
@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: Math/multiplicative.hpp
   requiredBy: []
-  timestamp: '2025-06-29 02:34:27+00:00'
+  timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/YUKI_1781.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   - icon: ':heavy_check_mark:'
@@ -28,7 +28,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
   - icon: ':heavy_check_mark:'
@@ -37,13 +37,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/primitive.hpp
     title: Primitive Function
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy: []
@@ -231,22 +231,24 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 4\
-    \ \"Math/dynamic.hpp\"\n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    uint\
-    \ v;\r\n    static uint get_mod() {\r\n        return _getmod();\r\n    }\r\n\
-    \    static void set_mod(uint _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n\
-    \    Fp inv() const {\r\n        int tmp, a = v, b = get_mod(), x = 1, y = 0;\r\
-    \n        while (b) {\r\n            tmp = a / b, a -= tmp * b;\r\n          \
-    \  swap(a, b);\r\n            x -= tmp * y;\r\n            swap(x, y);\r\n   \
-    \     }\r\n        if (x < 0) {\r\n            x += get_mod();\r\n        }\r\n\
-    \        return x;\r\n    }\r\n    Fp() : v(0) {}\r\n    Fp(ll x) {\r\n      \
-    \  v = x % get_mod();\r\n        if (v < 0)\r\n            v += get_mod();\r\n\
-    \    }\r\n    Fp operator-() const {\r\n        return Fp() - *this;\r\n    }\r\
-    \n    Fp pow(ll t) {\r\n        assert(t >= 0);\r\n        Fp res = 1, b = *this;\r\
-    \n        while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\
-    \n            b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n#line 4 \"Math/dynamic.hpp\"\n\r\nstruct Fp {\r\n    using\
+    \ u64 = uint64_t;\r\n    uint v;\r\n    static uint get_mod() {\r\n        return\
+    \ _getmod();\r\n    }\r\n    static void set_mod(uint _m) {\r\n        bar = FastDiv(_m);\r\
+    \n    }\r\n    Fp inv() const {\r\n        int tmp, a = v, b = get_mod(), x =\
+    \ 1, y = 0;\r\n        while (b) {\r\n            tmp = a / b, a -= tmp * b;\r\
+    \n            swap(a, b);\r\n            x -= tmp * y;\r\n            swap(x,\
+    \ y);\r\n        }\r\n        if (x < 0) {\r\n            x += get_mod();\r\n\
+    \        }\r\n        return x;\r\n    }\r\n    Fp() : v(0) {}\r\n    Fp(ll x)\
+    \ {\r\n        v = (x % get_mod() + get_mod()) % get_mod();\r\n    }\r\n    Fp\
+    \ operator-() const {\r\n        return Fp() - *this;\r\n    }\r\n    Fp pow(ll\
+    \ t) {\r\n        assert(t >= 0);\r\n        Fp res = 1, b = *this;\r\n      \
+    \  while (t) {\r\n            if (t & 1)\r\n                res *= b;\r\n    \
+    \        b *= b;\r\n            t >>= 1;\r\n        }\r\n        return res;\r\
     \n    }\r\n    Fp &operator+=(const Fp &x) {\r\n        v += x.v;\r\n        if\
     \ (v >= get_mod())\r\n            v -= get_mod();\r\n        return *this;\r\n\
     \    }\r\n    Fp &operator-=(const Fp &x) {\r\n        v += get_mod() - x.v;\r\

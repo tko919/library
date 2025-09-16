@@ -51,8 +51,8 @@ data:
   - Graph/edgecoloring.hpp
   - Graph/opttoposort.hpp
   - Graph/euler.hpp
-  - DataStructure/rangeparalleluf.hpp
   - DataStructure/manhattanmst.hpp
+  - DataStructure/rangeparalleluf.hpp
   timestamp: '2022-01-05 16:50:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

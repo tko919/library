@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
   _extendedRequiredBy: []
@@ -82,8 +82,8 @@ data:
   timestamp: '2025-06-29 02:34:27+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/LC_counting_primes.test.cpp
   - Verify/YUKI_1781.test.cpp
+  - Verify/LC_counting_primes.test.cpp
 documentation_of: Math/lucydp.hpp
 layout: document
 redirect_from:

@@ -14,10 +14,10 @@ data:
   - icon: ':warning:'
     path: Math/mobius.hpp
     title: Mobius table
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Math/multiplicative2.hpp
     title: Multiplicative Sum $O(n^{2/3}(\log n)^{-1})$
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/powertable.hpp
     title: Enumrate $n^k$
   - icon: ':warning:'
@@ -36,18 +36,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_lcm_convolution.test.cpp
     title: Verify/LC_lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_sum_of_multiplicative_function.test.cpp
+    title: Verify/LC_sum_of_multiplicative_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_1781.test.cpp
     title: Verify/YUKI_1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Prime Sieve
     links: []
@@ -97,23 +100,24 @@ data:
   isVerificationFile: false
   path: Math/sieve.hpp
   requiredBy:
-  - Math/lucydp.hpp
+  - Convolution/divisor.hpp
+  - Math/lpftable.hpp
   - Math/totient.hpp
   - Math/multiplicative2.hpp
-  - Math/mobius.hpp
-  - Math/lpftable.hpp
+  - Math/lucydp.hpp
   - Math/powertable.hpp
-  - Convolution/divisor.hpp
+  - Math/mobius.hpp
   timestamp: '2025-04-06 06:46:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/LC_counting_primes.test.cpp
   - Verify/YUKI_1781.test.cpp
   - Verify/LC_enumerate_primes.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
   - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_sum_of_multiplicative_function.test.cpp
+  - Verify/LC_counting_primes.test.cpp
 documentation_of: Math/sieve.hpp
 layout: document
 redirect_from:

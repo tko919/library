@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: FPS/famous.hpp
     title: Famous Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy: []
@@ -32,18 +32,20 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
-    \ \"FPS/famous.hpp\"\n\ntemplate <typename T> vector<T> Bernoulli(int n) {\n \
-    \   Poly<T> f(n + 1);\n    rep(i, 0, n + 1) f[i] = Fact<T>(i + 1, 1);\n    f =\
-    \ f.inv();\n    rep(i, 0, n + 1) f[i] *= Fact<T>(i);\n    return f;\n}\n\ntemplate\
-    \ <typename T> vector<T> Partition(int n) {\n    Poly<T> f(n + 1);\n    f[0] =\
-    \ 1;\n    rep(k, 1, n + 1) {\n        if (1LL * k * (3 * k + 1) / 2 <= n)\n  \
-    \          f[1LL * k * (3 * k + 1) / 2] += (k & 1 ? -1 : 1);\n        if (1LL\
-    \ * k * (3 * k - 1) / 2 <= n)\n            f[1LL * k * (3 * k - 1) / 2] += (k\
-    \ & 1 ? -1 : 1);\n    }\n    return f.inv();\n}\n\ntemplate <typename T> vector<T>\
-    \ StirlingNumber1st(int n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n\
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n#line 3 \"FPS/famous.hpp\"\n\ntemplate <typename T> vector<T>\
+    \ Bernoulli(int n) {\n    Poly<T> f(n + 1);\n    rep(i, 0, n + 1) f[i] = Fact<T>(i\
+    \ + 1, 1);\n    f = f.inv();\n    rep(i, 0, n + 1) f[i] *= Fact<T>(i);\n    return\
+    \ f;\n}\n\ntemplate <typename T> vector<T> Partition(int n) {\n    Poly<T> f(n\
+    \ + 1);\n    f[0] = 1;\n    rep(k, 1, n + 1) {\n        if (1LL * k * (3 * k +\
+    \ 1) / 2 <= n)\n            f[1LL * k * (3 * k + 1) / 2] += (k & 1 ? -1 : 1);\n\
+    \        if (1LL * k * (3 * k - 1) / 2 <= n)\n            f[1LL * k * (3 * k -\
+    \ 1) / 2] += (k & 1 ? -1 : 1);\n    }\n    return f.inv();\n}\n\ntemplate <typename\
+    \ T> vector<T> StirlingNumber1st(int n) {\n    if (n == 0)\n        return Poly<T>({T(1)});\n\
     \    Poly<T> f({T(0), T(1)});\n    for (int LG = topbit(n) - 1; LG >= 0; LG--)\
     \ {\n        int m = n >> LG;\n        f *= f.shift(m >> 1);\n        if (m &\
     \ 1)\n            f = (f << 1) + f * T(m - 1);\n    }\n    rep(i, 0, n + 1) if\
@@ -79,7 +81,7 @@ data:
   isVerificationFile: false
   path: FPS/prefixsumofpoly.hpp
   requiredBy: []
-  timestamp: '2024-10-22 03:59:04+09:00'
+  timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/prefixsumofpoly.hpp

@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_find_linear_recurrence.test.cpp
     title: Verify/LC_find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,9 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Berlekamp Massey Algorithm
     links: []
@@ -52,12 +52,12 @@ data:
   requiredBy:
   - Math/bbla.hpp
   timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/YUKI_1112.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
   - Verify/YUKI_310.test.cpp
   - Verify/LC_find_linear_recurrence.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
 documentation_of: FPS/berlekampmassey.hpp
 layout: document
 redirect_from:

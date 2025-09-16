@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy: []
@@ -32,24 +32,26 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
-    \ \"Convolution/relax.hpp\"\n\r\ntemplate <typename T> class RelaxedConvolution\
-    \ {\r\n    using P = array<int, 2>;\r\n    using Q = array<P, 2>;\r\n    int N,\
-    \ pos;\r\n    Poly<T> f, g, buf;\r\n    vector<vector<Q>> event;\r\n    void dfs1(int\
-    \ L, int R) {\r\n        if (R - L == 1) {\r\n            event[L].push_back({P{L,\
-    \ L + 1}, P{0, 1}});\r\n            return;\r\n        }\r\n        int mid =\
-    \ (L + R) >> 1;\r\n        event[mid].push_back({P{L, mid}, P{mid - L, R - L}});\r\
-    \n        event[R].push_back({P{mid, R}, P{mid - L, R - L}});\r\n        dfs1(L,\
-    \ mid);\r\n        dfs1(mid, R);\r\n    }\r\n    void dfs2(int L, int R) {\r\n\
-    \        if (R - L == 1) {\r\n            event[L].push_back({P{0, 1}, P{L, L\
-    \ + 1}});\r\n            return;\r\n        }\r\n        int mid = (L + R) >>\
-    \ 1;\r\n        event[mid].push_back({P{mid - L, R - L}, P{L, mid}});\r\n    \
-    \    event[R].push_back({P{mid - L, R - L}, P{mid, R}});\r\n        dfs2(L, mid);\r\
-    \n        dfs2(mid, R);\r\n    }\r\n    void dfs(int len) {\r\n        if (len\
-    \ == 1) {\r\n            event[0].push_back({P{0, 1}, P{0, 1}});\r\n         \
-    \   return;\r\n        }\r\n        int mid = len >> 1;\r\n        event[len].push_back({P{mid,\
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n#line 3 \"Convolution/relax.hpp\"\n\r\ntemplate <typename\
+    \ T> class RelaxedConvolution {\r\n    using P = array<int, 2>;\r\n    using Q\
+    \ = array<P, 2>;\r\n    int N, pos;\r\n    Poly<T> f, g, buf;\r\n    vector<vector<Q>>\
+    \ event;\r\n    void dfs1(int L, int R) {\r\n        if (R - L == 1) {\r\n   \
+    \         event[L].push_back({P{L, L + 1}, P{0, 1}});\r\n            return;\r\
+    \n        }\r\n        int mid = (L + R) >> 1;\r\n        event[mid].push_back({P{L,\
+    \ mid}, P{mid - L, R - L}});\r\n        event[R].push_back({P{mid, R}, P{mid -\
+    \ L, R - L}});\r\n        dfs1(L, mid);\r\n        dfs1(mid, R);\r\n    }\r\n\
+    \    void dfs2(int L, int R) {\r\n        if (R - L == 1) {\r\n            event[L].push_back({P{0,\
+    \ 1}, P{L, L + 1}});\r\n            return;\r\n        }\r\n        int mid =\
+    \ (L + R) >> 1;\r\n        event[mid].push_back({P{mid - L, R - L}, P{L, mid}});\r\
+    \n        event[R].push_back({P{mid - L, R - L}, P{mid, R}});\r\n        dfs2(L,\
+    \ mid);\r\n        dfs2(mid, R);\r\n    }\r\n    void dfs(int len) {\r\n     \
+    \   if (len == 1) {\r\n            event[0].push_back({P{0, 1}, P{0, 1}});\r\n\
+    \            return;\r\n        }\r\n        int mid = len >> 1;\r\n        event[len].push_back({P{mid,\
     \ len}, P{mid, len}});\r\n        dfs(mid);\r\n        dfs1(mid, len);\r\n   \
     \     dfs2(mid, len);\r\n    }\r\n\r\n  public:\r\n    RelaxedConvolution(int\
     \ n) {\r\n        N = 1, pos = 0;\r\n        while (N < n)\r\n            N <<=\
@@ -138,7 +140,7 @@ data:
   isVerificationFile: false
   path: Convolution/relax.hpp
   requiredBy: []
-  timestamp: '2024-10-22 03:59:04+09:00'
+  timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_convolution_mod_2.test.cpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/comb.hpp
     title: Combination
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/sumofpolyexp.hpp
     title: $\sum_{k} r^k\cdot poly(k)$
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
     title: Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: interpolate (one point)
     links: []
@@ -38,17 +38,20 @@ data:
     \ < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(r,\
     \ inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename\
     \ T> T nHr(int n, int r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1,\
-    \ inv);\n}\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T\
-    \ choose(int n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return\
-    \ nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 3\
-    \ \"FPS/interpolate.hpp\"\n\n// f(0),..,f(d) -> f(t)\ntemplate <typename T> T\
-    \ Interpolate(vector<T> &ys, ll t) {\n    int d = ys.size() - 1;\n    if (t <=\
-    \ d)\n        return ys[t];\n    vector<T> L(d + 1, 1), R(d + 1, 1);\n    rep(i,\
-    \ 0, d) L[i + 1] = L[i] * (t - i);\n    for (int i = d; i; i--)\n        R[i -\
-    \ 1] = R[i] * (t - i);\n    T ret;\n    rep(i, 0, d + 1) {\n        T add = ys[i]\
-    \ * L[i] * R[i] * Fact<T>(i, 1) * Fact<T>(d - i, 1);\n        if ((d - i) & 1)\n\
-    \            ret -= add;\n        else\n            ret += add;\n    }\n    return\
-    \ ret;\n}\n\n/**\n * @brief interpolate (one point)\n */\n"
+    \ inv);\n}\n// [x^n]C(x)^k\ntemplate <typename T> T Catalan(int n, int k) {\n\
+    \    if (k == 0)\n        return (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n\
+    \ * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum = n, a nonzero tuples and b tuples\n\
+    template <typename T> T choose(int n, int a, int b) {\n    if (n == 0)\n     \
+    \   return !a;\n    return nCr<T>(n + b - 1, a + b - 1);\n}\n\n/**\n * @brief\
+    \ Combination\n */\n#line 3 \"FPS/interpolate.hpp\"\n\n// f(0),..,f(d) -> f(t)\n\
+    template <typename T> T Interpolate(vector<T> &ys, ll t) {\n    int d = ys.size()\
+    \ - 1;\n    if (t <= d)\n        return ys[t];\n    vector<T> L(d + 1, 1), R(d\
+    \ + 1, 1);\n    rep(i, 0, d) L[i + 1] = L[i] * (t - i);\n    for (int i = d; i;\
+    \ i--)\n        R[i - 1] = R[i] * (t - i);\n    T ret;\n    rep(i, 0, d + 1) {\n\
+    \        T add = ys[i] * L[i] * R[i] * Fact<T>(i, 1) * Fact<T>(d - i, 1);\n  \
+    \      if ((d - i) & 1)\n            ret -= add;\n        else\n            ret\
+    \ += add;\n    }\n    return ret;\n}\n\n/**\n * @brief interpolate (one point)\n\
+    \ */\n"
   code: "#pragma once\n#include \"Math/comb.hpp\"\n\n// f(0),..,f(d) -> f(t)\ntemplate\
     \ <typename T> T Interpolate(vector<T> &ys, ll t) {\n    int d = ys.size() - 1;\n\
     \    if (t <= d)\n        return ys[t];\n    vector<T> L(d + 1, 1), R(d + 1, 1);\n\
@@ -63,11 +66,11 @@ data:
   path: FPS/interpolate.hpp
   requiredBy:
   - FPS/sumofpolyexp.hpp
-  timestamp: '2025-05-11 13:37:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-07-13 05:51:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
   - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: FPS/interpolate.hpp
 layout: document
 redirect_from:
