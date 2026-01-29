@@ -13,7 +13,7 @@ data:
     document_title: Monge Shortest Path
     links: []
   bundledCode: "#line 2 \"Algorithm/fibonacci.hpp\"\n\ntemplate <typename T, typename\
-    \ F, bool MINIMIZE = 1>\nT FibonacciSearch(ll lb, ll rb, F f) {\n    ll s = 1,\
+    \ F>\nT FibonacciSearch(ll lb, ll rb, F f, bool MINIMIZE = 1) {\n    ll s = 1,\
     \ t = 2;\n    while (t < rb - lb + 2) {\n        s += t;\n        swap(s, t);\n\
     \    }\n    ll L = lb - 1, m1 = L + t - s, m2 = L + s;\n    T v1 = f(m1), v2 =\
     \ f(m2);\n    while (m1 != m2) {\n        t -= s;\n        swap(s, t);\n     \
@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: Algorithm/mongedp.hpp
   requiredBy: []
-  timestamp: '2024-04-29 21:46:51+00:00'
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Algorithm/mongedp.hpp

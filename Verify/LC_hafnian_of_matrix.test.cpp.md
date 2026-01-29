@@ -241,9 +241,9 @@ data:
     \n    }\r\n    Matrix operator+(const Matrix &m) const {\r\n        return Matrix(*this)\
     \ += m;\r\n    }\r\n    Matrix operator-(const Matrix &m) const {\r\n        return\
     \ Matrix(*this) -= m;\r\n    }\r\n    Matrix operator*(const Matrix &m) const\
-    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k) {\r\
-    \n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
-    \ = 1;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
+    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k, T e)\
+    \ {\r\n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
+    \ = e;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
     \ *= c;\r\n            c *= c;\r\n            k >>= 1;\r\n        }\r\n      \
     \  return res;\r\n    }\r\n    vector<int> gauss(int c = -1) {\r\n        det\
     \ = 1;\r\n        if (val.empty())\r\n            return {};\r\n        if (c\
@@ -291,14 +291,27 @@ data:
     \ m + 1 - j) c[j + k] += A[i][j] * B[i][k];\r\n            swap(A[i], c);\r\n\
     \        }\r\n        mobius(A);\r\n        vector<T> ret(n);\r\n        rep(i,\
     \ 0, n) ret[i] = A[i][bpc[i]];\r\n        return ret;\r\n    }\r\n    vector<T>\
-    \ TransposeMult(vector<T> &a, vector<T> &b) {\r\n        auto ret = a;\r\n   \
-    \     reverse(ALL(ret));\r\n        ret = mult(ret, b);\r\n        reverse(ALL(ret));\r\
-    \n        return ret;\r\n    }\r\n    vector<T> exp(vector<T> &f) {\r\n      \
-    \  int n = topbit(SZ(f));\r\n        vector<T> ret(1 << n);\r\n        ret[0]\
-    \ = 1;\r\n        rep(i, 0, n) {\r\n            vector<T> a = {ret.begin(), ret.begin()\
-    \ + (1 << i)};\r\n            vector<T> b = {f.begin() + (1 << i), f.begin() +\
-    \ (2 << i)};\r\n            a = mult(a, b);\r\n            copy(ALL(a), ret.begin()\
-    \ + (1 << i));\r\n        }\r\n        return ret;\r\n    }\r\n    vector<T> CompositionEGF(vector<T>\
+    \ div(vector<T> &a, vector<T> &b) {\r\n        assert(a.size() == b.size());\r\
+    \n        int n = SZ(a), m = topbit(n);\r\n        vector<POL> A(n), B(n);\r\n\
+    \        rep(i, 0, n) {\r\n            A[i][bpc[i]] = a[i];\r\n            B[i][bpc[i]]\
+    \ = b[i];\r\n        }\r\n        zeta(A);\r\n        zeta(B);\r\n        rep(i,\
+    \ 0, n) {\r\n            POL c = A[i];\r\n            rep(j, 0, m + 1) rep(k,\
+    \ 0, j) c[j] -= c[k] * B[i][j - k];\r\n            swap(A[i], c);\r\n        }\r\
+    \n        mobius(A);\r\n        vector<T> ret(n);\r\n        rep(i, 0, n) ret[i]\
+    \ = A[i][bpc[i]];\r\n        return ret;\r\n    }\r\n    vector<T> TransposeMult(vector<T>\
+    \ &a, vector<T> &b) {\r\n        auto ret = a;\r\n        reverse(ALL(ret));\r\
+    \n        ret = mult(ret, b);\r\n        reverse(ALL(ret));\r\n        return\
+    \ ret;\r\n    }\r\n    vector<T> exp(vector<T> &f) {\r\n        int n = topbit(SZ(f));\r\
+    \n        vector<T> ret(1 << n);\r\n        ret[0] = 1;\r\n        rep(i, 0, n)\
+    \ {\r\n            vector<T> a = {ret.begin(), ret.begin() + (1 << i)};\r\n  \
+    \          vector<T> b = {f.begin() + (1 << i), f.begin() + (2 << i)};\r\n   \
+    \         a = mult(a, b);\r\n            copy(ALL(a), ret.begin() + (1 << i));\r\
+    \n        }\r\n        return ret;\r\n    }\r\n    vector<T> log(vector<T> &f)\
+    \ {\r\n        int n = topbit(SZ(f));\r\n        vector<T> ret(1 << n);\r\n  \
+    \      rrep(i, 0, n) {\r\n            vector<T> a = {f.begin(), f.begin() + (1\
+    \ << i)};\r\n            vector<T> b = {f.begin() + (1 << i), f.begin() + (2 <<\
+    \ i)};\r\n            a = div(b, a);\r\n            copy(ALL(a), ret.begin() +\
+    \ (1 << i));\r\n        }\r\n        return ret;\r\n    }\r\n    vector<T> CompositionEGF(vector<T>\
     \ &s, vector<T> &f) {\r\n        int n = topbit(SZ(s));\r\n        f.resize(n\
     \ + 1);\r\n        vector<T> dp(1);\r\n        dp[0] = f.back();\r\n        rrep(d,\
     \ 0, n) {\r\n            vector<T> ndp(1 << (n - d));\r\n            ndp[0] =\
@@ -361,7 +374,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2025-07-13 05:51:38+09:00'
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_hafnian_of_matrix.test.cpp

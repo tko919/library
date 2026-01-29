@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Algorithm/mo.hpp
     title: Mo's Algorithm
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -85,26 +85,26 @@ data:
     \            while(lb<L[i])dell(lb++);\r\n            while(rb>R[i])delr(--rb);\r\
     \n            out(i);\r\n        }\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Mo's\
     \ Algorithm\r\n * @docs docs/mo.md\r\n */\n#line 2 \"DataStructure/bit.hpp\"\n\
-    \r\ntemplate <typename T> struct BIT {\r\n    int n;\r\n    T all = 0;\r\n   \
-    \ vector<T> val;\r\n    BIT(int _n = 0) : n(_n), val(_n + 10) {}\r\n    void clear()\
-    \ {\r\n        val.assign(n + 10, 0);\r\n        all = T();\r\n    }\r\n    void\
-    \ add(int i, T x) {\r\n        for (i++; i <= n; i += (i & -i))\r\n          \
-    \  val[i] = val[i] + x;\r\n        all += x;\r\n    }\r\n    T sum(int i) {\r\n\
-    \        i = clamp(i, 0, n);\r\n        T res = 0;\r\n        for (; i; i -= (i\
-    \ & -i))\r\n            res += val[i];\r\n        return res;\r\n    }\r\n   \
-    \ // [L,R)\r\n    T sum(int L, int R) {\r\n        if (L > R)\r\n            return\
-    \ T(0);\r\n        return sum(R) - sum(L);\r\n    }\r\n    int lower_bound(T x)\
-    \ {\r\n        int ret = 0, len = 1;\r\n        while (2 * len <= n)\r\n     \
-    \       len <<= 1;\r\n        for (; len >= 1; len >>= 1) {\r\n            if\
-    \ (ret + len <= n and val[ret + len] < x) {\r\n                ret += len;\r\n\
-    \                x -= val[ret];\r\n            }\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n */\n#line\
-    \ 6 \"Verify/LC_static_range_inversions_query.test.cpp\"\n\r\nint a[101010];\r\
-    \nll ret[101010],cur=0;\r\nBIT<int> bit(101010);\r\n\r\nint main(){\r\n    int\
-    \ n,q;\r\n    cin>>n>>q;\r\n    using P=pair<int,int>;\r\n    vector<P> vs(n);\r\
-    \n    rep(i,0,n){\r\n        cin>>vs[i].first;\r\n        vs[i].second=i;\r\n\
-    \    }\r\n    sort(ALL(vs));\r\n    rep(i,0,n)a[vs[i].second]=i;\r\n\r\n    auto\
-    \ addl=[&](int i){\r\n        cur+=bit.sum(a[i]);\r\n        bit.add(a[i],1);\r\
+    \r\ntemplate <typename T> struct BIT {\r\n    int n;\r\n    T all = T();\r\n \
+    \   vector<T> val;\r\n    BIT(int _n = 0) : n(_n), val(_n + 10) {}\r\n    void\
+    \ clear() {\r\n        val.assign(n + 10, T());\r\n        all = T();\r\n    }\r\
+    \n    void add(int i, T x) {\r\n        for (i++; i <= n; i += (i & -i))\r\n \
+    \           val[i] = val[i] + x;\r\n        all += x;\r\n    }\r\n    T sum(int\
+    \ i) {\r\n        i = clamp(i, 0, n);\r\n        T res = T();\r\n        for (;\
+    \ i; i -= (i & -i))\r\n            res += val[i];\r\n        return res;\r\n \
+    \   }\r\n    // [L,R)\r\n    T sum(int L, int R) {\r\n        if (L > R)\r\n \
+    \           return T();\r\n        return sum(R) - sum(L);\r\n    }\r\n    //\
+    \ max index s.t. sum[0,i]<=x\r\n    int lower_bound(T x) {\r\n        int ret\
+    \ = 0, len = 1;\r\n        while (2 * len <= n)\r\n            len <<= 1;\r\n\
+    \        for (; len >= 1; len >>= 1) {\r\n            if (ret + len <= n and val[ret\
+    \ + len] < x) {\r\n                ret += len;\r\n                x -= val[ret];\r\
+    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Binary Indexed Tree\r\n */\n#line 6 \"Verify/LC_static_range_inversions_query.test.cpp\"\
+    \n\r\nint a[101010];\r\nll ret[101010],cur=0;\r\nBIT<int> bit(101010);\r\n\r\n\
+    int main(){\r\n    int n,q;\r\n    cin>>n>>q;\r\n    using P=pair<int,int>;\r\n\
+    \    vector<P> vs(n);\r\n    rep(i,0,n){\r\n        cin>>vs[i].first;\r\n    \
+    \    vs[i].second=i;\r\n    }\r\n    sort(ALL(vs));\r\n    rep(i,0,n)a[vs[i].second]=i;\r\
+    \n\r\n    auto addl=[&](int i){\r\n        cur+=bit.sum(a[i]);\r\n        bit.add(a[i],1);\r\
     \n    };\r\n    auto addr=[&](int i){\r\n        cur+=bit.all-bit.sum(a[i]);\r\
     \n        bit.add(a[i],1);\r\n    };\r\n    auto dell=[&](int i){\r\n        bit.add(a[i],-1);\r\
     \n        cur-=bit.sum(a[i]);\r\n    };\r\n    auto delr=[&](int i){\r\n     \
@@ -135,8 +135,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-30 05:37:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_static_range_inversions_query.test.cpp
 layout: document

@@ -14,14 +14,29 @@ data:
     path: Math/comb.hpp
     title: Combination
   - icon: ':question:'
+    path: Math/fastdiv.hpp
+    title: Fast Division
+  - icon: ':question:'
+    path: Math/miller.hpp
+    title: Miller-Rabin
+  - icon: ':question:'
     path: Math/modint.hpp
     title: Modint
+  - icon: ':question:'
+    path: Math/pollard.hpp
+    title: Pollard-Rho
+  - icon: ':question:'
+    path: Math/primitive.hpp
+    title: Primitive Function
   - icon: ':question:'
     path: Template/template.hpp
     title: Template/template.hpp
   - icon: ':question:'
     path: Utility/fastio.hpp
     title: Fast IO
+  - icon: ':question:'
+    path: Utility/random.hpp
+    title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -225,121 +240,306 @@ data:
     \ &os, const fp &x) {\r\n        return os << x.v;\r\n    }\r\n};\r\n\r\ntemplate\
     \ <unsigned mod> void rd(fp<mod> &x) {\r\n    fastio::rd(x.v);\r\n}\r\ntemplate\
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
-    \n * @brief Modint\r\n */\n#line 2 \"Convolution/ntt.hpp\"\n\r\ntemplate <typename\
-    \ T> struct NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod()\
+    \n * @brief Modint\r\n */\n#line 2 \"Math/fastdiv.hpp\"\n\nstruct FastDiv {\n\
+    \    using u64 = uint64_t;\n    using u128 = __uint128_t;\n    constexpr FastDiv()\
+    \ : m(), s(), x() {}\n    constexpr FastDiv(int _m)\n        : m(_m), s(__lg(m\
+    \ - 1)), x(((u128(1) << (s + 64)) + m - 1) / m) {}\n    constexpr int get() {\n\
+    \        return m;\n    }\n    constexpr friend u64 operator/(u64 n, const FastDiv\
+    \ &d) {\n        return (u128(n) * d.x >> d.s) >> 64;\n    }\n    constexpr friend\
+    \ int operator%(u64 n, const FastDiv &d) {\n        return n - n / d * d.m;\n\
+    \    }\n    constexpr pair<u64, int> divmod(u64 n) const {\n        u64 q = n\
+    \ / (*this);\n        return {q, n - q * m};\n    }\n    int m, s;\n    u64 x;\n\
+    };\n\nstruct FastDiv64 {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n\
+    \    u128 mod, mh, ml;\n    explicit FastDiv64(u64 mod = 1) : mod(mod) {\n   \
+    \     u128 m = u128(-1) / mod;\n        if (m * mod + mod == u128(0))\n      \
+    \      ++m;\n        mh = m >> 64;\n        ml = m & u64(-1);\n    }\n    u64\
+    \ umod() const {\n        return mod;\n    }\n    u64 modulo(u128 x) {\n     \
+    \   u128 z = (x & u64(-1)) * ml;\n        z = (x & u64(-1)) * mh + (x >> 64) *\
+    \ ml + (z >> 64);\n        z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n\
+    \        return x < mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n \
+    \       return modulo(u128(a) * b);\n    }\n};\n\n/**\n * @brief Fast Division\n\
+    \ */\n#line 2 \"Math/miller.hpp\"\n\r\nstruct m64 {\r\n    using i64 = int64_t;\r\
+    \n    using u64 = uint64_t;\r\n    using u128 = __uint128_t;\r\n\r\n    static\
+    \ u64 mod;\r\n    static u64 r;\r\n    static u64 n2;\r\n\r\n    static u64 get_r()\
+    \ {\r\n        u64 ret = mod;\r\n        rep(_,0,5) ret *= 2 - mod * ret;\r\n\
+    \        return ret;\r\n    }\r\n\r\n    static void set_mod(u64 m) {\r\n    \
+    \    assert(m < (1LL << 62));\r\n        assert((m & 1) == 1);\r\n        mod\
+    \ = m;\r\n        n2 = -u128(m) % m;\r\n        r = get_r();\r\n        assert(r\
+    \ * mod == 1);\r\n    }\r\n    static u64 get_mod() { return mod; }\r\n\r\n  \
+    \  u64 a;\r\n    m64() : a(0) {}\r\n    m64(const int64_t &b) : a(reduce((u128(b)\
+    \ + mod) * n2)){};\r\n\r\n    static u64 reduce(const u128 &b) {\r\n        return\
+    \ (b + u128(u64(b) * u64(-r)) * mod) >> 64;\r\n    }\r\n    u64 get() const {\r\
+    \n        u64 ret = reduce(a);\r\n        return ret >= mod ? ret - mod : ret;\r\
+    \n    }\r\n    m64 &operator*=(const m64 &b) {\r\n        a = reduce(u128(a) *\
+    \ b.a);\r\n        return *this;\r\n    }\r\n    m64 operator*(const m64 &b) const\
+    \ { return m64(*this) *= b; }\r\n    bool operator==(const m64 &b) const {\r\n\
+    \        return (a >= mod ? a - mod : a) == (b.a >= mod ? b.a - mod : b.a);\r\n\
+    \    }\r\n    bool operator!=(const m64 &b) const {\r\n        return (a >= mod\
+    \ ? a - mod : a) != (b.a >= mod ? b.a - mod : b.a);\r\n    }\r\n    m64 pow(u128\
+    \ n) const {\r\n        m64 ret(1), mul(*this);\r\n        while (n > 0) {\r\n\
+    \        if (n & 1) ret *= mul;\r\n        mul *= mul;\r\n        n >>= 1;\r\n\
+    \        }\r\n        return ret;\r\n    }\r\n};\r\ntypename m64::u64 m64::mod,\
+    \ m64::r, m64::n2;\r\n\r\nbool Miller(ll n){\r\n    if(n<2 or (n&1)==0)return\
+    \ (n==2);\r\n    m64::set_mod(n);\r\n    ll d=n-1; while((d&1)==0)d>>=1;\r\n \
+    \   vector<ll> seeds;\r\n    if(n<(1<<30))seeds={2, 7, 61};\r\n    else seeds={2,\
+    \ 325, 9375, 28178, 450775, 9780504};\r\n    for(auto& x:seeds){\r\n        if(n<=x)break;\r\
+    \n        ll t=d;\r\n        m64 y=m64(x).pow(t);\r\n        while(t!=n-1 and\
+    \ y!=1 and y!=n-1){\r\n            y*=y;\r\n            t<<=1;\r\n        }\r\n\
+    \        if(y!=n-1 and (t&1)==0)return 0;\r\n    } return 1;\r\n}\r\n\r\n/**\r\
+    \n * @brief Miller-Rabin\r\n */\n#line 2 \"Utility/random.hpp\"\n\r\nnamespace\
+    \ Random {\r\nmt19937_64 randgen(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \nusing u64 = unsigned long long;\r\nu64 get() {\r\n    return randgen();\r\n\
+    }\r\ntemplate <typename T> T get(T L) { // [0,L]\r\n    return get() % (L + 1);\r\
+    \n}\r\ntemplate <typename T> T get(T L, T R) { // [L,R]\r\n    return get(R -\
+    \ L) + L;\r\n}\r\ndouble uniform() {\r\n    return double(get(1000000000)) / 1000000000;\r\
+    \n}\r\nstring str(int n) {\r\n    string ret;\r\n    rep(i, 0, n) ret += get('a',\
+    \ 'z');\r\n    return ret;\r\n}\r\ntemplate <typename Iter> void shuffle(Iter\
+    \ first, Iter last) {\r\n    if (first == last)\r\n        return;\r\n    int\
+    \ len = 1;\r\n    for (auto it = first + 1; it != last; it++) {\r\n        len++;\r\
+    \n        int j = get(0, len - 1);\r\n        if (j != len - 1)\r\n          \
+    \  iter_swap(it, first + j);\r\n    }\r\n}\r\ntemplate <typename T> vector<T>\
+    \ select(int n, T L, T R) { // [L,R]\r\n    if (n * 2 >= R - L + 1) {\r\n    \
+    \    vector<T> ret(R - L + 1);\r\n        iota(ALL(ret), L);\r\n        shuffle(ALL(ret));\r\
+    \n        ret.resize(n);\r\n        return ret;\r\n    } else {\r\n        unordered_set<T>\
+    \ used;\r\n        vector<T> ret;\r\n        while (SZ(used) < n) {\r\n      \
+    \      T x = get(L, R);\r\n            if (!used.count(x)) {\r\n             \
+    \   used.insert(x);\r\n                ret.push_back(x);\r\n            }\r\n\
+    \        }\r\n        return ret;\r\n    }\r\n}\r\n\r\nvoid relabel(int n, vector<pair<int,\
+    \ int>> &es) {\r\n    shuffle(ALL(es));\r\n    vector<int> ord(n);\r\n    iota(ALL(ord),\
+    \ 0);\r\n    shuffle(ALL(ord));\r\n    for (auto &[u, v] : es)\r\n        u =\
+    \ ord[u], v = ord[v];\r\n}\r\ntemplate <bool directed, bool multi, bool self>\r\
+    \nvector<pair<int, int>> genGraph(int n, int m) {\r\n    vector<pair<int, int>>\
+    \ cand, es;\r\n    rep(u, 0, n) rep(v, 0, n) {\r\n        if (!self and u == v)\r\
+    \n            continue;\r\n        if (!directed and u > v)\r\n            continue;\r\
+    \n        cand.push_back({u, v});\r\n    }\r\n    if (m == -1)\r\n        m =\
+    \ get(SZ(cand));\r\n    // chmin(m, SZ(cand));\r\n    vector<int> ord;\r\n   \
+    \ if (multi)\r\n        rep(_, 0, m) ord.push_back(get(SZ(cand) - 1));\r\n   \
+    \ else {\r\n        ord = select(m, 0, SZ(cand) - 1);\r\n    }\r\n    for (auto\
+    \ &i : ord)\r\n        es.push_back(cand[i]);\r\n    relabel(n, es);\r\n    return\
+    \ es;\r\n}\r\nvector<pair<int, int>> genTree(int n) {\r\n    vector<pair<int,\
+    \ int>> es;\r\n    rep(i, 1, n) es.push_back({get(i - 1), i});\r\n    relabel(n,\
+    \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
+    \ Random\r\n */\n#line 4 \"Math/pollard.hpp\"\n\r\nvector<ll> Pollard(ll n) {\r\
+    \n    if (n <= 1)\r\n        return {};\r\n    if (Miller(n))\r\n        return\
+    \ {n};\r\n    if ((n & 1) == 0) {\r\n        vector<ll> v = Pollard(n >> 1);\r\
+    \n        v.push_back(2);\r\n        return v;\r\n    }\r\n    for (ll x = 2,\
+    \ y = 2, d;;) {\r\n        ll c = Random::get(2LL, n - 1);\r\n        do {\r\n\
+    \            x = (__int128_t(x) * x + c) % n;\r\n            y = (__int128_t(y)\
+    \ * y + c) % n;\r\n            y = (__int128_t(y) * y + c) % n;\r\n          \
+    \  d = __gcd(x - y + n, n);\r\n        } while (d == 1);\r\n        if (d < n)\
+    \ {\r\n            vector<ll> lb = Pollard(d), rb = Pollard(n / d);\r\n      \
+    \      lb.insert(lb.end(), ALL(rb));\r\n            return lb;\r\n        }\r\n\
+    \    }\r\n}\r\n\r\nvector<pair<ll, int>> Pollard2(ll n) {\r\n    auto ps = Pollard(n);\r\
+    \n    sort(ALL(ps));\r\n    using P = pair<ll, int>;\r\n    vector<P> pes;\r\n\
+    \    for (auto &p : ps) {\r\n        if (pes.empty() or pes.back().first != p)\
+    \ {\r\n            pes.push_back({p, 1});\r\n        } else {\r\n            pes.back().second++;\r\
+    \n        }\r\n    }\r\n    return pes;\r\n}\r\n\r\nvector<ll> EnumDivisors(ll\
+    \ n) {\r\n    auto pes = Pollard2(n);\r\n    vector<ll> ret;\r\n    auto rec =\
+    \ [&](auto &rec, int id, ll d) -> void {\r\n        if (id == SZ(pes)) {\r\n \
+    \           ret.push_back(d);\r\n            return;\r\n        }\r\n        rec(rec,\
+    \ id + 1, d);\r\n        rep(e, 0, pes[id].second) {\r\n            d *= pes[id].first;\r\
+    \n            rec(rec, id + 1, d);\r\n        }\r\n    };\r\n    rec(rec, 0, 1);\r\
+    \n    sort(ALL(ret));\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Pollard-Rho\r\
+    \n */\n#line 4 \"Math/primitive.hpp\"\n\r\nll mpow(ll a, ll t, ll m) {\r\n   \
+    \ ll res = 1;\r\n    FastDiv64 im(m);\r\n    while (t) {\r\n        if (t & 1)\r\
+    \n            res = im.modulo(__int128_t(res) * a);\r\n        a = im.modulo(__int128_t(a)\
+    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res;\r\n}\r\nll minv(ll a,\
+    \ ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t =\
+    \ a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
+    \n        swap(u, v);\r\n    }\r\n    u = (u % m + m) % m;\r\n    return u;\r\n\
+    }\r\nll getPrimitiveRoot(ll p) {\r\n    vector<ll> ps = Pollard(p - 1);\r\n  \
+    \  sort(ALL(ps));\r\n    rep(x, 1, inf) {\r\n        for (auto &q : ps) {\r\n\
+    \            if (mpow(x, (p - 1) / q, p) == 1)\r\n                goto fail;\r\
+    \n        }\r\n        return x;\r\n    fail:;\r\n    }\r\n    assert(0);\r\n\
+    }\r\ntemplate <typename T> T extgcd(T a, T b, T &p, T &q) {\r\n    if (b == 0)\
+    \ {\r\n        p = 1;\r\n        q = 0;\r\n        return a;\r\n    }\r\n    T\
+    \ d = extgcd(b, a % b, q, p);\r\n    q -= a / b * p;\r\n    return d;\r\n}\r\n\
+    template <typename T> pair<T, T> crt(vector<T> vs, vector<T> ms) {\r\n    T V\
+    \ = vs[0], M = ms[0];\r\n    rep(i, 1, vs.size()) {\r\n        T p, q, v = vs[i],\
+    \ m = ms[i];\r\n        if (M < m)\r\n            swap(M, m), swap(V, v);\r\n\
+    \        T d = extgcd(M, m, p, q);\r\n        if ((v - V) % d != 0)\r\n      \
+    \      return {0, -1};\r\n        T md = m / d, tmp = (v - V) / d % md * p % md;\r\
+    \n        V += M * tmp;\r\n        M *= md;\r\n    }\r\n    V = (V % M + M) %\
+    \ M;\r\n    return {V, M};\r\n}\r\nll garner(vector<ll> vs, vector<ll> p, int\
+    \ mod) {\r\n    int sz = SZ(vs);\r\n    vector<ll> kp(sz + 1), rmul(sz + 1, 1);\r\
+    \n    p.push_back(mod);\r\n    rep(i, 0, sz) {\r\n        ll x = (vs[i] - kp[i])\
+    \ * minv(rmul[i], p[i]) % p[i];\r\n        if (x < 0)\r\n            x += p[i];\r\
+    \n        rep(j, i + 1, sz + 1) {\r\n            kp[j] += rmul[j] * x;\r\n   \
+    \         kp[j] %= p[j];\r\n            rmul[j] *= p[i];\r\n            rmul[j]\
+    \ %= p[j];\r\n        }\r\n    }\r\n    return kp.back();\r\n}\r\n\r\nll ModLog(ll\
+    \ a, ll b, ll p) {\r\n    ll g = 1;\r\n    for (ll t = p; t; t >>= 1)\r\n    \
+    \    g = g * a % p;\r\n    g = __gcd(g, p);\r\n    ll t = 1, c = 0;\r\n    for\
+    \ (; t % g; c++) {\r\n        if (t == b)\r\n            return c;\r\n       \
+    \ t = t * a % p;\r\n    }\r\n    if (b % g)\r\n        return -1;\r\n    t /=\
+    \ g, b /= g;\r\n    ll n = p / g, h = 0, gs = 1;\r\n    for (; h * h < n; h++)\r\
+    \n        gs = gs * a % n;\r\n    unordered_map<ll, ll> bs;\r\n    for (ll s =\
+    \ 0, e = b; s < h; bs[e] = ++s)\r\n        e = e * a % n;\r\n    for (ll s = 0,\
+    \ e = t; s < n;) {\r\n        e = e * gs % n, s += h;\r\n        if (bs.count(e))\
+    \ {\r\n            return c + s - bs[e];\r\n        }\r\n    }\r\n    return -1;\r\
+    \n}\r\n\r\nll TonelliShanks(ll a, ll p) {\r\n    a %= p;\r\n    if (a == 0)\r\n\
+    \        return 0;\r\n    if (p == 2)\r\n        return a;\r\n    if (mpow(a,\
+    \ (p - 1) >> 1, p) != 1)\r\n        return -1;\r\n    ll b = 1;\r\n    while (mpow(b,\
+    \ (p - 1) >> 1, p) == 1)\r\n        b = Random::get(1LL, p - 1);\r\n\r\n    ll\
+    \ q = p - 1, k = 0;\r\n    while (q % 2 == 0) {\r\n        q >>= 1;\r\n      \
+    \  k++;\r\n    }\r\n    ll x = mpow(a, (q + 1) >> 1, p);\r\n    b = mpow(b, q,\
+    \ p);\r\n    k -= 2;\r\n    while (mpow(x, 2, p) != a) {\r\n        ll err = minv(a,\
+    \ p) * mpow(x, 2, p) % p;\r\n        if (mpow(err, 1 << k, p) != 1)\r\n      \
+    \      x = x * b % p;\r\n        b = mpow(b, 2, p);\r\n        k--;\r\n    }\r\
+    \n    return x;\r\n}\r\n\r\nll mod_root(ll k, ll a, ll m) {\r\n    if (a == 0)\r\
+    \n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n \
+    \   k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m)\
+    \ != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\
+    \n    FastDiv64 im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll\
+    \ { // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n  \
+    \      while (q % p == 0) {\r\n            q /= p;\r\n            s++;\r\n   \
+    \     }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n      \
+    \     res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n\
+    \        while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n        c\
+    \ = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d\
+    \ * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1),\
+    \ m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = im.modulo(i128(v) * bs);\r\
+    \n        ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i,\
+    \ 0, d) {\r\n            ll err = im.modulo(i128(a) * minv(mpow(res, pe, m), m));\r\
+    \n            ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n          \
+    \  rep(j, 0, block + 1) {\r\n                if (mp.count(pos)) {\r\n        \
+    \            res = im.modulo(i128(res) *\r\n                                 \
+    \   mpow(c,\r\n                                         (block * mp[pos] + j)\
+    \ *\r\n                                             mpow(p, i, m - 1) % (m - 1),\r\
+    \n                                         m));\r\n                    break;\r\
+    \n                }\r\n                pos = im.modulo(i128(pos) * gs);\r\n  \
+    \          }\r\n        }\r\n        return res;\r\n    };\r\n\r\n    for (ll\
+    \ d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n            int sz =\
+    \ 0;\r\n            while (g % d == 0) {\r\n                g /= d;\r\n      \
+    \          sz++;\r\n            }\r\n            a = _subroot(d, sz, a);\r\n \
+    \       }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return a;\r\
+    \n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or k == 1)\r\n   \
+    \     return a;\r\n    if (k >= 64)\r\n        return 1;\r\n    if (k == 2)\r\n\
+    \        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\
+    \n        a--;\r\n    auto mul = [&](ull &x, const ull &y) {\r\n        if (x\
+    \ <= LIM / y)\r\n            x *= y;\r\n        else\r\n            x = LIM;\r\
+    \n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n\
+    \        while (t) {\r\n            if (t & 1)\r\n                mul(y, x);\r\
+    \n            mul(x, x);\r\n            t >>= 1;\r\n        }\r\n        return\
+    \ y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k),\
+    \ 0)));\r\n    while (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\
+    \n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n#line 3 \"Convolution/ntt.hpp\"\
+    \n\r\ntemplate <typename T> struct NTT {\r\n    static constexpr int rank2 = __builtin_ctzll(T::get_mod()\
     \ - 1);\r\n    std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1\r\n    std::array<T,\
     \ rank2 + 1> iroot; // root[i] * iroot[i] == 1\r\n\r\n    std::array<T, std::max(0,\
     \ rank2 - 2 + 1)> rate2;\r\n    std::array<T, std::max(0, rank2 - 2 + 1)> irate2;\r\
     \n\r\n    std::array<T, std::max(0, rank2 - 3 + 1)> rate3;\r\n    std::array<T,\
-    \ std::max(0, rank2 - 3 + 1)> irate3;\r\n\r\n    NTT() {\r\n        T g = 2;\r\
-    \n        while (g.pow((T::get_mod() - 1) >> 1) == 1) {\r\n            g += 1;\r\
-    \n        }\r\n        root[rank2] = g.pow((T::get_mod() - 1) >> rank2);\r\n \
-    \       iroot[rank2] = root[rank2].inv();\r\n        for (int i = rank2 - 1; i\
-    \ >= 0; i--) {\r\n            root[i] = root[i + 1] * root[i + 1];\r\n       \
-    \     iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n        }\r\n\r\n        {\r\n\
-    \            T prod = 1, iprod = 1;\r\n            for (int i = 0; i <= rank2\
-    \ - 2; i++) {\r\n                rate2[i] = root[i + 2] * prod;\r\n          \
-    \      irate2[i] = iroot[i + 2] * iprod;\r\n                prod *= iroot[i +\
-    \ 2];\r\n                iprod *= root[i + 2];\r\n            }\r\n        }\r\
-    \n        {\r\n            T prod = 1, iprod = 1;\r\n            for (int i =\
-    \ 0; i <= rank2 - 3; i++) {\r\n                rate3[i] = root[i + 3] * prod;\r\
-    \n                irate3[i] = iroot[i + 3] * iprod;\r\n                prod *=\
-    \ iroot[i + 3];\r\n                iprod *= root[i + 3];\r\n            }\r\n\
-    \        }\r\n    }\r\n\r\n    void ntt(std::vector<T> &a, bool type = 0) {\r\n\
-    \        int n = int(a.size());\r\n        int h = __builtin_ctzll((unsigned int)n);\r\
-    \n        a.resize(1 << h);\r\n\r\n        if (type) {\r\n            int len\
-    \ = h; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n            while\
-    \ (len) {\r\n                if (len == 1) {\r\n                    int p = 1\
-    \ << (h - len);\r\n                    T irot = 1;\r\n                    for\
-    \ (int s = 0; s < (1 << (len - 1)); s++) {\r\n                        int offset\
-    \ = s << (h - len + 1);\r\n                        for (int i = 0; i < p; i++)\
-    \ {\r\n                            auto l = a[i + offset];\r\n               \
-    \             auto r = a[i + offset + p];\r\n                            a[i +\
-    \ offset] = l + r;\r\n                            a[i + offset + p] =\r\n    \
-    \                            (unsigned long long)(T::get_mod() + l.v - r.v) *\r\
-    \n                                irot.v;\r\n                            ;\r\n\
-    \                        }\r\n                        if (s + 1 != (1 << (len\
-    \ - 1)))\r\n                            irot *= irate2[__builtin_ctzll(~(unsigned\
-    \ int)(s))];\r\n                    }\r\n                    len--;\r\n      \
-    \          } else {\r\n                    // 4-base\r\n                    int\
-    \ p = 1 << (h - len);\r\n                    T irot = 1, iimag = iroot[2];\r\n\
-    \                    for (int s = 0; s < (1 << (len - 2)); s++) {\r\n        \
-    \                T irot2 = irot * irot;\r\n                        T irot3 = irot2\
-    \ * irot;\r\n                        int offset = s << (h - len + 2);\r\n    \
-    \                    for (int i = 0; i < p; i++) {\r\n                       \
-    \     auto a0 = 1ULL * a[i + offset + 0 * p].v;\r\n                          \
-    \  auto a1 = 1ULL * a[i + offset + 1 * p].v;\r\n                            auto\
-    \ a2 = 1ULL * a[i + offset + 2 * p].v;\r\n                            auto a3\
-    \ = 1ULL * a[i + offset + 3 * p].v;\r\n\r\n                            auto a2na3iimag\
-    \ =\r\n                                1ULL * T((T::get_mod() + a2 - a3) * iimag.v).v;\r\
-    \n\r\n                            a[i + offset] = a0 + a1 + a2 + a3;\r\n     \
-    \                       a[i + offset + 1 * p] =\r\n                          \
-    \      (a0 + (T::get_mod() - a1) + a2na3iimag) *\r\n                         \
-    \       irot.v;\r\n                            a[i + offset + 2 * p] =\r\n   \
-    \                             (a0 + a1 + (T::get_mod() - a2) +\r\n           \
-    \                      (T::get_mod() - a3)) *\r\n                            \
-    \    irot2.v;\r\n                            a[i + offset + 3 * p] =\r\n     \
-    \                           (a0 + (T::get_mod() - a1) +\r\n                  \
-    \               (T::get_mod() - a2na3iimag)) *\r\n                           \
-    \     irot3.v;\r\n                        }\r\n                        if (s +\
-    \ 1 != (1 << (len - 2)))\r\n                            irot *= irate3[__builtin_ctzll(~(unsigned\
-    \ int)(s))];\r\n                    }\r\n                    len -= 2;\r\n   \
-    \             }\r\n            }\r\n            T e = T(n).inv();\r\n        \
-    \    for (auto &x : a)\r\n                x *= e;\r\n        } else {\r\n    \
-    \        int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n\
-    \            while (len < h) {\r\n                if (h - len == 1) {\r\n    \
-    \                int p = 1 << (h - len - 1);\r\n                    T rot = 1;\r\
-    \n                    for (int s = 0; s < (1 << len); s++) {\r\n             \
-    \           int offset = s << (h - len);\r\n                        for (int i\
-    \ = 0; i < p; i++) {\r\n                            auto l = a[i + offset];\r\n\
-    \                            auto r = a[i + offset + p] * rot;\r\n           \
-    \                 a[i + offset] = l + r;\r\n                            a[i +\
-    \ offset + p] = l - r;\r\n                        }\r\n                      \
-    \  if (s + 1 != (1 << len))\r\n                            rot *= rate2[__builtin_ctzll(~(unsigned\
-    \ int)(s))];\r\n                    }\r\n                    len++;\r\n      \
-    \          } else {\r\n                    // 4-base\r\n                    int\
-    \ p = 1 << (h - len - 2);\r\n                    T rot = 1, imag = root[2];\r\n\
-    \                    for (int s = 0; s < (1 << len); s++) {\r\n              \
-    \          T rot2 = rot * rot;\r\n                        T rot3 = rot2 * rot;\r\
-    \n                        int offset = s << (h - len);\r\n                   \
-    \     for (int i = 0; i < p; i++) {\r\n                            auto mod2 =\
-    \ 1ULL * T::get_mod() * T::get_mod();\r\n                            auto a0 =\
-    \ 1ULL * a[i + offset].v;\r\n                            auto a1 = 1ULL * a[i\
-    \ + offset + p].v * rot.v;\r\n                            auto a2 = 1ULL * a[i\
-    \ + offset + 2 * p].v * rot2.v;\r\n                            auto a3 = 1ULL\
-    \ * a[i + offset + 3 * p].v * rot3.v;\r\n                            auto a1na3imag\
-    \ =\r\n                                1ULL * T(a1 + mod2 - a3).v * imag.v;\r\n\
-    \                            auto na2 = mod2 - a2;\r\n                       \
-    \     a[i + offset] = a0 + a2 + a1 + a3;\r\n                            a[i +\
-    \ offset + 1 * p] =\r\n                                a0 + a2 + (2 * mod2 - (a1\
-    \ + a3));\r\n                            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
-    \n                            a[i + offset + 3 * p] =\r\n                    \
-    \            a0 + na2 + (mod2 - a1na3imag);\r\n                        }\r\n \
-    \                       if (s + 1 != (1 << len))\r\n                         \
-    \   rot *= rate3[__builtin_ctzll(~(unsigned int)(s))];\r\n                   \
-    \ }\r\n                    len += 2;\r\n                }\r\n            }\r\n\
-    \        }\r\n    }\r\n    vector<T> mult(const vector<T> &a, const vector<T>\
-    \ &b) {\r\n        if (a.empty() or b.empty())\r\n            return vector<T>();\r\
-    \n        int as = a.size(), bs = b.size();\r\n        int n = as + bs - 1;\r\n\
-    \        if (as <= 30 or bs <= 30) {\r\n            if (as > 30)\r\n         \
-    \       return mult(b, a);\r\n            vector<T> res(n);\r\n            rep(i,\
-    \ 0, as) rep(j, 0, bs) res[i + j] += a[i] * b[j];\r\n            return res;\r\
-    \n        }\r\n        int m = 1;\r\n        while (m < n)\r\n            m <<=\
-    \ 1;\r\n        vector<T> res(m);\r\n        rep(i, 0, as) res[i] = a[i];\r\n\
-    \        ntt(res);\r\n        if (a == b)\r\n            rep(i, 0, m) res[i] *=\
-    \ res[i];\r\n        else {\r\n            vector<T> c(m);\r\n            rep(i,\
-    \ 0, bs) c[i] = b[i];\r\n            ntt(c);\r\n            rep(i, 0, m) res[i]\
-    \ *= c[i];\r\n        }\r\n        ntt(res, 1);\r\n        res.resize(n);\r\n\
-    \        return res;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\
-    \n */\n#line 2 \"FPS/fps.hpp\"\n\r\ntemplate <typename T> struct Poly : vector<T>\
-    \ {\r\n    Poly(int n = 0) {\r\n        this->assign(n, T());\r\n    }\r\n   \
-    \ Poly(const initializer_list<T> f) : vector<T>::vector(f) {}\r\n    Poly(const\
-    \ vector<T> &f) {\r\n        this->assign(ALL(f));\r\n    }\r\n    int deg() const\
-    \ {\r\n        return this->size() - 1;\r\n    }\r\n    T eval(const T &x) {\r\
-    \n        T res;\r\n        for (int i = this->size() - 1; i >= 0; i--)\r\n  \
-    \          res *= x, res += this->at(i);\r\n        return res;\r\n    }\r\n \
-    \   Poly rev() const {\r\n        Poly res = *this;\r\n        reverse(ALL(res));\r\
-    \n        return res;\r\n    }\r\n    void shrink() {\r\n        while (!this->empty()\
+    \ std::max(0, rank2 - 3 + 1)> irate3;\r\n\r\n    NTT() {\r\n        T g = getPrimitiveRoot(T::get_mod());\r\
+    \n        root[rank2] = g.pow((T::get_mod() - 1) >> rank2);\r\n        iroot[rank2]\
+    \ = root[rank2].inv();\r\n        for (int i = rank2 - 1; i >= 0; i--) {\r\n \
+    \           root[i] = root[i + 1] * root[i + 1];\r\n            iroot[i] = iroot[i\
+    \ + 1] * iroot[i + 1];\r\n        }\r\n\r\n        {\r\n            T prod = 1,\
+    \ iprod = 1;\r\n            for (int i = 0; i <= rank2 - 2; i++) {\r\n       \
+    \         rate2[i] = root[i + 2] * prod;\r\n                irate2[i] = iroot[i\
+    \ + 2] * iprod;\r\n                prod *= iroot[i + 2];\r\n                iprod\
+    \ *= root[i + 2];\r\n            }\r\n        }\r\n        {\r\n            T\
+    \ prod = 1, iprod = 1;\r\n            for (int i = 0; i <= rank2 - 3; i++) {\r\
+    \n                rate3[i] = root[i + 3] * prod;\r\n                irate3[i]\
+    \ = iroot[i + 3] * iprod;\r\n                prod *= iroot[i + 3];\r\n       \
+    \         iprod *= root[i + 3];\r\n            }\r\n        }\r\n    }\r\n\r\n\
+    \    void ntt(std::vector<T> &a, bool type = 0) {\r\n        int n = int(a.size());\r\
+    \n        int h = __builtin_ctzll((unsigned int)n);\r\n        a.resize(1 << h);\r\
+    \n\r\n        if (type) {\r\n            int len = h; // a[i, i+(n>>len), i+2*(n>>len),\
+    \ ..] is transformed\r\n            while (len) {\r\n                if (len ==\
+    \ 1) {\r\n                    int p = 1 << (h - len);\r\n                    T\
+    \ irot = 1;\r\n                    for (int s = 0; s < (1 << (len - 1)); s++)\
+    \ {\r\n                        int offset = s << (h - len + 1);\r\n          \
+    \              for (int i = 0; i < p; i++) {\r\n                            auto\
+    \ l = a[i + offset];\r\n                            auto r = a[i + offset + p];\r\
+    \n                            a[i + offset] = l + r;\r\n                     \
+    \       a[i + offset + p] =\r\n                                ((unsigned long\
+    \ long)(T::get_mod() + l.v -\r\n                                             \
+    \         r.v) *\r\n                                 irot.v) %\r\n           \
+    \                     T::get_mod();\r\n                        }\r\n         \
+    \               if (s + 1 != (1 << (len - 1)))\r\n                           \
+    \ irot *= irate2[__builtin_ctzll(~(unsigned int)(s))];\r\n                   \
+    \ }\r\n                    len--;\r\n                } else {\r\n            \
+    \        // 4-base\r\n                    int p = 1 << (h - len);\r\n        \
+    \            T irot = 1, iimag = iroot[2];\r\n                    for (int s =\
+    \ 0; s < (1 << (len - 2)); s++) {\r\n                        T irot2 = irot *\
+    \ irot;\r\n                        T irot3 = irot2 * irot;\r\n               \
+    \         int offset = s << (h - len + 2);\r\n                        for (int\
+    \ i = 0; i < p; i++) {\r\n                            auto a0 = 1ULL * a[i + offset\
+    \ + 0 * p].v;\r\n                            auto a1 = 1ULL * a[i + offset + 1\
+    \ * p].v;\r\n                            auto a2 = 1ULL * a[i + offset + 2 * p].v;\r\
+    \n                            auto a3 = 1ULL * a[i + offset + 3 * p].v;\r\n\r\n\
+    \                            auto a2na3iimag =\r\n                           \
+    \     1ULL * T((T::get_mod() + a2 - a3) * iimag.v).v;\r\n\r\n                \
+    \            a[i + offset] = (a0 + a1 + a2 + a3) % T::get_mod();\r\n         \
+    \                   a[i + offset + 1 * p] =\r\n                              \
+    \  (a0 + (T::get_mod() - a1) + a2na3iimag) *\r\n                             \
+    \   irot.v % T::get_mod();\r\n                            a[i + offset + 2 * p]\
+    \ =\r\n                                (a0 + a1 + (T::get_mod() - a2) +\r\n  \
+    \                               (T::get_mod() - a3)) *\r\n                   \
+    \             irot2.v % T::get_mod();\r\n                            a[i + offset\
+    \ + 3 * p] =\r\n                                (a0 + (T::get_mod() - a1) +\r\n\
+    \                                 (T::get_mod() - a2na3iimag)) *\r\n         \
+    \                       irot3.v % T::get_mod();\r\n                        }\r\
+    \n                        if (s + 1 != (1 << (len - 2)))\r\n                 \
+    \           irot *= irate3[__builtin_ctzll(~(unsigned int)(s))];\r\n         \
+    \           }\r\n                    len -= 2;\r\n                }\r\n      \
+    \      }\r\n            T e = T(n).inv();\r\n            for (auto &x : a)\r\n\
+    \                x *= e;\r\n        } else {\r\n            int len = 0; // a[i,\
+    \ i+(n>>len), i+2*(n>>len), ..] is transformed\r\n            while (len < h)\
+    \ {\r\n                if (h - len == 1) {\r\n                    int p = 1 <<\
+    \ (h - len - 1);\r\n                    T rot = 1;\r\n                    for\
+    \ (int s = 0; s < (1 << len); s++) {\r\n                        int offset = s\
+    \ << (h - len);\r\n                        for (int i = 0; i < p; i++) {\r\n \
+    \                           auto l = a[i + offset];\r\n                      \
+    \      auto r = a[i + offset + p] * rot;\r\n                            a[i +\
+    \ offset] = l + r;\r\n                            a[i + offset + p] = l - r;\r\
+    \n                        }\r\n                        if (s + 1 != (1 << len))\r\
+    \n                            rot *= rate2[__builtin_ctzll(~(unsigned int)(s))];\r\
+    \n                    }\r\n                    len++;\r\n                } else\
+    \ {\r\n                    // 4-base\r\n                    int p = 1 << (h -\
+    \ len - 2);\r\n                    T rot = 1, imag = root[2];\r\n            \
+    \        for (int s = 0; s < (1 << len); s++) {\r\n                        T rot2\
+    \ = rot * rot;\r\n                        T rot3 = rot2 * rot;\r\n           \
+    \             int offset = s << (h - len);\r\n                        for (int\
+    \ i = 0; i < p; i++) {\r\n                            auto mod2 = 1ULL * T::get_mod()\
+    \ * T::get_mod();\r\n                            auto a0 = 1ULL * a[i + offset].v;\r\
+    \n                            auto a1 = 1ULL * a[i + offset + p].v * rot.v;\r\n\
+    \                            auto a2 = 1ULL * a[i + offset + 2 * p].v * rot2.v;\r\
+    \n                            auto a3 = 1ULL * a[i + offset + 3 * p].v * rot3.v;\r\
+    \n                            auto a1na3imag =\r\n                           \
+    \     1ULL * T(a1 + mod2 - a3).v * imag.v;\r\n                            auto\
+    \ na2 = mod2 - a2;\r\n                            a[i + offset] = (a0 + a2 + a1\
+    \ + a3) % T::get_mod();\r\n                            a[i + offset + 1 * p] =\r\
+    \n                                (a0 + a2 + (2 * mod2 - (a1 + a3))) %\r\n   \
+    \                             T::get_mod();\r\n                            a[i\
+    \ + offset + 2 * p] =\r\n                                (a0 + na2 + a1na3imag)\
+    \ % T::get_mod();\r\n                            a[i + offset + 3 * p] =\r\n \
+    \                               (a0 + na2 + (mod2 - a1na3imag)) % T::get_mod();\r\
+    \n                        }\r\n                        if (s + 1 != (1 << len))\r\
+    \n                            rot *= rate3[__builtin_ctzll(~(unsigned int)(s))];\r\
+    \n                    }\r\n                    len += 2;\r\n                }\r\
+    \n            }\r\n        }\r\n    }\r\n    vector<T> mult(const vector<T> &a,\
+    \ const vector<T> &b) {\r\n        if (a.empty() or b.empty())\r\n           \
+    \ return vector<T>();\r\n        int as = a.size(), bs = b.size();\r\n       \
+    \ int n = as + bs - 1;\r\n        assert(n <= (1 << rank2));\r\n        if (as\
+    \ <= 30 or bs <= 30) {\r\n            if (as > 30)\r\n                return mult(b,\
+    \ a);\r\n            vector<T> res(n);\r\n            rep(i, 0, as) rep(j, 0,\
+    \ bs) res[i + j] += a[i] * b[j];\r\n            return res;\r\n        }\r\n \
+    \       int m = 1;\r\n        while (m < n)\r\n            m <<= 1;\r\n      \
+    \  vector<T> res(m);\r\n        rep(i, 0, as) res[i] = a[i];\r\n        ntt(res);\r\
+    \n        if (a == b)\r\n            rep(i, 0, m) res[i] *= res[i];\r\n      \
+    \  else {\r\n            vector<T> c(m);\r\n            rep(i, 0, bs) c[i] = b[i];\r\
+    \n            ntt(c);\r\n            rep(i, 0, m) res[i] *= c[i];\r\n        }\r\
+    \n        ntt(res, 1);\r\n        res.resize(n);\r\n        return res;\r\n  \
+    \  }\r\n};\r\n\r\n/**\r\n * @brief Number Theoretic Transform\r\n */\n#line 2\
+    \ \"FPS/fps.hpp\"\n\r\ntemplate <typename T> struct Poly : vector<T> {\r\n   \
+    \ Poly(int n = 0) {\r\n        this->assign(n, T());\r\n    }\r\n    Poly(const\
+    \ initializer_list<T> f) : vector<T>::vector(f) {}\r\n    Poly(const vector<T>\
+    \ &f) {\r\n        this->assign(ALL(f));\r\n    }\r\n    int deg() const {\r\n\
+    \        return this->size() - 1;\r\n    }\r\n    T eval(const T &x) {\r\n   \
+    \     T res;\r\n        for (int i = this->size() - 1; i >= 0; i--)\r\n      \
+    \      res *= x, res += this->at(i);\r\n        return res;\r\n    }\r\n    Poly\
+    \ rev() const {\r\n        Poly res = *this;\r\n        reverse(ALL(res));\r\n\
+    \        return res;\r\n    }\r\n    void shrink() {\r\n        while (!this->empty()\
     \ and this->back() == 0)\r\n            this->pop_back();\r\n    }\r\n    Poly\
     \ operator>>(ll sz) const {\r\n        if ((int)this->size() <= sz)\r\n      \
     \      return {};\r\n        Poly ret(*this);\r\n        ret.erase(ret.begin(),\
@@ -489,12 +689,17 @@ data:
   - Math/modint.hpp
   - Math/comb.hpp
   - Convolution/ntt.hpp
+  - Math/primitive.hpp
+  - Math/fastdiv.hpp
+  - Math/pollard.hpp
+  - Math/miller.hpp
+  - Utility/random.hpp
   - FPS/fps.hpp
   - FPS/famous.hpp
   isVerificationFile: true
   path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2025-07-13 05:51:38+09:00'
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_stirling_number_of_the_second_kind.test.cpp

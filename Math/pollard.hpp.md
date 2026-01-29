@@ -1,23 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
   - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Algorithm/wildcardpatternmatching.hpp
+    title: Wildcard Pattern Matching
+  - icon: ':question:'
+    path: Convolution/arbitrary.hpp
+    title: Arbitrary Mod Convolution
+  - icon: ':heavy_check_mark:'
+    path: Convolution/multivariate.hpp
+    title: Multivariate Convolution
   - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
+  - icon: ':question:'
+    path: Convolution/ntt.hpp
+    title: Number Theoretic Transform
+  - icon: ':warning:'
+    path: Math/bigint.hpp
+    title: Big Integer(Float)
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
   - icon: ':warning:'
     path: Math/pisano.hpp
     title: Pisano Period
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':warning:'
@@ -25,20 +40,92 @@ data:
     title: Represent A Number As Two Square Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_bernoulli_number.test.cpp
+    title: Verify/LC_bernoulli_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod.test.cpp
+    title: Verify/LC_convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod_1000000007.test.cpp
+    title: Verify/LC_convolution_mod_1000000007.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod_2.test.cpp
+    title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_exp_of_formal_power_series.test.cpp
+    title: Verify/LC_exp_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_factorize.test.cpp
     title: Verify/LC_factorize.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_inv_of_formal_power_series.test.cpp
+    title: Verify/LC_inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_log_of_formal_power_series.test.cpp
+    title: Verify/LC_log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_many_factorials.test.cpp
+    title: Verify/LC_many_factorials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multipoint_evaluation.test.cpp
+    title: Verify/LC_multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution.test.cpp
+    title: Verify/LC_multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_partition_function.test.cpp
+    title: Verify/LC_partition_function.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_polynomial_interpolation.test.cpp
+    title: Verify/LC_polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_polynomial_taylor_shift.test.cpp
+    title: Verify/LC_polynomial_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_pow_of_formal_power_series.test.cpp
+    title: Verify/LC_pow_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_product_of_polynomial_sequence.test.cpp
+    title: Verify/LC_product_of_polynomial_sequence.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+    title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_sparse_matrix_det.test.cpp
+    title: Verify/LC_sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
+    title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
+    title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_1080.test.cpp
+    title: Verify/YUKI_1080.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_1112.test.cpp
+    title: Verify/YUKI_1112.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_2097.test.cpp
+    title: Verify/YUKI_2097.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Pollard-Rho
     links: []
@@ -153,18 +240,47 @@ data:
   isVerificationFile: false
   path: Math/pollard.hpp
   requiredBy:
+  - Convolution/arbitrary.hpp
+  - Convolution/ntt.hpp
   - Convolution/multivariatecyclic.hpp
-  - Math/pisano.hpp
-  - Math/twosquare.hpp
+  - Convolution/multivariate.hpp
+  - Algorithm/wildcardpatternmatching.hpp
   - Math/primitive.hpp
+  - Math/bigint.hpp
+  - Math/pisano.hpp
   - Math/binomquery.hpp
+  - Math/twosquare.hpp
   timestamp: '2025-05-25 16:11:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_factorize.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_partition_function.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_factorize.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_many_factorials.test.cpp
 documentation_of: Math/pollard.hpp
 layout: document
 redirect_from:

@@ -1,22 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
   - icon: ':question:'
     path: Utility/random.hpp
     title: Random
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Algorithm/wildcardpatternmatching.hpp
+    title: Wildcard Pattern Matching
+  - icon: ':question:'
+    path: Convolution/arbitrary.hpp
+    title: Arbitrary Mod Convolution
+  - icon: ':heavy_check_mark:'
+    path: Convolution/multivariate.hpp
+    title: Multivariate Convolution
   - icon: ':heavy_check_mark:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
+  - icon: ':question:'
+    path: Convolution/ntt.hpp
+    title: Number Theoretic Transform
+  - icon: ':warning:'
+    path: Math/bigint.hpp
+    title: Big Integer(Float)
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
@@ -25,17 +40,89 @@ data:
     title: Represent A Number As Two Square Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_bernoulli_number.test.cpp
+    title: Verify/LC_bernoulli_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_binomial_coefficient.test.cpp
     title: Verify/LC_binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod.test.cpp
+    title: Verify/LC_convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod_1000000007.test.cpp
+    title: Verify/LC_convolution_mod_1000000007.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_convolution_mod_2.test.cpp
+    title: Verify/LC_convolution_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/LC_discrete_logarithm_mod.test.cpp
     title: Verify/LC_discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/LC_exp_of_formal_power_series.test.cpp
+    title: Verify/LC_exp_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_inv_of_formal_power_series.test.cpp
+    title: Verify/LC_inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_log_of_formal_power_series.test.cpp
+    title: Verify/LC_log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_many_factorials.test.cpp
+    title: Verify/LC_many_factorials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multipoint_evaluation.test.cpp
+    title: Verify/LC_multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_multivariate_convolution.test.cpp
+    title: Verify/LC_multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_partition_function.test.cpp
+    title: Verify/LC_partition_function.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_polynomial_interpolation.test.cpp
+    title: Verify/LC_polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/LC_polynomial_taylor_shift.test.cpp
+    title: Verify/LC_polynomial_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_pow_of_formal_power_series.test.cpp
+    title: Verify/LC_pow_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_product_of_polynomial_sequence.test.cpp
+    title: Verify/LC_product_of_polynomial_sequence.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+    title: Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_sparse_matrix_det.test.cpp
+    title: Verify/LC_sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_stirling_number_of_the_first_kind.test.cpp
+    title: Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: Verify/LC_stirling_number_of_the_second_kind.test.cpp
+    title: Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_1080.test.cpp
+    title: Verify/YUKI_1080.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_1112.test.cpp
+    title: Verify/YUKI_1112.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_2097.test.cpp
+    title: Verify/YUKI_2097.test.cpp
+  - icon: ':x:'
+    path: Verify/YUKI_310.test.cpp
+    title: Verify/YUKI_310.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Primitive Function
     links: []
@@ -187,40 +274,40 @@ data:
     \n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n \
     \   k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m)\
     \ != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\
-    \n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll {\
-    \ // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n    \
-    \    while (q % p == 0) {\r\n            q /= p;\r\n            s++;\r\n     \
-    \   }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n        \
-    \   res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n \
-    \       while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n        c\
+    \n    FastDiv64 im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll\
+    \ { // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n  \
+    \      while (q % p == 0) {\r\n            q /= p;\r\n            s++;\r\n   \
+    \     }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n      \
+    \     res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n\
+    \        while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n        c\
     \ = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d\
     \ * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1),\
-    \ m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\n        ll\
-    \ gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\
-    \n            ll err = a * minv(mpow(res, pe, m), m) % im;\r\n            ll pos\
-    \ = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j, 0, block +\
-    \ 1) {\r\n                if (mp.count(pos)) {\r\n                    res = res\
-    \ *\r\n                          mpow(c,\r\n                               (block\
-    \ * mp[pos] + j) * mpow(p, i, m - 1) %\r\n                                   (m\
-    \ - 1),\r\n                               m) %\r\n                          im;\r\
-    \n                    break;\r\n                }\r\n                pos = pos\
-    \ * gs % im;\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\
-    \r\n    for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n     \
-    \       int sz = 0;\r\n            while (g % d == 0) {\r\n                g /=\
-    \ d;\r\n                sz++;\r\n            }\r\n            a = _subroot(d,\
-    \ sz, a);\r\n        }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n\
-    \    return a;\r\n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or\
-    \ k == 1)\r\n        return a;\r\n    if (k >= 64)\r\n        return 1;\r\n  \
-    \  if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n\
-    \    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull &x, const ull &y)\
-    \ {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n        else\r\n  \
-    \          x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n\
-    \        ull y = 1;\r\n        while (t) {\r\n            if (t & 1)\r\n     \
-    \           mul(y, x);\r\n            mul(x, x);\r\n            t >>= 1;\r\n \
-    \       }\r\n        return y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) -\
-    \ 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret + 1, k) <= a)\r\
-    \n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Primitive Function\r\
-    \n */\n"
+    \ m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = im.modulo(i128(v) * bs);\r\
+    \n        ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i,\
+    \ 0, d) {\r\n            ll err = im.modulo(i128(a) * minv(mpow(res, pe, m), m));\r\
+    \n            ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n          \
+    \  rep(j, 0, block + 1) {\r\n                if (mp.count(pos)) {\r\n        \
+    \            res = im.modulo(i128(res) *\r\n                                 \
+    \   mpow(c,\r\n                                         (block * mp[pos] + j)\
+    \ *\r\n                                             mpow(p, i, m - 1) % (m - 1),\r\
+    \n                                         m));\r\n                    break;\r\
+    \n                }\r\n                pos = im.modulo(i128(pos) * gs);\r\n  \
+    \          }\r\n        }\r\n        return res;\r\n    };\r\n\r\n    for (ll\
+    \ d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n            int sz =\
+    \ 0;\r\n            while (g % d == 0) {\r\n                g /= d;\r\n      \
+    \          sz++;\r\n            }\r\n            a = _subroot(d, sz, a);\r\n \
+    \       }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return a;\r\
+    \n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or k == 1)\r\n   \
+    \     return a;\r\n    if (k >= 64)\r\n        return 1;\r\n    if (k == 2)\r\n\
+    \        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\
+    \n        a--;\r\n    auto mul = [&](ull &x, const ull &y) {\r\n        if (x\
+    \ <= LIM / y)\r\n            x *= y;\r\n        else\r\n            x = LIM;\r\
+    \n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n\
+    \        while (t) {\r\n            if (t & 1)\r\n                mul(y, x);\r\
+    \n            mul(x, x);\r\n            t >>= 1;\r\n        }\r\n        return\
+    \ y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k),\
+    \ 0)));\r\n    while (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\
+    \n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n"
   code: "#pragma once\r\n#include \"Math/fastdiv.hpp\"\r\n#include \"Math/pollard.hpp\"\
     \r\n\r\nll mpow(ll a, ll t, ll m) {\r\n    ll res = 1;\r\n    FastDiv64 im(m);\r\
     \n    while (t) {\r\n        if (t & 1)\r\n            res = im.modulo(__int128_t(res)\
@@ -270,40 +357,41 @@ data:
     \ k, ll a, ll m) {\r\n    if (a == 0)\r\n        return k ? 0 : -1;\r\n    if\
     \ (m == 2)\r\n        return a & 1;\r\n    k %= m - 1;\r\n    ll g = gcd(k, m\
     \ - 1);\r\n    if (mpow(a, (m - 1) / g, m) != 1)\r\n        return -1;\r\n   \
-    \ a = mpow(a, minv(k / g, (m - 1) / g), m);\r\n    FastDiv im(m);\r\n\r\n    auto\
-    \ _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod m)\r\n        ll\
-    \ q = m - 1;\r\n        int s = 0;\r\n        while (q % p == 0) {\r\n       \
-    \     q /= p;\r\n            s++;\r\n        }\r\n        int d = s - e;\r\n \
-    \       ll pe = mpow(p, e, m),\r\n           res = mpow(a, ((pe - 1) * minv(q,\
+    \ a = mpow(a, minv(k / g, (m - 1) / g), m);\r\n    FastDiv64 im(m);\r\n\r\n  \
+    \  auto _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod m)\r\n   \
+    \     ll q = m - 1;\r\n        int s = 0;\r\n        while (q % p == 0) {\r\n\
+    \            q /= p;\r\n            s++;\r\n        }\r\n        int d = s - e;\r\
+    \n        ll pe = mpow(p, e, m),\r\n           res = mpow(a, ((pe - 1) * minv(q,\
     \ pe) % pe * q + 1) / pe, m), c = 1;\r\n        while (mpow(c, (m - 1) / p, m)\
     \ == 1)\r\n            c++;\r\n        c = mpow(c, q, m);\r\n        map<ll, ll>\
     \ mp;\r\n        ll v = 1, block = sqrt(d * p) + 1,\r\n           bs = mpow(c,\
     \ mpow(p, s - 1, m - 1) * block % (m - 1), m);\r\n        rep(i, 0, block + 1)\
-    \ mp[v] = i, v = v * bs % im;\r\n        ll gs = minv(mpow(c, mpow(p, s - 1, m\
-    \ - 1), m), m);\r\n        rep(i, 0, d) {\r\n            ll err = a * minv(mpow(res,\
-    \ pe, m), m) % im;\r\n            ll pos = mpow(err, mpow(p, d - 1 - i, m - 1),\
-    \ m);\r\n            rep(j, 0, block + 1) {\r\n                if (mp.count(pos))\
-    \ {\r\n                    res = res *\r\n                          mpow(c,\r\n\
-    \                               (block * mp[pos] + j) * mpow(p, i, m - 1) %\r\n\
-    \                                   (m - 1),\r\n                             \
-    \  m) %\r\n                          im;\r\n                    break;\r\n   \
-    \             }\r\n                pos = pos * gs % im;\r\n            }\r\n \
-    \       }\r\n        return res;\r\n    };\r\n\r\n    for (ll d = 2; d * d <=\
-    \ g; d++)\r\n        if (g % d == 0) {\r\n            int sz = 0;\r\n        \
-    \    while (g % d == 0) {\r\n                g /= d;\r\n                sz++;\r\
-    \n            }\r\n            a = _subroot(d, sz, a);\r\n        }\r\n    if\
-    \ (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return a;\r\n}\r\n\r\null floor_root(ull\
-    \ a, ull k) {\r\n    if (a <= 1 or k == 1)\r\n        return a;\r\n    if (k >=\
-    \ 64)\r\n        return 1;\r\n    if (k == 2)\r\n        return sqrtl(a);\r\n\
-    \    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\n        a--;\r\n    auto\
-    \ mul = [&](ull &x, const ull &y) {\r\n        if (x <= LIM / y)\r\n         \
-    \   x *= y;\r\n        else\r\n            x = LIM;\r\n    };\r\n    auto pw =\
-    \ [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n        while (t) {\r\n\
-    \            if (t & 1)\r\n                mul(y, x);\r\n            mul(x, x);\r\
-    \n            t >>= 1;\r\n        }\r\n        return y;\r\n    };\r\n    ull\
-    \ ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while\
-    \ (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\
-    \n * @brief Primitive Function\r\n */"
+    \ mp[v] = i, v = im.modulo(i128(v) * bs);\r\n        ll gs = minv(mpow(c, mpow(p,\
+    \ s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\n            ll err = im.modulo(i128(a)\
+    \ * minv(mpow(res, pe, m), m));\r\n            ll pos = mpow(err, mpow(p, d -\
+    \ 1 - i, m - 1), m);\r\n            rep(j, 0, block + 1) {\r\n               \
+    \ if (mp.count(pos)) {\r\n                    res = im.modulo(i128(res) *\r\n\
+    \                                    mpow(c,\r\n                             \
+    \            (block * mp[pos] + j) *\r\n                                     \
+    \        mpow(p, i, m - 1) % (m - 1),\r\n                                    \
+    \     m));\r\n                    break;\r\n                }\r\n            \
+    \    pos = im.modulo(i128(pos) * gs);\r\n            }\r\n        }\r\n      \
+    \  return res;\r\n    };\r\n\r\n    for (ll d = 2; d * d <= g; d++)\r\n      \
+    \  if (g % d == 0) {\r\n            int sz = 0;\r\n            while (g % d ==\
+    \ 0) {\r\n                g /= d;\r\n                sz++;\r\n            }\r\n\
+    \            a = _subroot(d, sz, a);\r\n        }\r\n    if (g > 1)\r\n      \
+    \  a = _subroot(g, 1, a);\r\n    return a;\r\n}\r\n\r\null floor_root(ull a, ull\
+    \ k) {\r\n    if (a <= 1 or k == 1)\r\n        return a;\r\n    if (k >= 64)\r\
+    \n        return 1;\r\n    if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr\
+    \ ull LIM = -1;\r\n    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull\
+    \ &x, const ull &y) {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n\
+    \        else\r\n            x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull\
+    \ t) -> ull {\r\n        ull y = 1;\r\n        while (t) {\r\n            if (t\
+    \ & 1)\r\n                mul(y, x);\r\n            mul(x, x);\r\n           \
+    \ t >>= 1;\r\n        }\r\n        return y;\r\n    };\r\n    ull ret = (k ==\
+    \ 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret\
+    \ + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief\
+    \ Primitive Function\r\n */"
   dependsOn:
   - Math/fastdiv.hpp
   - Math/pollard.hpp
@@ -312,15 +400,44 @@ data:
   isVerificationFile: false
   path: Math/primitive.hpp
   requiredBy:
+  - Convolution/arbitrary.hpp
+  - Convolution/ntt.hpp
   - Convolution/multivariatecyclic.hpp
-  - Math/twosquare.hpp
+  - Convolution/multivariate.hpp
+  - Algorithm/wildcardpatternmatching.hpp
+  - Math/bigint.hpp
   - Math/binomquery.hpp
-  timestamp: '2025-05-25 16:11:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - Math/twosquare.hpp
+  timestamp: '2026-01-30 05:37:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/YUKI_310.test.cpp
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_partition_function.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
   - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_many_factorials.test.cpp
 documentation_of: Math/primitive.hpp
 layout: document
 redirect_from:

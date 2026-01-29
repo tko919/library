@@ -64,9 +64,9 @@ data:
     \n    }\r\n    Matrix operator+(const Matrix &m) const {\r\n        return Matrix(*this)\
     \ += m;\r\n    }\r\n    Matrix operator-(const Matrix &m) const {\r\n        return\
     \ Matrix(*this) -= m;\r\n    }\r\n    Matrix operator*(const Matrix &m) const\
-    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k) {\r\
-    \n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
-    \ = 1;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
+    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k, T e)\
+    \ {\r\n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
+    \ = e;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
     \ *= c;\r\n            c *= c;\r\n            k >>= 1;\r\n        }\r\n      \
     \  return res;\r\n    }\r\n    vector<int> gauss(int c = -1) {\r\n        det\
     \ = 1;\r\n        if (val.empty())\r\n            return {};\r\n        if (c\
@@ -112,9 +112,9 @@ data:
     \n    }\r\n    Matrix operator+(const Matrix &m) const {\r\n        return Matrix(*this)\
     \ += m;\r\n    }\r\n    Matrix operator-(const Matrix &m) const {\r\n        return\
     \ Matrix(*this) -= m;\r\n    }\r\n    Matrix operator*(const Matrix &m) const\
-    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k) {\r\
-    \n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
-    \ = 1;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
+    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k, T e)\
+    \ {\r\n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
+    \ = e;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
     \ *= c;\r\n            c *= c;\r\n            k >>= 1;\r\n        }\r\n      \
     \  return res;\r\n    }\r\n    vector<int> gauss(int c = -1) {\r\n        det\
     \ = 1;\r\n        if (val.empty())\r\n            return {};\r\n        if (c\
@@ -148,22 +148,22 @@ data:
   isVerificationFile: false
   path: Math/matrix.hpp
   requiredBy:
-  - FPS/p-recursive.hpp
-  - Graph/counteuler.hpp
   - Graph/countspanning.hpp
-  - Math/pisano.hpp
-  - Math/pfaffian.hpp
-  - Math/hafnian.hpp
-  - Math/linearequation.hpp
+  - Graph/counteuler.hpp
+  - FPS/p-recursive.hpp
   - Math/charpoly.hpp
+  - Math/linearequation.hpp
   - Math/detaplusbx.hpp
-  timestamp: '2024-06-14 02:46:58+09:00'
+  - Math/hafnian.hpp
+  - Math/pfaffian.hpp
+  - Math/pisano.hpp
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_matrix_product.test.cpp
-  - Verify/LC_system_of_linear_equations.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
   - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_matrix_product.test.cpp
 documentation_of: Math/matrix.hpp
 layout: document
 redirect_from:

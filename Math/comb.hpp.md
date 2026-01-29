@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: Algorithm/wildcardpatternmatching.hpp
     title: Wildcard Pattern Matching
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
   - icon: ':heavy_check_mark:'
@@ -153,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
   - icon: ':x:'
@@ -204,10 +204,10 @@ data:
   - icon: ':x:'
     path: Verify/LC_vertex_set_path_composite.test.cpp
     title: Verify/LC_vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1080.test.cpp
     title: Verify/YUKI_1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,7 +216,7 @@ data:
   - icon: ':x:'
     path: Verify/YUKI_2097.test.cpp
     title: Verify/YUKI_2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
@@ -274,81 +274,81 @@ data:
   isVerificationFile: false
   path: Math/comb.hpp
   requiredBy:
-  - Convolution/subset.hpp
-  - Convolution/relax.hpp
   - Convolution/arbitrary.hpp
-  - FPS/prefixsumofpoly.hpp
+  - Convolution/relax.hpp
+  - Convolution/subset.hpp
+  - Graph/chromaticpoly.hpp
+  - FPS/mobius.hpp
+  - FPS/compinv.hpp
+  - FPS/sumofpolyexp.hpp
   - FPS/famous.hpp
-  - FPS/incseqcount.hpp
   - FPS/factlarge.hpp
+  - FPS/p-recursive.hpp
   - FPS/prefixsumofpowers.hpp
   - FPS/compexp.hpp
-  - FPS/sumofpolyexp.hpp
-  - FPS/compinv.hpp
   - FPS/interpolate.hpp
+  - FPS/prefixsumofpoly.hpp
   - FPS/samplepointshift.hpp
-  - FPS/mobius.hpp
-  - FPS/p-recursive.hpp
-  - Graph/chromaticpoly.hpp
+  - FPS/incseqcount.hpp
   - Algorithm/wildcardpatternmatching.hpp
-  - Math/pisano.hpp
   - Math/bigint.hpp
-  - Math/modint.hpp
-  - Math/hafnian.hpp
-  - Math/dynamic.hpp
   - Math/multiplicative2.hpp
+  - Math/hafnian.hpp
+  - Math/pisano.hpp
+  - Math/dynamic.hpp
+  - Math/modint.hpp
   timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - Verify/LC_queue_operate_all_composite.test.cpp
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/LC_matrix_product.test.cpp
   - Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
   - Verify/LC_deque_operate_all_composite.test.cpp
-  - Verify/YUKI_1781.test.cpp
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_bitwise_and_convolution.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
-  - Verify/LC_system_of_linear_equations.test.cpp
-  - Verify/LC_subset_convolution.test.cpp
-  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
-  - Verify/LC_sum_of_totient_function.test.cpp
-  - Verify/LC_vertex_set_path_composite.test.cpp
-  - Verify/LC_hafnian_of_matrix.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - Verify/LC_find_linear_recurrence.test.cpp
-  - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_bitwise_xor_convolution.test.cpp
-  - Verify/LC_gcd_convolution.test.cpp
-  - Verify/LC_enumerate_cliques.test.cpp
-  - Verify/LC_lcm_convolution.test.cpp
-  - Verify/LC_point_set_range_composite.test.cpp
-  - Verify/LC_range_affine_range_sum.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/LC_partition_function.test.cpp
-  - Verify/YUKI_1080.test.cpp
-  - Verify/LC_many_factorials.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_sum_of_multiplicative_function.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
   - Verify/LC_multivariate_convolution.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_convolution_mod.test.cpp
-  - Verify/LC_matrix_det.test.cpp
-  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
-  - Verify/LC_convolution_mod_1000000007.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/YUKI_1781.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_enumerate_cliques.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
   - Verify/LC_bernoulli_number.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_sum_of_totient_function.test.cpp
+  - Verify/LC_matrix_det.test.cpp
+  - Verify/LC_bitwise_xor_convolution.test.cpp
+  - Verify/LC_range_affine_range_sum.test.cpp
+  - Verify/YUKI_1080.test.cpp
+  - Verify/LC_point_set_range_composite.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_hafnian_of_matrix.test.cpp
+  - Verify/LC_bitwise_and_convolution.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_partition_function.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_subset_convolution.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_system_of_linear_equations.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_lcm_convolution.test.cpp
+  - Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
+  - Verify/LC_find_linear_recurrence.test.cpp
+  - Verify/LC_dynamic_tree_vertex_set_path_composite.test.cpp
+  - Verify/LC_matrix_product.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_convolution_mod.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial.test.cpp
+  - Verify/LC_sum_of_multiplicative_function.test.cpp
+  - Verify/LC_sum_of_exponential_times_polynomial_limit.test.cpp
+  - Verify/LC_vertex_set_path_composite.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_gcd_convolution.test.cpp
+  - Verify/LC_queue_operate_all_composite.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_many_factorials.test.cpp
 documentation_of: Math/comb.hpp
 layout: document
 redirect_from:

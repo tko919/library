@@ -12,15 +12,15 @@ data:
   - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Black Box Linear Algebra
     links: []
@@ -93,12 +93,12 @@ data:
     \ SparseMatrix<T> &A, Poly<T> b, ll t) {\r\n    int n = A.size();\r\n    auto\
     \ mp = MinPolyforMatrix(A).rev();\r\n    Poly<T> cs({T(1)}), base({T(0), T(1)});\r\
     \n    while (t) {\r\n        if (t & 1) {\r\n            cs *= base;\r\n     \
-    \       cs %= mp;\r\n        }\r\n        base = base.square();\r\n        base\
-    \ %= mp;\r\n        t >>= 1;\r\n    }\r\n    Poly<T> ret(n);\r\n    for (auto\
-    \ &c : cs)\r\n        ret += b * c, b = A * b;\r\n    return ret;\r\n}\r\ntemplate\
-    \ <typename T> T FastDet(const SparseMatrix<T> &A) {\r\n    int n = A.size();\r\
-    \n    for (;;) {\r\n        Poly<T> d = RandPoly<T>(n);\r\n        SparseMatrix<T>\
-    \ AD = A;\r\n        rep(i, 0, n) AD.mul(i, d[i]);\r\n        auto mp = MinPolyforMatrix(AD);\r\
+    \       cs %= mp;\r\n        }\r\n        base *= base;\r\n        base %= mp;\r\
+    \n        t >>= 1;\r\n    }\r\n    Poly<T> ret(n);\r\n    for (auto &c : cs)\r\
+    \n        ret += b * c, b = A * b;\r\n    return ret;\r\n}\r\ntemplate <typename\
+    \ T> T FastDet(const SparseMatrix<T> &A) {\r\n    int n = A.size();\r\n    for\
+    \ (;;) {\r\n        Poly<T> d = RandPoly<T>(n);\r\n        SparseMatrix<T> AD\
+    \ = A;\r\n        rep(i, 0, n) AD.mul(i, d[i]);\r\n        auto mp = MinPolyforMatrix(AD);\r\
     \n        if (mp.back() == 0)\r\n            return 0;\r\n        if (int(mp.size())\
     \ != n + 1)\r\n            continue;\r\n        T ret = mp.back(), base = 1;\r\
     \n        if (n & 1)\r\n            ret = -ret;\r\n        for (auto &v : d)\r\
@@ -130,28 +130,28 @@ data:
     \ b, ll t) {\r\n    int n = A.size();\r\n    auto mp = MinPolyforMatrix(A).rev();\r\
     \n    Poly<T> cs({T(1)}), base({T(0), T(1)});\r\n    while (t) {\r\n        if\
     \ (t & 1) {\r\n            cs *= base;\r\n            cs %= mp;\r\n        }\r\
-    \n        base = base.square();\r\n        base %= mp;\r\n        t >>= 1;\r\n\
-    \    }\r\n    Poly<T> ret(n);\r\n    for (auto &c : cs)\r\n        ret += b *\
-    \ c, b = A * b;\r\n    return ret;\r\n}\r\ntemplate <typename T> T FastDet(const\
-    \ SparseMatrix<T> &A) {\r\n    int n = A.size();\r\n    for (;;) {\r\n       \
-    \ Poly<T> d = RandPoly<T>(n);\r\n        SparseMatrix<T> AD = A;\r\n        rep(i,\
-    \ 0, n) AD.mul(i, d[i]);\r\n        auto mp = MinPolyforMatrix(AD);\r\n      \
-    \  if (mp.back() == 0)\r\n            return 0;\r\n        if (int(mp.size())\
-    \ != n + 1)\r\n            continue;\r\n        T ret = mp.back(), base = 1;\r\
-    \n        if (n & 1)\r\n            ret = -ret;\r\n        for (auto &v : d)\r\
-    \n            base *= v;\r\n        return ret / base;\r\n    }\r\n}\r\n\r\n/**\r\
-    \n * @brief Black Box Linear Algebra\r\n */"
+    \n        base *= base;\r\n        base %= mp;\r\n        t >>= 1;\r\n    }\r\n\
+    \    Poly<T> ret(n);\r\n    for (auto &c : cs)\r\n        ret += b * c, b = A\
+    \ * b;\r\n    return ret;\r\n}\r\ntemplate <typename T> T FastDet(const SparseMatrix<T>\
+    \ &A) {\r\n    int n = A.size();\r\n    for (;;) {\r\n        Poly<T> d = RandPoly<T>(n);\r\
+    \n        SparseMatrix<T> AD = A;\r\n        rep(i, 0, n) AD.mul(i, d[i]);\r\n\
+    \        auto mp = MinPolyforMatrix(AD);\r\n        if (mp.back() == 0)\r\n  \
+    \          return 0;\r\n        if (int(mp.size()) != n + 1)\r\n            continue;\r\
+    \n        T ret = mp.back(), base = 1;\r\n        if (n & 1)\r\n            ret\
+    \ = -ret;\r\n        for (auto &v : d)\r\n            base *= v;\r\n        return\
+    \ ret / base;\r\n    }\r\n}\r\n\r\n/**\r\n * @brief Black Box Linear Algebra\r\
+    \n */"
   dependsOn:
   - FPS/berlekampmassey.hpp
   - Utility/random.hpp
   isVerificationFile: false
   path: Math/bbla.hpp
   requiredBy: []
-  timestamp: '2025-07-02 00:02:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-01-30 05:37:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_310.test.cpp
+  - Verify/YUKI_1112.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
 documentation_of: Math/bbla.hpp
 layout: document

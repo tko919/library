@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/dynamic.hpp
     title: Dynamic Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
   - icon: ':question:'
     path: Math/matrix.hpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
   - icon: ':question:'
@@ -117,9 +117,9 @@ data:
     \n    }\r\n    Matrix operator+(const Matrix &m) const {\r\n        return Matrix(*this)\
     \ += m;\r\n    }\r\n    Matrix operator-(const Matrix &m) const {\r\n        return\
     \ Matrix(*this) -= m;\r\n    }\r\n    Matrix operator*(const Matrix &m) const\
-    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k) {\r\
-    \n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
-    \ = 1;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
+    \ {\r\n        return Matrix(*this) *= m;\r\n    }\r\n    Matrix pow(ll k, T e)\
+    \ {\r\n        Matrix<T> res(h, h), c = *this;\r\n        rep(i, 0, h) res.val[i][i]\
+    \ = e;\r\n        while (k) {\r\n            if (k & 1)\r\n                res\
     \ *= c;\r\n            c *= c;\r\n            k >>= 1;\r\n        }\r\n      \
     \  return res;\r\n    }\r\n    vector<int> gauss(int c = -1) {\r\n        det\
     \ = 1;\r\n        if (val.empty())\r\n            return {};\r\n        if (c\
@@ -266,7 +266,7 @@ data:
   isVerificationFile: false
   path: Math/pisano.hpp
   requiredBy: []
-  timestamp: '2025-07-13 05:51:38+09:00'
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/pisano.hpp

@@ -50,79 +50,80 @@ data:
     \ es);\r\n    return es;\r\n}\r\n}; // namespace Random\r\n\r\n/**\r\n * @brief\
     \ Random\r\n */\n#line 2 \"Math/hash.hpp\"\n\nstruct Hash {\n    static constexpr\
     \ ull mod = 0x1fffffffffffffff;\n    ull v;\n    static constexpr ull get_mod()\
-    \ {\n        return mod;\n    }\n    constexpr ull inv() const {\n        assert(v\
-    \ != 0);\n        ull x = v, y = mod, p = 1, q = 0, t = 0, tmp = 0;\n        while\
-    \ (y > 0) {\n            t = x / y;\n            x -= t * y, p -= t * q;\n   \
-    \         tmp = x, x = y, y = tmp;\n            tmp = p, p = q, q = tmp;\n   \
-    \     }\n        if (p < 0)\n            p += mod;\n        return p;\n    }\n\
-    \    constexpr Hash(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x) % mod) % mod)\
-    \ {}\n    Hash operator-() const {\n        return Hash() - *this;\n    }\n  \
-    \  Hash pow(ull t) {\n        Hash res = 1, b = *this;\n        while (t) {\n\
-    \            if (t & 1)\n                res *= b;\n            b *= b;\n    \
-    \        t >>= 1;\n        }\n        return res;\n    }\n    Hash &operator+=(const\
-    \ Hash &x) {\n        if ((v += x.v) >= mod)\n            v -= mod;\n        return\
-    \ *this;\n    }\n    Hash &operator-=(const Hash &x) {\n        if ((v += mod\
-    \ - x.v) >= mod)\n            v -= mod;\n        return *this;\n    }\n    Hash\
-    \ &operator*=(const Hash &x) {\n        u128 ans = u128(v) * x.v;\n        ans\
-    \ = (ans >> 61) + (ans & mod);\n        if (ans >= mod)\n            ans -= mod;\n\
-    \        v = ans;\n        return *this;\n    }\n    Hash &operator/=(const Hash\
-    \ &x) {\n        v = ull(v) * x.inv() % mod;\n        return *this;\n    }\n \
-    \   Hash operator+(const Hash &x) const {\n        return Hash(*this) += x;\n\
-    \    }\n    Hash operator-(const Hash &x) const {\n        return Hash(*this)\
-    \ -= x;\n    }\n    Hash operator*(const Hash &x) const {\n        return Hash(*this)\
-    \ *= x;\n    }\n    Hash operator/(const Hash &x) const {\n        return Hash(*this)\
-    \ /= x;\n    }\n    bool operator==(const Hash &x) const {\n        return v ==\
-    \ x.v;\n    }\n    bool operator!=(const Hash &x) const {\n        return v !=\
-    \ x.v;\n    }\n    // map\u306B\u8F09\u305B\u308B\u6642\u7528\n    bool operator<(const\
-    \ Hash &x) const {\n        return v < x.v;\n    }\n    bool operator<=(const\
-    \ Hash &x) const {\n        return v <= x.v;\n    }\n    bool operator>(const\
-    \ Hash &x) const {\n        return v > x.v;\n    }\n    bool operator>=(const\
-    \ Hash &x) const {\n        return v >= x.v;\n    }\n    friend istream &operator>>(istream\
-    \ &is, Hash &x) {\n        return is >> x.v;\n    }\n    friend ostream &operator<<(ostream\
-    \ &os, const Hash &x) {\n        return os << x.v;\n    }\n};\n\nvoid rd(Hash\
-    \ &x) {\n    fastio::rd(x.v);\n}\n\n/**\n * @brief Hash\n */\n#line 4 \"String/rollinghash.hpp\"\
-    \n\nstruct RollingHash {\n    using ull = unsigned long long;\n    const Hash\
-    \ base;\n    vector<Hash> hashed, power;\n\n    static inline ull genbase() {\n\
-    \        return Random::get(ull(0x1fffffffffffffff));\n    }\n    RollingHash()\
-    \ {}\n    RollingHash(Hash base) : base(base), hashed({0}), power({1}) {}\n\n\
-    \    Hash get(ll l, ll r) const {\n        return hashed[r] - hashed[l] * power[r\
-    \ - l];\n    }\n\n    Hash connect(Hash h1, Hash h2, ll h2len) const {\n     \
-    \   return h1 * power[h2len] + h2;\n    }\n\n    template <typename STR> void\
-    \ connect(const STR &s) {\n        ll n = hashed.size() - 1, m = s.size();\n \
-    \       hashed.resize(n + m + 1);\n        power.resize(n + m + 1);\n        for\
-    \ (ll i = n; i < n + m; i++) {\n            power[i + 1] = power[i] * base;\n\
-    \            hashed[i + 1] = hashed[i] * base + s[i - n];\n        }\n    }\n\n\
-    \    ll LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll len\
-    \ = min(r1 - l1, r2 - l2);\n        ll low = -1, high = len + 1;\n        while\
-    \ (high - low > 1) {\n            ll mid = (low + high) / 2;\n            if (get(l1,\
-    \ l1 + mid) == b.get(l2, l2 + mid))\n                low = mid;\n            else\n\
-    \                high = mid;\n        }\n        return low;\n    }\n};\n\n/**\n\
-    \ * @brief Rolling Hash\n */\n"
+    \ {\n        return mod;\n    }\n    Hash inv() const {\n        return pow(mod\
+    \ - 2);\n    }\n    constexpr Hash(ll x = 0) : v(x >= 0 ? x % mod : (mod - (-x)\
+    \ % mod) % mod) {}\n    Hash operator-() const {\n        return Hash() - *this;\n\
+    \    }\n    Hash pow(ull t) const {\n        Hash res = 1, b = *this;\n      \
+    \  while (t) {\n            if (t & 1)\n                res *= b;\n          \
+    \  b *= b;\n            t >>= 1;\n        }\n        return res;\n    }\n    Hash\
+    \ &operator+=(const Hash &x) {\n        if ((v += x.v) >= mod)\n            v\
+    \ -= mod;\n        return *this;\n    }\n    Hash &operator-=(const Hash &x) {\n\
+    \        if ((v += mod - x.v) >= mod)\n            v -= mod;\n        return *this;\n\
+    \    }\n    Hash &operator*=(const Hash &x) {\n        u128 ans = u128(v) * x.v;\n\
+    \        ans = (ans >> 61) + (ans & mod);\n        if (ans >= mod)\n         \
+    \   ans -= mod;\n        v = ans;\n        return *this;\n    }\n    Hash &operator/=(const\
+    \ Hash &x) {\n        u128 ans = u128(v) * x.inv().v;\n        ans = (ans >> 61)\
+    \ + (ans & mod);\n        if (ans >= mod)\n            ans -= mod;\n        v\
+    \ = ans;\n        return *this;\n    }\n    Hash operator+(const Hash &x) const\
+    \ {\n        return Hash(*this) += x;\n    }\n    Hash operator-(const Hash &x)\
+    \ const {\n        return Hash(*this) -= x;\n    }\n    Hash operator*(const Hash\
+    \ &x) const {\n        return Hash(*this) *= x;\n    }\n    Hash operator/(const\
+    \ Hash &x) const {\n        return Hash(*this) /= x;\n    }\n    bool operator==(const\
+    \ Hash &x) const {\n        return v == x.v;\n    }\n    bool operator!=(const\
+    \ Hash &x) const {\n        return v != x.v;\n    }\n    // map\u306B\u8F09\u305B\
+    \u308B\u6642\u7528\n    bool operator<(const Hash &x) const {\n        return\
+    \ v < x.v;\n    }\n    bool operator<=(const Hash &x) const {\n        return\
+    \ v <= x.v;\n    }\n    bool operator>(const Hash &x) const {\n        return\
+    \ v > x.v;\n    }\n    bool operator>=(const Hash &x) const {\n        return\
+    \ v >= x.v;\n    }\n    friend istream &operator>>(istream &is, Hash &x) {\n \
+    \       return is >> x.v;\n    }\n    friend ostream &operator<<(ostream &os,\
+    \ const Hash &x) {\n        return os << x.v;\n    }\n};\n\n/**\n * @brief Hash\n\
+    \ */\n#line 4 \"String/rollinghash.hpp\"\n\nstruct RollingHash {\n    using ull\
+    \ = unsigned long long;\n    const Hash base;\n    vector<Hash> hashed, power;\n\
+    \n    static inline ull genbase() {\n        return Random::get(ull(0x1fffffffffffffff));\n\
+    \    }\n    RollingHash() {}\n    RollingHash(Hash base) : base(base), hashed({0}),\
+    \ power({1}) {}\n\n    void calc(int n) {\n        power.resize(n + 1);\n    \
+    \    rep(i, 0, n) power[i + 1] = power[i] * base;\n    }\n\n    Hash get(ll l,\
+    \ ll r) const {\n        return hashed[r] - hashed[l] * power[r - l];\n    }\n\
+    \n    Hash connect(Hash h1, Hash h2, ll h2len) const {\n        return h1 * power[h2len]\
+    \ + h2;\n    }\n\n    template <typename STR> void connect(const STR &s) {\n \
+    \       ll n = hashed.size() - 1, m = s.size();\n        hashed.resize(n + m +\
+    \ 1);\n        power.resize(n + m + 1);\n        for (ll i = n; i < n + m; i++)\
+    \ {\n            power[i + 1] = power[i] * base;\n            hashed[i + 1] =\
+    \ hashed[i] * base + s[i - n];\n        }\n    }\n\n    ll LCP(const RollingHash\
+    \ &b, ll l1, ll r1, ll l2, ll r2) {\n        ll len = min(r1 - l1, r2 - l2);\n\
+    \        ll low = -1, high = len + 1;\n        while (high - low > 1) {\n    \
+    \        ll mid = (low + high) / 2;\n            if (get(l1, l1 + mid) == b.get(l2,\
+    \ l2 + mid))\n                low = mid;\n            else\n                high\
+    \ = mid;\n        }\n        return low;\n    }\n};\n\n/**\n * @brief Rolling\
+    \ Hash\n */\n"
   code: "#pragma once\n#include \"Utility/random.hpp\"\n#include \"Math/hash.hpp\"\
     \n\nstruct RollingHash {\n    using ull = unsigned long long;\n    const Hash\
     \ base;\n    vector<Hash> hashed, power;\n\n    static inline ull genbase() {\n\
     \        return Random::get(ull(0x1fffffffffffffff));\n    }\n    RollingHash()\
     \ {}\n    RollingHash(Hash base) : base(base), hashed({0}), power({1}) {}\n\n\
-    \    Hash get(ll l, ll r) const {\n        return hashed[r] - hashed[l] * power[r\
-    \ - l];\n    }\n\n    Hash connect(Hash h1, Hash h2, ll h2len) const {\n     \
-    \   return h1 * power[h2len] + h2;\n    }\n\n    template <typename STR> void\
-    \ connect(const STR &s) {\n        ll n = hashed.size() - 1, m = s.size();\n \
-    \       hashed.resize(n + m + 1);\n        power.resize(n + m + 1);\n        for\
-    \ (ll i = n; i < n + m; i++) {\n            power[i + 1] = power[i] * base;\n\
-    \            hashed[i + 1] = hashed[i] * base + s[i - n];\n        }\n    }\n\n\
-    \    ll LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll len\
-    \ = min(r1 - l1, r2 - l2);\n        ll low = -1, high = len + 1;\n        while\
-    \ (high - low > 1) {\n            ll mid = (low + high) / 2;\n            if (get(l1,\
-    \ l1 + mid) == b.get(l2, l2 + mid))\n                low = mid;\n            else\n\
-    \                high = mid;\n        }\n        return low;\n    }\n};\n\n/**\n\
-    \ * @brief Rolling Hash\n */"
+    \    void calc(int n) {\n        power.resize(n + 1);\n        rep(i, 0, n) power[i\
+    \ + 1] = power[i] * base;\n    }\n\n    Hash get(ll l, ll r) const {\n       \
+    \ return hashed[r] - hashed[l] * power[r - l];\n    }\n\n    Hash connect(Hash\
+    \ h1, Hash h2, ll h2len) const {\n        return h1 * power[h2len] + h2;\n   \
+    \ }\n\n    template <typename STR> void connect(const STR &s) {\n        ll n\
+    \ = hashed.size() - 1, m = s.size();\n        hashed.resize(n + m + 1);\n    \
+    \    power.resize(n + m + 1);\n        for (ll i = n; i < n + m; i++) {\n    \
+    \        power[i + 1] = power[i] * base;\n            hashed[i + 1] = hashed[i]\
+    \ * base + s[i - n];\n        }\n    }\n\n    ll LCP(const RollingHash &b, ll\
+    \ l1, ll r1, ll l2, ll r2) {\n        ll len = min(r1 - l1, r2 - l2);\n      \
+    \  ll low = -1, high = len + 1;\n        while (high - low > 1) {\n          \
+    \  ll mid = (low + high) / 2;\n            if (get(l1, l1 + mid) == b.get(l2,\
+    \ l2 + mid))\n                low = mid;\n            else\n                high\
+    \ = mid;\n        }\n        return low;\n    }\n};\n\n/**\n * @brief Rolling\
+    \ Hash\n */"
   dependsOn:
   - Utility/random.hpp
   - Math/hash.hpp
   isVerificationFile: false
   path: String/rollinghash.hpp
   requiredBy: []
-  timestamp: '2025-07-13 05:51:38+09:00'
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: String/rollinghash.hpp

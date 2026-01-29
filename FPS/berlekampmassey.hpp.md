@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: Math/bbla.hpp
     title: Black Box Linear Algebra
   _extendedVerifiedWith:
@@ -12,10 +12,10 @@ data:
   - icon: ':x:'
     path: Verify/LC_sparse_matrix_det.test.cpp
     title: Verify/LC_sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_1112.test.cpp
     title: Verify/YUKI_1112.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/YUKI_310.test.cpp
     title: Verify/YUKI_310.test.cpp
   _isVerificationFailed: true
@@ -54,10 +54,10 @@ data:
   timestamp: '2025-04-17 22:07:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/YUKI_1112.test.cpp
   - Verify/YUKI_310.test.cpp
-  - Verify/LC_find_linear_recurrence.test.cpp
+  - Verify/YUKI_1112.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_find_linear_recurrence.test.cpp
 documentation_of: FPS/berlekampmassey.hpp
 layout: document
 redirect_from:

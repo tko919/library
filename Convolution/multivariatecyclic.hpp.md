@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/fastdiv.hpp
     title: Fast Division
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/miller.hpp
     title: Miller-Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/pollard.hpp
     title: Pollard-Rho
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Math/primitive.hpp
     title: Primitive Function
   - icon: ':question:'
@@ -178,42 +178,43 @@ data:
     \n        return k ? 0 : -1;\r\n    if (m == 2)\r\n        return a & 1;\r\n \
     \   k %= m - 1;\r\n    ll g = gcd(k, m - 1);\r\n    if (mpow(a, (m - 1) / g, m)\
     \ != 1)\r\n        return -1;\r\n    a = mpow(a, minv(k / g, (m - 1) / g), m);\r\
-    \n    FastDiv im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll {\
-    \ // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n    \
-    \    while (q % p == 0) {\r\n            q /= p;\r\n            s++;\r\n     \
-    \   }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n        \
-    \   res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n \
-    \       while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n        c\
+    \n    FastDiv64 im(m);\r\n\r\n    auto _subroot = [&](ll p, int e, ll a) -> ll\
+    \ { // x^(p^e)==a(mod m)\r\n        ll q = m - 1;\r\n        int s = 0;\r\n  \
+    \      while (q % p == 0) {\r\n            q /= p;\r\n            s++;\r\n   \
+    \     }\r\n        int d = s - e;\r\n        ll pe = mpow(p, e, m),\r\n      \
+    \     res = mpow(a, ((pe - 1) * minv(q, pe) % pe * q + 1) / pe, m), c = 1;\r\n\
+    \        while (mpow(c, (m - 1) / p, m) == 1)\r\n            c++;\r\n        c\
     \ = mpow(c, q, m);\r\n        map<ll, ll> mp;\r\n        ll v = 1, block = sqrt(d\
     \ * p) + 1,\r\n           bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1),\
-    \ m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;\r\n        ll\
-    \ gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i, 0, d) {\r\
-    \n            ll err = a * minv(mpow(res, pe, m), m) % im;\r\n            ll pos\
-    \ = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n            rep(j, 0, block +\
-    \ 1) {\r\n                if (mp.count(pos)) {\r\n                    res = res\
-    \ *\r\n                          mpow(c,\r\n                               (block\
-    \ * mp[pos] + j) * mpow(p, i, m - 1) %\r\n                                   (m\
-    \ - 1),\r\n                               m) %\r\n                          im;\r\
-    \n                    break;\r\n                }\r\n                pos = pos\
-    \ * gs % im;\r\n            }\r\n        }\r\n        return res;\r\n    };\r\n\
-    \r\n    for (ll d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n     \
-    \       int sz = 0;\r\n            while (g % d == 0) {\r\n                g /=\
-    \ d;\r\n                sz++;\r\n            }\r\n            a = _subroot(d,\
-    \ sz, a);\r\n        }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n\
-    \    return a;\r\n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or\
-    \ k == 1)\r\n        return a;\r\n    if (k >= 64)\r\n        return 1;\r\n  \
-    \  if (k == 2)\r\n        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n\
-    \    if (a == LIM)\r\n        a--;\r\n    auto mul = [&](ull &x, const ull &y)\
-    \ {\r\n        if (x <= LIM / y)\r\n            x *= y;\r\n        else\r\n  \
-    \          x = LIM;\r\n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n\
-    \        ull y = 1;\r\n        while (t) {\r\n            if (t & 1)\r\n     \
-    \           mul(y, x);\r\n            mul(x, x);\r\n            t >>= 1;\r\n \
-    \       }\r\n        return y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) -\
-    \ 1 : pow(a, nextafter(1 / double(k), 0)));\r\n    while (pw(ret + 1, k) <= a)\r\
-    \n        ret++;\r\n    return ret;\r\n}\r\n\r\n/**\r\n * @brief Primitive Function\r\
-    \n */\n#line 2 \"FPS/multievalgeom.hpp\"\n\ntemplate<typename T>vector<T> MultievalGeomSeq(vector<T>&\
-    \ f,T a,T w,int m){\n    int n=f.size();\n    vector<T> ret(m);\n    if(w==0){\n\
-    \        T base=1;\n        rep(i,0,n)ret[0]+=base*f[i],base*=a;\n        rep(i,1,m)ret[i]=f[0];\n\
+    \ m);\r\n        rep(i, 0, block + 1) mp[v] = i, v = im.modulo(i128(v) * bs);\r\
+    \n        ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);\r\n        rep(i,\
+    \ 0, d) {\r\n            ll err = im.modulo(i128(a) * minv(mpow(res, pe, m), m));\r\
+    \n            ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);\r\n          \
+    \  rep(j, 0, block + 1) {\r\n                if (mp.count(pos)) {\r\n        \
+    \            res = im.modulo(i128(res) *\r\n                                 \
+    \   mpow(c,\r\n                                         (block * mp[pos] + j)\
+    \ *\r\n                                             mpow(p, i, m - 1) % (m - 1),\r\
+    \n                                         m));\r\n                    break;\r\
+    \n                }\r\n                pos = im.modulo(i128(pos) * gs);\r\n  \
+    \          }\r\n        }\r\n        return res;\r\n    };\r\n\r\n    for (ll\
+    \ d = 2; d * d <= g; d++)\r\n        if (g % d == 0) {\r\n            int sz =\
+    \ 0;\r\n            while (g % d == 0) {\r\n                g /= d;\r\n      \
+    \          sz++;\r\n            }\r\n            a = _subroot(d, sz, a);\r\n \
+    \       }\r\n    if (g > 1)\r\n        a = _subroot(g, 1, a);\r\n    return a;\r\
+    \n}\r\n\r\null floor_root(ull a, ull k) {\r\n    if (a <= 1 or k == 1)\r\n   \
+    \     return a;\r\n    if (k >= 64)\r\n        return 1;\r\n    if (k == 2)\r\n\
+    \        return sqrtl(a);\r\n    constexpr ull LIM = -1;\r\n    if (a == LIM)\r\
+    \n        a--;\r\n    auto mul = [&](ull &x, const ull &y) {\r\n        if (x\
+    \ <= LIM / y)\r\n            x *= y;\r\n        else\r\n            x = LIM;\r\
+    \n    };\r\n    auto pw = [&](ull x, ull t) -> ull {\r\n        ull y = 1;\r\n\
+    \        while (t) {\r\n            if (t & 1)\r\n                mul(y, x);\r\
+    \n            mul(x, x);\r\n            t >>= 1;\r\n        }\r\n        return\
+    \ y;\r\n    };\r\n    ull ret = (k == 3 ? cbrt(a) - 1 : pow(a, nextafter(1 / double(k),\
+    \ 0)));\r\n    while (pw(ret + 1, k) <= a)\r\n        ret++;\r\n    return ret;\r\
+    \n}\r\n\r\n/**\r\n * @brief Primitive Function\r\n */\n#line 2 \"FPS/multievalgeom.hpp\"\
+    \n\ntemplate<typename T>vector<T> MultievalGeomSeq(vector<T>& f,T a,T w,int m){\n\
+    \    int n=f.size();\n    vector<T> ret(m);\n    if(w==0){\n        T base=1;\n\
+    \        rep(i,0,n)ret[0]+=base*f[i],base*=a;\n        rep(i,1,m)ret[i]=f[0];\n\
     \        return ret;\n    }\n    vector<T> tri(n+m-1),itri(n+m-1);\n    tri[0]=itri[0]=1;\n\
     \    T iw=w.inv(),pww=1,pwiw=1;\n    for(int i=1;i<n+m-1;i++,pww*=w,pwiw*=iw){\n\
     \        tri[i]=tri[i-1]*pww;\n        itri[i]=itri[i-1]*pwiw;\n    }\n\n    Poly<T>\
@@ -263,7 +264,7 @@ data:
   isVerificationFile: false
   path: Convolution/multivariatecyclic.hpp
   requiredBy: []
-  timestamp: '2025-05-25 16:11:40+09:00'
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp

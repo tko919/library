@@ -227,20 +227,21 @@ data:
     \ <unsigned mod> void wt(fp<mod> x) {\r\n    fastio::wt(x.v);\r\n}\r\n\r\n/**\r\
     \n * @brief Modint\r\n */\n#line 8 \"Verify/LC_static_rectangle_add_rectangle_sum.test.cpp\"\
     \nusing Fp = fp<998244353>;\n\n#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate\
-    \ <typename T> struct BIT {\r\n    int n;\r\n    T all = 0;\r\n    vector<T> val;\r\
-    \n    BIT(int _n = 0) : n(_n), val(_n + 10) {}\r\n    void clear() {\r\n     \
-    \   val.assign(n + 10, 0);\r\n        all = T();\r\n    }\r\n    void add(int\
-    \ i, T x) {\r\n        for (i++; i <= n; i += (i & -i))\r\n            val[i]\
-    \ = val[i] + x;\r\n        all += x;\r\n    }\r\n    T sum(int i) {\r\n      \
-    \  i = clamp(i, 0, n);\r\n        T res = 0;\r\n        for (; i; i -= (i & -i))\r\
-    \n            res += val[i];\r\n        return res;\r\n    }\r\n    // [L,R)\r\
-    \n    T sum(int L, int R) {\r\n        if (L > R)\r\n            return T(0);\r\
-    \n        return sum(R) - sum(L);\r\n    }\r\n    int lower_bound(T x) {\r\n \
-    \       int ret = 0, len = 1;\r\n        while (2 * len <= n)\r\n            len\
-    \ <<= 1;\r\n        for (; len >= 1; len >>= 1) {\r\n            if (ret + len\
-    \ <= n and val[ret + len] < x) {\r\n                ret += len;\r\n          \
-    \      x -= val[ret];\r\n            }\r\n        }\r\n        return ret;\r\n\
-    \    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n */\n#line 3 \"DataStructure/staticrectsum.hpp\"\
+    \ <typename T> struct BIT {\r\n    int n;\r\n    T all = T();\r\n    vector<T>\
+    \ val;\r\n    BIT(int _n = 0) : n(_n), val(_n + 10) {}\r\n    void clear() {\r\
+    \n        val.assign(n + 10, T());\r\n        all = T();\r\n    }\r\n    void\
+    \ add(int i, T x) {\r\n        for (i++; i <= n; i += (i & -i))\r\n          \
+    \  val[i] = val[i] + x;\r\n        all += x;\r\n    }\r\n    T sum(int i) {\r\n\
+    \        i = clamp(i, 0, n);\r\n        T res = T();\r\n        for (; i; i -=\
+    \ (i & -i))\r\n            res += val[i];\r\n        return res;\r\n    }\r\n\
+    \    // [L,R)\r\n    T sum(int L, int R) {\r\n        if (L > R)\r\n         \
+    \   return T();\r\n        return sum(R) - sum(L);\r\n    }\r\n    // max index\
+    \ s.t. sum[0,i]<=x\r\n    int lower_bound(T x) {\r\n        int ret = 0, len =\
+    \ 1;\r\n        while (2 * len <= n)\r\n            len <<= 1;\r\n        for\
+    \ (; len >= 1; len >>= 1) {\r\n            if (ret + len <= n and val[ret + len]\
+    \ < x) {\r\n                ret += len;\r\n                x -= val[ret];\r\n\
+    \            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Binary Indexed Tree\r\n */\n#line 3 \"DataStructure/staticrectsum.hpp\"\
     \n\ntemplate <typename XY, typename T> struct StaticRectangleSum {\n    struct\
     \ P {\n        XY x, y;\n        T w;\n    };\n    struct Rect {\n        XY l,\
     \ d, r, u;\n    };\n    struct Q {\n        XY x, d, u;\n        int id, inv;\n\
@@ -314,7 +315,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-07-13 05:51:38+09:00'
+  timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_static_rectangle_add_rectangle_sum.test.cpp

@@ -9,9 +9,9 @@ data:
     title: Template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -67,25 +67,25 @@ data:
     \ _show(int i, const T1 &a, const T2 &b, const T3 &...c) {\r\n    for (; a[i]\
     \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
     \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2 \"DataStructure/bit.hpp\"\
-    \n\r\ntemplate <typename T> struct BIT {\r\n    int n;\r\n    T all = 0;\r\n \
-    \   vector<T> val;\r\n    BIT(int _n = 0) : n(_n), val(_n + 10) {}\r\n    void\
-    \ clear() {\r\n        val.assign(n + 10, 0);\r\n        all = T();\r\n    }\r\
+    \n\r\ntemplate <typename T> struct BIT {\r\n    int n;\r\n    T all = T();\r\n\
+    \    vector<T> val;\r\n    BIT(int _n = 0) : n(_n), val(_n + 10) {}\r\n    void\
+    \ clear() {\r\n        val.assign(n + 10, T());\r\n        all = T();\r\n    }\r\
     \n    void add(int i, T x) {\r\n        for (i++; i <= n; i += (i & -i))\r\n \
     \           val[i] = val[i] + x;\r\n        all += x;\r\n    }\r\n    T sum(int\
-    \ i) {\r\n        i = clamp(i, 0, n);\r\n        T res = 0;\r\n        for (;\
+    \ i) {\r\n        i = clamp(i, 0, n);\r\n        T res = T();\r\n        for (;\
     \ i; i -= (i & -i))\r\n            res += val[i];\r\n        return res;\r\n \
     \   }\r\n    // [L,R)\r\n    T sum(int L, int R) {\r\n        if (L > R)\r\n \
-    \           return T(0);\r\n        return sum(R) - sum(L);\r\n    }\r\n    int\
-    \ lower_bound(T x) {\r\n        int ret = 0, len = 1;\r\n        while (2 * len\
-    \ <= n)\r\n            len <<= 1;\r\n        for (; len >= 1; len >>= 1) {\r\n\
-    \            if (ret + len <= n and val[ret + len] < x) {\r\n                ret\
-    \ += len;\r\n                x -= val[ret];\r\n            }\r\n        }\r\n\
-    \        return ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\
-    \n */\n#line 5 \"Verify/LC_static_range_sum.test.cpp\"\n\r\n\r\nint main(){\r\n\
-    \    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N);\r\n    rep(i,0,N)cin>>a[i];\r\
-    \n\r\n    BIT<ll> bit(N);\r\n    rep(i,0,N)bit.add(i,a[i]);\r\n    while(Q--){\r\
-    \n        int L,R;\r\n        cin>>L>>R;\r\n        cout<<bit.sum(L,R)<<'\\n';\r\
-    \n    }\r\n    return 0;\r\n}\n"
+    \           return T();\r\n        return sum(R) - sum(L);\r\n    }\r\n    //\
+    \ max index s.t. sum[0,i]<=x\r\n    int lower_bound(T x) {\r\n        int ret\
+    \ = 0, len = 1;\r\n        while (2 * len <= n)\r\n            len <<= 1;\r\n\
+    \        for (; len >= 1; len >>= 1) {\r\n            if (ret + len <= n and val[ret\
+    \ + len] < x) {\r\n                ret += len;\r\n                x -= val[ret];\r\
+    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
+    \n * @brief Binary Indexed Tree\r\n */\n#line 5 \"Verify/LC_static_range_sum.test.cpp\"\
+    \n\r\n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N);\r\
+    \n    rep(i,0,N)cin>>a[i];\r\n\r\n    BIT<ll> bit(N);\r\n    rep(i,0,N)bit.add(i,a[i]);\r\
+    \n    while(Q--){\r\n        int L,R;\r\n        cin>>L>>R;\r\n        cout<<bit.sum(L,R)<<'\\\
+    n';\r\n    }\r\n    return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\r\n\r\
     \n#include \"Template/template.hpp\"\r\n#include \"DataStructure/bit.hpp\"\r\n\
     \r\n\r\nint main(){\r\n    int N,Q;\r\n    cin>>N>>Q;\r\n    vector<int> a(N);\r\
@@ -98,8 +98,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-30 05:37:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_static_range_sum.test.cpp
 layout: document

@@ -6,45 +6,46 @@ data:
     title: Binary Indexed Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_prefix_substring_lcs.test.cpp
     title: Verify/LC_prefix_substring_lcs.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Prefix Substring LCS
     links: []
   bundledCode: "#line 2 \"DataStructure/bit.hpp\"\n\r\ntemplate <typename T> struct\
-    \ BIT {\r\n    int n;\r\n    T all = 0;\r\n    vector<T> val;\r\n    BIT(int _n\
-    \ = 0) : n(_n), val(_n + 10) {}\r\n    void clear() {\r\n        val.assign(n\
-    \ + 10, 0);\r\n        all = T();\r\n    }\r\n    void add(int i, T x) {\r\n \
-    \       for (i++; i <= n; i += (i & -i))\r\n            val[i] = val[i] + x;\r\
+    \ BIT {\r\n    int n;\r\n    T all = T();\r\n    vector<T> val;\r\n    BIT(int\
+    \ _n = 0) : n(_n), val(_n + 10) {}\r\n    void clear() {\r\n        val.assign(n\
+    \ + 10, T());\r\n        all = T();\r\n    }\r\n    void add(int i, T x) {\r\n\
+    \        for (i++; i <= n; i += (i & -i))\r\n            val[i] = val[i] + x;\r\
     \n        all += x;\r\n    }\r\n    T sum(int i) {\r\n        i = clamp(i, 0,\
-    \ n);\r\n        T res = 0;\r\n        for (; i; i -= (i & -i))\r\n          \
-    \  res += val[i];\r\n        return res;\r\n    }\r\n    // [L,R)\r\n    T sum(int\
-    \ L, int R) {\r\n        if (L > R)\r\n            return T(0);\r\n        return\
-    \ sum(R) - sum(L);\r\n    }\r\n    int lower_bound(T x) {\r\n        int ret =\
-    \ 0, len = 1;\r\n        while (2 * len <= n)\r\n            len <<= 1;\r\n  \
-    \      for (; len >= 1; len >>= 1) {\r\n            if (ret + len <= n and val[ret\
-    \ + len] < x) {\r\n                ret += len;\r\n                x -= val[ret];\r\
-    \n            }\r\n        }\r\n        return ret;\r\n    }\r\n};\r\n\r\n/**\r\
-    \n * @brief Binary Indexed Tree\r\n */\n#line 3 \"String/prefixsubstrlcs.hpp\"\
-    \n\ntemplate <typename T> struct PrefixSubstringLCS {\n    using P = pair<int,\
-    \ int>;\n    T s, t;\n    int pos;\n    vector<vector<vector<P>>> que;\n    PrefixSubstringLCS()\
-    \ {\n    }\n    PrefixSubstringLCS(T &_s, T &_t)\n        : s(_s), t(_t), pos(0),\
-    \ que(s.size(), vector(t.size(), vector<P>())) {\n    }\n    void add(int a, int\
-    \ b, int c) {\n        if (a == 0 or c == 0) {\n            pos++;\n         \
-    \   return;\n        }\n        que[a - 1][c - 1].push_back({b, pos++});\n   \
-    \ }\n    vector<int> run() {\n        vector<int> h(t.size()), ret(pos);\n   \
-    \     iota(ALL(h), 0);\n        rep(a, 0, s.size()) {\n            int pre = -1;\n\
-    \            rep(c, 0, t.size()) {\n                if (s[a] == t[c] or h[c] <\
-    \ pre)\n                    swap(h[c], pre);\n            }\n            BIT<int>\
-    \ bit(t.size() + 1);\n            rep(c, 0, t.size()) {\n                if (h[c]\
-    \ != -1)\n                    bit.add(h[c], 1);\n                for (auto &[b,\
-    \ id] : que[a][c]) {\n                    ret[id] = (c - b + 1) - (bit.all - bit.sum(b));\n\
-    \                }\n            }\n        }\n        return ret;\n    }\n};\n\
-    \n/**\n * @brief Prefix Substring LCS\n */\n"
+    \ n);\r\n        T res = T();\r\n        for (; i; i -= (i & -i))\r\n        \
+    \    res += val[i];\r\n        return res;\r\n    }\r\n    // [L,R)\r\n    T sum(int\
+    \ L, int R) {\r\n        if (L > R)\r\n            return T();\r\n        return\
+    \ sum(R) - sum(L);\r\n    }\r\n    // max index s.t. sum[0,i]<=x\r\n    int lower_bound(T\
+    \ x) {\r\n        int ret = 0, len = 1;\r\n        while (2 * len <= n)\r\n  \
+    \          len <<= 1;\r\n        for (; len >= 1; len >>= 1) {\r\n           \
+    \ if (ret + len <= n and val[ret + len] < x) {\r\n                ret += len;\r\
+    \n                x -= val[ret];\r\n            }\r\n        }\r\n        return\
+    \ ret;\r\n    }\r\n};\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n */\n#line\
+    \ 3 \"String/prefixsubstrlcs.hpp\"\n\ntemplate <typename T> struct PrefixSubstringLCS\
+    \ {\n    using P = pair<int, int>;\n    T s, t;\n    int pos;\n    vector<vector<vector<P>>>\
+    \ que;\n    PrefixSubstringLCS() {\n    }\n    PrefixSubstringLCS(T &_s, T &_t)\n\
+    \        : s(_s), t(_t), pos(0), que(s.size(), vector(t.size(), vector<P>()))\
+    \ {\n    }\n    void add(int a, int b, int c) {\n        if (a == 0 or c == 0)\
+    \ {\n            pos++;\n            return;\n        }\n        que[a - 1][c\
+    \ - 1].push_back({b, pos++});\n    }\n    vector<int> run() {\n        vector<int>\
+    \ h(t.size()), ret(pos);\n        iota(ALL(h), 0);\n        rep(a, 0, s.size())\
+    \ {\n            int pre = -1;\n            rep(c, 0, t.size()) {\n          \
+    \      if (s[a] == t[c] or h[c] < pre)\n                    swap(h[c], pre);\n\
+    \            }\n            BIT<int> bit(t.size() + 1);\n            rep(c, 0,\
+    \ t.size()) {\n                if (h[c] != -1)\n                    bit.add(h[c],\
+    \ 1);\n                for (auto &[b, id] : que[a][c]) {\n                   \
+    \ ret[id] = (c - b + 1) - (bit.all - bit.sum(b));\n                }\n       \
+    \     }\n        }\n        return ret;\n    }\n};\n\n/**\n * @brief Prefix Substring\
+    \ LCS\n */\n"
   code: "#pragma once\n#include \"DataStructure/bit.hpp\"\n\ntemplate <typename T>\
     \ struct PrefixSubstringLCS {\n    using P = pair<int, int>;\n    T s, t;\n  \
     \  int pos;\n    vector<vector<vector<P>>> que;\n    PrefixSubstringLCS() {\n\
@@ -66,8 +67,8 @@ data:
   isVerificationFile: false
   path: String/prefixsubstrlcs.hpp
   requiredBy: []
-  timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-01-30 05:37:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_prefix_substring_lcs.test.cpp
 documentation_of: String/prefixsubstrlcs.hpp

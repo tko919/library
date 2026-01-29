@@ -92,8 +92,8 @@ data:
   timestamp: '2025-07-13 05:51:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_many_factorials.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_many_factorials.test.cpp
 documentation_of: FPS/samplepointshift.hpp
 layout: document
 redirect_from:
