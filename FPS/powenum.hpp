@@ -1,9 +1,28 @@
 #pragma once
 
 template <typename T>
-vector<T> PowEnumerate(Poly<T> &f, Poly<T> &g,
+vector<T> PowEnumerate(Poly<T> f, Poly<T> g,
                        int m) { // sum_j g_j [x^j] f^i (i=0..m)
-    assert(f[0] == 0);
+    if (f.empty())
+        return vector<T>(m + 1, 0);
+    if (f[0] != 0) {
+        Poly<T> f0 = f;
+        T c = f[0];
+        f0[0] = 0;
+        Poly<T> ret = PowEnumerate(f0, g, m);
+        Poly<T> coe(m + 1);
+        T pw = 1;
+        rep(i, 0, m + 1) {
+            ret[i] *= Fact<Fp>(i, 1);
+            coe[i] = Fact<Fp>(i, 1) * pw;
+            pw *= c;
+        }
+        ret *= coe;
+        ret.resize(m + 1);
+        rep(i, 0, m + 1) ret[i] *= Fact<Fp>(i);
+        return ret;
+    }
+    f.resize(SZ(g));
     int n = 1;
     while (n < SZ(f))
         n <<= 1;

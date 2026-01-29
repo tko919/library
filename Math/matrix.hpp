@@ -38,9 +38,9 @@ template <class T> struct Matrix {
     Matrix operator*(const Matrix &m) const {
         return Matrix(*this) *= m;
     }
-    Matrix pow(ll k) {
+    Matrix pow(ll k, T e) {
         Matrix<T> res(h, h), c = *this;
-        rep(i, 0, h) res.val[i][i] = 1;
+        rep(i, 0, h) res.val[i][i] = e;
         while (k) {
             if (k & 1)
                 res *= c;

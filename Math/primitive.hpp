@@ -151,7 +151,7 @@ ll mod_root(ll k, ll a, ll m) {
     if (mpow(a, (m - 1) / g, m) != 1)
         return -1;
     a = mpow(a, minv(k / g, (m - 1) / g), m);
-    FastDiv im(m);
+    FastDiv64 im(m);
 
     auto _subroot = [&](ll p, int e, ll a) -> ll { // x^(p^e)==a(mod m)
         ll q = m - 1;
@@ -169,22 +169,21 @@ ll mod_root(ll k, ll a, ll m) {
         map<ll, ll> mp;
         ll v = 1, block = sqrt(d * p) + 1,
            bs = mpow(c, mpow(p, s - 1, m - 1) * block % (m - 1), m);
-        rep(i, 0, block + 1) mp[v] = i, v = v * bs % im;
+        rep(i, 0, block + 1) mp[v] = i, v = im.modulo(i128(v) * bs);
         ll gs = minv(mpow(c, mpow(p, s - 1, m - 1), m), m);
         rep(i, 0, d) {
-            ll err = a * minv(mpow(res, pe, m), m) % im;
+            ll err = im.modulo(i128(a) * minv(mpow(res, pe, m), m));
             ll pos = mpow(err, mpow(p, d - 1 - i, m - 1), m);
             rep(j, 0, block + 1) {
                 if (mp.count(pos)) {
-                    res = res *
-                          mpow(c,
-                               (block * mp[pos] + j) * mpow(p, i, m - 1) %
-                                   (m - 1),
-                               m) %
-                          im;
+                    res = im.modulo(i128(res) *
+                                    mpow(c,
+                                         (block * mp[pos] + j) *
+                                             mpow(p, i, m - 1) % (m - 1),
+                                         m));
                     break;
                 }
-                pos = pos * gs % im;
+                pos = im.modulo(i128(pos) * gs);
             }
         }
         return res;

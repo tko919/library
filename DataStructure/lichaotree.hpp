@@ -1,12 +1,13 @@
 #pragma once
 
-template <typename T, T MX> struct CHT {
+template <typename T> struct CHT {
     using Line = pair<T, T>;
     int n;
+    const T MX;
     vector<T> xs;
     vector<Line> ls;
     CHT() {}
-    CHT(vector<T> &ps) {
+    CHT(vector<T> &ps, T MX) {
         xs = ps;
         UNIQUE(xs);
         n = 1;

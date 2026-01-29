@@ -4,7 +4,7 @@
 #include "Math/pollard.hpp"
 
 vector<pair<ll, ll>> RepresentTwoSquare(ll n) {
-    auto find = [&](ll p) -> Gauss<ll> {
+    auto find = [&](ll p) -> Gauss<i128> {
         assert(p % 4 == 1);
         ll g = 1, x = -1;
         for (;;) {
@@ -13,20 +13,20 @@ vector<pair<ll, ll>> RepresentTwoSquare(ll n) {
             if ((__int128_t(x) * x) % p == p - 1)
                 break;
         }
-        Gauss<ll> a(p, 0), b(x, 1);
+        Gauss<i128> a(p, 0), b(x, 1);
         a = gcd(a, b);
         assert(a.norm() == p);
         return a;
     };
-    auto subtask = [&](ll p, int e) -> vector<Gauss<ll>> {
+    auto subtask = [&](ll p, int e) -> vector<Gauss<i128>> {
         if (p == 2) {
-            Gauss<ll> ret(1, 0), b(1, 1);
+            Gauss<i128> ret(1, 0), b(1, 1);
             rep(_, 0, e) ret *= b;
             return {ret};
         } else if (p % 4 == 1) {
             auto base = find(p);
-            vector<Gauss<ll>> pws(e + 1), ret(e + 1);
-            pws[0] = Gauss<ll>(1, 0);
+            vector<Gauss<i128>> pws(e + 1), ret(e + 1);
+            pws[0] = Gauss<i128>(1, 0);
             rep(i, 0, e) pws[i + 1] = pws[i] * base;
             rep(i, 0, e + 1) ret[i] = pws[i] * pws[e - i].conj();
             return ret;
@@ -35,7 +35,7 @@ vector<pair<ll, ll>> RepresentTwoSquare(ll n) {
                 return {};
             ll q = 1;
             rep(_, 0, e / 2) q *= p;
-            return {Gauss<ll>(q, 0)};
+            return {Gauss<i128>(q, 0)};
         }
     };
 
@@ -46,11 +46,11 @@ vector<pair<ll, ll>> RepresentTwoSquare(ll n) {
     map<ll, int> pe;
     for (auto &p : ps)
         pe[p]++;
-    vector<Gauss<ll>> ret;
-    ret.push_back(Gauss<ll>(1, 0));
+    vector<Gauss<i128>> ret;
+    ret.push_back(Gauss<i128>(1, 0));
     for (auto &[p, e] : pe) {
         auto add = subtask(p, e);
-        vector<Gauss<ll>> nxt;
+        vector<Gauss<i128>> nxt;
         for (auto &x : ret) {
             for (auto &y : add) {
                 nxt.push_back(x * y);

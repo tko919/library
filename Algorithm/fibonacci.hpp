@@ -1,7 +1,7 @@
 #pragma once
 
-template <typename T, typename F, bool MINIMIZE = 1>
-T FibonacciSearch(ll lb, ll rb, F f) {
+template <typename T, typename F>
+T FibonacciSearch(ll lb, ll rb, F f, bool MINIMIZE = 1) {
     ll s = 1, t = 2;
     while (t < rb - lb + 2) {
         s += t;

@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename T> Poly<T> Composition(Poly<T> &f, Poly<T> &g) {
+template <typename T> Poly<T> Composition(Poly<T> f, Poly<T> g) {
     assert(SZ(f) == SZ(g) and g[0] == 0);
 
     auto dfs = [&](auto &dfs, int n, int k, Poly<T> &Q) -> Poly<T> {

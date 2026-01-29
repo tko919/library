@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/primitive.hpp"
 
 template <typename T> struct NTT {
     static constexpr int rank2 = __builtin_ctzll(T::get_mod() - 1);
@@ -12,10 +13,7 @@ template <typename T> struct NTT {
     std::array<T, std::max(0, rank2 - 3 + 1)> irate3;
 
     NTT() {
-        T g = 2;
-        while (g.pow((T::get_mod() - 1) >> 1) == 1) {
-            g += 1;
-        }
+        T g = getPrimitiveRoot(T::get_mod());
         root[rank2] = g.pow((T::get_mod() - 1) >> rank2);
         iroot[rank2] = root[rank2].inv();
         for (int i = rank2 - 1; i >= 0; i--) {
@@ -61,9 +59,10 @@ template <typename T> struct NTT {
                             auto r = a[i + offset + p];
                             a[i + offset] = l + r;
                             a[i + offset + p] =
-                                (unsigned long long)(T::get_mod() + l.v - r.v) *
-                                irot.v;
-                            ;
+                                ((unsigned long long)(T::get_mod() + l.v -
+                                                      r.v) *
+                                 irot.v) %
+                                T::get_mod();
                         }
                         if (s + 1 != (1 << (len - 1)))
                             irot *= irate2[__builtin_ctzll(~(unsigned int)(s))];
@@ -86,18 +85,18 @@ template <typename T> struct NTT {
                             auto a2na3iimag =
                                 1ULL * T((T::get_mod() + a2 - a3) * iimag.v).v;
 
-                            a[i + offset] = a0 + a1 + a2 + a3;
+                            a[i + offset] = (a0 + a1 + a2 + a3) % T::get_mod();
                             a[i + offset + 1 * p] =
                                 (a0 + (T::get_mod() - a1) + a2na3iimag) *
-                                irot.v;
+                                irot.v % T::get_mod();
                             a[i + offset + 2 * p] =
                                 (a0 + a1 + (T::get_mod() - a2) +
                                  (T::get_mod() - a3)) *
-                                irot2.v;
+                                irot2.v % T::get_mod();
                             a[i + offset + 3 * p] =
                                 (a0 + (T::get_mod() - a1) +
                                  (T::get_mod() - a2na3iimag)) *
-                                irot3.v;
+                                irot3.v % T::get_mod();
                         }
                         if (s + 1 != (1 << (len - 2)))
                             irot *= irate3[__builtin_ctzll(~(unsigned int)(s))];
@@ -143,12 +142,14 @@ template <typename T> struct NTT {
                             auto a1na3imag =
                                 1ULL * T(a1 + mod2 - a3).v * imag.v;
                             auto na2 = mod2 - a2;
-                            a[i + offset] = a0 + a2 + a1 + a3;
+                            a[i + offset] = (a0 + a2 + a1 + a3) % T::get_mod();
                             a[i + offset + 1 * p] =
-                                a0 + a2 + (2 * mod2 - (a1 + a3));
-                            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;
+                                (a0 + a2 + (2 * mod2 - (a1 + a3))) %
+                                T::get_mod();
+                            a[i + offset + 2 * p] =
+                                (a0 + na2 + a1na3imag) % T::get_mod();
                             a[i + offset + 3 * p] =
-                                a0 + na2 + (mod2 - a1na3imag);
+                                (a0 + na2 + (mod2 - a1na3imag)) % T::get_mod();
                         }
                         if (s + 1 != (1 << len))
                             rot *= rate3[__builtin_ctzll(~(unsigned int)(s))];
@@ -163,6 +164,7 @@ template <typename T> struct NTT {
             return vector<T>();
         int as = a.size(), bs = b.size();
         int n = as + bs - 1;
+        assert(n <= (1 << rank2));
         if (as <= 30 or bs <= 30) {
             if (as > 30)
                 return mult(b, a);

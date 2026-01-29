@@ -45,6 +45,26 @@ template <typename T, int LG = 20> struct SubsetConvolution {
         rep(i, 0, n) ret[i] = A[i][bpc[i]];
         return ret;
     }
+    vector<T> div(vector<T> &a, vector<T> &b) {
+        assert(a.size() == b.size());
+        int n = SZ(a), m = topbit(n);
+        vector<POL> A(n), B(n);
+        rep(i, 0, n) {
+            A[i][bpc[i]] = a[i];
+            B[i][bpc[i]] = b[i];
+        }
+        zeta(A);
+        zeta(B);
+        rep(i, 0, n) {
+            POL c = A[i];
+            rep(j, 0, m + 1) rep(k, 0, j) c[j] -= c[k] * B[i][j - k];
+            swap(A[i], c);
+        }
+        mobius(A);
+        vector<T> ret(n);
+        rep(i, 0, n) ret[i] = A[i][bpc[i]];
+        return ret;
+    }
     vector<T> TransposeMult(vector<T> &a, vector<T> &b) {
         auto ret = a;
         reverse(ALL(ret));
@@ -60,6 +80,17 @@ template <typename T, int LG = 20> struct SubsetConvolution {
             vector<T> a = {ret.begin(), ret.begin() + (1 << i)};
             vector<T> b = {f.begin() + (1 << i), f.begin() + (2 << i)};
             a = mult(a, b);
+            copy(ALL(a), ret.begin() + (1 << i));
+        }
+        return ret;
+    }
+    vector<T> log(vector<T> &f) {
+        int n = topbit(SZ(f));
+        vector<T> ret(1 << n);
+        rrep(i, 0, n) {
+            vector<T> a = {f.begin(), f.begin() + (1 << i)};
+            vector<T> b = {f.begin() + (1 << i), f.begin() + (2 << i)};
+            a = div(b, a);
             copy(ALL(a), ret.begin() + (1 << i));
         }
         return ret;

@@ -6,7 +6,7 @@ using Point = complex<T>;
 using Poly = vector<Point>;
 #define X real()
 #define Y imag()
-template <typename T> inline bool eq(const T &a, const T &b) {
+template <typename T, typename U> inline bool eq(const T &a, const U &b) {
     return fabs(a - b) < eps;
 }
 bool cmp(const Point &a, const Point &b) {
@@ -84,7 +84,7 @@ Point Projection(const Segment &l, const Point &p) {
     return l.a + (l.a - l.b) * t;
 }
 Point Reflection(const Line &l, const Point &p) {
-    return p + (Projection(l, p) - p) * 2.;
+    return p + (Projection(l, p) - p) * T(2.);
 }
 int ccw(const Point &a, Point b, Point c) {
     b -= a;
@@ -491,8 +491,8 @@ Circle Incircle(const Point &a, const Point &b, const Point &c) {
     return Circle(p, r);
 }
 Circle Circumcircle(const Point &a, const Point &b, const Point &c) {
-    Line l1((a + b) / 2., (a + b) / 2. + (b - a) * Point(0, 1));
-    Line l2((b + c) / 2., (b + c) / 2. + (c - b) * Point(0, 1));
+    Line l1((a + b) / T(2.), (a + b) / T(2.) + (b - a) * Point(0, 1));
+    Line l2((b + c) / T(2.), (b + c) / T(2.) + (c - b) * Point(0, 1));
     Point p = Intersection(l1, l2);
     return Circle(p, abs(p - a));
 }

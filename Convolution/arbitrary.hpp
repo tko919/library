@@ -2,16 +2,16 @@
 #include "Convolution/ntt.hpp"
 #include "Math/modint.hpp"
 
-using M1 = fp<167772161>;
-using M2 = fp<469762049>;
-using M3 = fp<1107296257>;
+using M1 = fp<469762049>;  // 2^26
+using M2 = fp<1811939329>; // 2^26
+using M3 = fp<2013265921>; // 2^27
 NTT<M1> N1;
 NTT<M2> N2;
 NTT<M3> N3;
-constexpr int r_12 = M2(M1::get_mod()).inv();
-constexpr int r_13 = M3(M1::get_mod()).inv();
-constexpr int r_23 = M3(M2::get_mod()).inv();
-constexpr int r_1323 = M3(ll(r_13) * r_23).v;
+constexpr uint r_12 = M2(M1::get_mod()).inv();
+constexpr uint r_13 = M3(M1::get_mod()).inv();
+constexpr uint r_23 = M3(M2::get_mod()).inv();
+constexpr uint r_1323 = M3(ll(r_13) * r_23).v;
 constexpr ll w1 = M1::get_mod();
 constexpr ll w2 = ll(w1) * M2::get_mod();
 template <typename T>

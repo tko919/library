@@ -65,7 +65,7 @@ Poly<T> FastPow(const SparseMatrix<T> &A, Poly<T> b, ll t) {
             cs *= base;
             cs %= mp;
         }
-        base = base.square();
+        base *= base;
         base %= mp;
         t >>= 1;
     }

@@ -13,6 +13,11 @@ struct RollingHash {
     RollingHash() {}
     RollingHash(Hash base) : base(base), hashed({0}), power({1}) {}
 
+    void calc(int n) {
+        power.resize(n + 1);
+        rep(i, 0, n) power[i + 1] = power[i] * base;
+    }
+
     Hash get(ll l, ll r) const {
         return hashed[r] - hashed[l] * power[r - l];
     }

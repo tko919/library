@@ -2,11 +2,11 @@
 
 template <typename T> struct BIT {
     int n;
-    T all = 0;
+    T all = T();
     vector<T> val;
     BIT(int _n = 0) : n(_n), val(_n + 10) {}
     void clear() {
-        val.assign(n + 10, 0);
+        val.assign(n + 10, T());
         all = T();
     }
     void add(int i, T x) {
@@ -16,7 +16,7 @@ template <typename T> struct BIT {
     }
     T sum(int i) {
         i = clamp(i, 0, n);
-        T res = 0;
+        T res = T();
         for (; i; i -= (i & -i))
             res += val[i];
         return res;
@@ -24,9 +24,10 @@ template <typename T> struct BIT {
     // [L,R)
     T sum(int L, int R) {
         if (L > R)
-            return T(0);
+            return T();
         return sum(R) - sum(L);
     }
+    // max index s.t. sum[0,i]<=x
     int lower_bound(T x) {
         int ret = 0, len = 1;
         while (2 * len <= n)
