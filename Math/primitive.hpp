@@ -11,7 +11,7 @@ ll mpow(ll a, ll t, ll m) {
         a = im.modulo(__int128_t(a) * a);
         t >>= 1;
     }
-    return res;
+    return res % m;
 }
 ll minv(ll a, ll m) {
     ll b = m, u = 1, v = 0;

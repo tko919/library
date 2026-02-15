@@ -1,8 +1,8 @@
 #pragma once
 #include "Math/comb.hpp"
 
-template <typename T>
-vector<T> PrefixSumOfPowers(ll n, int k) { // 0<=i<=k,sum_n=0^{N-1} n^i
+// 0<=i<=k,sum_n=0^{N-1} n^i
+template <typename T> vector<T> PrefixSumOfPowers(ll n, int k) {
     Poly<T> num(k + 1), den(k + 1);
     num[0] = n, den[0] = 1;
     rep(i, 0, k) num[i + 1] = num[i] * n;
