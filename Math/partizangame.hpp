@@ -8,7 +8,7 @@ template <typename T> struct Surreal {
     Surreal(T a, T b) : a(a, b) {}
     Surreal(Frac<T> a) : a(a) {}
     static constexpr Surreal infty() {
-        return Surreal(INF, 1);
+        return Surreal(inf, 1);
     }
     bool operator==(Surreal const &rhs) const {
         return (a == rhs.a);

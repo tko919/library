@@ -66,6 +66,9 @@ struct Segment : Line {
 };
 using Poly = vector<Point>;
 
+Point rot90(const Point &a, bool ccw) {
+    return ccw ? Point(-a.Y, a.X) : Point(a.Y, -a.X);
+}
 ll dot(const Point &a, const Point &b) {
     return a.X * b.X + a.Y * b.Y;
 }

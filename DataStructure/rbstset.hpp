@@ -83,12 +83,31 @@ template <typename T> class RBSTset {
         cerr << cur->key << '\n';
         _dump(cur->rp, depth + 1);
     }
+    Node *clone(Node *x) {
+        if (!x)
+            return nullptr;
+
+        Node *y = new Node(x->key);
+        y->size = x->size;
+        y->lp = clone(x->lp);
+        y->rp = clone(x->rp);
+        return y;
+    }
 
   public:
     Node *root;
     RBSTset() : root(nullptr) {}
-    RBSTset(const RBSTset &) = delete;
-    RBSTset &operator=(const RBSTset &) = delete;
+    // RBSTset(const RBSTset &) = delete;
+    // RBSTset &operator=(const RBSTset &) = delete;
+    RBSTset(const RBSTset &other) : root(clone(other.root)) {}
+    RBSTset &operator=(const RBSTset &other) {
+        if (this != &other) {
+            Node *new_root = clone(other.root);
+            clear(root);
+            root = new_root;
+        }
+        return *this;
+    }
 
     RBSTset(RBSTset &&other) noexcept : root(other.root) {
         other.root = nullptr;

@@ -80,6 +80,9 @@ struct Fp {
     bool operator!=(const Fp &x) const {
         return v != x.v;
     }
+    bool operator<(const Fp &x) const {
+        return v < x.v;
+    }
     friend istream &operator>>(istream &is, Fp &x) {
         return is >> x.v;
     }

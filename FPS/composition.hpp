@@ -1,7 +1,9 @@
 #pragma once
 
 template <typename T> Poly<T> Composition(Poly<T> f, Poly<T> g) {
-    assert(SZ(f) == SZ(g) and g[0] == 0);
+    assert(SZ(f) == SZ(g));
+    f = f.shift(g[0].v);
+    g[0] = 0;
 
     auto dfs = [&](auto &dfs, int n, int k, Poly<T> &Q) -> Poly<T> {
         if (n == 1) {

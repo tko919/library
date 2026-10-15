@@ -3,7 +3,6 @@
 template <typename T> struct CHT {
     using Line = pair<T, T>;
     int n;
-    const T MX;
     vector<T> xs;
     vector<Line> ls;
     CHT() {}
@@ -13,7 +12,7 @@ template <typename T> struct CHT {
         n = 1;
         while (n < (int)xs.size())
             n <<= 1;
-        xs.resize(n, inf);
+        xs.resize(n, MX);
         ls.resize(2 * n - 1, Line(0, MX));
     }
     T eval(Line &f, T x) {

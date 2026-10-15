@@ -4,17 +4,20 @@
 
 struct GraphicMatroid {
     using P = pair<int, int>;
-    int n;
+    const int n;
     vector<P> E;
     vector<vector<P>> G;
     vector<int> allow;
-    GraphicMatroid() {}
+    GraphicMatroid() = default;
     GraphicMatroid(int n, vector<P> &E) : n(n), E(E), G(n) {
         rep(i, 0, SZ(E)) {
             auto [u, v] = E[i];
             G[u].push_back({v, i});
             G[v].push_back({u, i});
         }
+    }
+    int size() const {
+        return n;
     }
     void set(vector<int> &I) {
         allow = I;
@@ -43,11 +46,14 @@ struct GraphicMatroid {
 };
 
 struct PartitionMatroid {
-    vector<int> grp; // -1:not assign
-    vector<int> lim;
+    const vector<int> grp; // -1:not assign
+    const vector<int> lim;
     vector<vector<int>> cnt;
-    PartitionMatroid() {}
+    PartitionMatroid() = default;
     PartitionMatroid(vector<int> &grp, vector<int> lim) : grp(grp), lim(lim) {}
+    int size() const {
+        return SZ(grp);
+    }
     void set(vector<int> &I) {
         cnt.assign(SZ(lim), {});
         rep(i, 0, SZ(grp)) if (I[i] != 0 and grp[i] != -1) {
@@ -68,14 +74,17 @@ struct PartitionMatroid {
 
 struct TransversalMatroid {
     using P = pair<int, int>;
-    int n, m;
+    const int n, m;
     vector<vector<int>> G, aug;
     vector<int> match, fixed;
-    TransversalMatroid() {}
+    TransversalMatroid() = default;
     TransversalMatroid(int n, int m, vector<P> &E)
         : n(n), m(m), G(n), aug(n), fixed(n) {
         for (auto &[u, v] : E)
             G[u].push_back(v);
+    }
+    int size() const {
+        return n;
     }
     void set(vector<int> &I) {
         vector g(n, vector<int>());
@@ -117,6 +126,47 @@ struct TransversalMatroid {
         }
         vector<int> ret;
         rep(i, 0, n) if (used[i]) ret.push_back(i);
+        return ret;
+    }
+};
+
+struct BinaryMatroid {
+    const vector<ll> mat;
+    vector<int> Is;
+    vector<vector<ll>> basis;
+    BinaryMatroid() {}
+    BinaryMatroid(const vector<ll> &init) : mat(init) {}
+    int size() const {
+        return SZ(mat);
+    }
+    void set(vector<int> &I) {
+        Is.clear();
+        rep(i, 0, SZ(mat)) if (I[i]) Is.push_back(i);
+        basis.assign(SZ(Is) + 1, {});
+        rep(i, 0, SZ(Is) + 1) {
+            rep(j, 0, SZ(Is)) if (i != j) {
+                ll v = mat[Is[j]];
+                for (auto &b : basis[i])
+                    chmin(v, v ^ b);
+                if (v)
+                    basis[i].push_back(v);
+            }
+        }
+    }
+    vector<int> circuit(int e) {
+        ll v = mat[e];
+        for (auto &b : basis.back())
+            chmin(v, v ^ b);
+        if (v)
+            return {};
+        vector<int> ret = {e};
+        rep(i, 0, SZ(Is)) {
+            ll w = mat[e];
+            for (auto &b : basis[i])
+                chmin(w, w ^ b);
+            if (w)
+                ret.push_back(Is[i]);
+        }
         return ret;
     }
 };

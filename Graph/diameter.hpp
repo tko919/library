@@ -1,16 +1,16 @@
 #pragma once
 
-pair<ll, vector<int>> Diameter(vector<vector<pair<int, ll>>> &g) {
+pair<ll, vector<int>> Diameter(vector<vector<pair<int, ll>>> &g, int base = 0) {
     int n = SZ(g);
-    vector<ll> dist(n, INF);
+    vector<ll> dist(n, -INF);
     queue<int> que;
-    dist[0] = 0;
-    que.push(0);
+    dist[base] = 0;
+    que.push(base);
     while (!que.empty()) {
         int v = que.front();
         que.pop();
         for (auto &[to, c] : g[v])
-            if (dist[to] == INF) {
+            if (dist[to] == -INF) {
                 dist[to] = dist[v] + c;
                 que.push(to);
             }
@@ -20,7 +20,7 @@ pair<ll, vector<int>> Diameter(vector<vector<pair<int, ll>>> &g) {
         ll mx = -INF;
         rep(v, 0, n) if (chmax(mx, dist[v])) v1 = v;
     }
-    dist.assign(n, INF);
+    dist.assign(n, -INF);
     dist[v1] = 0;
     que.push(v1);
     vector<int> par(n);
@@ -29,7 +29,7 @@ pair<ll, vector<int>> Diameter(vector<vector<pair<int, ll>>> &g) {
         int v = que.front();
         que.pop();
         for (auto &[to, c] : g[v])
-            if (dist[to] == INF) {
+            if (dist[to] == -INF) {
                 dist[to] = dist[v] + c;
                 par[to] = v;
                 que.push(to);

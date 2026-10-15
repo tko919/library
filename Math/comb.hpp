@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename T> T Inv(ll n) {
-    static int md;
+    static unsigned md;
     static vector<T> buf({0, 1});
     if (md != T::get_mod()) {
         md = T::get_mod();
@@ -10,7 +10,7 @@ template <typename T> T Inv(ll n) {
     assert(n > 0);
     n %= md;
     while (SZ(buf) <= n) {
-        int k = SZ(buf), q = (md + k - 1) / k;
+        unsigned k = SZ(buf), q = (md + k - 1) / k;
         buf.push_back(buf[k * q - md] * q);
     }
     return buf[n];
