@@ -2,9 +2,12 @@
 #include "Math/primitive.hpp"
 
 template <typename T> struct NTT {
+    static constexpr unsigned mod = T::get_mod();
+    static constexpr unsigned long long mod2 = 1ULL * mod * mod;
     static constexpr int rank2 = __builtin_ctzll(T::get_mod() - 1);
     std::array<T, rank2 + 1> root;  // root[i]^(2^i) == 1
     std::array<T, rank2 + 1> iroot; // root[i] * iroot[i] == 1
+    std::array<T, rank2 + 1> inv_size; // inv_size[i] == 1 / 2^i
 
     std::array<T, std::max(0, rank2 - 2 + 1)> rate2;
     std::array<T, std::max(0, rank2 - 2 + 1)> irate2;
@@ -13,13 +16,18 @@ template <typename T> struct NTT {
     std::array<T, std::max(0, rank2 - 3 + 1)> irate3;
 
     NTT() {
-        T g = getPrimitiveRoot(T::get_mod());
+        static const ll primitive_root = getPrimitiveRoot(T::get_mod());
+        T g = primitive_root;
         root[rank2] = g.pow((T::get_mod() - 1) >> rank2);
         iroot[rank2] = root[rank2].inv();
         for (int i = rank2 - 1; i >= 0; i--) {
             root[i] = root[i + 1] * root[i + 1];
             iroot[i] = iroot[i + 1] * iroot[i + 1];
         }
+        inv_size[0] = 1;
+        const T inv2 = T(2).inv();
+        for (int i = 1; i <= rank2; i++)
+            inv_size[i] = inv_size[i - 1] * inv2;
 
         {
             T prod = 1, iprod = 1;
@@ -55,14 +63,12 @@ template <typename T> struct NTT {
                     for (int s = 0; s < (1 << (len - 1)); s++) {
                         int offset = s << (h - len + 1);
                         for (int i = 0; i < p; i++) {
-                            auto l = a[i + offset];
-                            auto r = a[i + offset + p];
-                            a[i + offset] = l + r;
-                            a[i + offset + p] =
-                                ((unsigned long long)(T::get_mod() + l.v -
-                                                      r.v) *
-                                 irot.v) %
-                                T::get_mod();
+                            unsigned l = a[i + offset].v;
+                            unsigned r = a[i + offset + p].v;
+                            unsigned sum = l + r;
+                            a[i + offset].v = sum >= mod ? sum - mod : sum;
+                            a[i + offset + p].v =
+                                1ULL * (mod + l - r) * irot.v % mod;
                         }
                         if (s + 1 != (1 << (len - 1)))
                             irot *= irate2[__builtin_ctzll(~(unsigned int)(s))];
@@ -83,20 +89,17 @@ template <typename T> struct NTT {
                             auto a3 = 1ULL * a[i + offset + 3 * p].v;
 
                             auto a2na3iimag =
-                                1ULL * T((T::get_mod() + a2 - a3) * iimag.v).v;
+                                (mod + a2 - a3) * iimag.v % mod;
 
-                            a[i + offset] = (a0 + a1 + a2 + a3) % T::get_mod();
-                            a[i + offset + 1 * p] =
-                                (a0 + (T::get_mod() - a1) + a2na3iimag) *
-                                irot.v % T::get_mod();
-                            a[i + offset + 2 * p] =
-                                (a0 + a1 + (T::get_mod() - a2) +
-                                 (T::get_mod() - a3)) *
-                                irot2.v % T::get_mod();
-                            a[i + offset + 3 * p] =
-                                (a0 + (T::get_mod() - a1) +
-                                 (T::get_mod() - a2na3iimag)) *
-                                irot3.v % T::get_mod();
+                            a[i + offset].v = (a0 + a1 + a2 + a3) % mod;
+                            a[i + offset + 1 * p].v =
+                                (a0 + mod - a1 + a2na3iimag) * irot.v % mod;
+                            a[i + offset + 2 * p].v =
+                                (a0 + a1 + 2ULL * mod - a2 - a3) * irot2.v %
+                                mod;
+                            a[i + offset + 3 * p].v =
+                                (a0 + mod - a1 + mod - a2na3iimag) * irot3.v %
+                                mod;
                         }
                         if (s + 1 != (1 << (len - 2)))
                             irot *= irate3[__builtin_ctzll(~(unsigned int)(s))];
@@ -104,9 +107,9 @@ template <typename T> struct NTT {
                     len -= 2;
                 }
             }
-            T e = T(n).inv();
+            const T e = inv_size[h];
             for (auto &x : a)
-                x *= e;
+                x.v = 1ULL * x.v * e.v % mod;
         } else {
             int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
             while (len < h) {
@@ -116,10 +119,13 @@ template <typename T> struct NTT {
                     for (int s = 0; s < (1 << len); s++) {
                         int offset = s << (h - len);
                         for (int i = 0; i < p; i++) {
-                            auto l = a[i + offset];
-                            auto r = a[i + offset + p] * rot;
-                            a[i + offset] = l + r;
-                            a[i + offset + p] = l - r;
+                            unsigned l = a[i + offset].v;
+                            unsigned r =
+                                1ULL * a[i + offset + p].v * rot.v % mod;
+                            unsigned sum = l + r;
+                            a[i + offset].v = sum >= mod ? sum - mod : sum;
+                            a[i + offset + p].v =
+                                l >= r ? l - r : l + mod - r;
                         }
                         if (s + 1 != (1 << len))
                             rot *= rate2[__builtin_ctzll(~(unsigned int)(s))];
@@ -134,22 +140,20 @@ template <typename T> struct NTT {
                         T rot3 = rot2 * rot;
                         int offset = s << (h - len);
                         for (int i = 0; i < p; i++) {
-                            auto mod2 = 1ULL * T::get_mod() * T::get_mod();
                             auto a0 = 1ULL * a[i + offset].v;
                             auto a1 = 1ULL * a[i + offset + p].v * rot.v;
                             auto a2 = 1ULL * a[i + offset + 2 * p].v * rot2.v;
                             auto a3 = 1ULL * a[i + offset + 3 * p].v * rot3.v;
                             auto a1na3imag =
-                                1ULL * T(a1 + mod2 - a3).v * imag.v;
+                                ((a1 + mod2 - a3) % mod) * imag.v;
                             auto na2 = mod2 - a2;
-                            a[i + offset] = (a0 + a2 + a1 + a3) % T::get_mod();
-                            a[i + offset + 1 * p] =
-                                (a0 + a2 + (2 * mod2 - (a1 + a3))) %
-                                T::get_mod();
-                            a[i + offset + 2 * p] =
-                                (a0 + na2 + a1na3imag) % T::get_mod();
-                            a[i + offset + 3 * p] =
-                                (a0 + na2 + (mod2 - a1na3imag)) % T::get_mod();
+                            a[i + offset].v = (a0 + a2 + a1 + a3) % mod;
+                            a[i + offset + 1 * p].v =
+                                (a0 + a2 + 2 * mod2 - a1 - a3) % mod;
+                            a[i + offset + 2 * p].v =
+                                (a0 + na2 + a1na3imag) % mod;
+                            a[i + offset + 3 * p].v =
+                                (a0 + na2 + mod2 - a1na3imag) % mod;
                         }
                         if (s + 1 != (1 << len))
                             rot *= rate3[__builtin_ctzll(~(unsigned int)(s))];
@@ -158,6 +162,27 @@ template <typename T> struct NTT {
                 }
             }
         }
+    }
+    // a contains the NTT of a polynomial at the n-th roots of unity.
+    // Extend it to the NTT at the 2n-th roots while preserving the first half.
+    void doubling(std::vector<T> &a) {
+        const int n = int(a.size());
+        assert(n and (n & (n - 1)) == 0);
+        assert(2LL * n <= (1LL << rank2));
+
+        std::vector<T> b(a);
+        ntt(b, 1);
+
+        // b(x) -> b(root[log2(2n)] * x) gives the values at odd powers
+        // of the primitive 2n-th root.  The original values are the even
+        // powers and occupy the first half in this NTT's ordering.
+        T zeta = root[__builtin_ctzll((unsigned int)n) + 1], pw = 1;
+        for (auto &x : b) {
+            x *= pw;
+            pw *= zeta;
+        }
+        ntt(b, 0);
+        a.insert(a.end(), b.begin(), b.end());
     }
     vector<T> mult(const vector<T> &a, const vector<T> &b) {
         if (a.empty() or b.empty())

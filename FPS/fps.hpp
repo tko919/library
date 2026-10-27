@@ -189,20 +189,30 @@ template <typename T> struct Poly : vector<T> {
     }
     Poly shift(const int &c) const {
         const int n = this->size();
+        if (n == 0 or c == 0)
+            return *this;
         Poly res = *this, g(n);
-        g[0] = 1;
-        rep(i, 1, n) g[i] = g[i - 1] * c / i;
         vector<T> fact(n, 1);
+        rep(i, 1, n) fact[i] = fact[i - 1] * i;
         rep(i, 0, n) {
-            if (i)
-                fact[i] = fact[i - 1] * i;
             res[i] *= fact[i];
+        }
+
+        // Turn factorials into inverse factorials using only one inversion.
+        fact[n - 1] = fact[n - 1].inv();
+        for (int i = n - 1; i; i--)
+            fact[i - 1] = fact[i] * i;
+
+        T pw = 1, x = c;
+        rep(i, 0, n) {
+            g[i] = pw * fact[i];
+            pw *= x;
         }
         res = res.rev();
         res *= g;
         res.resize(n);
         res = res.rev();
-        rep(i, 0, n) res[i] /= fact[i];
+        rep(i, 0, n) res[i] *= fact[i];
         return res;
     }
     Poly inv() const {

@@ -1,31 +1,54 @@
 #pragma once
 #include "Math/comb.hpp"
-#include "Math/sieve.hpp"
 #include "Math/dirichlet.hpp"
 
+inline const vector<int> &multiplicative_primes(int n) {
+    static int cached_n = 1;
+    static vector<int> primes;
+    if (n <= cached_n)
+        return primes;
+
+    cached_n = n;
+    primes.clear();
+    vector<int> least(n + 1);
+    for (int i = 2; i <= n; i++) {
+        if (least[i] == 0) {
+            least[i] = i;
+            primes.push_back(i);
+        }
+        for (int p : primes) {
+            if (p > least[i] or ll(i) * p > n)
+                break;
+            least[i * p] = p;
+        }
+    }
+    return primes;
+}
+
 template <typename T, T (*F)(ll)> Dir<T> getLarge(ll n) {
-    Dir<T> base(n);
     int SQ = sqrtl(n);
-    auto ps = sieve(SQ);
-    vector<T> small(SQ + 10);
-    rep(x, 1, SQ + 10) small[x] = F(x);
-    rrep(i, 1, SQ + 10) small[i] -= small[i - 1];
+    const auto &ps = multiplicative_primes(SQ);
+    vector<T> small(SQ + 1);
+    rep(x, 1, SQ + 1) small[x] = F(x);
+    rrep(i, 1, SQ + 1) small[i] -= small[i - 1];
     Dir<T> den(n), lg(n);
 
     int SQ6 = max<int>(1, pow(n, 1. / 6));
-    for (auto &p : ps)
+    for (auto &p : ps) {
+        if (p > SQ)
+            break;
         if (SQ6 < p) {
             T f_p = small[p];
-            T X[10] = {}, base[10] = {};
-            rep(i, 1, 10) {
+            T X[6] = {}, base[6] = {};
+            rep(i, 1, 6) {
                 base[i] = POW<T>(f_p, i);
             }
-            rep(i, 1, 10) {
+            rep(i, 1, 6) {
                 T tmp = base[i] * i;
                 rep(j, 1, i + 1) tmp -= base[j] * X[i - j];
                 X[i] = tmp;
             }
-            rep(i, 1, 10) X[i] /= i;
+            rep(i, 1, 6) X[i] /= i;
 
             for (ll x = 1, i = 0;; x *= p, i++) {
                 lg[den.idx(x)] += X[i];
@@ -33,6 +56,7 @@ template <typename T, T (*F)(ll)> Dir<T> getLarge(ll n) {
                     break;
             }
         }
+    }
     lg.pref();
 
     // exp
@@ -41,25 +65,30 @@ template <typename T, T (*F)(ll)> Dir<T> getLarge(ll n) {
         rep(i, 1, add.sz) add[i] = den[i] = 1;
         rep(e, 1, 5 + 1) {
             add = mult(n, add, lg);
-            rep(i, 1, add.sz) den[i] += add[i] * Fact<T>(e, 1);
+            T inv_fact = Fact<T>(e, 1);
+            rep(i, 1, add.sz) den[i] += add[i] * inv_fact;
         }
     }
 
     for (auto &p : ps)
-        if (p <= SQ6) {
+        if (p > SQ)
+            break;
+        else if (p <= SQ6) {
             T f_p = small[p];
             rep(i, 1, den.sz) {
-                ll x = den.val(i);
-                den[i] += den[den.idx(x / p)] * f_p;
+                int to = i <= SQ ? i / p
+                                 : den.quotient_idx(ll(den.sz - i) * p);
+                den[i] += den[to] * f_p;
             }
         }
 
     Dir<T> ret(n);
-    rrep(i, 1, SQ + 1) if (n / i > SQ) {
-        int id = den.idx(n / i);
+    int lim = n / (SQ + 1);
+    rrep(i, 1, lim + 1) {
+        int id = den.sz - i;
         T tmp = F(n / i) - den[id];
         for (int j = 2; i * j <= SQ; j++)
-            tmp -= small[j] * ret[ret.idx(n / i / j)];
+            tmp -= small[j] * ret[ret.sz - i * j];
         ret[id] = tmp;
     }
 
@@ -71,22 +100,24 @@ template <typename T, T (*pe)(int p, int e)>
 Dir<T> MultiplicativeSum(ll n, Dir<T> &large) {
     Dir<T> base(n), lg(n);
     int SQ = sqrtl(n);
-    auto ps = sieve(SQ);
+    const auto &ps = multiplicative_primes(SQ);
 
     int SQ6 = max<int>(1, pow(n, 1. / 6));
     for (auto &p : ps) {
+        if (p > SQ)
+            break;
         if (p <= SQ6)
             continue;
-        T X[10] = {}, base[10] = {};
-        rep(i, 1, 10) {
-            base[i] = pe(p, i);
+        T X[6] = {}, prime_power[6] = {};
+        rep(i, 1, 6) {
+            prime_power[i] = pe(p, i);
         }
-        rep(i, 1, 10) {
-            T tmp = base[i] * i;
-            rep(j, 1, i + 1) tmp -= base[j] * X[i - j];
+        rep(i, 1, 6) {
+            T tmp = prime_power[i] * i;
+            rep(j, 1, i + 1) tmp -= prime_power[j] * X[i - j];
             X[i] = tmp;
         }
-        rep(i, 1, 10) X[i] /= i;
+        rep(i, 1, 6) X[i] /= i;
         for (ll x = 1, i = 0;; x *= p, i++) {
             lg[lg.idx(x)] += X[i];
             if (x > n / p)
@@ -101,31 +132,43 @@ Dir<T> MultiplicativeSum(ll n, Dir<T> &large) {
         rep(i, 1, add.sz) add[i] = base[i] = 1;
         rep(e, 1, 5 + 1) {
             add = mult(n, add, lg);
-            rep(i, 1, add.sz) base[i] += add[i] * Fact<T>(e, 1);
+            T inv_fact = Fact<T>(e, 1);
+            rep(i, 1, add.sz) base[i] += add[i] * inv_fact;
         }
     }
 
     rrep(x, 1, SQ + 1) {
-        int i = base.idx(n / x);
+        int i = base.sz - x;
         for (int y = 1; x * y <= SQ; y++)
-            if (base[y - 1] != base[y]) {
+            if (base[y - 1] != base[y])
                 base[i] +=
-                    (base[y] - base[y - 1]) * large[large.idx(n / x / y)];
-            }
+                    (base[y] - base[y - 1]) * large[large.sz - x * y];
     }
 
     for (auto &p : ps) {
-        if (p > SQ6)
+        if (p > SQ6 or p > SQ)
             break;
-        T buf[65];
-        rep(e, 0, 65) buf[e] = pe(p, e);
+        T buf[65] = {};
+        int max_e = 0;
+        for (ll pw = p;; pw *= p) {
+            ++max_e;
+            buf[max_e] = pe(p, max_e);
+            if (pw > n / p)
+                break;
+        }
         rrep(i, 1, base.sz) {
-            ll x = base.val(i) / p;
-            for (int e = 1;; e++) {
-                base[i] += base[base.idx(x)] * buf[e];
-                x /= p;
-                if (x == 0)
-                    break;
+            if (i <= SQ) {
+                ll x = i / p;
+                for (int e = 1; x; e++, x /= p)
+                    base[i] += base[x] * buf[e];
+            } else {
+                ll d = base.sz - i, den = d * p;
+                for (int e = 1; den <= n; e++) {
+                    base[i] += base[base.quotient_idx(den)] * buf[e];
+                    if (den > n / p)
+                        break;
+                    den *= p;
+                }
             }
         }
     }
