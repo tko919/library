@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/prefixbinom.hpp
+    title: Prefix Sum of Binomial Coefficient
   _extendedVerifiedWith:
   - icon: ':x:'
     path: Verify/LC_static_range_inversions_query.test.cpp
@@ -44,7 +47,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Algorithm/mo.hpp
-  requiredBy: []
+  requiredBy:
+  - Math/prefixbinom.hpp
   timestamp: '2022-12-27 02:24:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

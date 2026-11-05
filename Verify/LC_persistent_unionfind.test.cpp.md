@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/persistentarray.hpp
     title: Persistent Array
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/persistentunionfind.hpp
     title: Persistent Union Find
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -207,7 +207,7 @@ data:
   path: Verify/LC_persistent_unionfind.test.cpp
   requiredBy: []
   timestamp: '2025-04-17 22:07:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_persistent_unionfind.test.cpp
 layout: document

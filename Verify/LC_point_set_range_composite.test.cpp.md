@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: DataStructure/segtree.hpp
     title: Segment Tree
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: Fast IO
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -165,13 +165,13 @@ data:
     );\r\n}\r\ninline void Possible(bool i = true) {\r\n    print(i ? \"Possible\"\
     \ : \"Impossible\");\r\n}\r\ninline void POSSIBLE(bool i = true) {\r\n    print(i\
     \ ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\n * @brief Fast IO\r\n */\n\
-    #line 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n    static int\
+    #line 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n    static unsigned\
     \ md;\n    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n    \
     \    md = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n\
-    \ > 0);\n    n %= md;\n    while (SZ(buf) <= n) {\n        int k = SZ(buf), q\
-    \ = (md + k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n  \
-    \  return buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n \
-    \   static int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md\
+    \ > 0);\n    n %= md;\n    while (SZ(buf) <= n) {\n        unsigned k = SZ(buf),\
+    \ q = (md + k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n\
+    \    return buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n\
+    \    static int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md\
     \ != T::get_mod()) {\n        md = T::get_mod();\n        buf = ibuf = vector<T>({1,\
     \ 1});\n    }\n    assert(n >= 0 and n < md);\n    while (SZ(buf) <= n) {\n  \
     \      buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
@@ -287,8 +287,8 @@ data:
   isVerificationFile: true
   path: Verify/LC_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2025-07-13 05:51:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-15 23:15:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_point_set_range_composite.test.cpp
 layout: document

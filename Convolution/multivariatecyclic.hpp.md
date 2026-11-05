@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: FPS/multievalgeom.hpp
     title: Multipoint Evaluation on Geometric Sequence
   - icon: ':question:'
@@ -21,12 +21,12 @@ data:
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Multivarate Convolution Cyclic
     links: []
@@ -132,9 +132,9 @@ data:
     \n */\n#line 4 \"Math/primitive.hpp\"\n\r\nll mpow(ll a, ll t, ll m) {\r\n   \
     \ ll res = 1;\r\n    FastDiv64 im(m);\r\n    while (t) {\r\n        if (t & 1)\r\
     \n            res = im.modulo(__int128_t(res) * a);\r\n        a = im.modulo(__int128_t(a)\
-    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res;\r\n}\r\nll minv(ll a,\
-    \ ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t =\
-    \ a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
+    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res % m;\r\n}\r\nll minv(ll\
+    \ a, ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t\
+    \ = a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
     \n        swap(u, v);\r\n    }\r\n    u = (u % m + m) % m;\r\n    return u;\r\n\
     }\r\nll getPrimitiveRoot(ll p) {\r\n    vector<ll> ps = Pollard(p - 1);\r\n  \
     \  sort(ALL(ps));\r\n    rep(x, 1, inf) {\r\n        for (auto &q : ps) {\r\n\
@@ -264,8 +264,8 @@ data:
   isVerificationFile: false
   path: Convolution/multivariatecyclic.hpp
   requiredBy: []
-  timestamp: '2026-01-30 05:37:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-16 06:32:30+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Convolution/multivariatecyclic.hpp

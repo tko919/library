@@ -68,21 +68,21 @@ data:
     \ != ',' && a[i] != '\\0'; i++)\r\n        cerr << a[i];\r\n    cerr << \":\"\
     \ << b << \" \";\r\n    _show(i + 1, a, c...);\r\n}\n#line 2 \"DataStructure/lichaotree.hpp\"\
     \n\r\ntemplate <typename T> struct CHT {\r\n    using Line = pair<T, T>;\r\n \
-    \   int n;\r\n    const T MX;\r\n    vector<T> xs;\r\n    vector<Line> ls;\r\n\
-    \    CHT() {}\r\n    CHT(vector<T> &ps, T MX) {\r\n        xs = ps;\r\n      \
-    \  UNIQUE(xs);\r\n        n = 1;\r\n        while (n < (int)xs.size())\r\n   \
-    \         n <<= 1;\r\n        xs.resize(n, inf);\r\n        ls.resize(2 * n -\
-    \ 1, Line(0, MX));\r\n    }\r\n    T eval(Line &f, T x) {\r\n        return f.first\
-    \ * x + f.second;\r\n    }\r\n    void add(T a, T b, int k = 0, int L = 0, int\
-    \ R = -1) {\r\n        if (R == -1)\r\n            R = n;\r\n        Line f =\
-    \ {a, b};\r\n        while (L != R) {\r\n            int mid = (L + R) >> 1;\r\
-    \n            T lx = xs[L], mx = xs[mid], rx = xs[R - 1];\r\n            Line\
-    \ &g = ls[k];\r\n            if (eval(f, lx) < eval(g, lx) and eval(f, rx) < eval(g,\
-    \ rx)) {\r\n                g = f;\r\n                return;\r\n            }\r\
-    \n            if (eval(f, lx) >= eval(g, lx) and eval(f, rx) >= eval(g, rx))\r\
-    \n                return;\r\n            if (eval(f, mx) < eval(g, mx))\r\n  \
-    \              swap(f, g);\r\n            if (eval(f, lx) < eval(g, lx)) {\r\n\
-    \                k = k * 2 + 1;\r\n                R = mid;\r\n            } else\
+    \   int n;\r\n    vector<T> xs;\r\n    vector<Line> ls;\r\n    CHT() {}\r\n  \
+    \  CHT(vector<T> &ps, T MX) {\r\n        xs = ps;\r\n        UNIQUE(xs);\r\n \
+    \       n = 1;\r\n        while (n < (int)xs.size())\r\n            n <<= 1;\r\
+    \n        xs.resize(n, MX);\r\n        ls.resize(2 * n - 1, Line(0, MX));\r\n\
+    \    }\r\n    T eval(Line &f, T x) {\r\n        return f.first * x + f.second;\r\
+    \n    }\r\n    void add(T a, T b, int k = 0, int L = 0, int R = -1) {\r\n    \
+    \    if (R == -1)\r\n            R = n;\r\n        Line f = {a, b};\r\n      \
+    \  while (L != R) {\r\n            int mid = (L + R) >> 1;\r\n            T lx\
+    \ = xs[L], mx = xs[mid], rx = xs[R - 1];\r\n            Line &g = ls[k];\r\n \
+    \           if (eval(f, lx) < eval(g, lx) and eval(f, rx) < eval(g, rx)) {\r\n\
+    \                g = f;\r\n                return;\r\n            }\r\n      \
+    \      if (eval(f, lx) >= eval(g, lx) and eval(f, rx) >= eval(g, rx))\r\n    \
+    \            return;\r\n            if (eval(f, mx) < eval(g, mx))\r\n       \
+    \         swap(f, g);\r\n            if (eval(f, lx) < eval(g, lx)) {\r\n    \
+    \            k = k * 2 + 1;\r\n                R = mid;\r\n            } else\
     \ {\r\n                k = k * 2 + 2;\r\n                L = mid;\r\n        \
     \    }\r\n        }\r\n    }\r\n    void add_segment(T a, T b, T L, T R) {\r\n\
     \        int l = lower_bound(ALL(xs), L) - xs.begin(),\r\n            r = lower_bound(ALL(xs),\
@@ -122,7 +122,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 05:37:33+09:00'
+  timestamp: '2026-10-15 23:15:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_line_add_get_min.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: Convolution/subset.hpp
     title: Subset Convolution
   - icon: ':question:'
@@ -166,15 +166,15 @@ data:
     \ i = true) {\r\n    print(i ? \"POSSIBLE\" : \"IMPOSSIBLE\");\r\n}\r\n\r\n/**\r\
     \n * @brief Fast IO\r\n */\n#line 5 \"Verify/LC_subset_convolution.test.cpp\"\n\
     \r\n#line 2 \"Math/comb.hpp\"\n\ntemplate <typename T> T Inv(ll n) {\n    static\
-    \ int md;\n    static vector<T> buf({0, 1});\n    if (md != T::get_mod()) {\n\
-    \        md = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n    assert(n\
-    \ > 0);\n    n %= md;\n    while (SZ(buf) <= n) {\n        int k = SZ(buf), q\
-    \ = (md + k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n    }\n  \
-    \  return buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv = 0) {\n \
-    \   static int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md\
-    \ != T::get_mod()) {\n        md = T::get_mod();\n        buf = ibuf = vector<T>({1,\
-    \ 1});\n    }\n    assert(n >= 0 and n < md);\n    while (SZ(buf) <= n) {\n  \
-    \      buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
+    \ unsigned md;\n    static vector<T> buf({0, 1});\n    if (md != T::get_mod())\
+    \ {\n        md = T::get_mod();\n        buf = vector<T>({0, 1});\n    }\n   \
+    \ assert(n > 0);\n    n %= md;\n    while (SZ(buf) <= n) {\n        unsigned k\
+    \ = SZ(buf), q = (md + k - 1) / k;\n        buf.push_back(buf[k * q - md] * q);\n\
+    \    }\n    return buf[n];\n}\n\ntemplate <typename T> T Fact(ll n, bool inv =\
+    \ 0) {\n    static int md;\n    static vector<T> buf({1, 1}), ibuf({1, 1});\n\
+    \    if (md != T::get_mod()) {\n        md = T::get_mod();\n        buf = ibuf\
+    \ = vector<T>({1, 1});\n    }\n    assert(n >= 0 and n < md);\n    while (SZ(buf)\
+    \ <= n) {\n        buf.push_back(buf.back() * SZ(buf));\n        ibuf.push_back(ibuf.back()\
     \ * Inv<T>(SZ(ibuf)));\n    }\n    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate\
     \ <typename T> T nPr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r ||\
     \ r < 0)\n        return 0;\n    return Fact<T>(n, inv) * Fact<T>(n - r, inv ^\
@@ -313,7 +313,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 05:37:33+09:00'
+  timestamp: '2026-10-15 23:15:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Verify/LC_subset_convolution.test.cpp

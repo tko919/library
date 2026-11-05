@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: DataStructure/bit.hpp
     title: Binary Indexed Tree
   _extendedRequiredBy:
@@ -84,8 +84,8 @@ data:
   isVerificationFile: false
   path: DataStructure/staticrectsum.hpp
   requiredBy:
-  - DataStructure/dynamicrectsum.hpp
   - DataStructure/staticrectaddrectsum.hpp
+  - DataStructure/dynamicrectsum.hpp
   timestamp: '2026-01-30 05:37:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

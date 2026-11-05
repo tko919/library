@@ -17,13 +17,13 @@ data:
   - icon: ':warning:'
     path: Algorithm/wildcardpatternmatching.hpp
     title: Wildcard Pattern Matching
-  - icon: ':question:'
+  - icon: ':x:'
     path: Convolution/arbitrary.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariate.hpp
     title: Multivariate Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Convolution/multivariatecyclic.hpp
     title: Multivarate Convolution Cyclic
   - icon: ':question:'
@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/binomquery.hpp
     title: Binomial Coefficient for query
+  - icon: ':warning:'
+    path: Math/modfast.hpp
+    title: Mod Fast
   - icon: ':warning:'
     path: Math/twosquare.hpp
     title: Represent A Number As Two Square Sum
@@ -48,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_convolution_mod.test.cpp
     title: Verify/LC_convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_convolution_mod_1000000007.test.cpp
     title: Verify/LC_convolution_mod_1000000007.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,34 +63,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_exp_of_formal_power_series.test.cpp
     title: Verify/LC_exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution.test.cpp
     title: Verify/LC_multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
   - icon: ':x:'
@@ -228,9 +231,9 @@ data:
     \n */\n#line 4 \"Math/primitive.hpp\"\n\r\nll mpow(ll a, ll t, ll m) {\r\n   \
     \ ll res = 1;\r\n    FastDiv64 im(m);\r\n    while (t) {\r\n        if (t & 1)\r\
     \n            res = im.modulo(__int128_t(res) * a);\r\n        a = im.modulo(__int128_t(a)\
-    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res;\r\n}\r\nll minv(ll a,\
-    \ ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t =\
-    \ a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
+    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res % m;\r\n}\r\nll minv(ll\
+    \ a, ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t\
+    \ = a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
     \n        swap(u, v);\r\n    }\r\n    u = (u % m + m) % m;\r\n    return u;\r\n\
     }\r\nll getPrimitiveRoot(ll p) {\r\n    vector<ll> ps = Pollard(p - 1);\r\n  \
     \  sort(ALL(ps));\r\n    rep(x, 1, inf) {\r\n        for (auto &q : ps) {\r\n\
@@ -312,14 +315,14 @@ data:
     \r\n\r\nll mpow(ll a, ll t, ll m) {\r\n    ll res = 1;\r\n    FastDiv64 im(m);\r\
     \n    while (t) {\r\n        if (t & 1)\r\n            res = im.modulo(__int128_t(res)\
     \ * a);\r\n        a = im.modulo(__int128_t(a) * a);\r\n        t >>= 1;\r\n \
-    \   }\r\n    return res;\r\n}\r\nll minv(ll a, ll m) {\r\n    ll b = m, u = 1,\
-    \ v = 0;\r\n    while (b) {\r\n        ll t = a / b;\r\n        a -= t * b;\r\n\
-    \        swap(a, b);\r\n        u -= t * v;\r\n        swap(u, v);\r\n    }\r\n\
-    \    u = (u % m + m) % m;\r\n    return u;\r\n}\r\nll getPrimitiveRoot(ll p) {\r\
-    \n    vector<ll> ps = Pollard(p - 1);\r\n    sort(ALL(ps));\r\n    rep(x, 1, inf)\
-    \ {\r\n        for (auto &q : ps) {\r\n            if (mpow(x, (p - 1) / q, p)\
-    \ == 1)\r\n                goto fail;\r\n        }\r\n        return x;\r\n  \
-    \  fail:;\r\n    }\r\n    assert(0);\r\n}\r\ntemplate <typename T> T extgcd(T\
+    \   }\r\n    return res % m;\r\n}\r\nll minv(ll a, ll m) {\r\n    ll b = m, u\
+    \ = 1, v = 0;\r\n    while (b) {\r\n        ll t = a / b;\r\n        a -= t *\
+    \ b;\r\n        swap(a, b);\r\n        u -= t * v;\r\n        swap(u, v);\r\n\
+    \    }\r\n    u = (u % m + m) % m;\r\n    return u;\r\n}\r\nll getPrimitiveRoot(ll\
+    \ p) {\r\n    vector<ll> ps = Pollard(p - 1);\r\n    sort(ALL(ps));\r\n    rep(x,\
+    \ 1, inf) {\r\n        for (auto &q : ps) {\r\n            if (mpow(x, (p - 1)\
+    \ / q, p) == 1)\r\n                goto fail;\r\n        }\r\n        return x;\r\
+    \n    fail:;\r\n    }\r\n    assert(0);\r\n}\r\ntemplate <typename T> T extgcd(T\
     \ a, T b, T &p, T &q) {\r\n    if (b == 0) {\r\n        p = 1;\r\n        q =\
     \ 0;\r\n        return a;\r\n    }\r\n    T d = extgcd(b, a % b, q, p);\r\n  \
     \  q -= a / b * p;\r\n    return d;\r\n}\r\ntemplate <typename T> pair<T, T> crt(vector<T>\
@@ -400,44 +403,45 @@ data:
   isVerificationFile: false
   path: Math/primitive.hpp
   requiredBy:
-  - Convolution/arbitrary.hpp
-  - Convolution/ntt.hpp
-  - Convolution/multivariatecyclic.hpp
-  - Convolution/multivariate.hpp
-  - Algorithm/wildcardpatternmatching.hpp
-  - Math/bigint.hpp
   - Math/binomquery.hpp
+  - Math/modfast.hpp
+  - Math/bigint.hpp
   - Math/twosquare.hpp
-  timestamp: '2026-01-30 05:37:33+09:00'
+  - Algorithm/wildcardpatternmatching.hpp
+  - Convolution/multivariatecyclic.hpp
+  - Convolution/ntt.hpp
+  - Convolution/arbitrary.hpp
+  - Convolution/multivariate.hpp
+  timestamp: '2026-02-16 06:32:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_multivariate_convolution.test.cpp
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/YUKI_310.test.cpp
-  - Verify/LC_multivariate_convolution_cyclic.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
-  - Verify/YUKI_1112.test.cpp
-  - Verify/LC_convolution_mod_1000000007.test.cpp
-  - Verify/YUKI_1080.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
-  - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_partition_function.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
-  - Verify/LC_polynomial_interpolation.test.cpp
-  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
-  - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/YUKI_2097.test.cpp
   - Verify/LC_convolution_mod.test.cpp
-  - Verify/LC_discrete_logarithm_mod.test.cpp
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
-  - Verify/LC_binomial_coefficient.test.cpp
-  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
   - Verify/LC_inv_of_formal_power_series.test.cpp
   - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_sparse_matrix_det.test.cpp
+  - Verify/LC_multivariate_convolution.test.cpp
+  - Verify/LC_multivariate_convolution_cyclic.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/LC_binomial_coefficient.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
+  - Verify/YUKI_310.test.cpp
+  - Verify/LC_discrete_logarithm_mod.test.cpp
+  - Verify/YUKI_1112.test.cpp
+  - Verify/LC_polynomial_interpolation.test.cpp
+  - Verify/LC_convolution_mod_1000000007.test.cpp
+  - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
+  - Verify/LC_exp_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_partition_function.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
+  - Verify/LC_stirling_number_of_the_second_kind.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/YUKI_1080.test.cpp
 documentation_of: Math/primitive.hpp
 layout: document
 redirect_from:

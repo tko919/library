@@ -12,28 +12,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/LC_exp_of_formal_power_series.test.cpp
     title: Verify/LC_exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_inv_of_formal_power_series.test.cpp
     title: Verify/LC_inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
     title: Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_log_of_formal_power_series.test.cpp
     title: Verify/LC_log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_many_factorials.test.cpp
     title: Verify/LC_many_factorials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multipoint_evaluation.test.cpp
     title: Verify/LC_multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_partition_function.test.cpp
     title: Verify/LC_partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_interpolation.test.cpp
     title: Verify/LC_polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_polynomial_taylor_shift.test.cpp
     title: Verify/LC_polynomial_taylor_shift.test.cpp
   - icon: ':x:'
@@ -133,13 +133,17 @@ data:
     \ {\r\n        assert(this->front() == 1);\r\n        const int n = this->size();\r\
     \n        Poly res = diff() * inv();\r\n        res = res.inte();\r\n        res.resize(n);\r\
     \n        return res;\r\n    }\r\n    Poly shift(const int &c) const {\r\n   \
-    \     const int n = this->size();\r\n        Poly res = *this, g(n);\r\n     \
-    \   g[0] = 1;\r\n        rep(i, 1, n) g[i] = g[i - 1] * c / i;\r\n        vector<T>\
-    \ fact(n, 1);\r\n        rep(i, 0, n) {\r\n            if (i)\r\n            \
-    \    fact[i] = fact[i - 1] * i;\r\n            res[i] *= fact[i];\r\n        }\r\
-    \n        res = res.rev();\r\n        res *= g;\r\n        res.resize(n);\r\n\
-    \        res = res.rev();\r\n        rep(i, 0, n) res[i] /= fact[i];\r\n     \
-    \   return res;\r\n    }\r\n    Poly inv() const {\r\n        const int n = this->size();\r\
+    \     const int n = this->size();\r\n        if (n == 0 or c == 0)\r\n       \
+    \     return *this;\r\n        Poly res = *this, g(n);\r\n        vector<T> fact(n,\
+    \ 1);\r\n        rep(i, 1, n) fact[i] = fact[i - 1] * i;\r\n        rep(i, 0,\
+    \ n) {\r\n            res[i] *= fact[i];\r\n        }\r\n\r\n        // Turn factorials\
+    \ into inverse factorials using only one inversion.\r\n        fact[n - 1] = fact[n\
+    \ - 1].inv();\r\n        for (int i = n - 1; i; i--)\r\n            fact[i - 1]\
+    \ = fact[i] * i;\r\n\r\n        T pw = 1, x = c;\r\n        rep(i, 0, n) {\r\n\
+    \            g[i] = pw * fact[i];\r\n            pw *= x;\r\n        }\r\n   \
+    \     res = res.rev();\r\n        res *= g;\r\n        res.resize(n);\r\n    \
+    \    res = res.rev();\r\n        rep(i, 0, n) res[i] *= fact[i];\r\n        return\
+    \ res;\r\n    }\r\n    Poly inv() const {\r\n        const int n = this->size();\r\
     \n        Poly res(1);\r\n        res.front() = T(1) / this->front();\r\n    \
     \    for (int k = 1; k < n; k <<= 1) {\r\n            Poly f(k * 2), g(k * 2);\r\
     \n            rep(i, 0, min(n, k * 2)) f[i] = (*this)[i];\r\n            rep(i,\
@@ -181,7 +185,7 @@ data:
     \    x *= t;\r\n        g = g.exp();\r\n        c = c.pow(t);\r\n        rep(i,\
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */\n"
+    \ mod)\r\n */\r\n"
   code: "#pragma once\r\n\r\ntemplate <typename T> struct Poly : vector<T> {\r\n \
     \   Poly(int n = 0) {\r\n        this->assign(n, T());\r\n    }\r\n    Poly(const\
     \ initializer_list<T> f) : vector<T>::vector(f) {}\r\n    Poly(const vector<T>\
@@ -252,13 +256,17 @@ data:
     \ {\r\n        assert(this->front() == 1);\r\n        const int n = this->size();\r\
     \n        Poly res = diff() * inv();\r\n        res = res.inte();\r\n        res.resize(n);\r\
     \n        return res;\r\n    }\r\n    Poly shift(const int &c) const {\r\n   \
-    \     const int n = this->size();\r\n        Poly res = *this, g(n);\r\n     \
-    \   g[0] = 1;\r\n        rep(i, 1, n) g[i] = g[i - 1] * c / i;\r\n        vector<T>\
-    \ fact(n, 1);\r\n        rep(i, 0, n) {\r\n            if (i)\r\n            \
-    \    fact[i] = fact[i - 1] * i;\r\n            res[i] *= fact[i];\r\n        }\r\
-    \n        res = res.rev();\r\n        res *= g;\r\n        res.resize(n);\r\n\
-    \        res = res.rev();\r\n        rep(i, 0, n) res[i] /= fact[i];\r\n     \
-    \   return res;\r\n    }\r\n    Poly inv() const {\r\n        const int n = this->size();\r\
+    \     const int n = this->size();\r\n        if (n == 0 or c == 0)\r\n       \
+    \     return *this;\r\n        Poly res = *this, g(n);\r\n        vector<T> fact(n,\
+    \ 1);\r\n        rep(i, 1, n) fact[i] = fact[i - 1] * i;\r\n        rep(i, 0,\
+    \ n) {\r\n            res[i] *= fact[i];\r\n        }\r\n\r\n        // Turn factorials\
+    \ into inverse factorials using only one inversion.\r\n        fact[n - 1] = fact[n\
+    \ - 1].inv();\r\n        for (int i = n - 1; i; i--)\r\n            fact[i - 1]\
+    \ = fact[i] * i;\r\n\r\n        T pw = 1, x = c;\r\n        rep(i, 0, n) {\r\n\
+    \            g[i] = pw * fact[i];\r\n            pw *= x;\r\n        }\r\n   \
+    \     res = res.rev();\r\n        res *= g;\r\n        res.resize(n);\r\n    \
+    \    res = res.rev();\r\n        rep(i, 0, n) res[i] *= fact[i];\r\n        return\
+    \ res;\r\n    }\r\n    Poly inv() const {\r\n        const int n = this->size();\r\
     \n        Poly res(1);\r\n        res.front() = T(1) / this->front();\r\n    \
     \    for (int k = 1; k < n; k <<= 1) {\r\n            Poly f(k * 2), g(k * 2);\r\
     \n            rep(i, 0, min(n, k * 2)) f[i] = (*this)[i];\r\n            rep(i,\
@@ -300,32 +308,32 @@ data:
     \    x *= t;\r\n        g = g.exp();\r\n        c = c.pow(t);\r\n        rep(i,\
     \ 0, n) res[i + t * k] = g[i] * c;\r\n        return res;\r\n    }\r\n    void\
     \ NTT(bool inv);\r\n};\r\n\r\n/**\r\n * @brief Formal Power Series (NTT-friendly\
-    \ mod)\r\n */"
+    \ mod)\r\n */\r\n"
   dependsOn: []
   isVerificationFile: false
   path: FPS/fps.hpp
   requiredBy: []
-  timestamp: '2024-04-30 04:21:19+09:00'
+  timestamp: '2026-10-28 08:02:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_product_of_polynomial_sequence.test.cpp
-  - Verify/LC_bernoulli_number.test.cpp
-  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_inv_of_formal_power_series.test.cpp
+  - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_pow_of_formal_power_series.test.cpp
   - Verify/LC_sparse_matrix_det.test.cpp
-  - Verify/LC_convolution_mod_2.test.cpp
-  - Verify/LC_partition_function.test.cpp
-  - Verify/LC_polynomial_taylor_shift.test.cpp
-  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
+  - Verify/LC_multipoint_evaluation.test.cpp
+  - Verify/YUKI_2097.test.cpp
+  - Verify/LC_bernoulli_number.test.cpp
   - Verify/LC_polynomial_interpolation.test.cpp
   - Verify/LC_shift_of_sampling_points_of_polynomial.test.cpp
   - Verify/LC_exp_of_formal_power_series.test.cpp
-  - Verify/LC_multipoint_evaluation.test.cpp
-  - Verify/YUKI_2097.test.cpp
-  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
-  - Verify/LC_pow_of_formal_power_series.test.cpp
+  - Verify/LC_convolution_mod_2.test.cpp
+  - Verify/LC_partition_function.test.cpp
+  - Verify/LC_product_of_polynomial_sequence.test.cpp
+  - Verify/LC_polynomial_taylor_shift.test.cpp
   - Verify/LC_stirling_number_of_the_second_kind.test.cpp
-  - Verify/LC_inv_of_formal_power_series.test.cpp
-  - Verify/LC_many_factorials.test.cpp
+  - Verify/LC_log_of_formal_power_series.test.cpp
+  - Verify/LC_kth_term_of_linearly_recurrent_sequence.test.cpp
+  - Verify/LC_stirling_number_of_the_first_kind.test.cpp
 documentation_of: FPS/fps.hpp
 layout: document
 redirect_from:

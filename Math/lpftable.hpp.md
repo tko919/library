@@ -4,7 +4,10 @@ data:
   - icon: ':question:'
     path: Math/sieve.hpp
     title: Prime Sieve
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/modfast.hpp
+    title: Mod Fast
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -45,7 +48,8 @@ data:
   - Math/sieve.hpp
   isVerificationFile: false
   path: Math/lpftable.hpp
-  requiredBy: []
+  requiredBy:
+  - Math/modfast.hpp
   timestamp: '2025-04-06 06:46:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

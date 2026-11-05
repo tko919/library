@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: Graph/countspanning.hpp
     title: Counting Spanning Tree
-  - icon: ':question:'
+  - icon: ':x:'
     path: Math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: Graph/dmdecomp.hpp
     title: DM decomposition
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/scc.hpp
     title: Strongly Connected Components
   _extendedRequiredBy: []
@@ -72,49 +72,65 @@ data:
     \ ret;\n    ret.push_back(V0);\n    for (auto &v : group)\n        ret.push_back(v);\n\
     \    ret.push_back(Vinf);\n    return ret;\n}\n\n/**\n * @brief DM decomposition\n\
     \ */\n#line 4 \"Algorithm/matroid.hpp\"\n\nstruct GraphicMatroid {\n    using\
-    \ P = pair<int, int>;\n    int n;\n    vector<P> E;\n    vector<vector<P>> G;\n\
-    \    vector<int> allow;\n    GraphicMatroid() {}\n    GraphicMatroid(int n, vector<P>\
-    \ &E) : n(n), E(E), G(n) {\n        rep(i, 0, SZ(E)) {\n            auto [u, v]\
-    \ = E[i];\n            G[u].push_back({v, i});\n            G[v].push_back({u,\
-    \ i});\n        }\n    }\n    void set(vector<int> &I) {\n        allow = I;\n\
-    \    }\n    vector<int> circuit(int e) {\n        auto [x, y] = E[e];\n      \
-    \  vector<int> ret;\n        ret.push_back(e);\n        auto dfs = [&](auto &dfs,\
-    \ int v, int p) -> bool {\n            if (v == y)\n                return true;\n\
-    \            for (auto &[to, i] : G[v])\n                if (allow[i] and to !=\
-    \ p) {\n                    ret.push_back(i);\n                    if (dfs(dfs,\
-    \ to, v))\n                        return true;\n                    ret.pop_back();\n\
-    \                }\n            return false;\n        };\n        if (dfs(dfs,\
-    \ x, -1))\n            return ret;\n        else\n            return {};\n   \
-    \ }\n};\n\nstruct PartitionMatroid {\n    vector<int> grp; // -1:not assign\n\
-    \    vector<int> lim;\n    vector<vector<int>> cnt;\n    PartitionMatroid() {}\n\
-    \    PartitionMatroid(vector<int> &grp, vector<int> lim) : grp(grp), lim(lim)\
-    \ {}\n    void set(vector<int> &I) {\n        cnt.assign(SZ(lim), {});\n     \
-    \   rep(i, 0, SZ(grp)) if (I[i] != 0 and grp[i] != -1) {\n            cnt[grp[i]].push_back(i);\n\
+    \ P = pair<int, int>;\n    const int n;\n    vector<P> E;\n    vector<vector<P>>\
+    \ G;\n    vector<int> allow;\n    GraphicMatroid() = default;\n    GraphicMatroid(int\
+    \ n, vector<P> &E) : n(n), E(E), G(n) {\n        rep(i, 0, SZ(E)) {\n        \
+    \    auto [u, v] = E[i];\n            G[u].push_back({v, i});\n            G[v].push_back({u,\
+    \ i});\n        }\n    }\n    int size() const {\n        return n;\n    }\n \
+    \   void set(vector<int> &I) {\n        allow = I;\n    }\n    vector<int> circuit(int\
+    \ e) {\n        auto [x, y] = E[e];\n        vector<int> ret;\n        ret.push_back(e);\n\
+    \        auto dfs = [&](auto &dfs, int v, int p) -> bool {\n            if (v\
+    \ == y)\n                return true;\n            for (auto &[to, i] : G[v])\n\
+    \                if (allow[i] and to != p) {\n                    ret.push_back(i);\n\
+    \                    if (dfs(dfs, to, v))\n                        return true;\n\
+    \                    ret.pop_back();\n                }\n            return false;\n\
+    \        };\n        if (dfs(dfs, x, -1))\n            return ret;\n        else\n\
+    \            return {};\n    }\n};\n\nstruct PartitionMatroid {\n    const vector<int>\
+    \ grp; // -1:not assign\n    const vector<int> lim;\n    vector<vector<int>> cnt;\n\
+    \    PartitionMatroid() = default;\n    PartitionMatroid(vector<int> &grp, vector<int>\
+    \ lim) : grp(grp), lim(lim) {}\n    int size() const {\n        return SZ(grp);\n\
+    \    }\n    void set(vector<int> &I) {\n        cnt.assign(SZ(lim), {});\n   \
+    \     rep(i, 0, SZ(grp)) if (I[i] != 0 and grp[i] != -1) {\n            cnt[grp[i]].push_back(i);\n\
     \        }\n    }\n    vector<int> circuit(int e) {\n        if (grp[e] == -1)\n\
     \            return {};\n        if (SZ(cnt[grp[e]]) + 1 > lim[grp[e]]) {\n  \
     \          vector<int> ret = cnt[grp[e]];\n            ret.push_back(e);\n   \
     \         return ret;\n        } else\n            return {};\n    }\n};\n\nstruct\
-    \ TransversalMatroid {\n    using P = pair<int, int>;\n    int n, m;\n    vector<vector<int>>\
-    \ G, aug;\n    vector<int> match, fixed;\n    TransversalMatroid() {}\n    TransversalMatroid(int\
-    \ n, int m, vector<P> &E)\n        : n(n), m(m), G(n), aug(n), fixed(n) {\n  \
-    \      for (auto &[u, v] : E)\n            G[u].push_back(v);\n    }\n    void\
-    \ set(vector<int> &I) {\n        vector g(n, vector<int>());\n        rep(e, 0,\
-    \ n) if (I[e]) {\n            for (auto &to : G[e])\n                g[e].push_back(to);\n\
-    \        }\n        auto match = BiMatching(n, m, g);\n        auto dm = DMdecomposition(n,\
-    \ m, g, match);\n        fixed.assign(m, 1);\n        for (auto &v : dm.front())\n\
-    \            if (v >= n)\n                fixed[v - n] = 0;\n        aug.assign(n\
-    \ + m, {});\n        rep(e, 0, n) {\n            for (auto &to : G[e])\n     \
-    \           aug[e].push_back(to + n);\n        }\n        rep(i, 0, n) if (match[i]\
-    \ != -1) aug[match[i] + n].push_back(i);\n    }\n    vector<int> circuit(int e)\
-    \ {\n        for (auto &to : G[e])\n            if (!fixed[to]) {\n          \
-    \      return {};\n            }\n\n        vector<int> used(n + m);\n       \
-    \ queue<int> que;\n        used[e] = 1;\n        que.push(e);\n        while (!que.empty())\
-    \ {\n            int v = que.front();\n            que.pop();\n            for\
-    \ (auto &to : aug[v])\n                if (!used[to]) {\n                    used[to]\
-    \ = 1;\n                    que.push(to);\n                }\n        }\n    \
-    \    vector<int> ret;\n        rep(i, 0, n) if (used[i]) ret.push_back(i);\n \
-    \       return ret;\n    }\n};\n\ntemplate <typename M1, typename M2, typename\
-    \ Val>\npair<vector<Val>, vector<vector<int>>>\nMinimumMatroidIntersection(M1\
+    \ TransversalMatroid {\n    using P = pair<int, int>;\n    const int n, m;\n \
+    \   vector<vector<int>> G, aug;\n    vector<int> match, fixed;\n    TransversalMatroid()\
+    \ = default;\n    TransversalMatroid(int n, int m, vector<P> &E)\n        : n(n),\
+    \ m(m), G(n), aug(n), fixed(n) {\n        for (auto &[u, v] : E)\n           \
+    \ G[u].push_back(v);\n    }\n    int size() const {\n        return n;\n    }\n\
+    \    void set(vector<int> &I) {\n        vector g(n, vector<int>());\n       \
+    \ rep(e, 0, n) if (I[e]) {\n            for (auto &to : G[e])\n              \
+    \  g[e].push_back(to);\n        }\n        auto match = BiMatching(n, m, g);\n\
+    \        auto dm = DMdecomposition(n, m, g, match);\n        fixed.assign(m, 1);\n\
+    \        for (auto &v : dm.front())\n            if (v >= n)\n               \
+    \ fixed[v - n] = 0;\n        aug.assign(n + m, {});\n        rep(e, 0, n) {\n\
+    \            for (auto &to : G[e])\n                aug[e].push_back(to + n);\n\
+    \        }\n        rep(i, 0, n) if (match[i] != -1) aug[match[i] + n].push_back(i);\n\
+    \    }\n    vector<int> circuit(int e) {\n        for (auto &to : G[e])\n    \
+    \        if (!fixed[to]) {\n                return {};\n            }\n\n    \
+    \    vector<int> used(n + m);\n        queue<int> que;\n        used[e] = 1;\n\
+    \        que.push(e);\n        while (!que.empty()) {\n            int v = que.front();\n\
+    \            que.pop();\n            for (auto &to : aug[v])\n               \
+    \ if (!used[to]) {\n                    used[to] = 1;\n                    que.push(to);\n\
+    \                }\n        }\n        vector<int> ret;\n        rep(i, 0, n)\
+    \ if (used[i]) ret.push_back(i);\n        return ret;\n    }\n};\n\nstruct BinaryMatroid\
+    \ {\n    const vector<ll> mat;\n    vector<int> Is;\n    vector<vector<ll>> basis;\n\
+    \    BinaryMatroid() {}\n    BinaryMatroid(const vector<ll> &init) : mat(init)\
+    \ {}\n    int size() const {\n        return SZ(mat);\n    }\n    void set(vector<int>\
+    \ &I) {\n        Is.clear();\n        rep(i, 0, SZ(mat)) if (I[i]) Is.push_back(i);\n\
+    \        basis.assign(SZ(Is) + 1, {});\n        rep(i, 0, SZ(Is) + 1) {\n    \
+    \        rep(j, 0, SZ(Is)) if (i != j) {\n                ll v = mat[Is[j]];\n\
+    \                for (auto &b : basis[i])\n                    chmin(v, v ^ b);\n\
+    \                if (v)\n                    basis[i].push_back(v);\n        \
+    \    }\n        }\n    }\n    vector<int> circuit(int e) {\n        ll v = mat[e];\n\
+    \        for (auto &b : basis.back())\n            chmin(v, v ^ b);\n        if\
+    \ (v)\n            return {};\n        vector<int> ret = {e};\n        rep(i,\
+    \ 0, SZ(Is)) {\n            ll w = mat[e];\n            for (auto &b : basis[i])\n\
+    \                chmin(w, w ^ b);\n            if (w)\n                ret.push_back(Is[i]);\n\
+    \        }\n        return ret;\n    }\n};\n\ntemplate <typename M1, typename\
+    \ M2, typename Val>\npair<vector<Val>, vector<vector<int>>>\nMinimumMatroidIntersection(M1\
     \ &m1, M2 &m2, vector<Val> &ws) {\n    using P = pair<Val, int>;\n    int n =\
     \ SZ(ws);\n\n    vector<Val> ret1;\n    vector<vector<int>> ret2;\n\n    Val profit\
     \ = 0;\n    vector<int> I(n);\n    ret1.push_back(profit);\n    ret2.push_back(I);\n\
@@ -142,50 +158,66 @@ data:
     \        }\n        ret1.push_back(profit);\n        ret2.push_back(I);\n    }\n\
     \    return {ret1, ret2};\n}\n\n/**\n * @brief Matroid\n */\n"
   code: "#pragma once\n#include \"Graph/bimatching.hpp\"\n#include \"Graph/dmdecomp.hpp\"\
-    \n\nstruct GraphicMatroid {\n    using P = pair<int, int>;\n    int n;\n    vector<P>\
-    \ E;\n    vector<vector<P>> G;\n    vector<int> allow;\n    GraphicMatroid() {}\n\
-    \    GraphicMatroid(int n, vector<P> &E) : n(n), E(E), G(n) {\n        rep(i,\
-    \ 0, SZ(E)) {\n            auto [u, v] = E[i];\n            G[u].push_back({v,\
-    \ i});\n            G[v].push_back({u, i});\n        }\n    }\n    void set(vector<int>\
-    \ &I) {\n        allow = I;\n    }\n    vector<int> circuit(int e) {\n       \
-    \ auto [x, y] = E[e];\n        vector<int> ret;\n        ret.push_back(e);\n \
-    \       auto dfs = [&](auto &dfs, int v, int p) -> bool {\n            if (v ==\
-    \ y)\n                return true;\n            for (auto &[to, i] : G[v])\n \
-    \               if (allow[i] and to != p) {\n                    ret.push_back(i);\n\
-    \                    if (dfs(dfs, to, v))\n                        return true;\n\
-    \                    ret.pop_back();\n                }\n            return false;\n\
-    \        };\n        if (dfs(dfs, x, -1))\n            return ret;\n        else\n\
-    \            return {};\n    }\n};\n\nstruct PartitionMatroid {\n    vector<int>\
-    \ grp; // -1:not assign\n    vector<int> lim;\n    vector<vector<int>> cnt;\n\
-    \    PartitionMatroid() {}\n    PartitionMatroid(vector<int> &grp, vector<int>\
-    \ lim) : grp(grp), lim(lim) {}\n    void set(vector<int> &I) {\n        cnt.assign(SZ(lim),\
-    \ {});\n        rep(i, 0, SZ(grp)) if (I[i] != 0 and grp[i] != -1) {\n       \
-    \     cnt[grp[i]].push_back(i);\n        }\n    }\n    vector<int> circuit(int\
-    \ e) {\n        if (grp[e] == -1)\n            return {};\n        if (SZ(cnt[grp[e]])\
-    \ + 1 > lim[grp[e]]) {\n            vector<int> ret = cnt[grp[e]];\n         \
-    \   ret.push_back(e);\n            return ret;\n        } else\n            return\
-    \ {};\n    }\n};\n\nstruct TransversalMatroid {\n    using P = pair<int, int>;\n\
-    \    int n, m;\n    vector<vector<int>> G, aug;\n    vector<int> match, fixed;\n\
-    \    TransversalMatroid() {}\n    TransversalMatroid(int n, int m, vector<P> &E)\n\
-    \        : n(n), m(m), G(n), aug(n), fixed(n) {\n        for (auto &[u, v] : E)\n\
-    \            G[u].push_back(v);\n    }\n    void set(vector<int> &I) {\n     \
-    \   vector g(n, vector<int>());\n        rep(e, 0, n) if (I[e]) {\n          \
-    \  for (auto &to : G[e])\n                g[e].push_back(to);\n        }\n   \
-    \     auto match = BiMatching(n, m, g);\n        auto dm = DMdecomposition(n,\
-    \ m, g, match);\n        fixed.assign(m, 1);\n        for (auto &v : dm.front())\n\
-    \            if (v >= n)\n                fixed[v - n] = 0;\n        aug.assign(n\
-    \ + m, {});\n        rep(e, 0, n) {\n            for (auto &to : G[e])\n     \
-    \           aug[e].push_back(to + n);\n        }\n        rep(i, 0, n) if (match[i]\
-    \ != -1) aug[match[i] + n].push_back(i);\n    }\n    vector<int> circuit(int e)\
-    \ {\n        for (auto &to : G[e])\n            if (!fixed[to]) {\n          \
-    \      return {};\n            }\n\n        vector<int> used(n + m);\n       \
-    \ queue<int> que;\n        used[e] = 1;\n        que.push(e);\n        while (!que.empty())\
-    \ {\n            int v = que.front();\n            que.pop();\n            for\
-    \ (auto &to : aug[v])\n                if (!used[to]) {\n                    used[to]\
-    \ = 1;\n                    que.push(to);\n                }\n        }\n    \
-    \    vector<int> ret;\n        rep(i, 0, n) if (used[i]) ret.push_back(i);\n \
-    \       return ret;\n    }\n};\n\ntemplate <typename M1, typename M2, typename\
-    \ Val>\npair<vector<Val>, vector<vector<int>>>\nMinimumMatroidIntersection(M1\
+    \n\nstruct GraphicMatroid {\n    using P = pair<int, int>;\n    const int n;\n\
+    \    vector<P> E;\n    vector<vector<P>> G;\n    vector<int> allow;\n    GraphicMatroid()\
+    \ = default;\n    GraphicMatroid(int n, vector<P> &E) : n(n), E(E), G(n) {\n \
+    \       rep(i, 0, SZ(E)) {\n            auto [u, v] = E[i];\n            G[u].push_back({v,\
+    \ i});\n            G[v].push_back({u, i});\n        }\n    }\n    int size()\
+    \ const {\n        return n;\n    }\n    void set(vector<int> &I) {\n        allow\
+    \ = I;\n    }\n    vector<int> circuit(int e) {\n        auto [x, y] = E[e];\n\
+    \        vector<int> ret;\n        ret.push_back(e);\n        auto dfs = [&](auto\
+    \ &dfs, int v, int p) -> bool {\n            if (v == y)\n                return\
+    \ true;\n            for (auto &[to, i] : G[v])\n                if (allow[i]\
+    \ and to != p) {\n                    ret.push_back(i);\n                    if\
+    \ (dfs(dfs, to, v))\n                        return true;\n                  \
+    \  ret.pop_back();\n                }\n            return false;\n        };\n\
+    \        if (dfs(dfs, x, -1))\n            return ret;\n        else\n       \
+    \     return {};\n    }\n};\n\nstruct PartitionMatroid {\n    const vector<int>\
+    \ grp; // -1:not assign\n    const vector<int> lim;\n    vector<vector<int>> cnt;\n\
+    \    PartitionMatroid() = default;\n    PartitionMatroid(vector<int> &grp, vector<int>\
+    \ lim) : grp(grp), lim(lim) {}\n    int size() const {\n        return SZ(grp);\n\
+    \    }\n    void set(vector<int> &I) {\n        cnt.assign(SZ(lim), {});\n   \
+    \     rep(i, 0, SZ(grp)) if (I[i] != 0 and grp[i] != -1) {\n            cnt[grp[i]].push_back(i);\n\
+    \        }\n    }\n    vector<int> circuit(int e) {\n        if (grp[e] == -1)\n\
+    \            return {};\n        if (SZ(cnt[grp[e]]) + 1 > lim[grp[e]]) {\n  \
+    \          vector<int> ret = cnt[grp[e]];\n            ret.push_back(e);\n   \
+    \         return ret;\n        } else\n            return {};\n    }\n};\n\nstruct\
+    \ TransversalMatroid {\n    using P = pair<int, int>;\n    const int n, m;\n \
+    \   vector<vector<int>> G, aug;\n    vector<int> match, fixed;\n    TransversalMatroid()\
+    \ = default;\n    TransversalMatroid(int n, int m, vector<P> &E)\n        : n(n),\
+    \ m(m), G(n), aug(n), fixed(n) {\n        for (auto &[u, v] : E)\n           \
+    \ G[u].push_back(v);\n    }\n    int size() const {\n        return n;\n    }\n\
+    \    void set(vector<int> &I) {\n        vector g(n, vector<int>());\n       \
+    \ rep(e, 0, n) if (I[e]) {\n            for (auto &to : G[e])\n              \
+    \  g[e].push_back(to);\n        }\n        auto match = BiMatching(n, m, g);\n\
+    \        auto dm = DMdecomposition(n, m, g, match);\n        fixed.assign(m, 1);\n\
+    \        for (auto &v : dm.front())\n            if (v >= n)\n               \
+    \ fixed[v - n] = 0;\n        aug.assign(n + m, {});\n        rep(e, 0, n) {\n\
+    \            for (auto &to : G[e])\n                aug[e].push_back(to + n);\n\
+    \        }\n        rep(i, 0, n) if (match[i] != -1) aug[match[i] + n].push_back(i);\n\
+    \    }\n    vector<int> circuit(int e) {\n        for (auto &to : G[e])\n    \
+    \        if (!fixed[to]) {\n                return {};\n            }\n\n    \
+    \    vector<int> used(n + m);\n        queue<int> que;\n        used[e] = 1;\n\
+    \        que.push(e);\n        while (!que.empty()) {\n            int v = que.front();\n\
+    \            que.pop();\n            for (auto &to : aug[v])\n               \
+    \ if (!used[to]) {\n                    used[to] = 1;\n                    que.push(to);\n\
+    \                }\n        }\n        vector<int> ret;\n        rep(i, 0, n)\
+    \ if (used[i]) ret.push_back(i);\n        return ret;\n    }\n};\n\nstruct BinaryMatroid\
+    \ {\n    const vector<ll> mat;\n    vector<int> Is;\n    vector<vector<ll>> basis;\n\
+    \    BinaryMatroid() {}\n    BinaryMatroid(const vector<ll> &init) : mat(init)\
+    \ {}\n    int size() const {\n        return SZ(mat);\n    }\n    void set(vector<int>\
+    \ &I) {\n        Is.clear();\n        rep(i, 0, SZ(mat)) if (I[i]) Is.push_back(i);\n\
+    \        basis.assign(SZ(Is) + 1, {});\n        rep(i, 0, SZ(Is) + 1) {\n    \
+    \        rep(j, 0, SZ(Is)) if (i != j) {\n                ll v = mat[Is[j]];\n\
+    \                for (auto &b : basis[i])\n                    chmin(v, v ^ b);\n\
+    \                if (v)\n                    basis[i].push_back(v);\n        \
+    \    }\n        }\n    }\n    vector<int> circuit(int e) {\n        ll v = mat[e];\n\
+    \        for (auto &b : basis.back())\n            chmin(v, v ^ b);\n        if\
+    \ (v)\n            return {};\n        vector<int> ret = {e};\n        rep(i,\
+    \ 0, SZ(Is)) {\n            ll w = mat[e];\n            for (auto &b : basis[i])\n\
+    \                chmin(w, w ^ b);\n            if (w)\n                ret.push_back(Is[i]);\n\
+    \        }\n        return ret;\n    }\n};\n\ntemplate <typename M1, typename\
+    \ M2, typename Val>\npair<vector<Val>, vector<vector<int>>>\nMinimumMatroidIntersection(M1\
     \ &m1, M2 &m2, vector<Val> &ws) {\n    using P = pair<Val, int>;\n    int n =\
     \ SZ(ws);\n\n    vector<Val> ret1;\n    vector<vector<int>> ret2;\n\n    Val profit\
     \ = 0;\n    vector<int> I(n);\n    ret1.push_back(profit);\n    ret2.push_back(I);\n\
@@ -219,7 +251,7 @@ data:
   isVerificationFile: false
   path: Algorithm/matroid.hpp
   requiredBy: []
-  timestamp: '2024-09-30 03:29:42+09:00'
+  timestamp: '2026-10-15 23:15:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Algorithm/matroid.hpp

@@ -23,10 +23,10 @@ data:
     \        auto [f,g]=deq[0];\n        auto [p,q]=deq[1];\n        deq.push_back({f*q+g*p,g*q});\n\
     \        deq.pop_front();\n        deq.pop_front();\n    }\n    return deq[0];\n\
     }\n\n/**\n * @brief Sum of Rationals\n*/\n#line 2 \"Math/comb.hpp\"\n\ntemplate\
-    \ <typename T> T Inv(ll n) {\n    static int md;\n    static vector<T> buf({0,\
+    \ <typename T> T Inv(ll n) {\n    static unsigned md;\n    static vector<T> buf({0,\
     \ 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n        buf\
     \ = vector<T>({0, 1});\n    }\n    assert(n > 0);\n    n %= md;\n    while (SZ(buf)\
-    \ <= n) {\n        int k = SZ(buf), q = (md + k - 1) / k;\n        buf.push_back(buf[k\
+    \ <= n) {\n        unsigned k = SZ(buf), q = (md + k - 1) / k;\n        buf.push_back(buf[k\
     \ * q - md] * q);\n    }\n    return buf[n];\n}\n\ntemplate <typename T> T Fact(ll\
     \ n, bool inv = 0) {\n    static int md;\n    static vector<T> buf({1, 1}), ibuf({1,\
     \ 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n        buf\
@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: FPS/compexp.hpp
   requiredBy: []
-  timestamp: '2025-07-13 05:51:38+09:00'
+  timestamp: '2026-10-15 23:15:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: FPS/compexp.hpp

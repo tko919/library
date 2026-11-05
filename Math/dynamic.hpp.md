@@ -12,12 +12,12 @@ data:
     path: Math/pisano.hpp
     title: Pisano Period
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_multivariate_convolution_cyclic.test.cpp
     title: Verify/LC_multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Dynamic Modint
     links: []
@@ -39,28 +39,28 @@ data:
     \  z = (x >> 64) * mh + (z >> 64);\n        x -= z * mod;\n        return x <\
     \ mod ? x : x - mod;\n    }\n    u64 mul(u64 a, u64 b) {\n        return modulo(u128(a)\
     \ * b);\n    }\n};\n\n/**\n * @brief Fast Division\n */\n#line 2 \"Math/comb.hpp\"\
-    \n\ntemplate <typename T> T Inv(ll n) {\n    static int md;\n    static vector<T>\
+    \n\ntemplate <typename T> T Inv(ll n) {\n    static unsigned md;\n    static vector<T>\
     \ buf({0, 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n  \
     \      buf = vector<T>({0, 1});\n    }\n    assert(n > 0);\n    n %= md;\n   \
-    \ while (SZ(buf) <= n) {\n        int k = SZ(buf), q = (md + k - 1) / k;\n   \
-    \     buf.push_back(buf[k * q - md] * q);\n    }\n    return buf[n];\n}\n\ntemplate\
-    \ <typename T> T Fact(ll n, bool inv = 0) {\n    static int md;\n    static vector<T>\
-    \ buf({1, 1}), ibuf({1, 1});\n    if (md != T::get_mod()) {\n        md = T::get_mod();\n\
-    \        buf = ibuf = vector<T>({1, 1});\n    }\n    assert(n >= 0 and n < md);\n\
-    \    while (SZ(buf) <= n) {\n        buf.push_back(buf.back() * SZ(buf));\n  \
-    \      ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\n    }\n    return inv\
-    \ ? ibuf[n] : buf[n];\n}\n\ntemplate <typename T> T nPr(int n, int r, bool inv\
-    \ = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n    return Fact<T>(n,\
-    \ inv) * Fact<T>(n - r, inv ^ 1);\n}\ntemplate <typename T> T nCr(int n, int r,\
-    \ bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n    return\
-    \ Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n - r, inv ^ 1);\n}\n// sum\
-    \ = n, r tuples\ntemplate <typename T> T nHr(int n, int r, bool inv = 0) {\n \
-    \   return nCr<T>(n + r - 1, r - 1, inv);\n}\n// [x^n]C(x)^k\ntemplate <typename\
-    \ T> T Catalan(int n, int k) {\n    if (k == 0)\n        return (n == 0 ? 1 :\
-    \ 0);\n    return T(k) * Inv<T>(n * 2 + k) * nCr<T>(n * 2 + k, n);\n}\n// sum\
-    \ = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int n, int\
-    \ a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n + b -\
-    \ 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 4 \"Math/dynamic.hpp\"\
+    \ while (SZ(buf) <= n) {\n        unsigned k = SZ(buf), q = (md + k - 1) / k;\n\
+    \        buf.push_back(buf[k * q - md] * q);\n    }\n    return buf[n];\n}\n\n\
+    template <typename T> T Fact(ll n, bool inv = 0) {\n    static int md;\n    static\
+    \ vector<T> buf({1, 1}), ibuf({1, 1});\n    if (md != T::get_mod()) {\n      \
+    \  md = T::get_mod();\n        buf = ibuf = vector<T>({1, 1});\n    }\n    assert(n\
+    \ >= 0 and n < md);\n    while (SZ(buf) <= n) {\n        buf.push_back(buf.back()\
+    \ * SZ(buf));\n        ibuf.push_back(ibuf.back() * Inv<T>(SZ(ibuf)));\n    }\n\
+    \    return inv ? ibuf[n] : buf[n];\n}\n\ntemplate <typename T> T nPr(int n, int\
+    \ r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n        return 0;\n  \
+    \  return Fact<T>(n, inv) * Fact<T>(n - r, inv ^ 1);\n}\ntemplate <typename T>\
+    \ T nCr(int n, int r, bool inv = 0) {\n    if (n < 0 || n < r || r < 0)\n    \
+    \    return 0;\n    return Fact<T>(n, inv) * Fact<T>(r, inv ^ 1) * Fact<T>(n -\
+    \ r, inv ^ 1);\n}\n// sum = n, r tuples\ntemplate <typename T> T nHr(int n, int\
+    \ r, bool inv = 0) {\n    return nCr<T>(n + r - 1, r - 1, inv);\n}\n// [x^n]C(x)^k\n\
+    template <typename T> T Catalan(int n, int k) {\n    if (k == 0)\n        return\
+    \ (n == 0 ? 1 : 0);\n    return T(k) * Inv<T>(n * 2 + k) * nCr<T>(n * 2 + k, n);\n\
+    }\n// sum = n, a nonzero tuples and b tuples\ntemplate <typename T> T choose(int\
+    \ n, int a, int b) {\n    if (n == 0)\n        return !a;\n    return nCr<T>(n\
+    \ + b - 1, a + b - 1);\n}\n\n/**\n * @brief Combination\n */\n#line 4 \"Math/dynamic.hpp\"\
     \n\r\nstruct Fp {\r\n    using u64 = uint64_t;\r\n    uint v;\r\n    static uint\
     \ get_mod() {\r\n        return _getmod();\r\n    }\r\n    static void set_mod(uint\
     \ _m) {\r\n        bar = FastDiv(_m);\r\n    }\r\n    Fp inv() const {\r\n   \
@@ -86,7 +86,8 @@ data:
     \        return Fp(*this) *= x;\r\n    }\r\n    Fp operator/(const Fp &x) const\
     \ {\r\n        return Fp(*this) /= x;\r\n    }\r\n    bool operator==(const Fp\
     \ &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
-    \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
+    \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    bool operator<(const\
+    \ Fp &x) const {\r\n        return v < x.v;\r\n    }\r\n    friend istream &operator>>(istream\
     \ &is, Fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
     \n    static FastDiv bar;\r\n    static uint _getmod() {\r\n        return bar.get();\r\
@@ -119,7 +120,8 @@ data:
     \        return Fp(*this) *= x;\r\n    }\r\n    Fp operator/(const Fp &x) const\
     \ {\r\n        return Fp(*this) /= x;\r\n    }\r\n    bool operator==(const Fp\
     \ &x) const {\r\n        return v == x.v;\r\n    }\r\n    bool operator!=(const\
-    \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    friend istream &operator>>(istream\
+    \ Fp &x) const {\r\n        return v != x.v;\r\n    }\r\n    bool operator<(const\
+    \ Fp &x) const {\r\n        return v < x.v;\r\n    }\r\n    friend istream &operator>>(istream\
     \ &is, Fp &x) {\r\n        return is >> x.v;\r\n    }\r\n    friend ostream &operator<<(ostream\
     \ &os, const Fp &x) {\r\n        return os << x.v;\r\n    }\r\n\r\n  private:\r\
     \n    static FastDiv bar;\r\n    static uint _getmod() {\r\n        return bar.get();\r\
@@ -133,8 +135,8 @@ data:
   path: Math/dynamic.hpp
   requiredBy:
   - Math/pisano.hpp
-  timestamp: '2025-07-13 05:51:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-15 23:15:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Verify/LC_multivariate_convolution_cyclic.test.cpp
 documentation_of: Math/dynamic.hpp

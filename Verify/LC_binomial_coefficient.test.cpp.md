@@ -276,9 +276,9 @@ data:
     \n */\n#line 4 \"Math/primitive.hpp\"\n\r\nll mpow(ll a, ll t, ll m) {\r\n   \
     \ ll res = 1;\r\n    FastDiv64 im(m);\r\n    while (t) {\r\n        if (t & 1)\r\
     \n            res = im.modulo(__int128_t(res) * a);\r\n        a = im.modulo(__int128_t(a)\
-    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res;\r\n}\r\nll minv(ll a,\
-    \ ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t =\
-    \ a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
+    \ * a);\r\n        t >>= 1;\r\n    }\r\n    return res % m;\r\n}\r\nll minv(ll\
+    \ a, ll m) {\r\n    ll b = m, u = 1, v = 0;\r\n    while (b) {\r\n        ll t\
+    \ = a / b;\r\n        a -= t * b;\r\n        swap(a, b);\r\n        u -= t * v;\r\
     \n        swap(u, v);\r\n    }\r\n    u = (u % m + m) % m;\r\n    return u;\r\n\
     }\r\nll getPrimitiveRoot(ll p) {\r\n    vector<ll> ps = Pollard(p - 1);\r\n  \
     \  sort(ALL(ps));\r\n    rep(x, 1, inf) {\r\n        for (auto &q : ps) {\r\n\
@@ -401,7 +401,7 @@ data:
   isVerificationFile: true
   path: Verify/LC_binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 05:37:33+09:00'
+  timestamp: '2026-02-16 06:32:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/LC_binomial_coefficient.test.cpp

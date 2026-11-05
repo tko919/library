@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/rbstset.hpp
     title: Randomized Binary Search Tree (set)
   _extendedRequiredBy: []
@@ -43,10 +43,17 @@ data:
     \ + 1 + upper_bound(x->rp, v);\r\n    }\r\n    void _dump(Node *cur, int depth)\
     \ {\r\n        if (!cur)\r\n            return;\r\n        _dump(cur->lp, depth\
     \ + 1);\r\n        rep(_, 0, depth) cerr << ' ';\r\n        cerr << cur->key <<\
-    \ '\\n';\r\n        _dump(cur->rp, depth + 1);\r\n    }\r\n\r\n  public:\r\n \
-    \   Node *root;\r\n    RBSTset() : root(nullptr) {}\r\n    RBSTset(const RBSTset\
-    \ &) = delete;\r\n    RBSTset &operator=(const RBSTset &) = delete;\r\n\r\n  \
-    \  RBSTset(RBSTset &&other) noexcept : root(other.root) {\r\n        other.root\
+    \ '\\n';\r\n        _dump(cur->rp, depth + 1);\r\n    }\r\n    Node *clone(Node\
+    \ *x) {\r\n        if (!x)\r\n            return nullptr;\r\n\r\n        Node\
+    \ *y = new Node(x->key);\r\n        y->size = x->size;\r\n        y->lp = clone(x->lp);\r\
+    \n        y->rp = clone(x->rp);\r\n        return y;\r\n    }\r\n\r\n  public:\r\
+    \n    Node *root;\r\n    RBSTset() : root(nullptr) {}\r\n    // RBSTset(const\
+    \ RBSTset &) = delete;\r\n    // RBSTset &operator=(const RBSTset &) = delete;\r\
+    \n    RBSTset(const RBSTset &other) : root(clone(other.root)) {}\r\n    RBSTset\
+    \ &operator=(const RBSTset &other) {\r\n        if (this != &other) {\r\n    \
+    \        Node *new_root = clone(other.root);\r\n            clear(root);\r\n \
+    \           root = new_root;\r\n        }\r\n        return *this;\r\n    }\r\n\
+    \r\n    RBSTset(RBSTset &&other) noexcept : root(other.root) {\r\n        other.root\
     \ = nullptr;\r\n    }\r\n    RBSTset &operator=(RBSTset &&other) noexcept {\r\n\
     \        if (this != &other) {\r\n            clear(root);\r\n            root\
     \ = other.root;\r\n            other.root = nullptr;\r\n        }\r\n        return\
@@ -94,7 +101,7 @@ data:
   isVerificationFile: false
   path: DataStructure/pointsetrangefreq.hpp
   requiredBy: []
-  timestamp: '2025-06-15 03:24:42+09:00'
+  timestamp: '2026-10-15 23:15:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DataStructure/pointsetrangefreq.hpp

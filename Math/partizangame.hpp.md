@@ -43,7 +43,7 @@ data:
     \ 4 \"Math/partizangame.hpp\"\ntemplate <typename T> struct Surreal {\n    static\
     \ constexpr int LG = std::numeric_limits<T>::digits - 2;\n    Frac<T> a;\n   \
     \ Surreal(T a = 0) : a(a, 1) {}\n    Surreal(T a, T b) : a(a, b) {}\n    Surreal(Frac<T>\
-    \ a) : a(a) {}\n    static constexpr Surreal infty() {\n        return Surreal(INF,\
+    \ a) : a(a) {}\n    static constexpr Surreal infty() {\n        return Surreal(inf,\
     \ 1);\n    }\n    bool operator==(Surreal const &rhs) const {\n        return\
     \ (a == rhs.a);\n    }\n    bool operator!=(Surreal const &rhs) const {\n    \
     \    return !(a == rhs);\n    }\n    bool operator<(Surreal const &rhs) const\
@@ -111,7 +111,7 @@ data:
     \ Surreal {\n    static constexpr int LG = std::numeric_limits<T>::digits - 2;\n\
     \    Frac<T> a;\n    Surreal(T a = 0) : a(a, 1) {}\n    Surreal(T a, T b) : a(a,\
     \ b) {}\n    Surreal(Frac<T> a) : a(a) {}\n    static constexpr Surreal infty()\
-    \ {\n        return Surreal(INF, 1);\n    }\n    bool operator==(Surreal const\
+    \ {\n        return Surreal(inf, 1);\n    }\n    bool operator==(Surreal const\
     \ &rhs) const {\n        return (a == rhs.a);\n    }\n    bool operator!=(Surreal\
     \ const &rhs) const {\n        return !(a == rhs);\n    }\n    bool operator<(Surreal\
     \ const &rhs) const {\n        return (a < rhs.a);\n    }\n    bool operator<=(Surreal\
@@ -179,7 +179,7 @@ data:
   isVerificationFile: false
   path: Math/partizangame.hpp
   requiredBy: []
-  timestamp: '2025-06-05 05:40:21+09:00'
+  timestamp: '2026-10-15 23:15:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/partizangame.hpp

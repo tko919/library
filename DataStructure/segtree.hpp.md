@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/2dsegtree.hpp
     title: 2D Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/sortablesegtree.hpp
     title: Sortable Segment Tree
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_add_rectangle_sum.test.cpp
     title: Verify/LC_point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_set_range_composite.test.cpp
     title: Verify/LC_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_point_set_range_sort_range_composite.test.cpp
     title: Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_rectangle_sum.test.cpp
     title: Verify/LC_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Verify/LC_staticrmq.test.cpp
     title: Verify/LC_staticrmq.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: Verify/LC_vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Segment Tree
     links: []
@@ -106,17 +106,17 @@ data:
   isVerificationFile: false
   path: DataStructure/segtree.hpp
   requiredBy:
-  - DataStructure/2dsegtree.hpp
   - DataStructure/sortablesegtree.hpp
+  - DataStructure/2dsegtree.hpp
   timestamp: '2024-08-09 08:04:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Verify/LC_point_set_range_sort_range_composite.test.cpp
-  - Verify/LC_point_set_range_composite.test.cpp
+  - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_rectangle_sum.test.cpp
   - Verify/LC_staticrmq.test.cpp
-  - Verify/LC_point_add_rectangle_sum.test.cpp
   - Verify/LC_vertex_set_path_composite.test.cpp
+  - Verify/LC_point_set_range_sort_range_composite.test.cpp
+  - Verify/LC_point_set_range_composite.test.cpp
 documentation_of: DataStructure/segtree.hpp
 layout: document
 redirect_from:

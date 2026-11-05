@@ -143,8 +143,8 @@ data:
   timestamp: '2024-08-09 08:04:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Verify/LC_range_affine_range_sum.test.cpp
   - Verify/LC_area_of_union_of_rectangles.test.cpp
+  - Verify/LC_range_affine_range_sum.test.cpp
 documentation_of: DataStructure/lazysegtree.hpp
 layout: document
 redirect_from:
