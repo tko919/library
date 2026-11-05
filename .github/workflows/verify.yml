@@ -7,17 +7,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Install dependencies
-      run: pip3 install -U online-judge-verify-helper
+      - name: Install dependencies
+        run: |
+          python -m pip install "setuptools==80.9.0"
+          python -m pip install -U online-judge-verify-helper
+          python -c "import pkg_resources; print('pkg_resources OK')"
 
-    - name: Run tests
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      - name: Run tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: oj-verify all
