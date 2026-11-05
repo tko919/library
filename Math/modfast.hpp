@@ -53,7 +53,7 @@ struct ModFast {
                         (p - 1);
                     continue;
                 }
-                if (1) {
+                {
                     ll tar = i, add = 0;
                     for (;;) {
                         if (mp.count(tar)) {
